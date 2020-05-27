@@ -1,0 +1,142 @@
+<head>
+    <title>OpenCAGE</title>
+    
+    <meta charset="utf-8" />
+    <meta name="description" content="OpenCAGE is an open source set of mod tools for Alien: Isolation." />
+    <meta name="keywords" content="opencage, alien isolation, modding, alien isolation mod tools, mod tools, Alien: Isolation, mods, aliens isolation" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    
+    <style>
+        html, body {
+            padding: 0; margin: 0; border: 0;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #412b69; 
+            background: -moz-linear-gradient(45deg,  #412b69 0%, #8e1073 100%); 
+            background: -webkit-linear-gradient(45deg,  #412b69 0%,#8e1073 100%);
+            background: linear-gradient(45deg,  #412b69 0%,#8e1073 100%); 
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#412b69', endColorstr='#8e1073',GradientType=1 ); 
+        }
+        .main_content {
+            position: absolute;
+            top:0;bottom:0;left:0;right:0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 40px,
+                #000 40px,
+                #000 80px
+            );
+            
+            color:white;
+            text-shadow: 0px 0px 20px rgba(0,0,0,0.84);
+            text-align: center;
+        }
+        .main_content h1 {
+            font-weight:bold;
+        }
+        .content_floater {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+        .content_inner {
+            width: 100%; 
+            max-width: 750px;
+        }
+        img {
+            margin: 15px;
+            width: calc(100% - 30px);
+            max-width: 600px;
+        }
+        a {
+            text-decoration: none;
+        }
+        button {
+            font-family: 'Montserrat', sans-serif;
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            padding: .375rem .75rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            border: 2px solid white;
+            font-size:25px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: transparent;
+            color: white;
+        }
+        @media only screen and (max-width: 991px) {
+            .main_content h1 {
+                font-size:25px;
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+            button {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+        @media only screen and (min-width: 992px) {
+            .main_content h1 {
+                font-size:50px;
+                margin-top: 30px;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main_content">
+        <center class="content_floater">
+            <div class="content_inner">
+                <img src="logo_trim_smaller.png" alt="OpenCAGE Logo">
+                <h1>OpenCAGE is an open source set of mod tools for Alien: Isolation</h1>
+                <a href="https://github.com/MattFiler/OpenCAGE/raw/master/OpenCAGE.exe"><button>Download</button></a>
+                <a href="https://github.com/MattFiler/OpenCAGE/"><button>View on GitHub</button></a>
+            </div>
+        </center>
+    </div>
+    
+    <script type="application/ld+json">
+        {
+            "@context": "http://www.schema.org",
+            "@type": "product",
+            "name": "OpenCAGE",
+            "image": "icon.png",
+            "description": "OpenCAGE is an open source set of mod tools for Alien: Isolation."
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org", 
+            "@type": "BreadcrumbList", 
+            "itemListElement": [
+                { 
+                    "@type": "ListItem", 
+                    "position": "0", 
+                    "item": { 
+                        "@id": "http://opencage.co.uk/", 
+                        "name": "OpenCAGE" 
+                    } 
+                }
+            ]
+        }
+    </script>
+</body>
