@@ -743,13 +743,13 @@ namespace cathode_vartype
                 List<string> output_html = new List<string>();
                 bool did_divider = false;
                 output_html.Add("<div class=\"docs-wrapper\"><div id=\"docs-sidebar\" class=\"docs-sidebar\"><nav id=\"docs-nav\" class=\"docs-nav navbar\"><ul class=\"section-items list-unstyled nav flex-column pb-3\">");
-                output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto active\" href=\"#interfaces\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Interfaces</a></li>");
+                output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto\" href=\"#interfaces\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Interfaces</a></li>");
                 for (int i = 0; i < entities.Count; i++)
                 {
                     if (!entities[i].nodeName.Contains("Interface") && !did_divider)
                     {
                         did_divider = true;
-                        output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto active\" href=\"#entities\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-map-signs\"></i></span>Entities</a></li>");
+                        output_html.Add("<li class=\"nav-item section-title mt-3\"><a class=\"nav-link scrollto\" href=\"#entities\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Entities</a></li>");
                     }
                     output_html.Add("<li class=\"nav-item\"><a class=\"nav-link scrollto\" href=\"#" + entities[i].className + "\">" + entities[i].className + "</a></li>");
                 }
