@@ -653,9 +653,9 @@ namespace cathode_vartype
         jump_to_dump:
 
 
-            List<CathodeNode> interfaces = entities.FindAll(o => o.nodeName.Contains("Interface"));
+            List<CathodeNode> interfaces = entities.FindAll(o => o.nodeName.Contains("Interface") && o.nodeName != "SmokeCylinderAttachmentInterface");
             interfaces = interfaces.OrderBy(o => o.className).ToList();
-            entities.RemoveAll(o => o.nodeName.Contains("Interface"));
+            entities.RemoveAll(o => o.nodeName.Contains("Interface") && o.nodeName != "SmokeCylinderAttachmentInterface");
             entities = entities.OrderBy(o => o.className).ToList();
             entities.InsertRange(0, interfaces);
 
@@ -725,10 +725,25 @@ namespace cathode_vartype
 
             #region Dump "index.html"
             {
+                CathodeNode EntityMethodInterface = entities.FirstOrDefault(o => o.className == "EntityMethodInterface");
+                Dictionary<string, List<CathodeParameter>> EMI_Lookup = new Dictionary<string, List<CathodeParameter>>();
+                for (int i = 0; i < EntityMethodInterface.nodeParameters.Count; i++)
+                {
+                    if (EntityMethodInterface.nodeParameters[i].parameterVariableType == "method")
+                    {
+                        List<CathodeParameter> param_links = new List<CathodeParameter>();
+                        for (int x = 0; x < 3; x++)
+                        {
+                            param_links.Add(EntityMethodInterface.nodeParameters[i + x]);
+                        }
+                        EMI_Lookup.Add(EntityMethodInterface.nodeParameters[i].parameterName, param_links);
+                    }
+                }
+
                 List<string> output_html = new List<string>();
                 bool did_divider = false;
                 output_html.Add("<div class=\"docs-wrapper\"><div id=\"docs-sidebar\" class=\"docs-sidebar\"><nav id=\"docs-nav\" class=\"docs-nav navbar\"><ul class=\"section-items list-unstyled nav flex-column pb-3\">");
-                output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto active\" href=\"#interfaces\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-map-signs\"></i></span>Interfaces</a></li>");
+                output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto active\" href=\"#interfaces\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Interfaces</a></li>");
                 for (int i = 0; i < entities.Count; i++)
                 {
                     if (!entities[i].nodeName.Contains("Interface") && !did_divider)
@@ -749,54 +764,61 @@ namespace cathode_vartype
                         did_divider = true;
                         output_html.Add("</article><article class=\"docs-article\" id=\"entities\"><header class=\"docs-header\"><h1 class=\"docs-heading\">Entities <span class=\"docs-time\">Last updated: " + DateTime.Now.ToString() + "</span></h1></header>");
                     }
-
+                    if (entities[i].nodeName == "EntityMethodInterface") continue;
 
                     output_html.Add("<section class=\"docs-section\" id=\"" + entities[i].className + "\">");
                     output_html.Add("<h2 class=\"section-heading\">" + entities[i].className + "</h3>");
 
                     if (interfaceMappings.ContainsKey(entities[i].className))
                     {
-                        output_html.Add("<p>Inherits from <a class=\"scrollto\" href=\"#" + interfaceMappings[entities[i].className] + "\">" + interfaceMappings[entities[i].className] + "</a></p>");
-                    }
-                    else
-                    {
-                        //Console.WriteLine(entities[i].className + " does not inherit?");
+                        if (interfaceMappings[entities[i].className] != "EntityMethodInterface")
+                            output_html.Add("<p>Inherits from <a class=\"scrollto\" href=\"#" + interfaceMappings[entities[i].className] + "\">" + interfaceMappings[entities[i].className] + "</a></p>");
                     }
 
-                    if (entities[i].nodeParameters.Count + entities[i].nodeParametersFromGet.Count + (customMethodMappings.ContainsKey(entities[i].className) ? customMethodMappings[entities[i].className].Count : 0) > 0)
-                    {
-                        output_html.Add("<h5>Parameters:</h5>");
-                    }
-
-                    output_html.Add("<ul>");
+                    Dictionary<string, List<CathodeParameter>> parameters = new Dictionary<string, List<CathodeParameter>>();
                     for (int x = 0; x < entities[i].nodeParameters.Count; x++)
                     {
-                        string toAdd = " title='" + entities[i].nodeParameters[x].parameterVariableNameStripped + "'> [" + entities[i].nodeParameters[x].parameterVariableType + "] ";
-                        if (entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP == "")
-                        {
-                            toAdd = "<li style='color:" + ((entities[i].nodeParameters[x].didFindFunction) ? "orange" : "red") + ";'" + toAdd;
-                            toAdd += entities[i].nodeParameters[x].parameterName;
-                        }
-                        else
-                        {
-                            toAdd = "<li style='color:green;'" + toAdd;
-                            toAdd += entities[i].nodeParameters[x].parameterName + " [DataType: " + entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP + "]";
-                        }
-                        if (entities[i].nodeParameters[x].parameterDefaultValue != "")
-                        {
-                            toAdd += " [DefaultVal: " + entities[i].nodeParameters[x].parameterDefaultValue + "]";
-                        }
-                        output_html.Add(toAdd + "</li>");
+                        string type = entities[i].nodeParameters[x].parameterVariableType;
+                        if (!parameters.ContainsKey(type)) parameters.Add(type, new List<CathodeParameter>());
+                        parameters[type].Add(entities[i].nodeParameters[x]);
                     }
-                    for (int x = 0; x < entities[i].nodeParametersFromGet.Count; x++)
+                    
+                    foreach (KeyValuePair<string, List<CathodeParameter>> vals in parameters)
                     {
-                        output_html.Add("<li style='color:brown;'>" + entities[i].nodeParametersFromGet[x].parameterName + " [DataType: " + entities[i].nodeParametersFromGet[x].parameterDataType_FROMFIRSTDUMP + "]</li>");
+                        output_html.Add("<h5>" + vals.Key.First().ToString().ToUpper() + vals.Key.Substring(1).ToLower() + "s:</h5>");
+                        output_html.Add("<ul>");
+                        foreach (CathodeParameter param in vals.Value)
+                        {
+                            string toAdd = "<li title='" + param.parameterVariableNameStripped + "'>";
+                            if (param.parameterDataType_FROMFIRSTDUMP == "")
+                            {
+                                toAdd += param.parameterName;
+                            }
+                            else
+                            {
+                                toAdd += param.parameterName + " [DataType: " + param.parameterDataType_FROMFIRSTDUMP + "]";
+                            }
+                            if (param.parameterDefaultValue != "")
+                            {
+                                toAdd += " [DefaultVal: " + param.parameterDefaultValue + "]";
+                            }
+                            output_html.Add(toAdd + "</li>");
+                        }
+                        output_html.Add("</ul>");
                     }
+
                     if (customMethodMappings.ContainsKey(entities[i].className))
                     {
+                        output_html.Add("<h5>Methods:</h5>");
                         for (int x = 0; x < customMethodMappings[entities[i].className].Count; x++)
                         {
-                            output_html.Add("<li style='color:purple;'>" + customMethodMappings[entities[i].className][x] + "</li>");
+                            string val = "<li>" + customMethodMappings[entities[i].className][x];
+                            if (EMI_Lookup.ContainsKey(customMethodMappings[entities[i].className][x]))
+                            {
+                                CathodeParameter relay = EMI_Lookup[customMethodMappings[entities[i].className][x]].FirstOrDefault(o => o.parameterVariableType == "relay");
+                                if (relay != null) val += " -> " + relay.parameterName;
+                            }
+                            output_html.Add(val + "</li>");
                         }
                     }
                     output_html.Add("</ul>");
