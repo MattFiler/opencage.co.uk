@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -93,25 +94,28 @@ namespace cathode_vartype
 
         static void Main(string[] args)
         {
+            #region Define default variable lookups 
             List<DefaultVals> defaultVariables = new List<DefaultVals>();
             //defaultVariables.Add(new DefaultVals("default_Enum", "0xffffffff00000000"));
             defaultVariables.Add(new DefaultVals("default_String", ""));
+            #endregion
 
+            #region Pull all entity/parameter names from the ShortGuid register dump
             List<string> mDump = DownloadIfNotAlreadyPresent("guid dump.txt");
-            List<CathodeNode> nodes = new List<CathodeNode>();
+            List<CathodeNode> entities = new List<CathodeNode>();
             List<string> paramtypedump = new List<string>();
             string iCantBeBotheredToCount = "CATHODE::ShortGuid::ShortGuid((ShortGuid *)&CATHODE::";
             for (int i = 0; i < mDump.Count; i++)
             {
                 string thisNodeName = mDump[i].Substring(iCantBeBotheredToCount.Length).Split(new[] { "__" }, StringSplitOptions.None)[0];
-                CathodeNode thisNode = nodes.FirstOrDefault(o => o.className == thisNodeName);
+                CathodeNode thisNode = entities.FirstOrDefault(o => o.className == thisNodeName);
                 if (thisNode == null)
                 {
                     thisNode = new CathodeNode();
                     string[] stringSplit = mDump[i].Split('"');
                     thisNode.nodeName = stringSplit[stringSplit.Length - 2];
                     thisNode.className = thisNodeName;
-                    nodes.Add(thisNode);
+                    entities.Add(thisNode);
                 }
                 else
                 {
@@ -119,17 +123,18 @@ namespace cathode_vartype
                     string[] stringSplit = mDump[i].Split('"');
                     thisParam.parameterName = stringSplit[stringSplit.Length - 2];
                     string metadataname = mDump[i].Split(new[] { "__Class::" }, StringSplitOptions.None)[1].Split(',')[0];
-                    string[] bleh = metadataname.Split('_');
+                    string[] type_split = metadataname.Split('_');
                     thisParam.parameterVariableName = metadataname;
-                    thisParam.parameterVariableType = bleh[bleh.Length - 2];
+                    thisParam.parameterVariableType = type_split[type_split.Length - 2];
                     thisParam.parameterVariableNameStripped = metadataname.Substring(0, metadataname.Length - 5 - thisParam.parameterVariableType.Length - 1);
                     thisNode.nodeParameters.Add(thisParam);
                     if (!paramtypedump.Contains(thisParam.parameterVariableType)) paramtypedump.Add(thisParam.parameterVariableType);
                 }
             }
+            #endregion
 
+            #region Pull content of functions for each entity from the iOS dump
             List<string> cDump = DownloadIfNotAlreadyPresent("AI ios.c");
-
             List<string> functionDump = new List<string>();
             List<FunctionData> functions = new List<FunctionData>();
             FunctionData currentFuncData = new FunctionData();
@@ -176,9 +181,10 @@ namespace cathode_vartype
                 }
             }
             functionDump.Sort();
-            File.WriteAllLines("function_dump.txt", functionDump);
+            File.WriteAllLines("DEBUG_function_dump.txt", functionDump);
+            #endregion
 
-            //parse on_custom_method to dump custom methods and interfaces
+            #region Parse "on_custom_method" to dump custom methods and interfaces
             Dictionary<string, string> interfaceMappings = new Dictionary<string, string>();
             Dictionary<string, List<string>> customMethodMappings = new Dictionary<string, List<string>>();
             foreach (FunctionData functionData in functions)
@@ -202,8 +208,9 @@ namespace cathode_vartype
                     customMethodMappings.Add(entity, customMethods);
                 }
             }
+            #endregion
 
-            //not all entities use on_custom_method, so also parse typeinfo to capture other interfaces
+            #region Not all entities use on_custom_method, so also parse typeinfo to capture other interfaces
             List<string> cDump2 = DownloadIfNotAlreadyPresent("ios dump.txt");
             string start = "                             * typeinfo for CATHODE::";
             string start2 = "                             CATHODE::";
@@ -242,7 +249,9 @@ namespace cathode_vartype
                     }
                 }
             }
+            #endregion
 
+            #region Parse alternate names
             List<string> tDump = DownloadIfNotAlreadyPresent("parameter_types.txt");
             List<DAT_Lookup> datLookup = new List<DAT_Lookup>();
             string shortGUIDDef = "CATHODE::ShortGuid::ShortGuid((ShortGuid*)&";
@@ -304,15 +313,15 @@ namespace cathode_vartype
                         }
                     }
 
-                    for (int x = 0; x < nodes.Count; x++)
+                    for (int x = 0; x < entities.Count; x++)
                     {
-                        if (nodes[x].className == ClassName)
+                        if (entities[x].className == ClassName)
                         {
-                            for (int z = 0; z < nodes[x].nodeParameters.Count; z++)
+                            for (int z = 0; z < entities[x].nodeParameters.Count; z++)
                             {
-                                if (nodes[x].nodeParameters[z].parameterVariableNameStripped == VariableName)
+                                if (entities[x].nodeParameters[z].parameterVariableNameStripped == VariableName)
                                 {
-                                    nodes[x].nodeParameters[z].parameterDataType_FROMFIRSTDUMP = VariableType;
+                                    entities[x].nodeParameters[z].parameterDataType_FROMFIRSTDUMP = VariableType;
                                 }
                             }
                         }
@@ -323,32 +332,23 @@ namespace cathode_vartype
                 }
             }
             //File.WriteAllLines("out_dump.txt", dump);
+            #endregion
 
             goto jump_to_dump;
 
-            /*
-            List<string> dump = new List<string>();
-            for (int i = 0; i < functions.Count; i++)
+            #region Work out parameter defaults from C dump per entity/interface
+            List<string> debug_out = new List<string>();
+            for (int i = 0; i < entities.Count; i++)
             {
-                dump.Add(functions[i].functionName);
-            }
-            dump.Sort();
-            File.WriteAllLines("out.txt", dump);
-            */
-
-            List<string> blehTest = new List<string>();
-
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                string thisNodeNameFunc = "CATHODE::" + nodes[i].className + "::";
+                string thisNodeNameFunc = "CATHODE::" + entities[i].className + "::";
                 string weirdCathodeNaming = "";
-                for (int z = 0; z < nodes[i].className.Length; z++)
+                for (int z = 0; z < entities[i].className.Length; z++)
                 {
-                    if (char.IsUpper(nodes[i].className[z]) && z != 0)
+                    if (char.IsUpper(entities[i].className[z]) && z != 0)
                     {
                         weirdCathodeNaming += "_";
                     }
-                    weirdCathodeNaming += nodes[i].className[z].ToString().ToUpper();
+                    weirdCathodeNaming += entities[i].className[z].ToString().ToUpper();
                 }
                 string thisNodeNameFuncAlt = "CATHODE::" + weirdCathodeNaming + "::";
 
@@ -357,21 +357,21 @@ namespace cathode_vartype
                     if ((functions[x].functionName.Length >= thisNodeNameFunc.Length && functions[x].functionName.Substring(0, thisNodeNameFunc.Length) == thisNodeNameFunc)// ||
                         /*(functions[x].functionName.Length >= thisNodeNameFuncAlt.Length && functions[x].functionName.Substring(0, thisNodeNameFuncAlt.Length) == thisNodeNameFuncAlt)*/)
                     {
-                        for (int z = 0; z < nodes[i].nodeParameters.Count; z++)
+                        for (int z = 0; z < entities[i].nodeParameters.Count; z++)
                         {
                             string[] fnSplit = functions[x].functionNameStripped.Split(new char[] { '_' }, 2);
                             string fnSplitConc = (fnSplit.Length == 1) ? fnSplit[0] : fnSplit[1];
-                            if (functions[x].functionNameStripped.ToUpper() == nodes[i].nodeParameters[z].parameterName.Replace(' ', '_').ToUpper() ||
-                                fnSplitConc.ToUpper() == nodes[i].nodeParameters[z].parameterName.Replace(' ', '_').ToUpper() ||
-                                functions[x].functionNameStripped.ToUpper() == nodes[i].nodeParameters[z].parameterVariableNameStripped.Substring(2).ToUpper() ||
-                                fnSplitConc.ToUpper() == nodes[i].nodeParameters[z].parameterVariableNameStripped.Substring(2).ToUpper())
+                            if (functions[x].functionNameStripped.ToUpper() == entities[i].nodeParameters[z].parameterName.Replace(' ', '_').ToUpper() ||
+                                fnSplitConc.ToUpper() == entities[i].nodeParameters[z].parameterName.Replace(' ', '_').ToUpper() ||
+                                functions[x].functionNameStripped.ToUpper() == entities[i].nodeParameters[z].parameterVariableNameStripped.Substring(2).ToUpper() ||
+                                fnSplitConc.ToUpper() == entities[i].nodeParameters[z].parameterVariableNameStripped.Substring(2).ToUpper())
                             {
                                 //This stops us matching constructors
-                                if (functions[x].functionNameStripped == nodes[i].className) continue;
+                                if (functions[x].functionNameStripped == entities[i].className) continue;
 
-                                if (nodes[i].nodeParameters[z].parameterDataType != "")
+                                if (entities[i].nodeParameters[z].parameterDataType != "")
                                 {
-                                    Console.WriteLine("ERROR: '" + nodes[i].nodeParameters[z].parameterName + "' on '" + nodes[i].nodeName + "' has already been assigned DataType!");
+                                    Console.WriteLine("ERROR: '" + entities[i].nodeParameters[z].parameterName + "' on '" + entities[i].nodeName + "' has already been assigned DataType!");
                                 }
 
                                 string compiledContent = "";
@@ -401,110 +401,110 @@ namespace cathode_vartype
                                         else if (splitByFilterRes.Length < 2)
                                         {
                                             Console.WriteLine("NO filter_resources_from_entities_ call in: " + functions[x].functionName);
-                                            blehTest.Add("");
-                                            blehTest.Add("");
-                                            blehTest.Add("######");
-                                            blehTest.Add(functions[x].functionName);
-                                            blehTest.Add("######");
-                                            blehTest.Add("");
-                                            blehTest.AddRange(functions[x].functionContent);
+                                            debug_out.Add("");
+                                            debug_out.Add("");
+                                            debug_out.Add("######");
+                                            debug_out.Add(functions[x].functionName);
+                                            debug_out.Add("######");
+                                            debug_out.Add("");
+                                            debug_out.AddRange(functions[x].functionContent);
                                         }
                                         else
                                         {
-                                            nodes[i].nodeParameters[z].parameterDataType = splitByFilterRes[1].Split('(')[0];
-                                            nodes[i].nodeParameters[z].parameterDataType = nodes[i].nodeParameters[z].parameterDataType.Substring(0, nodes[i].nodeParameters[z].parameterDataType.Length - 1);
+                                            entities[i].nodeParameters[z].parameterDataType = splitByFilterRes[1].Split('(')[0];
+                                            entities[i].nodeParameters[z].parameterDataType = entities[i].nodeParameters[z].parameterDataType.Substring(0, entities[i].nodeParameters[z].parameterDataType.Length - 1);
                                         }
                                     }
                                     else
                                     {
-                                        nodes[i].nodeParameters[z].parameterDataType = splitBySetEnt[1].Split('(')[0];
-                                        nodes[i].nodeParameters[z].parameterDataType = nodes[i].nodeParameters[z].parameterDataType.Substring(0, nodes[i].nodeParameters[z].parameterDataType.Length - 1);
+                                        entities[i].nodeParameters[z].parameterDataType = splitBySetEnt[1].Split('(')[0];
+                                        entities[i].nodeParameters[z].parameterDataType = entities[i].nodeParameters[z].parameterDataType.Substring(0, entities[i].nodeParameters[z].parameterDataType.Length - 1);
                                     }
                                 }
                                 else
                                 {
                                     string[] splitFunc = splitByInterface[1].Split('(');
-                                    nodes[i].nodeParameters[z].parameterDataType = splitFunc[0];
-                                    if (!nodes[i].nodeParameters[z].parameterDataType.Contains("call_triggers"))
+                                    entities[i].nodeParameters[z].parameterDataType = splitFunc[0];
+                                    if (!entities[i].nodeParameters[z].parameterDataType.Contains("call_triggers"))
                                     {
                                         splitFunc = splitFunc[1].Split(new[] { ");" }, StringSplitOptions.None);
                                         string defaultVarName = splitFunc[0].Split('&')[0];
-                                        nodes[i].nodeParameters[z].parameterDefaultValue = compiledContent.Split(new[] { defaultVarName + " = " }, StringSplitOptions.None)[1].Split(';')[0];
-                                        nodes[i].nodeParameters[z].doesHaveDefaultValue = true;
-                                        if (nodes[i].nodeParameters[z].parameterDefaultValue.Contains("__Class::m_") ||
-                                            nodes[i].nodeParameters[z].parameterDefaultValue.Contains("__Class:: m_"))
+                                        entities[i].nodeParameters[z].parameterDefaultValue = compiledContent.Split(new[] { defaultVarName + " = " }, StringSplitOptions.None)[1].Split(';')[0];
+                                        entities[i].nodeParameters[z].doesHaveDefaultValue = true;
+                                        if (entities[i].nodeParameters[z].parameterDefaultValue.Contains("__Class::m_") ||
+                                            entities[i].nodeParameters[z].parameterDefaultValue.Contains("__Class:: m_"))
                                         {
-                                            if (nodes[i].nodeParameters[z].parameterDefaultValue.Contains("__Class:: m_"))
-                                                nodes[i].nodeParameters[z].parameterDefaultValue = nodes[i].nodeParameters[z].parameterDefaultValue.Replace("__Class:: m_", "__Class::m_");
+                                            if (entities[i].nodeParameters[z].parameterDefaultValue.Contains("__Class:: m_"))
+                                                entities[i].nodeParameters[z].parameterDefaultValue = entities[i].nodeParameters[z].parameterDefaultValue.Replace("__Class:: m_", "__Class::m_");
 
                                             //hacky way of remembering we're an enum
-                                            nodes[i].nodeParameters[z].parameterDefaultValue = nodes[i].nodeParameters[z].parameterDefaultValue.Split(new[] { "__Class::m_" }, StringSplitOptions.None)[0];
+                                            entities[i].nodeParameters[z].parameterDefaultValue = entities[i].nodeParameters[z].parameterDefaultValue.Split(new[] { "__Class::m_" }, StringSplitOptions.None)[0];
                                             string enumIndex = compiledContent.Split(new[] { defaultVarName + " = " }, StringSplitOptions.None)[2].Split(';')[0];
                                             if (enumIndex.Length >= 2 && enumIndex.Substring(0, 2) == "0x")
                                             {
                                                 enumIndex = Int32.Parse(enumIndex.Substring(2), System.Globalization.NumberStyles.HexNumber).ToString();
                                             }
-                                            nodes[i].nodeParameters[z].parameterDefaultValue = nodes[i].nodeParameters[z].parameterDefaultValue + " (" + enumIndex + ")";
+                                            entities[i].nodeParameters[z].parameterDefaultValue = entities[i].nodeParameters[z].parameterDefaultValue + " (" + enumIndex + ")";
                                         }
                                         string thing = "StringTable::offset_from_string(StringTable::m_instance,";
-                                        if (nodes[i].nodeParameters[z].parameterDefaultValue.Contains(thing))
+                                        if (entities[i].nodeParameters[z].parameterDefaultValue.Contains(thing))
                                         {
                                             //strings are looked up in table, so remove the call
-                                            nodes[i].nodeParameters[z].parameterDefaultValue = nodes[i].nodeParameters[z].parameterDefaultValue.Substring(thing.Length + 1);
-                                            nodes[i].nodeParameters[z].parameterDefaultValue = nodes[i].nodeParameters[z].parameterDefaultValue.Substring(0, nodes[i].nodeParameters[z].parameterDefaultValue.Length - 2);
+                                            entities[i].nodeParameters[z].parameterDefaultValue = entities[i].nodeParameters[z].parameterDefaultValue.Substring(thing.Length + 1);
+                                            entities[i].nodeParameters[z].parameterDefaultValue = entities[i].nodeParameters[z].parameterDefaultValue.Substring(0, entities[i].nodeParameters[z].parameterDefaultValue.Length - 2);
                                         }
-                                        if (nodes[i].nodeParameters[z].parameterDefaultValue == "0xffffffff")
+                                        if (entities[i].nodeParameters[z].parameterDefaultValue == "0xffffffff")
                                         {
                                             //some default to 0xffffffff which the lookup returns "" for 
-                                            nodes[i].nodeParameters[z].parameterDefaultValue = "";
+                                            entities[i].nodeParameters[z].parameterDefaultValue = "";
                                         }
-                                        if (nodes[i].nodeParameters[z].parameterDefaultValue == "(MemoryAllocationBase *)0x0")
+                                        if (entities[i].nodeParameters[z].parameterDefaultValue == "(MemoryAllocationBase *)0x0")
                                         {
                                             //This is used for references, we can ignore
-                                            nodes[i].nodeParameters[z].parameterDefaultValue = "";
-                                            nodes[i].nodeParameters[z].doesHaveDefaultValue = false;
+                                            entities[i].nodeParameters[z].parameterDefaultValue = "";
+                                            entities[i].nodeParameters[z].doesHaveDefaultValue = false;
                                         }
-                                        if (nodes[i].nodeParameters[z].parameterDefaultValue.Length >= 2 && nodes[i].nodeParameters[z].parameterDefaultValue.Substring(0, 2) == "0x")
+                                        if (entities[i].nodeParameters[z].parameterDefaultValue.Length >= 2 && entities[i].nodeParameters[z].parameterDefaultValue.Substring(0, 2) == "0x")
                                         {
-                                            if (nodes[i].nodeParameters[z].parameterDataType == "find_parameter_int_ ")
+                                            if (entities[i].nodeParameters[z].parameterDataType == "find_parameter_int_ ")
                                             {
-                                                nodes[i].nodeParameters[z].parameterDefaultValue = Int32.Parse(nodes[i].nodeParameters[z].parameterDefaultValue.Substring(2), System.Globalization.NumberStyles.HexNumber).ToString();
+                                                entities[i].nodeParameters[z].parameterDefaultValue = Int32.Parse(entities[i].nodeParameters[z].parameterDefaultValue.Substring(2), System.Globalization.NumberStyles.HexNumber).ToString();
                                             }
                                             else
                                             {
-                                                Console.WriteLine("Binning param " + nodes[i].nodeParameters[z].parameterDefaultValue + " (datatype is " + nodes[i].nodeParameters[z].parameterDataType + ")");
+                                                Console.WriteLine("Binning param " + entities[i].nodeParameters[z].parameterDefaultValue + " (datatype is " + entities[i].nodeParameters[z].parameterDataType + ")");
                                                 //TODO: figure these out
-                                                nodes[i].nodeParameters[z].parameterDefaultValue = "";
-                                                nodes[i].nodeParameters[z].doesHaveDefaultValue = false;
+                                                entities[i].nodeParameters[z].parameterDefaultValue = "";
+                                                entities[i].nodeParameters[z].doesHaveDefaultValue = false;
                                             }
                                         }
-                                        if (nodes[i].nodeParameters[z].parameterDefaultValue.Length >= 4 && nodes[i].nodeParameters[z].parameterDefaultValue.Substring(0, 4) == "DAT_")
+                                        if (entities[i].nodeParameters[z].parameterDefaultValue.Length >= 4 && entities[i].nodeParameters[z].parameterDefaultValue.Substring(0, 4) == "DAT_")
                                         {
-                                            Console.WriteLine("Binning param " + nodes[i].nodeParameters[z].parameterDefaultValue + " (datatype is " + nodes[i].nodeParameters[z].parameterDataType + ")");
+                                            Console.WriteLine("Binning param " + entities[i].nodeParameters[z].parameterDefaultValue + " (datatype is " + entities[i].nodeParameters[z].parameterDataType + ")");
                                             //TODO: figure these out
-                                            nodes[i].nodeParameters[z].parameterDefaultValue = "";
-                                            nodes[i].nodeParameters[z].doesHaveDefaultValue = false;
+                                            entities[i].nodeParameters[z].parameterDefaultValue = "";
+                                            entities[i].nodeParameters[z].doesHaveDefaultValue = false;
                                         }
-                                        if (nodes[i].nodeParameters[z].parameterDefaultValue == "default_Enum")
+                                        if (entities[i].nodeParameters[z].parameterDefaultValue == "default_Enum")
                                         {
                                             //TODO: figure these out
-                                            nodes[i].nodeParameters[z].parameterDefaultValue = "";
-                                            nodes[i].nodeParameters[z].doesHaveDefaultValue = false;
+                                            entities[i].nodeParameters[z].parameterDefaultValue = "";
+                                            entities[i].nodeParameters[z].doesHaveDefaultValue = false;
                                         }
                                         for (int ll = 0; ll < defaultVariables.Count; ll++)
                                         {
-                                            if (nodes[i].nodeParameters[z].parameterDefaultValue == defaultVariables[ll].VarToMatch)
+                                            if (entities[i].nodeParameters[z].parameterDefaultValue == defaultVariables[ll].VarToMatch)
                                             {
-                                                nodes[i].nodeParameters[z].parameterDefaultValue = defaultVariables[ll].Value;
+                                                entities[i].nodeParameters[z].parameterDefaultValue = defaultVariables[ll].Value;
                                                 break;
                                             }
                                         }
                                     }
                                 }
                                 //tidy
-                                if (nodes[i].nodeParameters[z].parameterDataType != "")
+                                if (entities[i].nodeParameters[z].parameterDataType != "")
                                 {
-                                    string dt = nodes[i].nodeParameters[z].parameterDataType;
+                                    string dt = entities[i].nodeParameters[z].parameterDataType;
                                     dt = dt.Trim();
                                     dt = dt.Replace("__", "::");
                                     while (dt[dt.Length - 1] == '_' ||
@@ -529,46 +529,51 @@ namespace cathode_vartype
                                     }
                                     dt = dt.Replace("CATHODE::MemoryPtr_", "CATHODE::MemoryPtr -> ");
                                     dt = dt.Replace("CATHODE::ArrayPtr_", "CATHODE::ArrayPtr -> ");
-                                    nodes[i].nodeParameters[z].parameterDataType = dt;
+                                    entities[i].nodeParameters[z].parameterDataType = dt;
                                 }
-                                nodes[i].nodeParameters[z].didFindFunction = true;
+                                entities[i].nodeParameters[z].didFindFunction = true;
                             }
                         }
                     }
                 }
             }
+            File.WriteAllLines("DEBUG_outfromparse.txt", debug_out);
+            #endregion
 
-            File.WriteAllLines("dumppp.txt", blehTest);
-
+            #region TEST: Output all datatypes
             List<string> allDataTypes = new List<string>();
             List<string> allDataTypes2 = new List<string>();
-            for (int i = 0; i < nodes.Count; i++)
+            for (int i = 0; i < entities.Count; i++)
             {
-                for (int x = 0; x < nodes[i].nodeParameters.Count; x++)
+                for (int x = 0; x < entities[i].nodeParameters.Count; x++)
                 {
-                    if (!allDataTypes.Contains(nodes[i].nodeParameters[x].parameterDataType)) allDataTypes.Add(nodes[i].nodeParameters[x].parameterDataType);
-                    if (!allDataTypes2.Contains(nodes[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP)) allDataTypes2.Add(nodes[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP);
+                    if (!allDataTypes.Contains(entities[i].nodeParameters[x].parameterDataType)) allDataTypes.Add(entities[i].nodeParameters[x].parameterDataType);
+                    if (!allDataTypes2.Contains(entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP)) allDataTypes2.Add(entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP);
                 }
             }
             allDataTypes.Sort();
             allDataTypes2.Sort();
-            File.WriteAllLines("AllDataTypesNew.txt", allDataTypes);
-            File.WriteAllLines("AllDataTypesNew_firstparse.txt", allDataTypes2);
+            File.WriteAllLines("DEBUG_AllDataTypesNew.txt", allDataTypes);
+            File.WriteAllLines("DEBUG_AllDataTypesNew_firstparse.txt", allDataTypes2);
+            #endregion
 
+            #region TEST: Output all datatypes 2
             List<string> allValues = new List<string>();
-            for (int i = 0; i < nodes.Count; i++)
+            for (int i = 0; i < entities.Count; i++)
             {
-                for (int x = 0; x < nodes[i].nodeParameters.Count; x++)
+                for (int x = 0; x < entities[i].nodeParameters.Count; x++)
                 {
-                    if (nodes[i].nodeParameters[x].doesHaveDefaultValue)
+                    if (entities[i].nodeParameters[x].doesHaveDefaultValue)
                     {
-                        allDataTypes.Add(nodes[i].nodeParameters[x].parameterDataType);
+                        allValues.Add(entities[i].nodeParameters[x].parameterDataType);
                     }
                 }
             }
             allValues.Sort();
-            File.WriteAllLines("allValues.txt", allValues);
+            File.WriteAllLines("DEBUG_allvalues.txt", allValues);
+        #endregion
 
+        #region TODO: What did this do?
         /*
         List<string> allDataTypes = new List<string>();
         string entityParamLookupFunc = "EntityInterface::find_parameter_";
@@ -643,219 +648,341 @@ namespace cathode_vartype
         allDataTypes.Sort();
         File.WriteAllLines("all_datatypes.txt", allDataTypes);
         */
+        #endregion
 
         jump_to_dump:
 
-            List<CathodeNode> interfaces = nodes.FindAll(o => o.nodeName.Contains("Interface"));
-            nodes.RemoveAll(o => o.nodeName.Contains("Interface"));
-            nodes.InsertRange(0, interfaces);
 
-            List<string> nodeParams = new List<string>();
+            List<CathodeNode> interfaces = entities.FindAll(o => o.nodeName.Contains("Interface"));
+            interfaces = interfaces.OrderBy(o => o.className).ToList();
+            entities.RemoveAll(o => o.nodeName.Contains("Interface"));
+            entities = entities.OrderBy(o => o.className).ToList();
+            entities.InsertRange(0, interfaces);
+
+            #region Dump "entities_and_interfaces.html"
+            {
+                List<string> output_html = new List<string>();
+                bool did_divider = false;
+                output_html.Add("<h1>Interfaces</h1>");
+                for (int i = 0; i < entities.Count; i++)
+                {
+                    if (!entities[i].nodeName.Contains("Interface") && !did_divider)
+                    {
+                        did_divider = true;
+                        output_html.Add("<br><br><h1>Entities</h1>");
+                    }
+
+
+                    output_html.Add("<hr>");
+                    output_html.Add("<a name=\"" + entities[i].className + "\"></a>");
+                    output_html.Add("<h3 title=\"" + entities[i].className + "\">" + entities[i].nodeName + "</h3>");
+
+                    if (interfaceMappings.ContainsKey(entities[i].className))
+                    {
+                        output_html.Add("<h5 style=\"line-height:0;\">Inherits from <a href=\"#" + interfaceMappings[entities[i].className] + "\">" + interfaceMappings[entities[i].className] + "</a></h5>");
+                    }
+                    else
+                    {
+                        Console.WriteLine(entities[i].className + " does not inherit?");
+                    }
+
+                    output_html.Add("<ul>");
+                    for (int x = 0; x < entities[i].nodeParameters.Count; x++)
+                    {
+                        string toAdd = " title='" + entities[i].nodeParameters[x].parameterVariableNameStripped + "'> [" + entities[i].nodeParameters[x].parameterVariableType + "] ";
+                        if (entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP == "")
+                        {
+                            toAdd = "<li style='color:" + ((entities[i].nodeParameters[x].didFindFunction) ? "orange" : "red") + ";'" + toAdd;
+                            toAdd += entities[i].nodeParameters[x].parameterName;
+                        }
+                        else
+                        {
+                            toAdd = "<li style='color:green;'" + toAdd;
+                            toAdd += entities[i].nodeParameters[x].parameterName + " [DataType: " + entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP + "]";
+                        }
+                        if (entities[i].nodeParameters[x].parameterDefaultValue != "")
+                        {
+                            toAdd += " [DefaultVal: " + entities[i].nodeParameters[x].parameterDefaultValue + "]";
+                        }
+                        output_html.Add(toAdd + "</li>");
+                    }
+                    for (int x = 0; x < entities[i].nodeParametersFromGet.Count; x++)
+                    {
+                        output_html.Add("<li style='color:brown;'>" + entities[i].nodeParametersFromGet[x].parameterName + " [DataType: " + entities[i].nodeParametersFromGet[x].parameterDataType_FROMFIRSTDUMP + "]</li>");
+                    }
+                    if (customMethodMappings.ContainsKey(entities[i].className))
+                    {
+                        for (int x = 0; x < customMethodMappings[entities[i].className].Count; x++)
+                        {
+                            output_html.Add("<li style='color:purple;'>" + customMethodMappings[entities[i].className][x] + "</li>");
+                        }
+                    }
+                    output_html.Add("</ul>");
+                }
+                File.WriteAllLines("entities_and_interfaces.html", output_html);
+            }
+            #endregion
+
+            #region Dump "index.html"
+            {
+                List<string> output_html = new List<string>();
+                bool did_divider = false;
+                output_html.Add("<div class=\"docs-wrapper\"><div id=\"docs-sidebar\" class=\"docs-sidebar\"><nav id=\"docs-nav\" class=\"docs-nav navbar\"><ul class=\"section-items list-unstyled nav flex-column pb-3\">");
+                output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto active\" href=\"#interfaces\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-map-signs\"></i></span>Interfaces</a></li>");
+                for (int i = 0; i < entities.Count; i++)
+                {
+                    if (!entities[i].nodeName.Contains("Interface") && !did_divider)
+                    {
+                        did_divider = true;
+                        output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto active\" href=\"#entities\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-map-signs\"></i></span>Entities</a></li>");
+                    }
+                    output_html.Add("<li class=\"nav-item\"><a class=\"nav-link scrollto\" href=\"#" + entities[i].className + "\">" + entities[i].className + "</a></li>");
+                }
+                output_html.Add("</ul></nav></div>");
+                did_divider = false;
+                output_html.Add("<div class=\"docs-content\"><div class=\"container\">");
+                output_html.Add("<article class=\"docs-article\" id=\"interfaces\"><header class=\"docs-header\"><h1 class=\"docs-heading\">Interfaces <span class=\"docs-time\">Last updated: " + DateTime.Now.ToString() + "</span></h1></header>");
+                for (int i = 0; i < entities.Count; i++)
+                {
+                    if (!entities[i].nodeName.Contains("Interface") && !did_divider)
+                    {
+                        did_divider = true;
+                        output_html.Add("</article><article class=\"docs-article\" id=\"entities\"><header class=\"docs-header\"><h1 class=\"docs-heading\">Entities <span class=\"docs-time\">Last updated: " + DateTime.Now.ToString() + "</span></h1></header>");
+                    }
+
+
+                    output_html.Add("<section class=\"docs-section\" id=\"" + entities[i].className + "\">");
+                    output_html.Add("<h2 class=\"section-heading\">" + entities[i].className + "</h3>");
+
+                    if (interfaceMappings.ContainsKey(entities[i].className))
+                    {
+                        output_html.Add("<p>Inherits from <a class=\"scrollto\" href=\"#" + interfaceMappings[entities[i].className] + "\">" + interfaceMappings[entities[i].className] + "</a></p>");
+                    }
+                    else
+                    {
+                        //Console.WriteLine(entities[i].className + " does not inherit?");
+                    }
+
+                    if (entities[i].nodeParameters.Count + entities[i].nodeParametersFromGet.Count + (customMethodMappings.ContainsKey(entities[i].className) ? customMethodMappings[entities[i].className].Count : 0) > 0)
+                    {
+                        output_html.Add("<h5>Parameters:</h5>");
+                    }
+
+                    output_html.Add("<ul>");
+                    for (int x = 0; x < entities[i].nodeParameters.Count; x++)
+                    {
+                        string toAdd = " title='" + entities[i].nodeParameters[x].parameterVariableNameStripped + "'> [" + entities[i].nodeParameters[x].parameterVariableType + "] ";
+                        if (entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP == "")
+                        {
+                            toAdd = "<li style='color:" + ((entities[i].nodeParameters[x].didFindFunction) ? "orange" : "red") + ";'" + toAdd;
+                            toAdd += entities[i].nodeParameters[x].parameterName;
+                        }
+                        else
+                        {
+                            toAdd = "<li style='color:green;'" + toAdd;
+                            toAdd += entities[i].nodeParameters[x].parameterName + " [DataType: " + entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP + "]";
+                        }
+                        if (entities[i].nodeParameters[x].parameterDefaultValue != "")
+                        {
+                            toAdd += " [DefaultVal: " + entities[i].nodeParameters[x].parameterDefaultValue + "]";
+                        }
+                        output_html.Add(toAdd + "</li>");
+                    }
+                    for (int x = 0; x < entities[i].nodeParametersFromGet.Count; x++)
+                    {
+                        output_html.Add("<li style='color:brown;'>" + entities[i].nodeParametersFromGet[x].parameterName + " [DataType: " + entities[i].nodeParametersFromGet[x].parameterDataType_FROMFIRSTDUMP + "]</li>");
+                    }
+                    if (customMethodMappings.ContainsKey(entities[i].className))
+                    {
+                        for (int x = 0; x < customMethodMappings[entities[i].className].Count; x++)
+                        {
+                            output_html.Add("<li style='color:purple;'>" + customMethodMappings[entities[i].className][x] + "</li>");
+                        }
+                    }
+                    output_html.Add("</ul>");
+                    output_html.Add("</section>");
+                }
+                output_html.Add("</article>");
+
+                List<string> final_html = new List<string>();
+
+                List<string> template_html = File.ReadAllLines("../../../../docs/cathode-entities/index_template.html").ToList();
+                for (int i = 0; i < template_html.Count; i++)
+                {
+                    if (template_html[i] == "<!--CONTENT_GOES_HERE-->")
+                    {
+                        final_html.AddRange(output_html);
+                    }
+                    else
+                    {
+                        final_html.Add(template_html[i]);
+                    }
+                }
+
+                File.WriteAllLines("../../../../docs/cathode-entities/index.html", final_html);
+            }
+            #endregion
+
+            #region Dump "entities.json"
+            {
+                JObject obj = JObject.Parse("{}");
+                JArray obj_nodes = new JArray();
+                for (int i = 0; i < entities.Count; i++)
+                {
+                    JObject obj_node = new JObject();
+                    obj_node["name"] = entities[i].nodeName;
+                    obj_node["class"] = entities[i].className;
+                    JArray obj_node_params = new JArray();
+                    for (int x = 0; x < entities[i].nodeParameters.Count; x++)
+                    {
+                        JObject obj_node_param = new JObject();
+                        obj_node_param["name"] = entities[i].nodeParameters[x].parameterName;
+                        obj_node_param["variable"] = entities[i].nodeParameters[x].parameterVariableNameStripped;
+                        obj_node_param["usage"] = entities[i].nodeParameters[x].parameterVariableType;
+                        //if (nodes[i].nodeParameters[x].didFindFunction)
+                        //{
+                        obj_node_param["datatype"] = entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP;
+                        if (entities[i].nodeParameters[x].doesHaveDefaultValue)
+                        {
+                            switch (entities[i].nodeParameters[x].parameterDataType)
+                            {
+                                case "bool":
+                                    if (entities[i].nodeParameters[x].parameterDefaultValue.ToUpper() == "TRUE") obj_node_param["value"] = true;
+                                    else if (entities[i].nodeParameters[x].parameterDefaultValue.ToUpper() == "FALSE") obj_node_param["value"] = false;
+                                    else Console.WriteLine("Failed to match TRUE/FALSE for bool: " + entities[i].nodeParameters[x].parameterName + " - " + entities[i].nodeName);
+                                    break;
+                                case "float":
+                                    obj_node_param["value"] = Convert.ToSingle(entities[i].nodeParameters[x].parameterDefaultValue);
+                                    break;
+                                case "int":
+                                    obj_node_param["value"] = Convert.ToInt32(entities[i].nodeParameters[x].parameterDefaultValue);
+                                    break;
+                                case "CATHODE::String":
+                                    obj_node_param["value"] = entities[i].nodeParameters[x].parameterDefaultValue;
+                                    break;
+                                case "CATHODE::Enum":
+                                    string[] enumStringSplit = entities[i].nodeParameters[x].parameterDefaultValue.Split(' ');
+                                    if (enumStringSplit.Length != 2) Console.WriteLine("Enum split should be 2! " + entities[i].nodeParameters[x].parameterName + " - " + entities[i].nodeName);
+                                    int index = Convert.ToInt32(enumStringSplit[1].Substring(1, enumStringSplit[1].Length - 2));
+                                    obj_node_param["value"] = index;
+                                    obj_node_param["value_enumname"] = enumStringSplit[0];
+                                    break;
+                                    //All other types currently unsupported by C parser
+                            }
+                        }
+                        //}
+                        obj_node_params.Add(obj_node_param);
+                    }
+                    obj_node["parameters"] = obj_node_params;
+                    obj_nodes.Add(obj_node);
+                }
+                obj["nodes"] = obj_nodes;
+                File.WriteAllText("entities.json", obj.ToString(Newtonsoft.Json.Formatting.Indented));
+            }
+            #endregion
+
+            #region Dump "cathode_entities.bin"
+            {
+                CathodeNode EntityMethodInterface = entities.FirstOrDefault(o => o.className == "EntityMethodInterface");
+                BinaryWriter bw = new BinaryWriter(File.OpenWrite("cathode_entities.bin"));
+                bw.BaseStream.SetLength(0);
+                bw.Write(entities.Count);
+                for (int i = 0; i < entities.Count; i++)
+                {
+                    List<string> sanity = new List<string>();
+
+                    bw.Write(entities[i].nodeName);
+                    bw.Write(entities[i].className);
+                    long posToReturnTo = bw.BaseStream.Position;
+                    bw.Write(0);
+
+                    string node = entities[i].className;
+                    while (node != "" && node != "EntityResourceInterface" && node != "EntityMethodInterface")
+                    {
+                        CathodeNode nodeObj = entities.FirstOrDefault(o => o.className == node);
+                        for (int x = 0; x < nodeObj.nodeParameters.Count; x++)
+                        {
+                            if (sanity.Contains(nodeObj.nodeParameters[x].parameterName)) continue;
+                            sanity.Add(nodeObj.nodeParameters[x].parameterName);
+
+                            bw.Write(nodeObj.nodeParameters[x].parameterName);
+                            bw.Write(nodeObj.nodeParameters[x].parameterVariableNameStripped);
+                            bw.Write(nodeObj.nodeParameters[x].parameterVariableType);
+                            bw.Write(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP);
+                            //TODO: write default value
+                        }
+                        if (customMethodMappings.ContainsKey(node))
+                        {
+                            for (int x = 0; x < customMethodMappings[node].Count; x++)
+                            {
+                                CathodeParameter param = EntityMethodInterface.nodeParameters.FirstOrDefault(o => o.parameterName == customMethodMappings[node][x]);
+                                if (sanity.Contains(param.parameterName)) continue;
+                                sanity.Add(param.parameterName);
+
+                                bw.Write(param.parameterName);
+                                bw.Write(param.parameterVariableNameStripped);
+                                bw.Write(param.parameterVariableType);
+                                bw.Write(param.parameterDataType_FROMFIRSTDUMP);
+                                //TODO: should we also include the relay, etc for each one of these?
+                            }
+                        }
+
+                        if (interfaceMappings.ContainsKey(node))
+                            node = interfaceMappings[node];
+                        else
+                            node = "";
+                    }
+
+                    long thisPos = bw.BaseStream.Position;
+                    bw.BaseStream.Position = posToReturnTo;
+                    bw.Write(sanity.Count);
+                    bw.BaseStream.Position = thisPos;
+                }
+                bw.Close();
+            }
+            #endregion
+
+            #region Dump "entity_names.txt"
             List<string> nodeNames = new List<string>();
-            bool didDivider = false;
-            nodeParams.Add("<h1>Interfaces</h1>");
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                if (!nodes[i].nodeName.Contains("Interface") && !didDivider)
-                {
-                    didDivider = true;
-                    nodeParams.Add("<br><br><h1>Entities</h1>");
-                }
-
-                nodeNames.Add("\"" + nodes[i].nodeName + "\",");
-
-                nodeParams.Add("<hr>");
-                nodeParams.Add("<a name=\"" + nodes[i].className + "\"></a>");
-                nodeParams.Add("<h3 title=\"" + nodes[i].className + "\">" + nodes[i].nodeName + "</h3>");
-
-                if (interfaceMappings.ContainsKey(nodes[i].className))
-                {
-                    nodeParams.Add("<h5 style=\"line-height:0;\">Inherits from <a href=\"#" + interfaceMappings[nodes[i].className] + "\">" + interfaceMappings[nodes[i].className] + "</a></h5>");
-                }
-                else
-                {
-                    Console.WriteLine(nodes[i].className + " does not inherit?");
-                }
-
-                nodeParams.Add("<ul>");
-                for (int x = 0; x < nodes[i].nodeParameters.Count; x++)
-                {
-                    string toAdd = " title='" + nodes[i].nodeParameters[x].parameterVariableNameStripped + "'> [" + nodes[i].nodeParameters[x].parameterVariableType + "] ";
-                    if (nodes[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP == "")
-                    {
-                        toAdd = "<li style='color:" + ((nodes[i].nodeParameters[x].didFindFunction) ? "orange" : "red") + ";'" + toAdd;
-                        toAdd += nodes[i].nodeParameters[x].parameterName;
-                    }
-                    else
-                    {
-                        toAdd = "<li style='color:green;'" + toAdd;
-                        toAdd += nodes[i].nodeParameters[x].parameterName + " [DataType: " + nodes[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP + "]";
-                    }
-                    if (nodes[i].nodeParameters[x].parameterDefaultValue != "")
-                    {
-                        toAdd += " [DefaultVal: " + nodes[i].nodeParameters[x].parameterDefaultValue + "]";
-                    }
-                    nodeParams.Add(toAdd + "</li>");
-                }
-                for (int x = 0; x < nodes[i].nodeParametersFromGet.Count; x++)
-                {
-                    nodeParams.Add("<li style='color:brown;'>" + nodes[i].nodeParametersFromGet[x].parameterName + " [DataType: " + nodes[i].nodeParametersFromGet[x].parameterDataType_FROMFIRSTDUMP + "]</li>");
-                }
-                if (customMethodMappings.ContainsKey(nodes[i].className))
-                {
-                    for (int x = 0; x < customMethodMappings[nodes[i].className].Count; x++)
-                    {
-                        nodeParams.Add("<li style='color:purple;'>" + customMethodMappings[nodes[i].className][x] + "</li>");
-                    }
-                }
-                nodeParams.Add("</ul>");
-            }
-            File.WriteAllLines("../../../../docs/cathode-entities/index-raw.html", nodeParams);
-
-            JObject obj = JObject.Parse("{}");
-            JArray obj_nodes = new JArray();
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                JObject obj_node = new JObject();
-                obj_node["name"] = nodes[i].nodeName;
-                obj_node["class"] = nodes[i].className;
-                JArray obj_node_params = new JArray();
-                for (int x = 0; x < nodes[i].nodeParameters.Count; x++)
-                {
-                    JObject obj_node_param = new JObject();
-                    obj_node_param["name"] = nodes[i].nodeParameters[x].parameterName;
-                    obj_node_param["variable"] = nodes[i].nodeParameters[x].parameterVariableNameStripped;
-                    obj_node_param["usage"] = nodes[i].nodeParameters[x].parameterVariableType;
-                    //if (nodes[i].nodeParameters[x].didFindFunction)
-                    //{
-                    obj_node_param["datatype"] = nodes[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP;
-                    if (nodes[i].nodeParameters[x].doesHaveDefaultValue)
-                    {
-                        switch (nodes[i].nodeParameters[x].parameterDataType)
-                        {
-                            case "bool":
-                                if (nodes[i].nodeParameters[x].parameterDefaultValue.ToUpper() == "TRUE") obj_node_param["value"] = true;
-                                else if (nodes[i].nodeParameters[x].parameterDefaultValue.ToUpper() == "FALSE") obj_node_param["value"] = false;
-                                else Console.WriteLine("Failed to match TRUE/FALSE for bool: " + nodes[i].nodeParameters[x].parameterName + " - " + nodes[i].nodeName);
-                                break;
-                            case "float":
-                                obj_node_param["value"] = Convert.ToSingle(nodes[i].nodeParameters[x].parameterDefaultValue);
-                                break;
-                            case "int":
-                                obj_node_param["value"] = Convert.ToInt32(nodes[i].nodeParameters[x].parameterDefaultValue);
-                                break;
-                            case "CATHODE::String":
-                                obj_node_param["value"] = nodes[i].nodeParameters[x].parameterDefaultValue;
-                                break;
-                            case "CATHODE::Enum":
-                                string[] enumStringSplit = nodes[i].nodeParameters[x].parameterDefaultValue.Split(' ');
-                                if (enumStringSplit.Length != 2) Console.WriteLine("Enum split should be 2! " + nodes[i].nodeParameters[x].parameterName + " - " + nodes[i].nodeName);
-                                int index = Convert.ToInt32(enumStringSplit[1].Substring(1, enumStringSplit[1].Length - 2));
-                                obj_node_param["value"] = index;
-                                obj_node_param["value_enumname"] = enumStringSplit[0];
-                                break;
-                                //All other types currently unsupported by C parser
-                        }
-                    }
-                    //}
-                    obj_node_params.Add(obj_node_param);
-                }
-                obj_node["parameters"] = obj_node_params;
-                obj_nodes.Add(obj_node);
-            }
-            obj["nodes"] = obj_nodes;
-            File.WriteAllText("out.json", obj.ToString(Newtonsoft.Json.Formatting.Indented));
-
-            CathodeNode EntityMethodInterface = nodes.FirstOrDefault(o => o.className == "EntityMethodInterface");
-
-            BinaryWriter bw = new BinaryWriter(File.OpenWrite("cathode_entities.bin"));
-            bw.BaseStream.SetLength(0);
-            bw.Write(nodes.Count);
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                List<string> sanity = new List<string>();
-
-                bw.Write(nodes[i].nodeName);
-                bw.Write(nodes[i].className);
-                long posToReturnTo = bw.BaseStream.Position;
-                bw.Write(0);
-
-                string node = nodes[i].className;
-                while (node != "" && node != "EntityResourceInterface" && node != "EntityMethodInterface")
-                {
-                    CathodeNode nodeObj = nodes.FirstOrDefault(o => o.className == node);
-                    for (int x = 0; x < nodeObj.nodeParameters.Count; x++)
-                    {
-                        if (sanity.Contains(nodeObj.nodeParameters[x].parameterName)) continue;
-                        sanity.Add(nodeObj.nodeParameters[x].parameterName);
-
-                        bw.Write(nodeObj.nodeParameters[x].parameterName);
-                        bw.Write(nodeObj.nodeParameters[x].parameterVariableNameStripped);
-                        bw.Write(nodeObj.nodeParameters[x].parameterVariableType);
-                        bw.Write(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP);
-                        //TODO: write default value
-                    }
-                    if (customMethodMappings.ContainsKey(node))
-                    {
-                        for (int x = 0; x < customMethodMappings[node].Count; x++)
-                        {
-                            CathodeParameter param = EntityMethodInterface.nodeParameters.FirstOrDefault(o => o.parameterName == customMethodMappings[node][x]);
-                            if (sanity.Contains(param.parameterName)) continue;
-                            sanity.Add(param.parameterName);
-
-                            bw.Write(param.parameterName);
-                            bw.Write(param.parameterVariableNameStripped);
-                            bw.Write(param.parameterVariableType);
-                            bw.Write(param.parameterDataType_FROMFIRSTDUMP);
-                            //TODO: should we also include the relay, etc for each one of these?
-                        }
-                    }
-
-                    if (interfaceMappings.ContainsKey(node))
-                        node = interfaceMappings[node];
-                    else
-                        node = "";
-                }
-
-                long thisPos = bw.BaseStream.Position;
-                bw.BaseStream.Position = posToReturnTo;
-                bw.Write(sanity.Count);
-                bw.BaseStream.Position = thisPos;
-            }
-            bw.Close();
-
+            for (int i = 0; i < entities.Count; i++)
+                nodeNames.Add("\"" + entities[i].nodeName + "\",");
             nodeNames.Sort();
-            File.WriteAllLines("all_nodes.txt", nodeNames);
+            File.WriteAllLines("entity_names.txt", nodeNames);
+            #endregion
 
+            #region Dump "entities.md"
             List<string> newDumpForGithub = new List<string>();
-            nodes = nodes.OrderBy(o => o.nodeName).ToList();
-            for (int i = 0; i < nodes.Count; i++)
+            entities = entities.OrderBy(o => o.nodeName).ToList();
+            for (int i = 0; i < entities.Count; i++)
             {
-                newDumpForGithub.Add("## " + nodes[i].nodeName);
-                for (int x = 0; x < nodes[i].nodeParameters.Count; x++)
+                newDumpForGithub.Add("## " + entities[i].nodeName);
+                for (int x = 0; x < entities[i].nodeParameters.Count; x++)
                 {
-                    newDumpForGithub.Add(" * " + nodes[i].nodeParameters[x].parameterName);
+                    newDumpForGithub.Add(" * " + entities[i].nodeParameters[x].parameterName);
                 }
                 newDumpForGithub.Add("");
             }
-            File.WriteAllLines("all_nodes_with_params_cath_order.txt", newDumpForGithub);
+            File.WriteAllLines("entities.md", newDumpForGithub);
+            #endregion
 
-            List<string> baseClassDump = new List<string>();
-            baseClassDump.Add("switch () {");
-            for (int i = 0; i < nodes.Count; i++)
+            #region Dump "interface_inheritance.cs"
+            List<string> interface_switch = new List<string>();
+            interface_switch.Add("switch () {");
+            for (int i = 0; i < entities.Count; i++)
             {
-                baseClassDump.Add("case FunctionType." + nodes[i].className + ":");
-                if (interfaceMappings.ContainsKey(nodes[i].className))
+                interface_switch.Add("case FunctionType." + entities[i].className + ":");
+                if (interfaceMappings.ContainsKey(entities[i].className))
                 {
-                    baseClassDump.Add("return FunctionType." + interfaceMappings[nodes[i].className] + ";");
+                    interface_switch.Add("return FunctionType." + interfaceMappings[entities[i].className] + ";");
                 }
                 else
                 {
-                    baseClassDump.Add("throw new Exception();");
+                    interface_switch.Add("throw new Exception();");
                 }
             }
-            baseClassDump.Add("}");
-            File.WriteAllLines("baseclasses.cs", baseClassDump);
+            interface_switch.Add("}");
+            File.WriteAllLines("interface_inheritance.cs", interface_switch);
+            #endregion
 
             Console.WriteLine("Done");
             Console.ReadLine();
