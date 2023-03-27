@@ -772,7 +772,7 @@ namespace cathode_vartype
                     if (interfaceMappings.ContainsKey(entities[i].className))
                     {
                         if (interfaceMappings[entities[i].className] != "EntityMethodInterface")
-                            output_html.Add("<p>Inherits from <a class=\"scrollto\" href=\"#" + interfaceMappings[entities[i].className] + "\">" + interfaceMappings[entities[i].className] + "</a></p>");
+                            output_html.Add("<p>Inherits from <a class=\"scrollto\" href=\"#" + interfaceMappings[entities[i].className] + "\"><strong>" + interfaceMappings[entities[i].className] + "</strong></a></p>");
                     }
 
                     Dictionary<string, List<CathodeParameter>> parameters = new Dictionary<string, List<CathodeParameter>>();
