@@ -746,6 +746,7 @@ namespace cathode_vartype
                 output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto\" href=\"#interfaces\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Interfaces</a></li>");
                 for (int i = 0; i < entities.Count; i++)
                 {
+                    if (entities[i].nodeName == "EntityMethodInterface") continue;
                     if (!entities[i].nodeName.Contains("Interface") && !did_divider)
                     {
                         did_divider = true;
