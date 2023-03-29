@@ -658,6 +658,7 @@ namespace cathode_vartype
             List<CathodeNode> interfaces = entities.FindAll(o => o.nodeName.Contains("Interface") && o.nodeName != "SmokeCylinderAttachmentInterface");
             interfaces = interfaces.OrderBy(o => o.className).ToList();
             entities.RemoveAll(o => o.nodeName.Contains("Interface") && o.nodeName != "SmokeCylinderAttachmentInterface");
+            List<CathodeNode> entities_only = entities;
             entities = entities.OrderBy(o => o.className).ToList();
             entities.InsertRange(0, interfaces);
 
@@ -923,17 +924,17 @@ namespace cathode_vartype
 
                 BinaryWriter bw = new BinaryWriter(File.OpenWrite("cathode_entities.bin"));
                 bw.BaseStream.SetLength(0);
-                bw.Write(entities.Count);
-                for (int i = 0; i < entities.Count; i++)
+                bw.Write(entities_only.Count);
+                for (int i = 0; i < entities_only.Count; i++)
                 {
                     List<string> sanity = new List<string>();
 
-                    bw.Write(entities[i].nodeName);
-                    bw.Write(entities[i].className);
+                    bw.Write(entities_only[i].nodeName);
+                    bw.Write(entities_only[i].className);
                     long posToReturnTo = bw.BaseStream.Position;
                     bw.Write(0);
 
-                    string node = entities[i].className;
+                    string node = entities_only[i].className;
                     while (node != "" && node != "EntityResourceInterface" && node != "EntityMethodInterface")
                     {
                         CathodeNode nodeObj = entities.FirstOrDefault(o => o.className == node);
