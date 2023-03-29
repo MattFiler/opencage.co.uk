@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
@@ -10,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace cathode_vartype
 {
@@ -659,6 +661,21 @@ namespace cathode_vartype
             entities = entities.OrderBy(o => o.className).ToList();
             entities.InsertRange(0, interfaces);
 
+            CathodeNode EntityMethodInterface = entities.FirstOrDefault(o => o.className == "EntityMethodInterface");
+            Dictionary<string, List<CathodeParameter>> EMI_Lookup = new Dictionary<string, List<CathodeParameter>>();
+            for (int i = 0; i < EntityMethodInterface.nodeParameters.Count; i++)
+            {
+                if (EntityMethodInterface.nodeParameters[i].parameterVariableType == "method")
+                {
+                    List<CathodeParameter> param_links = new List<CathodeParameter>();
+                    for (int x = 0; x < 3; x++)
+                    {
+                        param_links.Add(EntityMethodInterface.nodeParameters[i + x]);
+                    }
+                    EMI_Lookup.Add(EntityMethodInterface.nodeParameters[i].parameterName, param_links);
+                }
+            }
+
             #region Dump "entities_and_interfaces.html"
             {
                 List<string> output_html = new List<string>();
@@ -725,21 +742,6 @@ namespace cathode_vartype
 
             #region Dump "index.html"
             {
-                CathodeNode EntityMethodInterface = entities.FirstOrDefault(o => o.className == "EntityMethodInterface");
-                Dictionary<string, List<CathodeParameter>> EMI_Lookup = new Dictionary<string, List<CathodeParameter>>();
-                for (int i = 0; i < EntityMethodInterface.nodeParameters.Count; i++)
-                {
-                    if (EntityMethodInterface.nodeParameters[i].parameterVariableType == "method")
-                    {
-                        List<CathodeParameter> param_links = new List<CathodeParameter>();
-                        for (int x = 0; x < 3; x++)
-                        {
-                            param_links.Add(EntityMethodInterface.nodeParameters[i + x]);
-                        }
-                        EMI_Lookup.Add(EntityMethodInterface.nodeParameters[i].parameterName, param_links);
-                    }
-                }
-
                 List<string> output_html = new List<string>();
                 bool did_divider = false;
                 output_html.Add("<div class=\"docs-wrapper\"><div id=\"docs-sidebar\" class=\"docs-sidebar\"><nav id=\"docs-nav\" class=\"docs-nav navbar\"><ul class=\"section-items list-unstyled nav flex-column pb-3\">");
@@ -906,7 +908,19 @@ namespace cathode_vartype
 
             #region Dump "cathode_entities.bin"
             {
-                CathodeNode EntityMethodInterface = entities.FirstOrDefault(o => o.className == "EntityMethodInterface");
+                void WriteToBin(CathodeParameter param, ref List<string> sanity, ref BinaryWriter writer)
+                {
+                    if (param == null) return;
+                    if (sanity.Contains(param.parameterName)) return;
+                    sanity.Add(param.parameterName);
+
+                    writer.Write(param.parameterName);
+                    writer.Write(param.parameterVariableNameStripped);
+                    writer.Write(param.parameterVariableType);
+                    writer.Write(param.parameterDataType_FROMFIRSTDUMP);
+                    //TODO: write default value
+                }
+
                 BinaryWriter bw = new BinaryWriter(File.OpenWrite("cathode_entities.bin"));
                 bw.BaseStream.SetLength(0);
                 bw.Write(entities.Count);
@@ -925,28 +939,15 @@ namespace cathode_vartype
                         CathodeNode nodeObj = entities.FirstOrDefault(o => o.className == node);
                         for (int x = 0; x < nodeObj.nodeParameters.Count; x++)
                         {
-                            if (sanity.Contains(nodeObj.nodeParameters[x].parameterName)) continue;
-                            sanity.Add(nodeObj.nodeParameters[x].parameterName);
-
-                            bw.Write(nodeObj.nodeParameters[x].parameterName);
-                            bw.Write(nodeObj.nodeParameters[x].parameterVariableNameStripped);
-                            bw.Write(nodeObj.nodeParameters[x].parameterVariableType);
-                            bw.Write(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP);
-                            //TODO: write default value
+                            WriteToBin(nodeObj.nodeParameters[x], ref sanity, ref bw);
                         }
                         if (customMethodMappings.ContainsKey(node))
                         {
                             for (int x = 0; x < customMethodMappings[node].Count; x++)
                             {
-                                CathodeParameter param = EntityMethodInterface.nodeParameters.FirstOrDefault(o => o.parameterName == customMethodMappings[node][x]);
-                                if (sanity.Contains(param.parameterName)) continue;
-                                sanity.Add(param.parameterName);
-
-                                bw.Write(param.parameterName);
-                                bw.Write(param.parameterVariableNameStripped);
-                                bw.Write(param.parameterVariableType);
-                                bw.Write(param.parameterDataType_FROMFIRSTDUMP);
-                                //TODO: should we also include the relay, etc for each one of these?
+                                WriteToBin(EntityMethodInterface.nodeParameters.FirstOrDefault(o => o.parameterName == customMethodMappings[node][x]), ref sanity, ref bw);
+                                if (EMI_Lookup.ContainsKey(customMethodMappings[node][x]))
+                                    WriteToBin(EMI_Lookup[customMethodMappings[node][x]].FirstOrDefault(o => o.parameterVariableType == "relay"), ref sanity, ref bw);
                             }
                         }
 
