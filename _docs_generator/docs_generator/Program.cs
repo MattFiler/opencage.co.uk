@@ -336,6 +336,24 @@ namespace cathode_vartype
             //File.WriteAllLines("out_dump.txt", dump);
             #endregion
 
+            #region Parse Enums
+            List<string> enumGithubMD = DownloadIfNotAlreadyPresent("enum_github.md");
+            Dictionary<string, List<string>> enumVals = new Dictionary<string, List<string>>();
+            string currentEnumVal = "";
+            foreach (string line in enumGithubMD)
+            {
+                if (line.Length > 2 && line.Substring(0, 2) == "##")
+                {
+                    currentEnumVal = line.Substring(3);
+                    enumVals.Add(currentEnumVal, new List<string>());
+                }
+                if (line.Length > 2 && line.Substring(0, 2) == " *")
+                {
+                    enumVals[currentEnumVal].Add(line.Substring(3));
+                }
+            }
+            #endregion
+
             goto jump_to_dump;
 
             #region Work out parameter defaults from C dump per entity/interface
@@ -1007,6 +1025,170 @@ namespace cathode_vartype
             }
             interface_switch.Add("}");
             File.WriteAllLines("interface_inheritance.cs", interface_switch);
+            #endregion
+
+            #region Dump enums CS file
+            {
+                List<string> enum_cs = new List<string>();
+                foreach (KeyValuePair<string, List<string>> vals in enumVals)
+                {
+                    enum_cs.Add("public enum " + vals.Key + " {");
+                    foreach (string val in vals.Value)
+                    {
+                        enum_cs.Add("\t" + val + ",");
+                    }
+                    enum_cs.Add("}\n");
+                }
+                File.WriteAllLines("CathodeEnums.cs", enum_cs);
+            }
+            #endregion
+
+            #region Dump node CS files for script editor
+            {
+                //TODO: a lot of these datatypes i'm converting to string should actually lookup to assets ( i should pull these to script tool )
+                string ConvertDatatype(string type)
+                {
+                    switch (type)
+                    {
+                        case "Direction":
+                            return "cVector3";
+                        case "SplineData":
+                            return "cSpline";
+                        case "String":
+                        case "SOUND_ARGUMENT":
+                        case "SOUND_EVENT":
+                        case "SOUND_SWITCH":
+                        case "ACHIEVEMENT_ID":
+                        case "ACHIEVEMENT_STAT_ID":
+                        case "ATTRIBUTE_SET":
+                        case "ANIM_TREE_SET":
+                        case "ANIM_SET":
+                        case "BLUEPRINT_TYPE":
+                        case "CHR_SKELETON_SET":
+                        case "GAMEPLAY_TIP_STRING_ID":
+                        case "GAME_VARIABLE":
+                        case "IDTAG_ID":
+                            return "string";
+                        case "Position":
+                            return "cTransform";
+                        case "Enum":
+                            return "cEnum";
+                        case "int":
+                        case "bool":
+                        case "float":
+                            return type;
+                        case "":
+                            return "void";
+                        case "ReferenceFramePtr":
+                        case "Object":
+                        case "SOUND_OBJECT":
+                            return "STNode";
+                    }
+                    //Bored of writing these in so just return string
+                    return "string";
+                }
+
+                if (Directory.Exists("nodes")) Directory.Delete("nodes", true);
+                Directory.CreateDirectory("nodes");
+                for (int i = 0; i < entities_only.Count; i++)
+                {
+                    List<string> output = new List<string>();
+                    output.Add("#if DEBUG");
+                    output.Add("using CATHODE.Scripting;");
+                    output.Add("using ST.Library.UI.NodeEditor;");
+                    output.Add("");
+                    output.Add("namespace CommandsEditor.Nodes");
+                    output.Add("{");
+                    output.Add("\t[STNode(\"/\")]");
+                    output.Add("\tpublic class " + entities_only[i].className + " : STNode");
+                    output.Add("\t{");
+
+                    List<string> output_options = new List<string>();
+                    List<string> input_options = new List<string>();
+                    List<string> param_names = new List<string>();
+
+                    string node = entities_only[i].className;
+                    while (node != "" && node != "EntityResourceInterface" && node != "EntityMethodInterface")
+                    {
+                        CathodeNode nodeObj = entities.FirstOrDefault(o => o.className == node);
+                        for (int x = 0; x < nodeObj.nodeParameters.Count; x++)
+                        {
+                            switch (nodeObj.nodeParameters[x].parameterVariableType)
+                            {
+                                case "state":
+                                case "parameter":
+                                    if (!param_names.Contains(nodeObj.nodeParameters[x].parameterVariableName))
+                                    {
+                                        output.Add("\t\tprivate " + ConvertDatatype(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP) + " _" + nodeObj.nodeParameters[x].parameterVariableNameStripped + ";");
+                                        output.Add("\t\t[STNodeProperty(\"" + nodeObj.nodeParameters[x].parameterName + "\", \"" + nodeObj.nodeParameters[x].parameterName + "\")]");
+                                        output.Add("\t\tpublic " + ConvertDatatype(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP) + " " + nodeObj.nodeParameters[x].parameterVariableNameStripped);
+                                        output.Add("\t\t{");
+                                        output.Add("\t\t\tget { return _" + nodeObj.nodeParameters[x].parameterVariableNameStripped + "; }");
+                                        output.Add("\t\t\tset { _" + nodeObj.nodeParameters[x].parameterVariableNameStripped + " = value; this.Invalidate(); }");
+                                        output.Add("\t\t}");
+                                        output.Add("\t\t");
+                                        param_names.Add(nodeObj.nodeParameters[x].parameterVariableName);
+                                    }
+                                    break;
+                                case "input":
+                                case "method":
+                                    string to_add_input = nodeObj.nodeParameters[x].parameterName + "\", typeof(" + ConvertDatatype(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP) + ")";
+                                    if (!input_options.Contains(to_add_input)) input_options.Add(to_add_input);
+                                    break;
+                                case "output":
+                                case "target":
+                                case "relay":
+                                    string to_add_output = nodeObj.nodeParameters[x].parameterName + "\", typeof(" + ConvertDatatype(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP) + ")";
+                                    if (!output_options.Contains(to_add_output)) output_options.Add(to_add_output);
+                                    break;
+                            }
+                        }
+                        if (customMethodMappings.ContainsKey(node))
+                        {
+                            for (int x = 0; x < customMethodMappings[node].Count; x++)
+                            {
+                                if (!input_options.Contains(customMethodMappings[node][x] + "\", typeof(void)")) input_options.Add(customMethodMappings[node][x] + "\", typeof(void)");
+                                if (EMI_Lookup.ContainsKey(customMethodMappings[node][x]))
+                                {
+                                    CathodeParameter relay = EMI_Lookup[customMethodMappings[node][x]].FirstOrDefault(o => o.parameterVariableType == "relay");
+                                    if (relay != null && !output_options.Contains(relay.parameterName + "\", typeof(" + ConvertDatatype(relay.parameterDataType_FROMFIRSTDUMP) + ")")) 
+                                        output_options.Add(relay.parameterName + "\", typeof(" + ConvertDatatype(relay.parameterDataType_FROMFIRSTDUMP) + ")");
+                                }
+                            }
+                        }
+
+                        if (interfaceMappings.ContainsKey(node))
+                            node = interfaceMappings[node];
+                        else
+                            node = "";
+                    }
+
+                    output.Add("\t\tprotected override void OnCreate()");
+                    output.Add("\t\t{");
+                    output.Add("\t\t\tbase.OnCreate();");
+                    output.Add("\t\t\t");
+                    output.Add("\t\t\tthis.Title = \"" + entities_only[i].className + "\";");
+                    output.Add("\t\t\t");
+
+                    foreach (string option in input_options)
+                    {
+                        output.Add("\t\t\tthis.InputOptions.Add(\"" + option + ", false);");
+                    }
+
+                    output.Add("\t\t\t");
+
+                    foreach (string option in output_options)
+                    {
+                        output.Add("\t\t\tthis.OutputOptions.Add(\"" + option + ", false);");
+                    }
+
+                    output.Add("\t\t}");
+                    output.Add("\t}");
+                    output.Add("}");
+                    output.Add("#endif");
+                    File.WriteAllLines("nodes/" + entities_only[i].className + ".cs", output);
+                }
+            }
             #endregion
 
             Console.WriteLine("Done");
