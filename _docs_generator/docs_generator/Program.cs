@@ -695,6 +695,16 @@ namespace cathode_vartype
                 }
             }
 
+            List<string> allDatatypes = new List<string>();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                for (int x = 0; x < entities[i].nodeParameters.Count; x++)
+                {
+                    if (!allDatatypes.Contains(entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP))
+                        allDatatypes.Add(entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP);
+                }
+            }
+
             #region Dump "entities_and_interfaces.html"
             {
                 List<string> output_html = new List<string>();
@@ -759,10 +769,16 @@ namespace cathode_vartype
             }
             #endregion
 
-            #region Dump "index.html"
+            #region Dump "index.html" for entities and enums
             {
+                Console.WriteLine("--------------------");
+                List<string> datatypes = new List<string>();
                 List<string> output_html = new List<string>();
+                List<string> final_html = new List<string>();
+                List<string> template_html = File.ReadAllLines("../../../../docs/cathode-entities/index_template.html").ToList();
                 bool did_divider = false;
+
+                #region ENTITIES
                 output_html.Add("<div class=\"docs-wrapper\"><div id=\"docs-sidebar\" class=\"docs-sidebar\"><nav id=\"docs-nav\" class=\"docs-nav navbar\"><ul class=\"section-items list-unstyled nav flex-column pb-3\">");
                 output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto\" href=\"#interfaces\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Interfaces</a></li>");
                 for (int i = 0; i < entities.Count; i++)
@@ -818,7 +834,46 @@ namespace cathode_vartype
                             }
                             else
                             {
-                                toAdd += param.parameterName + " [DataType: " + param.parameterDataType_FROMFIRSTDUMP + "]";
+                                if (enumVals.ContainsKey(param.parameterDataType_FROMFIRSTDUMP))
+                                {
+                                    //This is an ENUM
+                                    toAdd += param.parameterName + " <code><a href=\"/docs/cathode-enums/#" + param.parameterDataType_FROMFIRSTDUMP + "\" class=\"enum_link\">" + param.parameterDataType_FROMFIRSTDUMP + "</a></code>";
+                                }
+                                else
+                                {
+                                    string niceDisplay = param.parameterDataType_FROMFIRSTDUMP;
+                                    if (!datatypes.Contains(param.parameterDataType_FROMFIRSTDUMP))
+                                    {
+                                        datatypes.Add(param.parameterDataType_FROMFIRSTDUMP);
+                                        Console.WriteLine(param.parameterDataType_FROMFIRSTDUMP);
+                                    }
+
+                                    /*
+                                    switch (niceDisplay)
+                                    {
+                                        case "SPLINE":
+                                        case "SplineData":
+                                            niceDisplay = "cSpline";
+                                            break;
+                                        case "Position":
+                                            niceDisplay = "cTransform";
+                                            break;
+                                        case "FilePath":
+                                        case "String":
+                                            niceDisplay = "cString";
+                                            break;
+                                        case "int":
+                                            niceDisplay = "cInt";
+                                            break;
+                                        case "float":
+                                            niceDisplay = "cFloat";
+                                            break;
+                                    }
+                                    */
+
+                                    //This is any other type (TODO: make this display nicer)
+                                    toAdd += param.parameterName + " <code title=\"" + param.parameterDataType_FROMFIRSTDUMP + "\">" + niceDisplay + "</span></code>";
+                                }
                             }
                             if (param.parameterDefaultValue != "")
                             {
@@ -848,9 +903,6 @@ namespace cathode_vartype
                 }
                 output_html.Add("</article>");
 
-                List<string> final_html = new List<string>();
-
-                List<string> template_html = File.ReadAllLines("../../../../docs/cathode-entities/index_template.html").ToList();
                 for (int i = 0; i < template_html.Count; i++)
                 {
                     if (template_html[i] == "<!--CONTENT_GOES_HERE-->")
@@ -862,9 +914,52 @@ namespace cathode_vartype
                         final_html.Add(template_html[i]);
                     }
                 }
-
                 File.WriteAllLines("../../../../docs/cathode-entities/index.html", final_html);
+                #endregion
+
+                output_html.Clear();
+                final_html.Clear();
+                template_html = File.ReadAllLines("../../../../docs/cathode-enums/index_template.html").ToList();
+
+                #region ENUMS
+                output_html.Add("<div class=\"docs-wrapper\"><div id=\"docs-sidebar\" class=\"docs-sidebar\"><nav id=\"docs-nav\" class=\"docs-nav navbar\"><ul class=\"section-items list-unstyled nav flex-column pb-3\">");
+                output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto\" href=\"#enums\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Enums</a></li>");
+                foreach (KeyValuePair<string, List<string>> enumVal in enumVals)
+                {
+                    output_html.Add("<li class=\"nav-item\"><a class=\"nav-link scrollto\" href=\"#" + enumVal.Key + "\">" + enumVal.Key + "</a></li>");
+                }
+                output_html.Add("</ul></nav></div>");
+                output_html.Add("<div class=\"docs-content\"><div class=\"container\">");
+                output_html.Add("<article class=\"docs-article\" id=\"enums\"><header class=\"docs-header\"><h1 class=\"docs-heading\">Enums <span class=\"docs-time\">Last updated: " + DateTime.Now.ToString() + "</span></h1></header>");
+                foreach (KeyValuePair<string, List<string>> enumVal in enumVals)
+                {
+                    output_html.Add("<section class=\"docs-section\" id=\"" + enumVal.Key + "\">");
+                    output_html.Add("<h2 class=\"section-heading\">" + enumVal.Key + "</h3>");
+                    output_html.Add("<ul>");
+                    foreach (string value in enumVal.Value)
+                    {
+                        output_html.Add("<li>" + value + "</li>");
+                    }
+                    output_html.Add("</ul>");
+                    output_html.Add("</section>");
+                }
+                output_html.Add("</article>");
+
+                for (int i = 0; i < template_html.Count; i++)
+                {
+                    if (template_html[i] == "<!--CONTENT_GOES_HERE-->")
+                    {
+                        final_html.AddRange(output_html);
+                    }
+                    else
+                    {
+                        final_html.Add(template_html[i]);
+                    }
+                }
+                File.WriteAllLines("../../../../docs/cathode-enums/index.html", final_html);
+                #endregion
             }
+            Console.WriteLine("--------------------");
             #endregion
 
             #region Dump "entities.json"
@@ -942,17 +1037,18 @@ namespace cathode_vartype
 
                 BinaryWriter bw = new BinaryWriter(File.OpenWrite("cathode_entities.bin"));
                 bw.BaseStream.SetLength(0);
-                bw.Write(entities_only.Count);
-                for (int i = 0; i < entities_only.Count; i++)
+                bw.Write(entities.Count);
+                for (int i = 0; i < entities.Count; i++)
                 {
                     List<string> sanity = new List<string>();
 
-                    bw.Write(entities_only[i].nodeName);
-                    bw.Write(entities_only[i].className);
+                    bw.Write(entities[i].nodeName);
+                    bw.Write(entities[i].className);
+                    bw.Write(entities_only.Contains(entities[i])); //Is interface?
                     long posToReturnTo = bw.BaseStream.Position;
                     bw.Write(0);
 
-                    string node = entities_only[i].className;
+                    string node = entities[i].className;
                     while (node != "" && node != "EntityResourceInterface" && node != "EntityMethodInterface")
                     {
                         CathodeNode nodeObj = entities.FirstOrDefault(o => o.className == node);
@@ -1030,6 +1126,15 @@ namespace cathode_vartype
             #region Dump enums CS file
             {
                 List<string> enum_cs = new List<string>();
+                enum_cs.Add("public static void SyncEnumValuesAndDump() {\nList<EnumDescriptor> lookup_enum = new List<EnumDescriptor>();\n");
+                foreach (KeyValuePair<string, List<string>> vals in enumVals)
+                {
+                    enum_cs.Add("EnumDescriptor _" + vals.Key + " = GetEnum(\"" + vals.Key + "\");");
+                    enum_cs.Add("foreach (EnumDescriptor.Entry e in _" + vals.Key + ".Entries) e.Index = (int)((" + vals.Key + ")Enum.Parse(typeof(" + vals.Key + "), e.Name));");
+                    enum_cs.Add("lookup_enum.Add(_" + vals.Key + ");");
+                }
+                enum_cs.Add("\nBinaryWriter writer = new BinaryWriter(File.OpenWrite(\"out_enums.bin\")); \nforeach (EnumDescriptor e in lookup_enum) { \nUtilities.Write<ShortGuid>(writer, e.ID); \nwriter.Write(e.Name); \nwriter.Write(e.Entries.Count); \nfor (int i = 0; i < e.Entries.Count; i++) { \nwriter.Write(e.Entries[i].Name); \nwriter.Write(e.Entries[i].Index); \n} \n} writer.Close();\n}");
+
                 foreach (KeyValuePair<string, List<string>> vals in enumVals)
                 {
                     enum_cs.Add("public enum " + vals.Key + " {");
