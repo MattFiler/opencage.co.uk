@@ -1,0 +1,2461 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Cathode Enums</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All enums within the Cathode engine, accessible via OpenCAGE and CathodeLib.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Cathode Entities" />
+	<meta name="twitter:description" content="All enums within the Cathode engine, accessible via OpenCAGE and CathodeLib." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-lg-flex" style="visibility:hidden;">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="http://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="http://twitter.com/mattfiler"><i class="fab fa-twitter fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://github.com/MattFiler/OpenCAGE/raw/master/OpenCAGE.exe" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#enums"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Enums</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#AGGRESSION_GAIN">AGGRESSION_GAIN</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ALERTNESS_STATE">ALERTNESS_STATE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ALIEN_CONFIGURATION_TYPE">ALIEN_CONFIGURATION_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ALIEN_DEVELOPMENT_MANAGER_ABILITIES">ALIEN_DEVELOPMENT_MANAGER_ABILITIES</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ALIEN_DEVELOPMENT_MANAGER_ABILITY_MASKS">ALIEN_DEVELOPMENT_MANAGER_ABILITY_MASKS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ALIEN_DEVELOPMENT_MANAGER_STAGES">ALIEN_DEVELOPMENT_MANAGER_STAGES</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ALLIANCE_GROUP">ALLIANCE_GROUP</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ALLIANCE_STANCE">ALLIANCE_STANCE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#AMBUSH_TYPE">AMBUSH_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#AMMO_TYPE">AMMO_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_CALLBACK_ENUM">ANIM_CALLBACK_ENUM</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_MODE">ANIM_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_TRACK_TYPE">ANIM_TRACK_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_TREE_ENUM">ANIM_TREE_ENUM</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIMATION_EFFECT_TYPE">ANIMATION_EFFECT_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#AREA_SWEEP_TYPE">AREA_SWEEP_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#AREA_SWEEP_TYPE_CODE">AREA_SWEEP_TYPE_CODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#AUTODETECT">AUTODETECT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#BEHAVIOR_TREE_BRANCH_TYPE">BEHAVIOR_TREE_BRANCH_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#BEHAVIOUR_MOOD_SET">BEHAVIOUR_MOOD_SET</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#BEHAVIOUR_TREE_FLAGS">BEHAVIOUR_TREE_FLAGS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#BLEND_MODE">BLEND_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#BLUEPRINT_LEVEL">BLUEPRINT_LEVEL</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#BUTTON_TYPE">BUTTON_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CAMERA_PATH_CLASS">CAMERA_PATH_CLASS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CAMERA_PATH_TYPE">CAMERA_PATH_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CHARACTER_BB_ENTRY_TYPE">CHARACTER_BB_ENTRY_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CHARACTER_CLASS">CHARACTER_CLASS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CHARACTER_CLASS_COMBINATION">CHARACTER_CLASS_COMBINATION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CHARACTER_FOLEY_SOUND">CHARACTER_FOLEY_SOUND</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CHARACTER_NODE">CHARACTER_NODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CHARACTER_STANCE">CHARACTER_STANCE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CHECKPOINT_TYPE">CHECKPOINT_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CI_MESSAGE_TYPE">CI_MESSAGE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CLIPPING_PLANES_PRESETS">CLIPPING_PLANES_PRESETS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#COLLISION_TYPE">COLLISION_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#COMBAT_BEHAVIOUR">COMBAT_BEHAVIOUR</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CROUCH_MODE">CROUCH_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_ACCESSORY_OVERRIDE">CUSTOM_CHARACTER_ACCESSORY_OVERRIDE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_ASSETS">CUSTOM_CHARACTER_ASSETS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_BUILD">CUSTOM_CHARACTER_BUILD</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_COMPONENT">CUSTOM_CHARACTER_COMPONENT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_ETHNICITY">CUSTOM_CHARACTER_ETHNICITY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_GENDER">CUSTOM_CHARACTER_GENDER</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_MODEL">CUSTOM_CHARACTER_MODEL</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_POPULATION">CUSTOM_CHARACTER_POPULATION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_SLEEVETYPE">CUSTOM_CHARACTER_SLEEVETYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#CUSTOM_CHARACTER_TYPE">CUSTOM_CHARACTER_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DAMAGE_EFFECT_TYPE_FLAGS">DAMAGE_EFFECT_TYPE_FLAGS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DAMAGE_EFFECTS">DAMAGE_EFFECTS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DAMAGE_MODE">DAMAGE_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DEATH_STYLE">DEATH_STYLE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DEVICE_INTERACTION_MODE">DEVICE_INTERACTION_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DIALOGUE_ACTION">DIALOGUE_ACTION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DIALOGUE_ARGUMENT">DIALOGUE_ARGUMENT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DIALOGUE_NPC_COMBAT_MODE">DIALOGUE_NPC_COMBAT_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DIALOGUE_NPC_CONTEXT">DIALOGUE_NPC_CONTEXT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DIALOGUE_NPC_EVENT">DIALOGUE_NPC_EVENT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DIALOGUE_VOICE_ACTOR">DIALOGUE_VOICE_ACTOR</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DIFFICULTY_SETTING_TYPE">DIFFICULTY_SETTING_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DOOR_MECHANISM">DOOR_MECHANISM</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DOOR_STATE">DOOR_STATE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DUCK_HEIGHT">DUCK_HEIGHT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ENEMY_TYPE">ENEMY_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ENVIRONMENT_ARCHETYPE">ENVIRONMENT_ARCHETYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#EQUIPMENT_SLOT">EQUIPMENT_SLOT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#EVENT_OCCURED_TYPE">EVENT_OCCURED_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#EXIT_WAYPOINT">EXIT_WAYPOINT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FLAG_CHANGE_SOURCE_TYPE">FLAG_CHANGE_SOURCE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FLASH_INVOKE_TYPE">FLASH_INVOKE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FLASH_SCRIPT_RENDER_TYPE">FLASH_SCRIPT_RENDER_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FOG_BOX_TYPE">FOG_BOX_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FOLDER_LOCK_TYPE">FOLDER_LOCK_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FOLLOW_CAMERA_MODIFIERS">FOLLOW_CAMERA_MODIFIERS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FOLLOW_TYPE">FOLLOW_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FRAME_FLAGS">FRAME_FLAGS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#FRONTEND_STATE">FRONTEND_STATE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#GAME_CLIP">GAME_CLIP</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#GATING_TOOL_TYPE">GATING_TOOL_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#IDLE">IDLE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#IDLE_STYLE">IDLE_STYLE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#IMPACT_CHARACTER_BODY_LOCATION_TYPE">IMPACT_CHARACTER_BODY_LOCATION_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#INPUT_DEVICE_TYPE">INPUT_DEVICE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#JOB_TYPE">JOB_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LEVEL_HEAP_TAG">LEVEL_HEAP_TAG</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LEVER_TYPE">LEVER_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LIGHT_ADAPTATION_MECHANISM">LIGHT_ADAPTATION_MECHANISM</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LIGHT_ANIM">LIGHT_ANIM</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LIGHT_FADE_TYPE">LIGHT_FADE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LIGHT_TRANSITION">LIGHT_TRANSITION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LIGHT_TYPE">LIGHT_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LOCOMOTION_STATE">LOCOMOTION_STATE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LOCOMOTION_TARGET_SPEED">LOCOMOTION_TARGET_SPEED</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LOGIC_CHARACTER_FLAGS">LOGIC_CHARACTER_FLAGS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LOGIC_CHARACTER_GAUGE_TYPE">LOGIC_CHARACTER_GAUGE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LOGIC_CHARACTER_TIMER_TYPE">LOGIC_CHARACTER_TIMER_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#LOOK_SPEED">LOOK_SPEED</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#MAP_ICON_TYPE">MAP_ICON_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#MELEE_ATTACK_TYPE">MELEE_ATTACK_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#MELEE_CONTEXT_TYPE">MELEE_CONTEXT_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#MOOD">MOOD</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#MOOD_INTENSITY">MOOD_INTENSITY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#MOVE">MOVE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#MUSIC_RTPC_MODE">MUSIC_RTPC_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#NAV_MESH_AREA_TYPE">NAV_MESH_AREA_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#NAVIGATION_CHARACTER_CLASS">NAVIGATION_CHARACTER_CLASS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#NAVIGATION_CHARACTER_CLASS_COMBINATION">NAVIGATION_CHARACTER_CLASS_COMBINATION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#NOISE_TYPE">NOISE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#NPC_AGGRO_LEVEL">NPC_AGGRO_LEVEL</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#NPC_COMBAT_STATE">NPC_COMBAT_STATE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#NPC_COVER_REQUEST_TYPE">NPC_COVER_REQUEST_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#NPC_GUN_AIM_MODE">NPC_GUN_AIM_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ORIENTATION_AXIS">ORIENTATION_AXIS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#PATH_DRIVEN_TYPE">PATH_DRIVEN_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#PAUSE_SENSES_TYPE">PAUSE_SENSES_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#PICKUP_CATEGORY">PICKUP_CATEGORY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#PLATFORM_TYPE">PLATFORM_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#PLAYER_INVENTORY_SET">PLAYER_INVENTORY_SET</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#POPUP_MESSAGE_ICON">POPUP_MESSAGE_ICON</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#POPUP_MESSAGE_SOUND">POPUP_MESSAGE_SOUND</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#PRIORITY">PRIORITY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#RANGE_TEST_SHAPE">RANGE_TEST_SHAPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#RAYCAST_PRIORITY">RAYCAST_PRIORITY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#RESPAWN_MODE">RESPAWN_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#REWIRE_SYSTEM_NAME">REWIRE_SYSTEM_NAME</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#REWIRE_SYSTEM_TYPE">REWIRE_SYSTEM_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SECONDARY_ANIMATION_LAYER">SECONDARY_ANIMATION_LAYER</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SENSE_SET">SENSE_SET</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SENSE_SET_DEFAULT">SENSE_SET_DEFAULT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SENSE_SET_SYSTEM">SENSE_SET_SYSTEM</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SENSORY_TYPE">SENSORY_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SHAKE_TYPE">SHAKE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SIDE">SIDE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SOUND_POOL">SOUND_POOL</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SPEECH_PRIORITY">SPEECH_PRIORITY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#STEAL_CAMERA_TYPE">STEAL_CAMERA_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUB_OBJECTIVE_TYPE">SUB_OBJECTIVE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUSPECT_RESPONSE_PHASE">SUSPECT_RESPONSE_PHASE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUSPICIOUS_ITEM">SUSPICIOUS_ITEM</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUSPICIOUS_ITEM_BEHAVIOUR_TREE_PRIORITY">SUSPICIOUS_ITEM_BEHAVIOUR_TREE_PRIORITY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUSPICIOUS_ITEM_CLOSE_REACTION_DETAIL">SUSPICIOUS_ITEM_CLOSE_REACTION_DETAIL</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUSPICIOUS_ITEM_REACTION">SUSPICIOUS_ITEM_REACTION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUSPICIOUS_ITEM_STAGE">SUSPICIOUS_ITEM_STAGE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUSPICIOUS_ITEM_START_OR_CONTINUE_STATE">SUSPICIOUS_ITEM_START_OR_CONTINUE_STATE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SUSPICIOUS_ITEM_TRIGGER">SUSPICIOUS_ITEM_TRIGGER</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#TASK_CHARACTER_CLASS_FILTER">TASK_CHARACTER_CLASS_FILTER</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#TASK_OPERATION_MODE">TASK_OPERATION_MODE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#TASK_PRIORITY">TASK_PRIORITY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#TERMINAL_LOCATION">TERMINAL_LOCATION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#TEXT_ALIGNMENT">TEXT_ALIGNMENT</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#THRESHOLD_QUALIFIER">THRESHOLD_QUALIFIER</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#TRANSITION_DIRECTION">TRANSITION_DIRECTION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#TRAVERSAL_ANIMS">TRAVERSAL_ANIMS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#TRAVERSAL_TYPE">TRAVERSAL_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#UI_ICON_ICON">UI_ICON_ICON</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#UI_KEYGATE_TYPE">UI_KEYGATE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#VENT_LOCK_REASON">VENT_LOCK_REASON</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#VIEWCONE_TYPE">VIEWCONE_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#VISIBILITY_SETTINGS_TYPE">VISIBILITY_SETTINGS_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#WAVE_SHAPE">WAVE_SHAPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#WEAPON_HANDEDNESS">WEAPON_HANDEDNESS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#WEAPON_IMPACT_EFFECT_ORIENTATION">WEAPON_IMPACT_EFFECT_ORIENTATION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#WEAPON_IMPACT_EFFECT_TYPE">WEAPON_IMPACT_EFFECT_TYPE</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#WEAPON_IMPACT_FILTER_ORIENTATION">WEAPON_IMPACT_FILTER_ORIENTATION</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#WEAPON_PROPERTY">WEAPON_PROPERTY</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#WEAPON_TYPE">WEAPON_TYPE</a></li>
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+<article class="docs-article" id="enums"><header class="docs-header"><h1 class="docs-heading">Enums <span class="docs-time">Last updated: 05/04/2023 19:50:15</span></h1></header>
+<section class="docs-section" id="AGGRESSION_GAIN">
+<h2 class="section-heading">AGGRESSION_GAIN</h3>
+<ul>
+<li>LOW_AGGRESSION_GAIN</li>
+<li>MED_AGGRESSION_GAIN</li>
+<li>HIGH_AGGRESSION_GAIN</li>
+</ul>
+</section>
+<section class="docs-section" id="ALERTNESS_STATE">
+<h2 class="section-heading">ALERTNESS_STATE</h3>
+<ul>
+<li>IGNORE_PLAYER</li>
+<li>ALERT</li>
+<li>AGGRESSIVE</li>
+</ul>
+</section>
+<section class="docs-section" id="ALIEN_CONFIGURATION_TYPE">
+<h2 class="section-heading">ALIEN_CONFIGURATION_TYPE</h3>
+<ul>
+<li>DEFAULT</li>
+<li>MILD</li>
+<li>MODERATE</li>
+<li>INTENSE</li>
+<li>BACKSTAGEHOLD</li>
+<li>MODERATELY_INTENSE</li>
+<li>BACKSTAGEALERT</li>
+<li>BACSTAGEHOLD_CLOSE</li>
+<li>BACKSTAGEHOLD_VCLOSE</li>
+</ul>
+</section>
+<section class="docs-section" id="ALIEN_DEVELOPMENT_MANAGER_ABILITIES">
+<h2 class="section-heading">ALIEN_DEVELOPMENT_MANAGER_ABILITIES</h3>
+<ul>
+<li>NONE</li>
+<li>THREAT_AWARE</li>
+<li>LIKES_TO_CLOSE_VIA_BACKSTAGE</li>
+<li>WILL_KILLTRAP</li>
+<li>WILL_FLANK</li>
+<li>WILL_FLANK_FROM_THREAT_AWARE</li>
+<li>WILL_AMBUSH</li>
+<li>SEARCH_LOCKERS</li>
+<li>SEARCH_UNDER_STUFF</li>
+</ul>
+</section>
+<section class="docs-section" id="ALIEN_DEVELOPMENT_MANAGER_ABILITY_MASKS">
+<h2 class="section-heading">ALIEN_DEVELOPMENT_MANAGER_ABILITY_MASKS</h3>
+<ul>
+<li>NONE</li>
+<li>THREAT_AWARE</li>
+<li>LIKES_TO_CLOSE_VIA_BACKSTAGE</li>
+<li>WILL_KILLTRAP</li>
+<li>WILL_FLANK</li>
+<li>WILL_FLANK_FROM_THREAT_AWARE</li>
+<li>WILL_AMBUSH</li>
+<li>SEARCH_LOCKERS</li>
+<li>SEARCH_UNDER_STUFF</li>
+</ul>
+</section>
+<section class="docs-section" id="ALIEN_DEVELOPMENT_MANAGER_STAGES">
+<h2 class="section-heading">ALIEN_DEVELOPMENT_MANAGER_STAGES</h3>
+<ul>
+<li>NAIVE</li>
+<li>THREAT_AWARE</li>
+<li>GETTING_SNEAKY</li>
+<li>REALLY_SNEAKY</li>
+</ul>
+</section>
+<section class="docs-section" id="ALLIANCE_GROUP">
+<h2 class="section-heading">ALLIANCE_GROUP</h3>
+<ul>
+<li>NEUTRAL</li>
+<li>PLAYER</li>
+<li>PLAYER_ALLY</li>
+<li>ALIEN</li>
+<li>ANDROID</li>
+<li>CIVILIAN</li>
+<li>SECURITY</li>
+<li>DEAD</li>
+<li>DEAD_MAN_WALKING</li>
+</ul>
+</section>
+<section class="docs-section" id="ALLIANCE_STANCE">
+<h2 class="section-heading">ALLIANCE_STANCE</h3>
+<ul>
+<li>FRIEND</li>
+<li>NEUTRAL</li>
+<li>ENEMY</li>
+</ul>
+</section>
+<section class="docs-section" id="AMBUSH_TYPE">
+<h2 class="section-heading">AMBUSH_TYPE</h3>
+<ul>
+<li>KILLTRAP</li>
+<li>FRONTSTAGE_AMBUSH</li>
+</ul>
+</section>
+<section class="docs-section" id="AMMO_TYPE">
+<h2 class="section-heading">AMMO_TYPE</h3>
+<ul>
+<li>PISTOL_NORMAL</li>
+<li>PISTOL_DUM_DUM</li>
+<li>SMG_NORMAL</li>
+<li>SMG_DUM_DUM</li>
+<li>SHOTGUN_NORMAL</li>
+<li>SHOTGUN_SLUG</li>
+<li>FLAMETHROWER_NORMAL</li>
+<li>FLAMETHROWER_AERATED</li>
+<li>FLAMETHROWER_HIGH_DAMAGE</li>
+<li>SHOTGUN_INCENDIARY</li>
+<li>PISTOL_NORMAL_NPC</li>
+<li>SHOTGUN_NORMAL_NPC</li>
+<li>GRENADE_HE</li>
+<li>GRENADE_FIRE</li>
+<li>CATALYST_HE_SMALL</li>
+<li>CATALYST_HE_LARGE</li>
+<li>CATALYST_FIRE_SMALL</li>
+<li>CATALYST_FIRE_LARGE</li>
+<li>ACID_BURST_SMALL</li>
+<li>ACID_BURST_LARGE</li>
+<li>EMP_BURST_SMALL</li>
+<li>EMP_BURST_LARGE</li>
+<li>IMPACT</li>
+<li>GRENADE_STUN</li>
+<li>GRENADE_SMOKE</li>
+<li>PISTOL_TAZER</li>
+<li>MELEE_CROW_AXE</li>
+<li>BOLTGUN_NORMAL</li>
+<li>PUSH</li>
+<li>CATTLEPROD_POWERPACK</li>
+<li>EMP_BURST_LARGE_TIER2</li>
+<li>EMP_BURST_LARGE_TIER3</li>
+<li>GRENADE_FIRE_TIER2</li>
+<li>GRENADE_FIRE_TIER3</li>
+<li>GRENADE_HE_TIER2</li>
+<li>GRENADE_HE_TIER3</li>
+<li>GRENADE_STUN_TIER2</li>
+<li>GRENADE_STUN_TIER3</li>
+<li>ENVIRONMENT_FLAME</li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_CALLBACK_ENUM">
+<h2 class="section-heading">ANIM_CALLBACK_ENUM</h3>
+<ul>
+<li>NONE</li>
+<li>STUN_DAMAGE_CALLBACK</li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_MODE">
+<h2 class="section-heading">ANIM_MODE</h3>
+<ul>
+<li>FORWARD</li>
+<li>BACKWARD</li>
+<li>BOUNCE</li>
+<li>RANDOM</li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_TRACK_TYPE">
+<h2 class="section-heading">ANIM_TRACK_TYPE</h3>
+<ul>
+<li>T_FLOAT</li>
+<li>T_FLOAT3</li>
+<li>T_POSITION</li>
+<li>T_STRING</li>
+<li>T_GUID</li>
+<li>T_MASTERING</li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_TREE_ENUM">
+<h2 class="section-heading">ANIM_TREE_ENUM</h3>
+<ul>
+<li>NONE</li>
+<li>STUN_DAMAGE_TREE</li>
+</ul>
+</section>
+<section class="docs-section" id="ANIMATION_EFFECT_TYPE">
+<h2 class="section-heading">ANIMATION_EFFECT_TYPE</h3>
+<ul>
+<li>STUMBLE</li>
+</ul>
+</section>
+<section class="docs-section" id="AREA_SWEEP_TYPE">
+<h2 class="section-heading">AREA_SWEEP_TYPE</h3>
+<ul>
+<li>IN_AND_OUT_BETWEEN_TARGET_AND_POSITION</li>
+<li>FIXED_RADIUS_AROUND_POSITION</li>
+</ul>
+</section>
+<section class="docs-section" id="AREA_SWEEP_TYPE_CODE">
+<h2 class="section-heading">AREA_SWEEP_TYPE_CODE</h3>
+<ul>
+<li>IN_AND_OUT_BETWEEN_TARGET_AND_POSITION</li>
+<li>FIXED_RADIUS_AROUND_POSITION</li>
+<li>AROUND_TARGET</li>
+</ul>
+</section>
+<section class="docs-section" id="AUTODETECT">
+<h2 class="section-heading">AUTODETECT</h3>
+<ul>
+<li>AUTO</li>
+<li>FORCE_ON</li>
+<li>FORCE_OFF</li>
+</ul>
+</section>
+<section class="docs-section" id="BEHAVIOR_TREE_BRANCH_TYPE">
+<h2 class="section-heading">BEHAVIOR_TREE_BRANCH_TYPE</h3>
+<ul>
+<li>NONE</li>
+<li>CINEMATIC_BRANCH</li>
+<li>ATTACK_BRANCH</li>
+<li>AIM_BRANCH</li>
+<li>DESPAWN_BRANCH</li>
+<li>FOLLOW_BRANCH</li>
+<li>STANDARD_BRANCH</li>
+<li>SEARCH_BRANCH</li>
+<li>AREA_SWEEP_BRANCH</li>
+<li>BACKSTAGE_AREA_SWEEP_BRANCH</li>
+<li>SHOT_BRANCH</li>
+<li>SUSPECT_TARGET_RESPONSE_BRANCH</li>
+<li>THREAT_AWARE_BRANCH</li>
+<li>BACKSTAGE_AMBUSH_BRANCH</li>
+<li>IDLE_JOB_BRANCH</li>
+<li>USE_COVER_BRANCH</li>
+<li>ASSAULT_BRANCH</li>
+<li>MELEE_BRANCH</li>
+<li>RETREAT_BRANCH</li>
+<li>CLOSE_ON_TARGET_BRANCH</li>
+<li>MUTUAL_MELEE_ONLY_BRANCH</li>
+<li>VENT_MELEE_BRANCH</li>
+<li>ASSAULT_NOT_ALLOWED_BRANCH</li>
+<li>IN_VENT_BRANCH</li>
+<li>CLOSE_COMBAT_BRANCH</li>
+<li>DRAW_WEAPON_BRANCH</li>
+<li>PURSUE_TARGET_BRANCH</li>
+<li>RANGED_ATTACK_BRANCH</li>
+<li>RANGED_COMBAT_BRANCH</li>
+<li>PRIMARY_CONTROL_RESPONSE_BRANCH</li>
+<li>DEAD_BRANCH</li>
+<li>SCRIPT_BRANCH</li>
+<li>IDLE_BRANCH</li>
+<li>DOWN_BUT_NOT_OUT_BRANCH</li>
+<li>MELEE_BLOCK_BRANCH</li>
+<li>AGRESSIVE_BRANCH</li>
+<li>ALERT_BRANCH</li>
+<li>SHOOTING_BRANCH</li>
+<li>GRAPPLE_BREAK_BRANCH</li>
+<li>REACT_TO_WEAPON_FIRE_BRANCH</li>
+<li>IN_COVER_BRANCH</li>
+<li>SUSPICIOUS_ITEM_BRANCH_HIGH</li>
+<li>SUSPICIOUS_ITEM_BRANCH_MEDIUM</li>
+<li>SUSPICIOUS_ITEM_BRANCH_LOW</li>
+<li>AGGRESSION_ESCALATION_BRANCH</li>
+<li>STUN_DAMAGE_BRANCH</li>
+<li>BREAKOUT_BRANCH</li>
+<li>SUSPEND_BRANCH</li>
+<li>TARGET_IS_NPC_BRANCH</li>
+<li>PLAYER_HIDING_BRANCH</li>
+<li>ATTACK_CORE_BRANCH</li>
+<li>CORPSE_TRAP_BRANCH</li>
+<li>OBSERVE_TARGET_BRANCH</li>
+<li>TARGET_IN_CRAWLSPACE_BRANCH</li>
+<li>MB_SUSPICIOUS_ITEM_ATLEAST_MOVE_CLOSE_TO</li>
+<li>MB_THREAT_AWARE_ATTACK_TARGET_WITHIN_CLOSE_RANGE</li>
+<li>MB_THREAT_AWARE_ATTACK_TARGET_WITHIN_VERY_CLOSE_RANGE</li>
+<li>MB_THREAT_AWARE_ATTACK_TARGET_FLAMED_ME</li>
+<li>MB_THREAT_AWARE_ATTACK_WEAPON_NOT_AIMED</li>
+<li>MB_THREAT_AWARE_MOVE_TO_LOST_VISUAL</li>
+<li>MB_THREAT_AWARE_MOVE_TO_BEFORE_ANIM</li>
+<li>MB_THREAT_AWARE_MOVE_TO_AFTER_ANIM</li>
+<li>MB_THREAT_AWARE_MOVE_TO_FLANKED_VENT</li>
+<li>KILLTRAP_BRANCH</li>
+<li>PANIC_BRANCH</li>
+<li>BACKSTAGE_ALIEN_RESPONSE_BRANCH</li>
+<li>NPC_VS_ALIEN_BRANCH</li>
+<li>USE_COVER_VS_ALIEN_BRANCH</li>
+<li>IN_COVER_VS_ALIEN_BRANCH</li>
+<li>REPEATED_PATHFIND_FAILS_BRANCH</li>
+<li>ALL_SEARCH_VARIANTS_BRANCH</li>
+</ul>
+</section>
+<section class="docs-section" id="BEHAVIOUR_MOOD_SET">
+<h2 class="section-heading">BEHAVIOUR_MOOD_SET</h3>
+<ul>
+<li>NEUTRAL</li>
+<li>THREAT_ESCALATION_AGGRESSIVE</li>
+<li>THREAT_ESCALATION_PANICKED</li>
+<li>AGGRESSIVE</li>
+<li>PANICKED</li>
+<li>SUSPICIOUS</li>
+</ul>
+</section>
+<section class="docs-section" id="BEHAVIOUR_TREE_FLAGS">
+<h2 class="section-heading">BEHAVIOUR_TREE_FLAGS</h3>
+<ul>
+<li>DO_ASSAULT_ATTACK_CHECKS</li>
+<li>IS_IN_VENT</li>
+<li>IS_SITTING</li>
+<li>PLAYER_HIDING</li>
+<li>ATTACK_HIDING_PLAYER</li>
+<li>ALIEN_ALWAYS_KNOWS_WHEN_IN_VENT</li>
+<li>IS_CORPSE_TRAP_ON_START</li>
+<li>IS_BACKSTAGE_STALK_LOCKED</li>
+<li>PLAYER_WON_HIDING_QTE</li>
+<li>ANDROID_IS_INERT</li>
+<li>ANDROID_IS_SHOWROOM_DUMMY</li>
+<li>NEVER_AGGRESSIVE</li>
+<li>MUTE_DYNAMIC_DIALOGUE</li>
+<li>BLOCK_AMBUSH_AND_KILLTRAPS</li>
+<li>PREVENT_GRAPPLES</li>
+<li>PREVENT_ALL_ATTACKS</li>
+<li>USE_AIMED_STANCE_FOR_IDLE_JOBS</li>
+<li>USE_AIMED_LOW_STANCE_FOR_IDLE_JOBS</li>
+<li>IGNORE_PLAYER_IN_VENT_BEHAVIOUR</li>
+<li>IS_ON_LADDER</li>
+</ul>
+</section>
+<section class="docs-section" id="BLEND_MODE">
+<h2 class="section-heading">BLEND_MODE</h3>
+<ul>
+<li>BLEND</li>
+<li>ADDITIVE</li>
+</ul>
+</section>
+<section class="docs-section" id="BLUEPRINT_LEVEL">
+<h2 class="section-heading">BLUEPRINT_LEVEL</h3>
+<ul>
+<li>LEVEL_1</li>
+<li>LEVEL_2</li>
+<li>LEVEL_3</li>
+</ul>
+</section>
+<section class="docs-section" id="BUTTON_TYPE">
+<h2 class="section-heading">BUTTON_TYPE</h3>
+<ul>
+<li>KEYS</li>
+<li>DISK</li>
+</ul>
+</section>
+<section class="docs-section" id="CAMERA_PATH_CLASS">
+<h2 class="section-heading">CAMERA_PATH_CLASS</h3>
+<ul>
+<li>GENERIC</li>
+<li>POSITION</li>
+<li>TARGET</li>
+<li>REFERENCE</li>
+</ul>
+</section>
+<section class="docs-section" id="CAMERA_PATH_TYPE">
+<h2 class="section-heading">CAMERA_PATH_TYPE</h3>
+<ul>
+<li>LINEAR</li>
+<li>BEZIER</li>
+</ul>
+</section>
+<section class="docs-section" id="CHARACTER_BB_ENTRY_TYPE">
+<h2 class="section-heading">CHARACTER_BB_ENTRY_TYPE</h3>
+<ul>
+<li>CBB_HAVE_CURRENT_TARGET</li>
+<li>CBB_MOST_RECENT_TARGET_SENSE_IS_ACTIVATED</li>
+<li>CBB_MOST_RECENT_TARGET_SENSE_HAS_BEEN_ACTIVATED</li>
+<li>CBB_SENSE_ABOVE_FIRST</li>
+<li>CBB_SENSE_ABOVE_LAST</li>
+<li>CBB_SENSE_TRIGGERED_FIRST</li>
+<li>CBB_SENSE_TRIGGERED_LAST</li>
+<li>CBB_SENSE_BEEN_ABOVE_FIRST</li>
+<li>CBB_SENSE_BEEN_ABOVE_LAST</li>
+<li>CBB_SENSE_LAST_TIME_FIRST</li>
+<li>CBB_SENSE_LAST_TIME_LAST</li>
+<li>CBB_TARGET_CLOSEST_THRESHOLD</li>
+<li>CBB_CAN_MOVE_TO_TARGET</li>
+<li>CBB_HAVE_NEXT_TARGET</li>
+<li>CBB_AGENT_MOTIVATION</li>
+<li>CBB_GAUGE_AMOUNT_ABOVE_RETREAT</li>
+<li>CBB_GAUGE_AMOUNT_ABOVE_FIRST</li>
+<li>CBB_GAUGE_AMOUNT_ABOVE_MELEE_DEFENSE</li>
+<li>CBB_GAUGE_AMOUNT_ABOVE_STUN_DAMAGE</li>
+<li>CBB_GAUGE_AMOUNT_ABOVE_LAST</li>
+<li>CBB_HAS_MELEE_ATTACK_AVAILABLE</li>
+<li>CBB_ALLOWED_TO_ATTACK_TARGET</li>
+<li>CBB_ALERTNESS_STATE</li>
+<li>CBB_HAS_A_WEAPON</li>
+<li>CBB_WEAPON_IS_EQUIPPED</li>
+<li>CBB_WEAPON_NEEDS_RELOADING</li>
+<li>CBB_LOGIC_CHARACTER_SUSPECT_TARGET_RESPONSE_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_TIMER_FIRST</li>
+<li>CBB_LOGIC_CHARACTER_THREAT_AWARE_TIMEOUT_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_THREAT_AWARE_DURATION_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_SEARCH_TIMEOUT_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_BACKSTAGE_STALK_TIMEOUT_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_AMBUSH_TIMEOUT_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_BACKSTAGE_STALK_PICK_KILLTRAP_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_ATTACK_BAN_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_MELEE_ATTACK_BAN_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_VENT_BAN_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_NPC_STAY_IN_COVER_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_NPC_JUST_LEFT_COMBAT_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_ATTACK_KEEP_CHASING_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_DELAY_RETURN_TO_SPAWN_POINT_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_TARGET_IN_CRAWLSPACE_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_DURATION_SINCE_SEARCH_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_HEIGHTENED_SENSES_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_FLANKED_VENT_ATTACK_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_THREAT_AWARE_VISUAL_RETENTION_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_RESPONSE_TO_BACKSTAGE_ALIEN_TIMEOUT_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_VENT_ATTRACT_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_SEEN_PLAYER_AIM_WEAPON_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_SEARCH_BAN_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_OBSERVE_TARGET_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_REPEATED_PATHFIND_FAILUREST_TIMER</li>
+<li>CBB_LOGIC_CHARACTER_TIMER_LAST</li>
+<li>CBB_AFFECTED_BY_TARGETS_FLAME_THROWER</li>
+</ul>
+</section>
+<section class="docs-section" id="CHARACTER_CLASS">
+<h2 class="section-heading">CHARACTER_CLASS</h3>
+<ul>
+<li>PLAYER</li>
+<li>ALIEN</li>
+<li>ANDROID</li>
+<li>CIVILIAN</li>
+<li>SECURITY</li>
+<li>FACEHUGGER</li>
+<li>INNOCENT</li>
+<li>ANDROID_HEAVY</li>
+<li>MOTION_TRACKER</li>
+<li>MELEE_HUMAN</li>
+</ul>
+</section>
+<section class="docs-section" id="CHARACTER_CLASS_COMBINATION">
+<h2 class="section-heading">CHARACTER_CLASS_COMBINATION</h3>
+<ul>
+<li>NONE</li>
+<li>PLAYER_ONLY</li>
+<li>ALIEN_ONLY</li>
+<li>ANDROID_ONLY</li>
+<li>CIVILIAN_ONLY</li>
+<li>SECURITY_ONLY</li>
+<li>FACEHUGGER_ONLY</li>
+<li>INNOCENT_ONLY</li>
+<li>ANDROID_HEAVY_ONLY</li>
+<li>MOTION_TRACKER</li>
+<li>MELEE_HUMAN_ONLY</li>
+<li>ANDROIDS</li>
+<li>ALIENS</li>
+<li>HUMAN_NPC</li>
+<li>HUMAN</li>
+<li>HUMANOID_NPC</li>
+<li>HUMANOID</li>
+<li>ANDROIDS_AND_ALIEN</li>
+<li>PLAYER_AND_ALIEN</li>
+<li>ALL</li>
+</ul>
+</section>
+<section class="docs-section" id="CHARACTER_FOLEY_SOUND">
+<h2 class="section-heading">CHARACTER_FOLEY_SOUND</h3>
+<ul>
+<li>LEATHER</li>
+<li>HEAVY_JACKET</li>
+<li>HEAVY_OVERALLS</li>
+<li>SHIRT</li>
+<li>SUIT_JACKET</li>
+<li>SUIT_TROUSERS</li>
+<li>JEANS</li>
+<li>BOOTS</li>
+<li>FLATS</li>
+<li>TRAINERS</li>
+</ul>
+</section>
+<section class="docs-section" id="CHARACTER_NODE">
+<h2 class="section-heading">CHARACTER_NODE</h3>
+<ul>
+<li>HEAD1</li>
+<li>HEAD</li>
+<li>HIPS</li>
+<li>TORSO</li>
+<li>SPINE2</li>
+<li>SPINE1</li>
+<li>SPINE</li>
+<li>LEFT_ARM</li>
+<li>RIGHT_ARM</li>
+<li>LEFT_HAND</li>
+<li>RIGHT_HAND</li>
+<li>LEFT_LEG</li>
+<li>RIGHT_LEG</li>
+<li>LEFT_FOOT</li>
+<li>RIGHT_FOOT</li>
+<li>LEFT_WEAPON_BONE</li>
+<li>RIGHT_WEAPON_BONE</li>
+<li>LEFT_SHOULDER</li>
+<li>RIGHT_SHOULDER</li>
+<li>WEAPON</li>
+<li>ROOT</li>
+</ul>
+</section>
+<section class="docs-section" id="CHARACTER_STANCE">
+<h2 class="section-heading">CHARACTER_STANCE</h3>
+<ul>
+<li>DONT_CHANGE</li>
+<li>STAND</li>
+<li>CROUCHED</li>
+</ul>
+</section>
+<section class="docs-section" id="CHECKPOINT_TYPE">
+<h2 class="section-heading">CHECKPOINT_TYPE</h3>
+<ul>
+<li>CAMPAIGN</li>
+<li>MANUAL</li>
+<li>CAMPAIGN_MISSION</li>
+<li>MISSION_TEMP_STATE</li>
+</ul>
+</section>
+<section class="docs-section" id="CI_MESSAGE_TYPE">
+<h2 class="section-heading">CI_MESSAGE_TYPE</h3>
+<ul>
+<li>MSG_NORMAL</li>
+<li>MSG_IMPORTANT</li>
+<li>MSG_ERROR</li>
+</ul>
+</section>
+<section class="docs-section" id="CLIPPING_PLANES_PRESETS">
+<h2 class="section-heading">CLIPPING_PLANES_PRESETS</h3>
+<ul>
+<li>MACRO</li>
+<li>CLOSE</li>
+<li>MID</li>
+<li>WIDE</li>
+<li>ULTRA</li>
+</ul>
+</section>
+<section class="docs-section" id="COLLISION_TYPE">
+<h2 class="section-heading">COLLISION_TYPE</h3>
+<ul>
+<li>LINE_OF_SIGHT_COL</li>
+<li>CAMERA_COL</li>
+<li>STANDARD_COL</li>
+<li>UI</li>
+<li>PLAYER_COL</li>
+<li>PHYSICS_COL</li>
+<li>TRANSPARENT_COL</li>
+<li>DETECTABLE</li>
+</ul>
+</section>
+<section class="docs-section" id="COMBAT_BEHAVIOUR">
+<h2 class="section-heading">COMBAT_BEHAVIOUR</h3>
+<ul>
+<li>ALLOW_ATTACK</li>
+<li>ALLOW_AIM</li>
+<li>CINEMATICS_ONLY</li>
+<li>ALLOW_IDLE_JOBS</li>
+<li>ALLOW_USE_COVER</li>
+<li>MUTUAL_MELEE</li>
+<li>VENT_MELEE</li>
+<li>ALLOW_SYSTEMATIC_SEARCH</li>
+<li>ALLOW_AREA_SWEEP</li>
+<li>ALLOW_WITHDRAW_TO_BACKSTAGE</li>
+<li>ALLOW_SUSPECT_TARGET_RESPONSE</li>
+<li>ALLOW_THREAT_AWARE</li>
+<li>ALLOW_BREAKOUT_WHEN_SHOT</li>
+<li>ALLOW_BACKSTAGE_AMBUSH</li>
+<li>ALLOW_ASSAULT</li>
+<li>ALLOW_MELEE</li>
+<li>ALLOW_RETREAT</li>
+<li>ALLOW_CLOSE_ON_TARGET</li>
+<li>ALLOW_REACT_TO_WEAPON_FIRE</li>
+<li>ALLOW_AGGRESSION_ESCALATION</li>
+<li>RESET_ALL_TO_DEFAULTS</li>
+<li>ALLOW_ADVANCE_ON_TARGET</li>
+<li>ALLOW_ALIEN_AMBUSHES</li>
+<li>ALLOW_PANIC</li>
+<li>ALLOW_SUSPICIOUS_ITEM</li>
+<li>ALLOW_RESPONSE_TO_BACKSTAGE_ALIEN</li>
+<li>ALLOW_ESCALATION_PREVENTS_SEARCH</li>
+<li>ALLOW_OBSERVE_TARGET</li>
+</ul>
+</section>
+<section class="docs-section" id="CROUCH_MODE">
+<h2 class="section-heading">CROUCH_MODE</h3>
+<ul>
+<li>FORCE_CROUCH</li>
+<li>FORCE_UNCROUCH</li>
+<li>ALLOW_UNCROUCH</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_ACCESSORY_OVERRIDE">
+<h2 class="section-heading">CUSTOM_CHARACTER_ACCESSORY_OVERRIDE</h3>
+<ul>
+<li>ACCESSORY_OVERRIDE_NONE</li>
+<li>ACCESSORY_OVERRIDE_01</li>
+<li>ACCESSORY_OVERRIDE_02</li>
+<li>ACCESSORY_OVERRIDE_03</li>
+<li>ACCESSORY_OVERRIDE_04</li>
+<li>ACCESSORY_OVERRIDE_05</li>
+<li>ACCESSORY_OVERRIDE_06</li>
+<li>ACCESSORY_OVERRIDE_07</li>
+<li>ACCESSORY_OVERRIDE_08</li>
+<li>ACCESSORY_OVERRIDE_09</li>
+<li>ACCESSORY_OVERRIDE_10</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_ASSETS">
+<h2 class="section-heading">CUSTOM_CHARACTER_ASSETS</h3>
+<ul>
+<li>ASSETSET_01</li>
+<li>ASSETSET_02</li>
+<li>ASSETSET_03</li>
+<li>ASSETSET_04</li>
+<li>ASSETSET_05</li>
+<li>ASSETSET_06</li>
+<li>ASSETSET_07</li>
+<li>ASSETSET_08</li>
+<li>ASSETSET_09</li>
+<li>ASSETSET_10</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_BUILD">
+<h2 class="section-heading">CUSTOM_CHARACTER_BUILD</h3>
+<ul>
+<li>STANDARD</li>
+<li>HEAVY</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_COMPONENT">
+<h2 class="section-heading">CUSTOM_CHARACTER_COMPONENT</h3>
+<ul>
+<li>TORSO</li>
+<li>LEGS</li>
+<li>SHOES</li>
+<li>HEAD</li>
+<li>ARMS</li>
+<li>COLLISION</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_ETHNICITY">
+<h2 class="section-heading">CUSTOM_CHARACTER_ETHNICITY</h3>
+<ul>
+<li>AFRICAN</li>
+<li>CAUCASIAN</li>
+<li>ASIAN</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_GENDER">
+<h2 class="section-heading">CUSTOM_CHARACTER_GENDER</h3>
+<ul>
+<li>MALE</li>
+<li>FEMALE</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_MODEL">
+<h2 class="section-heading">CUSTOM_CHARACTER_MODEL</h3>
+<ul>
+<li>NPC</li>
+<li>ANDROID</li>
+<li>CORPSE</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_POPULATION">
+<h2 class="section-heading">CUSTOM_CHARACTER_POPULATION</h3>
+<ul>
+<li>POPULATION_01</li>
+<li>POPULATION_02</li>
+<li>POPULATION_03</li>
+<li>POPULATION_04</li>
+<li>POPULATION_05</li>
+<li>POPULATION_06</li>
+<li>POPULATION_07</li>
+<li>POPULATION_08</li>
+<li>POPULATION_09</li>
+<li>POPULATION_10</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_SLEEVETYPE">
+<h2 class="section-heading">CUSTOM_CHARACTER_SLEEVETYPE</h3>
+<ul>
+<li>LONG</li>
+<li>MEDIUM</li>
+<li>SHORT</li>
+</ul>
+</section>
+<section class="docs-section" id="CUSTOM_CHARACTER_TYPE">
+<h2 class="section-heading">CUSTOM_CHARACTER_TYPE</h3>
+<ul>
+<li>NONE</li>
+<li>RANDOM</li>
+<li>NAMED</li>
+</ul>
+</section>
+<section class="docs-section" id="DAMAGE_EFFECT_TYPE_FLAGS">
+<h2 class="section-heading">DAMAGE_EFFECT_TYPE_FLAGS</h3>
+<ul>
+<li>NONE</li>
+<li>INCENDIARY</li>
+<li>STUN</li>
+<li>BLIND</li>
+<li>EMP</li>
+<li>ACID</li>
+<li>GAS</li>
+<li>IMPACT</li>
+<li>COLLISION</li>
+<li>SLIDING</li>
+<li>MELEE</li>
+<li>ALL</li>
+<li>INVALID_FLAG_MASK</li>
+<li>PROJECTILE</li>
+<li>ANY_IMPACTING_WEAPON</li>
+</ul>
+</section>
+<section class="docs-section" id="DAMAGE_EFFECTS">
+<h2 class="section-heading">DAMAGE_EFFECTS</h3>
+<ul>
+<li>INCENDIARY</li>
+<li>EMP</li>
+<li>ACID</li>
+<li>GAS</li>
+<li>IMPACT</li>
+<li>BALLISTIC</li>
+<li>COLLISION</li>
+<li>SLIDING</li>
+<li>MELEE</li>
+<li>BALLISTIC_OR_MELEE</li>
+<li>ANY</li>
+</ul>
+</section>
+<section class="docs-section" id="DAMAGE_MODE">
+<h2 class="section-heading">DAMAGE_MODE</h3>
+<ul>
+<li>DAMAGED_BY_ALL</li>
+<li>DAMAGED_BY_PLAYER_ONLY</li>
+<li>INVINCIBLE</li>
+</ul>
+</section>
+<section class="docs-section" id="DEATH_STYLE">
+<h2 class="section-heading">DEATH_STYLE</h3>
+<ul>
+<li>PDS_DROP_DEAD</li>
+<li>PDS_SKIP_ALL_ANIMS</li>
+<li>PDS_SKIP_ALL_ANIMS_NO_RAGDOLL</li>
+</ul>
+</section>
+<section class="docs-section" id="DEVICE_INTERACTION_MODE">
+<h2 class="section-heading">DEVICE_INTERACTION_MODE</h3>
+<ul>
+<li>NONE</li>
+<li>HACKING</li>
+<li>HACKING_REACTION</li>
+<li>REWIRE</li>
+<li>CONTAINER</li>
+<li>KEYPAD</li>
+<li>INTERACTIVE_TERMINAL</li>
+<li>CUTTING_PANEL</li>
+</ul>
+</section>
+<section class="docs-section" id="DIALOGUE_ACTION">
+<h2 class="section-heading">DIALOGUE_ACTION</h3>
+<ul>
+<li>Suspicious_Warning</li>
+<li>Suspicious_Warning_Fail</li>
+<li>Missing_Buddy</li>
+<li>Search_Starts</li>
+<li>Search_Loop</li>
+<li>Search_Fail</li>
+<li>Detected_Enemy</li>
+<li>Interrogative</li>
+<li>Warning</li>
+<li>Last_Chance</li>
+<li>Stand_Down</li>
+<li>Use_Cover</li>
+<li>No_Cover</li>
+<li>Shoot_From_Cover</li>
+<li>Cover_Invalidated</li>
+<li>Alamo</li>
+<li>Panic</li>
+<li>Attack</li>
+<li>Hit_By_Weapon</li>
+<li>Blocks_Blow</li>
+<li>Final_Hit</li>
+<li>Ally_Death</li>
+<li>Incoming_IED</li>
+<li>Alert_Squad</li>
+<li>Idle_Chatter</li>
+<li>Enter_Grapple</li>
+<li>Grab_From_Cover</li>
+<li>Player_Observed</li>
+<li>Suspicious_Item_Initial</li>
+<li>Suspicious_Item_CloseTo</li>
+<li>Melee</li>
+<li>Advance</li>
+<li>Death</li>
+<li>Alien_Heard_Backstage</li>
+</ul>
+</section>
+<section class="docs-section" id="DIALOGUE_ARGUMENT">
+<h2 class="section-heading">DIALOGUE_ARGUMENT</h3>
+<ul>
+<li>Character_Voice</li>
+<li>Dialogue_Progression</li>
+<li>Target_Character</li>
+<li>NPC_Group_Status</li>
+<li>NPC_Dialogue_Mode</li>
+<li>Action</li>
+<li>Seen_Target</li>
+<li>Call_Response</li>
+<li>Android_Escalation</li>
+<li>Suspicious_Item_Type</li>
+<li>Last_Activated_Sense</li>
+<li>Last_Hit_By_Weapon</li>
+<li>Injured_State</li>
+</ul>
+</section>
+<section class="docs-section" id="DIALOGUE_NPC_COMBAT_MODE">
+<h2 class="section-heading">DIALOGUE_NPC_COMBAT_MODE</h3>
+<ul>
+<li>Area_Sweep</li>
+<li>Attack</li>
+<li>Idle</li>
+<li>Suspect_Response</li>
+<li>Systematic_Search</li>
+<li>Target_Lost</li>
+</ul>
+</section>
+<section class="docs-section" id="DIALOGUE_NPC_CONTEXT">
+<h2 class="section-heading">DIALOGUE_NPC_CONTEXT</h3>
+<ul>
+<li>Alamo</li>
+<li>Been_In_Combat</li>
+<li>Seen_Target</li>
+<li>Unknown_Target</li>
+</ul>
+</section>
+<section class="docs-section" id="DIALOGUE_NPC_EVENT">
+<h2 class="section-heading">DIALOGUE_NPC_EVENT</h3>
+<ul>
+<li>SUSPICIOUS_WARNING</li>
+<li>SUSPICIOUS_WARNING_FAIL</li>
+<li>MISSING_BUDDY</li>
+<li>SEARCH_STARTED</li>
+<li>SEARCH_LOOP</li>
+<li>SEARCH_COMPLETED</li>
+<li>DETECTED_ENEMY</li>
+<li>INTERROGATIVE</li>
+<li>WARNING</li>
+<li>LAST_CHANCE</li>
+<li>STAND_DOWN</li>
+<li>GO_TO_COVER</li>
+<li>NO_COVER</li>
+<li>SHOOT_FROM_COVER</li>
+<li>COVER_BROKEN</li>
+<li>ALAMO</li>
+<li>PANIC</li>
+<li>ATTACK</li>
+<li>HIT_BY_WEAPON</li>
+<li>BLOCK</li>
+<li>FINAL_HIT</li>
+<li>ALLY_DEATH</li>
+<li>INCOMING_IED</li>
+<li>ALERT_SQUAD</li>
+<li>IDLE_PASSIVE</li>
+<li>IDLE_AGGRESSIVE</li>
+<li>ENTER_GRAPPLE</li>
+<li>GRAPPLE_FROM_COVER</li>
+<li>PLAYER_OBSERVED</li>
+<li>SUSPICIOUS_ITEM_INITIAL</li>
+<li>SUSPICIOUS_ITEM_CLOSE</li>
+<li>MELEE</li>
+<li>ADVANCE</li>
+<li>MY_DEATH</li>
+<li>ALIEN_HEARD_BACKSTAGE</li>
+<li>ALIEN_SIGHTED</li>
+<li>ALIEN_ATTACKING_ME</li>
+</ul>
+</section>
+<section class="docs-section" id="DIALOGUE_VOICE_ACTOR">
+<h2 class="section-heading">DIALOGUE_VOICE_ACTOR</h3>
+<ul>
+<li>AUTO</li>
+<li>CV1</li>
+<li>CV2</li>
+<li>CV3</li>
+<li>CV4</li>
+<li>CV5</li>
+<li>CV6</li>
+<li>RT1</li>
+<li>RT2</li>
+<li>RT3</li>
+<li>RT4</li>
+<li>AN1</li>
+<li>AN2</li>
+<li>AN3</li>
+<li>ANH</li>
+<li>TOTAL</li>
+<li>FIRST_CIVILIAN_MALE_VOICE</li>
+<li>LAST_CIVILIAN_MALE_VOICE</li>
+<li>FIRST_CIVILIAN_FEMALE_VOICE</li>
+<li>LAST_CIVILIAN_FEMALE_VOICE</li>
+<li>FIRST_SECURITY_MALE_VOICE</li>
+<li>LAST_SECURITY_MALE_VOICE</li>
+<li>FIRST_ANDROID_VOICE</li>
+<li>LAST_ANDROID_VOICE</li>
+</ul>
+</section>
+<section class="docs-section" id="DIFFICULTY_SETTING_TYPE">
+<h2 class="section-heading">DIFFICULTY_SETTING_TYPE</h3>
+<ul>
+<li>EASY</li>
+<li>MEDIUM</li>
+<li>HARD</li>
+<li>IRON</li>
+<li>NOVICE</li>
+</ul>
+</section>
+<section class="docs-section" id="DOOR_MECHANISM">
+<h2 class="section-heading">DOOR_MECHANISM</h3>
+<ul>
+<li>NONE</li>
+<li>BLANK</li>
+<li>KEYPAD</li>
+<li>LEVER</li>
+<li>BUTTON</li>
+<li>HACKING</li>
+<li>HIDDEN_KEYPAD</li>
+<li>HIDDEN_LEVER</li>
+<li>HIDDEN_HACKING</li>
+<li>HIDDEN_BUTTON</li>
+</ul>
+</section>
+<section class="docs-section" id="DOOR_STATE">
+<h2 class="section-heading">DOOR_STATE</h3>
+<ul>
+<li>USE_KEYCARD</li>
+<li>USE_KEYCODE</li>
+<li>USE_LEVER</li>
+<li>USE_HACKING</li>
+<li>USE_CUTTING</li>
+<li>USE_BUTTON</li>
+<li>USE_MECHANISM</li>
+<li>UPGRADE_HACKING</li>
+<li>HACKING_REQUIRED</li>
+<li>RESTORE_POWER</li>
+<li>UPGRADE_CUTTING</li>
+<li>CUTTING_REQUIRED</li>
+<li>KEYCARD_REQUIRED</li>
+<li>LOCKED</li>
+</ul>
+</section>
+<section class="docs-section" id="DUCK_HEIGHT">
+<h2 class="section-heading">DUCK_HEIGHT</h3>
+<ul>
+<li>LOW</li>
+<li>LOWER</li>
+<li>LOWEST</li>
+</ul>
+</section>
+<section class="docs-section" id="ENEMY_TYPE">
+<h2 class="section-heading">ENEMY_TYPE</h3>
+<ul>
+<li>PLAYER</li>
+<li>HUMAN</li>
+<li>HUMAN_AND_PLAYER</li>
+<li>ANDROID</li>
+<li>NPC_HUMANOID</li>
+<li>HUMANOID</li>
+<li>ALIEN</li>
+<li>ANY</li>
+</ul>
+</section>
+<section class="docs-section" id="ENVIRONMENT_ARCHETYPE">
+<h2 class="section-heading">ENVIRONMENT_ARCHETYPE</h3>
+<ul>
+<li>SCIENCE</li>
+<li>HABITATION</li>
+<li>TECHNICAL</li>
+<li>ENGINEERING</li>
+</ul>
+</section>
+<section class="docs-section" id="EQUIPMENT_SLOT">
+<h2 class="section-heading">EQUIPMENT_SLOT</h3>
+<ul>
+<li>USE_CURRENT_SLOT</li>
+<li>ANY_WEAPON_SLOT</li>
+<li>WEAPON_SLOT_SHOTGUN</li>
+<li>WEAPON_SLOT_PISTOL</li>
+<li>MELEE_SLOT</li>
+<li>CATTLEPROD_SLOT</li>
+<li>WEAPON_SLOT_FLAMETHROWER</li>
+<li>WEAPON_SLOT_BOLTGUN</li>
+<li>MOTION_TRACKER_SLOT</li>
+<li>TORCH_SLOT</li>
+<li>MEDIPEN_SLOT</li>
+<li>TEMPORARY_WEAPON_SLOT</li>
+<li>NO_WEAPON_SLOT</li>
+</ul>
+</section>
+<section class="docs-section" id="EVENT_OCCURED_TYPE">
+<h2 class="section-heading">EVENT_OCCURED_TYPE</h3>
+<ul>
+<li>SENSED_TARGET</li>
+<li>SENSED_SUSPICIOUS_ITEM</li>
+<li>TARGET_HIDEING</li>
+<li>SUSPECT_TARGET_RESPONSE</li>
+</ul>
+</section>
+<section class="docs-section" id="EXIT_WAYPOINT">
+<h2 class="section-heading">EXIT_WAYPOINT</h3>
+<ul>
+<li>SOLACE</li>
+<li>AIRPORT</li>
+<li>TECH_HUB</li>
+<li>TECH_COMMS</li>
+<li>SCI_HUB</li>
+<li>HOSPITAL_UPPER</li>
+<li>HOSPITAL_LOWER</li>
+<li>ANDROID_LAB</li>
+<li>SHOPPING_CENTRE</li>
+<li>LV426</li>
+<li>TECH_RND</li>
+<li>REACTOR_CORE</li>
+<li>RND_HAZLAB</li>
+<li>CORP_PENT</li>
+<li>APPOLLO_CORE</li>
+<li>DRY_DOCKS</li>
+<li>GRAVITY_ANCHORS</li>
+<li>TOWING_PLATFORM</li>
+</ul>
+</section>
+<section class="docs-section" id="FLAG_CHANGE_SOURCE_TYPE">
+<h2 class="section-heading">FLAG_CHANGE_SOURCE_TYPE</h3>
+<ul>
+<li>SCRIPT</li>
+<li>ACTION</li>
+</ul>
+</section>
+<section class="docs-section" id="FLASH_INVOKE_TYPE">
+<h2 class="section-heading">FLASH_INVOKE_TYPE</h3>
+<ul>
+<li>NONE</li>
+<li>INT</li>
+<li>FLOAT</li>
+<li>INT_INT</li>
+<li>FLOAT_FLOAT</li>
+<li>INT_FLOAT</li>
+<li>FLOAT_INT</li>
+<li>INT_INT_INT</li>
+<li>FLOAT_FLOAT_FLOAT</li>
+</ul>
+</section>
+<section class="docs-section" id="FLASH_SCRIPT_RENDER_TYPE">
+<h2 class="section-heading">FLASH_SCRIPT_RENDER_TYPE</h3>
+<ul>
+<li>NORMAL</li>
+<li>RENDER_TO_TEXTURE</li>
+<li>MULTI_RENDER_TO_TEXTURE</li>
+</ul>
+</section>
+<section class="docs-section" id="FOG_BOX_TYPE">
+<h2 class="section-heading">FOG_BOX_TYPE</h3>
+<ul>
+<li>BOX</li>
+<li>PLANE</li>
+</ul>
+</section>
+<section class="docs-section" id="FOLDER_LOCK_TYPE">
+<h2 class="section-heading">FOLDER_LOCK_TYPE</h3>
+<ul>
+<li>LOCKED</li>
+<li>NONE</li>
+<li>KEYCODE</li>
+</ul>
+</section>
+<section class="docs-section" id="FOLLOW_CAMERA_MODIFIERS">
+<h2 class="section-heading">FOLLOW_CAMERA_MODIFIERS</h3>
+<ul>
+<li>WALKING</li>
+<li>RUNNING</li>
+<li>CROUCHING</li>
+<li>AIMING</li>
+<li>AIMING_CROUCHED</li>
+<li>AIMING_THROW</li>
+<li>AIMING_CROUCHED_THROW</li>
+<li>EDGE_HORIZONTAL</li>
+<li>EDGE_VERTICAL</li>
+<li>COVER_LEFT</li>
+<li>COVER_RIGHT</li>
+<li>PEEKING_LEFT</li>
+<li>PEEKING_RIGHT</li>
+<li>PEEKING_OVER_LEFT</li>
+<li>PEEKING_OVER_RIGHT</li>
+<li>COVER_AIM_LEFT</li>
+<li>COVER_AIM_RIGHT</li>
+<li>COVER_AIM_OVER_LEFT</li>
+<li>COVER_AIM_OVER_RIGHT</li>
+<li>VENTS_CROUCH</li>
+<li>VENTS_AIM</li>
+<li>HIDING_COVER</li>
+<li>TRAVERSAL_GAP</li>
+<li>TRAVERSAL_AIMING</li>
+<li>TRAVERSAL_CLIMB_OVER_VAULT_LOW</li>
+<li>TRAVERSAL_CLIMB_OVER_VAULT_HIGH</li>
+<li>TRAVERSAL_CLIMB_OVER_CLAMBER_LOW</li>
+<li>TRAVERSAL_CLIMB_OVER_CLAMBER_MEDIUM</li>
+<li>TRAVERSAL_CLIMB_OVER_CLAMBER_HIGH</li>
+<li>TRAVERSAL_CLIMB_OVER_MANTLE_LOW</li>
+<li>TRAVERSAL_CLIMB_OVER_MANTLE_MEDIUM</li>
+<li>TRAVERSAL_CLIMB_OVER_MANTLE_HIGH</li>
+<li>TRAVERSAL_CLIMB_UNDER</li>
+<li>TRAVERSAL_LEAP</li>
+<li>MELEE_ATTACK</li>
+<li>COVER_LEFT_STANDING</li>
+<li>COVER_RIGHT_STANDING</li>
+<li>COVER_TRANSITION_LEFT</li>
+<li>COVER_TRANSITION_RIGHT</li>
+<li>HUB_ACCESSED</li>
+<li>COVER_AIM_LEFT_STANDING</li>
+<li>COVER_AIM_RIGHT_STANDING</li>
+<li>SAFE_MODIFIER_STAND</li>
+<li>SAFE_MODIFIER_CROUCH</li>
+<li>HIDE_CROUCH</li>
+<li>SAFE_MODIFIER_AIMING</li>
+<li>SAFE_MODIFIER_AIMING_CROUCH</li>
+<li>MOTION_TRACKER</li>
+<li>MOTION_TRACKER_CROUCHED</li>
+<li>MOTION_TRACKER_VENTS</li>
+<li>BOLTGUN_AIM</li>
+<li>BOLTGUN_AIM_CROUCHED</li>
+<li>BOLTGUN_AIM_VENTS</li>
+</ul>
+</section>
+<section class="docs-section" id="FOLLOW_TYPE">
+<h2 class="section-heading">FOLLOW_TYPE</h3>
+<ul>
+<li>LEADING_THE_WAY</li>
+<li>EXPLORATION</li>
+</ul>
+</section>
+<section class="docs-section" id="FRAME_FLAGS">
+<h2 class="section-heading">FRAME_FLAGS</h3>
+<ul>
+<li>SUSPICIOUS_ITEM_LOW_PRIORITY</li>
+<li>SUSPICIOUS_ITEM_MEDIUM_PRIORITY</li>
+<li>SUSPICIOUS_ITEM_HIGH_PRIORITY</li>
+<li>COULD_SEARCH</li>
+<li>COULD_RESPOND_TO_HIDING_PLAYER</li>
+<li>COULD_DO_SUSPICIOUS_ITEM_HIGH_PRIORITY</li>
+<li>COULD_DO_SUSPECT_TARGET_RESPONSE_MOVE_TO</li>
+</ul>
+</section>
+<section class="docs-section" id="FRONTEND_STATE">
+<h2 class="section-heading">FRONTEND_STATE</h3>
+<ul>
+<li>FRONTEND_STATE_SPLASH</li>
+<li>FRONTEND_STATE_MENU</li>
+<li>FRONTEND_STATE_ATTRACT</li>
+<li>FRONTEND_STATE_DLC_MAP</li>
+</ul>
+</section>
+<section class="docs-section" id="GAME_CLIP">
+<h2 class="section-heading">GAME_CLIP</h3>
+<ul>
+<li>DEATH_FROM_BELOW</li>
+<li>THE_HUNT_BEGINS</li>
+<li>SYNTHETIC_OFFLINE</li>
+<li>ACCESS_ALL_AREAS</li>
+<li>GOING_DOWN</li>
+<li>JUST_IN_TIME</li>
+<li>SYNTHETIC_INFERNO</li>
+<li>SYSTEMS_SHOCK</li>
+<li>HIGHLY_ADAPTABLE</li>
+<li>GET_BACK</li>
+<li>HUNTED</li>
+<li>A_HAZARD_CONTAINED</li>
+<li>ON_TARGET</li>
+<li>FLAMIN_JOE</li>
+<li>DEATH_FROM_ABOVE</li>
+</ul>
+</section>
+<section class="docs-section" id="GATING_TOOL_TYPE">
+<h2 class="section-heading">GATING_TOOL_TYPE</h3>
+<ul>
+<li>KEY</li>
+<li>AXE</li>
+<li>CROWBAR</li>
+<li>GAS_MASK</li>
+<li>CUTTING_TOOL</li>
+<li>HACKING_TOOL</li>
+<li>REWIRE</li>
+<li>CABLE_CLAMPS</li>
+</ul>
+</section>
+<section class="docs-section" id="IDLE">
+<h2 class="section-heading">IDLE</h3>
+<ul>
+<li>STAND</li>
+<li>QUAD</li>
+<li>DONT_CHANGE</li>
+<li>DEFAULT</li>
+<li>CROUCHED</li>
+<li>IN_COVER</li>
+</ul>
+</section>
+<section class="docs-section" id="IDLE_STYLE">
+<h2 class="section-heading">IDLE_STYLE</h3>
+<ul>
+<li>NO_FIDGETS</li>
+<li>NORMAL</li>
+<li>SEARCH</li>
+<li>CORPSE_TRAP</li>
+</ul>
+</section>
+<section class="docs-section" id="IMPACT_CHARACTER_BODY_LOCATION_TYPE">
+<h2 class="section-heading">IMPACT_CHARACTER_BODY_LOCATION_TYPE</h3>
+<ul>
+<li>ALL</li>
+<li>ARMS</li>
+<li>HEAD</li>
+<li>NECK</li>
+<li>TORSO</li>
+<li>LEGS</li>
+<li>HEAD_NECK</li>
+<li>TORSO_LEGS</li>
+<li>TORSO_ARMS</li>
+<li>TORSO_ARMS_LEGS</li>
+<li>ARMS_LEGS</li>
+</ul>
+</section>
+<section class="docs-section" id="INPUT_DEVICE_TYPE">
+<h2 class="section-heading">INPUT_DEVICE_TYPE</h3>
+<ul>
+<li>MOUSE_AND_KEYBOARD</li>
+<li>GAMEPAD</li>
+</ul>
+</section>
+<section class="docs-section" id="JOB_TYPE">
+<h2 class="section-heading">JOB_TYPE</h3>
+<ul>
+<li>IDLE</li>
+<li>DESPAWN</li>
+<li>AREA_SWEEP</li>
+<li>AREA_SWEEP_FLARE</li>
+<li>SYSTEMATIC_SEARCH_TARGET_JOB</li>
+<li>SYSTEMATIC_SEARCH</li>
+<li>SYSTEMATIC_SEARCH_FLARE</li>
+<li>SYSTEMATIC_SEARCH_SPOTTING_POSITION</li>
+<li>SYSTEMATIC_SEARCH_CRAWL_SPACE_SPOTTING_POSITION</li>
+<li>PICKUP_WEAPON</li>
+<li>ASSAULT</li>
+<li>PLAYER_HIDING</li>
+<li>FOLLOW</li>
+<li>FOLLOW_CENTRE</li>
+<li>PANIC</li>
+</ul>
+</section>
+<section class="docs-section" id="LEVEL_HEAP_TAG">
+<h2 class="section-heading">LEVEL_HEAP_TAG</h3>
+<ul>
+<li>AI_MEM_A_CHARACTER</li>
+<li>AI_MEM_A_ENTITIES</li>
+<li>AI_MEM_A_JOBS</li>
+<li>AI_MEM_A_NAV_MESH</li>
+<li>AI_MEM_AGG_MANAGER</li>
+<li>AI_MEM_ENEMY_RECORD_CONTAINER</li>
+<li>AI_MEM_SPOT_TASK_CONTAINER</li>
+<li>AI_MEM_SUS_ITEM_CONTAINER</li>
+<li>AI_MEM_SEARCH_TASK_CONTAINER</li>
+<li>AI_MEM_VENT_MANAGER_CONTAINER</li>
+<li>AI_MEM_COVER_CONTAINER</li>
+<li>AI_MEM_DIALOGUE_CONTAINER</li>
+<li>AI_MEM_SQUAD_CONTAINER</li>
+<li>AI_MEM_NPC_COMBAT_CONTAINER</li>
+<li>AI_MEM_NPC_CHARACTER_CONTAINER</li>
+<li>AI_MEM_NPC_GROUP_MEMBER_CONTAINER</li>
+<li>AI_MEM_JOB_CONTAINER</li>
+<li>AI_MEM_VENT_CONTAINER</li>
+<li>AI_MEM_BLACKBOARD_CONTAINER</li>
+<li>AI_MEM_CATHODE_SUBS_CONTAINER</li>
+<li>AI_MEM_PUBLISHER_CONTAINER</li>
+<li>AI_MEM_THROWN_CONTAINER</li>
+<li>AI_MEM_SMOKE_MANAGER_CONTAINER</li>
+</ul>
+</section>
+<section class="docs-section" id="LEVER_TYPE">
+<h2 class="section-heading">LEVER_TYPE</h3>
+<ul>
+<li>PULL</li>
+<li>ROTATE</li>
+</ul>
+</section>
+<section class="docs-section" id="LIGHT_ADAPTATION_MECHANISM">
+<h2 class="section-heading">LIGHT_ADAPTATION_MECHANISM</h3>
+<ul>
+<li>PERCENTILE</li>
+<li>BRACKETED_MEAN</li>
+</ul>
+</section>
+<section class="docs-section" id="LIGHT_ANIM">
+<h2 class="section-heading">LIGHT_ANIM</h3>
+<ul>
+<li>UNIFORM</li>
+<li>PULSATE</li>
+<li>OSCILLATE</li>
+<li>FLICKER</li>
+<li>FLUCTUATE</li>
+<li>FLICKER_OFF</li>
+<li>SPARKING</li>
+<li>BLINK</li>
+</ul>
+</section>
+<section class="docs-section" id="LIGHT_FADE_TYPE">
+<h2 class="section-heading">LIGHT_FADE_TYPE</h3>
+<ul>
+<li>NONE</li>
+<li>SHADOW</li>
+<li>LIGHT</li>
+</ul>
+</section>
+<section class="docs-section" id="LIGHT_TRANSITION">
+<h2 class="section-heading">LIGHT_TRANSITION</h3>
+<ul>
+<li>INSTANT</li>
+<li>FADE</li>
+<li>FLICKER</li>
+<li>FLICKER_CUSTOM</li>
+<li>FADE_FLICKER_CUSTOM</li>
+</ul>
+</section>
+<section class="docs-section" id="LIGHT_TYPE">
+<h2 class="section-heading">LIGHT_TYPE</h3>
+<ul>
+<li>OMNI</li>
+<li>SPOT</li>
+<li>STRIP</li>
+</ul>
+</section>
+<section class="docs-section" id="LOCOMOTION_STATE">
+<h2 class="section-heading">LOCOMOTION_STATE</h3>
+<ul>
+<li>WALKING</li>
+<li>RUNNING</li>
+<li>CROUCHING</li>
+<li>IN_VENT</li>
+<li>AIMING</li>
+<li>TRAVERSING</li>
+<li>IDLING</li>
+</ul>
+</section>
+<section class="docs-section" id="LOCOMOTION_TARGET_SPEED">
+<h2 class="section-heading">LOCOMOTION_TARGET_SPEED</h3>
+<ul>
+<li>SLOWEST</li>
+<li>SLOW</li>
+<li>FAST</li>
+<li>FASTEST</li>
+</ul>
+</section>
+<section class="docs-section" id="LOGIC_CHARACTER_FLAGS">
+<h2 class="section-heading">LOGIC_CHARACTER_FLAGS</h3>
+<ul>
+<li>DONE_BREAKOUT</li>
+<li>SHOULD_RESET</li>
+<li>DO_ASSAULT_ATTACK_CHECKS</li>
+<li>IS_IN_VENT</li>
+<li>BANNED_FROM_VENT</li>
+<li>HAS_DONE_GRAPPLE_BREAK</li>
+<li>HAS_RECEIVED_DOT</li>
+<li>IS_SITTING</li>
+<li>DONE_ESCALATION_JOB</li>
+<li>SHOULD_BREAKOUT</li>
+<li>SHOULD_ATTACK</li>
+<li>SHOULD_HIT_AND_RUN</li>
+<li>DONE_HIT_AND_RUN</li>
+<li>PLAYER_HIDING</li>
+<li>ATTACK_HIDING_PLAYER</li>
+<li>ALIEN_ALWAYS_KNOWS_WHEN_IN_VENT</li>
+<li>IS_CORPSE_TRAP_ON_START</li>
+<li>SHOULD_DESPAWN</li>
+<li>ATTACK_HAS_GOT_WITHIN_ROUTING_THRESHOLD</li>
+<li>LOCK_BACKSTAGE_STALK</li>
+<li>TOTALLY_BLIND_IN_DARK</li>
+<li>PLAYER_WON_HIDING_QTE</li>
+<li>ANDROID_IS_INERT</li>
+<li>ANDROID_IS_SHOWROOM_DUMMY</li>
+<li>SHOULD_AMBUSH</li>
+<li>NEVER_AGGRESSIVE</li>
+<li>MUTE_DYNAMIC_DIALOGUE</li>
+<li>DOING_THREAT_AWARE_ANIM</li>
+<li>DONE_THREAT_AWARE</li>
+<li>BLOCK_AMBUSH_AND_KILLTRAPS</li>
+<li>PREVENT_GRAPPLES</li>
+<li>PREVENT_ALL_ATTACKS</li>
+<li>ALLOW_FLANKED_VENT_ATTACK</li>
+<li>IGNORE_PLAYER_IN_VENT_BEHAVIOUR</li>
+<li>USE_AIMED_STANCE_FOR_IDLE_JOBS</li>
+<li>USE_AIMED_LOW_STANCE_FOR_IDLE_JOBS</li>
+<li>CLOSE_TO_BACKSTAGE_ALIEN</li>
+<li>IS_IN_EXPLOITABLE_AREA</li>
+<li>IS_ON_LADDER</li>
+<li>HAS_REPEATED_PATHFIND_FAILURES</li>
+</ul>
+</section>
+<section class="docs-section" id="LOGIC_CHARACTER_GAUGE_TYPE">
+<h2 class="section-heading">LOGIC_CHARACTER_GAUGE_TYPE</h3>
+<ul>
+<li>RETREAT_GAUGE</li>
+<li>STUN_DAMAGE_GAUGE</li>
+</ul>
+</section>
+<section class="docs-section" id="LOGIC_CHARACTER_TIMER_TYPE">
+<h2 class="section-heading">LOGIC_CHARACTER_TIMER_TYPE</h3>
+<ul>
+<li>SUSPECT_TARGET_RESPONSE_DELAY_TIMER</li>
+<li>FIRST_LOGIC_CHARACTER_TIMER</li>
+<li>THREAT_AWARE_TIMEOUT_TIMER</li>
+<li>THREAT_AWARE_DURATION_TIMER</li>
+<li>SEARCH_TIMEOUT_TIMER</li>
+<li>BACKSTAGE_STALK_TIMEOUT_TIMER</li>
+<li>AMBUSH_TIMEOUT_TIMER</li>
+<li>ATTACK_BAN_TIMER</li>
+<li>MELEE_ATTACK_BAN_TIMER</li>
+<li>VENT_BAN_TIMER</li>
+<li>NPC_STAY_IN_COVER_SHOOT_TIMER</li>
+<li>NPC_JUST_LEFT_COMBAT_TIMER</li>
+<li>ATTACK_KEEP_CHASING_TIMER</li>
+<li>DELAY_RETURN_TO_SPAWN_POINT_TIMER</li>
+<li>TARGET_IN_CRAWLSPACE_TIMER</li>
+<li>DURATION_SINCE_SEARCH_TIMER</li>
+<li>HEIGHTENED_SENSES_TIMER</li>
+<li>BACKSTAGE_STALK_PICK_KILLTRAP_TIMER</li>
+<li>FLANKED_VENT_ATTACK_TIMER</li>
+<li>THREAT_AWARE_VISUAL_RETENTION_TIMER</li>
+<li>RESPONSE_TO_BACKSTAGE_ALIEN_TIMEOUT_TIMER</li>
+<li>VENT_ATTRACT_TIMER</li>
+<li>SEEN_PLAYER_AIM_WEAPON_TIMER</li>
+<li>SEARCH_BAN_TIMER</li>
+<li>OBSERVE_TARGET_TIMER</li>
+<li>REPEATED_PATHFIND_FAILUREST_TIMER</li>
+</ul>
+</section>
+<section class="docs-section" id="LOOK_SPEED">
+<h2 class="section-heading">LOOK_SPEED</h3>
+<ul>
+<li>SLOW</li>
+<li>MODERATE</li>
+<li>FAST</li>
+<li>FREE_LOOK</li>
+<li>LEADING_LOOK</li>
+</ul>
+</section>
+<section class="docs-section" id="MAP_ICON_TYPE">
+<h2 class="section-heading">MAP_ICON_TYPE</h3>
+<ul>
+<li>REWIRE</li>
+<li>HACKING</li>
+<li>KEYPAD</li>
+<li>LOCKED</li>
+<li>SAVEPOINT</li>
+<li>WAYPOINT</li>
+<li>TOOL_PICKUP</li>
+<li>WEAPON_PICKUP</li>
+<li>CUTTING_POINT</li>
+<li>LEVEL_LOAD</li>
+<li>LADDER</li>
+<li>CONTAINER</li>
+<li>TERMINAL_INTERACTION</li>
+<li>LOCKED_DOOR</li>
+<li>UNLOCKED_DOOR</li>
+<li>HIDDEN</li>
+<li>GENERIC_INTERACTION</li>
+<li>POWERED_DOWN_DOOR</li>
+<li>KEYCODE</li>
+</ul>
+</section>
+<section class="docs-section" id="MELEE_ATTACK_TYPE">
+<h2 class="section-heading">MELEE_ATTACK_TYPE</h3>
+<ul>
+<li>HIT_ATTACK</li>
+<li>GRAPPLE_ATTACK</li>
+<li>KILL_ATTACK</li>
+<li>VENT</li>
+<li>TRAP_ATTACK</li>
+<li>ANY</li>
+<li>NONE</li>
+</ul>
+</section>
+<section class="docs-section" id="MELEE_CONTEXT_TYPE">
+<h2 class="section-heading">MELEE_CONTEXT_TYPE</h3>
+<ul>
+<li>ANDROID_LOW_COVER_GRAPPLE</li>
+<li>ANDROID_HIGH_COVER_GRAPPLE</li>
+<li>ANDROID_CORPSE_TRAP_GRAPPLE</li>
+</ul>
+</section>
+<section class="docs-section" id="MOOD">
+<h2 class="section-heading">MOOD</h3>
+<ul>
+<li>NEUTRAL</li>
+<li>SCARED</li>
+<li>ANGRY</li>
+<li>HAPPY</li>
+<li>SAD</li>
+<li>SUSPICIOUS</li>
+<li>INJURED</li>
+</ul>
+</section>
+<section class="docs-section" id="MOOD_INTENSITY">
+<h2 class="section-heading">MOOD_INTENSITY</h3>
+<ul>
+<li>LOW</li>
+<li>MEDIUM</li>
+<li>HIGH</li>
+</ul>
+</section>
+<section class="docs-section" id="MOVE">
+<h2 class="section-heading">MOVE</h3>
+<ul>
+<li>SLOW_WALK</li>
+<li>WALK</li>
+<li>FAST_WALK</li>
+<li>RUN</li>
+<li>OBSOLETE_1</li>
+<li>OBSOLETE_2</li>
+<li>TELEPORT</li>
+</ul>
+</section>
+<section class="docs-section" id="MUSIC_RTPC_MODE">
+<h2 class="section-heading">MUSIC_RTPC_MODE</h3>
+<ul>
+<li>UNCHANGED</li>
+<li>THREAT</li>
+<li>STEALTH</li>
+<li>ALIEN_DISTANCE</li>
+<li>MANUAL</li>
+<li>OBJECT_DISTANCE</li>
+</ul>
+</section>
+<section class="docs-section" id="NAV_MESH_AREA_TYPE">
+<h2 class="section-heading">NAV_MESH_AREA_TYPE</h3>
+<ul>
+<li>BACKSTAGE</li>
+<li>EXPENSIVE</li>
+</ul>
+</section>
+<section class="docs-section" id="NAVIGATION_CHARACTER_CLASS">
+<h2 class="section-heading">NAVIGATION_CHARACTER_CLASS</h3>
+<ul>
+<li>PLAYER</li>
+<li>ALIEN</li>
+<li>ANDROID</li>
+<li>HUMAN_NPC</li>
+<li>FACEHUGGER</li>
+</ul>
+</section>
+<section class="docs-section" id="NAVIGATION_CHARACTER_CLASS_COMBINATION">
+<h2 class="section-heading">NAVIGATION_CHARACTER_CLASS_COMBINATION</h3>
+<ul>
+<li>NONE</li>
+<li>PLAYER</li>
+<li>ALIEN</li>
+<li>ANDROID</li>
+<li>HUMAN_NPC</li>
+<li>FACEHUGGER</li>
+<li>HUMAN</li>
+<li>HUMANOID_NPC</li>
+<li>HUMANOID</li>
+<li>ANDROID_AND_ALIEN</li>
+<li>PLAYER_AND_ALIEN</li>
+<li>ALL</li>
+</ul>
+</section>
+<section class="docs-section" id="NOISE_TYPE">
+<h2 class="section-heading">NOISE_TYPE</h3>
+<ul>
+<li>HARMONIC</li>
+<li>FRACTAL</li>
+</ul>
+</section>
+<section class="docs-section" id="NPC_AGGRO_LEVEL">
+<h2 class="section-heading">NPC_AGGRO_LEVEL</h3>
+<ul>
+<li>NONE</li>
+<li>STAND_DOWN</li>
+<li>INTERROGATIVE</li>
+<li>WARNING</li>
+<li>LAST_CHANCE</li>
+<li>NO_LIMIT</li>
+<li>AGGRESSIVE</li>
+</ul>
+</section>
+<section class="docs-section" id="NPC_COMBAT_STATE">
+<h2 class="section-heading">NPC_COMBAT_STATE</h3>
+<ul>
+<li>NONE</li>
+<li>WARNING</li>
+<li>ATTACKING</li>
+<li>REACHED_OBJECTIVE</li>
+<li>ENTERED_COVER</li>
+<li>LEAVE_COVER</li>
+<li>START_RETREATING</li>
+<li>REACHED_RETREAT</li>
+<li>LOST_SENSE</li>
+<li>SUSPICIOUS_WARNING</li>
+<li>SUSPICIOUS_WARNING_FAILED</li>
+<li>START_ADVANCE</li>
+<li>DONE_ADVANCE</li>
+<li>BLOCKING</li>
+<li>HEARD_BS_ALIEN</li>
+<li>ALIEN_SIGHTED</li>
+</ul>
+</section>
+<section class="docs-section" id="NPC_COVER_REQUEST_TYPE">
+<h2 class="section-heading">NPC_COVER_REQUEST_TYPE</h3>
+<ul>
+<li>DEFAULT</li>
+<li>RETREAT</li>
+<li>AGGRESSIVE</li>
+<li>DEFENSIVE</li>
+<li>ALIEN</li>
+<li>PLAYER_IN_VENT</li>
+</ul>
+</section>
+<section class="docs-section" id="NPC_GUN_AIM_MODE">
+<h2 class="section-heading">NPC_GUN_AIM_MODE</h3>
+<ul>
+<li>AUTO</li>
+<li>GUN_DOWN</li>
+<li>GUN_RAISED</li>
+</ul>
+</section>
+<section class="docs-section" id="ORIENTATION_AXIS">
+<h2 class="section-heading">ORIENTATION_AXIS</h3>
+<ul>
+<li>X_AXIS</li>
+<li>Y_AXIS</li>
+<li>Z_AXIS</li>
+</ul>
+</section>
+<section class="docs-section" id="PATH_DRIVEN_TYPE">
+<h2 class="section-heading">PATH_DRIVEN_TYPE</h3>
+<ul>
+<li>CHARACTER_PROJECTION</li>
+<li>POINT_PROJECTION</li>
+<li>TIME_PROGRESS</li>
+</ul>
+</section>
+<section class="docs-section" id="PAUSE_SENSES_TYPE">
+<h2 class="section-heading">PAUSE_SENSES_TYPE</h3>
+<ul>
+<li>KNOCKED_OUT</li>
+</ul>
+</section>
+<section class="docs-section" id="PICKUP_CATEGORY">
+<h2 class="section-heading">PICKUP_CATEGORY</h3>
+<ul>
+<li>UNKNOWN</li>
+<li>WEAPON</li>
+<li>AMMO</li>
+<li>ITEM</li>
+<li>KILLTRAP</li>
+<li>DOOR</li>
+<li>COMPUTER</li>
+<li>ALIEN</li>
+<li>SAVE_TERMINAL</li>
+</ul>
+</section>
+<section class="docs-section" id="PLATFORM_TYPE">
+<h2 class="section-heading">PLATFORM_TYPE</h3>
+<ul>
+<li>PL_PC</li>
+<li>PL_PS3</li>
+<li>PL_X360</li>
+<li>PL_PS4</li>
+<li>PL_XBOXONE</li>
+<li>PL_OLDGEN</li>
+<li>PL_NEXTGEN</li>
+</ul>
+</section>
+<section class="docs-section" id="PLAYER_INVENTORY_SET">
+<h2 class="section-heading">PLAYER_INVENTORY_SET</h3>
+<ul>
+<li>DEFAULT_PLAYER</li>
+<li>LV426_PLAYER</li>
+<li>OTHER_PLAYER</li>
+</ul>
+</section>
+<section class="docs-section" id="POPUP_MESSAGE_ICON">
+<h2 class="section-heading">POPUP_MESSAGE_ICON</h3>
+<ul>
+<li>ALERT</li>
+<li>AUDIOLOG</li>
+</ul>
+</section>
+<section class="docs-section" id="POPUP_MESSAGE_SOUND">
+<h2 class="section-heading">POPUP_MESSAGE_SOUND</h3>
+<ul>
+<li>NONE</li>
+<li>OBJECTIVE_NEW</li>
+<li>OBJECTIVE_UPDATED</li>
+<li>OBJECTIVE_COMPLETED</li>
+</ul>
+</section>
+<section class="docs-section" id="PRIORITY">
+<h2 class="section-heading">PRIORITY</h3>
+<ul>
+<li>LOWEST</li>
+<li>LOW</li>
+<li>MEDIUM</li>
+<li>HIGH</li>
+<li>HIGHEST</li>
+</ul>
+</section>
+<section class="docs-section" id="RANGE_TEST_SHAPE">
+<h2 class="section-heading">RANGE_TEST_SHAPE</h3>
+<ul>
+<li>SPHERE</li>
+<li>VERTICAL_CYLINDER</li>
+</ul>
+</section>
+<section class="docs-section" id="RAYCAST_PRIORITY">
+<h2 class="section-heading">RAYCAST_PRIORITY</h3>
+<ul>
+<li>LOW</li>
+<li>MEDIUM</li>
+<li>HIGH</li>
+<li>CRITICAL</li>
+</ul>
+</section>
+<section class="docs-section" id="RESPAWN_MODE">
+<h2 class="section-heading">RESPAWN_MODE</h3>
+<ul>
+<li>ON_DEATH_POINT</li>
+<li>NEAR_DEATH_POINT</li>
+<li>NEAR_COMPANION</li>
+</ul>
+</section>
+<section class="docs-section" id="REWIRE_SYSTEM_NAME">
+<h2 class="section-heading">REWIRE_SYSTEM_NAME</h3>
+<ul>
+<li>AI_UI_MAIN_LIGHTING</li>
+<li>AI_UI_DOOR_SYSTEM</li>
+<li>AI_UI_VENT_ACCESS</li>
+<li>AI_UI_SECURITY_CAMERAS</li>
+<li>AI_UI_TANNOY</li>
+<li>AI_UI_ALARMS</li>
+<li>AI_UI_SPRINKLERS</li>
+<li>AI_UI_RELEASE_VALVE</li>
+<li>AI_UI_GAS_LEAK</li>
+<li>AI_UI_AIR_CONDITIONING</li>
+<li>AI_UI_UNSTABLE_SYSTEM</li>
+</ul>
+</section>
+<section class="docs-section" id="REWIRE_SYSTEM_TYPE">
+<h2 class="section-heading">REWIRE_SYSTEM_TYPE</h3>
+<ul>
+<li>AI_UI_MAIN_LIGHTING</li>
+<li>AI_UI_DOOR_SYSTEM</li>
+<li>AI_UI_VENT_ACCESS</li>
+<li>AI_UI_SECURITY_CAMERAS</li>
+<li>AI_UI_TANNOY</li>
+<li>AI_UI_ALARMS</li>
+<li>AI_UI_SPRINKLERS</li>
+<li>AI_UI_RELEASE_VALVE</li>
+<li>AI_UI_GAS_LEAK</li>
+<li>AI_UI_AIR_CONDITIONING</li>
+<li>AI_UI_UNSTABLE_SYSTEM</li>
+</ul>
+</section>
+<section class="docs-section" id="SECONDARY_ANIMATION_LAYER">
+<h2 class="section-heading">SECONDARY_ANIMATION_LAYER</h3>
+<ul>
+<li>GENERAL_ADDITIVE</li>
+<li>BREATHE</li>
+<li>GUN</li>
+<li>TAIL</li>
+<li>LOOK</li>
+<li>HANDS</li>
+<li>FACE</li>
+</ul>
+</section>
+<section class="docs-section" id="SENSE_SET">
+<h2 class="section-heading">SENSE_SET</h3>
+<ul>
+<li>SET_1</li>
+<li>SET_2</li>
+<li>SET_3</li>
+</ul>
+</section>
+<section class="docs-section" id="SENSE_SET_DEFAULT">
+<h2 class="section-heading">SENSE_SET_DEFAULT</h3>
+<ul>
+<li>SET_NORMAL</li>
+<li>SET_HEIGHTENED</li>
+</ul>
+</section>
+<section class="docs-section" id="SENSE_SET_SYSTEM">
+<h2 class="section-heading">SENSE_SET_SYSTEM</h3>
+<ul>
+<li>SET_1_NORMAL</li>
+<li>SET_1_HEIGHTENED</li>
+<li>SET_LAST_DEFAULT</li>
+<li>SET_2</li>
+<li>SET_3</li>
+</ul>
+</section>
+<section class="docs-section" id="SENSORY_TYPE">
+<h2 class="section-heading">SENSORY_TYPE</h3>
+<ul>
+<li>NONE</li>
+<li>VISUAL</li>
+<li>WEAPON_SOUND</li>
+<li>MOVEMENT_SOUND</li>
+<li>DAMAGE_CAUSED</li>
+<li>TOUCHED</li>
+<li>AFFECTED_BY_FLAME_THROWER</li>
+<li>SEE_FLASH_LIGHT</li>
+<li>COMBINED_SENSE</li>
+</ul>
+</section>
+<section class="docs-section" id="SHAKE_TYPE">
+<h2 class="section-heading">SHAKE_TYPE</h3>
+<ul>
+<li>CONSTANT</li>
+<li>IMPULSE</li>
+</ul>
+</section>
+<section class="docs-section" id="SIDE">
+<h2 class="section-heading">SIDE</h3>
+<ul>
+<li>LEFT</li>
+<li>RIGHT</li>
+</ul>
+</section>
+<section class="docs-section" id="SOUND_POOL">
+<h2 class="section-heading">SOUND_POOL</h3>
+<ul>
+<li>GENERAL</li>
+<li>PLAYER_WEAPON</li>
+</ul>
+</section>
+<section class="docs-section" id="SPEECH_PRIORITY">
+<h2 class="section-heading">SPEECH_PRIORITY</h3>
+<ul>
+<li>LOW</li>
+<li>MEDIUM</li>
+<li>HIGH</li>
+<li>STREAMED_COMBAT</li>
+<li>COMBAT</li>
+<li>DEATH</li>
+</ul>
+</section>
+<section class="docs-section" id="STEAL_CAMERA_TYPE">
+<h2 class="section-heading">STEAL_CAMERA_TYPE</h3>
+<ul>
+<li>FORCE_STEAL</li>
+<li>BUTTON_PROMPT</li>
+<li>JUST_CONVERGE</li>
+</ul>
+</section>
+<section class="docs-section" id="SUB_OBJECTIVE_TYPE">
+<h2 class="section-heading">SUB_OBJECTIVE_TYPE</h3>
+<ul>
+<li>NONE</li>
+<li>POINT</li>
+<li>SMALL_AREA</li>
+<li>MEDIUM_AREA</li>
+<li>LARGE_AREA</li>
+</ul>
+</section>
+<section class="docs-section" id="SUSPECT_RESPONSE_PHASE">
+<h2 class="section-heading">SUSPECT_RESPONSE_PHASE</h3>
+<ul>
+<li>HEARD_GUN_SHOT</li>
+<li>IDLE</li>
+<li>VISUAL_SUCCESS</li>
+<li>VISUAL_FAIL</li>
+</ul>
+</section>
+<section class="docs-section" id="SUSPICIOUS_ITEM">
+<h2 class="section-heading">SUSPICIOUS_ITEM</h3>
+<ul>
+<li>EXPLOSION</li>
+<li>DEAD_BODY</li>
+<li>ALARM</li>
+<li>VENT_HISS</li>
+<li>ACTIVE_FLARE</li>
+<li>CUT_PANEL</li>
+<li>FIRE_EXTINGUISHER</li>
+<li>LIGHTS_ON</li>
+<li>LIGHTS_OFF</li>
+<li>DOOR_OPENED</li>
+<li>DOOR_CLOSED</li>
+<li>DISGUARDED_GUN</li>
+<li>DEAD_FLARE</li>
+<li>GLOW_STICK</li>
+<li>OPEN_CONTAINER</li>
+<li>NOISE_MAKER</li>
+<li>EMP_MINE</li>
+<li>FLASH_BANG</li>
+<li>MOLOTOV</li>
+<li>PIPE_BOMB</li>
+<li>SMOKE_BOMB</li>
+</ul>
+</section>
+<section class="docs-section" id="SUSPICIOUS_ITEM_BEHAVIOUR_TREE_PRIORITY">
+<h2 class="section-heading">SUSPICIOUS_ITEM_BEHAVIOUR_TREE_PRIORITY</h3>
+<ul>
+<li>LOW</li>
+<li>MEDIUM</li>
+<li>HIGH</li>
+</ul>
+</section>
+<section class="docs-section" id="SUSPICIOUS_ITEM_CLOSE_REACTION_DETAIL">
+<h2 class="section-heading">SUSPICIOUS_ITEM_CLOSE_REACTION_DETAIL</h3>
+<ul>
+<li>VISUAL_FLOOR</li>
+<li>VISUAL_WALL</li>
+</ul>
+</section>
+<section class="docs-section" id="SUSPICIOUS_ITEM_REACTION">
+<h2 class="section-heading">SUSPICIOUS_ITEM_REACTION</h3>
+<ul>
+<li>INITIAL_REACTION</li>
+<li>CLOSE_TO_FIRST_GROUP_MEMBER_REACTION</li>
+<li>CLOSE_TO_SUBSEQUENT_GROUP_MEMBER_REACTION</li>
+</ul>
+</section>
+<section class="docs-section" id="SUSPICIOUS_ITEM_STAGE">
+<h2 class="section-heading">SUSPICIOUS_ITEM_STAGE</h3>
+<ul>
+<li>NONE</li>
+<li>FIRST_SENSED</li>
+<li>INITIAL_REACTION</li>
+<li>WAIT_FOR_TEAM_MEMBERS_ROUTING</li>
+<li>MOVE_CLOSE_TO</li>
+<li>CLOSE_TO_REACTION</li>
+<li>CLOSE_TO_WAIT_FOR_GROUP_MEMBERS</li>
+<li>SEARCH_AREA</li>
+</ul>
+</section>
+<section class="docs-section" id="SUSPICIOUS_ITEM_START_OR_CONTINUE_STATE">
+<h2 class="section-heading">SUSPICIOUS_ITEM_START_OR_CONTINUE_STATE</h3>
+<ul>
+<li>VALID_CURRENT_AND_IN_PROGRESS</li>
+<li>VALID_TO_DO_INITIAL_REACTION</li>
+<li>VALID_TO_DO_FURTHER_REACTION</li>
+<li>LAST_VALID_STATE</li>
+<li>DELAYED_INTERACTION_DELAY</li>
+<li>LAST_VALID_OR_DELAYED_STATE</li>
+<li>INVALID_NO_ITEM</li>
+<li>INVALID_ALREADY_COMPLETED</li>
+<li>INVALID_ALREADY_DONE_MIN_STAGE</li>
+<li>INVALID_NO_MUST_DO_STAGE</li>
+<li>INVALID_INTERACTION_DELAYED</li>
+<li>INVALID_MEMBER_NOT_ALLOWED_TO_PROGRESS</li>
+<li>INVALID_FUTHER_REACTION_TIMED_OUT_IN_PROGRESS</li>
+<li>INVALID_FUTHER_REACTION_TIMED_OUT_LAST_TIME_TRIGGERED</li>
+</ul>
+</section>
+<section class="docs-section" id="SUSPICIOUS_ITEM_TRIGGER">
+<h2 class="section-heading">SUSPICIOUS_ITEM_TRIGGER</h3>
+<ul>
+<li>VISBLE</li>
+<li>INSTANT</li>
+<li>CONTINUOUS</li>
+</ul>
+</section>
+<section class="docs-section" id="TASK_CHARACTER_CLASS_FILTER">
+<h2 class="section-heading">TASK_CHARACTER_CLASS_FILTER</h3>
+<ul>
+<li>USE_CHARACTER_PIN</li>
+<li>PLAYER_ONLY</li>
+<li>ALIEN_ONLY</li>
+<li>ANDROID_ONLY</li>
+<li>CIVILIAN_ONLY</li>
+<li>SECURITY_ONLY</li>
+<li>FACEHUGGER_ONLY</li>
+<li>INNOCENT_ONLY</li>
+<li>ANDROID_HEAVY_ONLY</li>
+<li>MOTION_TRACKER</li>
+<li>MELEE_HUMAN_ONLY</li>
+<li>ANDROIDS</li>
+<li>ALIENS</li>
+<li>HUMAN_NPC</li>
+<li>HUMAN</li>
+<li>HUMANOID_NPC</li>
+<li>HUMANOID</li>
+<li>ANDROIDS_AND_ALIEN</li>
+<li>PLAYER_AND_ALIEN</li>
+<li>ALL</li>
+<li>USE_FILTER_PIN</li>
+<li>EXCLUDE_CHARACTER_PIN</li>
+</ul>
+</section>
+<section class="docs-section" id="TASK_OPERATION_MODE">
+<h2 class="section-heading">TASK_OPERATION_MODE</h3>
+<ul>
+<li>FULLY_SHARED</li>
+<li>SINGLE_AND_EXCLUSIVE</li>
+</ul>
+</section>
+<section class="docs-section" id="TASK_PRIORITY">
+<h2 class="section-heading">TASK_PRIORITY</h3>
+<ul>
+<li>NORMAL</li>
+<li>MEDIUM</li>
+<li>HIGH</li>
+</ul>
+</section>
+<section class="docs-section" id="TERMINAL_LOCATION">
+<h2 class="section-heading">TERMINAL_LOCATION</h3>
+<ul>
+<li>SEVASTOPOL</li>
+<li>TORRENS</li>
+<li>NOSTROMO</li>
+</ul>
+</section>
+<section class="docs-section" id="TEXT_ALIGNMENT">
+<h2 class="section-heading">TEXT_ALIGNMENT</h3>
+<ul>
+<li>TOP_LEFT</li>
+<li>TOP_CENTRE</li>
+<li>TOP_RIGHT</li>
+<li>LEFT</li>
+<li>CENTRE</li>
+<li>RIGHT</li>
+<li>BOTTOM_LEFT</li>
+<li>BOTTOM_CENTRE</li>
+<li>BOTTOM_RIGHT</li>
+</ul>
+</section>
+<section class="docs-section" id="THRESHOLD_QUALIFIER">
+<h2 class="section-heading">THRESHOLD_QUALIFIER</h3>
+<ul>
+<li>UNSET</li>
+<li>NONE</li>
+<li>TRACE</li>
+<li>LOWER</li>
+<li>ACTIVATED</li>
+<li>UPPER</li>
+</ul>
+</section>
+<section class="docs-section" id="TRANSITION_DIRECTION">
+<h2 class="section-heading">TRANSITION_DIRECTION</h3>
+<ul>
+<li>POSITIVE_X</li>
+<li>NEGATIVE_X</li>
+<li>POSITIVE_Y</li>
+<li>NEGATIVE_Y</li>
+<li>CENTER</li>
+</ul>
+</section>
+<section class="docs-section" id="TRAVERSAL_ANIMS">
+<h2 class="section-heading">TRAVERSAL_ANIMS</h3>
+<ul>
+<li>Leap_Small</li>
+<li>Leap_Medium</li>
+<li>Leap_Large</li>
+<li>Mantle_Small</li>
+<li>Mantle_Medium</li>
+<li>Mantle_Large</li>
+<li>Vault_Small</li>
+<li>Vault_Medium</li>
+<li>Vault_Large</li>
+<li>Custom</li>
+</ul>
+</section>
+<section class="docs-section" id="TRAVERSAL_TYPE">
+<h2 class="section-heading">TRAVERSAL_TYPE</h3>
+<ul>
+<li>VAULT</li>
+<li>MANTLE</li>
+<li>CLIMB_OVER</li>
+<li>JUMP_DOWN</li>
+<li>VENT_ENTRY</li>
+<li>VENT_EXIT</li>
+<li>LADDER</li>
+<li>FLOOR_VENT_ENTRY</li>
+<li>FLOOR_VENT_EXIT</li>
+</ul>
+</section>
+<section class="docs-section" id="UI_ICON_ICON">
+<h2 class="section-heading">UI_ICON_ICON</h3>
+<ul>
+<li>IMPORTANT</li>
+<li>CONTAINER</li>
+</ul>
+</section>
+<section class="docs-section" id="UI_KEYGATE_TYPE">
+<h2 class="section-heading">UI_KEYGATE_TYPE</h3>
+<ul>
+<li>KEYCARD</li>
+<li>KEYPAD</li>
+</ul>
+</section>
+<section class="docs-section" id="VENT_LOCK_REASON">
+<h2 class="section-heading">VENT_LOCK_REASON</h3>
+<ul>
+<li>FLANKED_VENT_ATTACK_FROM_ATTACK</li>
+<li>FLANKED_VENT_ATTACK_FROM_THREAT_AWARE</li>
+</ul>
+</section>
+<section class="docs-section" id="VIEWCONE_TYPE">
+<h2 class="section-heading">VIEWCONE_TYPE</h3>
+<ul>
+<li>RECTANGLE</li>
+<li>ELLIPSE</li>
+</ul>
+</section>
+<section class="docs-section" id="VISIBILITY_SETTINGS_TYPE">
+<h2 class="section-heading">VISIBILITY_SETTINGS_TYPE</h3>
+<ul>
+<li>VIEWCONESET_NONE</li>
+<li>VIEWCONESET_STANDARD</li>
+<li>VIEWCONESET_STANDARD_HIEGHTENED</li>
+<li>VIEWCONESET_HUMAN</li>
+<li>VIEWCONESET_HUMAN_HIEGHTENED</li>
+<li>VIEWCONESET_SLEEPING</li>
+<li>VIEWCONESET_ANDROID</li>
+<li>VIEWCONESET_ANDROID_HIEGHTENED</li>
+</ul>
+</section>
+<section class="docs-section" id="WAVE_SHAPE">
+<h2 class="section-heading">WAVE_SHAPE</h3>
+<ul>
+<li>SIN</li>
+<li>SAW</li>
+<li>REV_SAW</li>
+<li>SQUARE</li>
+<li>TRIANGLE</li>
+</ul>
+</section>
+<section class="docs-section" id="WEAPON_HANDEDNESS">
+<h2 class="section-heading">WEAPON_HANDEDNESS</h3>
+<ul>
+<li>TWO_HANDED</li>
+<li>ONE_HANDED</li>
+<li>ONE_OR_TWO_HANDED</li>
+</ul>
+</section>
+<section class="docs-section" id="WEAPON_IMPACT_EFFECT_ORIENTATION">
+<h2 class="section-heading">WEAPON_IMPACT_EFFECT_ORIENTATION</h3>
+<ul>
+<li>HIT_NORMAL</li>
+<li>DIRECTION</li>
+<li>REFLECTION</li>
+<li>UP</li>
+</ul>
+</section>
+<section class="docs-section" id="WEAPON_IMPACT_EFFECT_TYPE">
+<h2 class="section-heading">WEAPON_IMPACT_EFFECT_TYPE</h3>
+<ul>
+<li>STANDARD</li>
+<li>CHARACTER_DAMAGE</li>
+</ul>
+</section>
+<section class="docs-section" id="WEAPON_IMPACT_FILTER_ORIENTATION">
+<h2 class="section-heading">WEAPON_IMPACT_FILTER_ORIENTATION</h3>
+<ul>
+<li>CEILING</li>
+<li>FLOOR</li>
+<li>WALL</li>
+</ul>
+</section>
+<section class="docs-section" id="WEAPON_PROPERTY">
+<h2 class="section-heading">WEAPON_PROPERTY</h3>
+<ul>
+<li>ALIEN_THREAT_AWARE_OF</li>
+</ul>
+</section>
+<section class="docs-section" id="WEAPON_TYPE">
+<h2 class="section-heading">WEAPON_TYPE</h3>
+<ul>
+<li>NO_WEAPON</li>
+<li>FLAMETHROWER</li>
+<li>PISTOL</li>
+<li>SHOTGUN</li>
+<li>MELEE</li>
+<li>BOLTGUN</li>
+<li>CATTLEPROD</li>
+</ul>
+</section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+                            <li class="list-inline-item"><a href="http://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a href="http://twitter.com/mattfiler"><i class="fab fa-twitter fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script> 
+
+</body>
+</html> 
+

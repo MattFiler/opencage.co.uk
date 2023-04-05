@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
@@ -10,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace cathode_vartype
 {
@@ -334,6 +336,24 @@ namespace cathode_vartype
             //File.WriteAllLines("out_dump.txt", dump);
             #endregion
 
+            #region Parse Enums
+            List<string> enumGithubMD = DownloadIfNotAlreadyPresent("enum_github.md");
+            Dictionary<string, List<string>> enumVals = new Dictionary<string, List<string>>();
+            string currentEnumVal = "";
+            foreach (string line in enumGithubMD)
+            {
+                if (line.Length > 2 && line.Substring(0, 2) == "##")
+                {
+                    currentEnumVal = line.Substring(3);
+                    enumVals.Add(currentEnumVal, new List<string>());
+                }
+                if (line.Length > 2 && line.Substring(0, 2) == " *")
+                {
+                    enumVals[currentEnumVal].Add(line.Substring(3));
+                }
+            }
+            #endregion
+
             goto jump_to_dump;
 
             #region Work out parameter defaults from C dump per entity/interface
@@ -656,8 +676,34 @@ namespace cathode_vartype
             List<CathodeNode> interfaces = entities.FindAll(o => o.nodeName.Contains("Interface") && o.nodeName != "SmokeCylinderAttachmentInterface");
             interfaces = interfaces.OrderBy(o => o.className).ToList();
             entities.RemoveAll(o => o.nodeName.Contains("Interface") && o.nodeName != "SmokeCylinderAttachmentInterface");
+            List<CathodeNode> entities_only = entities;
             entities = entities.OrderBy(o => o.className).ToList();
             entities.InsertRange(0, interfaces);
+
+            CathodeNode EntityMethodInterface = entities.FirstOrDefault(o => o.className == "EntityMethodInterface");
+            Dictionary<string, List<CathodeParameter>> EMI_Lookup = new Dictionary<string, List<CathodeParameter>>();
+            for (int i = 0; i < EntityMethodInterface.nodeParameters.Count; i++)
+            {
+                if (EntityMethodInterface.nodeParameters[i].parameterVariableType == "method")
+                {
+                    List<CathodeParameter> param_links = new List<CathodeParameter>();
+                    for (int x = 0; x < 3; x++)
+                    {
+                        param_links.Add(EntityMethodInterface.nodeParameters[i + x]);
+                    }
+                    EMI_Lookup.Add(EntityMethodInterface.nodeParameters[i].parameterName, param_links);
+                }
+            }
+
+            List<string> allDatatypes = new List<string>();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                for (int x = 0; x < entities[i].nodeParameters.Count; x++)
+                {
+                    if (!allDatatypes.Contains(entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP))
+                        allDatatypes.Add(entities[i].nodeParameters[x].parameterDataType_FROMFIRSTDUMP);
+                }
+            }
 
             #region Dump "entities_and_interfaces.html"
             {
@@ -723,25 +769,16 @@ namespace cathode_vartype
             }
             #endregion
 
-            #region Dump "index.html"
+            #region Dump "index.html" for entities and enums
             {
-                CathodeNode EntityMethodInterface = entities.FirstOrDefault(o => o.className == "EntityMethodInterface");
-                Dictionary<string, List<CathodeParameter>> EMI_Lookup = new Dictionary<string, List<CathodeParameter>>();
-                for (int i = 0; i < EntityMethodInterface.nodeParameters.Count; i++)
-                {
-                    if (EntityMethodInterface.nodeParameters[i].parameterVariableType == "method")
-                    {
-                        List<CathodeParameter> param_links = new List<CathodeParameter>();
-                        for (int x = 0; x < 3; x++)
-                        {
-                            param_links.Add(EntityMethodInterface.nodeParameters[i + x]);
-                        }
-                        EMI_Lookup.Add(EntityMethodInterface.nodeParameters[i].parameterName, param_links);
-                    }
-                }
-
+                Console.WriteLine("--------------------");
+                List<string> datatypes = new List<string>();
                 List<string> output_html = new List<string>();
+                List<string> final_html = new List<string>();
+                List<string> template_html = File.ReadAllLines("../../../../docs/cathode-entities/index_template.html").ToList();
                 bool did_divider = false;
+
+                #region ENTITIES
                 output_html.Add("<div class=\"docs-wrapper\"><div id=\"docs-sidebar\" class=\"docs-sidebar\"><nav id=\"docs-nav\" class=\"docs-nav navbar\"><ul class=\"section-items list-unstyled nav flex-column pb-3\">");
                 output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto\" href=\"#interfaces\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Interfaces</a></li>");
                 for (int i = 0; i < entities.Count; i++)
@@ -797,7 +834,46 @@ namespace cathode_vartype
                             }
                             else
                             {
-                                toAdd += param.parameterName + " [DataType: " + param.parameterDataType_FROMFIRSTDUMP + "]";
+                                if (enumVals.ContainsKey(param.parameterDataType_FROMFIRSTDUMP))
+                                {
+                                    //This is an ENUM
+                                    toAdd += param.parameterName + " <code><a href=\"/docs/cathode-enums/#" + param.parameterDataType_FROMFIRSTDUMP + "\" class=\"enum_link\">" + param.parameterDataType_FROMFIRSTDUMP + "</a></code>";
+                                }
+                                else
+                                {
+                                    string niceDisplay = param.parameterDataType_FROMFIRSTDUMP;
+                                    if (!datatypes.Contains(param.parameterDataType_FROMFIRSTDUMP))
+                                    {
+                                        datatypes.Add(param.parameterDataType_FROMFIRSTDUMP);
+                                        Console.WriteLine(param.parameterDataType_FROMFIRSTDUMP);
+                                    }
+
+                                    /*
+                                    switch (niceDisplay)
+                                    {
+                                        case "SPLINE":
+                                        case "SplineData":
+                                            niceDisplay = "cSpline";
+                                            break;
+                                        case "Position":
+                                            niceDisplay = "cTransform";
+                                            break;
+                                        case "FilePath":
+                                        case "String":
+                                            niceDisplay = "cString";
+                                            break;
+                                        case "int":
+                                            niceDisplay = "cInt";
+                                            break;
+                                        case "float":
+                                            niceDisplay = "cFloat";
+                                            break;
+                                    }
+                                    */
+
+                                    //This is any other type (TODO: make this display nicer)
+                                    toAdd += param.parameterName + " <code title=\"" + param.parameterDataType_FROMFIRSTDUMP + "\">" + niceDisplay + "</span></code>";
+                                }
                             }
                             if (param.parameterDefaultValue != "")
                             {
@@ -827,9 +903,6 @@ namespace cathode_vartype
                 }
                 output_html.Add("</article>");
 
-                List<string> final_html = new List<string>();
-
-                List<string> template_html = File.ReadAllLines("../../../../docs/cathode-entities/index_template.html").ToList();
                 for (int i = 0; i < template_html.Count; i++)
                 {
                     if (template_html[i] == "<!--CONTENT_GOES_HERE-->")
@@ -841,9 +914,52 @@ namespace cathode_vartype
                         final_html.Add(template_html[i]);
                     }
                 }
-
                 File.WriteAllLines("../../../../docs/cathode-entities/index.html", final_html);
+                #endregion
+
+                output_html.Clear();
+                final_html.Clear();
+                template_html = File.ReadAllLines("../../../../docs/cathode-enums/index_template.html").ToList();
+
+                #region ENUMS
+                output_html.Add("<div class=\"docs-wrapper\"><div id=\"docs-sidebar\" class=\"docs-sidebar\"><nav id=\"docs-nav\" class=\"docs-nav navbar\"><ul class=\"section-items list-unstyled nav flex-column pb-3\">");
+                output_html.Add("<li class=\"nav-item section-title\"><a class=\"nav-link scrollto\" href=\"#enums\"><span class=\"theme-icon-holder me-2\"><i class=\"fas fa-code\"></i></span>Enums</a></li>");
+                foreach (KeyValuePair<string, List<string>> enumVal in enumVals)
+                {
+                    output_html.Add("<li class=\"nav-item\"><a class=\"nav-link scrollto\" href=\"#" + enumVal.Key + "\">" + enumVal.Key + "</a></li>");
+                }
+                output_html.Add("</ul></nav></div>");
+                output_html.Add("<div class=\"docs-content\"><div class=\"container\">");
+                output_html.Add("<article class=\"docs-article\" id=\"enums\"><header class=\"docs-header\"><h1 class=\"docs-heading\">Enums <span class=\"docs-time\">Last updated: " + DateTime.Now.ToString() + "</span></h1></header>");
+                foreach (KeyValuePair<string, List<string>> enumVal in enumVals)
+                {
+                    output_html.Add("<section class=\"docs-section\" id=\"" + enumVal.Key + "\">");
+                    output_html.Add("<h2 class=\"section-heading\">" + enumVal.Key + "</h3>");
+                    output_html.Add("<ul>");
+                    foreach (string value in enumVal.Value)
+                    {
+                        output_html.Add("<li>" + value + "</li>");
+                    }
+                    output_html.Add("</ul>");
+                    output_html.Add("</section>");
+                }
+                output_html.Add("</article>");
+
+                for (int i = 0; i < template_html.Count; i++)
+                {
+                    if (template_html[i] == "<!--CONTENT_GOES_HERE-->")
+                    {
+                        final_html.AddRange(output_html);
+                    }
+                    else
+                    {
+                        final_html.Add(template_html[i]);
+                    }
+                }
+                File.WriteAllLines("../../../../docs/cathode-enums/index.html", final_html);
+                #endregion
             }
+            Console.WriteLine("--------------------");
             #endregion
 
             #region Dump "entities.json"
@@ -906,7 +1022,19 @@ namespace cathode_vartype
 
             #region Dump "cathode_entities.bin"
             {
-                CathodeNode EntityMethodInterface = entities.FirstOrDefault(o => o.className == "EntityMethodInterface");
+                void WriteToBin(CathodeParameter param, ref List<string> sanity, ref BinaryWriter writer)
+                {
+                    if (param == null) return;
+                    if (sanity.Contains(param.parameterName)) return;
+                    sanity.Add(param.parameterName);
+
+                    writer.Write(param.parameterName);
+                    writer.Write(param.parameterVariableNameStripped);
+                    writer.Write(param.parameterVariableType);
+                    writer.Write(param.parameterDataType_FROMFIRSTDUMP);
+                    //TODO: write default value
+                }
+
                 BinaryWriter bw = new BinaryWriter(File.OpenWrite("cathode_entities.bin"));
                 bw.BaseStream.SetLength(0);
                 bw.Write(entities.Count);
@@ -916,6 +1044,7 @@ namespace cathode_vartype
 
                     bw.Write(entities[i].nodeName);
                     bw.Write(entities[i].className);
+                    bw.Write(entities_only.Contains(entities[i])); //Is interface?
                     long posToReturnTo = bw.BaseStream.Position;
                     bw.Write(0);
 
@@ -925,28 +1054,15 @@ namespace cathode_vartype
                         CathodeNode nodeObj = entities.FirstOrDefault(o => o.className == node);
                         for (int x = 0; x < nodeObj.nodeParameters.Count; x++)
                         {
-                            if (sanity.Contains(nodeObj.nodeParameters[x].parameterName)) continue;
-                            sanity.Add(nodeObj.nodeParameters[x].parameterName);
-
-                            bw.Write(nodeObj.nodeParameters[x].parameterName);
-                            bw.Write(nodeObj.nodeParameters[x].parameterVariableNameStripped);
-                            bw.Write(nodeObj.nodeParameters[x].parameterVariableType);
-                            bw.Write(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP);
-                            //TODO: write default value
+                            WriteToBin(nodeObj.nodeParameters[x], ref sanity, ref bw);
                         }
                         if (customMethodMappings.ContainsKey(node))
                         {
                             for (int x = 0; x < customMethodMappings[node].Count; x++)
                             {
-                                CathodeParameter param = EntityMethodInterface.nodeParameters.FirstOrDefault(o => o.parameterName == customMethodMappings[node][x]);
-                                if (sanity.Contains(param.parameterName)) continue;
-                                sanity.Add(param.parameterName);
-
-                                bw.Write(param.parameterName);
-                                bw.Write(param.parameterVariableNameStripped);
-                                bw.Write(param.parameterVariableType);
-                                bw.Write(param.parameterDataType_FROMFIRSTDUMP);
-                                //TODO: should we also include the relay, etc for each one of these?
+                                WriteToBin(EntityMethodInterface.nodeParameters.FirstOrDefault(o => o.parameterName == customMethodMappings[node][x]), ref sanity, ref bw);
+                                if (EMI_Lookup.ContainsKey(customMethodMappings[node][x]))
+                                    WriteToBin(EMI_Lookup[customMethodMappings[node][x]].FirstOrDefault(o => o.parameterVariableType == "relay"), ref sanity, ref bw);
                             }
                         }
 
@@ -1005,6 +1121,179 @@ namespace cathode_vartype
             }
             interface_switch.Add("}");
             File.WriteAllLines("interface_inheritance.cs", interface_switch);
+            #endregion
+
+            #region Dump enums CS file
+            {
+                List<string> enum_cs = new List<string>();
+                enum_cs.Add("public static void SyncEnumValuesAndDump() {\nList<EnumDescriptor> lookup_enum = new List<EnumDescriptor>();\n");
+                foreach (KeyValuePair<string, List<string>> vals in enumVals)
+                {
+                    enum_cs.Add("EnumDescriptor _" + vals.Key + " = GetEnum(\"" + vals.Key + "\");");
+                    enum_cs.Add("foreach (EnumDescriptor.Entry e in _" + vals.Key + ".Entries) e.Index = (int)((" + vals.Key + ")Enum.Parse(typeof(" + vals.Key + "), e.Name));");
+                    enum_cs.Add("lookup_enum.Add(_" + vals.Key + ");");
+                }
+                enum_cs.Add("\nBinaryWriter writer = new BinaryWriter(File.OpenWrite(\"out_enums.bin\")); \nforeach (EnumDescriptor e in lookup_enum) { \nUtilities.Write<ShortGuid>(writer, e.ID); \nwriter.Write(e.Name); \nwriter.Write(e.Entries.Count); \nfor (int i = 0; i < e.Entries.Count; i++) { \nwriter.Write(e.Entries[i].Name); \nwriter.Write(e.Entries[i].Index); \n} \n} writer.Close();\n}");
+
+                foreach (KeyValuePair<string, List<string>> vals in enumVals)
+                {
+                    enum_cs.Add("public enum " + vals.Key + " {");
+                    foreach (string val in vals.Value)
+                    {
+                        enum_cs.Add("\t" + val + ",");
+                    }
+                    enum_cs.Add("}\n");
+                }
+                File.WriteAllLines("CathodeEnums.cs", enum_cs);
+            }
+            #endregion
+
+            #region Dump node CS files for script editor
+            {
+                //TODO: a lot of these datatypes i'm converting to string should actually lookup to assets ( i should pull these to script tool )
+                string ConvertDatatype(string type)
+                {
+                    switch (type)
+                    {
+                        case "Direction":
+                            return "cVector3";
+                        case "SplineData":
+                            return "cSpline";
+                        case "String":
+                        case "SOUND_ARGUMENT":
+                        case "SOUND_EVENT":
+                        case "SOUND_SWITCH":
+                        case "ACHIEVEMENT_ID":
+                        case "ACHIEVEMENT_STAT_ID":
+                        case "ATTRIBUTE_SET":
+                        case "ANIM_TREE_SET":
+                        case "ANIM_SET":
+                        case "BLUEPRINT_TYPE":
+                        case "CHR_SKELETON_SET":
+                        case "GAMEPLAY_TIP_STRING_ID":
+                        case "GAME_VARIABLE":
+                        case "IDTAG_ID":
+                            return "string";
+                        case "Position":
+                            return "cTransform";
+                        case "Enum":
+                            return "cEnum";
+                        case "int":
+                        case "bool":
+                        case "float":
+                            return type;
+                        case "":
+                            return "void";
+                        case "ReferenceFramePtr":
+                        case "Object":
+                        case "SOUND_OBJECT":
+                            return "STNode";
+                    }
+                    //Bored of writing these in so just return string
+                    return "string";
+                }
+
+                if (Directory.Exists("nodes")) Directory.Delete("nodes", true);
+                Directory.CreateDirectory("nodes");
+                for (int i = 0; i < entities_only.Count; i++)
+                {
+                    List<string> output = new List<string>();
+                    output.Add("#if DEBUG");
+                    output.Add("using CATHODE.Scripting;");
+                    output.Add("using ST.Library.UI.NodeEditor;");
+                    output.Add("");
+                    output.Add("namespace CommandsEditor.Nodes");
+                    output.Add("{");
+                    output.Add("\t[STNode(\"/\")]");
+                    output.Add("\tpublic class " + entities_only[i].className + " : STNode");
+                    output.Add("\t{");
+
+                    List<string> output_options = new List<string>();
+                    List<string> input_options = new List<string>();
+                    List<string> param_names = new List<string>();
+
+                    string node = entities_only[i].className;
+                    while (node != "" && node != "EntityResourceInterface" && node != "EntityMethodInterface")
+                    {
+                        CathodeNode nodeObj = entities.FirstOrDefault(o => o.className == node);
+                        for (int x = 0; x < nodeObj.nodeParameters.Count; x++)
+                        {
+                            switch (nodeObj.nodeParameters[x].parameterVariableType)
+                            {
+                                case "state":
+                                case "parameter":
+                                    if (!param_names.Contains(nodeObj.nodeParameters[x].parameterVariableName))
+                                    {
+                                        output.Add("\t\tprivate " + ConvertDatatype(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP) + " _" + nodeObj.nodeParameters[x].parameterVariableNameStripped + ";");
+                                        output.Add("\t\t[STNodeProperty(\"" + nodeObj.nodeParameters[x].parameterName + "\", \"" + nodeObj.nodeParameters[x].parameterName + "\")]");
+                                        output.Add("\t\tpublic " + ConvertDatatype(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP) + " " + nodeObj.nodeParameters[x].parameterVariableNameStripped);
+                                        output.Add("\t\t{");
+                                        output.Add("\t\t\tget { return _" + nodeObj.nodeParameters[x].parameterVariableNameStripped + "; }");
+                                        output.Add("\t\t\tset { _" + nodeObj.nodeParameters[x].parameterVariableNameStripped + " = value; this.Invalidate(); }");
+                                        output.Add("\t\t}");
+                                        output.Add("\t\t");
+                                        param_names.Add(nodeObj.nodeParameters[x].parameterVariableName);
+                                    }
+                                    break;
+                                case "input":
+                                case "method":
+                                    string to_add_input = nodeObj.nodeParameters[x].parameterName + "\", typeof(" + ConvertDatatype(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP) + ")";
+                                    if (!input_options.Contains(to_add_input)) input_options.Add(to_add_input);
+                                    break;
+                                case "output":
+                                case "target":
+                                case "relay":
+                                    string to_add_output = nodeObj.nodeParameters[x].parameterName + "\", typeof(" + ConvertDatatype(nodeObj.nodeParameters[x].parameterDataType_FROMFIRSTDUMP) + ")";
+                                    if (!output_options.Contains(to_add_output)) output_options.Add(to_add_output);
+                                    break;
+                            }
+                        }
+                        if (customMethodMappings.ContainsKey(node))
+                        {
+                            for (int x = 0; x < customMethodMappings[node].Count; x++)
+                            {
+                                if (!input_options.Contains(customMethodMappings[node][x] + "\", typeof(void)")) input_options.Add(customMethodMappings[node][x] + "\", typeof(void)");
+                                if (EMI_Lookup.ContainsKey(customMethodMappings[node][x]))
+                                {
+                                    CathodeParameter relay = EMI_Lookup[customMethodMappings[node][x]].FirstOrDefault(o => o.parameterVariableType == "relay");
+                                    if (relay != null && !output_options.Contains(relay.parameterName + "\", typeof(" + ConvertDatatype(relay.parameterDataType_FROMFIRSTDUMP) + ")")) 
+                                        output_options.Add(relay.parameterName + "\", typeof(" + ConvertDatatype(relay.parameterDataType_FROMFIRSTDUMP) + ")");
+                                }
+                            }
+                        }
+
+                        if (interfaceMappings.ContainsKey(node))
+                            node = interfaceMappings[node];
+                        else
+                            node = "";
+                    }
+
+                    output.Add("\t\tprotected override void OnCreate()");
+                    output.Add("\t\t{");
+                    output.Add("\t\t\tbase.OnCreate();");
+                    output.Add("\t\t\t");
+                    output.Add("\t\t\tthis.Title = \"" + entities_only[i].className + "\";");
+                    output.Add("\t\t\t");
+
+                    foreach (string option in input_options)
+                    {
+                        output.Add("\t\t\tthis.InputOptions.Add(\"" + option + ", false);");
+                    }
+
+                    output.Add("\t\t\t");
+
+                    foreach (string option in output_options)
+                    {
+                        output.Add("\t\t\tthis.OutputOptions.Add(\"" + option + ", false);");
+                    }
+
+                    output.Add("\t\t}");
+                    output.Add("\t}");
+                    output.Add("}");
+                    output.Add("#endif");
+                    File.WriteAllLines("nodes/" + entities_only[i].className + ".cs", output);
+                }
+            }
             #endregion
 
             Console.WriteLine("Done");
