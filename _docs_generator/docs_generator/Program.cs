@@ -1193,26 +1193,34 @@ namespace cathode_vartype
                     return "string";
                 }
 
-                if (Directory.Exists("nodes")) Directory.Delete("nodes", true);
-                Directory.CreateDirectory("nodes");
-                for (int i = 0; i < entities_only.Count; i++)
+                if (Directory.Exists("Nodes/Special")) Directory.Delete("Nodes", true);
+                Directory.CreateDirectory("Nodes/Special");
+                List<string> switchCase = new List<string>();
+                for (int i = 0; i < entities.Count; i++)
                 {
+                    if (interfaces.Contains(entities[i]) && entities[i].className != "CompositeInterface")
+                    {
+                        continue;
+                    }
+
+                    switchCase.Add("case \"" + entities[i].className + "\":\n\treturn new " + entities[i].className + "();");
+
                     List<string> output = new List<string>();
-                    output.Add("#if DEBUG");
+                    //output.Add("#if DEBUG");
                     output.Add("using CATHODE.Scripting;");
                     output.Add("using ST.Library.UI.NodeEditor;");
                     output.Add("");
                     output.Add("namespace CommandsEditor.Nodes");
                     output.Add("{");
                     output.Add("\t[STNode(\"/\")]");
-                    output.Add("\tpublic class " + entities_only[i].className + " : STNode");
+                    output.Add("\tpublic class " + entities[i].className + " : STNode");
                     output.Add("\t{");
 
                     List<string> output_options = new List<string>();
                     List<string> input_options = new List<string>();
                     List<string> param_names = new List<string>();
 
-                    string node = entities_only[i].className;
+                    string node = entities[i].className;
                     while (node != "" && node != "EntityResourceInterface" && node != "EntityMethodInterface")
                     {
                         CathodeNode nodeObj = entities.FirstOrDefault(o => o.className == node);
@@ -1272,7 +1280,7 @@ namespace cathode_vartype
                     output.Add("\t\t{");
                     output.Add("\t\t\tbase.OnCreate();");
                     output.Add("\t\t\t");
-                    output.Add("\t\t\tthis.Title = \"" + entities_only[i].className + "\";");
+                    output.Add("\t\t\tthis.Title = \"" + entities[i].className + "\";");
                     output.Add("\t\t\t");
 
                     foreach (string option in input_options)
@@ -1290,9 +1298,10 @@ namespace cathode_vartype
                     output.Add("\t\t}");
                     output.Add("\t}");
                     output.Add("}");
-                    output.Add("#endif");
-                    File.WriteAllLines("nodes/" + entities_only[i].className + ".cs", output);
+                    //output.Add("#endif");
+                    File.WriteAllLines("Nodes/" + ((entities[i].className == "CompositeInterface") ? "Special/" : "") + entities[i].className + ".cs", output);
                 }
+                File.WriteAllLines("node_lookup.cs", switchCase);
             }
             #endregion
 
