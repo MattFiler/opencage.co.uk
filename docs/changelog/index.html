@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Changelog</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Changelog documenting OpenCAGE changes back to version 0.9.2.0.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Changelog" />
+	<meta name="twitter:description" content="Changelog documenting OpenCAGE changes back to version 0.9.2.0." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-lg-flex" style="visibility:hidden;">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="http://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="http://twitter.com/mattfiler"><i class="fab fa-twitter fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://github.com/MattFiler/OpenCAGE/raw/master/OpenCAGE.exe" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+    <!-- paste new sidebar content here -->
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-11-2-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.11.2.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-11-2-2">Version 0.11.2.2</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-11-2-1">Version 0.11.2.1</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-11-2-0">Version 0.11.2.0</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-11-1-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.11.1.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-11-1-1">Version 0.11.1.1</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-11-1-0">Version 0.11.1.0</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-11-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.11.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-11-0-0">Version 0.11.0.0</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-10-2-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.10.2.x</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-10-2-2">Version 0.10.2.2</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-10-2-1">Version 0.10.2.1</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-10-2-0">Version 0.10.2.0</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-10-1-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.10.1.x</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-10-1-0">Version 0.10.1.0</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-10-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.10.0.x</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-10-0-0">Version 0.10.0.0</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-9-3-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.9.3.x</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-3-7">Version 0.9.3.7</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-3-6">Version 0.9.3.6</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-3-5">Version 0.9.3.5</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-3-4">Version 0.9.3.4</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-3-3">Version 0.9.3.3</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-3-2">Version 0.9.3.2</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-3-1">Version 0.9.3.1</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-3-0">Version 0.9.3.0</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-9-2-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.9.2.x</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-2-8">Version 0.9.2.8</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-2-7">Version 0.9.2.7</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-2-6">Version 0.9.2.6</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-2-5">Version 0.9.2.5</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-2-4">Version 0.9.2.4</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-2-3">Version 0.9.2.3</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-2-2">Version 0.9.2.2</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-9-2-0">Version 0.9.2.0</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+    
+    <!-- paste new changelog content here -->
+    
+<article class="docs-article" id="0-11-2-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.11.2.X</h1>
+    </header>
+    
+    <section class="docs-section" id="version-0-11-2-2">
+        <h2 class="section-heading">Version 0.11.2.2</h2>
+    
+        <p><strong>Released 12th October 2023.</strong></p>
+        <ul>
+        <li>Asset editor:<ul>
+        <li>Fixed a bug where UI.PAK editing wouldn&#39;t function correctly</li>
+        </ul>
+        </li>
+        <li>Commands editor:<ul>
+        <li>Limited EnvironmentModelReference entities to one per composite</li>
+        <li>Made the model viewer window resizable</li>
+        <li>Made the composite/function uses window resizable</li>
+        <li>Added a count to the composite/function uses window</li>
+        <li>Fixed anchoring on the spline parameter view</li>
+        <li>Added option to keep the composite/function uses window open</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-11-2-1">
+        <h2 class="section-heading">Version 0.11.2.1</h2>
+    
+        <p><strong>Released 1st October 2023.</strong></p>
+        <ul>
+        <li>Commands editor:<ul>
+        <li>Added option to disable/enable auto-hide of the composite viewer</li>
+        <li>Added option to disable/enable the new file browser UI in the composite viewer</li>
+        <li>Moved options into subcategories</li>
+        <li>Fixed crash when enabling unity websocket while another is active</li>
+        <li>Fixed crash when pasting an invalid transform</li>
+        <li>Fixed jump to entity in the function search window</li>
+        <li>Fixed parameter suggestion for proxy entities</li>
+        </ul>
+        </li>
+        <li>Unity tool:<ul>
+        <li>Fixed an issue with loading _PATCH DLC maps</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-11-2-0">
+        <h2 class="section-heading">Version 0.11.2.0</h2>
+    
+        <p><strong>Released 21st September 2023.</strong></p>
+        <ul>
+        <li>Commands editor:<ul>
+        <li>Added new file browser style UI to composite display, with resizable divide between old tree view and new browser ui</li>
+        <li>Added initial concept of contextual loading to composite viewer</li>
+        <li>Added contextual information display with global/relative position</li>
+        <li>Large performance improvements to model selector</li>
+        <li>Composite instances now show separately to function entities in the composite entity list</li>
+        <li>Added ability to collapse entity view groups</li>
+        <li>Find instances of composite &amp; delete composite no longer visible for root/pausemenu/global</li>
+        <li>Composite display is now pinned to bottom, and auto hides to increase display space (this can be undone by clicking the pin)</li>
+        <li>Root composite is now handled nicer</li>
+        <li>Composite instance entities now use just the composite name rather than whole path in the entity list and title bar</li>
+        <li>Can now only have one composite loaded at once</li>
+        <li>Restricted movement of tab panels</li>
+        <li>Aliases now follow the relative hierarchy when going to the entity they effect</li>
+        <li>Composites now sorted alphabetically</li>
+        <li>Fixed a bug where you couldn&#39;t create a composite or folder in the root folder</li>
+        <li>Composite uses window and function uses window is now resizable</li>
+        <li>Renamed &quot;variable entities&quot; to &quot;composite parameters&quot; to simplify onboarding for new users</li>
+        <li>Reworked and reworked various UI elements</li>
+        <li>Special icon for root and PAUSEMENU/GLOBAL/DisplayModel composites</li>
+        <li>Added ability to delete composites/folders in context menu</li>
+        <li>Special icons for entity types</li>
+        <li>Icons now display in tabs</li>
+        <li>Correctly dispose tabs when closed</li>
+        <li>Added context menu to copy/paste transform parameters</li>
+        <li>Added Discord rich presence</li>
+        <li>Input fields now auto select on several popups</li>
+        <li>Added ability to rename composites</li>
+        <li>Added context menu to handle entity operations</li>
+        <li>Added context menu to handle composite/folder operations</li>
+        </ul>
+        </li>
+        <li>Unity tool:<ul>
+        <li>Made loading non-rendered objects optional to improve loading times and play-time performance </li>
+        <li>Fixed some issues where levels/composites would not be loaded correctly when selected in the script editor</li>
+        </ul>
+        </li>
+        <li>Added new foreground and background icon elements in the assets folder</li>
+        </ul>
+</article>
+<article class="docs-article" id="0-11-1-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.11.1.X</h1>
+    </header>
+    
+    <section class="docs-section" id="version-0-11-1-1">
+        <h2 class="section-heading">Version 0.11.1.1</h2>
+    
+        <p><strong>Released 14th September 2023.</strong></p>
+        <ul>
+        <li>Commands editor:<ul>
+        <li>Use CTRL+S to save</li>
+        <li>Added option to disable save confirmation popup</li>
+        <li>Levels are now selected via toolstrip menu</li>
+        <li>Renamed &quot;Overrides&quot; to &quot;Aliases&quot;</li>
+        <li>Added more tooltips</li>
+        <li>More misc renames and tweaks</li>
+        <li>Performance improvements for the cross-ref checker</li>
+        <li>Performance improvements for finding zone</li>
+        <li>Added total counts to cross-ref buttons</li>
+        <li>Fixed a bug where only the first submesh of a model would display in the model preview</li>
+        <li>Fixed the &quot;Change Model&quot; button</li>
+        <li>Now loading level textures and global textures</li>
+        <li>Display rotation X/Y/Z in model previewer</li>
+        <li>Added option to render models with textures (experimental for now)</li>
+        <li>Added buttons to select entities in pin editor via GUI rather than dropdown</li>
+        <li>Updated websocket data to support new Unity level tool changes</li>
+        <li>Fixed maximising on &quot;add folder&quot; window</li>
+        <li>Fixed a bug with reloading composites when enabling/disabling hex codes</li>
+        <li>Sped up resource checking for composite porting</li>
+        <li>Removed backup functionality (please use the level backup tool)</li>
+        </ul>
+        </li>
+        <li>Unity level previewer:<ul>
+        <li>Reworked websocket data into JSON package</li>
+        <li>Removed all unused assets/scripts</li>
+        <li>Scene now in root of Assets</li>
+        <li>Large performance improvements</li>
+        <li>Updated to latest CathodeLib</li>
+        <li>Reduced duplications of CathodeLib functionality in-code</li>
+        <li>Path to Alien is now passed via websocket to remove need to modify script</li>
+        <li>Improved memory utilisation</li>
+        <li>Re-implemented Commands parsing - now loads from Commands rather than MVR</li>
+        <li>Loads Commands data contextually to the selected composite</li>
+        <li>Cubemaps now render for objects loaded via MVR</li>
+        <li>Updated some texture/cst indexes</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-11-1-0">
+        <h2 class="section-heading">Version 0.11.1.0</h2>
+    
+        <p><strong>Released 8th September 2023.</strong></p>
+        <ul>
+        <li>Commands editor:<ul>
+        <li>Added ability to add folders</li>
+        <li>Add composite is now contextual to selected folder</li>
+        <li>Added ability to search composites</li>
+        <li>Added option to search composites without folder names</li>
+        <li>Added functionality to search for uses of FunctionEntity types</li>
+        <li>Added option to disable tabs for composites/entities</li>
+        <li>Folder icons show open when folder is expanded</li>
+        <li>Threaded parameter loading to improve load speeds of large commands</li>
+        <li>Asset loading no longer blocks initial UI refresh</li>
+        <li>Fixed layer ordering of button in create composite entity</li>
+        <li>Fixed resizing on enum dropdown</li>
+        <li>Fixed an issue with composite duplicate name check</li>
+        <li>Added tooltips to several things</li>
+        </ul>
+        </li>
+        <li>Backup tool:<ul>
+        <li>Re-enabled legacy mod importing</li>
+        <li>Fixed memory exception issue</li>
+        </ul>
+        </li>
+        <li>Verifying OpenCAGE tools no longer deletes backups</li>
+        <li>Added some catches to the updater to handle remote server errors</li>
+        <li>Reduced retry time on updater process kill script</li>
+        </ul>
+</article>
+<article class="docs-article" id="0-11-0-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.11.0.X</h1>
+    </header>
+    
+    <section class="docs-section" id="version-0-11-0-0">
+        <h2 class="section-heading">Version 0.11.0.0</h2>
+    
+        <p><strong>Released 2nd September 2023.</strong></p>
+        <ul>
+        <li>Commands editor:<ul>
+        <li>Complete UI overhaul<ul>
+        <li>All elements are now dynamically resizable</li>
+        <li>Multiple entities and composites can be opened at any one time</li>
+        <li>Entity list now separates name and type, and does not show entity guid</li>
+        <li>Entity list is now grouped by entity types and sorted</li>
+        <li>Added icons</li>
+        <li>Simplified several popup windows and reworked instancing logic (e.g. add entity and composite)</li>
+        </ul>
+        </li>
+        <li>Improved loading speed</li>
+        <li>Script editor will no longer be able to load a level that doesn&#39;t have asset files</li>
+        <li>MVR editor now shows rotation data in euler format</li>
+        <li>Fixed a bug where modifying rotation in MVR editor would also modify scale</li>
+        <li>Added a catch to prevent setting empty folder/composite names</li>
+        <li>Added a button to show entities that instance the selected composite</li>
+        <li>Changed numeric input field to round to 7dp</li>
+        <li>General performance improvements</li>
+        <li>Fixed a bug where instances would not generate correctly in certain circumstances</li>
+        <li>Added additional catch to prevent corrupt saves</li>
+        <li>Improved name display for override/proxy entities</li>
+        <li>Nodegraph UI now relies on events to update</li>
+        <li>Proxies and overrides now display the entity they point to in the entity creator</li>
+        <li>Websocket should now update more reliably</li>
+        <li>Added status text</li>
+        <li>Added an option to show entity IDs (now disabled by default)</li>
+        <li>Added option to batch delete entities</li>
+        <li>Added ability to port composites between levels<ul>
+        <li>Currently this only supports composites without Proxies and without Resource References. Will be expanded in future updates.</li>
+        <li>Supports porting nested composites where possible.</li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        <li>Config editor:<ul>
+        <li>Complete UI overhaul<ul>
+        <li>Editors now open within the same window rather than external windows</li>
+        <li>Resized all editors</li>
+        <li>Main editor window can now be navigated via a tree view</li>
+        <li>Added icons</li>
+        <li>Enforced consistent spacing and styling across all editors</li>
+        <li>Improved the UI of the Item and Inventory editor</li>
+        <li>Improved the UI of the Graphics Settings editor</li>
+        </ul>
+        </li>
+        <li>Implemented new BML parser to Item and Inventory editor</li>
+        <li>Removed reset functionality (now in backup tool)</li>
+        <li>Removed mod packaging functionality (will return soon with improvements for level modifications)</li>
+        <li>Removed old font/image assets</li>
+        <li>Fixed some priority/ordering bugs in the Graphics Settings editor</li>
+        <li>Removed working file/directory requirement from Item and Inventory editor, and Graphics Settings editor</li>
+        <li>Can no longer add empty graphics settings</li>
+        <li>Reduced download size</li>
+        </ul>
+        </li>
+        <li>Backup tool:<ul>
+        <li>Renamed to Backup Manager</li>
+        <li>Added landing screen</li>
+        <li>Added behaviour tree reset functionality</li>
+        <li>Added config reset functionality</li>
+        </ul>
+        </li>
+        <li>Behaviour tree editor:<ul>
+        <li>Removed launcher</li>
+        <li>Implemented BML compilation into main editor</li>
+        <li>Split node and behaviour lists in two</li>
+        <li>Renamed main editor</li>
+        <li>Fixed some incorrect values in LegendPlugin</li>
+        <li>Added a lot of enum values and renamed CATHODE enums</li>
+        <li>Removed some legacy/unused options from the UI</li>
+        <li>Streamlined other legacy Brainiac implementations</li>
+        <li>Default window size/layout now matches new script editor</li>
+        <li>Fixed a bug where nested behaviours would not load properly</li>
+        <li>Updated to .NET Framework 4.7.2</li>
+        <li>Removed reset functionality (now in backup tool)</li>
+        </ul>
+        </li>
+        <li>Asset editor:<ul>
+        <li>Added ability to port textures between levels</li>
+        </ul>
+        </li>
+        <li>Updated launch argument handling on all tools in prep for future changes</li>
+        <li>Submitted all tools to Microsoft for Smartscreen analysis</li>
+        <li>Updated roadmap and other stuff in README</li>
+        </ul>
+</article>
+<article class="docs-article" id="0-10-2-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.10.2.x</h1>
+    </header>
+    
+    <section class="docs-section" id="version-0-10-2-2">
+        <h2 class="section-heading">Version 0.10.2.2</h2>
+    
+        <p><strong>Released 9th August 2023.</strong></p>
+        <ul>
+        <li>Modified hashing algorithm of level backup tool to reduce size of backups</li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-10-2-1">
+        <h2 class="section-heading">Version 0.10.2.1</h2>
+    
+        <p><strong>Released 8th August 2023.</strong></p>
+        <ul>
+        <li>Backup tool:<ul>
+        <li>Added a diff count to each backup</li>
+        <li>Diff count is shown above option to backup</li>
+        <li>Added an option to backup all levels at once</li>
+        <li>Added a prompt for first-time users to backup all levels</li>
+        <li>Fixed an issue where identical files would not be backed up correctly</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-10-2-0">
+        <h2 class="section-heading">Version 0.10.2.0</h2>
+    
+        <p><strong>Released 7th August 2023.</strong></p>
+        <ul>
+        <li>Added a new tool to create and manage backups of levels</li>
+        <li>Script editor updates:<ul>
+        <li>QOL improvements to TriggerSequence editor</li>
+        <li>MVR editor now shows the contextual hierarchy</li>
+        <li>Function entity types now display more consistently between function and class type</li>
+        <li>Added more autocomplete types</li>
+        <li>Physics.MAP is now loaded</li>
+        <li>Fixed an issue where types that should be string autocompleted to resource</li>
+        <li>Fixed an issue with _PATCH maps saving/loading incorrect WORLD data</li>
+        <li>Maps now populate in the selection correctly</li>
+        <li>Added a button to select composite type when making a composite instance entity (no longer a dropdown)</li>
+        <li>Added logic check to make sure you don&#39;t create an infinite loop of composite references</li>
+        <li>File trees now correctly select entries </li>
+        <li>Added an option to disable selecting entities when clicking on nodes in the nodegraph</li>
+        <li>Backup option now backs up the current state of the COMMANDS.PAK every 5 minutes to a COMMANDS_BACKUPS folder within the level, saving a maximum of 16 timestamped PAKs</li>
+        </ul>
+        </li>
+        <li>Launch game tool updates:<ul>
+        <li>Maps now populate in the selection correctly</li>
+        <li>Reduced filesize</li>
+        </ul>
+        </li>
+        <li>Asset editor updates:<ul>
+        <li>Maps now populate in the selection correctly</li>
+        <li>Fixed texture coordinate export</li>
+        <li>Model parts with no name now export as part index name</li>
+        <li>Reduced filesize</li>
+        </ul>
+        </li>
+        <li>Config editor updates:<ul>
+        <li>Removed hair/skin shading options</li>
+        <li>Updated CathodeLib</li>
+        </ul>
+        </li>
+        <li>Other misc bugfixes and tweaks!</li>
+        </ul>
+</article>
+<article class="docs-article" id="0-10-1-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.10.1.x</h1>
+    </header>
+    
+    <section class="docs-section" id="version-0-10-1-0">
+        <h2 class="section-heading">Version 0.10.1.0</h2>
+    
+        <p><strong>Released 14th June 2023.</strong></p>
+        <ul>
+        <li>Added link to the <a href="https://discord.gg/JJ4ECu9hpY">OpenCAGE Discord</a></li>
+        <li>Script editor updates:<ul>
+        <li>Added support for overrides</li>
+        <li>Added support for custom NPCs via the Character editor</li>
+        <li>Fixed model previews</li>
+        <li>Fixed a crash when adding entities to a new composite</li>
+        <li>Fixed duplicating entities with resource references</li>
+        <li>Composite instance information is now generated and stored</li>
+        <li>Animation PAK is now referenced for character skeletons</li>
+        <li>Resource and enum types now populate automatically when adding new parameters</li>
+        <li>Allowed override of auto-selected parameter datatype when adding a parameter</li>
+        <li>&quot;reference&quot; parameter now shows in the list for all function entities</li>
+        <li>Uneditable resource datatypes now show in the resource reference editor</li>
+        <li>Fixed a caching race condition</li>
+        <li>Large performance improvements when saving</li>
+        <li>Selecting an entity within nodegraph view now jumps to the entity</li>
+        </ul>
+        </li>
+        <li>Asset editor updates:<ul>
+        <li>File name and vert count now displayed for selected model in main window</li>
+        <li>&quot;Add Component&quot; button now works as expected for model editor</li>
+        <li>Materials with unsupported shader types no longer crash the material editor</li>
+        </ul>
+        </li>
+        <li>Fixed instances where windows could be unintentionally maximised</li>
+        </ul>
+</article>
+<article class="docs-article" id="0-10-0-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.10.0.x</h1>
+    </header>
+    
+    <section class="docs-section" id="version-0-10-0-0">
+        <h2 class="section-heading">Version 0.10.0.0</h2>
+    
+        <p><strong>Released 26th April 2023.</strong></p>
+        <ul>
+        <li>Asset editor updates:<ul>
+        <li>Added support for importing new models</li>
+        <li>Added support for importing new textures</li>
+        <li>Added support for importing new animations &amp; skeletons</li>
+        <li>Added support for exporting models</li>
+        <li>Improved support for exporting textures</li>
+        <li>Added support for exporting animations &amp; skeletons (will be improved over time)</li>
+        <li>Added support for editing materials:<ul>
+        <li>Support for modifying assigned textures in every shader slot</li>
+        <li>Support for modifying tint, normal map scale, diffuse map scale, diffuse map offset</li>
+        <li>Support for editing material names</li>
+        </ul>
+        </li>
+        <li>Added the ability to duplicate materials</li>
+        <li>Added support for editing existing models:<ul>
+        <li>Support for adding components/parts/submeshes</li>
+        <li>Support for scaling submeshes</li>
+        <li>Support for applying new materials to submeshes</li>
+        </ul>
+        </li>
+        <li>Added ability to preview models with textures</li>
+        <li>Added ability to preview materials</li>
+        <li>Added ability to edit existing animations &amp; skeletons (will be improved over time)</li>
+        <li>Improved support for editing existing textures</li>
+        <li>Added ability to export all textures</li>
+        <li>Added ability to export all animations &amp; skeletons</li>
+        <li>Improved ability to export all UI files</li>
+        <li>Added support for deleting models</li>
+        <li>Added support for deleting textures</li>
+        <li>Added support for deleting animations &amp; skeletons</li>
+        <li>Redesigned landing page in WPF to match new OpenCAGE landing</li>
+        <li>Performance improvements</li>
+        </ul>
+        </li>
+        <li>Behaviour tree editor updates:<ul>
+        <li>Redesigned landing page in WPF to match new OpenCAGE landing</li>
+        <li>Reduced size of build</li>
+        </ul>
+        </li>
+        <li>Config editor updates:<ul>
+        <li>Redesigned landing page in WPF to match new OpenCAGE landing</li>
+        <li>Added border &amp; close button to all main windows</li>
+        <li>Changed flow of app exit</li>
+        </ul>
+        </li>
+        <li>Added asset editor settings</li>
+        <li>Script editor updates:<ul>
+        <li>Improved stability when loading resource references which point to deleted models</li>
+        <li>Improved handling of unresolvable collision resource reference IDs</li>
+        <li>Updated CathodeLib version (some rendering issues with models present - will be fixed in the next release)</li>
+        <li>Fixed writing of renderable elements database to resolve LOD bug</li>
+        </ul>
+        </li>
+        </ul>
+</article>
+<article class="docs-article" id="0-9-3-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.9.3.x</h1>
+    </header>
+    
+    <section class="docs-section" id="version-0-9-3-7">
+        <h2 class="section-heading">Version 0.9.3.7</h2>
+    
+        <p><strong>Released 9th April 2023.</strong></p>
+        <ul>
+        <li>Added an option to verify OpenCAGE components within settings</li>
+        <li>Rebuilt the landing page of OpenCAGE in WPF</li>
+        <li>Added a link to the new OpenCAGE documentation in the landing window</li>
+        <li>Updater will delete directories it is downloading updates for, to prevent files from old versions persisting</li>
+        <li>Fixed an issue where the Cinematic Tools would not function</li>
+        <li>Script editor updates:<ul>
+        <li>Parameters on entities are now sorted alphabetically</li>
+        <li>Added CAGEAnimation editing support</li>
+        <li>Added a node viewer to visualise connections in/out of the currently selected entity</li>
+        <li>Added a toggle to enable the node viewer</li>
+        <li>Parameters that reference a colour now allow assignment through a colour picker, with colour preview</li>
+        <li>Enum parameters now allow selection of a named enum value, rather than inputting the index as a number (where currently possible)</li>
+        <li>Added autocomplete for parameters pointing to:<ul>
+        <li>Room reverbs</li>
+        <li>Sound events</li>
+        <li>Sound banks</li>
+        <li>Materials</li>
+        <li>UI strings</li>
+        <li>Objective strings</li>
+        </ul>
+        </li>
+        <li>Added a zone-selection button to entities that are zoned</li>
+        <li>Implemented a websocket server which can connect to Unity to load levels and focus on positions when entities are selected (WIP)</li>
+        <li>Added toggle to enable websocket connections for Unity editor</li>
+        <li>Popup windows are now auto-closed when no longer relevant to the current editor state</li>
+        <li>Added a &quot;Delete Link&quot; button on in/out links</li>
+        <li>Fixed an issue where dropdowns would autocomplete text when opening them</li>
+        <li>Improvements to memory usage </li>
+        <li>Parameter list for each entity is now fully populated aside from callbacks</li>
+        <li>Parameter list &amp; default population now supports CompositeInterface inheritance for instanced composites</li>
+        <li>Default parameter population now accounts for inherited members</li>
+        <li>Added option to auto populate proxy parameters</li>
+        <li>&quot;Enable Backups&quot; option is now remembered when restarting the editor</li>
+        <li>CAGEAnimation cross-references are now included in the &quot;References&quot; popup</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-3-6">
+        <h2 class="section-heading">Version 0.9.3.6</h2>
+    
+        <p><strong>Released 7th March 2023.</strong></p>
+        <ul>
+        <li>OpenCAGE must now be launched from Alien: Isolation&#39;s directory (if you prefer to launch it from elsewhere please use a shortcut!)</li>
+        <li>Updates to script editor:<ul>
+        <li>Added support for editing splines</li>
+        <li>Added TriggerSequence usages to the references window</li>
+        <li>Updated the design of the references window to make it easier to expand</li>
+        <li>Added a rotation gizmo to the model viewer</li>
+        <li>TriggerSequence editor now allows you to edit events</li>
+        <li>Renamed &quot;triggers&quot; to &quot;entities&quot; in TriggerSequence editor</li>
+        <li>Fixed an error when duplicating entities with null ShortGuid values</li>
+        <li>Tidied up the project and renamed a bunch of stuff</li>
+        <li>Updated to new CathodeLib</li>
+        <li>Libraries are no longer embedded</li>
+        </ul>
+        </li>
+        <li>Added a link to the GitHub repo on the OpenCAGE landing screen</li>
+        <li>Improved download URL formatting for local dev testing</li>
+        <li>Vastly reduced the size of the main OpenCAGE exe to reduce update download size</li>
+        <li>Added a one-time prompt to star the project on GitHub for regular users</li>
+        <li>Launch Game window is now an external app</li>
+        <li>Updater now auto retries if it fails to update</li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-3-5">
+        <h2 class="section-heading">Version 0.9.3.5</h2>
+    
+        <p><strong>Released 4th February 2023.</strong></p>
+        <ul>
+        <li>Renamed submodules to match new repo names</li>
+        <li>Script editor updates:<ul>
+        <li>Massive performance improvements when loading/saving</li>
+        <li>Performance improvements when selecting an entity</li>
+        <li>Added a &quot;references&quot; button on entity info which shows all proxies and overrides that point to the entity</li>
+        <li>Added a button to go back to the previous composite</li>
+        <li>Resource editing has been changed, with support for:<ul>
+        <li>Animated Models: select the animation index</li>
+        <li>Collision Mappings: select the collision ID and set a position/rotation</li>
+        <li>Nav Mesh Barrier Resources: set a position/rotation</li>
+        <li>Renderable Instances: set a model, materials, and a position/rotation</li>
+        </ul>
+        </li>
+        <li>All other resource types are now automatically applied as appropriate</li>
+        <li>Overrides and proxies now show the entity they point to (and its hierarchy) in the entity list</li>
+        <li>Overrides can now point to variable and proxy entities as well as just function entities</li>
+        <li>Fixed various issues with the link editor where incorrect parameter suggestions would show</li>
+        <li>Fixed an issue where assets would sometimes fail to load</li>
+        <li>Fixed issues with duplicating entities</li>
+        <li>Fixed a bug where the parameter removing UI would hard-crash when no params/links were present</li>
+        <li>Swapped to using CathodeLib&#39;s new model/material parser</li>
+        <li>Abstracted more logic across to CathodeLib (release coming very soon)</li>
+        <li>Renamed to &quot;Commands Editor&quot;</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-3-4">
+        <h2 class="section-heading">Version 0.9.3.4</h2>
+    
+        <p><strong>Released 8th January 2023.</strong></p>
+        <ul>
+        <li>Script editor updates:<ul>
+        <li>Added option to enable automatic backups, which will save a secondary PAK every 5 minutes</li>
+        <li>Reworked save method for entity names (this is a breaking change, all existing custom entity names will be removed)</li>
+        <li>Added support for saving custom variable names</li>
+        <li>When an entity is deleted from a composite, all associated overrides and triggers will now also be removed within the same composite</li>
+        <li>Changed method for parameter generation (moved to CathodeLib)</li>
+        <li>Fixed a &quot;parameter is not valid&quot; entity lookup issue</li>
+        <li>Added support for renaming variable entities</li>
+        <li>Re-enabled support for adding/removing parameters to variable entities</li>
+        <li>Re-enabled support for duplicating variable entities</li>
+        <li>Fixed an issue with parameter ordering</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-3-3">
+        <h2 class="section-heading">Version 0.9.3.3</h2>
+    
+        <p><strong>Released 5th January 2023.</strong></p>
+        <ul>
+        <li>Script editor updates:<ul>
+        <li>Fixed entity lookup error</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-3-2">
+        <h2 class="section-heading">Version 0.9.3.2</h2>
+    
+        <p><strong>Released 5th January 2023.</strong></p>
+        <ul>
+        <li>Script editor updates:<ul>
+        <li>Large performance improvements when saving Commands files</li>
+        <li>Fixed a bug that prevented TriggerSequence and CAGEAnimation entities from functioning correctly</li>
+        <li>Added functionality to edit existing links</li>
+        <li>Re-added ability to add resource parameters and variable entities </li>
+        <li>Overrides and proxies will now suggest parameters for the entities they point to</li>
+        <li>Improvements to GUID generation for new objects</li>
+        <li>Jumping to an entity via a linked parameter that had been cleared from the list because of a search now works</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-3-1">
+        <h2 class="section-heading">Version 0.9.3.1</h2>
+    
+        <p><strong>Released 4th January 2023.</strong></p>
+        <ul>
+        <li>Script editor updates:<ul>
+        <li>Entity creator now allows manual typing input to select function</li>
+        <li>Entity link UI is now wider to allow full visibility of entity names</li>
+        <li>Resource parameter can no longer be manually added, and is instead automatically added to the appropriate entities</li>
+        <li>Some default parameters and resources are now optionally applied when instancing entities</li>
+        <li>Resource data is validated upon saving to check for incorrect configs</li>
+        <li>Added support for loading Environment_Animation.dat files &amp; displaying indexes for ANIMATED_MODEL resources</li>
+        <li>Fixed enum lookup list</li>
+        <li>Fixed _PATCH DLC map resource loading</li>
+        <li>Entity name caching now caches per-composite</li>
+        <li>Links in and out of entities now show in the parameter list</li>
+        <li>When jumping to entities, they now correctly select in the UI</li>
+        <li>Datatype Entity is now called Variable Entity</li>
+        <li>Found and fixed some sorting issues that would cause rogue unintended crashes in-game</li>
+        <li>Other various UX improvements and vast codebase and stability improvements (updated to CathodeLib 0.3.2)</li>
+        </ul>
+        </li>
+        <li>Added &quot;Hot Reload&quot; option to &quot;Launch Game&quot; screen [STEAM ONLY]<ul>
+        <li>Enabling this allows you to press the &quot;INSERT&quot; key in-game to reload the current level</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-3-0">
+        <h2 class="section-heading">Version 0.9.3.0</h2>
+    
+        <p><strong>Released 24th December 2022.</strong></p>
+        <ul>
+        <li>Script editor updates:<ul>
+        <li>Resized various elements in the main UI</li>
+        <li>Added a search box to the proxy entity selection UI</li>
+        <li>Fixed a regional numeric formatting issue with floats</li>
+        <li>Game platform will now optionally show in the script editor header (toggleable via settings)</li>
+        <li>Fixed an issue where baked composites could not be resolved in the enum lookup (gcip_worldpickup, playforminduration, torch_control)</li>
+        <li>Removed &quot;Clear MVR&quot; option</li>
+        <li>Three new entity options are available<ul>
+        <li>Edit Resources: this will allow you to add/edit/remove resources referenced by an entity or resource parameter<ul>
+        <li>Renderables are currently editable, with support for other resource types coming soon</li>
+        </ul>
+        </li>
+        <li>Edit Movers: this will allow you to view all baked static instances of the entity in the level<ul>
+        <li>Instanced renderables (known as &quot;movers&quot;) are stored independent of the resources attached to the script entity, and this data is used to apply instance-specific overrides to materials, models, and collision (E.G. in-game posters all have different poster materials yet are one entity in the scripting tool)</li>
+        <li>Currently you can edit the model, materials, transform, and type info for each mover - more functionality will be coming soon</li>
+        </ul>
+        </li>
+        <li>Edit Function: this will allow you to edit entity-specific functionality<ul>
+        <li>Currently, TriggerSequence sequence editing is supported, CAGEAnimation timeline editing support is coming soon (preview available)</li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        <li>Added model viewer to function with the resource and mover editors, will allow you to view any model in the game in a 3D viewer<ul>
+        <li>Scrollwheel zooms the view, WASD translates the camera, and RMB pivots</li>
+        </ul>
+        </li>
+        <li>Added support for loading and handling renderable elements, materials, models, and textures<ul>
+        <li>The model and material previews are still in development, and will better reflect the in-game versions as work progresses</li>
+        </ul>
+        </li>
+        <li>Composites tree now expands to the default selected root composite</li>
+        <li>Parameters are no longer sorted in the UI as this was causing unexpected errors when compiling</li>
+        <li>If you encounter an error while saving, your existing COMMANDS.PAK will no longer become corrupted</li>
+        <li>Parser no longer creates placeholders for linked entities that were deleted and not cleared up by CA&#39;s tools</li>
+        <li>Various other bug fixes and QOL improvements</li>
+        </ul>
+        </li>
+        <li>Implemented LegendPlugin behaviour tree nodes that were previously unused: ActionAbortMeleeAttack, ActionAlienWonScareTest, ActionDebugString, ActionFakeSense, ActionForceSearch, ActionIdleTimeFacingTargetSensedPosition, ActionPauseSenses, ActionPlayTree, ActionResetSearchJobs, ActionSetMenaceManager, ActionTakeStep, DecoratorLoop, DecoratorSetSenseSet</li>
+        <li>Fixed font for Sound Tool option</li>
+        <li>Added a logger to track the current installed version, and number of times the app has launched</li>
+        <li>Various library updates:<ul>
+        <li>Updated Newtonsoft JSON in Config Editor</li>
+        <li>Updated AlienPAK to .NET 4.8</li>
+        <li>Updated AlienPAK to use non-legacy CathodeLib</li>
+        </ul>
+        </li>
+        </ul>
+</article>
+<article class="docs-article" id="0-9-2-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.9.2.x</h1>
+    </header>
+    
+    <section class="docs-section" id="version-0-9-2-8">
+        <h2 class="section-heading">Version 0.9.2.8</h2>
+    
+        <p><strong>Released 7th July 2022.</strong></p>
+        <ul>
+        <li>Fixed an error where DDS textures would export incorrectly.</li>
+        <li>Disabled rename/duplicate buttons in script editor for DataType entities.</li>
+        <li>Parameter UI has been condensed in the script editor for better readability.</li>
+        <li>Updated an additional Newtonsoft JSON alert.</li>
+        <li>Minor code tidy in main OpenCAGE app.</li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-2-7">
+        <h2 class="section-heading">Version 0.9.2.7</h2>
+    
+        <p><strong>Released 29th June 2022.</strong></p>
+        <ul>
+        <li>Updater now verifies a hash for archives to ensure correct versioning.</li>
+        <li>Updater download progress bar now displays a more accurate percentage.</li>
+        <li>Script editor now hides rename/duplicate options for datatype nodes.</li>
+        <li>Fixed a missing icon in the OpenCAGE settings window.</li>
+        <li>Updated an additional Newtonsoft JSON alert.</li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-2-6">
+        <h2 class="section-heading">Version 0.9.2.6</h2>
+    
+        <p><strong>Released 26th June 2022.</strong></p>
+        <ul>
+        <li>Fixed an issue where proxies would become corrupted and unresolvable.</li>
+        <li>Entity parameters are now sorted by type in the script editor GUI.</li>
+        <li>Updated Newtonsoft JSON version to resolve a security alert.</li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-2-5">
+        <h2 class="section-heading">Version 0.9.2.5</h2>
+    
+        <p><strong>Released 8th June 2022.</strong></p>
+        <ul>
+        <li>Minor updates to script editor:<ul>
+        <li>Dumped some missing parameter names</li>
+        <li>Corrected parent/child link display to correctly show datatype node names</li>
+        <li>Disabled WIP options (CAGEAnimation editor / resources editor)</li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-2-4">
+        <h2 class="section-heading">Version 0.9.2.4</h2>
+    
+        <p><strong>Released 6th June 2022.</strong></p>
+        <ul>
+        <li>Added support for the GOG version of Alien: Isolation</li>
+        <li>Custom levels added to the game&#39;s ENV/PRODUCTION folder are now supported<ul>
+        <li>&quot;Launch Game&quot; UI auto-populates all available levels in a dropdown</li>
+        <li>Game&#39;s binary is automatically patched to remove file validation checks<ul>
+        <li>This not only allows launching custom levels, but support for editing a level&#39;s models PAK/BIN</li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        <li>Asset tools updated to support far more (if not all) DDS formats when previewing/exporting textures</li>
+        <li>Various updates to scripting tool &amp; CathodeLib<ul>
+        <li>Renamed &quot;flowgraphs&quot; to &quot;composites&quot; as this seems to better reflect their implementation in-engine</li>
+        <li>Reworked the entity/composite naming system<ul>
+        <li>Composites are now renamed to their correctly cased names</li>
+        <li>More entities are now named as a result of changing dumping method</li>
+        <li>Reworked entity name lookup &amp; saving to optimise read speeds</li>
+        </ul>
+        </li>
+        <li>Additional ShortGuid strings added to lookup database</li>
+        <li>Improvements to hierarchy resolving<ul>
+        <li>Unresolvable hierarchies are now automatically removed</li>
+        <li>Hierarchies are now shown on override/proxy entity summaries</li>
+        </ul>
+        </li>
+        <li>Added ability to create overrides &amp; proxies</li>
+        <li>Added TriggerSequence viewer/editor</li>
+        <li>Progress towards CAGEAnimation editor</li>
+        <li>Fixed MVR save option, and improved wording</li>
+        <li>Various other UI tweaks, optimisations, and fixes</li>
+        <li>Repo now embeds CathodeLib to improve development experience<ul>
+        <li>CathodeLib is nearing a new release, more info shortly</li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-2-3">
+        <h2 class="section-heading">Version 0.9.2.3</h2>
+    
+        <p><strong>Released 19th March 2022.</strong></p>
+        <ul>
+        <li>All &quot;STEAM ONLY&quot; options (aside from Cinematic Tools) in the 0.9.2.2 patch notes are now available for Epic Games Store clients</li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-2-2">
+        <h2 class="section-heading">Version 0.9.2.2</h2>
+    
+        <p><strong>Released 19th March 2022.</strong></p>
+        <ul>
+        <li>Major overhaul to the &quot;Launch Game&quot; functionality<ul>
+        <li>Added new launch options<ul>
+        <li>Auto-inject Cinematic Tools (STEAM ONLY)</li>
+        <li>Enable UI performance overlay (STEAM ONLY)</li>
+        </ul>
+        </li>
+        <li>Reworked &quot;Loap Map&quot; functionality<ul>
+        <li>Tech_RnD_HzdLab can now be loaded into (STEAM ONLY)</li>
+        <li>Gamma settings will no longer be reset (STEAM ONLY)</li>
+        <li>Save games are accessible (STEAM ONLY)</li>
+        <li>Fixed implementation on Epic Games Store versions</li>
+        <li>All map names are now capitalised properly</li>
+        <li>Previously selected map is now remembered</li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        <li>Minor updates to Cathode Script editor<ul>
+        <li>&quot;Caching...&quot; text shows when caching entity names</li>
+        <li>All map names are now capitalised properly</li>
+        <li>Enty point editor window now sorts flowgraphs alphabetically</li>
+        </ul>
+        </li>
+        <li>Fixed font rendering in asset tool</li>
+        </ul>
+    </section>
+    <section class="docs-section" id="version-0-9-2-0">
+        <h2 class="section-heading">Version 0.9.2.0</h2>
+    
+        <p><strong>Released 7th March 2022.</strong></p>
+        <ul>
+        <li>Major update to script editor - too big to list here, but highlights:<ul>
+        <li>Ability to add/delete entities, flowgraphs, links, and parameters</li>
+        <li>Support for editing individual parameter values and changing datatype</li>
+        <li>Auto selection of datatype for parameters</li>
+        <li>Massive optimisations and performance improvements</li>
+        <li>Resized window for smaller resolutions and improved layout/population</li>
+        </ul>
+        </li>
+        <li>Re-enabled localisation editor</li>
+        <li>debug_font assets are auto-written to the game&#39;s DATA folder</li>
+        <li>Fixed implementation of custom fonts across all WinForm UIs</li>
+        <li>Reworked implementation of behaviour tree unpack/repack functionality</li>
+        <li>Adjusted button layout in Brainiac Designer workspace</li>
+        <li>All OpenCAGE related processes are auto-killed when updating to prevent issues</li>
+        <li>Fixed a SSL/TLS issue in the updater on Windows 7</li>
+        <li>Updated README</li>
+        </ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+                            <li class="list-inline-item"><a href="http://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+                            <li class="list-inline-item"><a href="http://twitter.com/mattfiler"><i class="fab fa-twitter fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script> 
+
+</body>
+</html> 
+
