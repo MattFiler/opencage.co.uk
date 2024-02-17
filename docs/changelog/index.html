@@ -76,6 +76,8 @@
     
     <!-- paste new sidebar content here -->
     
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-12-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.12.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-0">Version 0.12.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-11-2-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.11.2.X</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-11-2-2">Version 0.11.2.3</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-11-2-2">Version 0.11.2.2</a></li>
@@ -117,7 +119,90 @@
 <div class="docs-content"><div class="container">
     
     <!-- paste new changelog content here -->
+
+<article class="docs-article" id="0-12-0-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.12.0.X</h1>
+    </header>
     
+    <section class="docs-section" id="version-0-12-0-0">
+        <h2 class="section-heading">Version 0.12.0.0</h2>
+    
+        <p><strong>Released 17th February 2024.</strong></p>
+        <ul>
+<li><p>General:</p>
+<ul>
+<li>Enabled minimise option in launcher</li>
+</ul>
+</li>
+<li><p>Asset Editor:</p>
+<ul>
+<li>Fixed a maximisable window that shouldn&#39;t have been maximisable</li>
+</ul>
+</li>
+<li><p>Backup Manager:</p>
+<ul>
+<li>Backup names are now required</li>
+</ul>
+</li>
+<li><p>Script Editor:</p>
+<ul>
+<li>Window width, height, and state are now saved between sessions</li>
+<li>UI divider widths are now saved between sessions</li>
+<li>Material selector will now preview the associated textures</li>
+<li>Changed internal handling of ShortGuids to massively improve efficiency</li>
+<li>Refactored sharing of loaded game data to improve memory usage</li>
+<li>Changed handling of entity and composite forms to improve performance</li>
+<li>&quot;Node Editor&quot; is now called &quot;Nodegraph&quot;, with improvements:<ul>
+<li>Updated nodegraph to render rounded nodes, nicer font</li>
+<li>Made the window dockable (by default, starts on right - new spacings and positionings will save between sessions)</li>
+<li>Moved &quot;clicking node opens entity&quot; option to main toolbar</li>
+<li>Fixed an issue where loading a new level may cause a nullref</li>
+<li>Now updates whenever changes are made to the entity (better reflects added/removed links)</li>
+<li>Fixed an issue where highlighting multiple nodes could cause a stack overflow</li>
+</ul>
+</li>
+<li>Swapped entity link button text for icons, and made the whole link UI smaller</li>
+<li>Changed some forms to double buffered to help rendering stutter</li>
+<li>You can now right click anywhere on the entity list to add a new entity, with a contextual right click on entities to delete/rename/duplicate</li>
+<li>Improved support for renaming composites and entities: UI will now correctly update with new names everywhere</li>
+<li>Entity list population now searches by default, meaning search queries are correctly respected within nested composites</li>
+<li>Model viewer now uses a different up &amp; view direction to better suit most models</li>
+<li>Added rename composite button</li>
+<li>Added a clear search button on the entity list</li>
+<li>Entity selector popup and hierarchy editor improvements:<ul>
+<li>UI can now be resized</li>
+<li>Now uses shared codebase with main composite entity list (benefits from nicer entity display, better performance, etc)</li>
+<li>Tidied up some legacy code</li>
+</ul>
+</li>
+<li>Added support for the enter key in some input boxes</li>
+<li>Fixed a rogue ShortGUID showing up when the option to hide them is enabled</li>
+<li>Fixed datatype auto selection for proxied/aliased entities</li>
+<li>Added ability to copy/paste vectors and colours</li>
+<li>Tidied add link out UI</li>
+<li>Fixed a rogue crash related to renaming</li>
+<li>Fixed issues around ANIMATED_MODEL:<ul>
+<li>Caught a crash if there are no environment animations</li>
+<li>Fixed resource index calculation</li>
+<li>Resized UI to fit better</li>
+</ul>
+</li>
+<li>Fixed an issue where position/rotation values would vanish when editing a model resource</li>
+<li>Fixed top dropdown randomly closing</li>
+<li>Deleting links to/from entities now asks for confirmation</li>
+<li>Disabled a spammy console log inside the new shader parser</li>
+<li>Added a button to reset UI sizes to default</li>
+<li>Fixed a bug where multiple entities would be added if the UI was requested to be opened multiple times</li>
+<li>Fixed a bug where add entity UI wouldn&#39;t pull focus</li>
+<li>Various other minor fixes and optimisations</li>
+</ul>
+</li>
+</ul>
+
+    </section>
+</article>
+
 <article class="docs-article" id="0-11-2-x">
     <header class="docs-header">
         <h1 class="docs-heading">0.11.2.X</h1>
