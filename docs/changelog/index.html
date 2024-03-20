@@ -77,6 +77,7 @@
     <!-- paste new sidebar content here -->
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-12-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.12.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-2">Version 0.12.0.2</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-1">Version 0.12.0.1</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-0">Version 0.12.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-11-2-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.11.2.X</a></li>
@@ -125,6 +126,34 @@
     <header class="docs-header">
         <h1 class="docs-heading">0.12.0.X</h1>
     </header>
+
+	<section class="docs-section" id="version-0-12-0-2">
+        <h2 class="section-heading">Version 0.12.0.2</h2>
+    
+        <p><strong>Released 20th March 2024.</strong></p>
+        <ul>
+<li>Script Editor:
+<ul>
+<li>Added new UI for creating function entities</li>
+<li>Added new UI for creating composite instance entities</li>
+<li>External references window can now be resized</li>
+<li>Entity list now correctly highlights the loaded entity</li>
+<li>Fixed an issue where entity list population was being called multiple times</li>
+<li>Reworked entity list population to improve composite load speed</li>
+<li>Fixed an issue where excessive ShortGuids were being written to COMMANDS.PAK files as custom values incorrectly (reduces PAK filesize)</li>
+<li>Added a mechanism to remember composite purge state, to reduce loading times for already-visited composites</li>
+<li>Added a fix for splitter width error on first startup</li>
+<li>Added a fix for lazily loaded strings if launching directly to a level</li>
+</ul>
+</li>
+<li>Launch Game:
+<ul>
+<li>Added a new patching step to remove the game&#39;s &quot;TEXT_&quot; prefix on PopupMessage text entities.</li>
+</ul>
+</li>
+</ul>
+
+    </section>
 
 	<section class="docs-section" id="version-0-12-0-1">
         <h2 class="section-heading">Version 0.12.0.1</h2>
