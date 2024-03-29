@@ -77,6 +77,7 @@
     <!-- paste new sidebar content here -->
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-12-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.12.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-3">Version 0.12.0.4</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-3">Version 0.12.0.3</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-2">Version 0.12.0.2</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-1">Version 0.12.0.1</a></li>
@@ -128,6 +129,62 @@
         <h1 class="docs-heading">0.12.0.X</h1>
     </header>
 
+	<section class="docs-section" id="version-0-12-0-4">
+        <h2 class="section-heading">Version 0.12.0.4</h2>
+    
+        <p><strong>Released 29th March 2024.</strong></p>
+<ul>
+<li><p>Script editor:</p>
+<ul>
+<li>Added right click option to delete on all parameters</li>
+<li>Reworked link/parameter removing UI<ul>
+<li>Can now remove links IN as well as links OUT</li>
+<li>Can now select multiple links/parameters to remove at once</li>
+<li>Confirmation popup added before removing</li>
+<li>Made window resizable</li>
+<li>Added icons</li>
+</ul>
+</li>
+<li>Reworked parameter adding UI<ul>
+<li>Can now select multiple parameters at once</li>
+<li>Parameters are grouped by their usage</li>
+<li>Datatypes are now predefined</li>
+<li>Made window resizable</li>
+<li>Added icons</li>
+</ul>
+</li>
+<li>Added option to re-enable the legacy parameter adding UI</li>
+<li>Updated proxy/alias creation UI to remove the intermediary naming step, now just requires you to select an entity to point to</li>
+<li>Updated TriggerSequence editor<ul>
+<li>Entities are now listed in a nicer ListView</li>
+<li>Added support for multi-select when removing entities</li>
+<li>You are now required to select an entity to point to when adding a new entry entity in the list</li>
+<li>Minor style tweaks</li>
+<li>Made UI resizable</li>
+</ul>
+</li>
+<li>Reworked parameter entity creation UI to be more specific, and resizable</li>
+<li>Added hierarchy display to the hierarchy selector in-keeping with the one used in the main entity list</li>
+<li>Fixed an issue where reopening the composite display window would not allow you to select entities</li>
+<li>Composite display correctly keeps composite name title when jumping into nested composites</li>
+<li>Composite display is now named &quot;Composites&quot; rather than the level name, level name is now instead visible in main app title</li>
+<li>&quot;Show Nodegraph&quot; option now defaults to enabled</li>
+<li>Added tooltips for vectors and transforms</li>
+<li>Entity list will now scroll to the selected entity</li>
+<li>&quot;Rename Entity&quot; option is (correctly) no longer visible for aliases</li>
+</ul>
+</li>
+<li><p>Backup tool:</p>
+<ul>
+<li>Added ability to check multiple backups to delete at once</li>
+<li>Added confirmation prompt before deleting</li>
+</ul>
+</li>
+</ul>
+	
+    </section>
+
+	
 	<section class="docs-section" id="version-0-12-0-3">
         <h2 class="section-heading">Version 0.12.0.3</h2>
     
