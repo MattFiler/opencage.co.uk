@@ -107,6 +107,45 @@
     </section>
 </article>
 
+<article class="docs-article" id="entities">
+    <header class="docs-header">
+        <h1 class="docs-heading">Entities</h1>
+    </header>
+    
+    <section class="docs-section" style="padding-top:0;">
+        Within composites, entities can be created with "parameters" to define logic. These entities can be "linked" to create logical flows, which gives us our functioning scripts.
+
+There are five types of entity available to create within OpenCAGE, each marked with a unique icon.
+
+Function Entities
+
+Function entities are the most important entity to build up our logic and levels. Each one performs a certain action, and can be given parameters to modify the outcomes. For example, you can use a ModelReference entity with a "resource" parameter pointing at a model and material to place a renderable instance within a level at a "position" (also defined by another parameter).
+
+There are hundreds of function entities available to use, ranging from simple mathematical logic to more complex tasks like setting objectives and playing sounds. A full list of function entities can be found here!
+
+For programmers: think of function entities as literally executing methods in code - the parameters you give them are just method arguments. For Unreal Engine developers, again this concept should seem very familiar to you with standard Blueprint nodes.
+
+Composite Parameter Entities (need to check name usage of these)
+
+...
+
+Composite Instance Entities
+
+Composite instance entities do exactly what you'd expect them to: instance a composite! Under the hood they're just function entities, however instead of allowing you to execute a pre-defined function within the game engine, they allow you to execute functionality you have defined within another composite.
+
+These entities are super useful to allow your composites to become re-usable building blocks across your level; for example, if you have a model with a particle system and sound effect that you want to place a lot of times, you can simply create a composite for that and instance it in your level over and over, instead of manually re-creating that same configuration over and over. Best of all, doing that will mean that you can then update every instance at once, as modifying the composite will modify every instance at once.
+
+Proxy Entities
+
+...
+
+Alias Entities
+
+...
+        
+    </section>
+</article>
+
 			    <footer class="footer">
 				    <div class="container text-center py-5">
                         <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
