@@ -76,7 +76,16 @@
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#composites"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Composites</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#root-composite">Root Composite</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#global-composite">GLOBAL/PAUSEMENU Composites</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#displaymodel-composite">DisplayModel Composites</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#standard-composite">Composites</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#entities"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#function-entities">Function Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#parameter-entities">Composite Parameter Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#compositeinstance-entities">Composite Instance Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#proxy-entities">Proxy Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#alias-entities">Alias Entities</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -105,6 +114,29 @@
         <p>A composite should generally hold either a collection of like-minded things (for example; a sub-section of a level to split it up from the wider level, like a room), or something that will be re-used a lot of times (for example; something like a push button, which would always need to contain an interactable trigger, model, animation, and some other scripting logic that you wouldn't want to have to re-make every time you need one). The former is just generally a way of keeping things easy to find and tidy, and the latter is just good practice to speed up level creation.</p>
         <p><i>If you've used Unreal Engine before, the above concepts should seem very familiar to you: composites are essentially just Blueprints. Similarly if you've used Unity before, composites are kinda similar to Prefabs, just remember that they implicitly contain scripting logic within them. If you'd like to learn more, I'd recommend checking out some Unreal Blueprint fundamental tutorials!</i></p>
     </section>
+
+    <section class="docs-section" id="root-composite">
+        <h2 class="section-heading"><img src="../assets/images/icons/root.png" width="30px" style="margin-right: 10px;"> Root Composite</h2>
+        
+    </section>
+
+    <section class="docs-section" id="global-composite">
+        <h2 class="section-heading"><img src="../assets/images/icons/global.png" width="30px" style="margin-right: 10px;"> PAUSEMENU/GLOBAL Composites</h2>
+        
+    </section>
+
+    <section class="docs-section" id="displaymodel-composite">
+        <h2 class="section-heading"><img src="../assets/images/icons/displaymodel.png" width="30px" style="margin-right: 10px;"> DisplayModel Composites</h2>
+        <p>"DisplayModel" composites are special in that they are used to define "display models" which can be used when spawning Character entities.</p>
+        <p>A DisplayModel composite's name must begin with "DisplayModel:". The rest of the composite name is then used as the name of the display model that can be referenced elsewhere.</p>
+        <p>Typically DisplayModel composites contain a series of ModelReference entities to define character body parts, and one EnvironmentModelReference entity which defines the environment animation resource to map all the models to an animatable skeleton.</p>
+        <p><b>NOTE: Work is still continuing on allowing modification of the environment animation resources, so for now you can only select ones that already exist in the level.</b></p>
+    </section>
+
+    <section class="docs-section" id="standard-composite">
+        <h2 class="section-heading"><img src="../assets/images/icons/root.png" width="30px" style="margin-right: 10px;"> Root Composite</h2>
+        
+    </section>
 </article>
 
 <article class="docs-article" id="entities">
@@ -113,36 +145,34 @@
     </header>
     
     <section class="docs-section" style="padding-top:0;">
-        Within composites, entities can be created with "parameters" to define logic. These entities can be "linked" to create logical flows, which gives us our functioning scripts.
+        <p>Within composites, entities can be created with "parameters" to define logic. These entities can be "linked" to create logical flows, which gives us our functioning scripts.</p>
+        <p>There are five types of entity available to create within OpenCAGE, each marked with a unique icon.</p>
+    </section>
 
-There are five types of entity available to create within OpenCAGE, each marked with a unique icon.
+    <section class="docs-section" id="function-entities">
+        <h2 class="section-heading"><img src="../assets/images/icons/function.png" width="30px" style="margin-right: 10px;"> Function Entities</h2>
+        <p>Function entities are the most important entity to build up our logic and levels. Each one performs a certain action, and can be given parameters to modify the outcomes. For example, you can use a ModelReference entity with a "resource" parameter pointing at a model and material to place a renderable instance within a level at a "position" (also defined by another parameter).</p>
+        <p>There are hndreds of function entities available to use, ranging from simple mathematical logic to more complex tasks like setting objectives and playing sounds. A full list of function entities can be found here!</p>
+        <p><i>For programmers: think of function entities as literally executing methods in code - the parameters you give them are just method arguments. For Unreal Engine developers, again this concept shouuld seem very familiar to you with standard Blueprint nodes.</i></p>
+    </section>
 
-Function Entities
+    <section class="docs-section" id="parameter-entities">
+        <h2 class="section-heading"><img src="../assets/images/icons/parameter.png" width="30px" style="margin-right: 10px;"> Composite Parameter Entities</h2>
+        <!--(need to check name usage of these)-->
+    </section>
 
-Function entities are the most important entity to build up our logic and levels. Each one performs a certain action, and can be given parameters to modify the outcomes. For example, you can use a ModelReference entity with a "resource" parameter pointing at a model and material to place a renderable instance within a level at a "position" (also defined by another parameter).
+    <section class="docs-section" id="compositeinstance-entities">
+        <h2 class="section-heading"><img src="../assets/images/icons/compositeinstance.png" width="30px" style="margin-right: 10px;"> Composite Instance Entities</h2>
+        <p>Composite instance entities do exactly what you'd expect them to: instance a composite! Under the hood they're just function entities, however instead of allowing you to execute a pre-defined function within the game engine, they allow you to execute functionality you have defined within another composite.</p>
+        <p>These entities are super useful to allow your composites to become re-usable building blocks across your level; for example, if you have a model with a particle system and sound effect that you want to place a lot of times, you can simply create a composite for that and instance it in your level over and over, instead of manually re-creating that same configuration over and over. Best of all, doing that will mean that you can then update every instance at once, as modifying the composite will modify every instance at once.</p>
+    </section>
 
-There are hundreds of function entities available to use, ranging from simple mathematical logic to more complex tasks like setting objectives and playing sounds. A full list of function entities can be found here!
+    <section class="docs-section" id="proxy-entities">
+        <h2 class="section-heading"><img src="../assets/images/icons/proxy.png" width="30px" style="margin-right: 10px;"> Composite Parameter Entities</h2>
+    </section>
 
-For programmers: think of function entities as literally executing methods in code - the parameters you give them are just method arguments. For Unreal Engine developers, again this concept should seem very familiar to you with standard Blueprint nodes.
-
-Composite Parameter Entities (need to check name usage of these)
-
-...
-
-Composite Instance Entities
-
-Composite instance entities do exactly what you'd expect them to: instance a composite! Under the hood they're just function entities, however instead of allowing you to execute a pre-defined function within the game engine, they allow you to execute functionality you have defined within another composite.
-
-These entities are super useful to allow your composites to become re-usable building blocks across your level; for example, if you have a model with a particle system and sound effect that you want to place a lot of times, you can simply create a composite for that and instance it in your level over and over, instead of manually re-creating that same configuration over and over. Best of all, doing that will mean that you can then update every instance at once, as modifying the composite will modify every instance at once.
-
-Proxy Entities
-
-...
-
-Alias Entities
-
-...
-        
+    <section class="docs-section" id="alias-entities">
+        <h2 class="section-heading"><img src="../assets/images/icons/alias.png" width="30px" style="margin-right: 10px;"> Composite Parameter Entities</h2>
     </section>
 </article>
 
