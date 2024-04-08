@@ -82,8 +82,8 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#standard-composite">Composites</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#entities"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#function-entities">Function Entities</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#parameter-entities">Composite Parameter Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#compositeinstance-entities">Composite Instance Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#parameter-entities">Parameter Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#proxy-entities">Proxy Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#alias-entities">Alias Entities</a></li>
 
@@ -96,75 +96,83 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-        <p>Alien: Isolation is built using a custom engine named Cathode, which utilises a custom node-based scripting system.</p>
-        <p>Cathode scripts would have been created and modified using a toolkit known as CAGE (the Creative Assembly Game Editor). While CAGE was never released to the public, the open-source community-driven project OpenCAGE contains an ever-growing feature set, which includes support for creating and modifying scripts.</p>
-        <p>The fundamentals of the Cathode scripting system are pretty straight forward and will be familiar to you if you'’'ve used any node-based scripting system before, such as Blueprint in Unreal Engine. Let's dive in!</p>
+        <p>Alien: Isolation is built using a custom engine named Cathode, which utilises a custom node-based scripting system. This scripting system is used to power the entirety of a level - scripts not only define things like cutscenes, characters, mission objectives, interactables and triggers, but also define model placements, sound emitters, particle effects and more to build up a level&rsquo;s visuals.</p>
+        <p>Cathode scripts would have been created and modified using a toolkit known as CAGE (the Creative Assembly Game Editor). While CAGE was never released to the public, the open-source community-driven project OpenCAGE contains an ever-growing feature set, which includes support for creating and modifying Cathode scripts!</p>
+        <p>The fundamentals of the Cathode scripting system are pretty straight forward and will be familiar to you if you&apos;ve used any node-based scripting system before, such as Blueprint in Unreal Engine. Let&rsquo;s go over all the terms, and then dive in to an overview of the OpenCAGE Script Editor interface.</p>
+        <p>From there, we&rsquo;ll create our first script, before moving on to some more advanced stuff.</p>
     </section>
 </article>
 
 <article class="docs-article" id="composites">
     <header class="docs-header">
-        <h1 class="docs-heading">Composites</h1>
+        <h1 class="docs-heading">What are Composites?</h1>
     </header>
     
     <section class="docs-section" style="padding-top:0;">
-        <p>Cathode scripts are created inside containers called "composites". Within a composite there are "entities" which define logic; this logic can do invisible things like updating objectives when a player enters a trigger, or it can be to do visible things like place and animate models.</p>
-        <p>Every level has a "root" composite which is shown in OpenCAGE by an orange globe icon. The root composite is what is executed when the level is opened in-game, so if you have nothing in there, nothing will happen! You may look at your level's root composite and be confused that there are only a few entities within it; this is because composites can be "instanced" within other composites.</p>
-        <p>A typical campaign level of Alien: Isolation is defined by two composites that are instanced inside the root composite, which are named "MISSIONS" and "ENVIRONMENT". The former contains composites that script the level's missions, and the latter contains composites that populate the level with models and effects. It's worth noting that this isn't a requirement, but merely a convention that the developers followed to keep things tidy.</p>
-        <p>A composite should generally hold either a collection of like-minded things (for example; a sub-section of a level to split it up from the wider level, like a room), or something that will be re-used a lot of times (for example; something like a push button, which would always need to contain an interactable trigger, model, animation, and some other scripting logic that you wouldn't want to have to re-make every time you need one). The former is just generally a way of keeping things easy to find and tidy, and the latter is just good practice to speed up level creation.</p>
-        <p><i>If you've used Unreal Engine before, the above concepts should seem very familiar to you: composites are essentially just Blueprints. Similarly if you've used Unity before, composites are kinda similar to Prefabs, just remember that they implicitly contain scripting logic within them. If you'd like to learn more, I'd recommend checking out some Unreal Blueprint fundamental tutorials!</i></p>
+        <p>Cathode scripts are created inside containers called &quot;composites&quot;. Within a composite there are &quot;entities&quot; which define logic; this logic can do invisible things like updating objectives when a player enters a trigger, or visible things like place and animate models.</p>
+        <p>A composite should generally hold either a collection of like-minded things (for example; a sub-section of a level to split it up from the wider level, like a room), or something that will be re-used a lot of times (for example; something like a push button, which would always need to contain an interactable trigger, model, animation, and some other scripting logic that you wouldn&apos;t want to have to re-make every time you need one). The former is just generally a way of keeping things easy to find and tidy, and the latter is just good practice to speed up level creation.</p>
+        <p>If you&apos;ve used Unreal Engine before, this concept should seem very familiar to you: composites are essentially just Blueprints. Similarly if you&apos;ve used Unity before, composites are kinda similar to Prefabs, just remember that they implicitly contain scripting logic within them. If you&apos;d like to learn more about the fundamental concepts behind this workflow, I&apos;d recommend checking out some Unreal Blueprint tutorials!</p>
+        <p>Lets go over the different types of composite you&rsquo;ll come across within the script editor.</p>
     </section>
 
     <section class="docs-section" id="root-composite">
         <h2 class="section-heading"><img src="../assets/images/icons/root.png" width="30px" style="margin-right: 10px;"> Root Composite</h2>
-        
+        <p>Every level has a &quot;root&quot; composite which is shown in OpenCAGE by an orange globe icon. The root composite is what is executed when the level is loaded in-game, so if you have nothing in there, your level will be blank! You may look at a level&apos;s root composite and be confused that there are only a few entities within it; this is because composites can be &quot;instanced&quot; within other composites.</p>
+        <p>A typical campaign level of Alien: Isolation is defined by two composites that are instanced inside the root composite, named &quot;MISSIONS&quot; and &quot;ENVIRONMENT&quot;. The former contains composites that script the level&apos;s missions, and the latter contains composites that populate the level with models and effects. It&apos;s worth noting that this isn&apos;t a requirement you need to follow, but merely a convention that the developers followed to keep things tidy when navigating scripts. For example &ndash; it&rsquo;s easier to modify a mission script if it&rsquo;s contained in a nicely named composite within a &ldquo;missions&rdquo; composite, rather than being dumped somewhere with a load of model definitions for the environment: we&rsquo;ll go over all the various Entity types in the next section, so this may become clearer to you then.</p>
     </section>
 
     <section class="docs-section" id="global-composite">
         <h2 class="section-heading"><img src="../assets/images/icons/global.png" width="30px" style="margin-right: 10px;"> PAUSEMENU/GLOBAL Composites</h2>
-        
+        <p>As well as the root composite, there are two other composites which are loaded when our level starts up. These composites are the same across all levels, and would likely have been modified across all levels at the same time by CAGE. They&rsquo;re kinda core-game logic rather than level-specific logic, and it&rsquo;s probably best to leave them alone &ndash; regardless, let&rsquo;s explain what they are.</p>
+        <p>The &ldquo;PAUSEMENU&rdquo; composite is used to perform logic while the game is paused. It contains definitions for blurring and distorting the camera in the way that you see behind the pause menu UI.</p>
+        <p>The &ldquo;GLOBAL&rdquo; composite is used to track progression and persistent game state across levels. It can be used to get and set information such as mission number, map, and other metadata that allows you to change things based on wider mission progression. For example: if a player enters a level and their GLOBAL mission number is a number that you have a mission script for, you&rsquo;ll want to execute that mission script. Within the base game, you&rsquo;ll see references to &ldquo;AMB&rdquo; scripts: these are the ambient mission scripts that are executed when a player enters a level on a mission number that doesn&rsquo;t have a matching mission script. You can typically see the logic to do this within the level&rsquo;s &ldquo;MISSIONS&rdquo; composite referenced off of the root.</p>
     </section>
 
     <section class="docs-section" id="displaymodel-composite">
         <h2 class="section-heading"><img src="../assets/images/icons/displaymodel.png" width="30px" style="margin-right: 10px;"> DisplayModel Composites</h2>
-        <p>"DisplayModel" composites are special in that they are used to define "display models" which can be used when spawning Character entities.</p>
-        <p>A DisplayModel composite's name must begin with "DisplayModel:". The rest of the composite name is then used as the name of the display model that can be referenced elsewhere.</p>
+        <p>&quot;DisplayModel&quot; composites are special in that they are used to define &quot;display models&rdquo; which can be used when spawning &ldquo;Character&rdquo; entities. A DisplayModel composite&apos;s name must begin with &quot;DisplayModel:&quot;. The rest of the composite name is then used as the name of the display model that can be referenced elsewhere. For example, you may see &ldquo;DisplayModel:ALIEN&rdquo; in your level &ndash; this is the display model &ldquo;ALIEN&rdquo; for the Xenomorph Character entity.</p>
         <p>Typically DisplayModel composites contain a series of ModelReference entities to define character body parts, and one EnvironmentModelReference entity which defines the environment animation resource to map all the models to an animatable skeleton.</p>
-        <p><b>NOTE: Work is still continuing on allowing modification of the environment animation resources, so for now you can only select ones that already exist in the level.</b></p>
+        <p>It&rsquo;s important to note that display models are purely model/skeleton data. They are not the actual NPCs. For example, when on a level containing the &ldquo;ALIEN&rdquo; display model, you&rsquo;ll see that the actual Character of the Xenomorph is defined within &ldquo;ARCHETYPES/NPCS/ALIEN/XENOMORPH_NPC&rdquo;. That composite contains all of the Xeno&rsquo;s FX, events, spawning logic, and other Character information passed along to the &ldquo;NPC_LOGIC&rdquo; composite instance, which then creates the actual Character entity.</p>
+        <p>NOTE: Work is still continuing on allowing modification of the environment animation resources, so for now you can only select ones that already exist in the level.</p>
     </section>
 
     <section class="docs-section" id="standard-composite">
         <h2 class="section-heading"><img src="../assets/images/icons/root.png" width="30px" style="margin-right: 10px;"> Root Composite</h2>
-        
+        <p>We&rsquo;re all done with the special composite types &ndash; the only other composites you&rsquo;ll come across are just regular composites. Realistically every composite under the hood is actually just a &ldquo;regular composite&rdquo;, some are just handled differently by the engine (e.g. DisplayModels).</p>
+        <p>As mentioned, composites can contain a variety of entities, and can be instanced within eachother to build up reusable and complex logic. Let&rsquo;s move on to talk about entities to make this clearer.</p>
     </section>
 </article>
 
 <article class="docs-article" id="entities">
     <header class="docs-header">
-        <h1 class="docs-heading">Entities</h1>
+        <h1 class="docs-heading">What are Entities?</h1>
     </header>
     
     <section class="docs-section" style="padding-top:0;">
-        <p>Within composites, entities can be created with "parameters" to define logic. These entities can be "linked" to create logical flows, which gives us our functioning scripts.</p>
-        <p>There are five types of entity available to create within OpenCAGE, each marked with a unique icon.</p>
+        <p>Within composites, &ldquo;entities&rdquo; can be created with &quot;parameters&quot; to define logic. These parameters can either be defined on the entity itself, or can be &ldquo;linked&rdquo; to another entity. Linking a parameter to another entity does one of two things; it either shares data from one entity to another (e.g. you may want a Boolean parameter (true/false) to be set by the result of another entity&rsquo;s action), or acts as a trigger to execute our entity after the action of another (e.g. you may want to trigger logic sequentially during a scripted sequence, and activate entities linearly).</p>
+        <p>There are five major types of entity available to create within OpenCAGE, each marked with a unique icon.</p>
     </section>
 
     <section class="docs-section" id="function-entities">
         <h2 class="section-heading"><img src="../assets/images/icons/function.png" width="30px" style="margin-right: 10px;"> Function Entities</h2>
-        <p>Function entities are the most important entity to build up our logic and levels. Each one performs a certain action, and can be given parameters to modify the outcomes. For example, you can use a ModelReference entity with a "resource" parameter pointing at a model and material to place a renderable instance within a level at a "position" (also defined by another parameter).</p>
-        <p>There are hndreds of function entities available to use, ranging from simple mathematical logic to more complex tasks like setting objectives and playing sounds. A full list of function entities can be found here!</p>
-        <p><i>For programmers: think of function entities as literally executing methods in code - the parameters you give them are just method arguments. For Unreal Engine developers, again this concept shouuld seem very familiar to you with standard Blueprint nodes.</i></p>
-    </section>
-
-    <section class="docs-section" id="parameter-entities">
-        <h2 class="section-heading"><img src="../assets/images/icons/parameter.png" width="30px" style="margin-right: 10px;"> Composite Parameter Entities</h2>
-        <!--(need to check name usage of these)-->
+        <p>Function entities are the most important entity to build up our logic and levels. Each one performs a certain action and can be given parameters to modify the outcomes. For example, you can use a ModelReference entity with a &quot;resource&quot; parameter pointing at a model and material to place a renderable instance within a level at a &quot;position&quot; (also defined by another parameter).</p>
+        <p>There are hundreds of function entities available to use, ranging from simple mathematical logic to more complex tasks like setting objectives and playing sounds. A full list of function entities and their parameters can be found <a href="https://opencage.co.uk/docs/cathode-entities/">here</a>!</p>
+        <p>For programmers: think of function entities as literally executing methods in code - the parameters you give them are just method arguments. For Unreal Engine developers, again this concept should seem very familiar to you with standard Blueprint nodes.</p>
+        <p>It&rsquo;s worth highlighting that there are two function entities which perform special additional logic that requires an additional editor window: &ldquo;CAGEAnimation&rdquo; entities and &ldquo;TriggerSequence&rdquo; entities. CAGEAnimation entities are special scripted sequences which contain a timeline and can modify parameters and activate triggers over a specified time period using keyframes and animation curves. TriggerSequence entities define a collection of references to other entities with a specified delay between each reference, this can then be used for a variety of things such as referencing a collection of entities for use in something like a &ldquo;Zone&rdquo;, or for triggering a parameter on those entities with a delay (for example, triggering a sequence of &ldquo;LightReference&rdquo; entities to turn on 1 second apart).</p>
+        <p>You may now be asking &ndash; what is a Zone? Cathode utilises something known as &ldquo;level streaming&rdquo;, which is a way of loading chunks of a level at runtime, rather than loading the entire thing at once. Zone entities are the key to this level streaming system &ndash; each Zone defines a collection of entities within it (typically &ldquo;ModelReference&rdquo; entities) which are then rendered/loaded when the Zone is active, and not when it&rsquo;s inactive. This system is key to keeping memory overheads down in larger levels.</p>
+        <p>There are a variety of other specifics to dive into for other function entity types as you may expect, since they all perform bespoke logic that can have its own edge cases. The OpenCAGE docs don&rsquo;t currently go into each and every function type as there are hundreds to cover, so recommended practice is to infer for yourself. Typically the names are pretty self explanatory &ndash; that, tied with reading and understanding the list of available parameters should probably be enough to get the function&rsquo;s purpose. You can additionally use the &ldquo;Find Function Uses&rdquo; button within the script editor (located within the &ldquo;Composites&rdquo; panel) to find all instances of a function entity type within a level, which should give you good context surrounding the usage and setup of each. Don&rsquo;t forget as well, the OpenCAGE Discord is always on hand to help!</p>
     </section>
 
     <section class="docs-section" id="compositeinstance-entities">
         <h2 class="section-heading"><img src="../assets/images/icons/compositeinstance.png" width="30px" style="margin-right: 10px;"> Composite Instance Entities</h2>
-        <p>Composite instance entities do exactly what you'd expect them to: instance a composite! Under the hood they're just function entities, however instead of allowing you to execute a pre-defined function within the game engine, they allow you to execute functionality you have defined within another composite.</p>
+        <p>Composite instance entities do exactly what you&apos;d expect them to: instance a composite! Under the hood they&apos;re just function entities, however instead of allowing you to execute a pre-defined function within the game engine, they allow you to execute functionality you have defined within another composite.</p>
         <p>These entities are super useful to allow your composites to become re-usable building blocks across your level; for example, if you have a model with a particle system and sound effect that you want to place a lot of times, you can simply create a composite for that and instance it in your level over and over, instead of manually re-creating that same configuration over and over. Best of all, doing that will mean that you can then update every instance at once, as modifying the composite will modify every instance at once.</p>
+    </section>
+
+    <section class="docs-section" id="parameter-entities">
+        <h2 class="section-heading"><img src="../assets/images/icons/parameter.png" width="30px" style="margin-right: 10px;"> Composite Parameter Entities</h2>
+        <p>A parameter entity is used to create a parameter within the composite which is exposed when instancing the composite via a composite instance entity. This adds additional usefulness to your composites as you can build them around parameters which change their content and activate additional external logic after triggers/events within your composite.</p>
+        <p>That might sound complicated, so let&rsquo;s explain with an example: I make a composite that displays an objective, then waits five seconds. I want to instance that composite to re-use that logic, but I don&rsquo;t want the same objective to pop up every time, and I also want to know when the five seconds are up. I could make two parameter entities: one which is a &ldquo;string&rdquo; type (text) that passes along to the objective entity to set the objective, and one that is a float type (the generic datatype used for events in Cathode) which passes along from the delay entity&rsquo;s event for finishing. These parameter entities would then be visible and usable on any composite instance entities that instance the composite, allowing you to pass that data in/out! I could set the objective text using my string parameter, and trigger my other logic using my float parameter &ndash; all without ever touching the logic inside.</p>
     </section>
 
     <section class="docs-section" id="proxy-entities">
