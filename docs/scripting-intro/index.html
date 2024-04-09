@@ -75,17 +75,17 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#composites"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Composites</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#composites"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What are Composites?</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#root-composite">Root Composite</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#global-composite">GLOBAL/PAUSEMENU Composites</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#displaymodel-composite">DisplayModel Composites</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#standard-composite">Composites</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#entities"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#standard-composite">Regular Composites</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#entities"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What are Entities?</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#function-entities">Function Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#compositeinstance-entities">Composite Instance Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#parameter-entities">Parameter Entities</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#proxy-entities">Proxy Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#alias-entities">Alias Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#proxy-entities">Proxy Entities</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -137,7 +137,7 @@
     </section>
 
     <section class="docs-section" id="standard-composite">
-        <h2 class="section-heading"><img src="../assets/images/icons/root.png" width="30px" style="margin-right: 10px;"> Root Composite</h2>
+        <h2 class="section-heading"><img src="../assets/images/icons/root.png" width="30px" style="margin-right: 10px;"> Regular Composites</h2>
         <p>We&rsquo;re all done with the special composite types &ndash; the only other composites you&rsquo;ll come across are just regular composites. Realistically every composite under the hood is actually just a &ldquo;regular composite&rdquo;, some are just handled differently by the engine (e.g. DisplayModels).</p>
         <p>As mentioned, composites can contain a variety of entities, and can be instanced within eachother to build up reusable and complex logic. Let&rsquo;s move on to talk about entities to make this clearer.</p>
     </section>
@@ -170,17 +170,17 @@
     </section>
 
     <section class="docs-section" id="parameter-entities">
-        <h2 class="section-heading"><img src="../assets/images/icons/parameter.png" width="30px" style="margin-right: 10px;"> Composite Parameter Entities</h2>
+        <h2 class="section-heading"><img src="../assets/images/icons/parameter.png" width="30px" style="margin-right: 10px;"> Parameter Entities</h2>
         <p>A parameter entity is used to create a parameter within the composite which is exposed when instancing the composite via a composite instance entity. This adds additional usefulness to your composites as you can build them around parameters which change their content and activate additional external logic after triggers/events within your composite.</p>
         <p>That might sound complicated, so let&rsquo;s explain with an example: I make a composite that displays an objective, then waits five seconds. I want to instance that composite to re-use that logic, but I don&rsquo;t want the same objective to pop up every time, and I also want to know when the five seconds are up. I could make two parameter entities: one which is a &ldquo;string&rdquo; type (text) that passes along to the objective entity to set the objective, and one that is a float type (the generic datatype used for events in Cathode) which passes along from the delay entity&rsquo;s event for finishing. These parameter entities would then be visible and usable on any composite instance entities that instance the composite, allowing you to pass that data in/out! I could set the objective text using my string parameter, and trigger my other logic using my float parameter &ndash; all without ever touching the logic inside.</p>
     </section>
 
-    <section class="docs-section" id="proxy-entities">
-        <h2 class="section-heading"><img src="../assets/images/icons/proxy.png" width="30px" style="margin-right: 10px;"> Composite Parameter Entities</h2>
+    <section class="docs-section" id="alias-entities">
+        <h2 class="section-heading"><img src="../assets/images/icons/alias.png" width="30px" style="margin-right: 10px;"> Alias Entities</h2>
     </section>
 
-    <section class="docs-section" id="alias-entities">
-        <h2 class="section-heading"><img src="../assets/images/icons/alias.png" width="30px" style="margin-right: 10px;"> Composite Parameter Entities</h2>
+    <section class="docs-section" id="proxy-entities">
+        <h2 class="section-heading"><img src="../assets/images/icons/proxy.png" width="30px" style="margin-right: 10px;"> Proxy Entities</h2>
     </section>
 </article>
 
