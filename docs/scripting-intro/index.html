@@ -177,10 +177,18 @@
 
     <section class="docs-section" id="alias-entities">
         <h2 class="section-heading"><img src="../assets/images/icons/alias.png" width="30px" style="margin-right: 10px;"> Alias Entities</h2>
+
+        <p>Aliases are entities which point to entities within instanced composites within the current composite. Once you've pointed to the nested entity by creating a path to it, the alias then acts as a stand-in for that entity. For this reason, aliases are useful for creating overrides on child entities, or for linking parameters to child entities which are not directly within the current composite.</p>
+        <p>For a simple example, lets say you create a composite that contains two ModelReference entities with a Sound emitter, and instance it multiple times in your root composite to place it in various places around the level - but in one instance, you just want one of the ModelReferences to be visible. You could create an alias pointing to one of the child ModelReference entities contained within that specific composite instance, and apply a parameter on the alias to delete it. This allows you to continue using the same composite, but have the flexibility for variants.</p>
     </section>
 
     <section class="docs-section" id="proxy-entities">
         <h2 class="section-heading"><img src="../assets/images/icons/proxy.png" width="30px" style="margin-right: 10px;"> Proxy Entities</h2>
+
+        <p>Proxies are very similar to aliases, except instead of pointing to an entity relative to the current composite, they point to an entity relative to the root composite - giving you a proxy of the instance of an entity within the level as it will be at runtime (as the root composite is the one that is loaded for the level, see above for more info about the root composite). Because of this, proxies are generally used for script-driven things as they have the wider context of the level as it will be during gameplay. They must also be enabled in order to function, and aren't implicitly active like aliases.</p>
+        <p>As an example of the usage of a proxy, imagine you have a trigger which will be happening inside a composite you're instancing within your environment composite, and you want to know about the trigger within your mission script which is contained within another composite. From the root of the level, you could find the entity with the trigger, create a proxy of it, and then listen to the parameter with the trigger off of the proxy.</p>
+        <p>As proxies must also be enabled, you could have logic behind if the proxy is active to do things like show/hide ModelReference entities within composites instanced somewhere within the level.</p>
+        <p>As you can imagine - all of these pointers and cross-references can become hard to track: OpenCAGE contains a few features to try and make this easier. One of those is the &quot;references&quot; button which you can see after clicking on an entity - this will show you all entities which point to it. Additionally, an updated view for entering composite instances is in development, which will show overridden parameters directly on the entities they apply to, to make navigating aliases easier.</p>
     </section>
 </article>
 
