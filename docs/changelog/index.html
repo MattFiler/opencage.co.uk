@@ -76,6 +76,8 @@
     
     <!-- paste new sidebar content here -->
     
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-13-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.13.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-13-0-0">Version 0.13.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-12-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.12.0.X</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-3">Version 0.12.0.4</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-12-0-3">Version 0.12.0.3</a></li>
@@ -123,6 +125,65 @@
 <div class="docs-content"><div class="container">
     
     <!-- paste new changelog content here -->
+
+    
+<article class="docs-article" id="0-13-0-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.13.0.X</h1>
+    </header>
+
+	<section class="docs-section" id="version-0-13-0-0">
+        <h2 class="section-heading">Version 0.13.0.0</h2>
+    
+        <p><strong>Released 31st October 2024.</strong></p>
+        <ul>
+            <li>
+                <p>Script editor:</p>
+                <ul>
+                    <li>
+                        Added support for editing entity links via flowgraphs:
+                        <ul>
+                            <li>Composites can have any number of flowgraphs, and entities can have any number of nodes within the flowgraphs</li>
+                            <li>To define a link between an entity, create a node for it, add the appropriate pins to the node, and then drag a link between that pin and and pin on another node. <b>Documentation for this is coming soon!</b></li>
+                            <li>A composite will not support flowgraphs if it has been previously modified, or if the layout has not yet been defined. <b>Work is continuing to define more layouts.</b></li>
+                        </ul>
+                    </li>
+                    <li>Added ability to add/rename/remove flowgraphs</li>
+                    <li>Added ability to create/delete/modify flowgraph nodes</li>
+                    <li>Reworked UI to include the main flowgraph document area</li>
+                    <li>Added a system of telling if a composite has been modified</li>
+                    <li>
+                        Reworked entity parameter management window:
+                        <ul>
+                            <li>Instead of having separate remove/add windows, there's now simply the parameter manager window which allows you to check/uncheck parameters to be applied</li>
+                            <li>Added the ability to add custom parameters (replaces the previous "enable legacy creation" option)</li>
+                            <li>No longer displays links: for composites that support flowgraphs, links should be maintained in the flowgraph - for composites that don't support flowgraphs, a separate "add link" window is available, with options to remove each link individually on the links themselves</li>
+                        </ul>
+                    </li>
+                    <li>Most search fields will now automatically search upon typing, rather than having to press search</li>
+                    <li>Fixed an issue where duplicating an entity would add it to the list twice</li>
+                    <li>Fixed a crash when searching for a function that doesn't exist</li>
+                    <li>Removed legacy nodegraph and associated options</li>
+                    <li>Various additional bug fixes, workflow improvements, and performance improvements</li>
+                </ul>
+            </li>
+            <li>
+                <p>Launch game tool:</p>
+                <ul>
+                    <li>Reduced chances of a file lock happening</li>
+                </ul>
+            </li>
+            <li>
+                <p>General:</p>
+                <ul>
+                    <li>Added link to <a href="http://twitter.com/mattfiler">X (Twitter)</a> in the main launcher</li>
+                    <li>Separated links to resources from the settings/backup options</li>
+                </ul>
+            </li>
+        </ul>
+	
+    </section>
+</article>
 
 <article class="docs-article" id="0-12-0-x">
     <header class="docs-header">
