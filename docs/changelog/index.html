@@ -144,14 +144,13 @@
                         Added support for editing entity links via flowgraphs:
                         <ul>
                             <li>Composites can have any number of flowgraphs, and entities can have any number of nodes within the flowgraphs</li>
-                            <li>To define a link between an entity, create a node for it, add the appropriate pins to the node, and then drag a link between that pin and and pin on another node. <b>Documentation for this is coming soon!</b></li>
+                            <li>To define a link between an entity, create a node for it, add the appropriate pins to the node, and then drag a link between that pin and and pin on another node.</li>
                             <li>A composite will not support flowgraphs if it has been previously modified, or if the layout has not yet been defined. <b>Work is continuing to define more layouts.</b></li>
                         </ul>
                     </li>
                     <li>Added ability to add/rename/remove flowgraphs</li>
                     <li>Added ability to create/delete/modify flowgraph nodes</li>
                     <li>Reworked UI to include the main flowgraph document area</li>
-                    <li>Added a system of telling if a composite has been modified</li>
                     <li>
                         Reworked entity parameter management window:
                         <ul>
@@ -165,11 +164,19 @@
                     <li>Fixed a crash when searching for a function that doesn't exist</li>
                     <li>Removed legacy nodegraph and associated options</li>
                     <li>Various additional bug fixes, workflow improvements, and performance improvements</li>
+					<li>Various fixes at the CathodeLib level to parsing functionality in prep for the next update</li>
                 </ul>
             </li>
             <li>
                 <p>Launch game tool:</p>
                 <ul>
+					<li>
+					    Changes to "Debug Checkpoints" launch option:
+						<ul>
+							<li>Debug checkpoints can now be used on DLC maps</li>
+							<li>Removed cap on maximum number of checkpoints</li>
+						</ul>
+					</li>
                     <li>Reduced chances of a file lock happening</li>
                 </ul>
             </li>
