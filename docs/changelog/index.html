@@ -159,10 +159,20 @@
                             <li>No longer displays links: for composites that support flowgraphs, links should be maintained in the flowgraph - for composites that don't support flowgraphs, a separate "add link" window is available, with options to remove each link individually on the links themselves</li>
                         </ul>
                     </li>
+                    <li>String datatype with autofill suggestions (e.g. localised strings) now use a popup window to improve entity selection times, with content preview</li>
                     <li>Most search fields will now automatically search upon typing, rather than having to press search</li>
                     <li>Fixed an issue where duplicating an entity would add it to the list twice</li>
                     <li>Fixed a crash when searching for a function that doesn't exist</li>
+                    <li>Added a right click menu to add/remove/rename composites in the file tree</li>
+                    <li>Empty vanilla aliases are now cleared up to prevent bloat</li>
+                    <li>Entity search now correctly ignores entity ID matches if option is disabled</li>
+                    <li>Custom colour picker colours now persist</li>
+                    <li>Removed ability to add additional parameters to variable entities</li>
+                    <li>Temporarily removed ability to rename variable entities</li>
+                    <li>Composite tree no longer hides selection when focus lost</li>
+                    <li>Added right click menu in entity inspector for modifying parameters</li>
                     <li>Removed legacy nodegraph and associated options</li>
+                    <li>Populating default parameters no longer adds "name" for non-Zone entities</li>
                     <li>Various additional bug fixes, workflow improvements, and performance improvements</li>
 					<li>Various fixes at the CathodeLib level to parsing functionality in prep for the next update</li>
                 </ul>
@@ -178,6 +188,12 @@
 						</ul>
 					</li>
                     <li>Reduced chances of a file lock happening</li>
+                </ul>
+            </li>
+            <li>
+                <p>Asset editor:</p>
+                <ul>
+                    <li>Fixed a crash when importing non-DX10 DDS images</li>
                 </ul>
             </li>
             <li>
