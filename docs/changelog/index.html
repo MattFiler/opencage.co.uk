@@ -78,6 +78,7 @@
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-13-1-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.13.1.X</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-13-1-0">Version 0.13.1.0</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-13-1-1">Version 0.13.1.1</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-13-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.13.0.X</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-13-0-1">Version 0.13.0.1</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-13-0-0">Version 0.13.0.0</a></li>
@@ -148,6 +149,50 @@
 					<li>stop_sound_event now gives option to open selection window</li>
 				</ul>
 			</li>
+        </ul>
+	
+    </section>
+
+	<section class="docs-section" id="version-0-13-1-1">
+        <h2 class="section-heading">Version 0.13.1.1</h2>
+    
+        <p><strong>Released 1st February 2025.</strong></p>
+        <ul>
+			<li>Now available via <a href="https://store.steampowered.com/app/3367530/OpenCAGE/">Steam</a>!</li>
+            <li>
+                <p>Script editor:</p>
+                <ul>
+					<li>Soundbanks are now correctly looked up using Wwise hashing</li>
+					<li>Added more vanilla flowgraph layouts</li>
+				</ul>
+			</li>
+            <li>
+                <p>Asset editor:</p>
+                <ul>
+					<li>Added option to export all items at once</li>
+					<li>Fixed a potential nullref for some models</li>
+				</ul>
+			</li>
+            <li>
+                <p>Config editor:</p>
+                <ul>
+					<li>New Resolution, FOV, and LOD options enter at index zero to prevent in-game issues</li>
+					<li>Fixed written values for FOV, shadow map resolution, and shadow map filter quality</li>
+					<li>Fixed saving FOV changes</li>
+				</ul>
+			</li>
+            <li>
+                <p>Launch game tool:</p>
+                <ul>
+					<li>d3d11.dll is no longer removed if hot reload is disabled (prevents a conflict with Alias Isolation)</li>
+				</ul>
+			</li>
+			<li>Added link to <a href="https://bsky.app/profile/mattfiler.co.uk">Bluesky</a></li>
+			<li>Steam branch is now displayed in landing screen</li>
+			<li>Steam achievements are now supported</li>
+			<li>Reworked checking for offline mode and Steam mode</li>
+			<li>Fixed an issue where running OpenCAGE outside the game directory in staging mode would cause an update loop</li>
+			<li>Fixed a small typo in the settings window</li>
         </ul>
 	
     </section>
