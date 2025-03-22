@@ -16,11 +16,10 @@
         }
         body {
             font-family: 'Montserrat', sans-serif;
-            background: #412b69; 
-            background: -moz-linear-gradient(45deg,  #412b69 0%, #8e1073 100%); 
-            background: -webkit-linear-gradient(45deg,  #412b69 0%,#8e1073 100%);
-            background: linear-gradient(45deg,  #412b69 0%,#8e1073 100%); 
+            background-color: #412b69; 
+            background-image: linear-gradient(45deg,  #412b69 0%,#8e1073 100%); 
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#412b69', endColorstr='#8e1073',GradientType=1 ); 
+			min-height:100vh;
         }
         .main_content {
             position: absolute;
@@ -89,6 +88,9 @@
                 margin-top: 20px;
                 margin-bottom: 30px;
             }
+			.main_content img {
+				width: 70%;
+			}
             button {
                 display: block;
                 margin-bottom: 10px;
