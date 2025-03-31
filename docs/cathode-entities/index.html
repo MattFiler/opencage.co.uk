@@ -2474,8 +2474,8 @@
 <li><code style="background:#8e1073;color:white;" title="Name">queue_time</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code> <code title="Default value">default: <strong>4</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">sound_event</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_EVENT</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">speech_priority</code> <code style="background:#412b69;color:white;" title="Datatype">enum: <a href="/docs/cathode-enums/#SPEECH_PRIORITY" class="enum_link" style="color:white;">SPEECH_PRIORITY</a></code> <code title="Default value">default: <strong>LOW</strong></code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">dialogue_mode</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">action</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">dialogue_mode</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">action</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
 </ul>
 <h5>Methods:</h5>
 <ul>
@@ -7187,7 +7187,7 @@
 <li><code style="background:#8e1073;color:white;" title="Name">music_start_event</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_EVENT</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">music_end_event</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_EVENT</code> <code title="Default value">default: <strong>MusicController_Music_End</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">music_restart_event</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_EVENT</code> <code title="Default value">default: <strong>MusicController_Music_Restart</strong></code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">layer_control_rtpc</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_PARAMETER</code> <code title="Default value">default: <strong>Music_All_Layers</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">layer_control_rtpc</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong>Music_All_Layers</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">smooth_rate</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code> <code title="Default value">default: <strong>0.2</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">alien_max_distance</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code> <code title="Default value">default: <strong>50</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">object_max_distance</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code> <code title="Default value">default: <strong>50</strong></code></li>
@@ -10647,7 +10647,7 @@
 <li><code style="background:#8e1073;color:white;" title="Name">use_multi_emitter</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>false</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">create_sound_object</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>true</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">position</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">Position</strong></code> <code title="Default value">default: <strong>0</strong></code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">switch_name</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_SWITCH</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">switch_name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">switch_value</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong>NULL</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">last_gen_enabled</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>true</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">resume_after_suspended</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>true</strong></code></li>
@@ -10682,7 +10682,7 @@
 <li><code style="background:#8e1073;color:white;" title="Name">on_enter_event</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_EVENT</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">on_exit_event</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_EVENT</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">linked_network_occlusion_scaler</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code> <code title="Default value">default: <strong>1</strong></code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">room_size</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_STATE</code> <code title="Default value">default: <strong>Medium_Room</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">room_size</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong>Medium_Room</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">disable_network_creation</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>false</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">position</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">Position</strong></code> <code title="Default value">default: <strong>0</strong></code></li>
 </ul>
@@ -10703,9 +10703,9 @@
 <ul>
 <li><code style="background:#8e1073;color:white;" title="Name">sound_event</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_EVENT</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">is_occludable</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>true</strong></code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">argument_1</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">argument_2</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">argument_3</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">argument_1</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">argument_2</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">argument_3</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
 </ul>
 <h5>Methods:</h5>
 <ul>
@@ -10807,11 +10807,11 @@
 <ul>
 <li><code style="background:#8e1073;color:white;" title="Name">sound_event</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_EVENT</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">is_occludable</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>true</strong></code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">argument_1</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">argument_2</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">argument_3</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">argument_4</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
-<li><code style="background:#8e1073;color:white;" title="Name">argument_5</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_ARGUMENT</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">argument_1</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">argument_2</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">argument_3</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">argument_4</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">argument_5</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">namespace</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong>NULL</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">object_position</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">Position</strong></code> <code title="Default value">default: <strong>0</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">restore_on_checkpoint</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>true</strong></code></li>
@@ -10853,7 +10853,7 @@
 </ul>
 <h5>Parameters:</h5>
 <ul>
-<li><code style="background:#8e1073;color:white;" title="Name">rtpc_name</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_RTPC</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">rtpc_name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">smooth_rate</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code> <code title="Default value">default: <strong>0</strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">start_on</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code> <code title="Default value">default: <strong>false</strong></code></li>
 </ul>
@@ -10862,7 +10862,7 @@
 <p>Inherits from <a class="scrollto" href="#ScriptInterface"><strong>ScriptInterface</strong></a></p>
 <h5>Parameters:</h5>
 <ul>
-<li><code style="background:#8e1073;color:white;" title="Name">state_name</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_STATE</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">state_name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">state_value</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong>NULL</strong></code></li>
 </ul>
 <h5>Methods:</h5>
@@ -10878,7 +10878,7 @@
 </ul>
 <h5>Parameters:</h5>
 <ul>
-<li><code style="background:#8e1073;color:white;" title="Name">switch_name</code> <code style="background:#412b69;color:white;" title="Datatype">list: SOUND_SWITCH</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">switch_name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong></strong></code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">switch_value</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong>NULL</strong></code></li>
 </ul>
 <h5>Methods:</h5>
