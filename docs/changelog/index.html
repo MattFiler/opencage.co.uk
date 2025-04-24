@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
     
     <!-- FontAwesome JS-->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
     
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
@@ -63,10 +63,12 @@
 				        </form>
 	                </div>
 					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
-						<li class="list-inline-item"><a href="http://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="http://twitter.com/mattfiler"><i class="fab fa-twitter fa-fw"></i></a></li>
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
 		            </ul><!--//social-list-->
-		            <a href="https://github.com/MattFiler/OpenCAGE/raw/master/OpenCAGE.exe" class="btn btn-primary d-none d-lg-flex">Download</a>
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
 	            </div><!--//docs-top-utilities-->
             </div><!--//container-->
         </div><!--//branding-->
@@ -76,6 +78,8 @@
     
     <!-- paste new sidebar content here -->
     
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-14-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.14.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-14-0-0">Version 0.14.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-13-1-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.13.1.X</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-13-1-2">Version 0.13.1.2</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-13-1-1">Version 0.13.1.1</a></li>
@@ -131,6 +135,63 @@
     
     <!-- paste new changelog content here -->
 
+<article class="docs-article" id="0-14-0-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.14.0.X</h1>
+    </header>
+
+    <section class="docs-section" id="version-0-14-0-0">
+        <h2 class="section-heading">Version 0.14.0.0</h2>
+    
+        <p><strong>Released 26th April 2025.</strong></p>
+<ul>
+<li>Script editor:<ul>
+<li>Updated websocket/syncing logic to send additional metadata to the level viewer</li>
+<li>Added setup process to install components required for the level editor</li>
+<li>Added ability to launch the level viewer with options</li>
+<li>Reworked default parameter population to more accurately populate default values</li>
+<li>Added additional metadata to variable entities to specify the type of node pin they are intended for</li>
+<li>Reworked the existing &quot;special string&quot; selection to become an &quot;enum string&quot; datatype, to make the autofill data more explicit and consistent<ul>
+<li>Added more enum string options, which can now be found as &quot;list&quot; values in the docs    </li>
+<li>Animations are now populated, which will be contextually shown based on the AnimationSet    </li>
+<li>Load times when selecting a string should be faster</li>
+</ul>
+</li>
+<li>Included additional parameter names for CAGEAnimation entities</li>
+<li>Expanded enum dropdown input support to remove all manual index entries</li>
+<li>Enum type is now only selectable if not pre-defined</li>
+<li>Create node option is no longer shown if not in flowgraph mode</li>
+<li>Checking a parameter/pin will now be correctly respected even if it&#39;s no longer visible due to a search</li>
+<li>Function entities now recieve a default name based on their function type</li>
+<li>Integer and float parameter inputs now use numeric up/down fields</li>
+<li>Composite names are now correctly cased</li>
+<li>Fixed a large number of other smaller bugs and usability issues</li>
+</ul>
+</li>
+<li>Level viewer:<ul>
+<li>Now included with OpenCAGE! Follow the setup guide here.</li>
+<li>Added syncing with the script editor, which will live-mirror:<ul>
+<li>Added entities</li>
+<li>Removed entities</li>
+<li>Repositioned entities</li>
+<li>Entities with updated renderable resources</li>
+</ul>
+</li>
+<li>Reworked editor script to hide all windows aside from Scene, and enable correct lighting setup - correct scene will be opened on start and played</li>
+<li>Removed support for loading textures (only shader colours are now used)</li>
+</ul>
+</li>
+<li>Launch game:<ul>
+<li>Added an option to disable the &quot;current gen&quot; flag (<a href="https://github.com/MattFiler/OpenCAGE/wiki/Launch-Game#patch-current-gen-optimisations">more info</a>)</li>
+</ul>
+</li>
+<li>Fixed an issue where offline assets weren&#39;t tracked correctly, and always considered outdated</li>
+<li>Updater will now force-close Unity to prevent conflicts when updating the Level Viewer</li>
+<li>Fixed a rogue file lock issue in the updater</li>
+</ul>
+	</section>
+</article>
+	
 <article class="docs-article" id="0-13-1-x">
     <header class="docs-header">
         <h1 class="docs-heading">0.13.1.X</h1>
@@ -1384,8 +1445,10 @@
                         <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
 			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
 				        <ul class="social-list list-unstyled pt-4 mb-0">
-                            <li class="list-inline-item"><a href="http://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
-                            <li class="list-inline-item"><a href="http://twitter.com/mattfiler"><i class="fab fa-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
 				        </ul><!--//social-list-->
 				    </div>
 			    </footer>
