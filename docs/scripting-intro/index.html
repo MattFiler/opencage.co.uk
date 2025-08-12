@@ -88,6 +88,9 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#parameter-entities">Parameter Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#alias-entities">Alias Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#proxy-entities">Proxy Entities</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#script-editor"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>The Script Editor</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#interface-overview">Interface Overview</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#creating-script">Creating a Script</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -192,6 +195,49 @@
         <p>As proxies must also be enabled, you could have logic behind if the proxy is active to do things like show/hide ModelReference entities within composites instanced somewhere within the level.</p>
         <p>As you can imagine - all of these pointers and cross-references can become hard to track: OpenCAGE contains a few features to try and make this easier. One of those is the &quot;references&quot; button which you can see after clicking on an entity - this will show you all entities which point to it. Additionally, an updated view for entering composite instances is in development, which will show overridden parameters directly on the entities they apply to, to make navigating aliases easier.</p>
     </section>
+</article>
+
+<article class="docs-article" id="script-editor">
+    <header class="docs-header">
+        <h1 class="docs-heading">The Script Editor</h1>
+    </header>
+    
+    <section class="docs-section" style="padding-top:0;">
+        <p>Now you're familiar with the fundamentals of the scripting system, lets take a look at the script editor, and build our first script.</p>
+		<p>To get to the script editor, load OpenCAGE and select "Edit Cathode Scripts". You can now select File and select a level from the Load Level option.</p>
+    </section>
+    
+    <section class="docs-section" id="interface-overview">
+        <h2 class="section-heading">Interface Overview</h2>
+		<p>Once a level has finished loading within the script editor, you'll be presented with the following interface:</p>
+
+		<p><img src="editor-ui.jpg" width="100%"></p>
+
+		<ul>
+			<li><b>[1] Entity List</b> - This shows you every entity within the current composite separated by type, with various additional information.</li>
+			<li><b>[2] Flowgraph</b> - This contains the composite's flowgraphs, creating links between entities to drive logic (more later!).</li>
+			<li><b>[3] Entity Inspector</b> - This holds information about the selected entity, and allows you to add/remove/modify associated parameters.</li>
+			<li><b>[4] Composite Browser</b> - This contains all composites available within the current level (note, if you don't like this layout, navigate to Options > Composite Display, and uncheck 'Use File Browser Composite Viewer')</li>
+		</ul>
+		<p>By default, when you load a level in the script editor you'll be presented with its root composite. You can opt to either step in to composite instances within the root composite by selecting the instance entities and pressing the "Go" button in the entity inspector, or by searching for composites within the composite browser and selecting them from there. To select an entity, either click on it within the entity list, or select one of its nodes within the flowgraph.</p>
+		<p>The flowgraph area can be utilised to create links between entities to drive logic. For example, I could create a DebugCheckpoint entity which can be triggered from the in-game "Debug Checkpoints" menu. When that checkpoint is triggered, the entity's "on_checkpoint" pin is activated. I can hook other entities to that pin within the flowgraph to trigger additional logic when that happens. If you've ever used Blueprint or any other node-based scripting system this should be very familiar to you!</p>
+		<p>A composite can have any number of flowgraphs contained within it to define entity connections - typically it's best practice to keep similar logic contained within the same flowgraph (for example, all audio logic would usually be kept within an audio flowgraph within a composite). An entity can have any number of nodes within any of the composite's flowgraphs. You can easily locate nodes for entities by selecting the entity and pressing the 'References' button within the inspector. By default, selecting an entity will highlight the node for it within your active flowgraph, or take you to another flowgraph that contains it if it has no node within your current flowgraph.</p>
+		<p>Find the full controls for quickly navigating the flowgraph interface within the "Controls" menu tab in the script editor.</p>
+		<p>The whole script editor interface is resizable, dockable, and customisable. Your customisations will save between sessions. Find a variety of options for additional UI customisation within the "Options" menu tab.</p>
+	</section>
+
+    <section class="docs-section" id="creating-script">
+        <h2 class="section-heading">Creating a Script</h2>
+		<p>Lets build our first script and put all of this into practice. First, we'll create a composite for our logic. In the composite browser, press 'Create Composite' - lets call it "My First Script", and click 'Create'. Your new composite should have been created and opened within the script editor. We'll make this script simply show a popup when a debug checkpoint is triggered - so first, lets make an entity. Right click in the flowgraph interface and select Create Entity > New Function. Search for the function type "DebugCheckpoint", select it within the list, and click 'Create' - you should now see it within the entity list, and also within the flowgraph. It should also be selected, allowing you to see its default parameters in the inspector. By default, all pins are populated on nodes to make linking things simple - you can however right click on a node and remove its unused connections to make things neater.</p>
+		<p>Next, lets make our entity for showing the popup. Right click again in the flowgraph, select Create Entity > New Function, and this time search for "PopupMessage", then click 'Create'. Now we've got two entities in our composite, and a node for each of them within the flowgraph. We can utilise these nodes to create the link we're after, which is for the popup message to be shown after the debug checkpoint is called. To do this, simply drag the arrow on the "on_checkpoint" parameter on the debug checkpoint node across to "start" on the popup message node.</p>
+		<p>To customise the text that shows, with the popup message entity selected, find the "header_text" and "main_text" parameters and change them to your liking. Don't forget to click on the debug checkpoint entity and change the "section" parameter to something noticable - this is the name of the checkpoint that'll show in the UI.</p>
+		<p><img src="new-script.jpg" width="100%"></p>
+		<p>Our composite is now complete! Now we need to instance it within the level. Navigate to the root composite (find the globe icon in the composite browser), right click in the entity list, and select Create Entity > New Instance of Composite. In the search field, search for the newly created composite "My First Script" and click 'Create'.</p>
+		<p>Save the level and launch the game via OpenCAGE to that same level (by going back to the main OpenCAGE window and pressing Launch Game), ensuring that 'Show Debug Checkpoints' is checked. You should now be able to pause the game and go to Load Game > Load Debug Checkpoint and find the "section" name you entered earlier. Select the checkpoint and you watch your popup be displayed on screen. Success! We've just made our first custom logic by adding custom entities, modifying parameters, and creating links with nodes. This is the basis for how everything works in the script editor.</p>
+		<p>It's important to note that not only do triggers create flows of logic, they can also be used to provide context to the triggered entities. For example, to play an animation on a character you must 'bind' the trigger to a character before calling the animation entity (CMD_PlayAnimation), which can be done like so:</p>
+		<p><center><img src="bound-trigger.jpg" width="100%" style="max-width:600px;"></center></p>
+		<p>VariableThePlayer gives us a reference to the player, which is passed to TriggerBindCharacter as the character to bind - the bound_trigger is then provided with the player bound to the trigger logic, which can be used by the CMD_PlayAnimation entity as context to apply the animation command. You'll find this used a lot with character commands.</p>
+	</section>
 </article>
 
 			    <footer class="footer">
