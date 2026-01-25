@@ -91,6 +91,7 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#script-editor"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>The Script Editor</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#interface-overview">Interface Overview</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#creating-script">Creating a Script</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#node-types">Node Types</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -237,6 +238,40 @@
 		<p>It's important to note that not only do triggers create flows of logic, they can also be used to provide context to the triggered entities. For example, to play an animation on a character you must 'bind' the trigger to a character before calling the animation entity (CMD_PlayAnimation), which can be done like so:</p>
 		<p><center><img src="bound-trigger.jpg" width="100%" style="max-width:600px;"></center></p>
 		<p>VariableThePlayer gives us a reference to the player, which is passed to TriggerBindCharacter as the character to bind - the bound_trigger is then provided with the player bound to the trigger logic, which can be used by the CMD_PlayAnimation entity as context to apply the animation command. You'll find this used a lot with character commands.</p>
+	</section>
+
+    <section class="docs-section" id="node-types">
+        <h2 class="section-heading">Node Types</h2>
+		<p>Here's a quick look at how each node type looks within the script editor:</p>
+		<table>
+			<tr>
+				<td>
+					<h4>Function Entity</h4>
+					<p><center><img src="node_function.jpg" width="100%" style="max-width:600px;"></center></p>
+				<td>
+				<td>
+					<h4>Composite Instance Entity</h4>
+					<p><center><img src="node_comp_inst.jpg" width="100%" style="max-width:600px;"></center></p>
+				<td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Parameter Entity</h4>
+					<p><center><img src="node_parameter.jpg" width="100%" style="max-width:600px;"></center></p>
+				<td>
+				<td>
+					<h4>Proxy Entity</h4>
+					<p><center><img src="node_proxy.jpg" width="100%" style="max-width:600px;"></center></p>
+				<td>
+			</tr>
+			<tr>
+				<td>
+					<h4>Alias Entity</h4>
+					<p><center><img src="node_alias.jpg" width="100%" style="max-width:600px;"></center></p>
+				<td>
+			</tr>
+		</tr>
+		</table>
 	</section>
 </article>
 
