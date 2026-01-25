@@ -78,6 +78,8 @@
     
     <!-- paste new sidebar content here -->
     
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-15-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.15.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-15-0-0">Version 0.15.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-14-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.14.0.X</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-14-0-0">Version 0.14.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-13-1-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.13.1.X</a></li>
@@ -134,6 +136,108 @@
 <div class="docs-content"><div class="container">
     
     <!-- paste new changelog content here -->
+
+<article class="docs-article" id="0-15-0-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.15.0.X</h1>
+    </header>
+
+    <section class="docs-section" id="version-0-15-0-0">
+        <h2 class="section-heading">Version 0.15.0.0</h2>
+    
+        <p><strong>Released 25th January 2026.</strong></p>
+		<ul>
+		  <li><strong>Script Editor:</strong>
+			<ul>
+			  <li>Ported characters now correctly retain their hitboxes</li>
+			  <li>Added support for saving out to Commands BIN (adds support for 64-bit game installs)</li>
+			  <li>Added enhanced error catching to make spotting bugs easier</li>
+			  <li>Extended support for flowgraphs to all composites</li>
+			  <li>Reworked the flowgraph UI
+				<ul>
+				  <li>Added additional useful right click options on nodes/flowgraphs to make the workflow easier</li>
+				  <li>Right clicking links now gives you the option before deleting</li>
+				  <li>Nodes now have top and bottom links to make the logic flows make more sense</li>
+				  <li>Improved sanity checking for link conditions</li>
+				  <li>Dragging a link to a node now gives you the option to create a new pin</li>
+				  <li>Default pins are now populated automatically in the correct layouts (removed add pin in/out options)</li>
+				  <li>Nodes are now only selected if clicked, rather than dragged or multi selected</li>
+				  <li>Selecting a node will always select it in the entity list</li>
+				  <li>Added ability to customise node colours</li>
+				  <li>Zooming is now centered around the cursor position</li>
+				  <li>Fixed focussing on a node, and general automated camera panning</li>
+				  <li>Moved the flowgraph navbar to the bottom</li>
+				  <li>Updated node colours</li>
+				  <li>Deleting a node now optionally gives a confirmation first</li>
+				  <li>Delay values are now shown next to pins, rather than in the entity inspector</li>
+				  <li>Previously loaded flowgraph is now resumed when returning to a composite</li>
+				</ul>
+			  </li>
+			  <li>Jumping to another entity will load its associated flowgraph</li>
+			  <li>Updated model renderer
+				<ul>
+				  <li>Improved lighting</li>
+				  <li>Textures now render with correct orientation</li>
+				  <li>UV scaling and diffuse colours are now respected</li>
+				  <li>Added ability to toggle submeshes in the renderer, with groups for LODs</li>
+				  <li>Added ability to preview the whole assembled CS2 model</li>
+				  <li>Fixed an issue where a number of meshes were not (or alternatively, incorrectly) included in the list</li>
+				  <li>Added a toggle in the UI to swap between textured/untexted view</li>
+				  <li>Improved mesh, shader, and texture parsing functionality</li>
+				</ul>
+			  </li>
+			  <li>Fixed various bugs around having multiple flowgraphs on one composite</li>
+			  <li>Find references will now show the nodes for an entity as well as other references</li>
+			  <li>Improvements to Proxy and Alias resolving</li>
+			  <li>Updated material browser
+				<ul>
+				  <li>Expanded support for more samplers</li>
+				  <li>Added ability to view material features (and their enabled state)</li>
+				  <li>Added ability to view all set material parameters (and their values)</li>
+				  <li>Removed redundant duplication button</li>
+				</ul>
+			  </li>
+			  <li>Added additional new options to the MVR editor</li>
+			  <li>Fixed a crash for some MVR editor entries</li>
+			  <li>Added option to auto re-launch game on save</li>
+			  <li>Search fields now ignore spaces to make searching less strict</li>
+			  <li>Extended functionality for the Character editor</li>
+			  <li>Began improving CAGEAnimation support</li>
+			  <li>Renamed 'Show Entity GUIDs' to 'Show ShortGuids', which now also shows Composite and Proxy/Alias GUIDs</li>
+			  <li>Using the up/down keys on entity list correctly navigates</li>
+			  <li>Added a new UI for material mappings with edit functionality</li>
+			  <li>Added a toolbar group to quickly load in to resource UIs (models, materials, mappings)</li>
+			  <li>Added keybinds for node actions</li>
+			  <li>Entity inspector and parameter editor now only show relevant parameter data</li>
+			  <li>Added additional missing enum definitions</li>
+			  <li>Added option to apply default values to an entity (destructive or not)</li>
+			  <li>Animation data is now read without writing to disk to improve startup performance</li>
+			  <li>Added a global entity search</li>
+			  <li>Improved the UI for the function/composite searcher, and references displayer</li>
+			  <li>Various other minor bug fixes and usability improvements</li>
+			  <li>Updated to latest CathodeLib version (improvements to various formats, performance, and utilities)</li>
+			</ul>
+		  </li>
+		  <li><strong>Asset Editor:</strong>
+			<ul>
+			  <li>Added support for cubemaps</li>
+			  <li>Fixed a large freeze which happened when closing the Animation PAK browser</li>
+			  <li>Extended support for importing/exporting more image formats</li>
+			  <li>Updated to latest CathodeLib version (improvements to format completeness across models/textures)</li>
+			</ul>
+		  </li>
+		  <li><strong>Level Viewer:</strong>
+			<ul>
+			  <li>Expanded support for material types, including textured objects</li>
+			  <li>Updated to latest CathodeLib version (improvements to format completeness across models/textures)</li>
+			  <li>Improved mesh handling</li>
+			  <li>Improvements to memory usage</li>
+			</ul>
+		  </li>
+		  <li>Added new icons for each tool to make them easier to identify</li>
+		</ul>
+	</section>
+</article>
 
 <article class="docs-article" id="0-14-0-x">
     <header class="docs-header">
