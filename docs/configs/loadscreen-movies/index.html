@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>OpenCAGE: Global Constants</title>
+    <title>OpenCAGE: Loadscreen Movies</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A guide to modifying global constants through OpenCAGE.">
+    <meta name="description" content="A guide to modifying loadscreen movies through OpenCAGE.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Global Constants" />
-	<meta name="twitter:description" content="A guide to modifying ammo configurations through OpenCAGE." />
+	<meta name="twitter:title" content="OpenCAGE: Loadscreen Movies" />
+	<meta name="twitter:description" content="A guide to modifying loadscreen movies through OpenCAGE." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -73,11 +73,9 @@
     </header><!--//header-->
 	<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
 	
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#squads"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Squads</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#suspicious-items"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Suspicious Items</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#interactions"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Interactions</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#stealth-light-meter"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Stealth Light Meter</a></li>
-
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#playlist-settings"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Playlist Settings</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#movies-in-playlist"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Movies In Playlist</a></li>
+		
 </ul></nav></div><div class="docs-content"><div class="container">
 
 <article class="docs-article" style="margin-bottom: -67px; padding-bottom: 0px;">
@@ -85,20 +83,20 @@
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
 		<li class="breadcrumb-item"><a href="/docs/configs/">Configurations</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Global Constants</li>
+		<li class="breadcrumb-item active" aria-current="page">Loadscreen Movies</li>
 	  </ol>
 	</nav>
 </article>
 
-
 <article class="docs-article">
 
-	<section class="docs-section">		
+	<section class="docs-section">
 		<div class="row">
 			<div class="col-lg-8">
-				<h1 class="section-heading">Global Constants</h1>
-				<p>To edit global constants in OpenCAGE navigate to Edit > Configurations > Core Game > Global Constants.</p>
-				<p>From here you will be presented with a variety of options which apply across various core systems in the game.</p>
+				<h1 class="section-heading">Loadscreen Movies</h1>
+				<p>To edit ammo configurations in OpenCAGE navigate to Edit > Configurations > Core Game > Loadscreen Movies.</p>
+				<p>From here you will be presented with a variety of options for movie playlists used in the loadscreen, relating to the selected playlist in the dropdown at the top of the window.</p>
+				<p>Select a playlist, modify its properties, and press Save to update them in-game.</p>
 				<p>Read on to see a list of available properties with information about each.</p>
 			</div>
 			<div class="col-lg-4">
@@ -106,77 +104,42 @@
 			</div>
 		</div>
 	</section>
-	
-	<section class="docs-section" id="squads">
-		<h2 class="section-heading">Squads</h2>
+
+	<section class="docs-section" id="playlist-settings">
+		<h2 class="section-heading">Playlist Settings</h2>
 		<ul>
 			<li>
-				<code style="background:#8e1073;color:white;">Min Time Between Squad Shots</code>
-				<code style="background:#412b69;color:white;">float</code>
-				<code style="background:#412b69;color:white;">Minimum: 0.1</code>
-				<code style="background:#412b69;color:white;">Maximum: 10</code>
+				<code style="background:#8e1073;color:white;">Allow Skip</code>
+				<code style="background:#412b69;color:white;">bool</code>
 			</li>
-			<ul><li>Defines the minimum and maximum for the minimum time NPCs within a squad take between shooting.</li></ul>
-		</ul>
-	</section>
-	
-	<section class="docs-section" id="suspicious-items">
-		<h2 class="section-heading">Suspicious Items</h2>
-		<ul>
+			<ul><li>If checked the movie playlist be skipped.</li></ul>
+			
 			<li>
-				<code style="background:#8e1073;color:white;">Time Between Suspicious Reaction Loop</code>
-				<code style="background:#412b69;color:white;">float</code>
-				<code style="background:#412b69;color:white;">Minimum: 0.1</code>
-				<code style="background:#412b69;color:white;">Maximum: 10</code>
+				<code style="background:#8e1073;color:white;">End Playlist When Loading Finished</code>
+				<code style="background:#412b69;color:white;">bool</code>
 			</li>
-			<ul><li>Defines the minimum and maximum for the minimum time an NPC takes before looping its reaction to a suspicious item.</li></ul>
-		</ul>
-	</section>
-	
-	<section class="docs-section" id="interactions">
-		<h2 class="section-heading">Interactions</h2>
-		<ul>
+			<ul><li>If checked the playlist will be exited after the level load has completed.</li></ul>
+			
 			<li>
-				<code style="background:#8e1073;color:white;">Interaction Distance Threshold</code>
-				<code style="background:#412b69;color:white;">float</code>
-				<code style="background:#412b69;color:white;">Minimum: 0</code>
-				<code style="background:#412b69;color:white;">Maximum: 999</code>
+				<code style="background:#8e1073;color:white;">Shuffle</code>
+				<code style="background:#412b69;color:white;">bool</code>
 			</li>
-			<ul><li>Defines the distance at which UI_Icon entities are out of interaction range.</li></ul>
+			<ul><li>If checked the playlist will run in any random order.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Loop</code>
+				<code style="background:#412b69;color:white;">bool</code>
+			</li>
+			<ul><li>If checked the playlist will loop until an exit condition is met (skipped if 'Allow Skip', or level loaded if 'End Playlist When Loading Finished').</li></ul>
 		</ul>
 	</section>
-	
-	<section class="docs-section" id="stealth-light-meter">
-		<h2 class="section-heading">Stealth Light Meter</h2>
-		<ul>
-			<ul>
-				<li>
-					<code style="background:#8e1073;color:white;">Timeout When Detected</code>
-					<code style="background:#412b69;color:white;">float</code>
-					<code style="background:#412b69;color:white;">Minimum: 0</code>
-					<code style="background:#412b69;color:white;">Maximum: 100</code>
-				</li>
-				<ul><li>Defines the time to disable the stealth light meter for after being detected.</li></ul> 
-				
-				<li>
-					<code style="background:#8e1073;color:white;">Full Dark Threshold</code>
-					<code style="background:#412b69;color:white;">float</code>
-					<code style="background:#412b69;color:white;">Minimum: 0</code>
-					<code style="background:#412b69;color:white;">Maximum: 1</code>
-				</li>
-				<ul><li>If the light meter's luminance is below this threshold, it is considered 'dark'.</li></ul>
-				
-				<li>
-					<code style="background:#8e1073;color:white;">Full Light Threshold</code>
-					<code style="background:#412b69;color:white;">float</code>
-					<code style="background:#412b69;color:white;">Minimum: 0</code>
-					<code style="background:#412b69;color:white;">Maximum: 1</code>
-				</li>
-				<ul><li>If the light meter's luminance is below this threshold but above full dark, it's considered 'partially lit'. If it's over this valid, it's considered 'fully lit'.</li></ul>
-			</ul>
-		</ul>
+
+	<section class="docs-section" id="movies-in-playlist">
+		<h2 class="section-heading">Movies In Playlist</h2>
+		<p>Here the list of movies to play within the playlist are defined.</p>
+		<p>To add a new movie, select 'Add New'. You should locate a movie file within the game's DATA/UI/MOVIES directory.</p>
+		<p>To remove a movie select 'Remove'. You can also re-order the playlist using 'Move Up' and 'Move Down', but note that if 'Shuffle' is checked (see above) the order will be randomised.</p>
 	</section>
-	
 </article>
 
 <footer class="footer">
