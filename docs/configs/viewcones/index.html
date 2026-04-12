@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>OpenCAGE: Global Constants</title>
+    <title>OpenCAGE: Viewcones</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A guide to modifying global constants through OpenCAGE.">
+    <meta name="description" content="A guide to modifying character viewcones through OpenCAGE.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Global Constants" />
-	<meta name="twitter:description" content="A guide to modifying ammo configurations through OpenCAGE." />
+	<meta name="twitter:title" content="OpenCAGE: Viewcones" />
+	<meta name="twitter:description" content="A guide to modifying character viewcones through OpenCAGE." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -75,10 +75,9 @@
     </header><!--//header-->
 	<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
 	
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#squads"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Squads</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#suspicious-items"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Suspicious Items</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#interactions"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Interactions</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#stealth-light-meter"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Stealth Light Meter</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#cone-size"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Cone Size</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#visibility-modifiers"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Visibility Modifiers</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#visibility-modifiers-light-meter">Light Meter</a></li>
 
 </ul></nav></div><div class="docs-content"><div class="container">
 
@@ -87,20 +86,22 @@
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
 		<li class="breadcrumb-item"><a href="/docs/configs/">Configurations</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Global Constants</li>
+		<li class="breadcrumb-item active" aria-current="page">Viewcones</li>
 	  </ol>
 	</nav>
 </article>
-
 
 <article class="docs-article">
 
 	<section class="docs-section">		
 		<div class="row">
 			<div class="col-lg-8">
-				<h1 class="section-heading">Global Constants</h1>
-				<p>To edit global constants in OpenCAGE navigate to Edit > Configurations > Core Game > Global Constants.</p>
-				<p>From here you will be presented with a variety of options which apply across various core systems in the game.</p>
+				<h1 class="section-heading">Viewcones</h1>
+				<p>To edit character viewcones in OpenCAGE navigate to Edit > Configurations > Core Game > Viewcones.</p>
+				<p>From here you will be presented with a variety of options which apply to the selected viewcone type in the dropdown at the top of the window.</p>
+				<p>Viewcones are used to define the areas that enemies can spot targets within. If a target enters an enemy's viewcone, various modifiers are used to calculate a visibility score.</p>
+				<p>Each viewcone type has a number of individual cone definitions within it (usually 'Focused', 'Close', 'Normal', and 'Peripheral') which are all queried to determine if a target is spotted or not. Typically larger cones will have lower visibility modifiers to give the illusion of further targets being harder to see.</p>
+				<p>To apply a viewcone type to a character, check out the <a href="http://opencage.co.uk/docs/configs/senses">sense editor</a>.</p>
 				<p>Read on to see a list of available properties with information about each.</p>
 			</div>
 			<div class="col-lg-4">
@@ -109,79 +110,116 @@
 		</div>
 	</section>
 	
-	<section class="docs-section" id="squads">
-		<h2 class="section-heading">Squads</h2>
+	<section class="docs-section" id="cone-size">
+		<h2 class="section-heading">Cone Size</h2>
 		<ul>
 			<li>
-				<code style="background:#8e1073;color:white;">Min Time Between Squad Shots</code>
+				<code style="background:#8e1073;color:white;">Vertical Angle</code>
 				<code style="background:#412b69;color:white;">float</code>
-				<code style="background:#412b69;color:white;">Minimum: 0.1</code>
-				<code style="background:#412b69;color:white;">Maximum: 10</code>
+				<code style="background:#412b69;color:white;">Minimum: 1</code>
+				<code style="background:#412b69;color:white;">Maximum: 179</code>
 			</li>
-			<ul><li>Defines the minimum and maximum for the minimum time NPCs within a squad take between shooting.</li></ul>
+			<ul><li>Defines the vertical angle of the cone in degrees.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Horizontal Angle</code>
+				<code style="background:#412b69;color:white;">float</code>
+				<code style="background:#412b69;color:white;">Minimum: 1</code>
+				<code style="background:#412b69;color:white;">Maximum: 179</code>
+			</li>
+			<ul><li>Defines the horizonal angle of the cone in degrees.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Length</code>
+				<code style="background:#412b69;color:white;">float</code>
+				<code style="background:#412b69;color:white;">Minimum: 0.2</code>
+				<code style="background:#412b69;color:white;">Maximum: 200</code>
+			</li>
+			<ul><li>Defines the length (distance) that the cone casts from the viewpoint of the character.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Smoke Length Modifier</code>
+				<code style="background:#412b69;color:white;">float</code>
+				<code style="background:#412b69;color:white;">Minimum: 0</code> <!-- i think min cannot actually be zero due to div by zero issue -->
+				<code style="background:#412b69;color:white;">Maximum: 1</code>
+			</li>
+			<ul><li>This allows smoke to have an impact on visibility by taking the distance from the enemy to target and increasing it based on the proportion of that journey which travels through smoke, before querying it against 'Length'. A smaller number means a bigger increase to the distance, proportional to the distance through smoke.</li></ul>
 		</ul>
 	</section>
 	
-	<section class="docs-section" id="suspicious-items">
-		<h2 class="section-heading">Suspicious Items</h2>
+	<section class="docs-section" id="visibility-modifiers" style="border-bottom: 0">
+		<h2 class="section-heading">Visibility Modifiers</h2>
 		<ul>
 			<li>
-				<code style="background:#8e1073;color:white;">Time Between Suspicious Reaction Loop</code>
-				<code style="background:#412b69;color:white;">float</code>
-				<code style="background:#412b69;color:white;">Minimum: 0.1</code>
-				<code style="background:#412b69;color:white;">Maximum: 10</code>
-			</li>
-			<ul><li>Defines the minimum and maximum for the minimum time an NPC takes before looping its reaction to a suspicious item.</li></ul>
-		</ul>
-	</section>
-	
-	<section class="docs-section" id="interactions">
-		<h2 class="section-heading">Interactions</h2>
-		<ul>
-			<li>
-				<code style="background:#8e1073;color:white;">Interaction Distance Threshold</code>
+				<code style="background:#8e1073;color:white;">Distance</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
-				<code style="background:#412b69;color:white;">Maximum: 999</code>
+				<code style="background:#412b69;color:white;">Maximum: 1</code>
 			</li>
-			<ul><li>Defines the distance at which <a href="https://opencage.co.uk/docs/cathode-entities/#UI_Icon">UI_Icon</a> entities are out of interaction range.</li></ul>
+			<ul><li>Defines the minimum and maximum impact the distance to the target from the enemy has on the visbility score.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Smoke</code>
+				<code style="background:#412b69;color:white;">float</code>
+				<code style="background:#412b69;color:white;">Minimum: 0</code>
+				<code style="background:#412b69;color:white;">Maximum: 1</code>
+			</li>
+			<ul><li>Defines the minimum and maximum impact that smoke has on the visbility score.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Movement</code>
+				<code style="background:#412b69;color:white;">float</code>
+				<code style="background:#412b69;color:white;">Minimum: 0</code>
+				<code style="background:#412b69;color:white;">Maximum: 1</code>
+			</li>
+			<ul><li>Defines the minimum and maximum impact that the target's movement (standing, walking, running) has on the visbility score.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Stance</code>
+				<code style="background:#412b69;color:white;">float</code>
+				<code style="background:#412b69;color:white;">Minimum: 0</code>
+				<code style="background:#412b69;color:white;">Maximum: 1</code>
+			</li>
+			<ul><li>Defines the minimum and maximum impact that the target's stance (for the player; deep crouch, crouch, standing - for npcs; in cover, standing) has on the visbility score.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Exposure</code>
+				<code style="background:#412b69;color:white;">float</code>
+				<code style="background:#412b69;color:white;">Minimum: 0</code>
+				<code style="background:#412b69;color:white;">Maximum: 1</code>
+			</li>
+			<ul><li>Defines the minimum and maximum impact that the target's environmental exposure has on the visbility score. Exposure is calculated by firing 8 rays outwards from the target at 3 levels (knees, torso, head), or 2 if crouched (knees, torso). The rays that intersect nearby geometry (if any) define how exposed the character is.</li></ul>
 		</ul>
-	</section>
-	
-	<section class="docs-section" id="stealth-light-meter">
-		<h2 class="section-heading">Stealth Light Meter</h2>
-		<p>The light meter is one of a variety of 'stealth' systems. Characters contain three sensors placed on the ground, hip, and head. An average luminance value is calculated based on these three points and checked against the thresholds defined below to determine the character's brightness - either dark, partially lit, or fully lit. This brightness is then used to determine the impact on the visbility threshold for enemies seeking the character, defined by the enemy's <a href="http://opencage.co.uk/docs/configs/viewcones">viewcone</a> which contains the character.</p> 
-		<ul>
+		<section class="docs-section" id="visibility-modifiers-light-meter">
+			<h3 id="damage-range-settings-vs-char">Light Meter</h3>
+			<p>To learn more about the light meter, check out the <a href="http://opencage.co.uk/docs/configs/global-constants/#stealth-light-meter">global constants</a> editor.</p>
 			<ul>
 				<li>
-					<code style="background:#8e1073;color:white;">Timeout When Detected</code>
-					<code style="background:#412b69;color:white;">float</code>
-					<code style="background:#412b69;color:white;">Minimum: 0</code>
-					<code style="background:#412b69;color:white;">Maximum: 100</code>
-				</li>
-				<ul><li>Defines the time to disable the light meter for after being detected.</li></ul> 
-				
-				<li>
-					<code style="background:#8e1073;color:white;">Full Dark Threshold</code>
+					<code style="background:#8e1073;color:white;">Dark</code>
 					<code style="background:#412b69;color:white;">float</code>
 					<code style="background:#412b69;color:white;">Minimum: 0</code>
 					<code style="background:#412b69;color:white;">Maximum: 1</code>
 				</li>
-				<ul><li>If the light meter's luminance is below this threshold, it is considered 'dark'.</li></ul>
-				
+				<ul><li>Defines the minimum and maximum impact on the visbility score if the target's light meter classes them as being in a 'dark' spot.</li></ul>
 				<li>
-					<code style="background:#8e1073;color:white;">Full Light Threshold</code>
+					<code style="background:#8e1073;color:white;">Partially Lit</code>
 					<code style="background:#412b69;color:white;">float</code>
 					<code style="background:#412b69;color:white;">Minimum: 0</code>
 					<code style="background:#412b69;color:white;">Maximum: 1</code>
 				</li>
-				<ul><li>If the light meter's luminance is below this threshold but above full dark, it's considered 'partially lit'. If it's over this value it's considered 'fully lit'.</li></ul>
+				<ul><li>Defines the minimum and maximum impact on the visbility score if the target's light meter classes them as being in a 'partially lit' spot.</li></ul>
+				<li>
+					<code style="background:#8e1073;color:white;">Fully Lit</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 0</code>
+					<code style="background:#412b69;color:white;">Maximum: 1</code>
+				</li>
+				<ul><li>Defines the minimum and maximum impact on the visbility score if the target's light meter classes them as being in a 'fully lit' spot.</li></ul>
 			</ul>
-		</ul>
+		</section>
 	</section>
 	
 </article>
-
 <footer class="footer">
 				    <div class="container text-center py-5">
                         <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
