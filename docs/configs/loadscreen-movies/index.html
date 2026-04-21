@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Loadscreen Movies</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A guide to modifying loadscreen movies through OpenCAGE.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Loadscreen Movies" />
+	<meta name="twitter:description" content="A guide to modifying loadscreen movies through OpenCAGE." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../../assets/css/theme.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-lg-flex" style="visibility:hidden;">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+	<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+	
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#playlist-settings"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Playlist Settings</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#movies-in-playlist"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Movies In Playlist</a></li>
+		
+</ul></nav></div><div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -67px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item"><a href="/docs/configs/">Configurations</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Loadscreen Movies</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article">
+
+	<section class="docs-section">
+		<div class="row">
+			<div class="col-lg-8">
+				<h1 class="section-heading">Loadscreen Movies</h1>
+				<p>To edit ammo configurations in OpenCAGE navigate to Edit > Configurations > Core Game > Loadscreen Movies.</p>
+				<p>From here you will be presented with a variety of options for movie playlists used in the loadscreen, relating to the selected playlist in the dropdown at the top of the window.</p>
+				<p>Select a playlist, modify its properties, and press Save to update them in-game.</p>
+				<p>Read on to see a list of available properties with information about each.</p>
+			</div>
+			<div class="col-lg-4">
+				<img src="img.png" width="100%">
+			</div>
+		</div>
+	</section>
+
+	<section class="docs-section" id="playlist-settings">
+		<h2 class="section-heading">Playlist Settings</h2>
+		<ul>
+			<li>
+				<code style="background:#8e1073;color:white;">Allow Skip</code>
+				<code style="background:#412b69;color:white;">bool</code>
+			</li>
+			<ul><li>If checked the movie playlist be skipped.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">End Playlist When Loading Finished</code>
+				<code style="background:#412b69;color:white;">bool</code>
+			</li>
+			<ul><li>If checked the playlist will be exited after the level load has completed.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Shuffle</code>
+				<code style="background:#412b69;color:white;">bool</code>
+			</li>
+			<ul><li>If checked the playlist will run in any random order.</li></ul>
+			
+			<li>
+				<code style="background:#8e1073;color:white;">Loop</code>
+				<code style="background:#412b69;color:white;">bool</code>
+			</li>
+			<ul><li>If checked the playlist will loop until an exit condition is met (skipped if 'Allow Skip', or level loaded if 'End Playlist When Loading Finished').</li></ul>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="movies-in-playlist">
+		<h2 class="section-heading">Movies In Playlist</h2>
+		<p>Here the list of movies to play within the playlist are defined.</p>
+		<p>To add a new movie, select 'Add New'. To remove a movie select 'Remove'.</p>
+		<p>You can also re-order the playlist using 'Move Up' and 'Move Down', but note that if 'Shuffle' is checked (see above) the order will be randomised.</p>
+	</section>
+</article>
+
+<footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../../assets/plugins/popper.min.js"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../../assets/js/highlight-custom.js"></script> 
+    <script src="../../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../../assets/js/docs.js"></script> 
+
+</body>
+</html> 

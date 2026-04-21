@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Alien Configs</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A guide to modifying alien configurations through OpenCAGE.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Alien Configs" />
+	<meta name="twitter:description" content="A guide to modifying alien configurations through OpenCAGE." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../../assets/css/theme.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-lg-flex" style="visibility:hidden;">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+	<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+	
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#frontstage"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Frontstage</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#frontstage-menace-gauge">Menace Gauge</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#frontstage-search-exclusion">Search Exclusion Radius</a></li>
+<li class="nav-item" style="padding-left:25px;"><a class="nav-link scrollto" href="#frontstage-search-exclusion-near-target">Near Target</a></li> 
+<li class="nav-item" style="padding-left:25px;"><a class="nav-link scrollto" href="#frontstage-search-exclusion-near-objective">Near Objective</a></li> 
+<li class="nav-item"><a class="nav-link scrollto" href="#frontstage-player-in-vent">Player In Vent</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#frontstage-sweep">Sweep</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#backstage"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Backstage</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#backstage-vent-killtraps">Vent Killtraps</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#backstage-sweep">Sweep</a></li>
+
+</ul></nav></div><div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -67px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item"><a href="/docs/configs/">Configurations</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Alien Configs</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article">
+
+	<section class="docs-section">
+		<div class="row">
+			<div class="col-lg-8">
+				<h1 class="section-heading">Alien Configs</h1>
+				<p>To edit alien configs in OpenCAGE, navigate to Edit > Configurations > Characters > Alien Configs.</p>
+				<p>From here you will be presented with a variety of options which relate to the selected alien config in the dropdown at the top of the window.</p>
+				<p>Read on to see a list of available properties with information about each.</p>
+				<p>By default, the alien runs the 'MODERATE' config. This is can be changed at runtime through the script entity <a href="https://opencage.co.uk/docs/cathode-entities/#NPC_AlienConfig">NPC_AlienConfig</a> by providing the appropriate config name.</p>
+				<p>Note that a lot of these values are additionally increased/decreased by the current game <a href="https://opencage.co.uk/docs/configs/difficulty-settings/">difficulty config</a>.</p>
+			</div>
+			<div class="col-lg-4">
+				<img src="img.png" width="100%">
+			</div>
+		</div>
+	</section>
+
+	<section class="docs-section" id="frontstage">
+		<h2 class="section-heading">Frontstage</h2>
+		<p>The alien is defined as 'frontstage' when it is out of the ceiling vents and within the player's playspace.</p>
+		
+		<section class="docs-section" style="border-bottom: 0">
+			<h3 id="frontstage-menace-gauge">Menace Gauge</h3>
+			<p>The menace gauge is an internal metric kept by the alien to prevent it hanging around the player too long.</p>
+			<ul>
+				<li>
+					<code style="background:#8e1073;color:white;">Decrease Time</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 0</code>
+					<code style="background:#412b69;color:white;">Maximum: 1000</code>
+				</li>
+				<ul><li>Defines the time that the gauge takes to fully decrease to empty from full if no new menaces occur.</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Deemed Time</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 0</code>
+					<code style="background:#412b69;color:white;">Maximum: 1000</code>
+				</li>
+				<ul><li>Defines the time before a menace is counted if the alien is trying to create one and it doesn't occur.</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Maximum Menaces</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 1</code>
+					<code style="background:#412b69;color:white;">Maximum: 10</code>
+				</li>
+				<ul><li>Defines the maximum number of menaces before the alien goes backstage.</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Seconds To Fill</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 0.1</code>
+					<code style="background:#412b69;color:white;">Maximum: 50</code>
+				</li>
+				<ul><li>Defines the seconds it takes to fill the gauge while at max menace.</li></ul>
+			</ul>
+			
+			<h3 id="frontstage-search-exclusion">Search Exclusion Radius</h3>
+			<div style="padding-left:10px;margin-top:20px;">
+				<h4 id="frontstage-search-exclusion-near-target">Near Target</h4>
+				<ul>
+					<li>
+						<code style="background:#8e1073;color:white;">First Stalk</code>
+						<code style="background:#412b69;color:white;">float</code>
+						<code style="background:#412b69;color:white;">Minimum: 0</code>
+						<code style="background:#412b69;color:white;">Maximum: 1000</code>
+					</li>
+					<ul><li>Defines how near/far to the target the alien can get on the first stalk, when menacing.</li></ul>
+					
+					<li>
+						<code style="background:#8e1073;color:white;">Subsequent Stalk</code>
+						<code style="background:#412b69;color:white;">float</code>
+						<code style="background:#412b69;color:white;">Minimum: 0</code>
+						<code style="background:#412b69;color:white;">Maximum: 1000</code>
+					</li>
+					<ul><li>Defines how near/far to the target the alien can get on subsequent stalks, when menacing.</li></ul>
+				</ul>
+				<h4 id="frontstage-search-exclusion-near-objective">Near Objective</h4>
+				<ul>
+					<li>
+						<code style="background:#8e1073;color:white;">First Stalk</code>
+						<code style="background:#412b69;color:white;">float</code>
+						<code style="background:#412b69;color:white;">Minimum: 0</code>
+						<code style="background:#412b69;color:white;">Maximum: 1000</code>
+					</li>
+					<ul><li>Defines how near/far to the objective the alien can get on the first stalk, when menacing.</li></ul>
+					
+					<li>
+						<code style="background:#8e1073;color:white;">Subsequent Stalk</code>
+						<code style="background:#412b69;color:white;">float</code>
+						<code style="background:#412b69;color:white;">Minimum: 0</code>
+						<code style="background:#412b69;color:white;">Maximum: 1000</code>
+					</li>
+					<ul><li>Defines how near/far to the objective the alien can get on subsequent stalks, when menacing.</li></ul>
+				</ul>
+			</div>
+			
+			<h3 id="frontstage-player-in-vent">Player In Vent</h3>
+			<ul>
+				<li>
+					<code style="background:#8e1073;color:white;">Vent Attract Time</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 20 (min) 30 (max)</code>
+					<code style="background:#412b69;color:white;">Maximum: 300</code>
+				</li>
+				<ul><li>Defines the minimum and maximum time the alien will allow you to stay in a vent before coming for you.</li></ul>
+			</ul>
+			
+			<h3 id="frontstage-sweep">Sweep Range</h3>
+			<ul>
+				<li>
+					<code style="background:#8e1073;color:white;">Increase Duration</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 5</code>
+					<code style="background:#412b69;color:white;">Maximum: 10000</code>
+				</li>
+				<ul><li>Defines how long it takes for the alien to go from far away from target to close in.</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Decrease Duration</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 5</code>
+					<code style="background:#412b69;color:white;">Maximum: 10000</code>
+				</li>
+				<ul><li>Defines how long it takes for the alien to go from near to target to far away.</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Area Width (Half)</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 5</code>
+					<code style="background:#412b69;color:white;">Maximum: 100</code>
+				</li>
+				<ul><li>Defines half the width of the box that sweep jobs for the alien can operate within.</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Area Length (Half)</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 5</code>
+					<code style="background:#412b69;color:white;">Maximum: 100</code>
+				</li>
+				<ul><li>Defines half the length of the box that sweep jobs for the alien can operate within.</li></ul>
+			</ul>
+		</section>
+	</section>
+
+	<section class="docs-section" id="backstage">
+		<h2 class="section-heading">Backstage</h2>
+		<p>The alien is defined as 'backstage' when it is up in the ceiling vents.</p>
+		
+		<section class="docs-section" style="border-bottom: 0">
+			<h3 id="backstage-vent-killtraps">Vent Killtraps</h3>
+			<ul>
+				<li>
+					<code style="background:#8e1073;color:white;">Killtrap After Seconds</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: -1</code>
+					<code style="background:#412b69;color:white;">Maximum: 10000</code>
+				</li>
+				<ul><li>After being backstage for this amount of time, the alien will start an attempt to killtrap you (-1 is infinite).</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Killtrap Ambush Timeout</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: -1</code>
+					<code style="background:#412b69;color:white;">Maximum: 10000</code>
+				</li>
+				<ul><li>This defines how long to wait while trying to ambush the player in a killtrap before giving up (-1 is infinite).</li></ul>
+			</ul>
+			
+			<h3 id="backstage-sweep">Sweep</h3>
+			<ul>
+				<li>
+					<code style="background:#8e1073;color:white;">Timeout</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: -1</code>
+					<code style="background:#412b69;color:white;">Maximum: 10000</code>
+				</li>
+				<ul><li>This defines the timeout for the backstage stalk behaviour tree action (-1 is infinite).</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Distance</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: -1</code>
+					<code style="background:#412b69;color:white;">Maximum: 10000</code>
+				</li>
+				<ul><li>This defines the minimum and maximum distance to sweep backstage in relation to the player (-1 is infinite).</li></ul>
+				
+				<li>
+					<code style="background:#8e1073;color:white;">Idle Time</code>
+					<code style="background:#412b69;color:white;">float</code>
+					<code style="background:#412b69;color:white;">Minimum: 1</code>
+					<code style="background:#412b69;color:white;">Maximum: 10000</code>
+				</li>
+				<ul><li>This defines the minimum and maximum amount of time the alien will pause for before moving when backstage.</li></ul>
+			</ul>
+		</section>
+			
+		<ul>
+		</ul>
+	</section>
+
+</article>
+
+<footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../../assets/plugins/popper.min.js"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../../assets/js/highlight-custom.js"></script> 
+    <script src="../../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../../assets/js/docs.js"></script> 
+
+</body>
+</html> 
