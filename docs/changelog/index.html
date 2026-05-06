@@ -78,6 +78,8 @@
     
     <!-- paste new sidebar content here -->
     
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-16-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.16.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-16-0-0">Version 0.16.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-15-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.15.0.X</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-15-3-0">Version 0.15.3.0</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-15-2-0">Version 0.15.2.0</a></li>
@@ -145,6 +147,68 @@
 			<li class="breadcrumb-item active" aria-current="page">Changelog</li>
 		  </ol>
 		</nav>
+</article>
+
+<article class="docs-article" id="0-16-0-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.16.0.X</h1>
+    </header>
+	
+	<section class="docs-section" id="version-0-16-0-0">
+        <h2 class="section-heading">Version 0.16.0.0</h2>
+    
+        <p><strong>Released 6th May 2026.</strong></p>
+		<ul>
+			<li>Script Editor
+				<ul>
+					<li>Added ability to modify model/texture flags</li>
+					<li>Added ability to export/import textures/models</li>
+					<li>Added ability to edit individual models</li>
+					<li>Added refreshed versions of all old configuration editors from the standalone tool: no more templates, much nicer UIs, and expanded support for all options, with documentation</li>
+					<li>Added new global constants editor</li>
+					<li>Added new hair and skin shading editor</li>
+					<li>Added new permanent soundbanks editor</li>
+					<li>Added new physical material editor</li>
+					<li>Added a new UI editor</li>
+					<li>Integrated the Backup Manager, with compression support and improvements such as prompting to save/reload active levels</li>
+					<li>Added a new Animations editor (will be expanded to support individual animation files and animation trees soon!)</li>
+					<li>Expanded material editing support with ability to select samplers</li>
+					<li>Fixed a crash when opening multiple enum string UIs</li>
+					<li>Added new Steam achievements for using various functionality</li>
+					<li>Game executable is always patched to support custom content</li>
+					<li>Added 'Launch Game' option mirroring the old launch game tool</li>
+					<li>Added option to launch the behaviour tree editor</li>
+					<li>Added progress bars to the composite porting window</li>
+					<li>Flowgraph and entity metadata is now included when porting between levels</li>
+					<li>Added checkbox to show the game platform in the title bar</li>
+					<li>Improved transparency support in model preview</li>
+					<li>Added button to check for updates, and a display for version info</li>
+					<li>Added toggle to swap between staging/main branch for non-Steam</li>
+					<li>Fixed a bug where material mapping changes may save incorrectly</li>
+					<li>Added rich presence support for Steam</li>
+					<li>Fixed rules on right click delete/rename for folders and composites</li>
+					<li>Added initial support for the Switch/iOS/Android versions of the game</li>
+					<li>Implemented updating functionality (replaces old launcher)</li>
+					<li>Fixed an issue where renamed composites would revert back</li>
+					<li>Added ability to rename root composite</li>
+					<li>Material remappings can be selected via material picker, with preview for To/From</li>
+					<li>Fixed global entity type search for Torch_Control, GCIP, and others</li>
+					<li>Global search now works on enter and focusses input on start</li>
+					<li>Now showing material remapping parameter with selection UI</li>
+					<li>Taskbar will show a progress indicator when loading/saving</li>
+					<li>Moved Level Viewer options to their own dropdown</li>
+					<li>Many other bug fixes and improvements</li>
+				</ul>
+			</li>
+			<li>Removed the old Asset Editor</li>
+			<li>Removed the old Configuration Editor</li>
+			<li>Removed the old Launch Game tool</li>
+			<li>Removed the old Backup Manager tool</li>
+			<li>Removed old Steam achievements (replaced with new ones embedded in Script Editor)</li>
+			<li>Launching the tools now launches right into the Script Editor</li>
+			<li>Fixed an issue with swapping to staging branch for non-Steam versions</li>
+		</ul>
+	</section>
 </article>
 
 <article class="docs-article" id="0-15-0-x">
