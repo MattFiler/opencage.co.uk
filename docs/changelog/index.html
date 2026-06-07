@@ -78,8 +78,10 @@
     
     <!-- paste new sidebar content here -->
     
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#0-17-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.17.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-17-0-0">Version 0.17.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-16-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.16.0.X</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#version-0-16-0-1">Version 0.16.0.2</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-0-16-0-2">Version 0.16.0.2</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-16-0-1">Version 0.16.0.1</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-16-0-0">Version 0.16.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-15-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.15.0.X</a></li>
@@ -149,6 +151,53 @@
 			<li class="breadcrumb-item active" aria-current="page">Changelog</li>
 		  </ol>
 		</nav>
+</article>
+
+<article class="docs-article" id="0-17-0-x">
+    <header class="docs-header">
+        <h1 class="docs-heading">0.17.0.X</h1>
+    </header>
+	
+	<section class="docs-section" id="version-0-17-0-0">
+        <h2 class="section-heading">Version 0.17.0.0</h2>
+    
+        <p><strong>Released 7th June 2026.</strong></p>
+		<ul>
+		  <li>Added a new and improved <a href="https://opencage.co.uk/docs/level-viewer/">Level Viewer</a>, with extended two-way live-edit support!
+			<ul>
+			  <li>Removed requirement to install Unity</li>
+			  <li>Added preview support for various volumes (PlayerTriggerBox, etc), positions (PositionMarker, etc), and other script entities (SplinePath, LightReference, ParticleEmitterReference, etc)</li>
+			  <li>Added ability to select meshes and other entity previews (LMB to select, CTRL+MMB to enter a composite instance)</li>
+			  <li>Added a 'deep select' mode (toggleable via Num0) to select into composite instances to apply alias overrides</li>
+			  <li>Added gizmos to translate/rotate the selected entity, which syncs back to the main OpenCAGE app</li>
+			  <li>Added a new selection/aliased colouring overlay for entity renders (green is selected, orange is aliased)</li>
+			  <li>Live-sync now supports more parameter types, for example, dimensions of trigger volumes, or loops of splines (and positions)</li>
+			  <li>Major performance improvements</li>
+			  <li>Added UIs for camera speed/position, connection status, active gizmo, deep select, and selected entity in level viewer</li>
+			  <li>Load screens now show while content is processing</li>
+			  <li>Added various options in OpenCAGE to sync to the viewer, including gizmo snap/step, wireframe mode, and more</li>
+			  <li>Find docs for all the new features <a href="https://opencage.co.uk/docs/level-viewer/">here</a>!</li>
+			</ul>
+		  </li>
+		  <li>Renaming or deleting entities will no longer reload the whole list</li>
+		  <li>Updated material editor UI to show all properties/features in one list</li>
+		  <li>Composite hierarchy is now clickable to skip back to specific composites</li>
+		  <li>Added a search in the model editor window</li>
+		  <li>Added an additional info popup for submesh content</li>
+		  <li>Added support for displaying particle material names, no longer using GUIDs</li>
+		  <li>Added 'Render Constant Ambient' launch option to render the game in unlit mode</li>
+		  <li>Added new 'Manage Pins' option to add/remove individual node pins</li>
+		  <li>Additional samplers are now exported along with models</li>
+		  <li>Model preview supports extended material data including specular (metalness/roughness) and dirt maps</li>
+		  <li>Fixed a material bug when importing new meshes (and not selecting a material manually)</li>
+		  <li>Fixed an issue with vertex buffer generation when importing custom models</li>
+		  <li>Fixed display of material preview on import for non-UV'd meshes</li>
+		  <li>Fixed preview for shader types without a diffuse tint</li>
+		  <li>Fixed an issue where Steam would report the app still running after exiting</li>
+		  <li>Behaviour tree tool is disabled if uninstalled</li>
+		  <li>PAK is now prioritised over BIN for Commands (fixes Steam verify files bug)</li>
+		</ul>
+	</section>
 </article>
 
 <article class="docs-article" id="0-16-0-x">
