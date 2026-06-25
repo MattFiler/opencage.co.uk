@@ -1,1 +1,2802 @@
-Currently working on this page...
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Behaviour Tree Nodes</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentation for the available behaviour tree nodes in OpenCAGE for Alien: Isolation.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Behaviour Tree Nodes" />
+	<meta name="twitter:description" content="Documentation for the available behaviour tree nodes in OpenCAGE for Alien: Isolation." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+		.docs-article > .docs-section {
+			border-top: 1px dashed #363636;
+			padding: 30px 0 20px 0;
+		}
+		.docs-article {
+			border-bottom: 3px solid #e7e9ed;
+		}
+		.docs-article > p {
+			padding-bottom:40px;
+		}
+		.docs-section > ul {
+			margin-bottom:0;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-lg-flex" style="visibility:hidden;">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#actions"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Actions</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionAbortMeleeAttack">AbortMeleeAttackTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionPlayTree">ActionPlayTree</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionAffectedByFlameThrower">AffectedByFlameThrower</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionAffectedByFlameThrowerInVent">AffectedByFlameThrowerInVent</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionAlienWonScareTest">AlienWonScareTest</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionApplyPrimaryDamageControlResponse">ApplyPrimaryDamageControlResponse</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionAssert">Assert</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionBackstageAlienResponse">BackstageAlienResponse</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionBackstageAreaSweep">BackstageAreaSweep</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionBreakout">Breakout</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionChangeCover">ChangeCover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionDead">Dead</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionDebugMenuLinkItem">DebugMenuLinkItem</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionDebugString">DebugString</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionDespawn">Despawn</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionBrokenCover">DoBrokenCover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionDoneSystematicSearch">DoneSystematicSearch</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionExpireTimer">ExpireTimer</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionFail">Fail</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionFakeSense">FakeSense</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionForceIdle">Force Idle</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionForceSearch">Force Search</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionGetOutOfTheWay">GetOutOfTheWay</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionHitTargetAndRun">HitTargetAndRun</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionIdle">Idle</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionIdleInCover">IdleInCover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionIdleTime">IdleTime</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionIdleTimeFacingSuspiciousItem">IdleTimeFacingSuspiciousItem</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionIdleTimeFacingTarget">IdleTimeFacingTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionIdleTimeFacingTargetMostRecentSensedPosition">IdleTimeFacingTargetMostRecentSensedPosition</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionIdleTimeFacingTargetOutsideCombatArea">IdleTimeFacingTargetOutsideCombatArea</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionIdleTimeFacingTargetSensedPosition">IdleTimeFacingTargetSensedPosition</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionListeningInConvo">ListeningInConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMakeAggressive">MakeAggressive</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMeleeAttack">MeleeAttackTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveInDirection">MoveInDirection</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveThroughTarget">MoveThroughTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToAttackTarget">MoveToAttackTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToBackstageViaVentClosestToAlien">MoveToBackstageViaVentClosestToAlien</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToConvo">MoveToConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToCover">MoveToCover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToFrontStageViaFlankedVentClosestToPlayer">MoveToFrontStageViaFlankedVentClosestToPlayer</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToMostRecentSensedPosition">MoveToMostRecentSensedPosition</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToNearestStandingPointToTarget">MoveToNearestStandingPointToTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToObjective">MoveToObjective</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveToTarget">MoveToTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionMoveWithGamepad">MoveWithGamepad</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionNotifySquad">NotifySquad</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionPauseSenses">PauseSenses</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionPerformAmbush">PerformAmbush</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionPerformRole">PerformRole</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionPlayerController">PlayerController</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionPlayTreeAndFaceTarget">PlayTreeAndFaceTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionRangedAim">RangedAim</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionRangedShoot">RangedShoot</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionRequestCover">RequestCover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionResetSearchJobs">ResetSearchJobs</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionScript">Script</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSetFrameFlag">SetFrameFlag</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSetGaugeAmount">SetGaugeAmount</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSetLogicCharacterFlags">SetLogicCharacterFlags</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSetMenaceManager">SetMenaceManager</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSetWithdrawState">SetWithdrawState</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSpeakingInConvo">SpeakingInConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionStartTimer">StartTimer</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionStartTimerRandom">StartTimerRandom</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSuccess">Success</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSuspectTargetResponse">SuspectTargetResponse</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSuspend">Suspend</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSuspiciousItemDoneStage">SuspiciousItemDoneStage</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSuspiciousItemMoveTo">SuspiciousItemMoveTo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSuspiciousItemReaction">SuspiciousItemReaction</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionSwitchToNextTarget">SwitchToNextTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionTakeStep">TakeStep</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionThreatAware">ThreatAware</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionThreatEscalation">ThreatEscalation</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionTriggerSound">TriggerSound</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ActionWeaponEquip">WeaponEquip</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#conditions"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Conditions</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAlienIsAllowed">AlienIsAllowed</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAllowedToAttackTarget">AllowedToAttackTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAllowedToDoSuspiciousWarning">AllowedToDoSuspiciousWarning</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAllowedToPursueTarget">AllowedToPursueTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAllowedToSearch">AllowedToSearch</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAngleFromTargetAgainstTargetCameraDirnLessThan">AngleFromTargetAgainstTargetCameraDirnLessThan</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAngleNPCToTargetsAimLessThan">AngleNPCToTargetsAimLessThan</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAngleToTargetLessThan">AngleToTargetLessThan</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionAnotherAlienIsAttackingThisTarget">AnotherAlienIsAttackingThisTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionCanBeControlledByGamepad">CanBeControlledByGamepad</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionCanBreakout">CanBreakout</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionCanShootNow">CanShootNow</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionCanTakeStep">CanTakeStep</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionCheckHealthState">CheckHealthState</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionConvoInteruppted">ConvoInterrupted</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionConvoInterupptedByPlayer">ConvoInterruptedByPlayer</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionCurrentWeaponIsEquipped">CurrentWeaponIsEquipped</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionCurrentWeaponNeedsReloading">CurrentWeaponNeedsReloading</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionDebugMenuLinkTest">DebugMenuLinkTest</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionEventAOccuredAfterB">EventAOccuredAfterB</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionGameIsDifficulty">GameIsDifficulty</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasAggroLevel">HasAggroLevel</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasAlertnessState">HasAlertnessState</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasAmbushPoint">HasAmbushPoint</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasAnySenseBeenAbove">HasAnySenseBeenAbove</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasAnySenseBeenAboveWithinTime">HasAnySenseBeenAboveWithinTime</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasAWeapon">HasAWeapon</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasDoneSuspectResponseMoveTo">HasDoneSuspectResponseMoveTo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasDoneSuspectResponseWithinTime">HasDoneSuspectResponseWithinTime</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasFlankedVentCloseToPlayer">HasFlankedVentCloseToPlayer</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasGroupAwarenessState">HasGroupAwarenessState</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasKilltrap">HasKilltrap</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasMeleeAttackAvailable">HasMeleeAttackAvailable</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasMeleeAttackAvailableOrIsAttacking">HasMeleeAttackAvailableOrIsAttacking</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasMeleeBlockAvailable">HasMeleeBlockAvailable</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasMeleeCounterAttackAvailable">HasMeleeCounterAttackAvailable</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasMotivation">HasMotivation</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasObjective">HasObjective</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasScript">HasScript</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasSearchedMostRecentSensedPosition">HasSearchedMostRecentSensedPosition</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasSenseActivationBeenAbove">HasSenseActivationBeenAbove</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasTimerExpired">HasTimerExpired</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasToken">HasToken</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasValidCoverToChangeTo">HasValidCoverToChangeTo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasValidRouteToNearTarget">HasValidRouteToNearTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasValidRouteToTarget">HasValidRouteToTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHasVentCloseToAlien">HasVentCloseToAlien</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHaveNextTarget">HaveNextTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionHaveTarget">HaveTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionInConvo">InConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionInPositionForConvo">InPositionForConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsAnySenseActivationAbove">IsAnySenseActivationAbove</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsBackstage">IsBackstage</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsBranchActive">IsBranchActive</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsCharacterClass">IsCharacterClass</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsCorpseTrap">IsCorpseTrap</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsCoverExposed">IsCoverExposed</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsCoverTooClose">IsCoverTooClose</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsCrouching">IsCrouching</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsCurrentCoverValid">IsCurrentCoverValid</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsDead">IsDead</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsEnemyOfTarget">IsEnemyOfTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsFrameFlagSet">IsFrameFlagSet</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsGaugeAmountAbove">IsGaugeAmountAbove</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsGaugeAmountBelow">IsGaugeAmountBelow</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsInCombatArea">IsInCombatArea</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsInCover">IsInCover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsInCrawlSpace">IsInCrawlSpace</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsInTargetsWeaponRange">IsInTargetsWeaponRange</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsInVent">IsInVent</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsPartOfNPCGroup">IsPartOfNPCGroup</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsPerformingRoleOrCouldPerformRole">IsPerformingRoleOrCouldPerformRole</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsRequestingCover">IsRequestingCover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsSenseActivationAbove">IsSenseActivationAbove</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionIsTargetInDeepCrouch">IsTargetInDeepCrouch</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionLastTimeSearchedWithinTime">LastTimeSearchedWithinTime</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionLastTimeSensed">LastTimeSensed</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionLastTimeSensedFloat">LastTimeSensedFloat</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionLastTimeSquadNotified">LastTimeSquadNotified</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionLastTimeTargetShotAtMe">LastTimeTargetShotAtMe</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionLastTimeWasAbleToShootTarget">LastTimeWasAbleToShootTarget</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionListeningInConvo">ListeningInConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionLogicCharacterFlags">LogicCharacterFlags</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionMostRecentSenseActivationHasBeenAbove">MostRecentSenseActivationHasBeenAbove</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionNeedsToGetOutOfTheWay">NeedsToGetOutOfTheWay</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionObjectiveIsInCombatArea">ObjectiveIsInCombatArea</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionObjectiveIsWithinDistance">ObjectiveIsWithinDistance</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionPlayerIsAnEnemy">PlayerIsAnEnemy</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionPlayerIsInExploitableArea">PlayerIsInExploitableArea</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionPlayerJoinedConvo">PlayerJoinedConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionRangeTestForScriptedWithdrawal">RangeTestForScriptedWithdrawal</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionRequiresPrimaryDamageControlResponse">RequiresPrimaryDamageControlResponse</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionScriptedWithdrawRequested">ScriptedWithdrawRequested</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionShouldFollow">ShouldFollow</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionShouldProcessSuspiciousItem">ShouldProcessSuspiciousItem</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionShouldSuspend">ShouldSuspend</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionShouldUseCover">ShouldUseCover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSomeoneJoinedConvo">SomeoneJoinedConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSquadDoingEscalation">SquadDoingEscalation</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSquadDoingSuspiciousWarning">SquadDoingSuspiciousWarning</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSuspiciousItemBTPriority">SuspiciousItemBTPriority</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSuspiciousItemFirstGroupMember">SuspiciousItemFirstGroupMember</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSuspiciousItemGroupAllowedToProgress">SuspiciousItemGroupAllowedToProgress</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSuspiciousItemGroupMembersRoutingTo">SuspiciousItemGroupMembersRoutingTo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSuspiciousItemIsWithinDistance">SuspiciousItemIsWithinDistance</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSuspiciousItemShouldDoStage">SuspiciousItemShouldDoStage</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionSuspiciousItemWaitForGroupRouting">SuspiciousItemWaitForGroupRouting</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTalkingInConvo">TalkingInConvo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsInCombatArea">TargetIsInCombatArea</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsInWeaponRange">TargetIsInWeaponRange</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsOnlyAccessibleCrouching">TargetIsOnlyAccessibleCrouching</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsPlayer">TargetIsPlayer</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsTargetingMe">TargetIsTargetingMe</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsUsingMeleeAttack">TargetIsUsingMeleeAttack</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsWithinAggroRadius">TargetIsWithinAggroRadius</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsWithinDistance">TargetIsWithinDistance</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsWithinDistanceOfAlien">TargetIsWithinDistanceOfAlien</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsWithinDistanceThreshold">TargetIsWithinDistanceThreshold</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsWithinDistanceUnobscured">TargetIsWithinDistanceUnobscured</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetIsWithinRoutingDistance">TargetIsWithinRoutingDistance</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetLogicCharacterFlags">TargetLogicCharacterFlags</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetNearestStandPointIsWithinDistance">TargetNearestStandPointIsWithinDistance</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetsWeaponHasAmmo">TargetsWeaponHasAmmo</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionTargetsWeaponHasProperty">TargetsWeaponHasProperty</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionVisualSomeRaysThroughGlass">VisualSomeRaysThroughGlass</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionWasSenseThresholdLastIncreaseActivation">WasSenseThresholdLastIncreaseActivation</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionWasSenseThresholdLastIncreaseActivationAbove">WasSenseThresholdLastIncreaseActivationAbove</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ConditionWithdrawState">WithdrawState</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#decorators"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Decorators</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorAggressionEscalation">AggressionEscalation</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorAwarenessState">AwarenessState</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorBranch">Branch</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorMood">DecoratorMood</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorLockBestVents">LockBestVents</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorLoop">Loop</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorPercentage">Percentage</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorSetSenseSet">SetSenseSet</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorSquadSearch">SquadSearch</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorSuspiciousItemInProgress">SuspiciousItemInProgress</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#DecoratorTimer">Timer</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#selectors"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Selectors</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SelectorPercentage">PercentageSelector</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SelectorLinear">Selector</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#sequences"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Sequences</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SequenceLinear">Sequence</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#SequenceStateless">SequenceStateless</a></li>
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="border-bottom:0; padding-bottom:0;">
+		<nav class="breadcrumb_parent">
+		  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+			<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Behaviour Tree Nodes</li>
+		  </ol>
+		</nav>
+		</article>
+
+<article class="docs-article" id="actions">
+<header class="docs-header"><h1 class="docs-heading">Actions</h1></header>
+<p style="margin:0">Action nodes are the leaves of a behaviour tree that actually make the character do something – playing animations, moving, firing weapons, updating state and so on. They have no children and report back whether the action succeeded, failed or is still running.</p>
+<section class="docs-section" id="ActionAbortMeleeAttack">
+<h2 class="section-heading">AbortMeleeAttackTarget</h2>
+<p style="margin:0 0 12px 0;">Force an abort of the current melee attack. This will immediately succeed.</p>
+</section>
+<section class="docs-section" id="ActionPlayTree">
+<h2 class="section-heading">ActionPlayTree</h2>
+<p style="margin:0 0 12px 0;">Play anim tree.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">AnimTreeEnum</code> <code>ANIM_TREE_ENUM</code>
+<ul style="padding-top:5px;">
+<li>The anim tree to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">AnimCallbackEnum</code> <code>ANIM_CALLBACK_ENUM</code>
+<ul style="padding-top:5px;">
+<li>The anim callback to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionAffectedByFlameThrower">
+<h2 class="section-heading">AffectedByFlameThrower</h2>
+<p style="margin:0 0 12px 0;">React to flamethrower.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionAffectedByFlameThrowerInVent">
+<h2 class="section-heading">AffectedByFlameThrowerInVent</h2>
+<p style="margin:0 0 12px 0;">React to flamethrower in vent.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionAlienWonScareTest">
+<h2 class="section-heading">AlienWonScareTest</h2>
+<p style="margin:0 0 12px 0;">Alien won the &#x27;scare test&#x27; - appears deprecated.</p>
+</section>
+<section class="docs-section" id="ActionApplyPrimaryDamageControlResponse">
+<h2 class="section-heading">ApplyPrimaryDamageControlResponse</h2>
+<p style="margin:0 0 12px 0;">Take an impact by aborting the current action (unless already impacted).</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionAssert">
+<h2 class="section-heading">Assert</h2>
+<p style="margin:0 0 12px 0;">Causes an in-game assert (not functional in retail).</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AssertInfo</code> <code>string</code>
+<ul style="padding-top:5px;">
+<li>Assert information.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionBackstageAlienResponse">
+<h2 class="section-heading">BackstageAlienResponse</h2>
+<p style="margin:0 0 12px 0;">Performs suspect behaviour when an NPC hears the backstage Alien.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionBackstageAreaSweep">
+<h2 class="section-heading">BackstageAreaSweep</h2>
+<p style="margin:0 0 12px 0;">Backstage area sweep.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">BackstageBehaviour</code> <code>BACKSTAGE_BEHAVIOUR</code>
+<ul style="padding-top:5px;">
+<li>The combat state you want to notify.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionBreakout">
+<h2 class="section-heading">Breakout</h2>
+<p style="margin:0 0 12px 0;">Breakout.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionChangeCover">
+<h2 class="section-heading">ChangeCover</h2>
+<p style="margin:0 0 12px 0;">Change to pending cover.</p>
+</section>
+<section class="docs-section" id="ActionDead">
+<h2 class="section-heading">Dead</h2>
+<p style="margin:0 0 12px 0;">Die!</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionDebugMenuLinkItem">
+<h2 class="section-heading">DebugMenuLinkItem</h2>
+<p style="margin:0 0 12px 0;">Will always succeed - sets the debug menu item to the given value (not functional) in retail).</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">In_Game_Menu_Text</code> <code>string</code>
+<ul style="padding-top:5px;">
+<li>What to display in the in-game debug menus.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">DefaultBehaviour</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>What should it set the menu item back to?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionDebugString">
+<h2 class="section-heading">DebugString</h2>
+<p style="margin:0 0 12px 0;">Debug string (not functional in retail).</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">DebugString</code> <code>string</code>
+<ul style="padding-top:5px;">
+<li>Debug string to log.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionDespawn">
+<h2 class="section-heading">Despawn</h2>
+<p style="margin:0 0 12px 0;">Despawn.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionBrokenCover">
+<h2 class="section-heading">DoBrokenCover</h2>
+<p style="margin:0 0 12px 0;">Broken cover.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionDoneSystematicSearch">
+<h2 class="section-heading">DoneSystematicSearch</h2>
+<p style="margin:0 0 12px 0;">Done systematic search.</p>
+</section>
+<section class="docs-section" id="ActionExpireTimer">
+<h2 class="section-heading">ExpireTimer</h2>
+<p style="margin:0 0 12px 0;">Expires a timer.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">TimerType</code> <code>LOGIC_CHARACTER_TIMER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of timer we are expiring.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionFail">
+<h2 class="section-heading">Fail</h2>
+<p style="margin:0 0 12px 0;">Returns failure.</p>
+</section>
+<section class="docs-section" id="ActionFakeSense">
+<h2 class="section-heading">FakeSense</h2>
+<p style="margin:0 0 12px 0;">Fakes a sense to the specified threshold.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The sensory type to fake.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>Which sensory threshold to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionForceIdle">
+<h2 class="section-heading">Force Idle</h2>
+<p style="margin:0 0 12px 0;">Force into an idle state.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionForceSearch">
+<h2 class="section-heading">Force Search</h2>
+<p style="margin:0 0 12px 0;">Force a success (not related to search behaviour).</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionGetOutOfTheWay">
+<h2 class="section-heading">GetOutOfTheWay</h2>
+<p style="margin:0 0 12px 0;">Move away from the current spot.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionHitTargetAndRun">
+<h2 class="section-heading">HitTargetAndRun</h2>
+<p style="margin:0 0 12px 0;">Attack the target and run.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionIdle">
+<h2 class="section-heading">Idle</h2>
+<p style="margin:0 0 12px 0;">Switch to an idle state.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionIdleInCover">
+<h2 class="section-heading">IdleInCover</h2>
+<p style="margin:0 0 12px 0;">Idle in cover.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionIdleTime">
+<h2 class="section-heading">IdleTime</h2>
+<p style="margin:0 0 12px 0;">Switch to an idle state for a set time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Time to Idle</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds to remain idle.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">NoiseTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Random variation in seconds applied to the base duration.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionIdleTimeFacingSuspiciousItem">
+<h2 class="section-heading">IdleTimeFacingSuspiciousItem</h2>
+<p style="margin:0 0 12px 0;">Idle time facing suspicious item.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Time</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">NoiseTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Random variation in seconds applied to the base duration.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">WaitForTeamMembersRouting</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>If set then this is used in the WaitForTeamMembersRouting branch.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionIdleTimeFacingTarget">
+<h2 class="section-heading">IdleTimeFacingTarget</h2>
+<p style="margin:0 0 12px 0;">Switch to an idle state for a set time, facing a target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Time to idle once facing the target</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds to remain idle once facing the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">NoiseTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Random variation in seconds applied to the base duration.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionIdleTimeFacingTargetMostRecentSensedPosition">
+<h2 class="section-heading">IdleTimeFacingTargetMostRecentSensedPosition</h2>
+<p style="margin:0 0 12px 0;">Switch to an idle state for a set time and face last sensed position using specified threshold.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>Which sensory threshold to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Facing Tolerance</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>What angle do we turn to face target?</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Time to Idle</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds to remain idle.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">NoiseTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Random variation in seconds applied to the base duration.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionIdleTimeFacingTargetOutsideCombatArea">
+<h2 class="section-heading">IdleTimeFacingTargetOutsideCombatArea</h2>
+<p style="margin:0 0 12px 0;">Switch to an idle state for a set time and face target outside combat area using sense threshold.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>Which sensory threshold to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Facing Tolerance</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>What angle do we turn to face target?</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Time to Idle</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds to remain idle.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">NoiseTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Random variation in seconds applied to the base duration.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionIdleTimeFacingTargetSensedPosition">
+<h2 class="section-heading">IdleTimeFacingTargetSensedPosition</h2>
+<p style="margin:0 0 12px 0;">Switch to an idle state for a set time and face target position using specified sense threshold.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The sensory information we are using for finding the last position.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>Which sensory threshold to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Facing Tolerance</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>What angle do we turn to face target?</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Time to Idle</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds to remain idle.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">NoiseTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Random variation in seconds applied to the base duration.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionListeningInConvo">
+<h2 class="section-heading">ListeningInConvo</h2>
+<p style="margin:0 0 12px 0;">Listen in our conversation.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMakeAggressive">
+<h2 class="section-heading">MakeAggressive</h2>
+<p style="margin:0 0 12px 0;">Make the NPC go into an aggressive state.</p>
+</section>
+<section class="docs-section" id="ActionMeleeAttack">
+<h2 class="section-heading">MeleeAttackTarget</h2>
+<p style="margin:0 0 12px 0;">Character attacks current target with their possible melee.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">AttackType</code> <code>ATTACK_TYPE</code>
+<ul style="padding-top:5px;">
+<li>Type of attack.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveInDirection">
+<h2 class="section-heading">MoveInDirection</h2>
+<p style="margin:0 0 12px 0;">Move in direction.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Distance.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Direction</code> <code>MOVE_DIRECTION</code>
+<ul style="padding-top:5px;">
+<li>The direction in which to move.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveThroughTarget">
+<h2 class="section-heading">MoveThroughTarget</h2>
+<p style="margin:0 0 12px 0;">Move to our current target and do not attempt to stop on arrival.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToAttackTarget">
+<h2 class="section-heading">MoveToAttackTarget</h2>
+<p style="margin:0 0 12px 0;">Move to our current target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">PlayStoppingAnim</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should the atomic succeed when we are close to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">StoppingDistance</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Distance in metres at which movement stops.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToBackstageViaVentClosestToAlien">
+<h2 class="section-heading">MoveToBackstageViaVentClosestToAlien</h2>
+<p style="margin:0 0 12px 0;">Move to backstage via vent closest to Alien.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">VentLockReason</code> <code>VENT_LOCK_REASON</code>
+<ul style="padding-top:5px;">
+<li>The vent lock reason to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToConvo">
+<h2 class="section-heading">MoveToConvo</h2>
+<p style="margin:0 0 12px 0;">Move to our current conversation.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToCover">
+<h2 class="section-heading">MoveToCover</h2>
+<p style="margin:0 0 12px 0;">Move to cover position.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToFrontStageViaFlankedVentClosestToPlayer">
+<h2 class="section-heading">MoveToFrontStageViaFlankedVentClosestToPlayer</h2>
+<p style="margin:0 0 12px 0;">Move to frontstage via flanked vent closest to player.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">VentLockReason</code> <code>VENT_LOCK_REASON</code>
+<ul style="padding-top:5px;">
+<li>The vent lock reason to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToMostRecentSensedPosition">
+<h2 class="section-heading">MoveToMostRecentSensedPosition</h2>
+<p style="margin:0 0 12px 0;">Move to most recent sensed position.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ShouldAim</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should the atomic succeed when we are close to the target.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToNearestStandingPointToTarget">
+<h2 class="section-heading">MoveToNearestStandingPointToTarget</h2>
+<p style="margin:0 0 12px 0;">Move to the nearest standing point by our current target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">PlayStoppingAnim</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should the atomic succeed when we are close to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">StoppingDistance</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Distance in metres at which movement stops.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToObjective">
+<h2 class="section-heading">MoveToObjective</h2>
+<p style="margin:0 0 12px 0;">Move to our current objective.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ObjectiveType</code> <code>OBJECTIVE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of objective we are moving to.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveToTarget">
+<h2 class="section-heading">MoveToTarget</h2>
+<p style="margin:0 0 12px 0;">Move to our current target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">PlayStoppingAnim</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should the atomic succeed when we are close to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">StoppingDistance</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Distance in metres at which movement stops.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionMoveWithGamepad">
+<h2 class="section-heading">MoveWithGamepad</h2>
+<p style="margin:0 0 12px 0;">Move using gamepad (not functional in retail).</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionNotifySquad">
+<h2 class="section-heading">NotifySquad</h2>
+<p style="margin:0 0 12px 0;">Notify my squad of an event.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CombatState</code> <code>NPC_COMBAT_STATE</code>
+<ul style="padding-top:5px;">
+<li>The combat state you want to notify.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionPauseSenses">
+<h2 class="section-heading">PauseSenses</h2>
+<p style="margin:0 0 12px 0;">Pause senses for specified duration.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Duration to pause senses</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds to pause sensory input</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionPerformAmbush">
+<h2 class="section-heading">PerformAmbush</h2>
+<p style="margin:0 0 12px 0;">Perform an ambush.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionPerformRole">
+<h2 class="section-heading">PerformRole</h2>
+<p style="margin:0 0 12px 0;">Perform a role.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">RoleType</code> <code>ROLE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The role type to perform.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionPlayerController">
+<h2 class="section-heading">PlayerController</h2>
+<p style="margin:0 0 12px 0;">Control this character as a player.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionPlayTreeAndFaceTarget">
+<h2 class="section-heading">PlayTreeAndFaceTarget</h2>
+<p style="margin:0 0 12px 0;">Play anim tree and face target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">AnimTreeEnum</code> <code>ANIM_TREE_ENUM</code>
+<ul style="padding-top:5px;">
+<li>The anim tree to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">AnimCallbackEnum</code> <code>ANIM_CALLBACK_ENUM</code>
+<ul style="padding-top:5px;">
+<li>The anim callback to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionRangedAim">
+<h2 class="section-heading">RangedAim</h2>
+<p style="margin:0 0 12px 0;">Aim at our current target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ShouldRaiseGun</code> <code>WEAPON_STANCE</code>
+<ul style="padding-top:5px;">
+<li>Should we raise our gun?</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Time</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">NoiseTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Random variation in seconds applied to the base duration.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionRangedShoot">
+<h2 class="section-heading">RangedShoot</h2>
+<p style="margin:0 0 12px 0;">Shoot at our current target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">TerminationCondition</code> <code>SHOT_TERMINATOR_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The termination condition to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ShootStraightAway</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Shoot straight away?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionRequestCover">
+<h2 class="section-heading">RequestCover</h2>
+<p style="margin:0 0 12px 0;">Request a search around the cover the sensed target is in.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestType</code> <code>NPC_COVER_REQUEST_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of cover.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Radius of search</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Radius in metres to search for cover.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">InvalidateCurrentCover</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should the atomic invalidate current cover.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionResetSearchJobs">
+<h2 class="section-heading">ResetSearchJobs</h2>
+<p style="margin:0 0 12px 0;">Reset the search jobs.</p>
+</section>
+<section class="docs-section" id="ActionScript">
+<h2 class="section-heading">Script</h2>
+<p style="margin:0 0 12px 0;">Switch to default scripted activities.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSetFrameFlag">
+<h2 class="section-heading">SetFrameFlag</h2>
+<p style="margin:0 0 12px 0;">Set frame flag.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">FrameFlag</code> <code>FRAME_FLAGS</code>
+<ul style="padding-top:5px;">
+<li>The frame flag to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSetGaugeAmount">
+<h2 class="section-heading">SetGaugeAmount</h2>
+<p style="margin:0 0 12px 0;">Set gauge amount.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">GaugeType</code> <code>LOGIC_CHARACTER_GAUGE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of gauge we are setting.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">GaugeAmountType</code> <code>GAUGE_AMOUNT_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The activation we must be greater than or equal to.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">SetAtleastTo</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>The gauge will be set to at least this value if it is already higher than it will remain unchanged.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSetLogicCharacterFlags">
+<h2 class="section-heading">SetLogicCharacterFlags</h2>
+<p style="margin:0 0 12px 0;">Set if have/haven&#x27;t done the type.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">FlagType</code> <code>LOGIC_CHARACTER_FLAGS</code>
+<ul style="padding-top:5px;">
+<li>The type of thing we are setting we have or haven&#x27;t done.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Flag</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Have or haven&#x27;t we done it?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSetMenaceManager">
+<h2 class="section-heading">SetMenaceManager</h2>
+<p style="margin:0 0 12px 0;">Set the menace manager.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AggressiveMenace</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Alien moving towards player.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ResetMenaceGauge</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Reset menace gauge.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ProgressionFraction</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Fraction of progression between 0 and 1.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSetWithdrawState">
+<h2 class="section-heading">SetWithdrawState</h2>
+<p style="margin:0 0 12px 0;">Sets the withdraw state.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">WithdrawState</code> <code>WITHDRAW_STATE</code>
+<ul style="padding-top:5px;">
+<li>Withdraw state.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSpeakingInConvo">
+<h2 class="section-heading">SpeakingInConvo</h2>
+<p style="margin:0 0 12px 0;">Talk in our conversation.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionStartTimer">
+<h2 class="section-heading">StartTimer</h2>
+<p style="margin:0 0 12px 0;">Starts or restarts timer, time of -1 means use timer default time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Time</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">TimerType</code> <code>LOGIC_CHARACTER_TIMER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of timer we are setting.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">OnlyIncreaseExistingEndTime</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>If true, only extends an existing timer end time rather than resetting it.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionStartTimerRandom">
+<h2 class="section-heading">StartTimerRandom</h2>
+<p style="margin:0 0 12px 0;">Starts or restarts a timer, duration is random between the given min and max values.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">MinTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Minimum duration in seconds.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MaxTime</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum duration in seconds.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">TimerType</code> <code>LOGIC_CHARACTER_TIMER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of timer we are starting.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSuccess">
+<h2 class="section-heading">Success</h2>
+<p style="margin:0 0 12px 0;">Returns a success.</p>
+</section>
+<section class="docs-section" id="ActionSuspectTargetResponse">
+<h2 class="section-heading">SuspectTargetResponse</h2>
+<p style="margin:0 0 12px 0;">Performs suspect behaviour on target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSuspend">
+<h2 class="section-heading">Suspend</h2>
+<p style="margin:0 0 12px 0;">Suspend the behaviour tree.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSuspiciousItemDoneStage">
+<h2 class="section-heading">SuspiciousItemDoneStage</h2>
+<p style="margin:0 0 12px 0;">Suspicious item done stage.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Stage</code> <code>SUSPICIOUS_ITEM_STAGE</code>
+<ul style="padding-top:5px;">
+<li>The stage.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSuspiciousItemMoveTo">
+<h2 class="section-heading">SuspiciousItemMoveTo</h2>
+<p style="margin:0 0 12px 0;">Move to suspicious item.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MovementSpeedType</code> <code>SPEED_BOUNDARY</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the target.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ShouldAim</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should the atomic succeed when we are close to the target.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSuspiciousItemReaction">
+<h2 class="section-heading">SuspiciousItemReaction</h2>
+<p style="margin:0 0 12px 0;">Suspicious Item Reaction.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">SuspiciousItemReaction</code> <code>SUSPICIOUS_ITEM_REACTION</code>
+<ul style="padding-top:5px;">
+<li>The speed at which we move to the suspicious item.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionSwitchToNextTarget">
+<h2 class="section-heading">SwitchToNextTarget</h2>
+<p style="margin:0 0 12px 0;">Switch to next target.</p>
+</section>
+<section class="docs-section" id="ActionTakeStep">
+<h2 class="section-heading">TakeStep</h2>
+<p style="margin:0 0 12px 0;">Take a step forwards or backwards.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">StepType</code> <code>STEP_TYPE</code>
+<ul style="padding-top:5px;">
+<li>Step forwards or backwards.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionThreatAware">
+<h2 class="section-heading">ThreatAware</h2>
+<p style="margin:0 0 12px 0;">Performs suspect behaviour on target.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionThreatEscalation">
+<h2 class="section-heading">ThreatEscalation</h2>
+<p style="margin:0 0 12px 0;">Performs threat escalation behaviour for humans.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionTriggerSound">
+<h2 class="section-heading">TriggerSound</h2>
+<p style="margin:0 0 12px 0;">Trigger sound on owner.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SoundType</code> <code>SOUND_ARGUMENT</code>
+<ul style="padding-top:5px;">
+<li>The sound to trigger.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ActionWeaponEquip">
+<h2 class="section-heading">WeaponEquip</h2>
+<p style="margin:0 0 12px 0;">Equip or unequip our weapon.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RequestShutDownSpeed</code> <code>SHUTDOWN_SPEED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The speed this action will shut down at.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ShouldWeaponEquip</code> <code>WEAPON_EQUIP</code>
+<ul style="padding-top:5px;">
+<li>Equip or unequip?</li>
+</ul>
+</li>
+</ul>
+</section>
+
+</article>
+<article class="docs-article" id="conditions">
+<header class="docs-header"><h1 class="docs-heading">Conditions</h1></header>
+<p style="margin:0">Condition nodes are leaf nodes that test the current state of the game or character and report success or failure without performing any action. They are used to gate parts of the tree, allowing a branch to run only when the world is in the expected state.</p>
+<section class="docs-section" id="ConditionAlienIsAllowed">
+<h2 class="section-heading">AlienIsAllowed</h2>
+<p style="margin:0 0 12px 0;">Is the Alien allowed to do this?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AlienAction</code> <code>ALIEN_DEVELOPMENT_MANAGER_ABILITIES</code>
+<ul style="padding-top:5px;">
+<li>Is the Alien allowed to do this?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionAllowedToAttackTarget">
+<h2 class="section-heading">AllowedToAttackTarget</h2>
+<p style="margin:0 0 12px 0;">Are we allowed to attack the current target?</p>
+</section>
+<section class="docs-section" id="ConditionAllowedToDoSuspiciousWarning">
+<h2 class="section-heading">AllowedToDoSuspiciousWarning</h2>
+<p style="margin:0 0 12px 0;">Is squad allowing us to perform a suspicious warning?</p>
+</section>
+<section class="docs-section" id="ConditionAllowedToPursueTarget">
+<h2 class="section-heading">AllowedToPursueTarget</h2>
+<p style="margin:0 0 12px 0;">Do we have squad permission to pursue our target?</p>
+</section>
+<section class="docs-section" id="ConditionAllowedToSearch">
+<h2 class="section-heading">AllowedToSearch</h2>
+<p style="margin:0 0 12px 0;">Is squad allowing us to search?</p>
+</section>
+<section class="docs-section" id="ConditionAngleFromTargetAgainstTargetCameraDirnLessThan">
+<h2 class="section-heading">AngleFromTargetAgainstTargetCameraDirnLessThan</h2>
+<p style="margin:0 0 12px 0;">Test the absolute angle of the target&#x27;s facing direction against vector from target to owner.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">ConditionAngleFromTargetAgainstTargetCameraDirnLessThan</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum angle in degrees between the target&#x27;s camera direction and the vector from target to self.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionAngleNPCToTargetsAimLessThan">
+<h2 class="section-heading">AngleNPCToTargetsAimLessThan</h2>
+<p style="margin:0 0 12px 0;">Test the absolute angle of the player&#x27;s aim direction to the NPC.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AngleLessThan</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum angle in degrees.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">AimMustBeHeld</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Whether the target&#x27;s aim must be held for the angle test to pass.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionAngleToTargetLessThan">
+<h2 class="section-heading">AngleToTargetLessThan</h2>
+<p style="margin:0 0 12px 0;">Is angle to target less than (degrees)?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Angle</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum angle in degrees.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionAnotherAlienIsAttackingThisTarget">
+<h2 class="section-heading">AnotherAlienIsAttackingThisTarget</h2>
+<p style="margin:0 0 12px 0;">Another Alien is attacking this target!</p>
+</section>
+<section class="docs-section" id="ConditionCanBeControlledByGamepad">
+<h2 class="section-heading">CanBeControlledByGamepad</h2>
+<p style="margin:0 0 12px 0;">Can be controlled by gamepad (not functional in retail).</p>
+</section>
+<section class="docs-section" id="ConditionCanBreakout">
+<h2 class="section-heading">CanBreakout</h2>
+<p style="margin:0 0 12px 0;">Is there a way to break out?</p>
+</section>
+<section class="docs-section" id="ConditionCanShootNow">
+<h2 class="section-heading">CanShootNow</h2>
+<p style="margin:0 0 12px 0;">Can I shoot now?</p>
+</section>
+<section class="docs-section" id="ConditionCanTakeStep">
+<h2 class="section-heading">CanTakeStep</h2>
+<p style="margin:0 0 12px 0;">Can the character take a single step forwards or backwards?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">StepType</code> <code>STEP_TYPE</code>
+<ul style="padding-top:5px;">
+<li>Forwards or backwards?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionCheckHealthState">
+<h2 class="section-heading">CheckHealthState</h2>
+<p style="margin:0 0 12px 0;">Check for health state.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">HealthState</code> <code>HEALTH_STATE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>Health state we are testing for.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionConvoInteruppted">
+<h2 class="section-heading">ConvoInterrupted</h2>
+<p style="margin:0 0 12px 0;">Conversation was interrupted.</p>
+</section>
+<section class="docs-section" id="ConditionConvoInterupptedByPlayer">
+<h2 class="section-heading">ConvoInterruptedByPlayer</h2>
+<p style="margin:0 0 12px 0;">Conversation was interrupted by player.</p>
+</section>
+<section class="docs-section" id="ConditionCurrentWeaponIsEquipped">
+<h2 class="section-heading">CurrentWeaponIsEquipped</h2>
+<p style="margin:0 0 12px 0;">Do we have a weapon equipped?</p>
+</section>
+<section class="docs-section" id="ConditionCurrentWeaponNeedsReloading">
+<h2 class="section-heading">CurrentWeaponNeedsReloading</h2>
+<p style="margin:0 0 12px 0;">Do we have a weapon and need to reload it?</p>
+</section>
+<section class="docs-section" id="ConditionDebugMenuLinkTest">
+<h2 class="section-heading">DebugMenuLinkTest</h2>
+<p style="margin:0 0 12px 0;">Checks against the in-game debug menu (not functional in retail).</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">In_Game_Menu_Text</code> <code>string</code>
+<ul style="padding-top:5px;">
+<li>What to display in the in-game debug menus.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">DefaultBehaviour</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should it fail or succeed by default?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionEventAOccuredAfterB">
+<h2 class="section-heading">EventAOccuredAfterB</h2>
+<p style="margin:0 0 12px 0;">Returns true if event A occurred after event B within the given time</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">EventA</code> <code>EVENT_OCCURED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The event A to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">EventB</code> <code>EVENT_OCCURED_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The event B to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionGameIsDifficulty">
+<h2 class="section-heading">GameIsDifficulty</h2>
+<p style="margin:0 0 12px 0;">Returns true if game is the selected difficulty.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Difficulty</code> <code>DIFFICULTY_SETTING_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The difficulty to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasAggroLevel">
+<h2 class="section-heading">HasAggroLevel</h2>
+<p style="margin:0 0 12px 0;">Returns true if the character has the specified aggro level.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AggroLevel</code> <code>NPC_AGGRO_LEVEL</code>
+<ul style="padding-top:5px;">
+<li>The aggro level to check for.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasAlertnessState">
+<h2 class="section-heading">HasAlertnessState</h2>
+<p style="margin:0 0 12px 0;">Returns true if the character has the specified alertness state.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AlertnessState</code> <code>ALERTNESS_STATE</code>
+<ul style="padding-top:5px;">
+<li>The alertness state to check for.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasAmbushPoint">
+<h2 class="section-heading">HasAmbushPoint</h2>
+<p style="margin:0 0 12px 0;">Has a point where we could ambush the player.</p>
+</section>
+<section class="docs-section" id="ConditionHasAnySenseBeenAbove">
+<h2 class="section-heading">HasAnySenseBeenAbove</h2>
+<p style="margin:0 0 12px 0;">Can we have sensed our target using the given threshold?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>The threshold to check against.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasAnySenseBeenAboveWithinTime">
+<h2 class="section-heading">HasAnySenseBeenAboveWithinTime</h2>
+<p style="margin:0 0 12px 0;">Returns true if the character sense has been above the threshold within time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">TimeConstraint</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Time window in seconds within which the event must have occurred.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>The threshold qualifier of the information we sensed.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasAWeapon">
+<h2 class="section-heading">HasAWeapon</h2>
+<p style="margin:0 0 12px 0;">Do we have a weapon?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Npc_Weapon_Type</code> <code>NPC_WEAPON_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The weapon type.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasDoneSuspectResponseMoveTo">
+<h2 class="section-heading">HasDoneSuspectResponseMoveTo</h2>
+<p style="margin:0 0 12px 0;">Returns true if a suspect response move-to action has been completed</p>
+</section>
+<section class="docs-section" id="ConditionHasDoneSuspectResponseWithinTime">
+<h2 class="section-heading">HasDoneSuspectResponseWithinTime</h2>
+<p style="margin:0 0 12px 0;">Returns true if a suspect response was performed within the given time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">TimeConstraint</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Time window in seconds within which the event must have occurred.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasFlankedVentCloseToPlayer">
+<h2 class="section-heading">HasFlankedVentCloseToPlayer</h2>
+<p style="margin:0 0 12px 0;">Returns true if a flanked vent exists close to the player.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">VentLockReason</code> <code>VENT_LOCK_REASON</code>
+<ul style="padding-top:5px;">
+<li>The vent lock reason to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasGroupAwarenessState">
+<h2 class="section-heading">HasGroupAwarenessState</h2>
+<p style="margin:0 0 12px 0;">Are we in the specified NPC group awareness state?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">GroupAwarenessState</code> <code>GROUP_AWARENESS_STATE</code>
+<ul style="padding-top:5px;">
+<li>The group awareness state we are testing if we are in.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasKilltrap">
+<h2 class="section-heading">HasKilltrap</h2>
+<p style="margin:0 0 12px 0;">Do we have a point where we could killtrap the player?</p>
+</section>
+<section class="docs-section" id="ConditionHasMeleeAttackAvailable">
+<h2 class="section-heading">HasMeleeAttackAvailable</h2>
+<p style="margin:0 0 12px 0;">Is there a melee attack available on the current target?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AttackType</code> <code>ATTACK_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The attack type to check for.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasMeleeAttackAvailableOrIsAttacking">
+<h2 class="section-heading">HasMeleeAttackAvailableOrIsAttacking</h2>
+<p style="margin:0 0 12px 0;">Is there a melee attack available on the current target?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AttackType</code> <code>ATTACK_TYPE_NO_TRAP</code>
+<ul style="padding-top:5px;">
+<li>The attack type to check for.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasMeleeBlockAvailable">
+<h2 class="section-heading">HasMeleeBlockAvailable</h2>
+<p style="margin:0 0 12px 0;">Is there a melee block available on the current target.</p>
+</section>
+<section class="docs-section" id="ConditionHasMeleeCounterAttackAvailable">
+<h2 class="section-heading">HasMeleeCounterAttackAvailable</h2>
+<p style="margin:0 0 12px 0;">Is there a melee counter-attack available on the current target?</p>
+</section>
+<section class="docs-section" id="ConditionHasMotivation">
+<h2 class="section-heading">HasMotivation</h2>
+<p style="margin:0 0 12px 0;">Returns true if the character has the specified motivation type.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">MotivationType</code> <code>MOTIVATION_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The motivation type to check for.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasObjective">
+<h2 class="section-heading">HasObjective</h2>
+<p style="margin:0 0 12px 0;">Do we have an objective set?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">ObjectiveType</code> <code>OBJECTIVE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of objective we are interested in.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasScript">
+<h2 class="section-heading">HasScript</h2>
+<p style="margin:0 0 12px 0;">Do we have a script to execute?</p>
+</section>
+<section class="docs-section" id="ConditionHasSearchedMostRecentSensedPosition">
+<h2 class="section-heading">HasSearchedMostRecentSensedPosition</h2>
+<p style="margin:0 0 12px 0;">Have we searched at our target&#x27;s most recent sensed position?</p>
+</section>
+<section class="docs-section" id="ConditionHasSenseActivationBeenAbove">
+<h2 class="section-heading">HasSenseActivationBeenAbove</h2>
+<p style="margin:0 0 12px 0;">Can we have sensed the target at the threshold supplied?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The sensory information we are checking that we sensed.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>The threshold qualifier for the information we sensed.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasTimerExpired">
+<h2 class="section-heading">HasTimerExpired</h2>
+<p style="margin:0 0 12px 0;">Has the timer expired?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">TimerType</code> <code>LOGIC_CHARACTER_TIMER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of timer we are querying.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasToken">
+<h2 class="section-heading">HasToken</h2>
+<p style="margin:0 0 12px 0;">Has a high priority task token?</p>
+</section>
+<section class="docs-section" id="ConditionHasValidCoverToChangeTo">
+<h2 class="section-heading">HasValidCoverToChangeTo</h2>
+<p style="margin:0 0 12px 0;">Do I have valid cover to change to?</p>
+</section>
+<section class="docs-section" id="ConditionHasValidRouteToNearTarget">
+<h2 class="section-heading">HasValidRouteToNearTarget</h2>
+<p style="margin:0 0 12px 0;">Do we have a valid route to our target (within given range)?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to nearest standing point</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to the nearest standing point.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHasValidRouteToTarget">
+<h2 class="section-heading">HasValidRouteToTarget</h2>
+<p style="margin:0 0 12px 0;">Can we route to our target?</p>
+</section>
+<section class="docs-section" id="ConditionHasVentCloseToAlien">
+<h2 class="section-heading">HasVentCloseToAlien</h2>
+<p style="margin:0 0 12px 0;">Returns true if a vent exists close to the alien</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">VentLockReason</code> <code>VENT_LOCK_REASON</code>
+<ul style="padding-top:5px;">
+<li>The vent lock reason to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionHaveNextTarget">
+<h2 class="section-heading">HaveNextTarget</h2>
+<p style="margin:0 0 12px 0;">Should we switch to the next target?</p>
+</section>
+<section class="docs-section" id="ConditionHaveTarget">
+<h2 class="section-heading">HaveTarget</h2>
+<p style="margin:0 0 12px 0;">Check if we have a target.</p>
+</section>
+<section class="docs-section" id="ConditionInConvo">
+<h2 class="section-heading">InConvo</h2>
+<p style="margin:0 0 12px 0;">In conversation.</p>
+</section>
+<section class="docs-section" id="ConditionInPositionForConvo">
+<h2 class="section-heading">InPositionForConvo</h2>
+<p style="margin:0 0 12px 0;">In position for conversation.</p>
+</section>
+<section class="docs-section" id="ConditionIsAnySenseActivationAbove">
+<h2 class="section-heading">IsAnySenseActivationAbove</h2>
+<p style="margin:0 0 12px 0;">Check we are sensing the target at the threshold supplied with any sense.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>The threshold qualifier of the information we sensed.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MustBeTriggered</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>If the sense must be triggered this frame.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsBackstage">
+<h2 class="section-heading">IsBackstage</h2>
+<p style="margin:0 0 12px 0;">Is the Alien backstage?</p>
+</section>
+<section class="docs-section" id="ConditionIsBranchActive">
+<h2 class="section-heading">IsBranchActive</h2>
+<p style="margin:0 0 12px 0;">Is the specified branch decorator active?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">BranchType</code> <code>BEHAVIOR_TREE_BRANCH_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The branch type.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsCharacterClass">
+<h2 class="section-heading">IsCharacterClass</h2>
+<p style="margin:0 0 12px 0;">Is the character of the given class?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CharacterType</code> <code>CHARACTER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>Character to check - is it the owner of the tree or the target?</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">CharacterClass</code> <code>CHARACTER_CLASS</code>
+<ul style="padding-top:5px;">
+<li>The character class we are checking for.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsCorpseTrap">
+<h2 class="section-heading">IsCorpseTrap</h2>
+<p style="margin:0 0 12px 0;">Are we a corpse trap?</p>
+</section>
+<section class="docs-section" id="ConditionIsCoverExposed">
+<h2 class="section-heading">IsCoverExposed</h2>
+<p style="margin:0 0 12px 0;">Is our cover exposed?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Exposure Angle</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Angle in degrees above which cover is considered exposed.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsCoverTooClose">
+<h2 class="section-heading">IsCoverTooClose</h2>
+<p style="margin:0 0 12px 0;">Is our target within the given distance of cover?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to check</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to check.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsCrouching">
+<h2 class="section-heading">IsCrouching</h2>
+<p style="margin:0 0 12px 0;">Is the given character crouching?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CharacterType</code> <code>CHARACTER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>Character to check - is it the owner of the tree or the target?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsCurrentCoverValid">
+<h2 class="section-heading">IsCurrentCoverValid</h2>
+<p style="margin:0 0 12px 0;">Is my current cover valid?</p>
+</section>
+<section class="docs-section" id="ConditionIsDead">
+<h2 class="section-heading">IsDead</h2>
+<p style="margin:0 0 12px 0;">Are we dead?</p>
+</section>
+<section class="docs-section" id="ConditionIsEnemyOfTarget">
+<h2 class="section-heading">IsEnemyOfTarget</h2>
+<p style="margin:0 0 12px 0;">Check if target is our enemy.</p>
+</section>
+<section class="docs-section" id="ConditionIsFrameFlagSet">
+<h2 class="section-heading">IsFrameFlagSet</h2>
+<p style="margin:0 0 12px 0;">Is this frame flag set?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">FrameFlag</code> <code>FRAME_FLAGS</code>
+<ul style="padding-top:5px;">
+<li>The frame flag to check.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsGaugeAmountAbove">
+<h2 class="section-heading">IsGaugeAmountAbove</h2>
+<p style="margin:0 0 12px 0;">Is the gauge amount equal to or above specified amount?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">GaugeType</code> <code>LOGIC_CHARACTER_GAUGE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of gauge we are querying.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">GaugeAmountType</code> <code>GAUGE_AMOUNT_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type activation we much be greater than or equal to.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MustBeTriggered</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>If the gauge must be triggered this frame.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsGaugeAmountBelow">
+<h2 class="section-heading">IsGaugeAmountBelow</h2>
+<p style="margin:0 0 12px 0;">Is the gauge amount equal to or below specified amount?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">GaugeType</code> <code>LOGIC_CHARACTER_GAUGE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of gauge we are querying.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">GaugeAmountType</code> <code>GAUGE_AMOUNT_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The activation we must be greater than or equal to.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsInCombatArea">
+<h2 class="section-heading">IsInCombatArea</h2>
+<p style="margin:0 0 12px 0;">Are we in the specified combat area?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CombatAreaType</code> <code>COMBAT_AREA_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The combat area type we are testing if we are in.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsInCover">
+<h2 class="section-heading">IsInCover</h2>
+<p style="margin:0 0 12px 0;">Am I in cover?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CheckSlotMatchesDesired</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should check if current slot is the desired slot?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsInCrawlSpace">
+<h2 class="section-heading">IsInCrawlSpace</h2>
+<p style="margin:0 0 12px 0;">Is the given character inside a crawl space?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CharacterType</code> <code>CHARACTER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>Character to check - is it the owner of the tree or the target?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsInTargetsWeaponRange">
+<h2 class="section-heading">IsInTargetsWeaponRange</h2>
+<p style="margin:0 0 12px 0;">Are we in our target&#x27;s weapon range?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">WeaponRange</code> <code>WEAPON_RANGE_THRESHOLD_NO_EFFECTIVE</code>
+<ul style="padding-top:5px;">
+<li>The weapon range of the target&#x27;s weapon to test against.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsInVent">
+<h2 class="section-heading">IsInVent</h2>
+<p style="margin:0 0 12px 0;">Is the given character in a vent?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CharacterType</code> <code>VENT_CHARACTER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>Character to check - is it the owner of the tree or the target?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsPartOfNPCGroup">
+<h2 class="section-heading">IsPartOfNPCGroup</h2>
+<p style="margin:0 0 12px 0;">Returns true if the character is part of an NPC group.</p>
+</section>
+<section class="docs-section" id="ConditionIsPerformingRoleOrCouldPerformRole">
+<h2 class="section-heading">IsPerformingRoleOrCouldPerformRole</h2>
+<p style="margin:0 0 12px 0;">Are we acting out a role or could we act it out?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">RoleType</code> <code>ROLE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The role type to check for.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsRequestingCover">
+<h2 class="section-heading">IsRequestingCover</h2>
+<p style="margin:0 0 12px 0;">Am I waiting for cover?</p>
+</section>
+<section class="docs-section" id="ConditionIsSenseActivationAbove">
+<h2 class="section-heading">IsSenseActivationAbove</h2>
+<p style="margin:0 0 12px 0;">Are we sensing the target at the threshold supplied?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type we are checking that we sensed.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>The threshold qualifier of the information we sensed.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MustBeTriggered</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>If the sense must be triggered this frame.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionIsTargetInDeepCrouch">
+<h2 class="section-heading">IsTargetInDeepCrouch</h2>
+<p style="margin:0 0 12px 0;">Is the target in deep crouch?</p>
+</section>
+<section class="docs-section" id="ConditionLastTimeSearchedWithinTime">
+<h2 class="section-heading">LastTimeSearchedWithinTime</h2>
+<p style="margin:0 0 12px 0;">Returns true if a search was performed within the given time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">TimeConstraint</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Time window in seconds within which the event must have occurred</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionLastTimeSensed">
+<h2 class="section-heading">LastTimeSensed</h2>
+<p style="margin:0 0 12px 0;">Checks if the last time the sense was above the threshold within the given time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The sense in question.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>Which sensory threshold to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">TimeThreshold</code> <code>TIME_THRESHOLD</code>
+<ul style="padding-top:5px;">
+<li>Time since last sensed threshold qualifier.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionLastTimeSensedFloat">
+<h2 class="section-heading">LastTimeSensedFloat</h2>
+<p style="margin:0 0 12px 0;">Checks if the last time the sense was above the threshold within the given time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The sense in question.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>Which sensory threshold to use.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">LastSensedTimeWithin</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Time window in seconds since the sense was last above the threshold.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionLastTimeSquadNotified">
+<h2 class="section-heading">LastTimeSquadNotified</h2>
+<p style="margin:0 0 12px 0;">Checks if the last time our squad received the given notification was within the given time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CombatState</code> <code>NPC_COMBAT_STATE</code>
+<ul style="padding-top:5px;">
+<li>The squad notification we are checking.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">TimeThreshold</code> <code>TIME_THRESHOLD</code>
+<ul style="padding-top:5px;">
+<li>Time since we last received the squad notification.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionLastTimeTargetShotAtMe">
+<h2 class="section-heading">LastTimeTargetShotAtMe</h2>
+<p style="margin:0 0 12px 0;">True if a shot from the target passed nearby within the given time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">TimeConstraint</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Time window in seconds within which the event must have occurred.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionLastTimeWasAbleToShootTarget">
+<h2 class="section-heading">LastTimeWasAbleToShootTarget</h2>
+<p style="margin:0 0 12px 0;">Checks if we were able to shoot at the target within the given time.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">TimeConstraint</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Time window in seconds within which the event must have occurred</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionListeningInConvo">
+<h2 class="section-heading">ListeningInConvo</h2>
+<p style="margin:0 0 12px 0;">Listening in conversation.</p>
+</section>
+<section class="docs-section" id="ConditionLogicCharacterFlags">
+<h2 class="section-heading">LogicCharacterFlags</h2>
+<p style="margin:0 0 12px 0;">Have we done the specified flag?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">FlagType</code> <code>LOGIC_CHARACTER_FLAGS</code>
+<ul style="padding-top:5px;">
+<li>The type of flag we are testing if we have done.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionMostRecentSenseActivationHasBeenAbove">
+<h2 class="section-heading">MostRecentSenseActivationHasBeenAbove</h2>
+<p style="margin:0 0 12px 0;">Returns true if most recent sense activation has been above the given threshold.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The sensory information we are checking that we sensed.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>The threshold qualifier of the information we sensed.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionNeedsToGetOutOfTheWay">
+<h2 class="section-heading">NeedsToGetOutOfTheWay</h2>
+<p style="margin:0 0 12px 0;">Do we need to get out of the way?</p>
+</section>
+<section class="docs-section" id="ConditionObjectiveIsInCombatArea">
+<h2 class="section-heading">ObjectiveIsInCombatArea</h2>
+<p style="margin:0 0 12px 0;">Is our objective within the specified combat area type?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CombatAreaType</code> <code>COMBAT_AREA_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The combat area we are testing if our objective is in.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ObjectiveType</code> <code>OBJECTIVE_TYPE_NO_COVER</code>
+<ul style="padding-top:5px;">
+<li>The type of objective we are interested in.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionObjectiveIsWithinDistance">
+<h2 class="section-heading">ObjectiveIsWithinDistance</h2>
+<p style="margin:0 0 12px 0;">Are within a specified distance of the objective?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">ObjectiveType</code> <code>OBJECTIVE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of dynamic objective we are interested in.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to check</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to check</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionPlayerIsAnEnemy">
+<h2 class="section-heading">PlayerIsAnEnemy</h2>
+<p style="margin:0 0 12px 0;">Is the player an enemy?</p>
+</section>
+<section class="docs-section" id="ConditionPlayerIsInExploitableArea">
+<h2 class="section-heading">PlayerIsInExploitableArea</h2>
+<p style="margin:0 0 12px 0;">Is the player inside an exploitable area volume?</p>
+</section>
+<section class="docs-section" id="ConditionPlayerJoinedConvo">
+<h2 class="section-heading">PlayerJoinedConvo</h2>
+<p style="margin:0 0 12px 0;">Player joined conversation.</p>
+</section>
+<section class="docs-section" id="ConditionRangeTestForScriptedWithdrawal">
+<h2 class="section-heading">RangeTestForScriptedWithdrawal</h2>
+<p style="margin:0 0 12px 0;">Has the script asked us to withdraw?</p>
+</section>
+<section class="docs-section" id="ConditionRequiresPrimaryDamageControlResponse">
+<h2 class="section-heading">RequiresPrimaryDamageControlResponse</h2>
+<p style="margin:0 0 12px 0;">Checks if the character has been damaged.</p>
+</section>
+<section class="docs-section" id="ConditionScriptedWithdrawRequested">
+<h2 class="section-heading">ScriptedWithdrawRequested</h2>
+<p style="margin:0 0 12px 0;">Has the script asked us to withdraw?</p>
+</section>
+<section class="docs-section" id="ConditionShouldFollow">
+<h2 class="section-heading">ShouldFollow</h2>
+<p style="margin:0 0 12px 0;">Should we follow someone or something?</p>
+</section>
+<section class="docs-section" id="ConditionShouldProcessSuspiciousItem">
+<h2 class="section-heading">ShouldProcessSuspiciousItem</h2>
+<p style="margin:0 0 12px 0;">Returns true if this character should process the current suspicious item.</p>
+</section>
+<section class="docs-section" id="ConditionShouldSuspend">
+<h2 class="section-heading">ShouldSuspend</h2>
+<p style="margin:0 0 12px 0;">Should the tree get suspended?</p>
+</section>
+<section class="docs-section" id="ConditionShouldUseCover">
+<h2 class="section-heading">ShouldUseCover</h2>
+<p style="margin:0 0 12px 0;">Can we use cover?</p>
+</section>
+<section class="docs-section" id="ConditionSomeoneJoinedConvo">
+<h2 class="section-heading">SomeoneJoinedConvo</h2>
+<p style="margin:0 0 12px 0;">Someone joined the conversation.</p>
+</section>
+<section class="docs-section" id="ConditionSquadDoingEscalation">
+<h2 class="section-heading">SquadDoingEscalation</h2>
+<p style="margin:0 0 12px 0;">Is someone in the squad doing aggression escalation?</p>
+</section>
+<section class="docs-section" id="ConditionSquadDoingSuspiciousWarning">
+<h2 class="section-heading">SquadDoingSuspiciousWarning</h2>
+<p style="margin:0 0 12px 0;">Is someone in the squad doing a suspicious warning?</p>
+</section>
+<section class="docs-section" id="ConditionSuspiciousItemBTPriority">
+<h2 class="section-heading">SuspiciousItemBTPriority</h2>
+<p style="margin:0 0 12px 0;">Returns true if the suspicious item behaviour tree priority matches.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Priority</code> <code>SUSPICIOUS_ITEM_BEHAVIOUR_TREE_PRIORITY</code>
+<ul style="padding-top:5px;">
+<li>The behaviour tree prioriy.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionSuspiciousItemFirstGroupMember">
+<h2 class="section-heading">SuspiciousItemFirstGroupMember</h2>
+<p style="margin:0 0 12px 0;">Returns true if this character is the first group member handling the suspicious item.</p>
+</section>
+<section class="docs-section" id="ConditionSuspiciousItemGroupAllowedToProgress">
+<h2 class="section-heading">SuspiciousItemGroupAllowedToProgress</h2>
+<p style="margin:0 0 12px 0;">Controls which group members are allowed to progress with the item.</p>
+</section>
+<section class="docs-section" id="ConditionSuspiciousItemGroupMembersRoutingTo">
+<h2 class="section-heading">SuspiciousItemGroupMembersRoutingTo</h2>
+<p style="margin:0 0 12px 0;">Returns true if group members are routing to the suspicious item.</p>
+</section>
+<section class="docs-section" id="ConditionSuspiciousItemIsWithinDistance">
+<h2 class="section-heading">SuspiciousItemIsWithinDistance</h2>
+<p style="margin:0 0 12px 0;">Returns true if the suspicious item is within the specified distance.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to check</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to check.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionSuspiciousItemShouldDoStage">
+<h2 class="section-heading">SuspiciousItemShouldDoStage</h2>
+<p style="margin:0 0 12px 0;">Returns true if the suspicious item should proceed to the specified stage.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Stage</code> <code>SUSPICIOUS_ITEM_STAGE</code>
+<ul style="padding-top:5px;">
+<li>The stage.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionSuspiciousItemWaitForGroupRouting">
+<h2 class="section-heading">SuspiciousItemWaitForGroupRouting</h2>
+<p style="margin:0 0 12px 0;">Should we wait for rest of group to complete routing checks?</p>
+</section>
+<section class="docs-section" id="ConditionTalkingInConvo">
+<h2 class="section-heading">TalkingInConvo</h2>
+<p style="margin:0 0 12px 0;">Talking in conversation.</p>
+</section>
+<section class="docs-section" id="ConditionTargetIsInCombatArea">
+<h2 class="section-heading">TargetIsInCombatArea</h2>
+<p style="margin:0 0 12px 0;">Is our target in the specified combat area?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">CombatAreaType</code> <code>COMBAT_AREA_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The combat area we are testing if our target is in.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">UseLastSensedPosition</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>Should we use the last sensed position?</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetIsInWeaponRange">
+<h2 class="section-heading">TargetIsInWeaponRange</h2>
+<p style="margin:0 0 12px 0;">Is our target within the given weapon range?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">WeaponRange</code> <code>WEAPON_RANGE_THRESHOLD</code>
+<ul style="padding-top:5px;">
+<li>The weapon range to check.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetIsOnlyAccessibleCrouching">
+<h2 class="section-heading">TargetIsOnlyAccessibleCrouching</h2>
+<p style="margin:0 0 12px 0;">Is our target in a crawl space?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to nearest standing point</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to the nearest standing point.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetIsPlayer">
+<h2 class="section-heading">TargetIsPlayer</h2>
+<p style="margin:0 0 12px 0;">Is our target the player?</p>
+</section>
+<section class="docs-section" id="ConditionTargetIsTargetingMe">
+<h2 class="section-heading">TargetIsTargetingMe</h2>
+<p style="margin:0 0 12px 0;">Is the current target targetting us?</p>
+</section>
+<section class="docs-section" id="ConditionTargetIsUsingMeleeAttack">
+<h2 class="section-heading">TargetIsUsingMeleeAttack</h2>
+<p style="margin:0 0 12px 0;">Is the current target performing a melee attack against us?</p>
+</section>
+<section class="docs-section" id="ConditionTargetIsWithinAggroRadius">
+<h2 class="section-heading">TargetIsWithinAggroRadius</h2>
+<p style="margin:0 0 12px 0;">Is our target within our scripted aggro radius?</p>
+</section>
+<section class="docs-section" id="ConditionTargetIsWithinDistance">
+<h2 class="section-heading">TargetIsWithinDistance</h2>
+<p style="margin:0 0 12px 0;">Is our target within the given distance?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to check</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to check.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetIsWithinDistanceOfAlien">
+<h2 class="section-heading">TargetIsWithinDistanceOfAlien</h2>
+<p style="margin:0 0 12px 0;">Is our target within the given distance (for the Alien)?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to check</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to check.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetIsWithinDistanceThreshold">
+<h2 class="section-heading">TargetIsWithinDistanceThreshold</h2>
+<p style="margin:0 0 12px 0;">Is our target within the given distance threshold?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">DistanceThreshold</code> <code>DISTANCE_THRESHOLD</code>
+<ul style="padding-top:5px;">
+<li>The distance threshold the NPC is within.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetIsWithinDistanceUnobscured">
+<h2 class="section-heading">TargetIsWithinDistanceUnobscured</h2>
+<p style="margin:0 0 12px 0;">Is our target within the given distance, as the crow flies or pathing?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to check</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to check.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetIsWithinRoutingDistance">
+<h2 class="section-heading">TargetIsWithinRoutingDistance</h2>
+<p style="margin:0 0 12px 0;">Is our target within the given routing distance?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to check</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to check</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetLogicCharacterFlags">
+<h2 class="section-heading">TargetLogicCharacterFlags</h2>
+<p style="margin:0 0 12px 0;">Has our target set this flag?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">FlagType</code> <code>LOGIC_CHARACTER_FLAGS</code>
+<ul style="padding-top:5px;">
+<li>The type of flag we are testing if the target has set.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetNearestStandPointIsWithinDistance">
+<h2 class="section-heading">TargetNearestStandPointIsWithinDistance</h2>
+<p style="margin:0 0 12px 0;">Is the nearest standing point to our target within the given distance?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Distance to check</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Maximum distance in metres to check.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionTargetsWeaponHasAmmo">
+<h2 class="section-heading">TargetsWeaponHasAmmo</h2>
+<p style="margin:0 0 12px 0;">Does the target&#x27;s weapon have ammo?</p>
+</section>
+<section class="docs-section" id="ConditionTargetsWeaponHasProperty">
+<h2 class="section-heading">TargetsWeaponHasProperty</h2>
+<p style="margin:0 0 12px 0;">Does the target&#x27;s weapon have the specified property?</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">WeaponProperty</code> <code>WEAPON_PROPERTY</code>
+<ul style="padding-top:5px;">
+<li>Which weapon property to test.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionVisualSomeRaysThroughGlass">
+<h2 class="section-heading">VisualSomeRaysThroughGlass</h2>
+<p style="margin:0 0 12px 0;">Last time we saw the target, was our visual (even partly) through glass?</p>
+</section>
+<section class="docs-section" id="ConditionWasSenseThresholdLastIncreaseActivation">
+<h2 class="section-heading">WasSenseThresholdLastIncreaseActivation</h2>
+<p style="margin:0 0 12px 0;">Check if the supplied sense threshold was the last one that increased.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The sensory information we are checking that we sensed.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>The threshold qualifier of the information we sensed.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MustBeTriggered</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>If the sense must be triggered this frame.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionWasSenseThresholdLastIncreaseActivationAbove">
+<h2 class="section-heading">WasSenseThresholdLastIncreaseActivationAbove</h2>
+<p style="margin:0 0 12px 0;">Check if the supplied sense threshold was at least this when we last increased its activation.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SenseType</code> <code>SENSORY_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The sensory information we are checking.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ThresholdQualifier</code> <code>ThresholdQualifier</code>
+<ul style="padding-top:5px;">
+<li>The threshold qualifier for the information we sensed.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">MustBeTriggered</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>If the sense must be triggered this frame.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="ConditionWithdrawState">
+<h2 class="section-heading">WithdrawState</h2>
+<p style="margin:0 0 12px 0;">Checks if we are in the specified withdraw state.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">WithdrawState</code> <code>WITHDRAW_STATE</code>
+<ul style="padding-top:5px;">
+<li>Withdraw state.</li>
+</ul>
+</li>
+</ul>
+</section>
+
+</article>
+<article class="docs-article" id="decorators">
+<header class="docs-header"><h1 class="docs-heading">Decorators</h1></header>
+<p style="margin:0">Decorator nodes wrap a single child and modify how it runs – for example repeating it, inverting its result, applying a timer or changing the character&#x27;s mood while the child is active. They are used to add behaviour around an existing subtree without changing the subtree itself.</p>
+<section class="docs-section" id="DecoratorAggressionEscalation">
+<h2 class="section-heading">AggressionEscalation</h2>
+<p style="margin:0 0 12px 0;">Manages aggression escalation for child nodes.</p>
+</section>
+<section class="docs-section" id="DecoratorAwarenessState">
+<h2 class="section-heading">AwarenessState</h2>
+<p style="margin:0 0 12px 0;">Used to set NPC target awareness state.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">AwarenessState</code> <code>AWARENESS_STATE</code>
+<ul style="padding-top:5px;">
+<li>The awareness state we are setting.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="DecoratorBranch">
+<h2 class="section-heading">Branch</h2>
+<p style="margin:0 0 12px 0;">Used for marking branch types.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">BranchType</code> <code>BEHAVIOR_TREE_BRANCH_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of branch this is.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="DecoratorMood">
+<h2 class="section-heading">DecoratorMood</h2>
+<p style="margin:0 0 12px 0;">Sets the behaviour mood for child nodes.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">BEHAVIOUR_MOOD_SET</code> <code>BEHAVIOUR_MOOD_SET</code>
+<ul style="padding-top:5px;">
+<li>The behaviour mood to apply.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="DecoratorLockBestVents">
+<h2 class="section-heading">LockBestVents</h2>
+<p style="margin:0 0 12px 0;">Locks the best vents for the specified reason.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">VentLockReason</code> <code>VENT_LOCK_REASON</code>
+<ul style="padding-top:5px;">
+<li>The vent lock reason to use.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="DecoratorLoop">
+<h2 class="section-heading">Loop</h2>
+<p style="margin:0 0 12px 0;">Forces a loop in the tree search.</p>
+</section>
+<section class="docs-section" id="DecoratorPercentage">
+<h2 class="section-heading">Percentage</h2>
+<p style="margin:0 0 12px 0;">Stores a percentage (for use with SelectorPercentage, for example).</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Percentage</code> <code>int</code>
+<ul style="padding-top:5px;">
+<li>A percentage value between 1-100.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="DecoratorSetSenseSet">
+<h2 class="section-heading">SetSenseSet</h2>
+<p style="margin:0 0 12px 0;">Sets the active sense set for child nodes.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SENSE_SET</code> <code>SENSE_SET</code>
+<ul style="padding-top:5px;">
+<li>The sense set to apply.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="DecoratorSquadSearch">
+<h2 class="section-heading">SquadSearch</h2>
+<p style="margin:0 0 12px 0;">Coordinates squad search behaviour for child nodes.</p>
+</section>
+<section class="docs-section" id="DecoratorSuspiciousItemInProgress">
+<h2 class="section-heading">SuspiciousItemInProgress</h2>
+<p style="margin:0 0 12px 0;">Marks that a suspicious item response is in progress.</p>
+</section>
+<section class="docs-section" id="DecoratorTimer">
+<h2 class="section-heading">Timer</h2>
+<p style="margin:0 0 12px 0;">Used to restart timers every frame.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Time</code> <code>float</code>
+<ul style="padding-top:5px;">
+<li>Duration in seconds.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">TimerType</code> <code>LOGIC_CHARACTER_TIMER_TYPE</code>
+<ul style="padding-top:5px;">
+<li>The type of timer we are restarting.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">OnlyIncreaseExistingEndTime</code> <code>bool</code>
+<ul style="padding-top:5px;">
+<li>If true, only extends an existing timer end time rather than resetting it.</li>
+</ul>
+</li>
+</ul>
+</section>
+
+</article>
+<article class="docs-article" id="selectors">
+<header class="docs-header"><h1 class="docs-heading">Selectors</h1></header>
+<p style="margin:0">Selector nodes are composite nodes that run their children in turn until one of them succeeds, behaving like a logical OR. They are typically used to pick the first viable behaviour from a prioritised list of options.</p>
+<section class="docs-section" id="SelectorPercentage">
+<h2 class="section-heading">PercentageSelector</h2>
+<p style="margin:0 0 12px 0;">Run a child based on a percentage dice roll.</p>
+</section>
+<section class="docs-section" id="SelectorLinear">
+<h2 class="section-heading">Selector</h2>
+<p style="margin:0 0 12px 0;">Run first successful child.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code>string</code>
+<ul style="padding-top:5px;">
+<li>Selector name.</li>
+</ul>
+</li>
+</ul>
+</section>
+
+</article>
+<article class="docs-article" id="sequences">
+<header class="docs-header"><h1 class="docs-heading">Sequences</h1></header>
+<p style="margin:0">Sequence nodes are composite nodes that run their children in order, continuing only while each child succeeds, behaving like a logical AND. They are used to perform a series of steps that must all complete for the overall behaviour to succeed.</p>
+<section class="docs-section" id="SequenceLinear">
+<h2 class="section-heading">Sequence</h2>
+<p style="margin:0 0 12px 0;">Run each child in order.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code>string</code>
+<ul style="padding-top:5px;">
+<li>Name of sequence.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ChildStateType</code> <code>SEQUENCE_CHILD_STATE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>How we handle the child state.</li>
+</ul>
+</li>
+</ul>
+</section>
+<section class="docs-section" id="SequenceStateless">
+<h2 class="section-heading">SequenceStateless</h2>
+<p style="margin:0 0 12px 0;">Run each child from the first one each time the tree is searched.</p>
+<ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code>string</code>
+<ul style="padding-top:5px;">
+<li>Name of sequence.</li>
+</ul>
+</li>
+<li><code style="background:#8e1073;color:white;" title="Name">ChildStateType</code> <code>SEQUENCE_CHILD_STATE_TYPE</code>
+<ul style="padding-top:5px;">
+<li>How we handle the child state.</li>
+</ul>
+</li>
+</ul>
+</section>
+
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script> 
+
+</body>
+</html> 
