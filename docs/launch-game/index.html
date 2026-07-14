@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Launch Game</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's Launch Game dialog and launch options.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Launch Game" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Launch Game dialog and launch options." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#starting-level"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Starting Level</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#ui-mods"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>UI Mods</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#patches"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Patches &amp; Tools</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#engine-patches">Engine Patches</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#debug-tools">Debug Tools</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#steam-tools">Steam-Only Tools</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Options</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Launch Game</li>
+	  </ol>
+	</nav>
+</article>
+    
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+        <h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The toolbar <b>Launch Game</b> button opens the Launch Game dialog. From here you pick a starting level, toggle launch options, then hit <b>Start Alien: Isolation</b>.</p>
+		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — for example <b>Cinematic Tools</b> and <b>Hot Reloading</b> are Steam-only.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="starting-level">
+    <header class="docs-header">
+        <h1 class="docs-heading">Starting Level</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Starting Level</b> dropdown lists levels from the current game install. OpenCAGE prefers the level you're editing, otherwise your last used choice, otherwise the frontend.</p>
+		<ul>
+			<li>Choosing a normal level boots the game straight into that map — useful for testing a specific level without playing through from the start.</li>
+			<li>Choosing <b>FRONTEND</b> launches into the normal title/front-end flow.</li>
+		</ul>
+		<p>Your selection is remembered for next time.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="ui-mods">
+    <header class="docs-header">
+        <h1 class="docs-heading">UI Mods</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>These swap in OpenCAGE's modified pause/frontend/loading/game-over menus:</p>
+		<ul>
+			<li><b>Enable Debug Checkpoints</b> — adds debug checkpoints to the pause menu under <b>Load Game</b>. Checkpoints are per-map and load a scripted game state so you can jump to specific moments. They're created in level scripts with the <a href="/docs/cathode-entities/#DebugCheckpoint">DebugCheckpoint</a> entity.</li>
+			<li><b>Enable Level Selection</b> — frontend menu with level selection (where you'd normally load a save)</li>
+			<li><b>Enable Debug Loadscreen</b> — loading screen that shows debug map info, and also loads quicker than normal by removing artificial wait times</li>
+			<li><b>Add Quit To Menu On Death</b> — game-over menu with quit-to-menu</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="patches">
+    <header class="docs-header">
+        <h1 class="docs-heading">Patches &amp; Tools</h1>
+    </header>
+
+	<section class="docs-section" id="engine-patches" style="padding-top:0;">
+		<h2 class="section-heading">Engine Patches</h2>
+		<ul>
+			<li><b>Skip Frontend</b> — skips the title screen when loading directly into a level</li>
+			<li><b>Patch Current-Gen Optimisations</b> — restores script functionality that was left out of the PC build (the game incorrectly still honours a “current gen” script flag). In vanilla this re-enables things like additional lighting, monitors, and effects.</li>
+			<li><b>No UI</b> — disables the in-game HUD. Also disables UI popups, which can make some actions impossible — useful for screenshots.</li>
+			<li><b>Render Constant Ambient</b> — full-bright “constant ambient” rendering mode</li>
+		</ul>
+    </section>
+
+	<section class="docs-section" id="debug-tools">
+		<h2 class="section-heading">Debug Tools</h2>
+		<ul>
+			<li><b>Enable UI Memory Overlay</b> — shows current UI memory in an in-game overlay (cUI). Separate from Cathode DebugText entities.</li>
+			<li><b>Enable Memory Logging</b> — writes memory replay logs to a <code>Mem_Replay_Logs</code> folder</li>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="steam-tools">
+		<h2 class="section-heading">Steam-Only Tools</h2>
+		<ul>
+			<li><b>Enable Hot Reloading</b> — press <b>INSERT</b> in-game to hot reload the current level, handy for iterating on scripts without a full restart</li>
+			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them.</li>
+		</ul>
+	</section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+        <h1 class="docs-heading">Related Options</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Outside the Launch Game dialog:</p>
+		<ul>
+			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog (so extras like Cinematic Tools / Hot Reloading from that dialog aren't applied). Off by default.</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
+
+</body>
+</html> 

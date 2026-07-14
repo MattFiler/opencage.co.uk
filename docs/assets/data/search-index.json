@@ -32,7 +32,7 @@
     },
     {
         "title":  "Viewport",
-        "description":  "Guide to OpenCAGE\u0027s in-editor 3D Viewport.",
+        "description":  "Guide to OpenCAGE\u0027s 3D Viewport.",
         "url":  "/docs/level-viewer/",
         "category":  "Getting Started",
         "keywords":  [
@@ -45,6 +45,43 @@
                          "level viewer",
                          "disable viewport",
                          "steam launch"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Multiple Game Installs",
+        "description":  "Register and switch between multiple Alien: Isolation installs in OpenCAGE.",
+        "url":  "/docs/multiple-game-installs/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "multiple installs",
+                         "game directories",
+                         "manage game directories",
+                         "AI.exe",
+                         "pathToAI",
+                         "open editor",
+                         "set as default",
+                         "steam",
+                         "epic",
+                         "gog"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Launch Game",
+        "description":  "Starting levels, UI mods, patches, and tools from OpenCAGE\u0027s Launch Game dialog.",
+        "url":  "/docs/launch-game/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "launch game",
+                         "start alien",
+                         "skip frontend",
+                         "hot reload",
+                         "cinematic tools",
+                         "debug checkpoints",
+                         "level selection",
+                         "open game on save",
+                         "patches"
                      ],
         "type":  "page"
     },

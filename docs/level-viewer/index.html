@@ -7,14 +7,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A guide to OpenCAGE's embedded Viewport.">
+    <meta name="description" content="A guide to OpenCAGE's Viewport.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
 	<meta name="twitter:title" content="OpenCAGE: Viewport" />
-	<meta name="twitter:description" content="A guide to OpenCAGE's embedded Viewport." />
+	<meta name="twitter:description" content="A guide to OpenCAGE's Viewport." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -80,7 +80,7 @@
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#using-viewport"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using the Viewport</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#opening">Opening the Viewport</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#basics">Basics</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#disabling">Disabling the Viewport</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#moving-camera">Moving the Camera</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#selection">Selection</a></li>
@@ -112,8 +112,8 @@
 	<section class="docs-section" style="padding-top:0;">
 		<div class="row">
 			<div class="col-lg-8">
-				<p>OpenCAGE's script editor includes an embedded <b>Viewport</b> — a 3D view of the level, docked inside the editor. As you load a level and edit scripts, the viewport stays in sync so you can position triggers, models, markers, and anything else that benefits from seeing the level in context.</p>
-				<p>This guide covers how the viewport works, how to navigate the scene, and how to use selection, deep select, transform gizmos, and render filters.</p>
+				<p>The <b>Viewport</b> is OpenCAGE's 3D view of the level — part of the script editor, shown above the composite display. Use it to place triggers, models, markers, and anything else that benefits from seeing the level in context.</p>
+				<p>This guide covers navigating the scene, selection, deep select, transform gizmos, and render filters.</p>
 			</div>
 			<div class="col-lg-4">
 				<img src="img/overview.png" alt="OpenCAGE Viewport showing Advanced Deep Select with a nested entity selected" width="100%">
@@ -127,18 +127,18 @@
         <h1 class="docs-heading">Using the Viewport</h1>
     </header>
     
-    <section class="docs-section" id="opening" style="padding-top:0;">
-		<h2 class="section-heading">Opening the Viewport</h2>
-		<p>By default, the viewport starts automatically when you load a level in the script editor (unless you've turned it off with the Steam launch option below). OpenCAGE embeds a docked <b>Viewport</b> panel above the composite display and shows a <b>Populating … in viewport…</b> progress state while the scene fills in.</p>
-		<p>Once the level is populated, editing stays two-way automatically — selection, transforms, and nested composite navigation update in both the script editor and the viewport. There's nothing to connect or enable first.</p>
-		<p>The viewport panel has its own toolbar for <b>Selection Mode</b>, gizmo <b>Control</b>, <b>Transform Snap</b>, and <b>Rotation Snap</b>.</p>
+    <section class="docs-section" id="basics" style="padding-top:0;">
+		<h2 class="section-heading">Basics</h2>
+		<p>When you load a level, the Viewport appears automatically (unless you've disabled it — see below). While the scene is filling in, OpenCAGE shows a <b>Populating … in viewport…</b> progress state.</p>
+		<p>Selection and transforms you make in the Viewport are the same edits as in the rest of the script editor — hierarchy, parameters, and the 3D view stay on the same selection.</p>
+		<p>The Viewport toolbar covers <b>Selection Mode</b>, gizmo <b>Control</b>, <b>Transform Snap</b>, and <b>Rotation Snap</b>.</p>
     </section>
 
 	<section class="docs-section" id="disabling">
 		<h2 class="section-heading">Disabling the Viewport</h2>
-		<p>Steam includes a launch option that starts OpenCAGE with the viewport disabled. Use that if you want lower memory usage and faster load times, knowing you won't get the 3D view.</p>
-		<p>In Steam: open OpenCAGE's properties → <b>Launch Options</b>, and choose the option that disables the viewport. With that selected, levels load with no Viewport panel.</p>
-		<p>When you're running multiple OpenCAGE editor windows from <b>Options → Manage Game Directories</b>, you can also enable <b>Launch other editors without viewport</b> so child editors skip the 3D view and save memory.</p>
+		<p>Steam includes a launch option that starts OpenCAGE with the Viewport turned off. Use that if you want lower memory usage and faster load times, knowing you won't get the 3D view.</p>
+		<p>In Steam: open OpenCAGE's properties → <b>Launch Options</b>, and choose the option that disables the Viewport.</p>
+		<p>If you run several OpenCAGE windows for different game installs, <b>Options → Manage Game Directories</b> has <b>Launch other editors without viewport</b> so those extra windows skip the 3D view. See <a href="/docs/multiple-game-installs/">Multiple Game Installs</a>.</p>
 	</section>
 
 	<section class="docs-section" id="moving-camera">
@@ -152,13 +152,13 @@
 
 	<section class="docs-section" id="selection">
 		<h2 class="section-heading">Selection</h2>
-		<p>Selection works in both directions. Click something in the script editor and it will highlight in the viewport; click something in the viewport and the script editor hierarchy will update to match.</p>
-		<p><b>Left-click</b> an object in the viewport to select it. By default, this selects the relevant entity in the composite you're currently viewing in the script editor — for example, clicking a model inside a composite instance will select that composite instance entity, not the inner model directly.</p>
-		<p>Selected entities are highlighted in <b>green</b> in the viewport. You can click empty space or press <b>Escape</b> to deselect.</p>
-		<p>Entities outside the composite you're currently editing are dimmed and can't be picked, which makes it easier to focus on the area you're working on. Step into a nested composite in the script editor and the viewport will update to show that scope.</p>
+		<p>Click an entity in the hierarchy or flowgraph and it highlights in the Viewport; click something in the Viewport and the hierarchy jumps to that entity.</p>
+		<p><b>Left-click</b> an object in the Viewport to select it. By default, this selects the relevant entity in the composite you're currently viewing — for example, clicking a model inside a composite instance will select that composite instance entity, not the inner model directly.</p>
+		<p>Selected entities are highlighted in <b>green</b>. You can click empty space or press <b>Escape</b> to deselect.</p>
+		<p>Entities outside the composite you're currently editing are dimmed and can't be picked, which makes it easier to focus on the area you're working on. Step into a nested composite and the Viewport scope updates to match.</p>
 		<p>If <b>Highlight Aliases</b> is enabled under <b>Options → Viewport</b> (on by default), entities targeted by parameterized aliases in the active composite are shown with an <b>orange</b> highlight. The selected entity itself shows green rather than orange.</p>
 		<p>If <b>Highlight Proxies</b> is enabled, entities targeted by proxies are shown with a <b>blue</b> highlight when you've stepped into a nested composite.</p>
-		<p>You can click on render previews too — not just model references. Box volumes, position markers, character previews, spline paths, sound icons, and other filtered entity types are all selectable in the viewport (see more below).</p>
+		<p>You can click on render previews too — not just model references. Box volumes, position markers, character previews, spline paths, sound icons, and other filtered entity types are all selectable (see more below).</p>
 	</section>
 
 	<section class="docs-section" id="deep-select">
@@ -175,7 +175,7 @@
 
 		<h3 class="section-heading" style="font-size: 1.1rem; margin-top: 1.5rem;">How aliases work with deep select</h3>
 		<p>In Cathode scripts, entities inside a nested composite aren't directly selectable from the parent composite you're viewing — the script editor needs a path to reach them. That's what <b>aliases</b> are for: an alias in your current composite points at a chain of entities through composite instances, ending at the thing you actually want to work with.</p>
-		<p>Deep select creates that path for you automatically. When you deep-select something, the viewport looks for an existing alias in the active composite whose path matches the entity chain you clicked through. If one already exists, it selects that. If not, it creates a new alias pointing at the right depth.</p>
+		<p>Deep select creates that path for you automatically. When you deep-select something, OpenCAGE looks for an existing alias in the active composite whose path matches the entity chain you clicked through. If one already exists, it selects that. If not, it creates a new alias pointing at the right depth.</p>
 		<p>In <b>Deep Select</b> mode, each left-click on the <b>same piece of geometry</b> goes one composite level deeper — first click might select the composite instance, the next click the entity inside it, and so on. The alias's path grows to match. In <b>Advanced Deep Select</b> mode, a single click builds the full alias path straight to the deepest entity in one go.</p>
 		<p>Aliases created this way start out <b>parameter-free</b> — they're temporary helpers for navigation. If you click something else without having done anything to the alias, OpenCAGE removes it again so your composite doesn't fill up with unused aliases. Once you <b>move</b> an alias with the transform gizmo (which adds a position override), or otherwise give it parameters in the main editor window, it becomes a permanent part of your scripts — the same as if you'd created it manually in the flowgraph.</p>
 		<p>This is separate from the orange <b>Highlight Aliases</b> option, which shows entities that <b>already have</b> parameterized aliases in the composite you're editing. Deep select is about creating and navigating through aliases on the fly; the orange highlight is about visualizing overrides you've already set up.</p>
@@ -184,8 +184,8 @@
 
 	<section class="docs-section" id="transform-gizmo">
 		<h2 class="section-heading">Moving Entities</h2>
-		<p>Once you've selected an entity, you can move and rotate it directly in the viewport using the transform gizmo. Changes sync back to the script editor and update the entity's position parameters.</p>
-		<p>With an entity selected, choose a gizmo mode from the Viewport panel's <b>Control</b> toolbar, or with these number-row keys:</p>
+		<p>Once you've selected an entity, you can move and rotate it in the Viewport with the transform gizmo. That updates the entity's position parameters like any other edit.</p>
+		<p>With an entity selected, choose a gizmo mode from the Viewport <b>Control</b> toolbar, or with these number-row keys:</p>
 		<ul>
 			<li><b>1</b> — Translate (World)</li>
 			<li><b>2</b> — Translate (Local)</li>
@@ -193,20 +193,20 @@
 			<li><b>4</b> — Rotate (Local)</li>
 			<li><b>5</b> — Disable / None</li>
 		</ul>
-		<p>Click and drag the coloured gizmo handles to transform the entity. The current mode is shown in a small HUD in the viewport.</p>
-		<p>Use <b>Transform Snap</b> and <b>Rotation Snap</b> on the Viewport panel toolbar to snap movement and rotation to stepped values while dragging.</p>
+		<p>Click and drag the coloured gizmo handles to transform the entity. The current mode is shown in a small HUD.</p>
+		<p>Use <b>Transform Snap</b> and <b>Rotation Snap</b> on the Viewport toolbar to snap movement and rotation to stepped values while dragging.</p>
 	</section>
 
 	<section class="docs-section" id="hiding-entities">
 		<h2 class="section-heading">Hiding Entities</h2>
-		<p>Need to temporarily get something out of the way while you work on geometry behind it? With an entity selected, press <b>H</b> to hide it in the viewport. This only affects the viewport — it doesn't delete or modify anything in your scripts.</p>
+		<p>Need to temporarily get something out of the way while you work on geometry behind it? With an entity selected, press <b>H</b> to hide it in the Viewport. This is display-only — it doesn't delete or modify anything in your scripts.</p>
 		<p>Press <b>Shift + H</b> to unhide everything you've hidden in the current composite scope.</p>
 		<p>Hides reset automatically when you navigate to a different composite or step into/out of a composite instance, so you won't accidentally carry hidden state across contexts.</p>
 	</section>
 
 	<section class="docs-section" id="previews">
 		<h2 class="section-heading">Previews &amp; Render Filters</h2>
-		<p>Not everything in a Cathode level is a rendered model. The viewport draws previews for many function entity types so you can see triggers, markers, splines, characters, and more.</p>
+		<p>Not everything in a Cathode level is a rendered model. The Viewport draws previews for many function entity types so you can see triggers, markers, splines, characters, and more.</p>
 		<p>Preview types include:</p>
 		<ul>
 			<li><b>Box volumes</b> — semi-transparent boxes for triggers, nav areas, collision barriers, fog boxes, and similar volume entities</li>
@@ -223,7 +223,7 @@
 
 	<section class="docs-section" id="options">
 		<h2 class="section-heading">Viewport Options</h2>
-		<p>Most viewport behaviour is controlled from <b>Options → Viewport</b> in the script editor toolbar:</p>
+		<p>Most Viewport behaviour is controlled from <b>Options → Viewport</b>:</p>
 		<ul>
 			<li><b>Highlight Aliases</b> — show orange highlights on entities targeted by parameterized aliases in the active composite</li>
 			<li><b>Highlight Proxies</b> — show blue highlights on proxy targets when stepped into a nested composite</li>
@@ -243,10 +243,10 @@
 	<section class="docs-section" id="tips">
 		<h2 class="section-heading">Tips &amp; Troubleshooting</h2>
 		<ul>
-			<li>If the viewport looks out of sync with the script editor, save your work and reload the level (or restart OpenCAGE).</li>
-			<li>Click the Viewport panel first before using camera/hotkeys — focus needs to be on the viewport for keyboard shortcuts to apply there.</li>
-			<li>If there's no Viewport panel at all, check Steam's launch options — you may have the disable-viewport option selected.</li>
-			<li>Opening several editor windows? Use <b>Launch other editors without viewport</b> under Manage Game Directories to save memory on the extras.</li>
+			<li>If the 3D view looks wrong after edits, save and reload the level (or restart OpenCAGE).</li>
+			<li>Click the Viewport first before using camera/hotkeys — those shortcuts apply when the Viewport has focus.</li>
+			<li>If there's no Viewport at all, check Steam's launch options — you may have the disable-viewport option selected.</li>
+			<li>Opening several editor windows? Use <b>Launch other editors without viewport</b> under Manage Game Directories to save memory — more in <a href="/docs/multiple-game-installs/">Multiple Game Installs</a>.</li>
 		</ul>
 	</section>
 </article>

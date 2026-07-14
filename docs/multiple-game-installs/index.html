@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Multiple Game Installs</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE with multiple Alien: Isolation installs.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Multiple Game Installs" />
+	<meta name="twitter:description" content="How to use OpenCAGE with multiple Alien: Isolation installs." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#managing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Managing Installs</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#register">Registering an Install</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#default">Setting the Default</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#open-editor">Opening Another Editor</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#viewport"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Viewport &amp; Performance</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Multiple Game Installs</li>
+	  </ol>
+	</nav>
+</article>
+    
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+        <h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>OpenCAGE can work with more than one Alien: Isolation install — for example a clean Steam copy for playtesting, a separate modded copy, or installs from different storefronts (Steam, Epic, GOG, and so on).</p>
+		<p>Each install is registered in the <b>Game Directory Manager</b>. One install is your <b>default</b> (what OpenCAGE opens on startup). You can also open additional editor windows pointed at other installs at the same time.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="managing">
+    <header class="docs-header">
+        <h1 class="docs-heading">Managing Installs</h1>
+    </header>
+    
+    <section class="docs-section" id="register" style="padding-top:0;">
+		<h2 class="section-heading">Registering an Install</h2>
+		<p>From the main OpenCAGE window, open <b>Options → Manage Game Directories</b>.</p>
+		<p>Click <b>Register New Game Install</b>, then locate that copy's <code>AI.exe</code>. OpenCAGE checks the folder is a valid Alien: Isolation install and shows the detected platform (Steam, Epic, GOG, etc.).</p>
+		<p>You can't register the same path twice. If the folder isn't a valid install, registration fails with an error.</p>
+    </section>
+
+	<section class="docs-section" id="default">
+		<h2 class="section-heading">Setting the Default</h2>
+		<p>Each registered install has a <b>Set As Default</b> button. The default is the install OpenCAGE loads when you launch the app normally from Steam.</p>
+		<p><b>Set As Default</b> does not switch the install already open in your current window — restart OpenCAGE to load the new default. To work on another install immediately without restarting, use <b>Open Editor</b> instead.</p>
+    </section>
+
+	<section class="docs-section" id="open-editor">
+		<h2 class="section-heading">Opening Another Editor</h2>
+		<p>On any registered install, click <b>Open Editor</b> to start a <b>separate OpenCAGE window</b> for that path. Your original window keeps whichever install it was already using.</p>
+		<p>While that second editor is open, <b>Open Editor</b> for the same path stays disabled. Close the extra window to free the button again.</p>
+		<p>Game Directory Manager is only available in the primary OpenCAGE window (the one you launched from Steam). Extra editors opened for other installs can't change the registered list — manage installs from the primary window.</p>
+		<p>With several editors open, <b>Options → Misc → Show Game Platform</b> can help: it appends the detected platform (e.g. Steam) to the window title.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="viewport">
+    <header class="docs-header">
+        <h1 class="docs-heading">Viewport &amp; Performance</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Every editor window with the Viewport enabled starts its own 3D view, which uses more memory and can slow level load. That adds up quickly if you keep several installs open at once.</p>
+		<p>In the Game Directory Manager, enable <b>Launch other editors without viewport (saves memory usage)</b>. When that option is on, windows opened with <b>Open Editor</b> start without the Viewport.</p>
+		<p>You can also disable the Viewport for the primary OpenCAGE process via Steam's launch options. See the <a href="/docs/level-viewer/#disabling">Viewport docs</a> for that.</p>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
+
+</body>
+</html> 
