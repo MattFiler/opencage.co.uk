@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Mission IDs</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reference list of Alien: Isolation mission IDs and codenames.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Mission IDs" />
+	<meta name="twitter:description" content="Reference list of Alien: Isolation mission IDs and codenames." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+		.mission-table {
+			width: 100%;
+			margin-bottom: 0.25rem;
+		}
+		.mission-table td {
+			vertical-align: top;
+			padding: 0.55rem 0.75rem 0.55rem 0;
+			border-bottom: 1px solid rgba(0,0,0,0.06);
+		}
+		.mission-table tr:last-child td {
+			border-bottom: none;
+		}
+		.mission-table td:first-child {
+			white-space: nowrap;
+			width: 4.5rem;
+			font-weight: 600;
+		}
+		.mission-table code {
+			font-size: 0.9em;
+		}
+		.mission-cut {
+			opacity: 0.75;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#campaign"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Campaign Missions</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#cut"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Not in Final Game</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Mission IDs</li>
+	  </ol>
+	</nav>
+</article>
+    
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+        <h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Campaign progress and scripting use internal mission IDs (e.g. <code>M07</code>) plus codenames. Numbering is not sequential with the in-game mission list — some IDs were cut and never shipped.</p>
+		<p>Related: <a href="/docs/level-names/">Level Names</a>.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="campaign">
+    <header class="docs-header">
+        <h1 class="docs-heading">Campaign Missions</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<table class="mission-table">
+			<tr id="M01">
+				<td>M01</td>
+				<td>
+					<div>Mission 1 — "Closing the Book"</div>
+					<div>Codename: <code>TORRENS</code> or <code>M01_INTRO_TORRENS</code></div>
+				</td>
+			</tr>
+			<tr id="M04">
+				<td>M04</td>
+				<td>
+					<div>Mission 2 — "Welcome to Sevastopol"</div>
+					<div>Codename: <code>M04_WELCOME_TO_THE_SEVASTOPOL</code></div>
+				</td>
+			</tr>
+			<tr id="M06">
+				<td>M06</td>
+				<td>
+					<div>Mission 3 — "Encounters"</div>
+					<div>Codename: <code>M06_TRAVEL_TO_COMMS</code></div>
+				</td>
+			</tr>
+			<tr id="M07">
+				<td>M07</td>
+				<td>
+					<div>Mission 4 — "Seegson Communications"</div>
+					<div>Codename: <code>M07_INSIDE_COMMS</code></div>
+				</td>
+			</tr>
+			<tr id="M09">
+				<td>M09</td>
+				<td>
+					<div>Mission 5 — "The Quarantine"</div>
+					<div>Codename: <code>M09_GET_INTO_HOSPITAL</code></div>
+				</td>
+			</tr>
+			<tr id="M10">
+				<td>M10</td>
+				<td>
+					<div>Mission 6 — "The Outbreak"</div>
+					<div>Codename: <code>M10_HOSPITAL_PLAYABLE</code></div>
+				</td>
+			</tr>
+			<tr id="M11">
+				<td>M11</td>
+				<td>
+					<div>Mission 7 — "Seegson Synthetics"</div>
+					<div>Codename: <code>M11_SAVING_KANE</code></div>
+				</td>
+			</tr>
+			<tr id="M12">
+				<td>M12</td>
+				<td>
+					<div>Mission 8 — "Haven"</div>
+					<div>Codename: <code>M12_TASK_FOR_WAIT</code></div>
+				</td>
+			</tr>
+			<tr id="M13">
+				<td>M13</td>
+				<td>
+					<div>Mission 9 — "Beacon"</div>
+					<div>Codename: <code>M13_LV426</code></div>
+				</td>
+			</tr>
+			<tr id="M14">
+				<td>M14</td>
+				<td>
+					<div>Mission 10 — "The Trap"</div>
+					<div>Codename: <code>M14_MARLOW_INVESTIGATION</code></div>
+				</td>
+			</tr>
+			<tr id="M16">
+				<td>M16</td>
+				<td>
+					<div>Mission 11 — "Hazard Containment"</div>
+					<div>Codename: <code>M16_RETURN_TO_MHQ</code></div>
+				</td>
+			</tr>
+			<tr id="M21">
+				<td>M21</td>
+				<td>
+					<div>Mission 12 — "Synthetic Solution"</div>
+					<div>Codename: <code>M21_GET_ACROSS_TO_MUTHER</code></div>
+				</td>
+			</tr>
+			<tr id="M22">
+				<td>M22</td>
+				<td>
+					<div>Mission 13 — "Consultation"</div>
+					<div>Codename: <code>M22_ALL_FATHER_CORE</code></div>
+				</td>
+			</tr>
+			<tr id="M25">
+				<td>M25</td>
+				<td>
+					<div>Mission 14 — "The Descent"</div>
+					<div>Codename: <code>M25_ROCK_BOTTOM</code></div>
+				</td>
+			</tr>
+			<tr id="M27">
+				<td>M27</td>
+				<td>
+					<div>Mission 15 — "The Message"</div>
+					<div>Codename: <code>M27_ANESIDORA</code> or <code>M27_Solace</code></div>
+				</td>
+			</tr>
+			<tr id="M30">
+				<td>M30</td>
+				<td>
+					<div>Mission 16 — "Transmission"</div>
+					<div>Codename: <code>M30_CALLING_ALL_TORRENS</code></div>
+				</td>
+			</tr>
+			<tr id="M32">
+				<td>M32</td>
+				<td>
+					<div>Mission 17 — "Desolation"</div>
+					<div>Codename: <code>M32_RACE_TO_FREE_THE_TORRENS</code></div>
+				</td>
+			</tr>
+			<tr id="M33">
+				<td>M33</td>
+				<td>
+					<div>Mission 18 — "Tomorrow, Together"</div>
+					<div>Codename: <code>M33_SHOWDOWN</code></div>
+				</td>
+			</tr>
+			<tr id="M34">
+				<td>M34</td>
+				<td>
+					<div>Mission 19 — "Isolation"</div>
+					<div>Codename: <code>M34_EPILOGUE</code></div>
+				</td>
+			</tr>
+		</table>
+    </section>
+</article>
+
+<article class="docs-article" id="cut">
+    <header class="docs-header">
+        <h1 class="docs-heading">Not in Final Game</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>These mission IDs exist in leftover data but were not part of the shipped campaign:</p>
+		<table class="mission-table">
+			<tr id="M02" class="mission-cut">
+				<td>M02</td>
+				<td>Codename: <code>M02_Patna</code></td>
+			</tr>
+			<tr id="M03" class="mission-cut">
+				<td>M03</td>
+				<td>Codename: unknown</td>
+			</tr>
+			<tr id="M05" class="mission-cut">
+				<td>M05</td>
+				<td>Codename: unknown</td>
+			</tr>
+			<tr id="M08" class="mission-cut">
+				<td>M08</td>
+				<td>Codename: unknown</td>
+			</tr>
+			<tr id="M15" class="mission-cut">
+				<td>M15</td>
+				<td>Codename: <code>M15_JUST_A_NAME</code> or <code>M15_Justa_Name</code></td>
+			</tr>
+			<tr id="M17" class="mission-cut">
+				<td>M17</td>
+				<td>Codename: unknown</td>
+			</tr>
+			<tr id="M26" class="mission-cut">
+				<td>M26</td>
+				<td>Codename: unknown</td>
+			</tr>
+			<tr id="M29" class="mission-cut">
+				<td>M29</td>
+				<td>Codename: <code>M29_PLAN_B</code></td>
+			</tr>
+		</table>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
+
+</body>
+</html> 
