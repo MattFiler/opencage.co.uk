@@ -1,0 +1,86 @@
+/* In-page filter for reference catalogues */
+
+.docs-ref-filter {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	padding: 0.85rem 1rem 0.65rem;
+	margin: -1rem -1rem 0.75rem;
+	background: linear-gradient(#fff 70%, rgba(255, 255, 255, 0.92));
+	border-bottom: 1px solid #e7e9ed;
+}
+
+.docs-ref-filter-label {
+	display: block;
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: #919aaa;
+	margin-bottom: 0.4rem;
+}
+
+.docs-ref-filter-field {
+	position: relative;
+}
+
+.docs-ref-filter-field > .fa-filter {
+	position: absolute;
+	left: 0.85rem;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #919aaa;
+	font-size: 0.8rem;
+	pointer-events: none;
+}
+
+.docs-ref-filter-input {
+	padding-left: 2.15rem !important;
+	padding-right: 2.1rem !important;
+	font-size: 0.875rem;
+	border-radius: 1.5rem;
+}
+
+.docs-ref-filter-input:focus {
+	border-color: #28b76b;
+	box-shadow: 0 0 0 0.15rem rgba(40, 183, 107, 0.15);
+}
+
+.docs-ref-filter-clear {
+	position: absolute;
+	right: 0.35rem;
+	top: 50%;
+	transform: translateY(-50%);
+	border: 0;
+	background: transparent;
+	color: #919aaa;
+	width: 1.75rem;
+	height: 1.75rem;
+	border-radius: 50%;
+	line-height: 1;
+	font-size: 1.1rem;
+	cursor: pointer;
+}
+
+.docs-ref-filter-clear:hover {
+	color: #252930;
+	background: #f3f6f8;
+}
+
+.docs-ref-filter-meta {
+	min-height: 1.1rem;
+	margin-top: 0.35rem;
+	font-size: 0.75rem;
+	color: #919aaa;
+}
+
+.docs-ref-filter-empty {
+	padding: 1rem 0.25rem;
+	color: #919aaa;
+	font-size: 0.875rem;
+}
+
+.docs-section.is-filtered-out,
+.nav-item.is-filtered-out {
+	display: none !important;
+}

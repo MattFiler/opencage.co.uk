@@ -1,0 +1,216 @@
+/* OpenCAGE docs motion — page fades, expandables, soft reveals */
+
+/* Cross-document page transitions (Chrome/Edge/Safari 18+) */
+@view-transition {
+	navigation: auto;
+}
+
+::view-transition-old(root) {
+	animation: docs-fade-out 180ms ease-out both;
+}
+
+::view-transition-new(root) {
+	animation: docs-fade-in 240ms ease-in both;
+}
+
+@keyframes docs-fade-out {
+	to { opacity: 0; }
+}
+
+@keyframes docs-fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+/* Fallback fade-out when View Transitions aren't available */
+html.docs-motion body {
+	transition: opacity 220ms ease;
+}
+
+html.docs-motion body.docs-leaving {
+	opacity: 0;
+}
+
+/* Keep chrome stable during transitions */
+.header,
+.docs-sidebar {
+	view-transition-name: none;
+}
+
+/* Hub cards */
+.docs-overview .card {
+	transition:
+		transform 220ms ease,
+		box-shadow 220ms ease,
+		background-color 220ms ease,
+		border-color 220ms ease;
+	will-change: transform;
+}
+
+.docs-overview .card:hover {
+	transform: translateY(-3px);
+}
+
+.docs-overview .card-icon-holder {
+	transition: background-color 220ms ease, transform 220ms ease;
+}
+
+.docs-overview .card:hover .card-icon-holder {
+	transform: scale(1.04);
+}
+
+/* Staggered reveal on hub / overview pages */
+.docs-reveal {
+	opacity: 0;
+	transform: translateY(12px);
+	transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.docs-reveal.is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+/* Expandable topic panels */
+.docs-panel {
+	border: 1px solid #e7e9ed;
+	border-radius: 0.75rem;
+	background: #fff;
+	margin-bottom: 1.25rem;
+	overflow: hidden;
+}
+
+.docs-panel-toggle {
+	width: 100%;
+	border: 0;
+	background: transparent;
+	text-align: left;
+	cursor: pointer;
+	user-select: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding: 1rem 1.25rem;
+	font-weight: 600;
+	font-size: 1.05rem;
+	font-family: inherit;
+	color: #252930;
+	transition: background-color 180ms ease;
+}
+
+.docs-panel-toggle:hover {
+	background: #f8f9fb;
+}
+
+.docs-panel-toggle:focus-visible {
+	outline: 2px solid #28b76b;
+	outline-offset: -2px;
+}
+
+.docs-panel-toggle-label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+
+.docs-panel-toggle .docs-panel-hint {
+	font-size: 0.8rem;
+	font-weight: 500;
+	color: #919aaa;
+}
+
+.docs-panel-toggle::after {
+	content: "";
+	width: 0.55rem;
+	height: 0.55rem;
+	border-right: 2px solid #747f94;
+	border-bottom: 2px solid #747f94;
+	transform: rotate(45deg);
+	transition: transform 220ms ease;
+	flex-shrink: 0;
+	margin-top: -0.2rem;
+}
+
+.docs-panel.is-open > .docs-panel-toggle::after {
+	transform: rotate(-135deg);
+	margin-top: 0.2rem;
+}
+
+.docs-panel-body {
+	height: 0;
+	overflow: hidden;
+	transition: height 320ms ease;
+}
+
+.docs-panel-body-inner {
+	padding: 0 0.75rem 0.85rem;
+}
+
+.docs-panel-intro {
+	padding: 0 0.5rem 0.75rem;
+	color: #5d6778;
+	font-size: 0.95rem;
+}
+
+.cta-section {
+	transition: transform 220ms ease, filter 220ms ease;
+}
+
+a.card-link-mask:hover .cta-section,
+a:hover > .cta-section {
+	transform: translateY(-2px);
+	filter: brightness(1.05);
+}
+
+/* Soft landing for article content */
+.docs-article,
+.docs-content,
+article.docs-article,
+.docs-section {
+	scroll-margin-top: 90px;
+}
+
+.docs-section {
+	transition: opacity 360ms ease, transform 360ms ease;
+}
+
+.docs-section.docs-section-enter {
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.docs-section.docs-section-enter.is-visible {
+	opacity: 1;
+	transform: none;
+}
+
+/* Sidebar smooth open/close feel on mobile */
+.docs-sidebar {
+	transition: transform 280ms ease, opacity 280ms ease;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	@view-transition {
+		navigation: none;
+	}
+
+	html.docs-motion body,
+	.docs-overview .card,
+	.docs-overview .card-icon-holder,
+	.docs-reveal,
+	.docs-panel-body,
+	.docs-panel-toggle::after,
+	.docs-section,
+	.docs-sidebar {
+		transition: none !important;
+		animation: none !important;
+		transform: none !important;
+	}
+
+	.docs-reveal,
+	.docs-section.docs-section-enter {
+		opacity: 1 !important;
+	}
+}

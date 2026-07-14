@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>OpenCAGE: Level Viewer</title>
+    <title>OpenCAGE: Viewport</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="An introduction to OpenCAGE's level viewer.">
+    <meta name="description" content="A guide to OpenCAGE's embedded Viewport.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Level Viewer" />
-	<meta name="twitter:description" content="An introduction to OpenCAGE's level viewer." />
+	<meta name="twitter:title" content="OpenCAGE: Viewport" />
+	<meta name="twitter:description" content="A guide to OpenCAGE's embedded Viewport." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -30,6 +30,8 @@
 
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
     
     <style>
         .docs-section li {
@@ -56,9 +58,9 @@
 	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
                 </div><!--//docs-logo-wrapper-->
 	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
-	                <div class="top-search-box d-none d-lg-flex" style="visibility:hidden;">
+	                <div class="top-search-box d-none d-md-flex">
 		                <form class="search-form">
-				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
 				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
 				        </form>
 	                </div>
@@ -77,16 +79,16 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#setting-up"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Setting Up</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#using-viewer"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using the Level Viewer</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#launching">Launching &amp; Connecting</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#using-viewport"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using the Viewport</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#opening">Opening the Viewport</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#disabling">Disabling the Viewport</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#moving-camera">Moving the Camera</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#selection">Selection</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#deep-select">Deep Select</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#transform-gizmo">Moving Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#hiding-entities">Hiding Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#previews">Previews &amp; Render Filters</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#options">Script Editor Options</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#options">Viewport Options</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#tips">Tips &amp; Troubleshooting</a></li>
 
 </ul></nav></div>
@@ -96,7 +98,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Level Viewer</li>
+		<li class="breadcrumb-item active" aria-current="page">Viewport</li>
 	  </ol>
 	</nav>
 </article>
@@ -110,107 +112,101 @@
 	<section class="docs-section" style="padding-top:0;">
 		<div class="row">
 			<div class="col-lg-8">
-				<p>OpenCAGE's script editor comes paired with a level viewer, which links to the script editor over a websocket connection to render your changes in a 3D space. It's great for positioning triggers, models, markers, and anything else that benefits from seeing the level in context.</p>
-				<p>The level viewer is bundled with OpenCAGE as a standalone application — open it from the toolbar, load a level, and your edits sync live between the two windows.</p>
-				<p>Read this guide to get familiar with how to set up and use the viewer, how to navigate the scene, and how to use features like selection, deep select, transform gizmos, and render filters.</p>
+				<p>OpenCAGE's script editor includes an embedded <b>Viewport</b> — a 3D view of the level, docked inside the editor. As you load a level and edit scripts, the viewport stays in sync so you can position triggers, models, markers, and anything else that benefits from seeing the level in context.</p>
+				<p>This guide covers how the viewport works, how to navigate the scene, and how to use selection, deep select, transform gizmos, and render filters.</p>
 			</div>
 			<div class="col-lg-4">
-				<img src="img/overview.png" alt="OpenCAGE Level Viewer showing Advanced Deep Select with a nested entity selected" width="100%">
+				<img src="img/overview.png" alt="OpenCAGE Viewport showing Advanced Deep Select with a nested entity selected" width="100%">
 			</div>
 		</div>
     </section>
 </article>
 
-<article class="docs-article" id="setting-up">
+<article class="docs-article" id="using-viewport">
     <header class="docs-header">
-        <h1 class="docs-heading">Setting Up</h1>
+        <h1 class="docs-heading">Using the Viewport</h1>
     </header>
     
-    <section class="docs-section" style="padding-top:0;">
-		<p>Setting up the level viewer is simple! When you open OpenCAGE, the <b>Level Viewer</b> menu is already in the toolbar.</p>
-		<p>If you're running OpenCAGE via Steam, the level viewer is included automatically — you should see "Open Level Viewer" straight away and can skip ahead to the next section.</p>
-		<p>If you're not on Steam, you'll need to install the level viewer first. Choose <b>"Enable Level Viewer"</b> from the menu. OpenCAGE will prompt you to confirm — make sure you've saved your work first, as the process will relaunch the tool to install.</p>
-		<p>After relaunching, "Open Level Viewer" will appear in the same menu and you're ready to go.</p>
+    <section class="docs-section" id="opening" style="padding-top:0;">
+		<h2 class="section-heading">Opening the Viewport</h2>
+		<p>By default, the viewport starts automatically when you load a level in the script editor (unless you've turned it off with the Steam launch option below). OpenCAGE embeds a docked <b>Viewport</b> panel above the composite display and shows a <b>Populating … in viewport…</b> progress state while the scene fills in.</p>
+		<p>Once the level is populated, editing stays two-way automatically — selection, transforms, and nested composite navigation update in both the script editor and the viewport. There's nothing to connect or enable first.</p>
+		<p>The viewport panel has its own toolbar for <b>Selection Mode</b>, gizmo <b>Control</b>, <b>Transform Snap</b>, and <b>Rotation Snap</b>.</p>
     </section>
-</article>
 
-<article class="docs-article" id="using-viewer">
-    <header class="docs-header">
-        <h1 class="docs-heading">Using the Level Viewer</h1>
-    </header>
-    
-    <section class="docs-section" id="launching" style="padding-top:0;">
-		<h2 class="section-heading">Launching &amp; Connecting</h2>
-		<p>To launch the level viewer, select <b>Level Viewer</b>, then <b>Open Level Viewer</b> from the toolbar. Make sure you have the <b>Connect to Level Viewer</b> option ticked in this same menu — this keeps the websocket link alive between OpenCAGE and the viewer.</p>
-		<p>After the viewer opens, load a level in the script editor. It should begin loading in the viewer, and eventually you'll see the full level rendered in 3D.</p>
-		<p>Now, changes you make in the script editor are reflected in the level viewer — and any changes you make in the viewer (like selecting or moving entities) are reflected back in the script editor too.</p>
-		<p>Top tip: make sure to launch the level viewer <b>before</b> you make changes (or save first if you've already made some), otherwise things can get out of sync.</p>
-		<p>If you start to notice things syncing incorrectly, close the level viewer, save in the script editor, and press "Open Level Viewer" again.</p>
-    </section>
+	<section class="docs-section" id="disabling">
+		<h2 class="section-heading">Disabling the Viewport</h2>
+		<p>Steam includes a launch option that starts OpenCAGE with the viewport disabled. Use that if you want lower memory usage and faster load times, knowing you won't get the 3D view.</p>
+		<p>In Steam: open OpenCAGE's properties → <b>Launch Options</b>, and choose the option that disables the viewport. With that selected, levels load with no Viewport panel.</p>
+		<p>When you're running multiple OpenCAGE editor windows from <b>Options → Manage Game Directories</b>, you can also enable <b>Launch other editors without viewport</b> so child editors skip the 3D view and save memory.</p>
+	</section>
 
 	<section class="docs-section" id="moving-camera">
 		<h2 class="section-heading">Moving the Camera</h2>
-		<p>To look around the scene, hold the right mouse button and drag. Whilst doing this, you can use <b>W</b>, <b>A</b>, <b>S</b>, and <b>D</b> to move the camera in 3D space. <b>Q</b> and <b>E</b> move down and up.</p>
+		<p>To look around the scene, hold the right mouse button and drag. Whilst doing this, you can use <b>W</b>, <b>A</b>, <b>S</b>, and <b>D</b> to move the camera in 3D space. <b>Q</b> and <b>E</b> move down and up. Hold <b>Shift</b> to move faster.</p>
 		<p>Hold the middle mouse button and drag to pan the camera without changing your viewing angle.</p>
 		<p>Scroll the mouse wheel to adjust movement speed — a small readout appears in the corner when you change it.</p>
-		<p>Press <b>Z</b> to recenter the camera on whatever is currently selected. You can also enable the "Focus on Selected" option in the script editor's Level Viewer menu to have this happen automatically whenever you select something in either window.</p>
+		<p>Press <b>Z</b> to recenter the camera on whatever is currently selected.</p>
 		<p>When a level first loads, the camera will frame the level automatically unless you're already drilled into a nested composite with something selected.</p>
 	</section>
 
 	<section class="docs-section" id="selection">
 		<h2 class="section-heading">Selection</h2>
-		<p>Selection works in both directions. Click something in the script editor and it will highlight in the level viewer; click something in the level viewer and the script editor hierarchy will update to match.</p>
-		<p><b>Left-click</b> an object in the level viewer to select it. By default, this selects the relevant entity in the composite you're currently viewing in the script editor — for example, clicking a model inside a composite instance will select that composite instance entity, not the inner model directly.</p>
-		<p>Selected entities are highlighted in <b>green</b> in the viewer. You can click empty space or press <b>escape</b> to deselect.</p>
-		<p>Entities outside the composite you're currently editing are dimmed and can't be picked, which makes it easier to focus on the area you're working on. Step into a nested composite in the script editor and the viewer will update to show that scope.</p>
-		<p>If "Highlight Aliases" is enabled in the script editor (on by default), entities targeted by parameterized aliases in the active composite are shown with an <b>orange</b> highlight. The selected entity itself shows green rather than orange.</p>
-		<p>You can click on render previews too — not just model references. Box volumes, position markers, character previews, spline paths, sound icons, and other filtered entity types are all selectable in the viewer (see more below).</p>
+		<p>Selection works in both directions. Click something in the script editor and it will highlight in the viewport; click something in the viewport and the script editor hierarchy will update to match.</p>
+		<p><b>Left-click</b> an object in the viewport to select it. By default, this selects the relevant entity in the composite you're currently viewing in the script editor — for example, clicking a model inside a composite instance will select that composite instance entity, not the inner model directly.</p>
+		<p>Selected entities are highlighted in <b>green</b> in the viewport. You can click empty space or press <b>Escape</b> to deselect.</p>
+		<p>Entities outside the composite you're currently editing are dimmed and can't be picked, which makes it easier to focus on the area you're working on. Step into a nested composite in the script editor and the viewport will update to show that scope.</p>
+		<p>If <b>Highlight Aliases</b> is enabled under <b>Options → Viewport</b> (on by default), entities targeted by parameterized aliases in the active composite are shown with an <b>orange</b> highlight. The selected entity itself shows green rather than orange.</p>
+		<p>If <b>Highlight Proxies</b> is enabled, entities targeted by proxies are shown with a <b>blue</b> highlight when you've stepped into a nested composite.</p>
+		<p>You can click on render previews too — not just model references. Box volumes, position markers, character previews, spline paths, sound icons, and other filtered entity types are all selectable in the viewport (see more below).</p>
 	</section>
 
 	<section class="docs-section" id="deep-select">
 		<h2 class="section-heading">Deep Select</h2>
 		<p>Sometimes you want to select something deeper in the hierarchy — an entity inside a nested composite, for example. That's what deep select is for.</p>
-		<p>Press <b>0</b> (the number row key, not numpad) to cycle through select modes. A label appears in the viewer showing the current mode:</p>
+		<p>Set the select mode from the Viewport panel's <b>Selection Mode</b> toolbar, or with these number-row keys (not the numpad):</p>
 		<ul>
-			<li><b>Normal</b> — left-click selects the entity in the active composite, as described above.</li>
-			<li><b>Deep Select</b> — left-clicking the same target repeatedly steps one composite level deeper each time. <b>Ctrl + middle-click</b> steps into one composite instance at a time.</li>
-			<li><b>Advanced Deep Select</b> — left-click jumps straight to the deepest entity on the pick chain. <b>Ctrl + middle-click</b> drills through the full hierarchy in one go.</li>
+			<li><b>0</b> — <b>Regular</b> — left-click selects the entity in the active composite, as described above.</li>
+			<li><b>8</b> — <b>Deep Select</b> — left-clicking the same target repeatedly steps one composite level deeper each time. <b>Ctrl + middle-click</b> steps into one composite instance at a time.</li>
+			<li><b>9</b> — <b>Advanced Deep Select</b> — left-click jumps straight to the deepest entity on the pick chain. <b>Ctrl + middle-click</b> drills through the full hierarchy in one go.</li>
 		</ul>
+		<p>Modes are chosen directly — you don't cycle through them with a single key.</p>
 		<p>Press <b>-</b> (minus) to step back out one level in the hierarchy — useful if you've drilled in too far. You can see the full hierarchy in the bar at the bottom of the OpenCAGE window, and also navigate back there too.</p>
 
 		<h3 class="section-heading" style="font-size: 1.1rem; margin-top: 1.5rem;">How aliases work with deep select</h3>
 		<p>In Cathode scripts, entities inside a nested composite aren't directly selectable from the parent composite you're viewing — the script editor needs a path to reach them. That's what <b>aliases</b> are for: an alias in your current composite points at a chain of entities through composite instances, ending at the thing you actually want to work with.</p>
-		<p>Deep select creates that path for you automatically. When you deep-select something, the viewer looks for an existing alias in the active composite whose path matches the entity chain you clicked through. If one already exists, it selects that. If not, it creates a new alias pointing at the right depth.</p>
+		<p>Deep select creates that path for you automatically. When you deep-select something, the viewport looks for an existing alias in the active composite whose path matches the entity chain you clicked through. If one already exists, it selects that. If not, it creates a new alias pointing at the right depth.</p>
 		<p>In <b>Deep Select</b> mode, each left-click on the <b>same piece of geometry</b> goes one composite level deeper — first click might select the composite instance, the next click the entity inside it, and so on. The alias's path grows to match. In <b>Advanced Deep Select</b> mode, a single click builds the full alias path straight to the deepest entity in one go.</p>
 		<p>Aliases created this way start out <b>parameter-free</b> — they're temporary helpers for navigation. If you click something else without having done anything to the alias, OpenCAGE removes it again so your composite doesn't fill up with unused aliases. Once you <b>move</b> an alias with the transform gizmo (which adds a position override), or otherwise give it parameters in the main editor window, it becomes a permanent part of your scripts — the same as if you'd created it manually in the flowgraph.</p>
 		<p>This is separate from the orange <b>Highlight Aliases</b> option, which shows entities that <b>already have</b> parameterized aliases in the composite you're editing. Deep select is about creating and navigating through aliases on the fly; the orange highlight is about visualizing overrides you've already set up.</p>
-		<p>Note - moving an entity via deep select (an alias) will override the position defined within the child composite. This works in a hierarchy, so aliases at the root level will override ones below. Read more about aliases in the <a href="https://opencage.co.uk/docs/scripting-intro/">Scripting Intro</a></p>
+		<p>Note — moving an entity via deep select (an alias) will override the position defined within the child composite. This works in a hierarchy, so aliases at the root level will override ones below. Read more about aliases in the <a href="/docs/scripting-intro/">Scripting Intro</a>.</p>
 	</section>
 
 	<section class="docs-section" id="transform-gizmo">
 		<h2 class="section-heading">Moving Entities</h2>
-		<p>Once you've selected an entity, you can move and rotate it directly in the level viewer using the transform gizmo. Changes sync back to the script editor and update the entity's position parameters.</p>
-		<p>With an entity selected, press a number key to choose a gizmo mode:</p>
+		<p>Once you've selected an entity, you can move and rotate it directly in the viewport using the transform gizmo. Changes sync back to the script editor and update the entity's position parameters.</p>
+		<p>With an entity selected, choose a gizmo mode from the Viewport panel's <b>Control</b> toolbar, or with these number-row keys:</p>
 		<ul>
-			<li><b>1</b> — Translate (move along X/Y/Z axes or on axis planes)</li>
-			<li><b>2</b> — Rotate (local axes)</li>
-			<li><b>3</b> — Rotate (world axes)</li>
-			<li><b>4</b> — Disable the gizmo</li>
+			<li><b>1</b> — Translate (World)</li>
+			<li><b>2</b> — Translate (Local)</li>
+			<li><b>3</b> — Rotate (World)</li>
+			<li><b>4</b> — Rotate (Local)</li>
+			<li><b>5</b> — Disable / None</li>
 		</ul>
-		<p>Click and drag the coloured gizmo handles to transform the entity. The current mode is shown in a small HUD in the viewer.</p>
-		<p>Optionally, enable <b>Transform Grid Snap</b> and/or <b>Rotation Snap</b> from the script editor's Level Viewer menu to snap movement and rotation to stepped values while dragging.</p>
+		<p>Click and drag the coloured gizmo handles to transform the entity. The current mode is shown in a small HUD in the viewport.</p>
+		<p>Use <b>Transform Snap</b> and <b>Rotation Snap</b> on the Viewport panel toolbar to snap movement and rotation to stepped values while dragging.</p>
 	</section>
 
 	<section class="docs-section" id="hiding-entities">
 		<h2 class="section-heading">Hiding Entities</h2>
-		<p>Need to temporarily get something out of the way while you work on geometry behind it? With an entity selected, press <b>H</b> to hide it in the viewer. This is a viewer-only hide — it doesn't delete or modify anything in your scripts.</p>
+		<p>Need to temporarily get something out of the way while you work on geometry behind it? With an entity selected, press <b>H</b> to hide it in the viewport. This only affects the viewport — it doesn't delete or modify anything in your scripts.</p>
 		<p>Press <b>Shift + H</b> to unhide everything you've hidden in the current composite scope.</p>
 		<p>Hides reset automatically when you navigate to a different composite or step into/out of a composite instance, so you won't accidentally carry hidden state across contexts.</p>
 	</section>
 
 	<section class="docs-section" id="previews">
 		<h2 class="section-heading">Previews &amp; Render Filters</h2>
-		<p>Not everything in a Cathode level is a rendered model. The level viewer draws previews for many function entity types so you can see triggers, markers, splines, characters, and more.</p>
+		<p>Not everything in a Cathode level is a rendered model. The viewport draws previews for many function entity types so you can see triggers, markers, splines, characters, and more.</p>
 		<p>Preview types include:</p>
 		<ul>
 			<li><b>Box volumes</b> — semi-transparent boxes for triggers, nav areas, collision barriers, fog boxes, and similar volume entities</li>
@@ -220,25 +216,38 @@
 			<li><b>Icon billboards</b> — icons for sounds, lights, particles, cameras, and sound objects</li>
 			<li><b>Environment maps</b> — coloured spheres at probe positions</li>
 		</ul>
-		<p>Each preview type has an associated render filter. Open <b>Level Viewer → Render Filters</b> in the script editor to toggle individual function types on or off. This is useful for decluttering busy levels — hide box volumes you don't care about, for example, while keeping position markers visible. You can also enable the <b>Hide Nested Script Entities</b> option to stop showing any of these entity previews outside of the current composite.</p>
-		<p>ModelReference entities are always shown regardless of render filter settings.</p>
+		<p>Each preview type has an associated render filter. Use the docked <b>Render Filters</b> panel (alongside Search / Composite Browser by default) to toggle individual function types on or off. This is useful for decluttering busy levels — hide box volumes you don't care about, for example, while keeping position markers visible.</p>
+		<p>Under <b>Options → Viewport</b>, enable <b>Hide Nested Script Entities</b> to stop showing entity previews defined in nested composites. ModelReference entities are always shown regardless of render filter settings.</p>
+		<p>Under <b>Options → Misc</b>, <b>Reset Render Filters On Load</b> clears your filter toggles whenever a level loads.</p>
 	</section>
 
 	<section class="docs-section" id="options">
-		<h2 class="section-heading">Script Editor Options</h2>
-		<p>Most level viewer behaviour is controlled from the <b>Level Viewer</b> dropdown in the toolbar. Here's a quick rundown of the available options:</p>
+		<h2 class="section-heading">Viewport Options</h2>
+		<p>Most viewport behaviour is controlled from <b>Options → Viewport</b> in the script editor toolbar:</p>
 		<ul>
-			<li><b>Open Level Viewer</b> — launch the viewer application</li>
-			<li><b>Connect to Level Viewer</b> — enable/disable the live websocket sync (keep this on while working)</li>
-			<li><b>Focus on Selected</b> — automatically frame the camera on selected entities</li>
-			<li><b>Highlight Aliases</b> — show orange highlights on aliases in the active composite</li>
+			<li><b>Highlight Aliases</b> — show orange highlights on entities targeted by parameterized aliases in the active composite</li>
+			<li><b>Highlight Proxies</b> — show blue highlights on proxy targets when stepped into a nested composite</li>
 			<li><b>Show Camera Position</b> — display camera X/Y/Z coordinates while moving</li>
 			<li><b>Render Wireframe</b> — draw ModelReference meshes as wireframe overlays</li>
-			<li><b>Hide Nested Script Entities</b> — hide render previews for entities defined in nested composites (ModelReferences are unaffected; only previews for the active composite are shown)</li>
-			<li><b>Transform Grid Snap</b> / <b>Rotation Snap</b> — snap gizmo movement and rotation</li>
-			<li><b>Render Filters</b> — toggle previews per function type</li>
+			<li><b>Hide Nested Script Entities</b> — hide render previews for entities defined in nested composites (ModelReferences are unaffected)</li>
 		</ul>
-		<p>A full list of viewer controls are also available from the script editor via <b>Help → Controls</b>.</p>
+		<p>Also useful:</p>
+		<ul>
+			<li><b>Render Filters</b> dock panel — toggle previews per function type</li>
+			<li>Viewport panel toolbar — <b>Selection Mode</b>, <b>Control</b> (gizmo), <b>Transform Snap</b>, <b>Rotation Snap</b></li>
+			<li><b>Options → Misc → Reset Render Filters On Load</b></li>
+			<li><b>Options → Controls</b> — open the controls dialog and check the <b>Viewport Controls</b> tab for a full shortcut list</li>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="tips">
+		<h2 class="section-heading">Tips &amp; Troubleshooting</h2>
+		<ul>
+			<li>If the viewport looks out of sync with the script editor, save your work and reload the level (or restart OpenCAGE).</li>
+			<li>Click the Viewport panel first before using camera/hotkeys — focus needs to be on the viewport for keyboard shortcuts to apply there.</li>
+			<li>If there's no Viewport panel at all, check Steam's launch options — you may have the disable-viewport option selected.</li>
+			<li>Opening several editor windows? Use <b>Launch other editors without viewport</b> under Manage Game Directories to save memory on the extras.</li>
+		</ul>
 	</section>
 </article>
 
@@ -278,7 +287,9 @@
     <script src="../assets/js/highlight-custom.js"></script> 
     <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
     <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
-    <script src="../assets/js/docs.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
 
 </body>
 </html> 

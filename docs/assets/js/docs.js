@@ -10,45 +10,33 @@ const sidebarLinks = document.querySelectorAll('#docs-sidebar .scrollto');
 
 /* ===== Responsive Sidebar ====== */
 
-window.onload=function() 
-{ 
-    responsiveSidebar(); 
-};
-
-window.onresize=function() 
-{ 
-    responsiveSidebar(); 
-};
-
-
 function responsiveSidebar() {
-    let w = window.innerWidth;
-	if(w >= 1200) {
-	    // if larger 
-	    console.log('larger');
+	if (!sidebar) return;
+
+	let w = window.innerWidth;
+	if (w >= 1200) {
 		sidebar.classList.remove('sidebar-hidden');
 		sidebar.classList.add('sidebar-visible');
-		
 	} else {
-	    // if smaller
-	    console.log('smaller');
-	    sidebar.classList.remove('sidebar-visible');
-		sidebar.classList.add('sidebar-hidden');
-	}
-};
-
-sidebarToggler.addEventListener('click', () => {
-	if (sidebar.classList.contains('sidebar-visible')) {
-		console.log('visible');
 		sidebar.classList.remove('sidebar-visible');
 		sidebar.classList.add('sidebar-hidden');
-		
-	} else {
-		console.log('hidden');
-		sidebar.classList.remove('sidebar-hidden');
-		sidebar.classList.add('sidebar-visible');
 	}
-});
+}
+
+window.addEventListener('load', responsiveSidebar);
+window.addEventListener('resize', responsiveSidebar);
+
+if (sidebarToggler && sidebar) {
+	sidebarToggler.addEventListener('click', () => {
+		if (sidebar.classList.contains('sidebar-visible')) {
+			sidebar.classList.remove('sidebar-visible');
+			sidebar.classList.add('sidebar-hidden');
+		} else {
+			sidebar.classList.remove('sidebar-hidden');
+			sidebar.classList.add('sidebar-visible');
+		}
+	});
+}
 
 
 /* ===== Smooth scrolling ====== */
@@ -56,50 +44,35 @@ sidebarToggler.addEventListener('click', () => {
 /* Ref: https://github.com/iamdustan/smoothscroll */
 
 sidebarLinks.forEach((sidebarLink) => {
-	
 	sidebarLink.addEventListener('click', (e) => {
-		
 		e.preventDefault();
-		
+
 		var target = sidebarLink.getAttribute("href").replace('#', '');
-		
-		//console.log(target);
-		
-        document.getElementById(target).scrollIntoView({ behavior: 'smooth' });
-        
-        
-        //Collapse sidebar after clicking
-		if (sidebar.classList.contains('sidebar-visible') && window.innerWidth < 1200){
-			
+		var el = document.getElementById(target);
+		if (!el) return;
+
+		el.scrollIntoView({ behavior: 'smooth' });
+
+		// Collapse sidebar after clicking
+		if (sidebar && sidebar.classList.contains('sidebar-visible') && window.innerWidth < 1200) {
 			sidebar.classList.remove('sidebar-visible');
-		    sidebar.classList.add('sidebar-hidden');
-		} 
-		
-    });
-	
+			sidebar.classList.add('sidebar-hidden');
+		}
+	});
 });
 
 
-/* ===== Gumshoe SrollSpy ===== */
+/* ===== Gumshoe ScrollSpy ===== */
 /* Ref: https://github.com/cferdinandi/gumshoe  */
-// Initialize Gumshoe
-var spy = new Gumshoe('#docs-nav a', {
-	offset: 69 //sticky header height
-});
+if (typeof Gumshoe !== 'undefined' && document.querySelector('#docs-nav a')) {
+	var spy = new Gumshoe('#docs-nav a', {
+		offset: 69 // sticky header height
+	});
+}
 
 
 /* ====== SimpleLightbox Plugin ======= */
 /*  Ref: https://github.com/andreknieriem/simplelightbox */
-
-var lightbox = new SimpleLightbox('.simplelightbox-gallery a', {/* options */});
-
-
-
-
-
-
-
-
-
-
-
+if (typeof SimpleLightbox !== 'undefined' && document.querySelector('.simplelightbox-gallery a')) {
+	var lightbox = new SimpleLightbox('.simplelightbox-gallery a', {/* options */});
+}

@@ -27,6 +27,8 @@
 
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="assets/css/motion.css">
+    <link rel="stylesheet" href="assets/css/search.css">
 
 </head> 
 
@@ -39,6 +41,12 @@
 	                <div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon me-2" src="assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
                 </div><!--//docs-logo-wrapper-->
 	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
 					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
 						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
 			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
@@ -58,142 +66,169 @@
 	    <div class="container">
 		    <h1 class="page-heading single-col-max mx-auto">OpenCAGE Documentation</h1>
 		    <div class="page-intro single-col-max mx-auto">The ultimate Alien: Isolation modding guide.</div>
-            <!--
 		    <div class="main-search-box pt-3 d-block mx-auto">
                  <form class="search-form w-100">
-		            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+		            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
 		            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
 		        </form>
              </div>
-            -->
 	    </div>
     </div><!--//page-header-->
    <div class="page-content">
 	    <div class="container">
 		    <div class="docs-overview py-5">
 
-			    <div class="row justify-content-center">
-					<div class="col-12  col-lg-8">
+			    <div class="row justify-content-center docs-reveal">
+					<div class="col-12 col-lg-8">
 						<h3 style="margin-bottom:15px">Introduction</h3>
 
 						<p>Welcome to the documentation for OpenCAGE!</p>
 						<p>OpenCAGE is a community-created open-source modding toolkit for the game Alien: Isolation, intended to offer functionality that was originally available within CAGE (the Creative Assembly Game Editor).</p>
-						<p>While CAGE was never publicly released, years of reverse engineering efforts have resulted in a decent feature set for the community tools - it's possible to do a whole variety of things including; asset import/export, level script modification/creation, core configuration edits, NPC and behaviour tweaks, weapon mods, and more!</p>
-						<p>The docs are broken down into sections below which cover information related to each subsection of the tools. Be aware that this documentation is currently a work-in-progress, as are the tools themselves. Some things may not yet be documented!</p>
+						<p>While CAGE was never publicly released, years of reverse engineering efforts have resulted in a decent feature set for the community tools — it's possible to do a whole variety of things including asset import/export, level script modification/creation, core configuration edits, NPC and behaviour tweaks, weapon mods, and more!</p>
+						<p>The docs are broken down into sections below. This documentation is a work-in-progress, as are the tools themselves — some things may not yet be documented.</p>
 						<p>If you have any further questions, feel free to join the <a href="https://discord.gg/JJ4ECu9hpY">Discord</a>!</p>
-
-						<hr style="margin-top:45px; margin-bottom:45px;">
 					</div>
 				</div>
 
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<h5 class="card-title mb-3">
-									<span class="theme-icon-holder card-icon-holder me-2">
-										<img src="assets/images/cathode.svg" width="25px" style="margin-top:-3px">
-									</span>
-									<span class="card-title-text">Scripting Introduction</span>
-								</h5>
-								<div class="card-text">
-									An intro to Cathode's scripting system and overview of OpenCAGE's script editor.
+				<div class="row justify-content-center mt-4">
+					<div class="col-12 col-lg-8">
+
+						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="40">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+								<span class="docs-panel-toggle-label">
+									<span>Getting Started</span>
+									<span class="docs-panel-hint">Scripting basics &amp; Viewport</span>
+								</span>
+							</button>
+							<div class="docs-panel-body">
+								<div class="docs-panel-body-inner">
+									<p class="docs-panel-intro">Start here if you're new to Cathode scripting or exploring levels in 3D.</p>
+									<div class="row">
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<img src="assets/images/cathode.svg" width="25px" style="margin-top:-3px" alt="">
+														</span>
+														<span class="card-title-text">Scripting Introduction</span>
+													</h5>
+													<div class="card-text">
+														An intro to Cathode's scripting system and overview of OpenCAGE's script editor.
+													</div>
+													<a class="card-link-mask" href="scripting-intro/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-brands fa-unity"></i>
+														</span>
+														<span class="card-title-text">Viewport</span>
+													</h5>
+													<div class="card-text">
+														A guide to OpenCAGE's in-editor 3D Viewport.
+													</div>
+													<a class="card-link-mask" href="level-viewer/"></a>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-								<a class="card-link-mask" href="scripting-intro/"></a>
 							</div>
 						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<h5 class="card-title mb-3">
-									<span class="theme-icon-holder card-icon-holder me-2">
-										<i class="fa-brands fa-unity"></i>
-									</span>
-									<span class="card-title-text">Level Viewer</span>
-								</h5>
-								<div class="card-text">
-									A guide to using the Level Viewer, a 3D companion to OpenCAGE's script editor.
+
+						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="100">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+								<span class="docs-panel-toggle-label">
+									<span>Detailed Documentation</span>
+									<span class="docs-panel-hint">Entities, enums, behaviour trees &amp; configs</span>
+								</span>
+							</button>
+							<div class="docs-panel-body">
+								<div class="docs-panel-body-inner">
+									<p class="docs-panel-intro">Deep-dive catalogues and guides for scripting APIs, AI behaviours, and engine configuration.</p>
+									<div class="row">
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-code"></i>
+														</span>
+														<span class="card-title-text">Cathode Entities</span>
+													</h5>
+													<div class="card-text">
+														A complete look at all entities and interfaces within the Cathode scripting system.
+													</div>
+													<a class="card-link-mask" href="cathode-entities/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-code"></i>
+														</span>
+														<span class="card-title-text">Cathode Enums</span>
+													</h5>
+													<div class="card-text">
+														A complete look at all enums available within the Cathode engine.
+													</div>
+													<a class="card-link-mask" href="cathode-enums/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-brain"></i>
+														</span>
+														<span class="card-title-text">Behaviour Tree Nodes</span>
+													</h5>
+													<div class="card-text">
+														A complete look at the nodes available within behaviour trees in the game.
+													</div>
+													<a class="card-link-mask" href="behaviour-trees/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<span class="card-title-text">Configurations</span>
+													</h5>
+													<div class="card-text">
+														A guide to modifying the various configurations within the engine.
+													</div>
+													<a class="card-link-mask" href="configs/"></a>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-								<a class="card-link-mask" href="level-viewer/"></a>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<h5 class="card-title mb-3">
-									<span class="theme-icon-holder card-icon-holder me-2">
-										<i class="fa-solid fa-code"></i>
-									</span>
-									<span class="card-title-text">Cathode Entities</span>
-								</h5>
-								<div class="card-text">
-									A complete look at all entities and interfaces within the Cathode scripting system.
-								</div>
-								<a class="card-link-mask" href="cathode-entities/"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<h5 class="card-title mb-3">
-									<span class="theme-icon-holder card-icon-holder me-2">
-										<i class="fa-solid fa-code"></i>
-									</span>
-									<span class="card-title-text">Cathode Enums</span>
-								</h5>
-								<div class="card-text">
-									A complete look at all enums available within the Cathode engine.
-								</div>
-								<a class="card-link-mask" href="cathode-enums/"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<h5 class="card-title mb-3">
-									<span class="theme-icon-holder card-icon-holder me-2">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<span class="card-title-text">Configurations</span>
-								</h5>
-								<div class="card-text">
-									A guide to modifying the various configurations within the engine.
-								</div>
-								<a class="card-link-mask" href="configs/"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<h5 class="card-title mb-3">
-									<span class="theme-icon-holder card-icon-holder me-2">
-										<i class="fa-solid fa-brain"></i>
-									</span>
-									<span class="card-title-text">Behaviour Tree Nodes</span>
-								</h5>
-								<div class="card-text">
-									A complete look at the nodes available within behaviour trees in the game.
-								</div>
-								<a class="card-link-mask" href="behaviour-trees/"></a>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			
-		    </div><!--//container-->
+		    </div><!--//docs-overview-->
 		</div><!--//container-->
     </div><!--//page-content-->
 
-	<a class="card-link-mask" href="changelog/">
+	<a href="changelog/">
 		<section class="cta-section text-center py-5 theme-bg-dark position-relative">
 			<div class="theme-bg-shapes-right"></div>
 			<div class="theme-bg-shapes-left"></div>
@@ -236,14 +271,8 @@
 	  gtag('config', 'UA-39768980-14');
 	</script>
     
-    <!-- Page Specific JS -->
-    <script src="assets/plugins/smoothscroll.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
-    <script src="assets/js/highlight-custom.js"></script> 
-    <script src="assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
-    <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
-    <script src="assets/js/docs.js"></script> 
+    <script src="assets/js/motion.js"></script>
+    <script src="assets/js/search.js"></script>
 
 </body>
 </html> 
-

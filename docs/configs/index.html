@@ -30,6 +30,8 @@
 
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
     
     <style>
         .docs-section li {
@@ -38,6 +40,15 @@
         }
 		.docs-section .section-heading {
 			word-wrap: break-word;
+		}
+		.docs-overview .card-title {
+			display: flex;
+			align-items: center;
+			margin-bottom: 0;
+		}
+		.docs-overview .card-title-text {
+			margin: 0;
+			font-size: 1.05rem;
 		}
     </style>
 
@@ -56,9 +67,9 @@
 	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
                 </div><!--//docs-logo-wrapper-->
 	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
-	                <div class="top-search-box d-none d-lg-flex" style="visibility:hidden;">
+	                <div class="top-search-box d-none d-md-flex">
 		                <form class="search-form">
-				            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
 				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
 				        </form>
 	                </div>
@@ -78,267 +89,282 @@
 	    <div class="container">
 		    <div class="docs-overview py-5">
 				
-				<nav class="breadcrumb_parent" style="padding: 6px 19px 1px 19px">
+				<nav class="breadcrumb_parent docs-reveal" style="padding: 6px 19px 1px 19px">
 				  <ol class="breadcrumb" style="margin-top: 8px;">
 					<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
 					<li class="breadcrumb-item active" aria-current="page">Configurations</li>
 				  </ol>
 				</nav>
 
-			
-			    <div class="row justify-content-center">
+			    <div class="row justify-content-center docs-reveal">
 					<div class="col-12 col-lg-8">
 						<h3 style="margin-bottom:15px">Configurations</h3>
+						<p class="text-muted mb-4">Browse config guides by category. Collapse sections you don't need, or expand them again anytime.</p>
 					</div>
 				</div>
-				
-			    <div class="row justify-content-center">
+
+				<div class="row justify-content-center">
 					<div class="col-12 col-lg-8">
-						<h5 style="margin-bottom:15px">Core Game</h5>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Loadscreen Movies</h5>
+
+						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="40">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+								<span class="docs-panel-toggle-label">
+									<span>Core Game</span>
+									<span class="docs-panel-hint">Loadscreens, difficulty, lighting &amp; materials</span>
 								</span>
-								<a class="card-link-mask" href="loadscreen-movies/"></a>
+							</button>
+							<div class="docs-panel-body">
+								<div class="docs-panel-body-inner">
+									<div class="row">
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Loadscreen Movies</h5>
+													</span>
+													<a class="card-link-mask" href="loadscreen-movies/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Hack Tool Difficulties</h5>
+													</span>
+													<a class="card-link-mask" href="hack-tool-difficulties/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Radiosity</h5>
+													</span>
+													<a class="card-link-mask" href="radiosity/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Global Constants</h5>
+													</span>
+													<a class="card-link-mask" href="global-constants/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Difficulty Settings</h5>
+													</span>
+													<a class="card-link-mask" href="difficulty-settings/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Viewcones</h5>
+													</span>
+													<a class="card-link-mask" href="viewcones/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Permanent Soundbanks</h5>
+													</span>
+													<a class="card-link-mask" href="perma-soundbanks/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Physical Materials</h5>
+													</span>
+													<a class="card-link-mask" href="physical-materials/"></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Hack Tool Difficulties</h5>
+
+						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="100">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+								<span class="docs-panel-toggle-label">
+									<span>Characters</span>
+									<span class="docs-panel-hint">Locomotion, alien, senses &amp; attributes</span>
 								</span>
-								<a class="card-link-mask" href="hack-tool-difficulties/"></a>
+							</button>
+							<div class="docs-panel-body">
+								<div class="docs-panel-body-inner">
+									<div class="row">
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Locomotion</h5>
+													</span>
+													<a class="card-link-mask" href="locomotion/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Alien Configs</h5>
+													</span>
+													<a class="card-link-mask" href="alien-configs/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Senses</h5>
+													</span>
+													<a class="card-link-mask" href="senses/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Attributes</h5>
+													</span>
+													<a class="card-link-mask" href="attributes/"></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Radiosity</h5>
+
+						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="160">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+								<span class="docs-panel-toggle-label">
+									<span>Inventory</span>
+									<span class="docs-panel-hint">Blueprints, ammo &amp; items</span>
 								</span>
-								<a class="card-link-mask" href="radiosity/"></a>
+							</button>
+							<div class="docs-panel-body">
+								<div class="docs-panel-body-inner">
+									<div class="row">
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Blueprint Recipes</h5>
+													</span>
+													<a class="card-link-mask" href="blueprint-recipes/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Ammo</h5>
+													</span>
+													<a class="card-link-mask" href="ammo/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<span class="card-title">
+														<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
+															<i class="fa-solid fa-gear"></i>
+														</span>
+														<h5 class="card-title-text">Inventory Items</h5>
+													</span>
+													<a class="card-link-mask" href="inventory-items/"></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Global Constants</h5>
-								</span>
-								<a class="card-link-mask" href="global-constants/"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Difficulty Settings</h5>
-								</span>
-								<a class="card-link-mask" href="difficulty-settings/"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Viewcones</h5>
-								</span>
-								<a class="card-link-mask" href="viewcones/"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Permanent Soundbanks</h5>
-								</span>
-								<a class="card-link-mask" href="perma-soundbanks/"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Physical Materials</h5>
-								</span>
-								<a class="card-link-mask" href="physical-materials/"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			    <div class="row justify-content-center" style="margin-top: 24px;">
-					<div class="col-12 col-lg-8">
-						<h5 style="margin-bottom:15px">Characters</h5>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Locomotion</h5>
-								</span>
-								<a class="card-link-mask" href="locomotion/"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Alien Configs</h5>
-								</span>
-								<a class="card-link-mask" href="alien-configs/"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Senses</h5>
-								</span>
-								<a class="card-link-mask" href="senses/"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Attributes</h5>
-								</span>
-								<a class="card-link-mask" href="attributes/"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-			    <div class="row justify-content-center" style="margin-top: 24px;">
-					<div class="col-12 col-lg-8">
-						<h5 style="margin-bottom:15px">Inventory</h5>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Blueprint Recipes</h5>
-								</span>
-								<a class="card-link-mask" href="blueprint-recipes/"></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Ammo</h5>
-								</span>
-								<a class="card-link-mask" href="ammo/"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row justify-content-center">
-					<div class="col-12 col-lg-4 py-3">
-						<div class="card shadow-sm">
-							<div class="card-body">
-								<span class="card-title">
-									<span class="theme-icon-holder card-icon-holder me-2" style="padding-top:0.82rem">
-										<i class="fa-solid fa-gear"></i>
-									</span>
-									<h5 class="card-title-text">Inventory Items</h5>
-								</span>
-								<a class="card-link-mask" href="inventory-items/"></a>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			
-		    </div><!--//container-->
+		    </div><!--//docs-overview-->
 		</div><!--//container-->
     </div><!--//page-content-->
-			    <footer class="footer">
-				    <div class="container text-center py-5">
-                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
-			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
-				        <ul class="social-list list-unstyled pt-4 mb-0">
-							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
-							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
-							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
-							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
-				        </ul><!--//social-list-->
-				    </div>
-			    </footer>
-		    </div> 
-	    </div>
-    </div><!--//docs-wrapper-->
+
+	<footer class="footer">
+		<div class="container text-center py-5">
+			<small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			<small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+			<ul class="social-list list-unstyled pt-4 mb-0">
+				<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+				<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+				<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+				<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+			</ul><!--//social-list-->
+		</div>
+	</footer>
    
        
     <!-- Javascript -->          
@@ -361,6 +387,8 @@
     <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
     <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
     <script src="../assets/js/docs.js"></script> 
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
 
 </body>
 </html> 

@@ -1,0 +1,125 @@
+/* Sitewide docs search */
+
+.top-search-box {
+	position: relative;
+}
+
+.top-search-box .search-form {
+	margin-bottom: 0;
+}
+
+.docs-search-results {
+	position: absolute;
+	top: calc(100% + 0.45rem);
+	left: 0;
+	right: 0;
+	z-index: 1080;
+	max-height: min(70vh, 420px);
+	overflow-y: auto;
+	background: #fff;
+	border: 1px solid #e7e9ed;
+	border-radius: 0.75rem;
+	box-shadow: 0 0.75rem 1.75rem rgba(37, 41, 48, 0.14);
+	padding: 0.35rem;
+	display: none;
+}
+
+.docs-search-results.is-open {
+	display: block;
+}
+
+.docs-search-empty {
+	padding: 0.85rem 1rem;
+	color: #919aaa;
+	font-size: 0.875rem;
+}
+
+.docs-search-item {
+	display: block;
+	width: 100%;
+	text-align: left;
+	border: 0;
+	background: transparent;
+	border-radius: 0.55rem;
+	padding: 0.7rem 0.85rem;
+	color: inherit;
+	text-decoration: none;
+	transition: background-color 140ms ease;
+}
+
+.docs-search-item:hover,
+.docs-search-item.is-active {
+	background: #f3f6f8;
+	color: inherit;
+	text-decoration: none;
+}
+
+.docs-search-item-category {
+	display: inline-block;
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	color: #28b76b;
+	margin-bottom: 0.15rem;
+}
+
+.docs-search-item-type {
+	display: inline-block;
+	margin-left: 0.35rem;
+	padding: 0.05rem 0.35rem;
+	border-radius: 999px;
+	background: rgba(40, 183, 107, 0.12);
+	color: #1f8a52;
+	font-size: 0.65rem;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+.docs-section.docs-search-flash,
+.docs-article.docs-search-flash {
+	animation: docs-search-flash 1.5s ease;
+}
+
+@keyframes docs-search-flash {
+	0% { background-color: rgba(40, 183, 107, 0.18); }
+	100% { background-color: transparent; }
+}
+
+.docs-search-item-title {
+	display: block;
+	font-weight: 600;
+	font-size: 0.95rem;
+	color: #252930;
+	line-height: 1.3;
+}
+
+.docs-search-item-desc {
+	display: block;
+	margin-top: 0.15rem;
+	font-size: 0.8rem;
+	color: #5d6778;
+	line-height: 1.35;
+}
+
+.docs-search-highlight {
+	background: rgba(40, 183, 107, 0.18);
+	color: inherit;
+	border-radius: 0.15rem;
+	padding: 0 0.1em;
+}
+
+/* Main hub: optional larger search under the hero can reuse the same classes */
+.main-search-box {
+	position: relative;
+}
+
+.main-search-box .docs-search-results {
+	text-align: left;
+}
+
+@media (max-width: 991.98px) {
+	.docs-branding .top-search-box {
+		width: min(220px, 42vw);
+	}
+}
