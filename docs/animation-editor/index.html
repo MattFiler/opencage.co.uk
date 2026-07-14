@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>OpenCAGE: Launch Game</title>
+    <title>OpenCAGE: Animation Editor</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE's Launch Game dialog and launch options.">
+    <meta name="description" content="How OpenCAGE's Animation Editor browses ANIMATION.PAK — and important limits on what you can edit today.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Launch Game" />
-	<meta name="twitter:description" content="How to use OpenCAGE's Launch Game dialog and launch options." />
+	<meta name="twitter:title" content="OpenCAGE: Animation Editor" />
+	<meta name="twitter:description" content="How OpenCAGE's Animation Editor browses ANIMATION.PAK — and important limits on what you can edit today." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -40,6 +40,18 @@
         }
 		.docs-section .section-heading {
 			word-wrap: break-word;
+		}
+		.docs-caveat {
+			border-left: 4px solid #c45c26;
+			background: rgba(196, 92, 38, 0.08);
+			padding: 0.85rem 1rem;
+			margin: 0 0 1.25rem 0;
+		}
+		.docs-caveat p {
+			margin: 0;
+		}
+		.docs-caveat p + p {
+			margin-top: 0.65rem;
 		}
     </style>
 
@@ -79,13 +91,11 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#starting-level"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Starting Level</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#ui-mods"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>UI Mods</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#patches"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Patches &amp; Tools</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#engine-patches">Engine Patches</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#debug-tools">Debug Tools</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#steam-tools">Steam-Only Tools</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Options</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#caveat"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Important Limits</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#using"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using the Editor</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#export-replace">Export &amp; Replace</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#import-delete">Import, Delete &amp; Export All</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#anim-trees"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Animation Trees</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -94,7 +104,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Launch Game</li>
+		<li class="breadcrumb-item active" aria-current="page">Animation Editor</li>
 	  </ol>
 	</nav>
 </article>
@@ -105,84 +115,61 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The toolbar <b>Launch Game</b> button opens the Launch Game dialog. From here you pick a starting level, toggle launch options, then hit <b>Start Alien: Isolation</b>.</p>
-		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — for example <b>Cinematic Tools</b> and <b>Hot Reloading</b> are Steam-only.</p>
+		<p>Open <b>Edit → Animations</b> to browse <code>DATA/GLOBAL/ANIMATION.PAK</code>. The <b>Edit Animations</b> window works like the <a href="/docs/ui-editor/">UI Editor</a>: a searchable list of archive entries (path + size). There's no animation authoring UI here — only export, import, replace, and delete of the raw files in the PAK. Writes go straight back into the archive.</p>
+		<p>Saving changes closes Alien: Isolation if it's running, so the game isn't locking the archive.</p>
     </section>
 </article>
 
-<article class="docs-article" id="starting-level">
+<article class="docs-article" id="caveat">
     <header class="docs-header">
-        <h1 class="docs-heading">Starting Level</h1>
+        <h1 class="docs-heading">Important Limits</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Starting Level</b> dropdown lists levels from the current game install. OpenCAGE prefers the level you're editing, otherwise your last used choice, otherwise the frontend.</p>
-		<ul>
-			<li>Choosing a normal level boots the game straight into that map — useful for testing a specific level without playing through from the start.</li>
-			<li>Choosing <b>FRONTEND</b> launches into the normal title/front-end flow.</li>
-		</ul>
-		<p>Your selection is remembered for next time.</p>
+		<div class="docs-caveat">
+			<p><b>This tool only extracts and repacks raw animation data.</b> The files inside <code>ANIMATION.PAK</code> are compiled into game-specific formats that OpenCAGE does <b>not</b> make editable or interchangeable with common DCC/export pipelines.</p>
+			<p>In particular, Havok data carries extra header information beyond a plain Havok file, and <b>animation sets are not yet supported for editing</b>. Treat exported bytes as opaque archives for inspection or advanced reverse engineering — not as ready-to-edit animation assets.</p>
+		</div>
     </section>
 </article>
 
-<article class="docs-article" id="ui-mods">
+<article class="docs-article" id="using">
     <header class="docs-header">
-        <h1 class="docs-heading">UI Mods</h1>
+        <h1 class="docs-heading">Using the Editor</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>These swap in OpenCAGE's modified pause/frontend/loading/game-over menus (by patching GFX files inside <code>UI.PAK</code> — see also the <a href="/docs/ui-editor/">UI Editor</a>):</p>
-		<ul>
-			<li><b>Enable Debug Checkpoints</b> — adds debug checkpoints to the pause menu under <b>Load Game</b>. Checkpoints are per-map and load a scripted game state so you can jump to specific moments. They're created in level scripts with the <a href="/docs/cathode-entities/#DebugCheckpoint">DebugCheckpoint</a> entity.</li>
-			<li><b>Enable Level Selection</b> — frontend menu with level selection (where you'd normally load a save)</li>
-			<li><b>Enable Debug Loadscreen</b> — loading screen that shows debug map info, and also loads quicker than normal by removing artificial wait times</li>
-			<li><b>Add Quit To Menu On Death</b> — game-over menu with quit-to-menu</li>
-		</ul>
-    </section>
-</article>
-
-<article class="docs-article" id="patches">
-    <header class="docs-header">
-        <h1 class="docs-heading">Patches &amp; Tools</h1>
-    </header>
-
-	<section class="docs-section" id="engine-patches" style="padding-top:0;">
-		<h2 class="section-heading">Engine Patches</h2>
-		<ul>
-			<li><b>Skip Frontend</b> — skips the title screen when loading directly into a level</li>
-			<li><b>Patch Current-Gen Optimisations</b> — restores script functionality that was left out of the PC build (the game incorrectly still honours a “current gen” script flag). In vanilla this re-enables things like additional lighting, monitors, and effects.</li>
-			<li><b>No UI</b> — disables the in-game HUD. Also disables UI popups, which can make some actions impossible — useful for screenshots.</li>
-			<li><b>Render Constant Ambient</b> — full-bright “constant ambient” rendering mode</li>
-		</ul>
+		<p>The list shows every path in the archive. Use the search box (and <b>Search</b>, or Enter) to filter by path. Select a row to enable the action buttons.</p>
     </section>
 
-	<section class="docs-section" id="debug-tools">
-		<h2 class="section-heading">Debug Tools</h2>
-		<ul>
-			<li><b>Enable UI Memory Overlay</b> — shows current UI memory in an in-game overlay (cUI). Separate from Cathode DebugText entities.</li>
-			<li><b>Enable Memory Logging</b> — writes memory replay logs to a <code>Mem_Replay_Logs</code> folder</li>
-		</ul>
-	</section>
+    <section class="docs-section" id="export-replace">
+		<h2 class="section-heading">Export &amp; Replace</h2>
+		<ol>
+			<li>Select a file → <b>Export Selected</b> → pick where to save it.</li>
+			<li>Work with the raw file externally only if you understand the compiled format (see <a href="#caveat">Important Limits</a>).</li>
+			<li>Back in Edit Animations, select the same archive entry → <b>Replace Selected</b> → choose your file.</li>
+		</ol>
+		<p>Replace writes into <code>ANIMATION.PAK</code> immediately. OpenCAGE does not validate content.</p>
+    </section>
 
-	<section class="docs-section" id="steam-tools">
-		<h2 class="section-heading">Steam-Only Tools</h2>
+	<section class="docs-section" id="import-delete">
+		<h2 class="section-heading">Import, Delete &amp; Export All</h2>
 		<ul>
-			<li><b>Enable Hot Reloading</b> — press <b>INSERT</b> in-game to hot reload the current level, handy for iterating on scripts without a full restart</li>
-			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them.</li>
+			<li><b>Import New File</b> — pick a file from disk, then set the <b>Entry path</b> inside the archive. If that path already exists, you're asked whether to overwrite.</li>
+			<li><b>Delete Selected</b> — removes the entry after confirmation.</li>
+			<li><b>Export All</b> — dumps every entry into a folder, preserving relative paths under the archive.</li>
 		</ul>
+		<p>Import and delete also save the PAK immediately (and close the game if it's open).</p>
 	</section>
 </article>
 
-<article class="docs-article" id="related">
+<article class="docs-article" id="anim-trees">
     <header class="docs-header">
-        <h1 class="docs-heading">Related Options</h1>
+        <h1 class="docs-heading">Animation Trees</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Outside the Launch Game dialog:</p>
-		<ul>
-			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog (so extras like Cinematic Tools / Hot Reloading from that dialog aren't applied). Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
-		</ul>
+		<p>Within the animation data are <b>animation trees</b> — a script-like system for contextual animation (choosing and blending clips based on game context). Support for editing animation trees in OpenCAGE is <b>upcoming</b>; the current window does not provide a tree editor, only raw PAK entry access.</p>
     </section>
 </article>
 

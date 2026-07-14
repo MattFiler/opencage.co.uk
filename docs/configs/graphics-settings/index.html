@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>OpenCAGE: Graphics Settings</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A guide to modifying graphics settings presets through OpenCAGE.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Graphics Settings" />
+	<meta name="twitter:description" content="A guide to modifying graphics settings presets through OpenCAGE." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../../assets/css/theme.css">
+    <link rel="stylesheet" href="../../assets/css/motion.css">
+    <link rel="stylesheet" href="../../assets/css/search.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#presets"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Preset Lists</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#windowed-resolution">Windowed Resolution</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#fov">Field of View</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#shadow-resolution">Shadow Map Resolution</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#shadow-filter">Shadow Map Filter Quality</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#lod">Level of Detail</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#extras"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Extra Options</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#reverting"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Reverting</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item"><a href="/docs/configs/">Configurations</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Graphics Settings</li>
+	  </ol>
+	</nav>
+</article>
+    
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+        <h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>To edit graphics presets in OpenCAGE, go to <b>Edit → Configurations → Core Game → Graphics Settings</b>.</p>
+		<p>The Graphics Settings Editor edits the lists of selectable Video options written to <code>DATA/ENGINE_SETTINGS.XML</code> — things like windowed resolutions, FOV, shadow quality, and LOD distance. It does <b>not</b> turn those settings on for you; it adds (or removes) choices that appear on the in-game <b>Video</b> settings page, which players pick at runtime.</p>
+		<p>Each preset list has <b>Add New</b> and <b>Remove Selected</b>. Click <b>Save</b> when you're done — OpenCAGE warns that you may need to delete the game's settings save if you removed a preset the player still has selected (the game can hard-crash loading a missing preset name).</p>
+    </section>
+</article>
+
+<article class="docs-article" id="presets">
+    <header class="docs-header">
+        <h1 class="docs-heading">Preset Lists</h1>
+    </header>
+
+    <section class="docs-section" id="windowed-resolution" style="padding-top:0;">
+		<h2 class="section-heading">Windowed Resolution Presets</h2>
+		<p>Customise the resolutions available in <b>windowed</b> mode. Values aren't capped to the monitor — larger options are scaled down to fit at runtime, but captures that hook the renderer (e.g. Steam screenshots) can still be taken at the full configured size.</p>
+		<p>Fullscreen resolutions aren't edited here; those come from the display hardware.</p>
+    </section>
+
+	<section class="docs-section" id="fov">
+		<h2 class="section-heading">Field of View Presets</h2>
+		<p>Customise FOV options outside of cutscenes. Values are <b>vertical FOV</b>, not the horizontal FOV many online sources quote. To convert from a horizontal FOV, use a <a href="https://themetalmuncher.github.io/fov-calc/" target="_blank" rel="noopener">FOV calculator</a>.</p>
+	</section>
+
+	<section class="docs-section" id="shadow-resolution">
+		<h2 class="section-heading">Shadow Map Resolution Presets</h2>
+		<p>Tweak available shadow map resolutions (in pixels). Vanilla options typically run from 512 to 2048; higher values such as 4096 generally work, at a GPU cost.</p>
+	</section>
+
+	<section class="docs-section" id="shadow-filter">
+		<h2 class="section-heading">Shadow Map Filter Quality Presets</h2>
+		<p>Controls shadow filtering quality via the <b>PCF kernel</b> (percentage-closer filtering). Higher kernel values improve filter quality and cost more performance. Background reading: <a href="https://ogldev.org/www/tutorial42/tutorial42.html" target="_blank" rel="noopener">PCF overview</a>.</p>
+	</section>
+
+	<section class="docs-section" id="lod">
+		<h2 class="section-heading">Level of Detail Presets</h2>
+		<p>Tweaks LOD cutoff distance <b>scalars</b>. Vanilla values typically sit around 0.6–1.0. The field is uncapped — a very large value (e.g. 10000) can push the cutoff so far that high-detail assets stay loaded.</p>
+		<p>To disable LODs entirely for a level through scripting (rather than via a Video preset), use the <a href="/docs/cathode-entities/#LODControls">LODControls</a> entity.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="extras">
+    <header class="docs-header">
+        <h1 class="docs-heading">Extra Options</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Besides the preset lists, the editor also exposes:</p>
+		<ul>
+			<li><b>High Gloss Planar Reflections</b> — adds an extra planar-reflection quality above the normal On/Off options.</li>
+			<li><b>Stereo Mode: Oculus Rift</b> / <b>3D TV</b> / <b>Anaglyph</b> — toggles whether those stereo modes appear as Video options (alongside the always-present Off mode).</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="reverting">
+    <header class="docs-header">
+        <h1 class="docs-heading">Reverting</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>To restore stock graphics presets, open the <a href="/docs/backup-manager/#revert-configs">Backup Manager</a>, click <b>Revert Configs</b>, then <b>Reset Graphics Settings</b>. That overwrites <code>DATA/ENGINE_SETTINGS.XML</code> with the vanilla file and closes the game if it's running.</p>
+		<p>Reset only touches the install config — it does not clear the player's own settings save. If you removed presets they still have selected, clear that save as well (or re-add the missing preset names).</p>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../../assets/plugins/popper.min.js"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../../assets/js/highlight-custom.js"></script> 
+    <script src="../../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../../assets/js/docs.js"></script>
+    <script src="../../assets/js/motion.js"></script>
+    <script src="../../assets/js/search.js"></script> 
+
+</body>
+</html> 

@@ -191,6 +191,139 @@
         "type":  "symbol"
     },
     {
+        "title":  "UI Editor",
+        "description":  "How to extract and replace files in Alien: Isolation's UI.PAK with OpenCAGE.",
+        "url":  "/docs/ui-editor/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "ui",
+                         "ui.pak",
+                         "gfx",
+                         "dds",
+                         "edit ui"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Animation Editor",
+        "description":  "How OpenCAGE's Animation Editor browses ANIMATION.PAK — and important limits on what you can edit today.",
+        "url":  "/docs/animation-editor/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "animation",
+                         "animations",
+                         "animation.pak",
+                         "havok",
+                         "anim tree",
+                         "edit animations"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Animation Editor",
+        "url":  "/docs/animation-editor/#intro",
+        "category":  "Animation Editor",
+        "keywords":  [ "intro", "animation editor", "animation.pak" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Important Limits",
+        "description":  "On Animation Editor",
+        "url":  "/docs/animation-editor/#caveat",
+        "category":  "Animation Editor",
+        "keywords":  [ "caveat", "limits", "havok", "animation sets", "animation editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Using the Editor",
+        "description":  "On Animation Editor",
+        "url":  "/docs/animation-editor/#using",
+        "category":  "Animation Editor",
+        "keywords":  [ "using", "animation editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Export & Replace",
+        "description":  "On Animation Editor",
+        "url":  "/docs/animation-editor/#export-replace",
+        "category":  "Animation Editor",
+        "keywords":  [ "export-replace", "export", "replace", "animation editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Import, Delete & Export All",
+        "description":  "On Animation Editor",
+        "url":  "/docs/animation-editor/#import-delete",
+        "category":  "Animation Editor",
+        "keywords":  [ "import-delete", "import", "delete", "animation editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Animation Trees",
+        "description":  "On Animation Editor",
+        "url":  "/docs/animation-editor/#anim-trees",
+        "category":  "Animation Editor",
+        "keywords":  [ "anim-trees", "animation trees", "contextual animation", "animation editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On UI Editor",
+        "url":  "/docs/ui-editor/#intro",
+        "category":  "UI Editor",
+        "keywords":  [ "intro", "ui editor", "ui.pak" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "File Types",
+        "description":  "On UI Editor",
+        "url":  "/docs/ui-editor/#file-types",
+        "category":  "UI Editor",
+        "keywords":  [ "file-types", "gfx", "dds", "html", "ui editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Recommended Tools",
+        "description":  "On UI Editor",
+        "url":  "/docs/ui-editor/#tools",
+        "category":  "UI Editor",
+        "keywords":  [ "tools", "jpexs", "directxtex", "ui editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Using the Editor",
+        "description":  "On UI Editor",
+        "url":  "/docs/ui-editor/#using",
+        "category":  "UI Editor",
+        "keywords":  [ "using", "ui editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Export & Replace",
+        "description":  "On UI Editor",
+        "url":  "/docs/ui-editor/#export-replace",
+        "category":  "UI Editor",
+        "keywords":  [ "export-replace", "export", "replace", "ui editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Import, Delete & Export All",
+        "description":  "On UI Editor",
+        "url":  "/docs/ui-editor/#import-delete",
+        "category":  "UI Editor",
+        "keywords":  [ "import-delete", "import", "delete", "ui editor" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Launch Game UI Mods",
+        "description":  "On UI Editor",
+        "url":  "/docs/ui-editor/#launch-game",
+        "category":  "UI Editor",
+        "keywords":  [ "launch-game", "ui mods", "ui editor" ],
+        "type":  "symbol"
+    },
+    {
         "title":  "Level Names",
         "description":  "Reference list of Alien: Isolation level / map names and where they are in the game.",
         "url":  "/docs/level-names/",
@@ -18439,6 +18572,94 @@
                          "config",
                          "configuration"
                      ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Graphics Settings",
+        "description":  "A guide to modifying graphics settings presets through OpenCAGE.",
+        "url":  "/docs/configs/graphics-settings/",
+        "category":  "Configuration",
+        "keywords":  [
+                         "graphics",
+                         "fov",
+                         "lod",
+                         "shadows",
+                         "engine_settings",
+                         "config",
+                         "configuration"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#intro",
+        "category":  "Configuration",
+        "keywords":  [ "intro", "graphics settings", "config", "configuration" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Preset Lists",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#presets",
+        "category":  "Configuration",
+        "keywords":  [ "presets", "graphics settings", "config", "configuration" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Windowed Resolution",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#windowed-resolution",
+        "category":  "Configuration",
+        "keywords":  [ "windowed-resolution", "resolution", "graphics settings", "config" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Field of View",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#fov",
+        "category":  "Configuration",
+        "keywords":  [ "fov", "field of view", "graphics settings", "config" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Shadow Map Resolution",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#shadow-resolution",
+        "category":  "Configuration",
+        "keywords":  [ "shadow-resolution", "shadows", "graphics settings", "config" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Shadow Map Filter Quality",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#shadow-filter",
+        "category":  "Configuration",
+        "keywords":  [ "shadow-filter", "pcf", "graphics settings", "config" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Level of Detail",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#lod",
+        "category":  "Configuration",
+        "keywords":  [ "lod", "level of detail", "graphics settings", "config" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Extra Options",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#extras",
+        "category":  "Configuration",
+        "keywords":  [ "extras", "stereo", "high gloss", "graphics settings", "config" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Reverting",
+        "description":  "Graphics Settings",
+        "url":  "/docs/configs/graphics-settings/#reverting",
+        "category":  "Configuration",
+        "keywords":  [ "reverting", "reset", "graphics settings", "config" ],
         "type":  "symbol"
     },
     {
