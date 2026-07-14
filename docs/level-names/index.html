@@ -44,17 +44,49 @@
 		.level-table {
 			width: 100%;
 			margin-bottom: 0.5rem;
+			border-collapse: separate;
+			border-spacing: 0 0.65rem;
 		}
 		.level-table td {
-			vertical-align: top;
-			padding: 0.45rem 0.75rem 0.45rem 0;
+			vertical-align: middle;
+			padding: 0.35rem 0.85rem 0.35rem 0;
 		}
 		.level-table tr td:first-child {
 			white-space: nowrap;
 			padding-right: 1.25rem;
+			width: 1%;
+		}
+		.level-table td.level-pic {
+			width: 140px;
+			padding-right: 0;
 		}
 		.level-table code {
 			font-size: 0.9em;
+		}
+		.level-table .level-thumb {
+			display: block;
+			width: 128px;
+			height: 72px;
+			object-fit: cover;
+			border-radius: 4px;
+		}
+		@media (max-width: 575.98px) {
+			.level-table tr {
+				display: block;
+				margin-bottom: 1.25rem;
+				padding-bottom: 1rem;
+				border-bottom: 1px solid rgba(0,0,0,0.08);
+			}
+			.level-table td {
+				display: block;
+				width: 100% !important;
+				padding: 0.2rem 0;
+			}
+			.level-table .level-thumb {
+				width: 100%;
+				height: auto;
+				max-width: 280px;
+			}
 		}
     </style>
 
@@ -130,12 +162,28 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<table class="level-table">
-			<tr id="BSP_LV426_Pt01"><td><code>BSP_LV426_Pt01</code></td><td>LV-426, including the Anesidora hangar and view over to the derelict.</td></tr>
-			<tr id="BSP_LV426_Pt02"><td><code>BSP_LV426_Pt02</code></td><td>LV-426, inside the derelict.</td></tr>
-			<tr id="BSP_Torrens"><td><code>BSP_Torrens</code></td><td>The Torrens, including the hypersleep area, canteen, medical area and bridge.</td></tr>
-			<tr id="Solace"><td><code>Solace</code></td><td>The interior of the Anesidora.</td></tr>
-		</table>
+		<div class="simplelightbox-gallery"><table class="level-table">
+			<tr id="BSP_LV426_Pt01">
+				<td><code>BSP_LV426_Pt01</code></td>
+				<td>LV-426, including the Anesidora hangar and view over to the derelict.</td>
+				<td class="level-pic"><a href="img/BSP_LV426_Pt01.jpg" class="level-gallery"><img class="level-thumb" src="img/BSP_LV426_Pt01.jpg" alt="BSP_LV426_Pt01"></a></td>
+			</tr>
+			<tr id="BSP_LV426_Pt02">
+				<td><code>BSP_LV426_Pt02</code></td>
+				<td>LV-426, inside the derelict.</td>
+				<td class="level-pic"><a href="img/BSP_LV426_Pt02.jpg" class="level-gallery"><img class="level-thumb" src="img/BSP_LV426_Pt02.jpg" alt="BSP_LV426_Pt02"></a></td>
+			</tr>
+			<tr id="BSP_Torrens">
+				<td><code>BSP_Torrens</code></td>
+				<td>The Torrens, including the hypersleep area, canteen, medical area and bridge.</td>
+				<td class="level-pic"><a href="img/BSP_Torrens.jpg" class="level-gallery"><img class="level-thumb" src="img/BSP_Torrens.jpg" alt="BSP_Torrens"></a></td>
+			</tr>
+			<tr id="Solace">
+				<td><code>Solace</code></td>
+				<td>The interior of the Anesidora.</td>
+				<td class="level-pic"><a href="img/Solace.jpg" class="level-gallery"><img class="level-thumb" src="img/Solace.jpg" alt="Solace"></a></td>
+			</tr>
+		</table></div>
     </section>
 </article>
 
@@ -145,13 +193,33 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<table class="level-table">
-			<tr id="TECH_Comms"><td><code>TECH_Comms</code></td><td>Seegson Communications, including the external comms array.</td></tr>
-			<tr id="TECH_Hub"><td><code>TECH_Hub</code></td><td>The central area of the Lorenz SysTech Spire that the transit connects to. Includes the server hub, archive room and Lorenz SysTech lobby.</td></tr>
-			<tr id="TECH_MuthrCore"><td><code>TECH_MuthrCore</code></td><td>APOLLO, including the server banks.</td></tr>
-			<tr id="TECH_RnD"><td><code>TECH_RnD</code></td><td>Gemini Exoplanet Solutions.</td></tr>
-			<tr id="TECH_RnD_HzdLab"><td><code>TECH_RnD_HzdLab</code></td><td>The Project KG-348 research labs, including the detachable lab.</td></tr>
-		</table>
+		<div class="simplelightbox-gallery"><table class="level-table">
+			<tr id="TECH_Comms">
+				<td><code>TECH_Comms</code></td>
+				<td>Seegson Communications, including the external comms array.</td>
+				<td class="level-pic"><a href="img/TECH_Comms.jpg" class="level-gallery"><img class="level-thumb" src="img/TECH_Comms.jpg" alt="TECH_Comms"></a></td>
+			</tr>
+			<tr id="TECH_Hub">
+				<td><code>TECH_Hub</code></td>
+				<td>The central area of the Lorenz SysTech Spire that the transit connects to. Includes the server hub, archive room and Lorenz SysTech lobby.</td>
+				<td class="level-pic"><a href="img/TECH_Hub.jpg" class="level-gallery"><img class="level-thumb" src="img/TECH_Hub.jpg" alt="TECH_Hub"></a></td>
+			</tr>
+			<tr id="TECH_MuthrCore">
+				<td><code>TECH_MuthrCore</code></td>
+				<td>APOLLO, including the server banks.</td>
+				<td class="level-pic"><a href="img/TECH_MuthrCore.jpg" class="level-gallery"><img class="level-thumb" src="img/TECH_MuthrCore.jpg" alt="TECH_MuthrCore"></a></td>
+			</tr>
+			<tr id="TECH_RnD">
+				<td><code>TECH_RnD</code></td>
+				<td>Gemini Exoplanet Solutions.</td>
+				<td class="level-pic"><a href="img/TECH_RnD.jpg" class="level-gallery"><img class="level-thumb" src="img/TECH_RnD.jpg" alt="TECH_RnD"></a></td>
+			</tr>
+			<tr id="TECH_RnD_HzdLab">
+				<td><code>TECH_RnD_HzdLab</code></td>
+				<td>The Project KG-348 research labs, including the detachable lab.</td>
+				<td class="level-pic"><a href="img/TECH_RnD_HzdLab.jpg" class="level-gallery"><img class="level-thumb" src="img/TECH_RnD_HzdLab.jpg" alt="TECH_RnD_HzdLab"></a></td>
+			</tr>
+		</table></div>
     </section>
 </article>
 
@@ -161,12 +229,28 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<table class="level-table">
-			<tr id="SCI_AndroidLab"><td><code>SCI_AndroidLab</code></td><td>The entirety of Seegson Synthetics — Components Warehouse, Android Disposal, the Synthetic Showroom and Facility Administration. The transit station to APOLLO is here.</td></tr>
-			<tr id="SCI_HospitalLower"><td><code>SCI_HospitalLower</code></td><td>San Cristobal Medical lower floors, including the Ambulance Bay, Medical Reception, Medical Wards and Operating Theatre.</td></tr>
-			<tr id="SCI_HospitalUpper"><td><code>SCI_HospitalUpper</code></td><td>San Cristobal Medical upper floors, including Dr. Kuhlman's office, Psychiatric Wards, Staff Quarters and Patient Rooms.</td></tr>
-			<tr id="SCI_Hub"><td><code>SCI_Hub</code></td><td>The central SciMed Tower transit area, leading to upper/lower San Cristobal Medical and Seegson Synthetics. Transit Control is accessed by elevator.</td></tr>
-		</table>
+		<div class="simplelightbox-gallery"><table class="level-table">
+			<tr id="SCI_AndroidLab">
+				<td><code>SCI_AndroidLab</code></td>
+				<td>The entirety of Seegson Synthetics — Components Warehouse, Android Disposal, the Synthetic Showroom and Facility Administration. The transit station to APOLLO is here.</td>
+				<td class="level-pic"><a href="img/SCI_AndroidLab.jpg" class="level-gallery"><img class="level-thumb" src="img/SCI_AndroidLab.jpg" alt="SCI_AndroidLab"></a></td>
+			</tr>
+			<tr id="SCI_HospitalLower">
+				<td><code>SCI_HospitalLower</code></td>
+				<td>San Cristobal Medical lower floors, including the Ambulance Bay, Medical Reception, Medical Wards and Operating Theatre.</td>
+				<td class="level-pic"><a href="img/SCI_HospitalLower.jpg" class="level-gallery"><img class="level-thumb" src="img/SCI_HospitalLower.jpg" alt="SCI_HospitalLower"></a></td>
+			</tr>
+			<tr id="SCI_HospitalUpper">
+				<td><code>SCI_HospitalUpper</code></td>
+				<td>San Cristobal Medical upper floors, including Dr. Kuhlman's office, Psychiatric Wards, Staff Quarters and Patient Rooms.</td>
+				<td class="level-pic"><a href="img/SCI_HospitalUpper.jpg" class="level-gallery"><img class="level-thumb" src="img/SCI_HospitalUpper.jpg" alt="SCI_HospitalUpper"></a></td>
+			</tr>
+			<tr id="SCI_Hub">
+				<td><code>SCI_Hub</code></td>
+				<td>The central SciMed Tower transit area, leading to upper/lower San Cristobal Medical and Seegson Synthetics. Transit Control is accessed by elevator.</td>
+				<td class="level-pic"><a href="img/SCI_Hub.jpg" class="level-gallery"><img class="level-thumb" src="img/SCI_Hub.jpg" alt="SCI_Hub"></a></td>
+			</tr>
+		</table></div>
     </section>
 </article>
 
@@ -176,11 +260,23 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<table class="level-table">
-			<tr id="HAB_Airport"><td><code>HAB_Airport</code></td><td>Where Amanda initially arrives on Sevastopol — Spaceflight Terminal, baggage reclaim, Axel's den, and the lower airport where Axel and Amanda meet looters.</td></tr>
-			<tr id="HAB_CorporatePent"><td><code>HAB_CorporatePent</code></td><td>The Corporate Penthouses, including the two transit waiting areas, canteen, projector room, library, entertainment terminals and games room.</td></tr>
-			<tr id="HAB_ShoppingCentre"><td><code>HAB_ShoppingCentre</code></td><td>The Solomons Galleria, including the Marshal Bureau and transit station.</td></tr>
-		</table>
+		<div class="simplelightbox-gallery"><table class="level-table">
+			<tr id="HAB_Airport">
+				<td><code>HAB_Airport</code></td>
+				<td>Where Amanda initially arrives on Sevastopol — Spaceflight Terminal, baggage reclaim, Axel's den, and the lower airport where Axel and Amanda meet looters.</td>
+				<td class="level-pic"><a href="img/HAB_Airport.jpg" class="level-gallery"><img class="level-thumb" src="img/HAB_Airport.jpg" alt="HAB_Airport"></a></td>
+			</tr>
+			<tr id="HAB_CorporatePent">
+				<td><code>HAB_CorporatePent</code></td>
+				<td>The Corporate Penthouses, including the two transit waiting areas, canteen, projector room, library, entertainment terminals and games room.</td>
+				<td class="level-pic"><a href="img/HAB_CorporatePent.jpg" class="level-gallery"><img class="level-thumb" src="img/HAB_CorporatePent.jpg" alt="HAB_CorporatePent"></a></td>
+			</tr>
+			<tr id="HAB_ShoppingCentre">
+				<td><code>HAB_ShoppingCentre</code></td>
+				<td>The Solomons Galleria, including the Marshal Bureau and transit station.</td>
+				<td class="level-pic"><a href="img/HAB_ShoppingCentre.jpg" class="level-gallery"><img class="level-thumb" src="img/HAB_ShoppingCentre.jpg" alt="HAB_ShoppingCentre"></a></td>
+			</tr>
+		</table></div>
     </section>
 </article>
 
@@ -190,11 +286,23 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<table class="level-table">
-			<tr id="ENG_Alien_Nest"><td><code>ENG_Alien_Nest</code></td><td>The Hive below the Reactor Core. Accessible through the Reactor Core on mission 14 by elevator.</td></tr>
-			<tr id="ENG_ReactorCore"><td><code>ENG_ReactorCore</code></td><td>The Reactor Core and Facility Management areas.</td></tr>
-			<tr id="ENG_TowPlatform"><td><code>ENG_TowPlatform</code></td><td>The Tow Platform, second Hive (plus ruined transit tunnels leading away from it), and docking clamp.</td></tr>
-		</table>
+		<div class="simplelightbox-gallery"><table class="level-table">
+			<tr id="ENG_Alien_Nest">
+				<td><code>ENG_Alien_Nest</code></td>
+				<td>The Hive below the Reactor Core. Accessible through the Reactor Core on mission 14 by elevator.</td>
+				<td class="level-pic"><a href="img/ENG_Alien_Nest.jpg" class="level-gallery"><img class="level-thumb" src="img/ENG_Alien_Nest.jpg" alt="ENG_Alien_Nest"></a></td>
+			</tr>
+			<tr id="ENG_ReactorCore">
+				<td><code>ENG_ReactorCore</code></td>
+				<td>The Reactor Core and Facility Management areas.</td>
+				<td class="level-pic"><a href="img/ENG_ReactorCore.jpg" class="level-gallery"><img class="level-thumb" src="img/ENG_ReactorCore.jpg" alt="ENG_ReactorCore"></a></td>
+			</tr>
+			<tr id="ENG_TowPlatform">
+				<td><code>ENG_TowPlatform</code></td>
+				<td>The Tow Platform, second Hive (plus ruined transit tunnels leading away from it), and docking clamp.</td>
+				<td class="level-pic"><a href="img/ENG_TowPlatform.jpg" class="level-gallery"><img class="level-thumb" src="img/ENG_TowPlatform.jpg" alt="ENG_TowPlatform"></a></td>
+			</tr>
+		</table></div>
     </section>
 </article>
 
@@ -204,22 +312,78 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<table class="level-table">
-			<tr id="BSPNostromo_Ripley"><td><code>BSPNostromo_Ripley</code></td><td>The Last Survivor DLC map on the Nostromo.</td></tr>
-			<tr id="BSPNostromo_TwoTeams"><td><code>BSPNostromo_TwoTeams</code></td><td>The Crew Expendable DLC map on the Nostromo.</td></tr>
-			<tr id="ChallengeMap1"><td><code>ChallengeMap1</code></td><td>"Blast Seat" — Survivor Mode map from The Trigger DLC pack.</td></tr>
-			<tr id="ChallengeMap3"><td><code>ChallengeMap3</code></td><td>"Overrun" — Survivor Mode map from the Trauma DLC pack.</td></tr>
-			<tr id="ChallengeMap4"><td><code>ChallengeMap4</code></td><td>"Severance" — Survivor Mode map from the Corporate Lockdown DLC pack.</td></tr>
-			<tr id="ChallengeMap5"><td><code>ChallengeMap5</code></td><td>"Scorched Earth" — Survivor Mode map from the Corporate Lockdown DLC pack.</td></tr>
-			<tr id="ChallengeMap7"><td><code>ChallengeMap7</code></td><td>"Reoperation" — Survivor Mode map from the Trauma DLC pack.</td></tr>
-			<tr id="ChallengeMap9"><td><code>ChallengeMap9</code></td><td>"Crawl Space" — Survivor Mode map from the Trauma DLC pack.</td></tr>
-			<tr id="ChallengeMap11"><td><code>ChallengeMap11</code></td><td>"Loose Ends" — Survivor Mode map from the Corporate Lockdown DLC pack.</td></tr>
-			<tr id="ChallengeMap12"><td><code>ChallengeMap12</code></td><td>"Damage Control" — Survivor Mode map from The Trigger DLC pack.</td></tr>
-			<tr id="ChallengeMap14"><td><code>ChallengeMap14</code></td><td>"The Package" — Survivor Mode map from The Trigger DLC pack.</td></tr>
-			<tr id="ChallengeMap16"><td><code>ChallengeMap16</code></td><td>"The Basement" — free Survivor Mode map included with the game.</td></tr>
-			<tr id="SalvageMode1"><td><code>SalvageMode1</code></td><td>"Safe Haven" — Safe Haven DLC (Gemini Secondary Systems and Bacchus Apartments).</td></tr>
-			<tr id="SalvageMode2"><td><code>SalvageMode2</code></td><td>"Lost Contact" — Lost Contact DLC (Lorenz Private Wards and S6 Emergency Power Plant).</td></tr>
-		</table>
+		<div class="simplelightbox-gallery"><table class="level-table">
+			<tr id="BSPNostromo_Ripley">
+				<td><code>BSPNostromo_Ripley</code></td>
+				<td>The Last Survivor DLC map on the Nostromo.</td>
+				<td class="level-pic"><a href="img/BSPNostromo_Ripley.jpg" class="level-gallery"><img class="level-thumb" src="img/BSPNostromo_Ripley.jpg" alt="BSPNostromo_Ripley"></a></td>
+			</tr>
+			<tr id="BSPNostromo_TwoTeams">
+				<td><code>BSPNostromo_TwoTeams</code></td>
+				<td>The Crew Expendable DLC map on the Nostromo.</td>
+				<td class="level-pic"><a href="img/BSPNostromo_TwoTeams.jpg" class="level-gallery"><img class="level-thumb" src="img/BSPNostromo_TwoTeams.jpg" alt="BSPNostromo_TwoTeams"></a></td>
+			</tr>
+			<tr id="ChallengeMap1">
+				<td><code>ChallengeMap1</code></td>
+				<td>"Blast Seat" — Survivor Mode map from The Trigger DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap1.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap1.jpg" alt="ChallengeMap1"></a></td>
+			</tr>
+			<tr id="ChallengeMap3">
+				<td><code>ChallengeMap3</code></td>
+				<td>"Overrun" — Survivor Mode map from the Trauma DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap3.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap3.jpg" alt="ChallengeMap3"></a></td>
+			</tr>
+			<tr id="ChallengeMap4">
+				<td><code>ChallengeMap4</code></td>
+				<td>"Severance" — Survivor Mode map from the Corporate Lockdown DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap4.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap4.jpg" alt="ChallengeMap4"></a></td>
+			</tr>
+			<tr id="ChallengeMap5">
+				<td><code>ChallengeMap5</code></td>
+				<td>"Scorched Earth" — Survivor Mode map from the Corporate Lockdown DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap5.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap5.jpg" alt="ChallengeMap5"></a></td>
+			</tr>
+			<tr id="ChallengeMap7">
+				<td><code>ChallengeMap7</code></td>
+				<td>"Reoperation" — Survivor Mode map from the Trauma DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap7.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap7.jpg" alt="ChallengeMap7"></a></td>
+			</tr>
+			<tr id="ChallengeMap9">
+				<td><code>ChallengeMap9</code></td>
+				<td>"Crawl Space" — Survivor Mode map from the Trauma DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap9.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap9.jpg" alt="ChallengeMap9"></a></td>
+			</tr>
+			<tr id="ChallengeMap11">
+				<td><code>ChallengeMap11</code></td>
+				<td>"Loose Ends" — Survivor Mode map from the Corporate Lockdown DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap11.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap11.jpg" alt="ChallengeMap11"></a></td>
+			</tr>
+			<tr id="ChallengeMap12">
+				<td><code>ChallengeMap12</code></td>
+				<td>"Damage Control" — Survivor Mode map from The Trigger DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap12.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap12.jpg" alt="ChallengeMap12"></a></td>
+			</tr>
+			<tr id="ChallengeMap14">
+				<td><code>ChallengeMap14</code></td>
+				<td>"The Package" — Survivor Mode map from The Trigger DLC pack.</td>
+				<td class="level-pic"><a href="img/ChallengeMap14.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap14.jpg" alt="ChallengeMap14"></a></td>
+			</tr>
+			<tr id="ChallengeMap16">
+				<td><code>ChallengeMap16</code></td>
+				<td>"The Basement" — free Survivor Mode map included with the game.</td>
+				<td class="level-pic"><a href="img/ChallengeMap16.jpg" class="level-gallery"><img class="level-thumb" src="img/ChallengeMap16.jpg" alt="ChallengeMap16"></a></td>
+			</tr>
+			<tr id="SalvageMode1">
+				<td><code>SalvageMode1</code></td>
+				<td>"Safe Haven" — Safe Haven DLC (Gemini Secondary Systems and Bacchus Apartments).</td>
+				<td class="level-pic"><a href="img/SalvageMode1.jpg" class="level-gallery"><img class="level-thumb" src="img/SalvageMode1.jpg" alt="SalvageMode1"></a></td>
+			</tr>
+			<tr id="SalvageMode2">
+				<td><code>SalvageMode2</code></td>
+				<td>"Lost Contact" — Lost Contact DLC (Lorenz Private Wards and S6 Emergency Power Plant).</td>
+				<td class="level-pic"><a href="img/SalvageMode2.jpg" class="level-gallery"><img class="level-thumb" src="img/SalvageMode2.jpg" alt="SalvageMode2"></a></td>
+			</tr>
+		</table></div>
     </section>
 </article>
 
