@@ -10,6 +10,187 @@
         "type":  "page"
     },
     {
+        "title":  "Backup Manager",
+        "description":  "How to use OpenCAGE\u0027s Backup Manager to snapshot and restore level files.",
+        "url":  "/docs/backup-manager/",
+        "category":  "Getting Started",
+        "keywords":  [
+
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Backup Manager",
+        "url":  "/docs/backup-manager/#intro",
+        "category":  "Backup Manager",
+        "keywords":  [
+                         "intro",
+                         "backup manager"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Creating Backups",
+        "description":  "On Backup Manager",
+        "url":  "/docs/backup-manager/#creating",
+        "category":  "Backup Manager",
+        "keywords":  [
+                         "creating",
+                         "backup manager"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Backup Level Now",
+        "description":  "On Backup Manager",
+        "url":  "/docs/backup-manager/#backup-level",
+        "category":  "Backup Manager",
+        "keywords":  [
+                         "backup-level",
+                         "backup manager"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Backup All Levels",
+        "description":  "On Backup Manager",
+        "url":  "/docs/backup-manager/#backup-all",
+        "category":  "Backup Manager",
+        "keywords":  [
+                         "backup-all",
+                         "backup manager"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Restoring",
+        "description":  "On Backup Manager",
+        "url":  "/docs/backup-manager/#restore",
+        "category":  "Backup Manager",
+        "keywords":  [
+                         "restore",
+                         "backup manager"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Deleting",
+        "description":  "On Backup Manager",
+        "url":  "/docs/backup-manager/#delete",
+        "category":  "Backup Manager",
+        "keywords":  [
+                         "delete",
+                         "backup manager"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Revert Configs",
+        "description":  "On Backup Manager",
+        "url":  "/docs/backup-manager/#revert-configs",
+        "category":  "Backup Manager",
+        "keywords":  [
+                         "revert-configs",
+                         "backup manager"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Options",
+        "description":  "What each OpenCAGE Options menu setting does.",
+        "url":  "/docs/options/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "options",
+                         "settings"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Options",
+        "url":  "/docs/options/#intro",
+        "category":  "Options",
+        "keywords":  [
+                         "intro",
+                         "options"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Composite Display",
+        "description":  "On Options",
+        "url":  "/docs/options/#composite-display",
+        "category":  "Options",
+        "keywords":  [
+                         "composite-display",
+                         "options",
+                         "composite"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Entity Display",
+        "description":  "On Options",
+        "url":  "/docs/options/#entity-display",
+        "category":  "Options",
+        "keywords":  [
+                         "entity-display",
+                         "options",
+                         "shortguid"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Viewport",
+        "description":  "On Options",
+        "url":  "/docs/options/#viewport",
+        "category":  "Options",
+        "keywords":  [
+                         "viewport",
+                         "options"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Misc",
+        "description":  "On Options",
+        "url":  "/docs/options/#misc",
+        "category":  "Options",
+        "keywords":  [
+                         "misc",
+                         "options",
+                         "open game on save",
+                         "numeric step"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Controls",
+        "description":  "On Options",
+        "url":  "/docs/options/#controls",
+        "category":  "Options",
+        "keywords":  [
+                         "controls",
+                         "options",
+                         "shortcuts"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Manage Game Directories",
+        "description":  "On Options",
+        "url":  "/docs/options/#manage-installs",
+        "category":  "Options",
+        "keywords":  [
+                         "manage-installs",
+                         "options",
+                         "game directories"
+                     ],
+        "type":  "symbol"
+    },
+    {
         "title":  "Behaviour Tree Nodes",
         "description":  "Documentation for the available behaviour tree nodes in OpenCAGE for Alien: Isolation.",
         "url":  "/docs/behaviour-trees/",

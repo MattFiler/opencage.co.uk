@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>OpenCAGE: Launch Game</title>
+    <title>OpenCAGE: Backup Manager</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE's Launch Game dialog and launch options.">
+    <meta name="description" content="How to use OpenCAGE's Backup Manager to snapshot and restore level files.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Launch Game" />
-	<meta name="twitter:description" content="How to use OpenCAGE's Launch Game dialog and launch options." />
+	<meta name="twitter:title" content="OpenCAGE: Backup Manager" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Backup Manager to snapshot and restore level files." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -79,13 +79,12 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#starting-level"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Starting Level</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#ui-mods"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>UI Mods</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#patches"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Patches &amp; Tools</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#engine-patches">Engine Patches</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#debug-tools">Debug Tools</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#steam-tools">Steam-Only Tools</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Options</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#creating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Creating Backups</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#backup-level">Backup Level Now</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#backup-all">Backup All Levels</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#restore"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Restoring</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#delete"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Deleting</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#revert-configs"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Revert Configs</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -94,7 +93,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Launch Game</li>
+		<li class="breadcrumb-item active" aria-current="page">Backup Manager</li>
 	  </ol>
 	</nav>
 </article>
@@ -105,84 +104,67 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The toolbar <b>Launch Game</b> button opens the Launch Game dialog. From here you pick a starting level, toggle launch options, then hit <b>Start Alien: Isolation</b>.</p>
-		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — for example <b>Cinematic Tools</b> and <b>Hot Reloading</b> are Steam-only.</p>
+		<p>The toolbar <b>Manage Backups</b> button opens the <b>Backup Manager</b>. Use it to snapshot level files so you can roll back after experimenting in the script editor.</p>
+		<p>Backups cover everything under that level's folder in <code>DATA/ENV/</code> for the current game install. They're stored under <code>DATA/MODTOOLS/BACKUPS/</code>. Global configs (ammo, alien settings, and so on) are separate — use <a href="#revert-configs">Revert Configs</a> for those.</p>
+		<p>The first time you open Backup Manager, OpenCAGE recommends creating a backup of all levels while they're still unmodified, so you always have a clean restore point.</p>
     </section>
 </article>
 
-<article class="docs-article" id="starting-level">
+<article class="docs-article" id="creating">
     <header class="docs-header">
-        <h1 class="docs-heading">Starting Level</h1>
+        <h1 class="docs-heading">Creating Backups</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Starting Level</b> dropdown lists levels from the current game install. OpenCAGE prefers the level you're editing, otherwise your last used choice, otherwise the frontend.</p>
-		<ul>
-			<li>Choosing a normal level boots the game straight into that map — useful for testing a specific level without playing through from the start.</li>
-			<li>Choosing <b>FRONTEND</b> launches into the normal title/front-end flow.</li>
-		</ul>
-		<p>Your selection is remembered for next time.</p>
-    </section>
-</article>
-
-<article class="docs-article" id="ui-mods">
-    <header class="docs-header">
-        <h1 class="docs-heading">UI Mods</h1>
-    </header>
-
-	<section class="docs-section" style="padding-top:0;">
-		<p>These swap in OpenCAGE's modified pause/frontend/loading/game-over menus:</p>
-		<ul>
-			<li><b>Enable Debug Checkpoints</b> — adds debug checkpoints to the pause menu under <b>Load Game</b>. Checkpoints are per-map and load a scripted game state so you can jump to specific moments. They're created in level scripts with the <a href="/docs/cathode-entities/#DebugCheckpoint">DebugCheckpoint</a> entity.</li>
-			<li><b>Enable Level Selection</b> — frontend menu with level selection (where you'd normally load a save)</li>
-			<li><b>Enable Debug Loadscreen</b> — loading screen that shows debug map info, and also loads quicker than normal by removing artificial wait times</li>
-			<li><b>Add Quit To Menu On Death</b> — game-over menu with quit-to-menu</li>
-		</ul>
-    </section>
-</article>
-
-<article class="docs-article" id="patches">
-    <header class="docs-header">
-        <h1 class="docs-heading">Patches &amp; Tools</h1>
-    </header>
-
-	<section class="docs-section" id="engine-patches" style="padding-top:0;">
-		<h2 class="section-heading">Engine Patches</h2>
-		<ul>
-			<li><b>Skip Frontend</b> — skips the title screen when loading directly into a level</li>
-			<li><b>Patch Current-Gen Optimisations</b> — restores script functionality that was left out of the PC build (the game incorrectly still honours a “current gen” script flag). In vanilla this re-enables things like additional lighting, monitors, and effects.</li>
-			<li><b>No UI</b> — disables the in-game HUD. Also disables UI popups, which can make some actions impossible — useful for screenshots.</li>
-			<li><b>Render Constant Ambient</b> — full-bright “constant ambient” rendering mode</li>
-		</ul>
+		<p>Pick a level from the <b>Level</b> dropdown. It defaults to the level you have open (otherwise your last choice, or the frontend).</p>
+		<p>The create label shows how many files differ from the latest backup for that level — e.g. <b>Create Backup (12 Changes)</b>. Each backup in the list has a name, date, and a details column (file count for the first backup, then how many files changed since the previous one).</p>
     </section>
 
-	<section class="docs-section" id="debug-tools">
-		<h2 class="section-heading">Debug Tools</h2>
-		<ul>
-			<li><b>Enable UI Memory Overlay</b> — shows current UI memory in an in-game overlay (cUI). Separate from Cathode DebugText entities.</li>
-			<li><b>Enable Memory Logging</b> — writes memory replay logs to a <code>Mem_Replay_Logs</code> folder</li>
-		</ul>
-	</section>
+    <section class="docs-section" id="backup-level">
+		<h2 class="section-heading">Backup Level Now</h2>
+		<p>Type a name, then click <b>Backup Level Now</b>.</p>
+		<p>If that level is open in the script editor, OpenCAGE asks whether to save it first. After the snapshot is written, you'll get a short confirmation.</p>
+    </section>
 
-	<section class="docs-section" id="steam-tools">
-		<h2 class="section-heading">Steam-Only Tools</h2>
-		<ul>
-			<li><b>Enable Hot Reloading</b> — press <b>INSERT</b> in-game to hot reload the current level, handy for iterating on scripts without a full restart</li>
-			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them.</li>
-		</ul>
+	<section class="docs-section" id="backup-all">
+		<h2 class="section-heading">Backup All Levels</h2>
+		<p><b>Backup All Levels Now</b> walks every level in the install and creates a snapshot for each. The first pass names them <b>First backup</b>; later full passes use <b>Automated backup across all levels</b>.</p>
+		<p>This can take a while — leave OpenCAGE open until it finishes. If a level is open in the script editor, you'll get the same save prompt first.</p>
 	</section>
 </article>
 
-<article class="docs-article" id="related">
+<article class="docs-article" id="restore">
     <header class="docs-header">
-        <h1 class="docs-heading">Related Options</h1>
+        <h1 class="docs-heading">Restoring</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Outside the Launch Game dialog:</p>
-		<ul>
-			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog (so extras like Cinematic Tools / Hot Reloading from that dialog aren't applied). Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
-		</ul>
+		<p>Select <b>one</b> backup in the list, then click <b>Restore Selected Backup</b>.</p>
+		<p>OpenCAGE closes the game if it's running, replaces the level folder with the backup, then confirms. If that level is open in the script editor, you're asked whether to reload it so the editor matches the restored files.</p>
+		<p>If restore fails, something else is likely locking files in the level folder — close the game, other tools, or anything else using those files, then try again.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="delete">
+    <header class="docs-header">
+        <h1 class="docs-heading">Deleting</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Check the backups you want to remove (checkboxes, not just row selection), then click <b>Delete Checked Backups</b>. OpenCAGE asks for confirmation, deletes those restore points, and cleans up backup data that nothing else still references.</p>
+		<p>Restore and delete use different selection styles: restore needs a single selected row; delete uses the checked boxes.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="revert-configs">
+    <header class="docs-header">
+        <h1 class="docs-heading">Revert Configs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p><b>Revert Configs</b> opens a separate tool from the Backup Manager. It resets <b>global game configs</b> (ammo, alien configs, difficulty, behaviour trees, and so on) back to stock — not level ENV backups.</p>
+		<p>Each reset closes the game if it's running, then restores the matching vanilla files. Use this when config edits went wrong; use level backups when script / level file edits went wrong.</p>
+		<p>For editing those configs instead of resetting them, see the <a href="/docs/configs/">Configurations</a> docs.</p>
     </section>
 </article>
 

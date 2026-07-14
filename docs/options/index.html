@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>OpenCAGE: Launch Game</title>
+    <title>OpenCAGE: Options</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE's Launch Game dialog and launch options.">
+    <meta name="description" content="What each OpenCAGE Options menu setting does.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Launch Game" />
-	<meta name="twitter:description" content="How to use OpenCAGE's Launch Game dialog and launch options." />
+	<meta name="twitter:title" content="OpenCAGE: Options" />
+	<meta name="twitter:description" content="What each OpenCAGE Options menu setting does." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -79,13 +79,12 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#starting-level"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Starting Level</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#ui-mods"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>UI Mods</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#patches"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Patches &amp; Tools</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#engine-patches">Engine Patches</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#debug-tools">Debug Tools</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#steam-tools">Steam-Only Tools</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Options</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#composite-display"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Composite Display</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#entity-display"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Entity Display</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#viewport"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Viewport</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#misc"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Misc</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#controls"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Controls</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#manage-installs"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Manage Game Directories</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -94,7 +93,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Launch Game</li>
+		<li class="breadcrumb-item active" aria-current="page">Options</li>
 	  </ol>
 	</nav>
 </article>
@@ -105,84 +104,103 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The toolbar <b>Launch Game</b> button opens the Launch Game dialog. From here you pick a starting level, toggle launch options, then hit <b>Start Alien: Isolation</b>.</p>
-		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — for example <b>Cinematic Tools</b> and <b>Hot Reloading</b> are Steam-only.</p>
+		<p>The toolbar <b>Options</b> menu configures the script editor — how composites and entities are shown, Viewport behaviour, save/launch helpers, and more.</p>
+		<p>Most items are checkboxes that stick between sessions. <b>Controls</b> opens a shortcut reference, and <b>Manage Game Directories</b> opens the multi-install manager.</p>
     </section>
 </article>
 
-<article class="docs-article" id="starting-level">
+<article class="docs-article" id="composite-display">
     <header class="docs-header">
-        <h1 class="docs-heading">Starting Level</h1>
+        <h1 class="docs-heading">Composite Display</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Starting Level</b> dropdown lists levels from the current game install. OpenCAGE prefers the level you're editing, otherwise your last used choice, otherwise the frontend.</p>
 		<ul>
-			<li>Choosing a normal level boots the game straight into that map — useful for testing a specific level without playing through from the start.</li>
-			<li>Choosing <b>FRONTEND</b> launches into the normal title/front-end flow.</li>
+			<li><b>Use File Browser Composite Viewer</b> — switches the composite list to a file-browser style panel (off by default).</li>
+			<li><b>Search Only Composite Names</b> — composite search matches only the composite name, not folder path segments (off by default).</li>
 		</ul>
-		<p>Your selection is remembered for next time.</p>
     </section>
 </article>
 
-<article class="docs-article" id="ui-mods">
+<article class="docs-article" id="entity-display">
     <header class="docs-header">
-        <h1 class="docs-heading">UI Mods</h1>
+        <h1 class="docs-heading">Entity Display</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>These swap in OpenCAGE's modified pause/frontend/loading/game-over menus:</p>
 		<ul>
-			<li><b>Enable Debug Checkpoints</b> — adds debug checkpoints to the pause menu under <b>Load Game</b>. Checkpoints are per-map and load a scripted game state so you can jump to specific moments. They're created in level scripts with the <a href="/docs/cathode-entities/#DebugCheckpoint">DebugCheckpoint</a> entity.</li>
-			<li><b>Enable Level Selection</b> — frontend menu with level selection (where you'd normally load a save)</li>
-			<li><b>Enable Debug Loadscreen</b> — loading screen that shows debug map info, and also loads quicker than normal by removing artificial wait times</li>
-			<li><b>Add Quit To Menu On Death</b> — game-over menu with quit-to-menu</li>
+			<li><b>Show ShortGuids</b> — shows entity IDs (ShortGuids) in lists, names, breadcrumbs, aliases/proxies, and global search (off by default).</li>
+			<li><b>Populate All Node Pins When Created</b> — new flowgraph nodes get every pin added automatically (on by default).</li>
+			<li><b>Set Node Colours</b> — opens a colour picker for flowgraph node types (Functions, Instances, Proxies, Aliases, Variables). <b>Reset</b> restores the defaults.</li>
+			<li><b>Show Confirmation When Deleting Node</b> — asks before removing a flowgraph node (on by default).</li>
+			<li><b>Give Option To Delete Entity When No Nodes</b> — after the last node for an entity is removed, asks whether to delete the entity too (on by default).</li>
 		</ul>
     </section>
 </article>
 
-<article class="docs-article" id="patches">
+<article class="docs-article" id="viewport">
     <header class="docs-header">
-        <h1 class="docs-heading">Patches &amp; Tools</h1>
-    </header>
-
-	<section class="docs-section" id="engine-patches" style="padding-top:0;">
-		<h2 class="section-heading">Engine Patches</h2>
-		<ul>
-			<li><b>Skip Frontend</b> — skips the title screen when loading directly into a level</li>
-			<li><b>Patch Current-Gen Optimisations</b> — restores script functionality that was left out of the PC build (the game incorrectly still honours a “current gen” script flag). In vanilla this re-enables things like additional lighting, monitors, and effects.</li>
-			<li><b>No UI</b> — disables the in-game HUD. Also disables UI popups, which can make some actions impossible — useful for screenshots.</li>
-			<li><b>Render Constant Ambient</b> — full-bright “constant ambient” rendering mode</li>
-		</ul>
-    </section>
-
-	<section class="docs-section" id="debug-tools">
-		<h2 class="section-heading">Debug Tools</h2>
-		<ul>
-			<li><b>Enable UI Memory Overlay</b> — shows current UI memory in an in-game overlay (cUI). Separate from Cathode DebugText entities.</li>
-			<li><b>Enable Memory Logging</b> — writes memory replay logs to a <code>Mem_Replay_Logs</code> folder</li>
-		</ul>
-	</section>
-
-	<section class="docs-section" id="steam-tools">
-		<h2 class="section-heading">Steam-Only Tools</h2>
-		<ul>
-			<li><b>Enable Hot Reloading</b> — press <b>INSERT</b> in-game to hot reload the current level, handy for iterating on scripts without a full restart</li>
-			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them.</li>
-		</ul>
-	</section>
-</article>
-
-<article class="docs-article" id="related">
-    <header class="docs-header">
-        <h1 class="docs-heading">Related Options</h1>
+        <h1 class="docs-heading">Viewport</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Outside the Launch Game dialog:</p>
+		<p>Shown when the Viewport is available. Full Viewport usage is covered in the <a href="/docs/level-viewer/">Viewport</a> docs.</p>
 		<ul>
-			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog (so extras like Cinematic Tools / Hot Reloading from that dialog aren't applied). Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
+			<li><b>Highlight Aliases</b> — orange highlight on entities targeted by parameterized aliases in the active composite (on by default).</li>
+			<li><b>Highlight Proxies</b> — blue highlight on proxy targets when you've stepped into a nested composite (on by default).</li>
+			<li><b>Show Camera Position</b> — shows camera X/Y/Z while moving (off by default).</li>
+			<li><b>Render Wireframe</b> — draws ModelReference meshes as wireframe (off by default).</li>
+			<li><b>Hide Nested Script Entities</b> — hides render previews for script entities in nested composites; ModelReferences stay visible (off by default).</li>
 		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="misc">
+    <header class="docs-header">
+        <h1 class="docs-heading">Misc</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><b>Show Confirmation When Saving</b> — shows a “Saved changes!” popup after a successful save (on by default).</li>
+			<li><b>Use Textured Model View</b> — model previews try to load textures/materials (on by default).</li>
+			<li><b>Keep Global Search Window Open</b> — after jumping to an entity from global search, the search window stays open (off by default).</li>
+			<li><b>Reset UI Layouts</b> — restores the default window size and dock panel layout. If the Viewport is open, it's kept and repositioned.</li>
+			<li><b>Write Instanced Resources (Experimental)</b> — experimental save option for regenerating instanced resources. Not used by the public build yet (off by default).</li>
+			<li><b>Set Numeric Step</b> — sets how much position and rotation values change when you nudge numeric fields in inspectors (defaults: position <code>0.1</code>, rotation <code>1.0</code>).</li>
+			<li><b>Save Commands PAK and BIN</b> — when saving an uncompressed Commands file, also writes the alternate extension (PAK↔BIN). Compressed levels always save as BIN (on by default).</li>
+			<li><b>Open Game On Save</b> — after save, launches into the level you're editing. Uses some of the same patch flags as <a href="/docs/launch-game/">Launch Game</a>, but skips extras from that dialog such as Cinematic Tools / Hot Reloading (off by default).</li>
+			<li><b>Show Game Platform</b> — appends the detected platform (e.g. Steam) to the window title — handy with <a href="/docs/multiple-game-installs/">multiple installs</a> open (off by default).</li>
+			<li><b>Write Compressed</b> — status only: shows whether the loaded level's Commands are compressed. Not user-togglable.</li>
+			<li><b>Reset Render Filters On Load</b> — when loading a level, turns all Viewport render filters off (shown only if the Viewport is available; off by default).</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="controls">
+    <header class="docs-header">
+        <h1 class="docs-heading">Controls</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Opens a read-only <b>Controls</b> window with shortcut reference tabs:</p>
+		<ul>
+			<li><b>Flowgraph Controls</b> — zoom, pan, move nodes, links, pin shortcuts</li>
+			<li><b>Model Viewer Controls</b> — zoom, rotate, move, recenter</li>
+			<li><b>Viewport Controls</b> — camera, selection, step in/out, gizmos, hide/unhide (see also the <a href="/docs/level-viewer/">Viewport</a> docs)</li>
+			<li><b>Entity List Controls</b> — stepping into composite instances from the entity list</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="manage-installs">
+    <header class="docs-header">
+        <h1 class="docs-heading">Manage Game Directories</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Opens the <b>Game Directory Manager</b> — register installs, set the default, and open extra editor windows. Available only in the primary OpenCAGE window (the one launched from Steam), not in child editors opened for other installs.</p>
+		<p>Full walkthrough: <a href="/docs/multiple-game-installs/">Multiple Game Installs</a>.</p>
     </section>
 </article>
 
