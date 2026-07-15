@@ -185,6 +185,11 @@ html[data-theme="dark"] .docs-overview .card:hover .card-icon-holder {
 	background: #2c3340;
 }
 
+/* Scripting intro Cathode glyph — recolor to match FA icon green */
+html[data-theme="dark"] .docs-overview .card-icon-holder img[src*="cathode.svg"] {
+	filter: brightness(0) saturate(100%) invert(67%) sepia(47%) saturate(463%) hue-rotate(95deg) brightness(97%) contrast(91%);
+}
+
 html[data-theme="dark"] .docs-panel {
 	background: #1a1f27;
 	border-color: #2c3340;
@@ -234,7 +239,13 @@ html[data-theme="dark"] .docs-article .docs-section {
 }
 
 
+html[data-theme="dark"] .breadcrumb_parent {
+	background: #252930;
+}
+
 html[data-theme="dark"] .breadcrumb {
+	--bs-breadcrumb-divider-color: #9aa3b2;
+	--bs-breadcrumb-item-active-color: #9aa3b2;
 	background: transparent;
 }
 
