@@ -214,3 +214,9 @@ article.docs-article,
 		opacity: 1 !important;
 	}
 }
+
+/* Keep the dark navbar logo readable when the header is darkened (Dark Reader, etc.) */
+html[data-darkreader-scheme="dark"] .site-logo .logo-icon,
+.site-logo .logo-icon.logo-on-dark {
+	filter: invert(1) hue-rotate(180deg) !important;
+}

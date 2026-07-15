@@ -159,10 +159,126 @@
 		sections.forEach(function (section) { observer.observe(section); });
 	}
 
+	function syncNavbarLogoContrast() {
+		var header = document.querySelector(".header");
+		var logo = document.querySelector(".site-logo .logo-icon");
+		if (!header || !logo) return;
+
+		function parseRgb(color) {
+			if (!color || color === "transparent") return null;
+			var match = color.match(/rgba?\(\s*([0-9.]+)\s*,\s*([0-9.]+)\s*,\s*([0-9.]+)(?:\s*,\s*([0-9.]+))?/);
+			if (!match) return null;
+			var alpha = match[4] === undefined ? 1 : parseFloat(match[4]);
+			if (alpha === 0) return null;
+			return {
+				r: parseFloat(match[1]),
+				g: parseFloat(match[2]),
+				b: parseFloat(match[3])
+			};
+		}
+
+		function luminance(rgb) {
+			return (0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b) / 255;
+		}
+
+		function update() {
+			if (document.documentElement.getAttribute("data-theme") === "dark") {
+				logo.classList.add("logo-on-dark");
+				return;
+			}
+			var bg = parseRgb(window.getComputedStyle(header).backgroundColor);
+			var onDark = bg ? luminance(bg) < 0.45 : false;
+			logo.classList.toggle("logo-on-dark", onDark);
+		}
+
+		update();
+		window.setTimeout(update, 100);
+		window.setTimeout(update, 500);
+		window.setTimeout(update, 1500);
+
+		if ("MutationObserver" in window) {
+			var observer = new MutationObserver(function () { update(); });
+			observer.observe(document.documentElement, {
+				attributes: true,
+				attributeFilter: ["data-darkreader-scheme", "data-darkreader-mode", "data-theme", "class", "style"]
+			});
+			observer.observe(header, {
+				attributes: true,
+				attributeFilter: ["style", "class"]
+			});
+		}
+	}
+
+	function getPreferredTheme() {
+		try {
+			var stored = window.localStorage.getItem("docs-theme");
+			if (stored === "light" || stored === "dark") return stored;
+		} catch (e) { /* ignore */ }
+		if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+			return "dark";
+		}
+		return "light";
+	}
+
+	function applyTheme(theme) {
+		var next = theme === "dark" ? "dark" : "light";
+		document.documentElement.setAttribute("data-theme", next);
+		try {
+			window.localStorage.setItem("docs-theme", next);
+		} catch (e) { /* ignore */ }
+		var toggle = document.querySelector(".docs-theme-toggle");
+		if (toggle) {
+			toggle.setAttribute("aria-label", next === "dark" ? "Switch to light mode" : "Switch to dark mode");
+			toggle.setAttribute("title", next === "dark" ? "Switch to light mode" : "Switch to dark mode");
+		}
+	}
+
+	function initThemeToggle() {
+		var utilities = document.querySelector(".docs-top-utilities");
+		if (!utilities || utilities.querySelector(".docs-theme-toggle")) return;
+
+		var button = document.createElement("button");
+		button.type = "button";
+		button.className = "docs-theme-toggle";
+		button.innerHTML =
+			'<i class="fa-solid fa-moon docs-theme-icon-moon" aria-hidden="true"></i>' +
+			'<i class="fa-solid fa-sun docs-theme-icon-sun" aria-hidden="true"></i>';
+
+		var searchBox = utilities.querySelector(".top-search-box");
+		if (searchBox && searchBox.nextSibling) {
+			utilities.insertBefore(button, searchBox.nextSibling);
+		} else if (searchBox) {
+			utilities.appendChild(button);
+		} else {
+			utilities.insertBefore(button, utilities.firstChild);
+		}
+
+		applyTheme(document.documentElement.getAttribute("data-theme") || getPreferredTheme());
+
+		button.addEventListener("click", function () {
+			var current = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+			applyTheme(current === "dark" ? "light" : "dark");
+		});
+
+		if (window.matchMedia) {
+			var media = window.matchMedia("(prefers-color-scheme: dark)");
+			var onChange = function (event) {
+				try {
+					if (window.localStorage.getItem("docs-theme")) return;
+				} catch (e) { return; }
+				applyTheme(event.matches ? "dark" : "light");
+			};
+			if (media.addEventListener) media.addEventListener("change", onChange);
+			else if (media.addListener) media.addListener(onChange);
+		}
+	}
+
 	function boot() {
 		initPanels();
 		initReveals();
 		initSections();
+		initThemeToggle();
+		syncNavbarLogoContrast();
 	}
 
 	if (document.readyState === "loading") {

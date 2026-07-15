@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
     <title>OpenCAGE: Behaviour Tree Nodes</title>
     
     <!-- Meta -->
@@ -33,6 +35,7 @@
     <link rel="stylesheet" href="../assets/css/motion.css">
     <link rel="stylesheet" href="../assets/css/search.css">
     <link rel="stylesheet" href="../assets/css/reference-filter.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
     
     <style>
         .docs-section li {
@@ -60,8 +63,8 @@
 </head> 
 
 <body class="docs-page">    
-    <header class="header fixed-top">	    
-        <div class="branding docs-branding">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
             <div class="container-fluid position-relative py-2">
                 <div class="docs-logo-wrapper">
 					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
@@ -331,7 +334,8 @@
 		</article>
 
 <article class="docs-article" id="actions">
-<header class="docs-header"><h1 class="docs-heading">Actions</h1></header>
+<header class="docs-header">
+<h1 class="docs-heading">Actions</h1></header>
 <p style="margin:0">Action nodes are the leaves of a behaviour tree that actually make the character do something – playing animations, moving, firing weapons, updating state and so on. They have no children and report back whether the action succeeded, failed or is still running.</p>
 <section class="docs-section" id="ActionAbortMeleeAttack">
 <h2 class="section-heading">AbortMeleeAttackTarget</h2>
@@ -1481,7 +1485,8 @@
 
 </article>
 <article class="docs-article" id="conditions">
-<header class="docs-header"><h1 class="docs-heading">Conditions</h1></header>
+<header class="docs-header">
+<h1 class="docs-heading">Conditions</h1></header>
 <p style="margin:0">Condition nodes are leaf nodes that test the current state of the game or character and report success or failure without performing any action. They are used to gate parts of the tree, allowing a branch to run only when the world is in the expected state.</p>
 <section class="docs-section" id="ConditionAlienIsAllowed">
 <h2 class="section-heading">AlienIsAllowed</h2>
@@ -2599,7 +2604,8 @@
 
 </article>
 <article class="docs-article" id="decorators">
-<header class="docs-header"><h1 class="docs-heading">Decorators</h1></header>
+<header class="docs-header">
+<h1 class="docs-heading">Decorators</h1></header>
 <p style="margin:0">Decorator nodes wrap a single child and modify how it runs – for example repeating it, inverting its result, applying a timer or changing the character&#x27;s mood while the child is active. They are used to add behaviour around an existing subtree without changing the subtree itself.</p>
 <section class="docs-section" id="DecoratorAggressionEscalation">
 <h2 class="section-heading">AggressionEscalation</h2>
@@ -2707,7 +2713,8 @@
 
 </article>
 <article class="docs-article" id="selectors">
-<header class="docs-header"><h1 class="docs-heading">Selectors</h1></header>
+<header class="docs-header">
+<h1 class="docs-heading">Selectors</h1></header>
 <p style="margin:0">Selector nodes are composite nodes that run their children in turn until one of them succeeds, behaving like a logical OR. They are typically used to pick the first viable behaviour from a prioritised list of options.</p>
 <section class="docs-section" id="SelectorPercentage">
 <h2 class="section-heading">PercentageSelector</h2>
@@ -2727,7 +2734,8 @@
 
 </article>
 <article class="docs-article" id="sequences">
-<header class="docs-header"><h1 class="docs-heading">Sequences</h1></header>
+<header class="docs-header">
+<h1 class="docs-heading">Sequences</h1></header>
 <p style="margin:0">Sequence nodes are composite nodes that run their children in order, continuing only while each child succeeds, behaving like a logical AND. They are used to perform a series of steps that must all complete for the overall behaviour to succeed.</p>
 <section class="docs-section" id="SequenceLinear">
 <h2 class="section-heading">Sequence</h2>
