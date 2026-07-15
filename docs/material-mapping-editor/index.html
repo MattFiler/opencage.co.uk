@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>OpenCAGE: Backup Manager</title>
+    <title>OpenCAGE: Material Mapping Editor</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE's Backup Manager to snapshot and restore level files.">
+    <meta name="description" content="How to use OpenCAGE's Material Mapping Editor to create From→To material remaps for a level.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Backup Manager" />
-	<meta name="twitter:description" content="How to use OpenCAGE's Backup Manager to snapshot and restore level files." />
+	<meta name="twitter:title" content="OpenCAGE: Material Mapping Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Material Mapping Editor to create From→To material remaps for a level." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -79,12 +79,10 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#creating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Creating Backups</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#backup-level">Backup Level Now</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#backup-all">Backup All Levels</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#restore"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Restoring</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#delete"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Deleting</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#revert-configs"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Revert Configs</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#sets"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Mapping Sets</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#mappings"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>From → To Mappings</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Tools</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -93,7 +91,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Backup Manager</li>
+		<li class="breadcrumb-item active" aria-current="page">Material Mapping Editor</li>
 	  </ol>
 	</nav>
 </article>
@@ -104,67 +102,65 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The toolbar <b>Manage Backups</b> button opens the <b>Backup Manager</b>. Use it to snapshot level files so you can roll back after experimenting in the script editor.</p>
-		<p>Backups cover everything under that level's folder in <code>DATA/ENV/</code> for the current game install. They're stored under <code>DATA/MODTOOLS/BACKUPS/</code>. Global configs (ammo, alien settings, and so on) are separate — use <a href="#revert-configs">Revert Configs</a> for those.</p>
-		<p>The first time you open Backup Manager, OpenCAGE recommends creating a backup of all levels while they're still unmodified, so you always have a clean restore point.</p>
+		<p>After loading a level, open <b>Edit → Material Mappings</b> to launch the mapping editor. It manages named sets of <b>From → To</b> material remaps stored in the level's <code>WORLD/MATERIAL_MAPPINGS.PAK</code>.</p>
+		<p>Material remappings are applied to <a href="/docs/scripting-intro/#compositeinstance-entities">composite instances</a> (via the <code>mapping</code> parameter — use <b>Select</b> in the entity inspector, or open this window as a picker with <b>Select Set</b>). That remaps materials on <a href="/docs/cathode-entities/#ModelReference">ModelReference</a> entities within that instance's immediate child composite — without editing the materials themselves.</p>
+		<p><b>Note:</b> currently only the mappings are previewed in the editor. They are not yet saved and respected by the game at runtime — support for that is coming soon.</p>
+		<p>This is separate from the <a href="/docs/material-editor/">Material Editor</a>, which edits a material's samplers, features, and shader parameters.</p>
     </section>
 </article>
 
-<article class="docs-article" id="creating">
+<article class="docs-article" id="sets">
     <header class="docs-header">
-        <h1 class="docs-heading">Creating Backups</h1>
+        <h1 class="docs-heading">Mapping Sets</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Pick a level from the <b>Level</b> dropdown. It defaults to the level you have open (otherwise your last choice, or the frontend).</p>
-		<p>The create label shows how many files differ from the latest backup for that level — e.g. <b>Create Backup (12 Changes)</b>. Each backup in the list has a name, date, and a details column (file count for the first backup, then how many files changed since the previous one).</p>
-    </section>
-
-    <section class="docs-section" id="backup-level">
-		<h2 class="section-heading">Backup Level Now</h2>
-		<p>Type a name, then click <b>Backup Level Now</b>.</p>
-		<p>If that level is open in the script editor, OpenCAGE asks whether to save it first. After the snapshot is written, you'll get a short confirmation.</p>
-    </section>
-
-	<section class="docs-section" id="backup-all">
-		<h2 class="section-heading">Backup All Levels</h2>
-		<p><b>Backup All Levels Now</b> walks every level in the install and creates a snapshot for each. The first pass names them <b>First backup</b>; later full passes use <b>Automated backup across all levels</b>.</p>
-		<p>This can take a while — leave OpenCAGE open until it finishes. If a level is open in the script editor, you'll get the same save prompt first.</p>
-	</section>
-</article>
-
-<article class="docs-article" id="restore">
-    <header class="docs-header">
-        <h1 class="docs-heading">Restoring</h1>
-    </header>
-
-	<section class="docs-section" style="padding-top:0;">
-		<p>Select <b>one</b> backup in the list, then click <b>Restore Selected Backup</b>.</p>
-		<p>OpenCAGE closes the game if it's running, replaces the level folder with the backup, then confirms. If that level is open in the script editor, you're asked whether to reload it so the editor matches the restored files.</p>
-		<p>If restore fails, something else is likely locking files in the level folder — close the game, other tools, or anything else using those files, then try again.</p>
+		<p>The left tree lists mapping sets for the loaded level. Names with <code>/</code> show as folders.</p>
+		<p>Click <b>Add New Set</b>, enter a unique <b>Name:</b>, then <b>OK</b> to create an empty set. There isn't a rename or delete-set action in the editor — only add sets and edit the rows inside them.</p>
+		<p>When the window is opened as a picker, <b>Select Set</b> returns the currently selected set to the caller.</p>
     </section>
 </article>
 
-<article class="docs-article" id="delete">
+<article class="docs-article" id="mappings">
     <header class="docs-header">
-        <h1 class="docs-heading">Deleting</h1>
+        <h1 class="docs-heading">From → To Mappings</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Check the backups you want to remove (checkboxes, not just row selection), then click <b>Delete Checked Backups</b>. OpenCAGE asks for confirmation, deletes those restore points, and cleans up backup data that nothing else still references.</p>
-		<p>Restore and delete use different selection styles: restore needs a single selected row; delete uses the checked boxes.</p>
+		<p>Select a set to show its mappings in the <b>From</b> / <b>To</b> list on the right. Remaps apply when material names match exactly (case-sensitive).</p>
+		<ul>
+			<li><b>Add Mapping</b> — dialog with <b>From:</b> / <b>To:</b>; use <b>Browse…</b> to pick materials from the <a href="/docs/material-editor/">Material Editor</a></li>
+			<li>Double-click a row — <b>Edit Mapping</b> with the same fields</li>
+			<li><b>Edit From</b> / <b>Edit To</b> — open the <a href="/docs/material-editor/">Material Editor</a> picker for the selected row</li>
+			<li><b>Remove Mapping</b> (or <b>Delete</b>) — remove the selected row</li>
+		</ul>
+		<p>Edits apply in memory immediately; connected Viewport views can update without waiting for a disk save.</p>
     </section>
 </article>
 
-<article class="docs-article" id="revert-configs">
+<article class="docs-article" id="saving">
     <header class="docs-header">
-        <h1 class="docs-heading">Revert Configs</h1>
+        <h1 class="docs-heading">Saving</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p><b>Revert Configs</b> opens a separate tool from the Backup Manager. It resets <b>global game configs</b> (ammo, alien configs, difficulty, behaviour trees, and so on) back to stock — not level ENV backups.</p>
-		<p>Each reset closes the game if it's running, then restores the matching vanilla files. Use this when config edits went wrong; use level backups when script / level file edits went wrong.</p>
-		<p>For editing those configs instead of resetting them, see the <a href="/docs/configs/">Configurations</a> docs. For behaviour trees specifically, see the <a href="/docs/behaviour-tree-editor/">Behaviour Tree Editor</a> guide (<b>Reset Behaviour Trees</b> restores the global BML).</p>
+		<p>The mapping editor has no separate Save button. Persist changes with <b>File → Save Level</b> (<b>Ctrl+S</b>), which writes <code>WORLD/MATERIAL_MAPPINGS.PAK</code> (or the patched-level equivalent under <code>_PATCH</code>).</p>
+		<p>Saving closes the game if it's running so install files aren't locked.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+        <h1 class="docs-heading">Related Tools</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/material-editor/">Material Editor</a> — edit material look; also used here as the From/To picker</li>
+			<li><a href="/docs/texture-editor/">Texture Editor</a> — textures assigned on materials that mappings point at</li>
+			<li><a href="/docs/model-editor/">Model Editor</a> — models whose materials can be remapped at instance time</li>
+			<li><a href="/docs/level-viewer/">Viewport</a> — live preview of mapping changes when connected</li>
+		</ul>
     </section>
 </article>
 

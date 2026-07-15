@@ -76,6 +76,597 @@
         "type":  "symbol"
     },
     {
+        "title":  "Material Editor",
+        "description":  "How to use OpenCAGE's Material Editor to edit level visual materials, samplers, features, and shader parameters.",
+        "url":  "/docs/material-editor/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "material",
+                         "materials",
+                         "mtl",
+                         "sampler",
+                         "shader",
+                         "edit materials"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Material Editor",
+        "url":  "/docs/material-editor/#intro",
+        "category":  "Material Editor",
+        "keywords":  [
+                         "intro",
+                         "material editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Editing Materials",
+        "description":  "On Material Editor",
+        "url":  "/docs/material-editor/#editing",
+        "category":  "Material Editor",
+        "keywords":  [
+                         "editing",
+                         "material editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Samplers",
+        "description":  "On Material Editor",
+        "url":  "/docs/material-editor/#samplers",
+        "category":  "Material Editor",
+        "keywords":  [
+                         "samplers",
+                         "textures",
+                         "material editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Features",
+        "description":  "On Material Editor",
+        "url":  "/docs/material-editor/#features",
+        "category":  "Material Editor",
+        "keywords":  [
+                         "features",
+                         "ubershader",
+                         "material editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Parameters",
+        "description":  "On Material Editor",
+        "url":  "/docs/material-editor/#parameters",
+        "category":  "Material Editor",
+        "keywords":  [
+                         "parameters",
+                         "shader",
+                         "material editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Duplicating",
+        "description":  "On Material Editor",
+        "url":  "/docs/material-editor/#duplicating",
+        "category":  "Material Editor",
+        "keywords":  [
+                         "duplicating",
+                         "clone",
+                         "material editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Saving",
+        "description":  "On Material Editor",
+        "url":  "/docs/material-editor/#saving",
+        "category":  "Material Editor",
+        "keywords":  [
+                         "saving",
+                         "save level",
+                         "material editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Related Tools",
+        "description":  "On Material Editor",
+        "url":  "/docs/material-editor/#related",
+        "category":  "Material Editor",
+        "keywords":  [
+                         "related",
+                         "textures",
+                         "material mappings",
+                         "physical materials",
+                         "material editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Model Editor",
+        "description":  "How to use OpenCAGE's Model Editor to browse, import, export, and edit level meshes.",
+        "url":  "/docs/model-editor/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "model",
+                         "models",
+                         "mesh",
+                         "fbx",
+                         "cs2",
+                         "edit models"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#intro",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "intro",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Browsing & Preview",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#browsing",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "browsing",
+                         "preview",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Import & Export",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#import-export",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "import-export",
+                         "fbx",
+                         "gltf",
+                         "obj",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Import New",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#import",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "import",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Export & Delete",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#export",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "export",
+                         "delete",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Editing",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#editing",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "editing",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Render Flags",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#render-flags",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "render-flags",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Geometry Editor",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#geometry",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "geometry",
+                         "submesh",
+                         "lod",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Saving",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#saving",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "saving",
+                         "save level",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Related Tools",
+        "description":  "On Model Editor",
+        "url":  "/docs/model-editor/#related",
+        "category":  "Model Editor",
+        "keywords":  [
+                         "related",
+                         "materials",
+                         "textures",
+                         "viewport",
+                         "model editor"
+                     ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Texture Editor",
+        "description":  "How to use OpenCAGE's Texture Editor to browse, import, export, and replace level textures.",
+        "url":  "/docs/texture-editor/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "texture",
+                         "textures",
+                         "dds",
+                         "dx10",
+                         "edit textures"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Texture Editor",
+        "url":  "/docs/texture-editor/#intro",
+        "category":  "Texture Editor",
+        "keywords":  [
+                         "intro",
+                         "texture editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Browsing & Preview",
+        "description":  "On Texture Editor",
+        "url":  "/docs/texture-editor/#browsing",
+        "category":  "Texture Editor",
+        "keywords":  [
+                         "browsing",
+                         "preview",
+                         "streamed",
+                         "persistent",
+                         "global",
+                         "texture editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Import & Export",
+        "description":  "On Texture Editor",
+        "url":  "/docs/texture-editor/#import-export",
+        "category":  "Texture Editor",
+        "keywords":  [
+                         "import-export",
+                         "dds",
+                         "png",
+                         "jpg",
+                         "texture editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Import & Replace",
+        "description":  "On Texture Editor",
+        "url":  "/docs/texture-editor/#import",
+        "category":  "Texture Editor",
+        "keywords":  [
+                         "import",
+                         "replace",
+                         "dx10",
+                         "texture editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Export & Delete",
+        "description":  "On Texture Editor",
+        "url":  "/docs/texture-editor/#export",
+        "category":  "Texture Editor",
+        "keywords":  [
+                         "export",
+                         "delete",
+                         "texture editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Flags",
+        "description":  "On Texture Editor",
+        "url":  "/docs/texture-editor/#flags",
+        "category":  "Texture Editor",
+        "keywords":  [
+                         "flags",
+                         "state flags",
+                         "usage flags",
+                         "texture editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Saving",
+        "description":  "On Texture Editor",
+        "url":  "/docs/texture-editor/#saving",
+        "category":  "Texture Editor",
+        "keywords":  [
+                         "saving",
+                         "save level",
+                         "texture editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Related Tools",
+        "description":  "On Texture Editor",
+        "url":  "/docs/texture-editor/#related",
+        "category":  "Texture Editor",
+        "keywords":  [
+                         "related",
+                         "materials",
+                         "models",
+                         "texture editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Material Mapping Editor",
+        "description":  "How to use OpenCAGE's Material Mapping Editor to create From→To material remaps for a level.",
+        "url":  "/docs/material-mapping-editor/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "material mapping",
+                         "material mappings",
+                         "remap",
+                         "from to",
+                         "mapping"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Material Mapping Editor",
+        "url":  "/docs/material-mapping-editor/#intro",
+        "category":  "Material Mapping Editor",
+        "keywords":  [
+                         "intro",
+                         "material mapping editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Mapping Sets",
+        "description":  "On Material Mapping Editor",
+        "url":  "/docs/material-mapping-editor/#sets",
+        "category":  "Material Mapping Editor",
+        "keywords":  [
+                         "sets",
+                         "add new set",
+                         "material mapping editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "From → To Mappings",
+        "description":  "On Material Mapping Editor",
+        "url":  "/docs/material-mapping-editor/#mappings",
+        "category":  "Material Mapping Editor",
+        "keywords":  [
+                         "mappings",
+                         "from",
+                         "to",
+                         "add mapping",
+                         "material mapping editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Saving",
+        "description":  "On Material Mapping Editor",
+        "url":  "/docs/material-mapping-editor/#saving",
+        "category":  "Material Mapping Editor",
+        "keywords":  [
+                         "saving",
+                         "save level",
+                         "material mapping editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Related Tools",
+        "description":  "On Material Mapping Editor",
+        "url":  "/docs/material-mapping-editor/#related",
+        "category":  "Material Mapping Editor",
+        "keywords":  [
+                         "related",
+                         "materials",
+                         "textures",
+                         "models",
+                         "material mapping editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Galaxy Editor",
+        "description":  "How to use OpenCAGE's Galaxy Editor to define and regenerate skybox starfields.",
+        "url":  "/docs/galaxy-editor/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "galaxy",
+                         "stars",
+                         "skybox",
+                         "starfield",
+                         "generate galaxy"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Galaxy Editor",
+        "url":  "/docs/galaxy-editor/#intro",
+        "category":  "Galaxy Editor",
+        "keywords":  [
+                         "intro",
+                         "galaxy editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Star Templates",
+        "description":  "On Galaxy Editor",
+        "url":  "/docs/galaxy-editor/#templates",
+        "category":  "Galaxy Editor",
+        "keywords":  [
+                         "templates",
+                         "frequency",
+                         "intensity",
+                         "galaxy editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Generate Galaxy",
+        "description":  "On Galaxy Editor",
+        "url":  "/docs/galaxy-editor/#generate",
+        "category":  "Galaxy Editor",
+        "keywords":  [
+                         "generate",
+                         "regenerate",
+                         "galaxy editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Saving",
+        "description":  "On Galaxy Editor",
+        "url":  "/docs/galaxy-editor/#saving",
+        "category":  "Galaxy Editor",
+        "keywords":  [
+                         "saving",
+                         "save level",
+                         "galaxy editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Behaviour Tree Editor",
+        "description":  "How to use OpenCAGE's Behaviour Tree Editor to browse and edit global character AI trees.",
+        "url":  "/docs/behaviour-tree-editor/",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "behaviour tree",
+                         "behavior tree",
+                         "brainiac",
+                         "ai",
+                         "legendplugin"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#intro",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "intro",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Editing Trees",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#editing",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "editing",
+                         "explorer",
+                         "palette",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Saving",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#saving",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "saving",
+                         "bml",
+                         "save behavior",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Assigning Trees",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#assigning",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "assigning",
+                         "characters",
+                         "attributes",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Resetting",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#reset",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "reset",
+                         "reset behaviour trees",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Related Docs",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#related",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "related",
+                         "nodes",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
         "title":  "Backup Manager",
         "description":  "How to use OpenCAGE\u0027s Backup Manager to snapshot and restore level files.",
         "url":  "/docs/backup-manager/",

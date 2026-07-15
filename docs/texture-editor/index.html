@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>OpenCAGE: Backup Manager</title>
+    <title>OpenCAGE: Texture Editor</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE's Backup Manager to snapshot and restore level files.">
+    <meta name="description" content="How to use OpenCAGE's Texture Editor to browse, import, export, and replace level textures.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Backup Manager" />
-	<meta name="twitter:description" content="How to use OpenCAGE's Backup Manager to snapshot and restore level files." />
+	<meta name="twitter:title" content="OpenCAGE: Texture Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Texture Editor to browse, import, export, and replace level textures." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -79,12 +79,13 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#creating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Creating Backups</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#backup-level">Backup Level Now</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#backup-all">Backup All Levels</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#restore"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Restoring</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#delete"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Deleting</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#revert-configs"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Revert Configs</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#browsing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Browsing &amp; Preview</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#import-export"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Import &amp; Export</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#import">Import &amp; Replace</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#export">Export &amp; Delete</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#flags"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Flags</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Tools</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -93,7 +94,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Backup Manager</li>
+		<li class="breadcrumb-item active" aria-current="page">Texture Editor</li>
 	  </ol>
 	</nav>
 </article>
@@ -104,67 +105,88 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The toolbar <b>Manage Backups</b> button opens the <b>Backup Manager</b>. Use it to snapshot level files so you can roll back after experimenting in the script editor.</p>
-		<p>Backups cover everything under that level's folder in <code>DATA/ENV/</code> for the current game install. They're stored under <code>DATA/MODTOOLS/BACKUPS/</code>. Global configs (ammo, alien settings, and so on) are separate — use <a href="#revert-configs">Revert Configs</a> for those.</p>
-		<p>The first time you open Backup Manager, OpenCAGE recommends creating a backup of all levels while they're still unmodified, so you always have a clean restore point.</p>
+		<p>After loading a level, open <b>Edit → Textures</b> to launch the <b>Texture Editor</b>. It browses and edits the level's texture package under <code>RENDERABLE</code> (e.g. <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code>), and can also browse global textures from <code>WORLD</code>.</p>
+		<p>The same window can open as a picker (with <b>Select This Texture</b>) from the <a href="/docs/material-editor/">Material Editor</a> (<b>Pick Texture…</b> / <b>Edit Texture…</b>). Materials assigned this way show up on models in the <a href="/docs/model-editor/">Model Editor</a> when textured preview is enabled.</p>
     </section>
 </article>
 
-<article class="docs-article" id="creating">
+<article class="docs-article" id="browsing">
     <header class="docs-header">
-        <h1 class="docs-heading">Creating Backups</h1>
+        <h1 class="docs-heading">Browsing &amp; Preview</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Pick a level from the <b>Level</b> dropdown. It defaults to the level you have open (otherwise your last choice, or the frontend).</p>
-		<p>The create label shows how many files differ from the latest backup for that level — e.g. <b>Create Backup (12 Changes)</b>. Each backup in the list has a name, date, and a details column (file count for the first backup, then how many files changed since the previous one).</p>
+		<p>The left tree lists textures for the selected <b>Source</b>. Use <b>Search</b> to filter by name.</p>
+		<ul>
+			<li><b>Source</b> — switch between the loaded level and <b>GLOBAL</b>. Level textures can be edited; GLOBAL is view/export only (import, replace, delete, and flags stay disabled).</li>
+			<li><b>Streamed</b> / <b>Persistent</b> — dual preview tabs for the high-res and low-res parts of a texture. Empty parts show <code>(none)</code> and disable that tab.</li>
+			<li><b>Metadata</b> — width, height, depth, mips, and size for the current preview.</li>
+		</ul>
+		<p>The preview title shows the texture name and format (for example <code>MyTexture [DXT5]</code>).</p>
+    </section>
+</article>
+
+<article class="docs-article" id="import-export">
+    <header class="docs-header">
+        <h1 class="docs-heading">Import &amp; Export</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Import and replace accept <b>DX10 DDS</b> only. If OpenCAGE rejects a file you converted yourself, try the <a href="https://developer.nvidia.com/texture-tools-exporter" target="_blank" rel="noopener">NVIDIA Texture Tools Exporter</a>.</p>
     </section>
 
-    <section class="docs-section" id="backup-level">
-		<h2 class="section-heading">Backup Level Now</h2>
-		<p>Type a name, then click <b>Backup Level Now</b>.</p>
-		<p>If that level is open in the script editor, OpenCAGE asks whether to save it first. After the snapshot is written, you'll get a short confirmation.</p>
-    </section>
+    <section class="docs-section" id="import">
+		<h2 class="section-heading">Import &amp; Replace</h2>
+		<ul>
+			<li><b>Import New</b> — adds a texture named from the DDS filename. Duplicate names are rejected.</li>
+			<li><b>Replace Selected</b> — overwrites the selected level texture with a new DX10 DDS.</li>
+		</ul>
+		<p>Imported/replaced pixel data is written into both the Streamed and Persistent parts of that entry.</p>
+	</section>
 
-	<section class="docs-section" id="backup-all">
-		<h2 class="section-heading">Backup All Levels</h2>
-		<p><b>Backup All Levels Now</b> walks every level in the install and creates a snapshot for each. The first pass names them <b>First backup</b>; later full passes use <b>Automated backup across all levels</b>.</p>
-		<p>This can take a while — leave OpenCAGE open until it finishes. If a level is open in the script editor, you'll get the same save prompt first.</p>
+	<section class="docs-section" id="export">
+		<h2 class="section-heading">Export &amp; Delete</h2>
+		<ul>
+			<li><b>Export Selected</b> — write one texture as DDS, PNG, or JPG.</li>
+			<li><b>Export All</b> — pick a folder, choose <b>Export all as</b> (DDS / PNG / JPG), then export the current Source list. The folder opens when finished.</li>
+			<li><b>Delete Selected</b> — removes a level texture after confirmation. Not available for GLOBAL.</li>
+		</ul>
 	</section>
 </article>
 
-<article class="docs-article" id="restore">
+<article class="docs-article" id="flags">
     <header class="docs-header">
-        <h1 class="docs-heading">Restoring</h1>
+        <h1 class="docs-heading">Flags</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Select <b>one</b> backup in the list, then click <b>Restore Selected Backup</b>.</p>
-		<p>OpenCAGE closes the game if it's running, replaces the level folder with the backup, then confirms. If that level is open in the script editor, you're asked whether to reload it so the editor matches the restored files.</p>
-		<p>If restore fails, something else is likely locking files in the level folder — close the game, other tools, or anything else using those files, then try again.</p>
+		<p>On level textures, <b>State flags</b> and <b>Usage flags</b> checkboxes update live in memory (for example cube map, volume, post processing, lens flare). Usage options are power-of-two style flags from the game's texture usage enum.</p>
+		<p>Flag edits are disabled when <b>Source</b> is <b>GLOBAL</b>.</p>
     </section>
 </article>
 
-<article class="docs-article" id="delete">
+<article class="docs-article" id="saving">
     <header class="docs-header">
-        <h1 class="docs-heading">Deleting</h1>
+        <h1 class="docs-heading">Saving</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Check the backups you want to remove (checkboxes, not just row selection), then click <b>Delete Checked Backups</b>. OpenCAGE asks for confirmation, deletes those restore points, and cleans up backup data that nothing else still references.</p>
-		<p>Restore and delete use different selection styles: restore needs a single selected row; delete uses the checked boxes.</p>
+		<p>The Texture Editor has no separate Save button. Persist level texture changes with <b>File → Save Level</b> (<b>Ctrl+S</b>), which writes <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code> (or the compressed <code>.PAK.FZIP</code> variant) under the level's <code>RENDERABLE</code> folder.</p>
+		<p>Saving closes the game if it's running so install files aren't locked. GLOBAL textures are not saved from this editor.</p>
     </section>
 </article>
 
-<article class="docs-article" id="revert-configs">
+<article class="docs-article" id="related">
     <header class="docs-header">
-        <h1 class="docs-heading">Revert Configs</h1>
+        <h1 class="docs-heading">Related Tools</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p><b>Revert Configs</b> opens a separate tool from the Backup Manager. It resets <b>global game configs</b> (ammo, alien configs, difficulty, behaviour trees, and so on) back to stock — not level ENV backups.</p>
-		<p>Each reset closes the game if it's running, then restores the matching vanilla files. Use this when config edits went wrong; use level backups when script / level file edits went wrong.</p>
-		<p>For editing those configs instead of resetting them, see the <a href="/docs/configs/">Configurations</a> docs. For behaviour trees specifically, see the <a href="/docs/behaviour-tree-editor/">Behaviour Tree Editor</a> guide (<b>Reset Behaviour Trees</b> restores the global BML).</p>
+		<ul>
+			<li><a href="/docs/material-editor/">Material Editor</a> — assign textures to material samplers via <b>Pick Texture…</b> / <b>Edit Texture…</b></li>
+			<li><a href="/docs/model-editor/">Model Editor</a> — textured preview and export that depend on materials and their samplers</li>
+			<li><a href="/docs/material-mapping-editor/">Material Mapping Editor</a> — From→To remaps that swap which materials (and textures) apply at instance time</li>
+		</ul>
     </section>
 </article>
 
