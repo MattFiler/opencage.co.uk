@@ -83,6 +83,9 @@
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#editing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing Trees</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#shortcuts"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Keyboard Shortcuts</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#shortcuts-canvas">Graph Canvas</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#shortcuts-explorer">Explorer</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#assigning"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Assigning Trees</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#reset"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Resetting</a></li>
@@ -133,9 +136,48 @@
     </section>
 </article>
 
+<article class="docs-article" id="shortcuts">
+    <header class="docs-header">
+        <h1 class="docs-heading">Keyboard Shortcuts</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Shortcuts depend on focus — graph canvas vs Explorer. There is no <b>Ctrl+S</b> save shortcut; use the toolbar <b>Save Behavior</b> button.</p>
+	</section>
+
+	<section class="docs-section" id="shortcuts-canvas">
+		<h2 class="section-heading">Graph Canvas</h2>
+		<p>When the behaviour graph has focus:</p>
+		<ul>
+			<li><b>Ctrl</b> (hold) — arrow cursor; drag with Ctrl to duplicate the selection</li>
+			<li><b>Shift</b> (hold) — operate on the whole branch (copy / cut / delete / paste / drag)</li>
+			<li><b>Ctrl+C</b> — copy the selected node</li>
+			<li><b>Ctrl+Shift+C</b> — copy the selected node and its branch</li>
+			<li><b>Ctrl+V</b> — enter paste mode (ghost preview); left-click to place under a target (release <b>V</b> to cancel)</li>
+			<li><b>Ctrl+V</b> + <b>Shift</b> — paste as a full branch instead of a single node</li>
+			<li><b>Ctrl+X</b> — cut the selected node (children are reparented to its parent)</li>
+			<li><b>Ctrl+Shift+X</b> — cut the selected node and its entire subtree</li>
+			<li><b>Delete</b> — remove the selected node by extracting it (children kept / reparented)</li>
+			<li><b>Shift+Delete</b> — delete the selected node and its entire subtree</li>
+			<li><b>Right-drag</b> — move the selection (hold <b>Shift</b> for the whole branch)</li>
+		</ul>
+		<p>Copy / cut / delete apply to non-root nodes only. There is no undo/redo on the canvas.</p>
+	</section>
+
+	<section class="docs-section" id="shortcuts-explorer">
+		<h2 class="section-heading">Explorer</h2>
+		<p>When the Explorer tree list has focus:</p>
+		<ul>
+			<li><b>F2</b> — rename the selected behaviour or folder</li>
+			<li><b>Delete</b> — delete the selected behaviour or group (same as toolbar <b>Delete Behavior/Group</b>)</li>
+		</ul>
+		<p>Explorer does not use Ctrl+C / Ctrl+V / Ctrl+X. <b>Delete</b> here removes trees from the catalogue, not nodes from an open graph.</p>
+	</section>
+</article>
+
 <article class="docs-article" id="saving">
     <header class="docs-header">
-<h1 class="docs-heading">Saving</h1>
+        <h1 class="docs-heading">Saving</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">

@@ -617,6 +617,50 @@
         "type":  "heading"
     },
     {
+        "title":  "Keyboard Shortcuts",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#shortcuts",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "shortcuts",
+                         "hotkeys",
+                         "keyboard",
+                         "ctrl",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Graph Canvas",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#shortcuts-canvas",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "graph",
+                         "canvas",
+                         "copy",
+                         "paste",
+                         "delete",
+                         "shortcuts",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
+        "title":  "Explorer",
+        "description":  "On Behaviour Tree Editor",
+        "url":  "/docs/behaviour-tree-editor/#shortcuts-explorer",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+                         "explorer",
+                         "f2",
+                         "rename",
+                         "shortcuts",
+                         "behaviour tree editor"
+                     ],
+        "type":  "heading"
+    },
+    {
         "title":  "Saving",
         "description":  "On Behaviour Tree Editor",
         "url":  "/docs/behaviour-tree-editor/#saving",
