@@ -1,11 +1,21 @@
 /* In-page filter for reference catalogues */
 
+/* Navbar flex layout fights the sticky filter + TOC stack — keep a normal block flow. */
+.docs-nav.navbar.has-ref-filter,
+.docs-nav.navbar:has(> .docs-ref-filter) {
+	display: block;
+	padding-top: 0;
+	overflow: visible;
+}
+
 .docs-ref-filter {
 	position: sticky;
 	top: 0;
 	z-index: 2;
-	padding: 0.85rem 1rem 0.65rem;
-	margin: -1rem -1rem 0.75rem;
+	box-sizing: border-box;
+	width: auto;
+	padding: 0.65rem 1rem 0.5rem;
+	margin: 0 -1rem 0.5rem;
 	background: linear-gradient(#fff 70%, rgba(255, 255, 255, 0.92));
 	border-bottom: 1px solid #e7e9ed;
 }
@@ -17,7 +27,7 @@
 	letter-spacing: 0.04em;
 	text-transform: uppercase;
 	color: #919aaa;
-	margin-bottom: 0.4rem;
+	margin: 0 0 0.35rem;
 }
 
 .docs-ref-filter-field {
@@ -37,6 +47,9 @@
 .docs-ref-filter-input {
 	padding-left: 2.15rem !important;
 	padding-right: 2.1rem !important;
+	padding-top: 0.5rem !important;
+	padding-bottom: 0.5rem !important;
+	height: 2.25rem;
 	font-size: 0.875rem;
 	border-radius: 1.5rem;
 }
@@ -68,10 +81,14 @@
 }
 
 .docs-ref-filter-meta {
-	min-height: 1.1rem;
 	margin-top: 0.35rem;
 	font-size: 0.75rem;
 	color: #919aaa;
+}
+
+.docs-ref-filter-meta:empty {
+	display: none;
+	margin: 0;
 }
 
 .docs-ref-filter-empty {

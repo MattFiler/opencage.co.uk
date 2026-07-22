@@ -60,6 +60,7 @@
 			"</div>" +
 			'<div class="docs-ref-filter-meta" aria-live="polite"></div>';
 
+		nav.classList.add("has-ref-filter");
 		nav.insertBefore(wrap, list);
 
 		var input = wrap.querySelector(".docs-ref-filter-input");
