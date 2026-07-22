@@ -20302,7 +20302,7 @@
         "type":  "symbol"
     },
     {
-        "title":  "Trigger Sequence Editor",
+        "title":  "TriggerSequence Editor",
         "description":  "Edit TriggerSequence targets, delays, and start/finished method pins.",
         "url":  "/docs/trigger-sequence-editor/",
         "category":  "Function Editors",
@@ -20317,49 +20317,49 @@
     },
     {
         "title":  "Introduction",
-        "description":  "On Trigger Sequence Editor",
+        "description":  "On TriggerSequence Editor",
         "url":  "/docs/trigger-sequence-editor/#intro",
-        "category":  "Trigger Sequence Editor",
+        "category":  "TriggerSequence Editor",
         "keywords":  [ "intro", "triggersequence" ],
         "type":  "symbol"
     },
     {
         "title":  "Opening the Editor",
-        "description":  "On Trigger Sequence Editor",
+        "description":  "On TriggerSequence Editor",
         "url":  "/docs/trigger-sequence-editor/#opening",
-        "category":  "Trigger Sequence Editor",
+        "category":  "TriggerSequence Editor",
         "keywords":  [ "opening", "triggersequence" ],
         "type":  "symbol"
     },
     {
         "title":  "Layout",
-        "description":  "On Trigger Sequence Editor",
+        "description":  "On TriggerSequence Editor",
         "url":  "/docs/trigger-sequence-editor/#layout",
-        "category":  "Trigger Sequence Editor",
+        "category":  "TriggerSequence Editor",
         "keywords":  [ "layout", "triggersequence" ],
         "type":  "symbol"
     },
     {
         "title":  "Entities",
-        "description":  "On Trigger Sequence Editor",
+        "description":  "On TriggerSequence Editor",
         "url":  "/docs/trigger-sequence-editor/#entities",
-        "category":  "Trigger Sequence Editor",
+        "category":  "TriggerSequence Editor",
         "keywords":  [ "entities", "targets", "delay", "triggersequence" ],
         "type":  "symbol"
     },
     {
         "title":  "Triggers",
-        "description":  "On Trigger Sequence Editor",
+        "description":  "On TriggerSequence Editor",
         "url":  "/docs/trigger-sequence-editor/#triggers",
-        "category":  "Trigger Sequence Editor",
+        "category":  "TriggerSequence Editor",
         "keywords":  [ "triggers", "methods", "pins", "triggersequence" ],
         "type":  "symbol"
     },
     {
         "title":  "Closing",
-        "description":  "On Trigger Sequence Editor",
+        "description":  "On TriggerSequence Editor",
         "url":  "/docs/trigger-sequence-editor/#closing",
-        "category":  "Trigger Sequence Editor",
+        "category":  "TriggerSequence Editor",
         "keywords":  [ "closing", "validation", "triggersequence" ],
         "type":  "symbol"
     }

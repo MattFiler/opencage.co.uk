@@ -3,20 +3,20 @@
 <head>
     <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
     <meta name="color-scheme" content="light dark">
-    <title>OpenCAGE: Trigger Sequence Editor</title>
+    <title>OpenCAGE: TriggerSequence Editor</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE's Trigger Sequence Editor — ordered entity targets, delays, and start/finished method pins.">
+    <meta name="description" content="How to use OpenCAGE's TriggerSequence Editor — ordered entity targets, delays, and start/finished method pins.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Trigger Sequence Editor" />
-	<meta name="twitter:description" content="How to use OpenCAGE's Trigger Sequence Editor — ordered entity targets, delays, and start/finished method pins." />
+	<meta name="twitter:title" content="OpenCAGE: TriggerSequence Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's TriggerSequence Editor — ordered entity targets, delays, and start/finished method pins." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -99,7 +99,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Trigger Sequence Editor</li>
+		<li class="breadcrumb-item active" aria-current="page">TriggerSequence Editor</li>
 	  </ol>
 	</nav>
 </article>
@@ -110,7 +110,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Trigger Sequence Editor</b> configures a <a href="/docs/cathode-entities/#TriggerSequence">TriggerSequence</a> function entity: an ordered list of other entities to fire, optional delays between them, and the start / finished method names that become pins on the flowgraph node.</p>
+		<p>The <b>TriggerSequence Editor</b> configures a <a href="/docs/cathode-entities/#TriggerSequence">TriggerSequence</a> function entity: an ordered list of other entities to fire, optional delays between them, and the start / finished method names that become pins on the flowgraph node.</p>
 		<p>Entity parameters such as <code>trigger_mode</code>, <code>use_random_intervals</code>, and <code>interval_multiplier</code> stay in the Entity Inspector. This editor only edits the sequence list and method entries stored on the entity.</p>
     </section>
 </article>
@@ -124,7 +124,7 @@
 		<ol>
 			<li>Select a <code>TriggerSequence</code> entity in the composite list or flowgraph.</li>
 			<li>In the <b>Entity Inspector</b>, click <b>Function</b>.</li>
-			<li>The Trigger Sequence Editor opens, titled with that entity’s name.</li>
+			<li>The TriggerSequence Editor opens, titled with that entity’s name.</li>
 		</ol>
 		<p>Edits apply directly to the selected entity while the window is open. The window closes if you reload commands, select a different entity, or switch composite.</p>
     </section>
@@ -159,7 +159,7 @@
 		<h2 class="section-heading">Selected Entity Details</h2>
 		<p>Selecting a row shows the details panel:</p>
 		<ul>
-			<li><b>Entity To Trigger</b> — read-only resolved path. Use <b>Select New</b> to repoint this entry at a different function entity (single pick). Use <b>Go To</b> to jump the main editor to that entity (this closes the Trigger Sequence Editor after confirmation). These actions require a single selected row.</li>
+			<li><b>Entity To Trigger</b> — read-only resolved path. Use <b>Select New</b> to repoint this entry at a different function entity (single pick). Use <b>Go To</b> to jump the main editor to that entity (this closes the TriggerSequence Editor after confirmation). These actions require a single selected row.</li>
 			<li><b>Time To Wait Before Triggering (In Seconds)</b> — delay for the selection. With multiple rows selected (Ctrl/Shift+click), the same delay is applied to all of them. If selected delays differ, the field starts blank until you enter a value. Only numeric values are accepted.</li>
 		</ul>
     </section>
