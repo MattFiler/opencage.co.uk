@@ -20158,5 +20158,209 @@
                          "ui editor"
                      ],
         "type":  "symbol"
+    },
+    {
+        "title":  "CAGEAnimation Editor",
+        "description":  "Edit CAGEAnimation timelines — float curves, string events, and animation entity bindings.",
+        "url":  "/docs/cage-animation-editor/",
+        "category":  "Function Editors",
+        "keywords":  [
+                         "cageanimation",
+                         "timeline",
+                         "keyframes",
+                         "bezier",
+                         "event tracks",
+                         "function editor"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On CAGEAnimation Editor",
+        "url":  "/docs/cage-animation-editor/#intro",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [ "intro", "cageanimation" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Opening the Editor",
+        "description":  "On CAGEAnimation Editor",
+        "url":  "/docs/cage-animation-editor/#opening",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [ "opening", "cageanimation" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Layout",
+        "description":  "On CAGEAnimation Editor",
+        "url":  "/docs/cage-animation-editor/#layout",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [ "layout", "cageanimation" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Animated Parameters",
+        "description":  "On CAGEAnimation Editor",
+        "url":  "/docs/cage-animation-editor/#parameters",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [ "parameters", "tracks", "cageanimation" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Curves & Keyframes",
+        "description":  "On CAGEAnimation Editor",
+        "url":  "/docs/cage-animation-editor/#curves",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [ "curves", "keyframes", "bezier", "cageanimation" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Event Tracks",
+        "description":  "On CAGEAnimation Editor",
+        "url":  "/docs/cage-animation-editor/#events",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [ "events", "string", "guid", "animation entity", "cageanimation" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Saving",
+        "description":  "On CAGEAnimation Editor",
+        "url":  "/docs/cage-animation-editor/#saving",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [ "saving", "pins", "cageanimation" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Character Editor",
+        "description":  "Edit Character accessory sets — body composites, skeletons, asset types, and NPC metadata.",
+        "url":  "/docs/character-editor/",
+        "category":  "Function Editors",
+        "keywords":  [
+                         "character",
+                         "accessory sets",
+                         "npc",
+                         "skeleton",
+                         "foley",
+                         "function editor"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Character Editor",
+        "url":  "/docs/character-editor/#intro",
+        "category":  "Character Editor",
+        "keywords":  [ "intro", "character" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Opening the Editor",
+        "description":  "On Character Editor",
+        "url":  "/docs/character-editor/#opening",
+        "category":  "Character Editor",
+        "keywords":  [ "opening", "character" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Character Instances",
+        "description":  "On Character Editor",
+        "url":  "/docs/character-editor/#instances",
+        "category":  "Character Editor",
+        "keywords":  [ "instances", "add new", "character" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Composites",
+        "description":  "On Character Editor",
+        "url":  "/docs/character-editor/#composites",
+        "category":  "Character Editor",
+        "keywords":  [ "composites", "head", "torso", "arms", "legs", "shoes", "collision", "character" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Metadata",
+        "description":  "On Character Editor",
+        "url":  "/docs/character-editor/#metadata",
+        "category":  "Character Editor",
+        "keywords":  [ "metadata", "skeleton", "asset type", "foley", "character" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Saving",
+        "description":  "On Character Editor",
+        "url":  "/docs/character-editor/#saving",
+        "category":  "Character Editor",
+        "keywords":  [ "saving", "accessory sets", "character" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Notes & Limits",
+        "description":  "On Character Editor",
+        "url":  "/docs/character-editor/#notes",
+        "category":  "Character Editor",
+        "keywords":  [ "notes", "limits", "human npcs", "character" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Trigger Sequence Editor",
+        "description":  "Edit TriggerSequence targets, delays, and start/finished method pins.",
+        "url":  "/docs/trigger-sequence-editor/",
+        "category":  "Function Editors",
+        "keywords":  [
+                         "triggersequence",
+                         "trigger sequence",
+                         "delays",
+                         "methods",
+                         "function editor"
+                     ],
+        "type":  "page"
+    },
+    {
+        "title":  "Introduction",
+        "description":  "On Trigger Sequence Editor",
+        "url":  "/docs/trigger-sequence-editor/#intro",
+        "category":  "Trigger Sequence Editor",
+        "keywords":  [ "intro", "triggersequence" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Opening the Editor",
+        "description":  "On Trigger Sequence Editor",
+        "url":  "/docs/trigger-sequence-editor/#opening",
+        "category":  "Trigger Sequence Editor",
+        "keywords":  [ "opening", "triggersequence" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Layout",
+        "description":  "On Trigger Sequence Editor",
+        "url":  "/docs/trigger-sequence-editor/#layout",
+        "category":  "Trigger Sequence Editor",
+        "keywords":  [ "layout", "triggersequence" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Entities",
+        "description":  "On Trigger Sequence Editor",
+        "url":  "/docs/trigger-sequence-editor/#entities",
+        "category":  "Trigger Sequence Editor",
+        "keywords":  [ "entities", "targets", "delay", "triggersequence" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Triggers",
+        "description":  "On Trigger Sequence Editor",
+        "url":  "/docs/trigger-sequence-editor/#triggers",
+        "category":  "Trigger Sequence Editor",
+        "keywords":  [ "triggers", "methods", "pins", "triggersequence" ],
+        "type":  "symbol"
+    },
+    {
+        "title":  "Closing",
+        "description":  "On Trigger Sequence Editor",
+        "url":  "/docs/trigger-sequence-editor/#closing",
+        "category":  "Trigger Sequence Editor",
+        "keywords":  [ "closing", "validation", "triggersequence" ],
+        "type":  "symbol"
     }
 ]

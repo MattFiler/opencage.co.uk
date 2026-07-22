@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: CAGEAnimation Editor</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's CAGEAnimation editor — timelines, keyframes, curves, string events, and animation entity bindings.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: CAGEAnimation Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's CAGEAnimation editor — timelines, keyframes, curves, string events, and animation entity bindings." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#opening"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Opening the Editor</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#layout"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Layout</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#parameters"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Animated Parameters</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#tree-menu">Track List Menu</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#visibility">Visibility</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#curves"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Curves &amp; Keyframes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-keys">Editing Keyframes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#navigation">Pan, Zoom &amp; Snap</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#events"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Event Tracks</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#string-events">String Event Tracks</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#anim-entity-tracks">Animation Entity Tracks</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">CAGEAnimation Editor</li>
+	  </ol>
+	</nav>
+</article>
+    
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+		<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>CAGEAnimation Editor</b> is a timeline UI for <a href="/docs/cathode-entities/#CAGEAnimation">CAGEAnimation</a> function entities. It edits float curves over time, string events that fire pins on the flowgraph, and animation-entity bindings used by play-animation nodes.</p>
+		<p>This is <b>not</b> the same as the <a href="/docs/animation-editor/">Animation Editor</a>, which browses <code>ANIMATION.PAK</code> clip archives. The CAGEAnimation Editor works on a scripting entity inside a composite.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="opening">
+    <header class="docs-header">
+		<h1 class="docs-heading">Opening the Editor</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ol>
+			<li>Select a <a href="/docs/cathode-entities/#CAGEAnimation">CAGEAnimation</a> entity in the composite list or flowgraph.</li>
+			<li>In the <b>Entity Inspector</b>, click <b>Function</b>.</li>
+			<li>The CAGEAnimation Editor opens on a working copy of that entity. Changes apply when you click <b>Save</b>.</li>
+		</ol>
+		<p>While the editor is open you can jump to linked entities (for example from an Animation Entity binding) without closing the window. Save still writes back to the original <code>CAGEAnimation</code> by ID.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="layout">
+    <header class="docs-header">
+		<h1 class="docs-heading">Layout</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The window is split into three main areas:</p>
+		<ul>
+			<li><b>Animated parameters</b> (left) — a tree of linked entities and the float parameters being animated. Checkboxes toggle curve visibility on the graph.</li>
+			<li><b>Timeline / curve graph</b> (centre) — float tracks as bezier or linear curves, event lanes underneath, and a time ruler at the bottom (including the playable animation-length handle).</li>
+			<li><b>Inspector</b> (right) — context panel for the current selection: a float keyframe, a string event, an animation-entity keyframe, or an Animation Entity track’s bindings.</li>
+		</ul>
+		<p>The footer has <b>Snap</b> / <b>Interval</b>, <b>Bezier curves</b>, and <b>Save</b>.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="parameters">
+    <header class="docs-header">
+		<h1 class="docs-heading">Animated Parameters</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Float animation is organised by entity. Each entity node in the tree can hold one or more parameter tracks (for example <code>position.x</code>, a float parameter name, and so on).</p>
+	</section>
+
+	<section class="docs-section" id="tree-menu">
+		<h2 class="section-heading">Track List Menu</h2>
+		<p>Right-click in the track tree:</p>
+		<ul>
+			<li><b>Add Entity…</b> — always available. Pick a hierarchy target, then choose a parameter to animate. Supported types are <b>FLOAT</b> and <b>TRANSFORM</b> (transform components become separate float tracks).</li>
+			<li><b>Add Parameter…</b> — on an entity node. Adds another animated parameter for that entity.</li>
+			<li><b>Add Keyframe at Time…</b> — on a parameter node. Opens a dialog for time in seconds (useful when a track only has one keyframe and is hard to click on the graph).</li>
+			<li><b>Remove Entity…</b> / <b>Remove Parameter…</b> — contextual to the right-clicked node.</li>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="visibility">
+		<h2 class="section-heading">Visibility</h2>
+		<p>Use the checkbox glyphs on entity and parameter nodes to show or hide curves. Parent entities can show a mixed state when only some child tracks are visible. Clicking a node label frames that entity’s (or parameter’s) tracks in the graph.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="curves">
+    <header class="docs-header">
+		<h1 class="docs-heading">Curves &amp; Keyframes</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Each visible float track is drawn as a coloured curve. When the cursor is near a curve, that line thickens so you can tell which track you are targeting.</p>
+	</section>
+
+	<section class="docs-section" id="editing-keys">
+		<h2 class="section-heading">Editing Keyframes</h2>
+		<ul>
+			<li><b>Click</b> a keyframe diamond to select it. The inspector shows its value and a delete action.</li>
+			<li><b>Drag</b> a keyframe to move time and/or value (subject to snap).</li>
+			<li><b>Shift+click</b> on a curve (or right-click → <b>Add Keyframe Here</b>) to insert a keyframe on that track. The add-keyframe menu only appears when you are actually hovering a curve.</li>
+			<li>With <b>Bezier curves</b> enabled, selected keyframes show tangent handles. With it off, segments are linear (tangent data is still stored).</li>
+			<li>Right-click a keyframe for <b>Delete Keyframe</b>.</li>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="navigation">
+		<h2 class="section-heading">Pan, Zoom &amp; Snap</h2>
+		<ul>
+			<li><b>Middle-mouse drag</b> on the plot pans time and value.</li>
+			<li><b>Ctrl+middle-mouse</b> (or middle-mouse on the bottom timeline strip) pans time only.</li>
+			<li><b>Mouse wheel</b> over the plot zooms the value range; over the timeline / event lanes zooms time. <b>Shift+wheel</b> pans the corresponding axis.</li>
+			<li><b>Z</b> resets the view to the full content range.</li>
+			<li>Enable <b>Snap</b> and pick an interval to quantise times while dragging and placing keys.</li>
+			<li>Drag the green handle on the timeline to set playable <b>animation length</b> (written as <code>anim_length</code> on save).</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="events">
+    <header class="docs-header">
+		<h1 class="docs-heading">Event Tracks</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Event tracks are horizontal lanes under the float graph. Right-click anywhere on the graph (plot, lanes, or empty area) to add one:</p>
+		<ul>
+			<li><b>Add Event Track</b> — string events (yellow lanes). These fire pins on the <code>CAGEAnimation</code> itself.</li>
+			<li><b>Add Animation Entity Track</b> — entity-link events (blue lanes). Used with play-animation style nodes and MARKER / CHARACTER / CAMERA bindings.</li>
+		</ul>
+		<p>Right-click a lane for <b>Add Event Here</b> or <b>Delete Event Track</b>. Drag the grip between the plot and the lanes to resize lane height. Shift+click a lane also adds an event at that time.</p>
+	</section>
+
+	<section class="docs-section" id="string-events">
+		<h2 class="section-heading">String Event Tracks</h2>
+		<p>String event keyframes store a forward event name.</p>
+		<ul>
+			<li>Shift+click or right-click → <b>Add Event Here</b>, then enter the event name.</li>
+			<li>Selecting a keyframe shows the name field and delete action in the inspector.</li>
+			<li>On the flowgraph, each unique string event becomes a pair of output pins (forward and reverse) on the <code>CAGEAnimation</code> node — the same pattern as <a href="/docs/trigger-sequence-editor/#method-pins">TriggerSequence method pins</a>.</li>
+		</ul>
+		<p>Clicking a string event <b>lane</b> (not a keyframe) does not open a side panel — there are no entity bindings to edit.</p>
+	</section>
+
+	<section class="docs-section" id="anim-entity-tracks">
+		<h2 class="section-heading">Animation Entity Tracks</h2>
+		<p>These tracks link the timeline to entities that play animations.</p>
+		<p><b>Track bindings</b> — click the blue lane (with no keyframe selected) to show three slots:</p>
+		<ul>
+			<li><b>MARKER</b> — typically a position marker / model reference</li>
+			<li><b>CHARACTER</b> — character or player variable</li>
+			<li><b>CAMERA</b> — camera resource</li>
+		</ul>
+		<p>These bound objects are linked to the play-animation entity on the event track, supplying context such as convergence positions and associated characters.</p>
+		<p>Each slot shows the assigned entity name (bold, coloured, and respecting <a href="/docs/options/#entity-display"><b>Show entity IDs</b></a>), with <b>Jump</b> and <b>Assign…</b> / <b>Reassign…</b>. Empty slots create a new connection for that binding type when you assign.</p>
+		<p><b>Keyframes</b> on these tracks pick a play-animation entity:</p>
+		<ul>
+			<li><code>CMD_PlayAnimation</code></li>
+			<li><code>CameraPlayAnimation</code></li>
+			<li><code>PlayEnvironmentAnimation</code></li>
+		</ul>
+		<p>The linked animation entity plays when the time marker reaches that keyframe on the event timeline.</p>
+		<p>The inspector shows the linked entity name, <b>Open in Inspector</b>, <b>Reassign…</b>, and delete. Marker labels on the timeline use the entity display name.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="saving">
+    <header class="docs-header">
+		<h1 class="docs-heading">Saving</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Click <b>Save</b> to write the edited tracks, connections, and parameters back to the entity and close the editor. <code>anim_length</code> is updated from the timeline.</p>
+		<p>If you removed string events whose pins still have flowgraph connections (compiled links or live wires on the node), OpenCAGE warns before saving. Continuing will leave those links pointing at pins that no longer exist, so they will not fire.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+		<h1 class="docs-heading">Related</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/cathode-entities/#CAGEAnimation">CAGEAnimation</a> entity reference</li>
+			<li><a href="/docs/scripting-intro/">Scripting introduction</a></li>
+			<li><a href="/docs/animation-editor/">Animation Editor</a> (ANIMATION.PAK clips — separate tool)</li>
+			<li><a href="/docs/character-editor/">Character Editor</a></li>
+			<li><a href="/docs/trigger-sequence-editor/">Trigger Sequence Editor</a></li>
+		</ul>
+    </section>
+</article>
+
+		    <footer class="footer">
+			    <div class="container text-center py-5">
+				    <small class="copyright">Designed &amp; Developed by <a href="https://www.mattfiler.co.uk/" target="_blank">Matt Filer</a>.</small>
+				    <br>
+				    <small class="copyright">Website theme by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a>.</small>
+				    <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
+
+</body>
+</html> 

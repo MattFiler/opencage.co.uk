@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Trigger Sequence Editor</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's Trigger Sequence Editor — ordered entity targets, delays, and start/finished method pins.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Trigger Sequence Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Trigger Sequence Editor — ordered entity targets, delays, and start/finished method pins." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#opening"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Opening the Editor</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#layout"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Layout</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#entities"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#entity-details">Selected Entity Details</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#reorder-remove">Reorder &amp; Remove</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#triggers"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Triggers</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#method-pins">Method Pins</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#closing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Closing</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Trigger Sequence Editor</li>
+	  </ol>
+	</nav>
+</article>
+    
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+		<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Trigger Sequence Editor</b> configures a <a href="/docs/cathode-entities/#TriggerSequence">TriggerSequence</a> function entity: an ordered list of other entities to fire, optional delays between them, and the start / finished method names that become pins on the flowgraph node.</p>
+		<p>Entity parameters such as <code>trigger_mode</code>, <code>use_random_intervals</code>, and <code>interval_multiplier</code> stay in the Entity Inspector. This editor only edits the sequence list and method entries stored on the entity.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="opening">
+    <header class="docs-header">
+		<h1 class="docs-heading">Opening the Editor</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ol>
+			<li>Select a <code>TriggerSequence</code> entity in the composite list or flowgraph.</li>
+			<li>In the <b>Entity Inspector</b>, click <b>Function</b>.</li>
+			<li>The Trigger Sequence Editor opens, titled with that entity’s name.</li>
+		</ol>
+		<p>Edits apply directly to the selected entity while the window is open. The window closes if you reload commands, select a different entity, or switch composite.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="layout">
+    <header class="docs-header">
+		<h1 class="docs-heading">Layout</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The window is split horizontally:</p>
+		<ul>
+			<li><b>Entities</b> (top) — ordered targets the sequence will trigger, each with a delay.</li>
+			<li><b>Triggers</b> (bottom) — named methods this sequence supports (start → finished pairs). These apply to every entity in the list above.</li>
+		</ul>
+		<p>Drag the splitter between the panels to resize. <b>Close</b> is in the bottom-right corner.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="entities">
+    <header class="docs-header">
+		<h1 class="docs-heading">Entities</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The Entities list shows each sequence entry as a row: the resolved entity hierarchy path, and the delay in seconds. Checkboxes on the left are used for bulk removal.</p>
+		<p>Click <b>Add Entities…</b> to open the hierarchy picker with checkboxes. Check one or more function entities (you can still follow into nested composites first), then confirm. All checked entities are inserted after the current selection (or at the end if nothing is selected). If nothing is checked, the highlighted row alone is added.</p>
+	</section>
+
+	<section class="docs-section" id="entity-details">
+		<h2 class="section-heading">Selected Entity Details</h2>
+		<p>Selecting a row shows the details panel:</p>
+		<ul>
+			<li><b>Entity To Trigger</b> — read-only resolved path. Use <b>Select New</b> to repoint this entry at a different function entity (single pick). Use <b>Go To</b> to jump the main editor to that entity (this closes the Trigger Sequence Editor after confirmation). These actions require a single selected row.</li>
+			<li><b>Time To Wait Before Triggering (In Seconds)</b> — delay for the selection. With multiple rows selected (Ctrl/Shift+click), the same delay is applied to all of them. If selected delays differ, the field starts blank until you enter a value. Only numeric values are accepted.</li>
+		</ul>
+    </section>
+
+	<section class="docs-section" id="reorder-remove">
+		<h2 class="section-heading">Reorder &amp; Remove</h2>
+		<ul>
+			<li><b>Drag</b> a row in the Entities list to reorder it (insertion mark shows where it will land). Up / down buttons still work as an alternative.</li>
+			<li>Sequence order is the firing order (subject to the entity’s <code>trigger_mode</code> and related parameters).</li>
+			<li>Check one or more rows and click <b>Remove Checked</b> to delete them after confirmation.</li>
+			<li>There is no single-row delete button for entities; use checkboxes + <b>Remove Checked</b>.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="triggers">
+    <header class="docs-header">
+		<h1 class="docs-heading">Triggers</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The Triggers list is the set of start / end parameters this <code>TriggerSequence</code> exposes. Each line shows <code>method -&gt; method_finished</code>.</p>
+		<p>These methods apply to <b>all</b> entities in the Entities list — when the sequence runs a method, every target is triggered with that method name (with its own delay).</p>
+		<ul>
+			<li><b>Add New Trigger</b> — inserts a method entry using the name currently in the Parameter field (or an empty name if the field is blank). Inserts after the selection, or at the end.</li>
+			<li><b>Delete Selected Trigger</b> — removes the selected method entry.</li>
+			<li>Select a trigger to edit its <b>Parameter To Trigger</b> name, then click <b>Save</b> to apply. Saving regenerates the related relay / finished names from that parameter string.</li>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="method-pins">
+		<h2 class="section-heading">Method Pins</h2>
+		<p>For a parameter name <code>X</code>, the editor stores three related identifiers that appear as pins on the flowgraph node:</p>
+		<ul>
+			<li><code>X</code> — input method (start)</li>
+			<li><code>X_relay</code> — relay output</li>
+			<li><code>X_finished</code> — finished output</li>
+		</ul>
+		<p>After adding or renaming methods, refresh or reselect the node on the flowgraph if pin lists look stale. Standard methods like <code>proxy_enable</code> / <code>proxy_disable</code> remain on the entity type itself; the Triggers list is for the extra sequence methods you define here.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="closing">
+    <header class="docs-header">
+		<h1 class="docs-heading">Closing</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Click <b>Close</b> to leave the editor. Before closing, OpenCAGE checks that every sequence entry points at a real entity hierarchy. If any entry is empty or incomplete, you get an error and the window stays open so you can fix it.</p>
+		<p>There is no separate Save button — sequence and method edits are already on the entity. Persist them with the usual composite / level save.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+		<h1 class="docs-heading">Related</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/cathode-entities/#TriggerSequence">TriggerSequence</a> entity reference</li>
+			<li><a href="/docs/scripting-intro/">Scripting introduction</a></li>
+			<li><a href="/docs/cage-animation-editor/">CAGEAnimation Editor</a></li>
+			<li><a href="/docs/character-editor/">Character Editor</a></li>
+		</ul>
+    </section>
+</article>
+
+		    <footer class="footer">
+			    <div class="container text-center py-5">
+				    <small class="copyright">Designed &amp; Developed by <a href="https://www.mattfiler.co.uk/" target="_blank">Matt Filer</a>.</small>
+				    <br>
+				    <small class="copyright">Website theme by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a>.</small>
+				    <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
+
+</body>
+</html> 

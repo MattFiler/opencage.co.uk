@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Character Editor</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's Character Editor — accessory sets, body composites, skeletons, and NPC metadata for Character entities.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Character Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Character Editor — accessory sets, body composites, skeletons, and NPC metadata for Character entities." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#opening"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Opening the Editor</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#instances"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Character Instances</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#composites"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Composites</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#metadata"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Metadata</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#skeleton">Skeleton</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#asset-type">Asset Type</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#attributes">Attributes &amp; Foley</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#notes"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Notes &amp; Limits</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Character Editor</li>
+	  </ol>
+	</nav>
+</article>
+    
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+		<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Character Editor</b> configures how a <a href="/docs/cathode-entities/#Character">Character</a> looks and sounds for a specific placement in the level. It edits <b>character accessory sets</b> — body-part composites, skeleton choice, asset-set colours/decals, voice, demographic attributes, and foley — stored in the level’s <code>CHARACTERACCESSORYSETS.BIN</code>.</p>
+		<p>This is separate from the entity parameters on the <code>Character</code> node itself (class, alliance, anim sets, and so on). Those stay in the Entity Inspector; the Function editor covers the accessory-set data tied to each composite instance of that character.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="opening">
+    <header class="docs-header">
+		<h1 class="docs-heading">Opening the Editor</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ol>
+			<li>Select a <a href="/docs/cathode-entities/#Character">Character</a> entity in the composite list or flowgraph.</li>
+			<li>In the <b>Entity Inspector</b>, click <b>Function</b>.</li>
+			<li>The Character Editor opens for that entity.</li>
+		</ol>
+		<p>The window closes if you reload commands, select a different entity, or switch composite.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="instances">
+    <header class="docs-header">
+		<h1 class="docs-heading">Character Instances</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>A single <code>Character</code> entity can appear in more than one place in the level hierarchy. Accessory sets are keyed by <b>composite instance</b>, so each placement can have its own look.</p>
+		<ul>
+			<li>The dropdown at the top lists instances that already have an accessory-set entry for this character. Names follow the resolved hierarchy (and show short GUIDs if <b>Show entity IDs</b> is on).</li>
+			<li><b>Add New</b> opens an instance picker listing placements that do <b>not</b> yet have an accessory set. Choosing one creates a blank entry and selects it.</li>
+			<li>If every hierarchy path already has an entry (or there are no placements to add), the picker reports that there are no instances left to populate.</li>
+		</ul>
+		<p>Until at least one instance exists in the dropdown, the Composites and Metadata controls stay disabled.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="composites">
+    <header class="docs-header">
+		<h1 class="docs-heading">Composites</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Composites</b> group assigns the body-part composites for the selected instance. Each slot shows the current composite name (read-only) and a <b>Change</b> button that opens the composite picker:</p>
+		<ul>
+			<li><b>Head</b></li>
+			<li><b>Torso</b></li>
+			<li><b>Arms</b></li>
+			<li><b>Legs</b></li>
+			<li><b>Shoes</b></li>
+			<li><b>Collision</b></li>
+		</ul>
+		<p>Pick a composite to update that slot immediately on the accessory-set entry.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="metadata">
+    <header class="docs-header">
+		<h1 class="docs-heading">Metadata</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Metadata</b> group covers skeleton, asset set, voice, attributes, and movement foley for the selected instance.</p>
+	</section>
+
+	<section class="docs-section" id="skeleton">
+		<h2 class="section-heading">Skeleton</h2>
+		<p>Skeleton choice is split into two related dropdowns:</p>
+		<ul>
+			<li>The wide <b>Skeleton</b> list is the face / body skeleton name used by the character.</li>
+			<li>The smaller list beside it filters that list by <b>gendered skeleton group</b> (from OpenCAGE’s gendered skeleton table). Changing the group refreshes which skeleton names are available.</li>
+		</ul>
+    </section>
+
+	<section class="docs-section" id="asset-type">
+		<h2 class="section-heading">Asset Type</h2>
+		<p><b>Asset Type</b> picks a <a href="/docs/cathode-enums/#CUSTOM_CHARACTER_ASSETS">CUSTOM_CHARACTER_ASSETS</a> set (colours and decals used for customizable NPC clothing).</p>
+		<p>Click <b>Edit</b> next to Asset Type to open the <b>Character Asset Editor</b>, which edits the global <code>CUSTOMCHARACTERASSETDATA.BIN</code> file (primary / secondary / tertiary colours and decal lists per asset set). That window is shared config data, not per-instance accessory-set fields.</p>
+    </section>
+
+	<section class="docs-section" id="attributes">
+		<h2 class="section-heading">Attributes &amp; Foley</h2>
+		<ul>
+			<li><b>Voice Actor</b> — <a href="/docs/cathode-enums/#DIALOGUE_VOICE_ACTOR">DIALOGUE_VOICE_ACTOR</a></li>
+			<li><b>Gender</b> — <a href="/docs/cathode-enums/#CUSTOM_CHARACTER_GENDER">CUSTOM_CHARACTER_GENDER</a></li>
+			<li><b>Ethnicity</b> — <a href="/docs/cathode-enums/#CUSTOM_CHARACTER_ETHNICITY">CUSTOM_CHARACTER_ETHNICITY</a></li>
+			<li><b>Build</b> — <a href="/docs/cathode-enums/#CUSTOM_CHARACTER_BUILD">CUSTOM_CHARACTER_BUILD</a></li>
+			<li><b>Foley: Torso</b>, <b>Foley: Leg</b>, <b>Foley: Footwear</b> — <a href="/docs/cathode-enums/#CHARACTER_FOLEY_SOUND">CHARACTER_FOLEY_SOUND</a> for clothing / footwear movement sounds</li>
+		</ul>
+		<p>Changing any of these updates the selected accessory-set entry immediately.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="saving">
+    <header class="docs-header">
+		<h1 class="docs-heading">Saving</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>There is no separate Save button in the Character Editor. Edits write straight into the loaded level’s accessory-set data. Persist them with the usual level save — OpenCAGE writes <code>CHARACTERACCESSORYSETS.BIN</code> as part of saving the level.</p>
+		<p>Asset-set colour/decal edits made via <b>Edit</b> live in <code>CUSTOMCHARACTERASSETDATA.BIN</code> and follow that editor’s save behaviour.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="notes">
+    <header class="docs-header">
+		<h1 class="docs-heading">Notes &amp; Limits</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li>Accessory sets are aimed at <b>human NPCs</b>. Story characters and the Alien are set up differently and are not the target of <b>Add New</b>.</li>
+			<li>The Function button is available for any <code>Character</code> entity; whether a custom accessory set is meaningful still depends on how that character is configured in the graph (for example custom-character parameters).</li>
+			<li>Closing the Character Editor also closes any open Character Asset Editor it launched.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+		<h1 class="docs-heading">Related</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/cathode-entities/#Character">Character</a> entity reference</li>
+			<li><a href="/docs/cathode-enums/#CUSTOM_CHARACTER_ASSETS">CUSTOM_CHARACTER_ASSETS</a> and related custom-character enums</li>
+			<li><a href="/docs/scripting-intro/">Scripting introduction</a></li>
+			<li><a href="/docs/cage-animation-editor/">CAGEAnimation Editor</a></li>
+			<li><a href="/docs/trigger-sequence-editor/">Trigger Sequence Editor</a></li>
+		</ul>
+    </section>
+</article>
+
+		    <footer class="footer">
+			    <div class="container text-center py-5">
+				    <small class="copyright">Designed &amp; Developed by <a href="https://www.mattfiler.co.uk/" target="_blank">Matt Filer</a>.</small>
+				    <br>
+				    <small class="copyright">Website theme by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a>.</small>
+				    <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
+
+</body>
+</html> 
