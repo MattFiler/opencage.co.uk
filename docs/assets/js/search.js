@@ -148,18 +148,26 @@
 	}
 
 	function highlight(text, tokens) {
-		var safe = escapeHtml(text);
-		if (!tokens.length) return safe;
-
-		tokens
+		var safeTokens = tokens
 			.slice()
-			.sort(function (a, b) { return b.length - a.length; })
-			.forEach(function (token) {
-				var pattern = new RegExp("(" + token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
-				safe = safe.replace(pattern, '<mark class="docs-search-highlight">$1</mark>');
-			});
+			.filter(Boolean)
+			.sort(function (a, b) { return b.length - a.length; });
+		if (!safeTokens.length) return escapeHtml(text);
 
-		return safe;
+		// One pass over plain text so later tokens cannot rematch inside highlight markup
+		// (e.g. query "se" matching the "se" in class="docs-search-highlight").
+		var pattern = new RegExp("(" + safeTokens.map(function (token) {
+			return token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+		}).join("|") + ")", "ig");
+
+		return String(text).split(pattern).map(function (part) {
+			if (!part) return "";
+			var escaped = escapeHtml(part);
+			var isMatch = safeTokens.some(function (token) {
+				return part.toLowerCase() === token.toLowerCase();
+			});
+			return isMatch ? '<mark class="docs-search-highlight">' + escaped + "</mark>" : escaped;
+		}).join("");
 	}
 
 	function flashTarget(el) {
