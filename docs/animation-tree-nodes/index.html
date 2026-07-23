@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<meta name="color-scheme" content="light dark">
+<title>OpenCAGE: Animation Tree Nodes</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="All animation tree node types, parameters, and pins accessible via OpenCAGE's Animation Tree Editor.">
+<meta name="author" content="Matt Filer">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@MattFiler" />
+<meta name="twitter:title" content="OpenCAGE: Animation Tree Nodes" />
+<meta name="twitter:description" content="All animation tree node types, parameters, and pins accessible via OpenCAGE's Animation Tree Editor." />
+<meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+<meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+<link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+<link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+<link rel="stylesheet" href="../assets/css/motion.css">
+<link rel="stylesheet" href="../assets/css/search.css">
+<link rel="stylesheet" href="../assets/css/reference-filter.css">
+<link rel="stylesheet" href="../assets/css/dark.css">
+<style>
+.docs-section li { margin-top: -10px; word-wrap: break-word; }
+.docs-section .section-heading { word-wrap: break-word; }
+.docs-article > .docs-section { border-top: 1px dashed #363636; padding: 30px 0 20px 0; }
+.docs-article { border-bottom: 3px solid #e7e9ed; }
+.docs-article > p { padding-bottom:40px; }
+.docs-section > ul { margin-bottom:0; }
+</style>
+</head>
+<body class="docs-page">
+<header class="header fixed-top">
+<div class="branding docs-branding">
+<div class="container-fluid position-relative py-2">
+<div class="docs-logo-wrapper">
+<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button"><span></span><span></span><span></span></button>
+<div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+</div>
+<div class="docs-top-utilities d-flex justify-content-end align-items-center">
+<div class="top-search-box d-none d-md-flex">
+<form class="search-form">
+<input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+<button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+</form>
+</div>
+<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+</ul>
+<a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+</div>
+</div>
+</div>
+</header>
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#root"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Root</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Tree_Top_Level">ANIM_Tree_Top_Level</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#playback"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Playback</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Animation">ANIM_Animation</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Randomised_Animation">ANIM_Randomised_Animation</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#parameters"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Parameters &amp; Properties</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Parameter">ANIM_Parameter</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_AutoFloatParameter">ANIM_AutoFloatParameter</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_FloatInterpolator">ANIM_FloatInterpolator</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Property">ANIM_Property</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Property_Listener">ANIM_Property_Listener</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#callbacks"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Callbacks &amp; Events</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Callback">ANIM_Callback</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Event_Callback">ANIM_Event_Callback</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Metadata_Event_Listener">ANIM_Metadata_Event_Listener</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#selectors"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Selectors</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Selector">ANIM_Selector</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Enumerated_Selector">ANIM_Enumerated_Selector</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Ranged_Selector">ANIM_Ranged_Selector</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Foot_Sync_Selector">ANIM_Foot_Sync_Selector</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#parametrics"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Parametrics</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Parametric">ANIM_Parametric</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_2DParametric">ANIM_2DParametric</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_3DParametric">ANIM_3DParametric</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_4DParametric">ANIM_4DParametric</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#blends"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Blends</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Additive_Blend">ANIM_Additive_Blend</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Parametric_Additive_Blend">ANIM_Parametric_Additive_Blend</a></li>
+<li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#structural"><span class="theme-icon-holder me-2"><i class="fas fa-code"></i></span>Structural &amp; Misc</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Bone_Mask">ANIM_Bone_Mask</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_IK">ANIM_IK</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Weighted">ANIM_Weighted</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Bilinear_High_Fidelity">ANIM_Bilinear_High_Fidelity</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Bilinear_Low_Fidelity">ANIM_Bilinear_Low_Fidelity</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#ANIM_Spherical">ANIM_Spherical</a></li></ul></nav></div>
+<div class="docs-content"><div class="container">
+<article class="docs-article" style="border-bottom:0; padding-bottom:0;">
+<nav class="breadcrumb_parent">
+<ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+<li class="breadcrumb-item active" aria-current="page">Animation Tree Nodes</li>
+</ol>
+</nav>
+<p style="margin: 8px 0 0 0;">Reference for animation tree node types, parameters, and graph pins. For how to open and edit trees, see the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> guide.</p>
+<p style="margin: 8px 0 0 0;"><b>Pin sides:</b> left = flow input, right = flow output(s), top = value/reference input, bottom = value output. Value wiring is provider <code>value</code> to consumer top pin.</p>
+</article>
+<article class="docs-article" id="root"><header class="docs-header"><h1 class="docs-heading">Root</h1></header><p style="margin:0">Tree root node present in every animation tree.</p>
+<section class="docs-section" id="ANIM_Tree_Top_Level">
+<h2 class="section-heading">ANIM_Tree_Top_Level</h2>
+<p>Root of an animation tree. Created with the tree - not available from the Add Node menu.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">NODES</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right) -> child trigger</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Set</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">TreeEaseInTime</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code> <code title="Default value">default: <strong>0.25</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">RemoveMotionExtractionOnEaseOut</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">RemoveMotionExtractionOnPreceding</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">NeverUseMotionExtraction</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">AllowFootIkIfPrimary</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">AllowHipLeanIkIfPrimary</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">GaitSyncOnStart</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">UseLinearBlend</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">MinInitialPlayspeed</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">MaxInitialPlayspeed</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+</ul>
+</section>
+</article>
+<article class="docs-article" id="playback"><header class="docs-header"><h1 class="docs-heading">Playback</h1></header><p style="margin:0">Leaf nodes that play animation clips.</p>
+<section class="docs-section" id="ANIM_Animation">
+<h2 class="section-heading">ANIM_Animation</h2>
+<p>Plays a single named animation clip.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Callback</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">AnimationName</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Looping</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Mirrored</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Mask</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">BoneMaskGroups</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ConvergeOrientation</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ConvergeTranslation</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">NotifyTimeOffset</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">StartTimeOffset</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EndTimeOffset</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Randomised_Animation">
+<h2 class="section-heading">ANIM_Randomised_Animation</h2>
+<p>Picks from a weighted pool of up to 8 animation entries.</p>
+<p>Each pool entry exposes AnimationName, Mirrored, Weight, LoopsBeforeReselection, and time offsets. Empty AnimationName slots are skipped on save.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Callback</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">RandomCallback</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Looping</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">NewSelectionOnLoop</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">BlendTime</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ConvergeOrientation</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ConvergeTranslation</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">AnimationPool</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">Animation[8]</strong></code></li>
+</ul>
+</section>
+</article>
+<article class="docs-article" id="parameters"><header class="docs-header"><h1 class="docs-heading">Parameters &amp; Properties</h1></header><p style="margin:0">Parameter and property providers / listeners.</p>
+<section class="docs-section" id="ANIM_Parameter">
+<h2 class="section-heading">ANIM_Parameter</h2>
+<p>Exposes a typed parameter value for other nodes to bind to.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterType</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">AnimTreeParameterType</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_AutoFloatParameter">
+<h2 class="section-heading">ANIM_AutoFloatParameter</h2>
+<p>Auto float parameter node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_FloatInterpolator">
+<h2 class="section-heading">ANIM_FloatInterpolator</h2>
+<p>Interpolates toward a source parameter at a fixed rate.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">SourceParameter</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">InitialValue</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">UnitsPerSecond</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Property">
+<h2 class="section-heading">ANIM_Property</h2>
+<p>Holds animation metadata / property value data.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Value</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">AnimationMetadataValue</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Property_Listener">
+<h2 class="section-heading">ANIM_Property_Listener</h2>
+<p>Listens to a named anim property on a linked leaf.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">LeafNode</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">AnimProperty</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code> <code title="Default value">default: <strong>linear_velocity</strong></code></li>
+</ul>
+</section>
+</article>
+<article class="docs-article" id="callbacks"><header class="docs-header"><h1 class="docs-heading">Callbacks &amp; Events</h1></header><p style="margin:0">Callback providers and metadata event listeners.</p>
+<section class="docs-section" id="ANIM_Callback">
+<h2 class="section-heading">ANIM_Callback</h2>
+<p>Callback provider node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Event_Callback">
+<h2 class="section-heading">ANIM_Event_Callback</h2>
+<p>Event callback provider node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Metadata_Event_Listener">
+<h2 class="section-heading">ANIM_Metadata_Event_Listener</h2>
+<p>Listens for a metadata event by name.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EventName</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">WeightThreshold</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">FilterTime</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+</ul>
+</section>
+</article>
+<article class="docs-article" id="selectors"><header class="docs-header"><h1 class="docs-heading">Selectors</h1></header><p style="margin:0">Nodes that choose among child branches.</p>
+<section class="docs-section" id="ANIM_Selector">
+<h2 class="section-heading">ANIM_Selector</h2>
+<p>Selects among up to 16 child states by discrete parameter value.</p>
+<p>Each state has Value (uint), FootSyncOnSelect, and a linked child Node (via pin).</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBinding</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_01</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_02</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_03</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_04</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_05</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_06</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_07</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_08</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_09</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_10</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_11</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_12</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_13</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_14</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_15</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_16</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EaseSelectionTime</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ResetPlaybackOnChangeSelection</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">States</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">SelectorState[16]</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Enumerated_Selector">
+<h2 class="section-heading">ANIM_Enumerated_Selector</h2>
+<p>Enumerated selector - same structure as ANIM_Selector with a different node type id.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBinding</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_01</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_02</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_03</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_04</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_05</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_06</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_07</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_08</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_09</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_10</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_11</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_12</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_13</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_14</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_15</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_16</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EaseSelectionTime</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ResetPlaybackOnChangeSelection</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">States</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">SelectorState[16]</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Ranged_Selector">
+<h2 class="section-heading">ANIM_Ranged_Selector</h2>
+<p>Selects among up to 8 child states by float parameter range.</p>
+<p>Each state has Min, Max, FootSyncOnSelect, and a linked child Node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBinding</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_01</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_02</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_03</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_04</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_05</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_06</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_07</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_08</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EaseSelectionTime</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ResetPlaybackOnChange</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">States</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">RangedSelectorState[8]</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Foot_Sync_Selector">
+<h2 class="section-heading">ANIM_Foot_Sync_Selector</h2>
+<p>Chooses left or right foot-strike child for gait sync.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">LeftStrikeChild</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">RightStrikeChild</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">StrikeSelectionMethod</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">FootStrikeSelectionMethod</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">GaitSyncTargetOnSelect</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+</ul>
+</section>
+</article>
+<article class="docs-article" id="parametrics"><header class="docs-header"><h1 class="docs-heading">Parametrics</h1></header><p style="margin:0">Parameter-driven blend nodes.</p>
+<section class="docs-section" id="ANIM_Parametric">
+<h2 class="section-heading">ANIM_Parametric</h2>
+<p>1D parametric blend across up to 16 states.</p>
+<p>Each state has a float Value and linked child Node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBinding</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_01</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_02</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_03</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_04</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_05</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_06</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_07</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_08</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_09</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_10</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_11</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_12</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_13</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_14</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_15</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">State_16</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterMin</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterMax</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterUsage</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">ParameterBlendUsage</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">BlendProperty</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">SyncDurations</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ExtractBlendPropertiesAutomatically</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">States</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">ParametricState[16]</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_2DParametric">
+<h2 class="section-heading">ANIM_2DParametric</h2>
+<p>2D parametric blend set.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBindingX</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBindingY</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">OverflowCallback</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">BlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">SyncBlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">LoopBlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_3DParametric">
+<h2 class="section-heading">ANIM_3DParametric</h2>
+<p>3D parametric blend set (extends 2D with a Z binding).</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBindingX</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBindingY</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterBindingZ</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">OverflowCallback</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">value</code> <code style="background:#412b69;color:white;" title="Pin">value output (bottom)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">BlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">SyncBlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">LoopBlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_4DParametric">
+<h2 class="section-heading">ANIM_4DParametric</h2>
+<p>4D parametric blend set. Graph currently exposes a flow trigger only; additional bindings exist on the data model.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">BlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ExtraBlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">SyncBlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">LoopBlendSet</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+</ul>
+</section>
+</article>
+<article class="docs-article" id="blends"><header class="docs-header"><h1 class="docs-heading">Blends</h1></header><p style="margin:0">Additive and parametric additive blends.</p>
+<section class="docs-section" id="ANIM_Additive_Blend">
+<h2 class="section-heading">ANIM_Additive_Blend</h2>
+<p>Additive blend of a base and additive child.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">base_node</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">additive_node</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">AdditiveNodeWeight</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">SyncAdditiveDurationToBase</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Parametric_Additive_Blend">
+<h2 class="section-heading">ANIM_Parametric_Additive_Blend</h2>
+<p>Additive blend with weight driven by a parameter.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">WeightControlParameter</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">base_node</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">additive_node</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">AdditiveNodeWeight</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterMin</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterMax</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">SyncAdditiveDurationToBase</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+</ul>
+</section>
+</article>
+<article class="docs-article" id="structural"><header class="docs-header"><h1 class="docs-heading">Structural &amp; Misc</h1></header><p style="margin:0">Masks, IK, weighting, and stub / specialised types.</p>
+<section class="docs-section" id="ANIM_Bone_Mask">
+<h2 class="section-heading">ANIM_Bone_Mask</h2>
+<p>Applies a bone mask to preceding / following / self layers.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Mask</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">BoneMaskGroups</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">MaskPrecedingLayers</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">MaskFollowingLayers</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">MaskSelf</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_IK">
+<h2 class="section-heading">ANIM_IK</h2>
+<p>Inverse kinematics node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">IkEffector</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">PoseLayer</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">PoseLayer</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">IkType</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">IkSolverType</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Target</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">IkControlTarget</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EffectorFullyEffectiveRadius</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EffectorLeastEffectiveRadius</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">FalloffRate</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EnforceTranslation</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">EnforceEndBoneRotation</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">bool</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Weighted">
+<h2 class="section-heading">ANIM_Weighted</h2>
+<p>Weights a single child by a parameter range.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">Parameter</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">child</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterMin</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+<li><code style="background:#8e1073;color:white;" title="Name">ParameterMax</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">float</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Bilinear_High_Fidelity">
+<h2 class="section-heading">ANIM_Bilinear_High_Fidelity</h2>
+<p>Bilinear high-fidelity node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Bilinear_Low_Fidelity">
+<h2 class="section-heading">ANIM_Bilinear_Low_Fidelity</h2>
+<p>Bilinear low-fidelity node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+</ul>
+</section>
+<section class="docs-section" id="ANIM_Spherical">
+<h2 class="section-heading">ANIM_Spherical</h2>
+<p>Spherical blend node.</p>
+<h5>Pins:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
+</ul>
+<h5>Parameters:</h5><ul>
+<li><code style="background:#8e1073;color:white;" title="Name">Name</code> <code style="background:#412b69;color:white;" title="Datatype">variable: <strong style="color:white;">String</strong></code></li>
+</ul>
+</section>
+</article><footer class="footer">
+<div class="container text-center py-5">
+<small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+<small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+<ul class="social-list list-unstyled pt-4 mb-0">
+<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+</ul>
+</div>
+</footer>
+</div></div></div>
+<script src="../assets/plugins/popper.min.js"></script>
+<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-39768980-14');</script>
+<script src="../assets/plugins/smoothscroll.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+<script src="../assets/js/highlight-custom.js"></script>
+<script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+<script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+<script src="../assets/js/docs.js"></script>
+<script src="../assets/js/motion.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/reference-filter.js"></script>
+</body></html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Animation Tree Editor</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's Animation Tree Editor to browse and edit animation trees.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Animation Tree Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Animation Tree Editor to browse and edit animation trees." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+		.docs-caveat {
+			border-left: 4px solid #c45c26;
+			background: rgba(196, 92, 38, 0.08);
+			padding: 0.85rem 1rem;
+			margin: 0 0 1.25rem 0;
+		}
+		.docs-caveat p {
+			margin: 0;
+		}
+		.docs-caveat + .docs-caveat {
+			margin-top: 0.75rem;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+    
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#layout"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Interface Layout</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#layout-sets">Animation Sets</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#layout-graph">Graph Canvas</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#layout-props">Node Properties</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#editing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing Trees</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-select">Selecting Nodes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-params">Editing Parameters</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-add">Adding Nodes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-delete">Deleting Nodes &amp; Links</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-context">Right-Click Menu</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#pins"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Pins &amp; Connections</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Animation Tree Editor</li>
+	  </ol>
+	</nav>
+</article>
+    
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<div class="docs-caveat">
+			<p><b>Experimental.</b> Support for editing animation trees is early and incomplete. Expect rough edges — the editor will be improved and expanded over time.</p>
+		</div>
+		<div class="docs-caveat">
+			<p><b>Hardcoded parameters &amp; callbacks.</b> The game drives many animation trees through fixed parameter and callback names (via parameter / callback nodes). Those hooks are hardcoded in the engine — adding new ones, or renaming existing parameter / callback nodes, may do nothing or cause issues. Work with the parameters and callbacks already in the tree, and with the values they supply.</p>
+		</div>
+		<p>Open <b>Edit → Animation Trees</b> to launch the <b>Animation Tree Editor</b>. Animation trees live inside <code>ANIMATION.PAK</code> as <code>ANIM_TREE_DB</code> databases — they choose, blend, and layer clips based on parameters and game context.</p>
+		<p>This editor is separate from the raw <a href="/docs/animation-archive-editor/">Animation Archive Editor</a> (PAK browse/extract). Use it when you need to inspect or change tree graphs, node parameters, and wiring.</p>
+		<p>For a full catalogue of node types, parameters, and pins, see <a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a>.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="layout">
+    <header class="docs-header">
+<h1 class="docs-heading">Interface Layout</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The editor uses a docked layout. Panels cannot be closed from their tabs.</p>
+	</section>
+
+	<section class="docs-section" id="layout-sets">
+		<h2 class="section-heading">Animation Sets</h2>
+		<p>Left dock — split into two lists:</p>
+		<ul>
+			<li><b>Sets</b> (top) — each animation set / tree database loaded from the PAK</li>
+			<li><b>Trees</b> (bottom) — trees in the selected set</li>
+		</ul>
+		<p>Type in the search box above the trees list to filter by name (case-insensitive). Changing set clears the search and reloads that set's trees.</p>
+		<p>Select a tree to open its graph in the centre document area.</p>
+	</section>
+
+	<section class="docs-section" id="layout-graph">
+		<h2 class="section-heading">Graph Canvas</h2>
+		<p>Centre document tabs show the open tree as a node graph. Nodes are coloured by type. Flow generally runs left-to-right from the tree root (<code>ANIM_Tree_Top_Level</code>).</p>
+		<p>Pan and zoom the canvas as with other OpenCAGE node editors. Select a node to populate the properties panel.</p>
+	</section>
+
+	<section class="docs-section" id="layout-props">
+		<h2 class="section-heading">Node Properties</h2>
+		<p>Right dock — property grid for the selected node. Every node has an editable <b>Name</b>; other fields depend on the node type (strings, floats, bools, enums, bone-mask flags, nested arrays, and so on).</p>
+		<p>Linked child / parameter references that are wired on the graph usually appear as read-only names in the grid — change those relationships via pins on the canvas.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="editing">
+    <header class="docs-header">
+        <h1 class="docs-heading">Editing Trees</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Pick a set and tree from the left, then edit on the graph and in the properties panel.</p>
+	</section>
+
+	<section class="docs-section" id="editing-select">
+		<h2 class="section-heading">Selecting Nodes</h2>
+		<p>Click a node on the canvas to select it. The properties panel updates immediately. Multi-select follows the graph editor's normal selection behaviour where supported.</p>
+	</section>
+
+	<section class="docs-section" id="editing-params">
+		<h2 class="section-heading">Editing Parameters</h2>
+		<p>With a node selected, edit values in the right-hand grid:</p>
+		<ul>
+			<li><b>Name</b> — renames the node in the tree and on the graph title</li>
+			<li>Scalars, bools, and enums — edit inline (dropdowns for enum types)</li>
+			<li><b>Bone masks</b> — flag checkboxes for body groups</li>
+			<li><b>Nested arrays</b> — expanded rows for pools and states (for example <code>AnimationPool</code> on randomised leaves, or <code>States</code> on selectors / parametrics). Empty animation pool slots are skipped on save</li>
+		</ul>
+		<p>See <a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a> for which fields each type exposes.</p>
+	</section>
+
+	<section class="docs-section" id="editing-add">
+		<h2 class="section-heading">Adding Nodes</h2>
+		<p>Right-click empty canvas space and choose <b>Add Node</b>, then pick a type from the submenu (exact <code>ANIM_*</code> names, alphabetically). The tree root cannot be added from this menu — it already exists for every tree.</p>
+		<p>New nodes appear near the click position. Wire them into the graph with pins, and set parameters in the properties panel.</p>
+	</section>
+
+	<section class="docs-section" id="editing-delete">
+		<h2 class="section-heading">Deleting Nodes &amp; Links</h2>
+		<ul>
+			<li><b>Delete</b> — removes selected node(s) from the tree and graph (the tree root cannot be deleted)</li>
+			<li>Delete / remove link from the context menu — clears hovered or selected connections and clears the corresponding model references</li>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="editing-context">
+		<h2 class="section-heading">Right-Click Menu</h2>
+		<p>On the graph canvas:</p>
+		<ul>
+			<li><b>Add Node</b> — submenu of creatable node types (empty canvas)</li>
+			<li><b>Delete Node</b> — delete the selected node(s)</li>
+			<li><b>Delete Link</b> — remove the hovered connection</li>
+		</ul>
+		<p>Availability depends on what is under the cursor / selected (for example Add Node when clicking empty space; Delete Link when hovering a link).</p>
+	</section>
+</article>
+
+<article class="docs-article" id="pins">
+    <header class="docs-header">
+        <h1 class="docs-heading">Pins &amp; Connections</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Pins are colour-coded by role and sit on fixed sides of each node:</p>
+		<ul>
+			<li><b>Left</b> — flow input (usually <code>trigger</code>)</li>
+			<li><b>Right</b> — flow output(s) to child nodes (for example <code>State_01</code>, <code>base_node</code>, <code>NODES</code>)</li>
+			<li><b>Top</b> — value / reference inputs (parameters, callbacks, bindings)</li>
+			<li><b>Bottom</b> — value output (usually <code>value</code>)</li>
+		</ul>
+		<p>Connect a provider's bottom <code>value</code> pin to a consumer's top pin. Connect flow outputs on the right to the next node's left <code>trigger</code>.</p>
+		<p>Parameter, property, callback, and similar nodes typically have no <code>trigger</code> pin — they only expose a <code>value</code> output.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="saving">
+    <header class="docs-header">
+        <h1 class="docs-heading">Saving</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Use the toolbar <b>Save</b> button in the Animation Tree Editor window. That writes the edited tree databases back into the animation PAK entries — it is separate from <b>File → Save Level</b> in the script editor.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+        <h1 class="docs-heading">Related Docs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a> — node types, parameters, and pins</li>
+			<li><a href="/docs/animation-archive-editor/">Animation Archive Editor</a> — raw <code>ANIMATION.PAK</code> browse / extract / repack</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
+
+</body>
+</html> 

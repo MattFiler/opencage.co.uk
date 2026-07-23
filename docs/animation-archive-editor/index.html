@@ -3,20 +3,20 @@
 <head>
     <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
     <meta name="color-scheme" content="light dark">
-    <title>OpenCAGE: Animation Editor</title>
+    <title>OpenCAGE: Animation Archive Editor</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How OpenCAGE's Animation Editor browses ANIMATION.PAK — and important limits on what you can edit today.">
+    <meta name="description" content="How OpenCAGE's Animation Archive Editor browses ANIMATION.PAK — Havok animation content, limits, and raw extract/repack.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Animation Editor" />
-	<meta name="twitter:description" content="How OpenCAGE's Animation Editor browses ANIMATION.PAK — and important limits on what you can edit today." />
+	<meta name="twitter:title" content="OpenCAGE: Animation Archive Editor" />
+	<meta name="twitter:description" content="How OpenCAGE's Animation Archive Editor browses ANIMATION.PAK — Havok animation content, limits, and raw extract/repack." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -98,7 +98,8 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#using"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using the Editor</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#export-replace">Export &amp; Replace</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#import-delete">Import, Delete &amp; Export All</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#anim-trees"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Animation Trees</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#contents"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Archive Contents</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#anim-trees">Animation Trees</a></li>
 
 </ul></nav></div>
 <div class="docs-content"><div class="container">
@@ -107,7 +108,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Animation Editor</li>
+		<li class="breadcrumb-item active" aria-current="page">Animation Archive Editor</li>
 	  </ol>
 	</nav>
 </article>
@@ -118,8 +119,8 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Open <b>Edit → Animations</b> to browse <code>DATA/GLOBAL/ANIMATION.PAK</code>. The <b>Edit Animations</b> window works like the <a href="/docs/ui-editor/">UI Editor</a>: a searchable list of archive entries (path + size). There's no animation authoring UI here — only export, import, replace, and delete of the raw files in the PAK. Writes go straight back into the archive.</p>
-		<p>Saving changes closes Alien: Isolation if it's running, so the game isn't locking the archive.</p>
+		<p>Open <b>Edit → Animations</b> to browse <code>DATA/GLOBAL/ANIMATION.PAK</code>. The <b>Animation Archive Editor</b> works like the <a href="/docs/ui-editor/">UI Editor</a>: a searchable list of archive entries (path + size). There's no animation authoring UI here — only export, import, replace, and delete of the raw files in the PAK. Writes go straight back into the archive.</p>
+		<p>The animation content in this archive is <b>Havok</b> animation data, plus related metadata and other animation resources. Saving changes closes Alien: Isolation if it's running, so the game isn't locking the archive.</p>
     </section>
 </article>
 
@@ -130,8 +131,8 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<div class="docs-caveat">
-			<p><b>This tool only extracts and repacks raw animation data.</b> The files inside <code>ANIMATION.PAK</code> are compiled into game-specific formats that OpenCAGE does <b>not</b> make editable or interchangeable with common DCC/export pipelines.</p>
-			<p>In particular, Havok data carries extra header information beyond a plain Havok file, and <b>animation sets are not yet supported for editing</b>. Treat exported bytes as opaque archives for inspection or advanced reverse engineering — not as ready-to-edit animation assets.</p>
+			<p><b>This tool only extracts and repacks raw archive entries.</b> The animation clips are Havok animations, but exported files include <b>additional game-specific wrapping</b> around the Havok payload — they <b>cannot</b> be loaded directly in stock Havok tools.</p>
+			<p>Support for stripping / restoring that wrapping (so files work with Havok tooling), and for importing / exporting animations in a clearer, more browsable way, is <b>upcoming</b>. Until then, treat exported bytes as opaque PAK payloads for inspection or advanced reverse engineering — not as ready-to-edit DCC assets.</p>
 		</div>
     </section>
 </article>
@@ -150,7 +151,7 @@
 		<ol>
 			<li>Select a file → <b>Export Selected</b> → pick where to save it.</li>
 			<li>Work with the raw file externally only if you understand the compiled format (see <a href="#caveat">Important Limits</a>).</li>
-			<li>Back in Edit Animations, select the same archive entry → <b>Replace Selected</b> → choose your file.</li>
+			<li>Back in the Animation Archive Editor, select the same archive entry → <b>Replace Selected</b> → choose your file.</li>
 		</ol>
 		<p>Replace writes into <code>ANIMATION.PAK</code> immediately. OpenCAGE does not validate content.</p>
     </section>
@@ -166,14 +167,22 @@
 	</section>
 </article>
 
-<article class="docs-article" id="anim-trees">
+<article class="docs-article" id="contents">
     <header class="docs-header">
-<h1 class="docs-heading">Animation Trees</h1>
+<h1 class="docs-heading">Archive Contents</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Within the animation data are <b>animation trees</b> — a script-like system for contextual animation (choosing and blending clips based on game context). Support for editing animation trees in OpenCAGE is <b>upcoming</b>; the current window does not provide a tree editor, only raw PAK entry access.</p>
-    </section>
+		<p><code>ANIMATION.PAK</code> holds a mix of animation content and metadata — not only clip files. That includes Havok animation data, supporting resources, and higher-level structures such as <b>animation trees</b>.</p>
+		<p>This window gives raw entry-level access to everything in the archive. Dedicated editors exist (or are planned) for specific content types; for trees, use the tools linked below rather than hand-editing PAK bytes.</p>
+	</section>
+
+	<section class="docs-section" id="anim-trees">
+		<h2 class="section-heading">Animation Trees</h2>
+		<p>Animation trees are a script-like system for contextual animation (choosing and blending clips based on game context). They live inside this archive as <code>ANIM_TREE_DB</code> databases.</p>
+		<p>Use <b>Edit → Animation Trees</b> to open the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a>. For a full catalogue of node types, parameters, and pins, see <a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a>.</p>
+		<p>The Animation Archive Editor only provides raw PAK entry access for those files — it does not open the tree graph.</p>
+	</section>
 </article>
 
 			    <footer class="footer">

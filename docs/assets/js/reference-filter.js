@@ -2,7 +2,7 @@
 
 /**
  * In-page filter for large reference catalogues
- * (Cathode Entities, Cathode Enums, Behaviour Tree Nodes).
+ * (Cathode Entities, Cathode Enums, Behaviour Tree Nodes, Animation Tree Nodes).
  * Filters the sidebar TOC and matching content sections,
  * and adds hover copy-link controls on section headings.
  */
@@ -10,7 +10,8 @@
 	var PLACEHOLDERS = {
 		"/docs/behaviour-trees/": "Filter nodes...",
 		"/docs/cathode-entities/": "Filter entities...",
-		"/docs/cathode-enums/": "Filter enums..."
+		"/docs/cathode-enums/": "Filter enums...",
+		"/docs/animation-tree-nodes/": "Filter nodes..."
 	};
 
 	function currentPlaceholder() {
@@ -21,6 +22,7 @@
 		if (path.indexOf("behaviour-trees") !== -1) return "Filter nodes...";
 		if (path.indexOf("cathode-entities") !== -1) return "Filter entities...";
 		if (path.indexOf("cathode-enums") !== -1) return "Filter enums...";
+		if (path.indexOf("animation-tree-nodes") !== -1) return "Filter nodes...";
 		return "Filter entries...";
 	}
 
