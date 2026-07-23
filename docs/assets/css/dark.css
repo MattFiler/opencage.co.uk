@@ -362,6 +362,20 @@ html[data-theme="dark"] .docs-ref-filter-clear:hover {
 	background: #252930;
 }
 
+html[data-theme="dark"] .docs-heading-copy {
+	color: #9aa3b2;
+}
+
+html[data-theme="dark"] .docs-heading-copy:hover,
+html[data-theme="dark"] .docs-heading-copy:focus-visible {
+	color: #6be0a0;
+	background: rgba(40, 183, 107, 0.16);
+}
+
+html[data-theme="dark"] .docs-heading-copy.is-copied {
+	color: #6be0a0;
+}
+
 /* Entity inheritance */
 html[data-theme="dark"] .entity-inherit-toggle {
 	background: #1a1f27;

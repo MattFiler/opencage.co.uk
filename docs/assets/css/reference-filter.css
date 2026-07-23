@@ -101,3 +101,67 @@
 .nav-item.is-filtered-out {
 	display: none !important;
 }
+
+/* Hover copy-link on reference section headings */
+.docs-section > .section-heading {
+	position: relative;
+}
+
+.docs-heading-copy {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: middle;
+	margin-left: 0.35rem;
+	width: 1.7rem;
+	height: 1.7rem;
+	padding: 0;
+	border: 0;
+	border-radius: 0.35rem;
+	background: transparent;
+	color: #919aaa;
+	font-size: 0.85rem;
+	line-height: 1;
+	cursor: pointer;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.docs-section > .section-heading:hover .docs-heading-copy,
+.docs-section > .section-heading:focus-within .docs-heading-copy,
+.docs-heading-copy:focus-visible,
+.docs-heading-copy.is-copied {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.docs-heading-copy:hover,
+.docs-heading-copy:focus-visible {
+	color: #28b76b;
+	background: rgba(40, 183, 107, 0.12);
+	outline: none;
+}
+
+.docs-heading-copy.is-copied {
+	color: #28b76b;
+}
+
+@media (hover: none) {
+	.docs-heading-copy {
+		opacity: 0.4;
+		pointer-events: auto;
+	}
+
+	.docs-section > .section-heading:hover .docs-heading-copy,
+	.docs-heading-copy:focus-visible,
+	.docs-heading-copy.is-copied {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.docs-heading-copy {
+		transition: none;
+	}
+}

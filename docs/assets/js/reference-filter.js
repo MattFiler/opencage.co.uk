@@ -3,7 +3,8 @@
 /**
  * In-page filter for large reference catalogues
  * (Cathode Entities, Cathode Enums, Behaviour Tree Nodes).
- * Filters the sidebar TOC and matching content sections.
+ * Filters the sidebar TOC and matching content sections,
+ * and adds hover copy-link controls on section headings.
  */
 (function () {
 	var PLACEHOLDERS = {
@@ -36,7 +37,90 @@
 		return normalize(label).indexOf(q) !== -1 || normalize(id).indexOf(q) !== -1;
 	}
 
+	function sectionShareUrl(id) {
+		var url = new URL(window.location.href);
+		url.hash = id;
+		url.pathname = url.pathname.replace(/\/index\.html$/i, "/");
+		return url.href;
+	}
+
+	function fallbackCopy(text) {
+		var area = document.createElement("textarea");
+		area.value = text;
+		area.setAttribute("readonly", "");
+		area.style.position = "fixed";
+		area.style.top = "-9999px";
+		area.style.opacity = "0";
+		document.body.appendChild(area);
+		area.select();
+		var ok = false;
+		try {
+			ok = document.execCommand("copy");
+		} catch (e) {
+			ok = false;
+		}
+		document.body.removeChild(area);
+		return ok;
+	}
+
+	function markCopied(btn, ok) {
+		var icon = btn.querySelector("i");
+		btn.classList.toggle("is-copied", !!ok);
+		btn.title = ok ? "Copied!" : "Copy link";
+		btn.setAttribute("aria-label", ok ? "Link copied" : btn.getAttribute("data-default-label") || "Copy link");
+		if (icon) {
+			icon.className = ok ? "fas fa-check" : "fas fa-copy";
+		}
+		window.clearTimeout(btn._copyResetTimer);
+		btn._copyResetTimer = window.setTimeout(function () {
+			btn.classList.remove("is-copied");
+			btn.title = "Copy link";
+			btn.setAttribute("aria-label", btn.getAttribute("data-default-label") || "Copy link");
+			if (icon) icon.className = "fas fa-copy";
+		}, 1500);
+	}
+
+	function copySectionLink(id, btn) {
+		var text = sectionShareUrl(id);
+		if (navigator.clipboard && navigator.clipboard.writeText) {
+			navigator.clipboard.writeText(text).then(function () {
+				markCopied(btn, true);
+			}).catch(function () {
+				markCopied(btn, fallbackCopy(text));
+			});
+			return;
+		}
+		markCopied(btn, fallbackCopy(text));
+	}
+
+	function setupHeadingCopyLinks() {
+		var sections = document.querySelectorAll(".docs-section[id]");
+		sections.forEach(function (section) {
+			var heading = section.querySelector(":scope > .section-heading");
+			if (!heading || heading.querySelector(".docs-heading-copy")) return;
+
+			var label = (heading.textContent || "").trim() || section.id;
+			var btn = document.createElement("button");
+			btn.type = "button";
+			btn.className = "docs-heading-copy";
+			btn.title = "Copy link";
+			btn.setAttribute("data-default-label", "Copy link to " + label);
+			btn.setAttribute("aria-label", "Copy link to " + label);
+			btn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+
+			btn.addEventListener("click", function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+				copySectionLink(section.id, btn);
+			});
+
+			heading.appendChild(btn);
+		});
+	}
+
 	function init() {
+		setupHeadingCopyLinks();
+
 		var nav = document.getElementById("docs-nav");
 		var list = nav && nav.querySelector(".section-items");
 		if (!nav || !list) return;
