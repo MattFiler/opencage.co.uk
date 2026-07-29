@@ -9,14 +9,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE with multiple Alien: Isolation installs.">
+	<meta name="description" content="How to use OpenCAGE with multiple Alien: Isolation installs, including non-Windows versions.">
     <meta name="author" content="Matt Filer">    
     <link rel="shortcut icon" href="/favicon.ico"> 
 	
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
 	<meta name="twitter:title" content="OpenCAGE: Multiple Game Installs" />
-	<meta name="twitter:description" content="How to use OpenCAGE with multiple Alien: Isolation installs." />
+	<meta name="twitter:description" content="How to use OpenCAGE with multiple Alien: Isolation installs, including non-Windows versions." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     
@@ -86,6 +86,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#register">Registering an Install</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#default">Setting the Default</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#open-editor">Opening Another Editor</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#non-windows">Non-Windows Installs</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#viewport"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Viewport &amp; Performance</a></li>
 
 </ul></nav></div>
@@ -107,6 +108,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>OpenCAGE can work with more than one Alien: Isolation install — for example a clean Steam copy for playtesting, a separate modded copy, or installs from different storefronts (Steam, Epic, GOG, and so on).</p>
+		<p>It also supports non-Windows builds of the game (mobile, Switch, Mac, and Linux). Those installs don't include <code>AI.exe</code>, so registration works a little differently — see <a href="#non-windows">Non-Windows Installs</a>.</p>
 		<p>Each install is registered in the <b>Game Directory Manager</b>. One install is your <b>default</b> (what OpenCAGE opens on startup). You can also open additional editor windows pointed at other installs at the same time.</p>
     </section>
 </article>
@@ -120,6 +122,7 @@
 		<h2 class="section-heading">Registering an Install</h2>
 		<p>From the main OpenCAGE window, open <b>Options → Manage Game Directories</b>.</p>
 		<p>Click <b>Register New Game Install</b>, then locate that copy's <code>AI.exe</code>. OpenCAGE checks the folder is a valid Alien: Isolation install and shows the detected platform (Steam, Epic, GOG, etc.).</p>
+		<p>By default OpenCAGE asks you to pick <code>AI.exe</code>. If you're registering a non-Windows install that doesn't have that executable, use the <a href="#non-windows"><code>-dont_require_exe</code></a> launch argument so you can select the install folder instead.</p>
 		<p>You can't register the same path twice. If the folder isn't a valid install, registration fails with an error.</p>
     </section>
 
@@ -135,6 +138,16 @@
 		<p>While that second editor is open, <b>Open Editor</b> for the same path stays disabled. Close the extra window to free the button again.</p>
 		<p>Game Directory Manager is only available in the primary OpenCAGE window (the one you launched from Steam). Extra editors opened for other installs can't change the registered list — manage installs from the primary window.</p>
 		<p>With several editors open, <b>Options → Misc → Show Game Platform</b> can help: it appends the detected platform (e.g. Steam) to the window title.</p>
+	</section>
+
+	<section class="docs-section" id="non-windows">
+		<h2 class="section-heading">Non-Windows Installs</h2>
+		<p>By default, registering a game install means locating Alien: Isolation's <code>AI.exe</code>. That works for Windows PC builds, but OpenCAGE also supports other versions of the game that aren't Windows-based — including the mobile versions (iOS/Android), the Switch version, and Mac/Linux versions.</p>
+		<p>Those builds don't include <code>AI.exe</code>, so OpenCAGE can't ask you to pick that file. Instead, launch OpenCAGE with the <code>-dont_require_exe</code> argument. That switches registration to <b>folder</b> selection: you choose the install folder where <code>AI.exe</code> <i>would</i> normally live — the folder that contains the game's <code>DATA</code> directory.</p>
+		<p>After you pick the folder, OpenCAGE validates it and detects the game version the same way it would for a Windows install.</p>
+		<p>In Steam: open OpenCAGE's properties → <b>Launch Options</b>, and add:</p>
+		<pre><code>-dont_require_exe</code></pre>
+		<p>You can combine this with other launch options (for example the Viewport disable option) by separating them with a space.</p>
 	</section>
 </article>
 

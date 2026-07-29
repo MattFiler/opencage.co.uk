@@ -19730,7 +19730,7 @@
     },
     {
         "url":  "/docs/multiple-game-installs/",
-        "description":  "How to use OpenCAGE with multiple Alien: Isolation installs.",
+        "description":  "How to use OpenCAGE with multiple Alien: Isolation installs, including non-Windows versions.",
         "type":  "page",
         "category":  "Getting Started",
         "keywords":  [
@@ -19770,6 +19770,22 @@
             "multiple game installs"
         ],
         "title":  "Opening Another Editor"
+    },
+    {
+        "url":  "/docs/multiple-game-installs/#non-windows",
+        "description":  "On Multiple Game Installs",
+        "type":  "symbol",
+        "category":  "Multiple Game Installs",
+        "keywords":  [
+            "non-windows",
+            "dont_require_exe",
+            "mobile",
+            "switch",
+            "mac",
+            "linux",
+            "multiple game installs"
+        ],
+        "title":  "Non-Windows Installs"
     },
     {
         "url":  "/docs/multiple-game-installs/#intro",
