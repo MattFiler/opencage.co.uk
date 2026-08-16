@@ -194,26 +194,50 @@
 				<li>Delete existing tree nodes and links</li>
 				<li>Select a node and modify its parameters</li>
 			</ul></li>
+			<li>Added support for copy/pasting entities (replaces the old Duplicate option):<ul>
+				<li>Select one or more nodes in the flowgraph and CTRL+C/CTRL+V to copy/paste</li>
+				<li>Same as above, but right click and 'Paste References' to create new nodes for the copied entities</li>
+				<li>Select an entity in the viewport and CTRL+C/CTRL+V to copy/paste</li>
+				<li>Copied entities on the flowgraph are pasted with their associated links and node layouts</li>
+				<li>Any copied entity keeps all its parameters across</li>
+				<li>Entities can be pasted across to any other composite</li>
+			</ul></li>
 			<li>Fixed rotation issue for spotlight previews in the viewport</li>
 			<li>Fixed dropdowns sticking on screen</li>
 			<li>Fixed selection steal when using keybinds to navigate UI</li>
 			<li>Fixed file browser mode when selecting a folder</li>
+			<li>Fixed a UI lock when the flowgraph focus is moving</li>
+			<li>Fixed the reverbs available to be selected</li>
+			<li>Fixed an issue where the Ammo editor would mess up Composite paths</li>
+			<li>Fixed an issue where nodes could vanish when changing composites</li>
+			<li>Fixed an issue where composite layouts could be lost after porting</li>
+			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
 			<li>Simplified editor state restoring for resized splitters</li>
 			<li>Previously searched proxy searches are now remembered if appropriate</li>
+			<li>Backup manager no longer blocks the UI thread (added progress bar)</li>
+			<li>Added new UIs for Collision/Physics resource selection</li> <!-- todo - update this -->
+			<li>Added a new 'Create' dropdown in the viewport UI which, when enabled, allows you to click on the viewport to create a new entity at that position</li>
+			<!--<li>Added support for multi-select when modifying parameters.</li> (TODO)-->
+			<li>Added new annotations on nodes - you'll see (P) for ones that are proxied elsewhere, and (*) for ones that have one or more other nodes for the same entity</li>
 			<li>Added an improved check for circular dependencies when making new instances</li>
 			<li>Added support for dragging and dropping TriggerSequence entries</li>
 			<li>Added support for multi-select when adding entities to TriggerSequences</li>
 			<li>Added support for multi-select when modifying delays on TriggerSequences</li>
+			<li>Added additional render filters for a variety of Sphere types, and others</li>
 			<li>Added a button to view changelog</li>
+			<li>Added ability to modify damage ranges in the ammo config editor</li>
 			<li>Added controls for the behaviour tree editor to the controls window</li>
 			<li>Added warnings if saving fails when updating configs</li>
 			<li>Added support for the material picker when selecting materials for entity parameters</li>
+			<li>Added an option to port a composite across all levels</li>
+			<li>Added an option to overwrite source assets when porting</li>
 			<li>Added an option to stick the controls window on the top layer of the screen</li>
 			<li>Added new 'Focus on Selected' and 'Fix Camera on Selected' options for the viewport</li>
 			<li>Added an option to save when closing with a level open</li>
 			<li>Added some potential improvements for hit testing in the flowgraph view</li>
 			<li>Added argument to allow folder selection when picking game installs</li>
 			<li>Added option to search from root in the search panel</li>
+			<li>Added info popup about how the config editors save</li>
 			<li>Added a cooldown when creating backups to prevent causing UI deadlocks</li>
 			<li>UI scrolling to a new entity no longer locks other controls</li
 			<li>Updated the docs site to cover additional tools</li>
