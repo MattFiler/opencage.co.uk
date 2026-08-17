@@ -196,33 +196,28 @@
 			</ul></li>
 			<li>Added support for copy/pasting entities (replaces the old Duplicate option):<ul>
 				<li>Select one or more nodes in the flowgraph and CTRL+C/CTRL+V to copy/paste</li>
-				<li>Same as above, but right click and 'Paste References' to create new nodes for the copied entities</li>
+				<li>Same as above, but right click and 'Paste References' to create new nodes for the copied entities, or aliases if in other composites</li>
 				<li>Select an entity in the viewport and CTRL+C/CTRL+V to copy/paste</li>
 				<li>Copied entities on the flowgraph are pasted with their associated links and node layouts</li>
 				<li>Any copied entity keeps all its parameters across</li>
 				<li>Entities can be pasted across to any other composite</li>
 			</ul></li>
-			<li>Fixed rotation issue for spotlight previews in the viewport</li>
-			<li>Fixed dropdowns sticking on screen</li>
-			<li>Fixed selection steal when using keybinds to navigate UI</li>
-			<li>Fixed file browser mode when selecting a folder</li>
-			<li>Fixed a UI lock when the flowgraph focus is moving</li>
-			<li>Fixed the reverbs available to be selected</li>
-			<li>Fixed an issue where the Ammo editor would mess up Composite paths</li>
-			<li>Fixed an issue where nodes could vanish when changing composites</li>
-			<li>Fixed an issue where composite layouts could be lost after porting</li>
-			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
-			<li>Simplified editor state restoring for resized splitters</li>
-			<li>Previously searched proxy searches are now remembered if appropriate</li>
-			<li>Backup manager no longer blocks the UI thread (added progress bar)</li>
-			<li>Added new UIs for Collision/Physics resource selection</li> <!-- todo - update this -->
+			<li>Reworked Entity Inspector:<ul>
+				<li>Now allows for multi-select, entities of the same type are grouped, others can be found on tabs</li>
+				<li>All entity parameters are now shown at once (removed 'Manage Parameters' popup)</li>
+				<li>Modified parameters are marked in bold, right click to reset to default values</li>
+				<li>Added an orange highlight to parameters which are overridden by an alias elsewhere</li>
+				<li>Added a blue highlight to parameters which are overridden by a connection in the flowgraph</li>
+			</ul></li>
 			<li>Added a new 'Create' dropdown in the viewport UI which, when enabled, allows you to click on the viewport to create a new entity at that position</li>
-			<!--<li>Added support for multi-select when modifying parameters.</li> (TODO)-->
+			<li>Added new UIs for Collision/Physics resource selection</li> <!-- todo - update this -->
 			<li>Added new annotations on nodes - you'll see (P) for ones that are proxied elsewhere, and (*) for ones that have one or more other nodes for the same entity</li>
 			<li>Added an improved check for circular dependencies when making new instances</li>
+			<li>Added a new 'unsaved changes' tracker, which will highlight in the taskbar when a modification has been made and not saved</li>
 			<li>Added support for dragging and dropping TriggerSequence entries</li>
 			<li>Added support for multi-select when adding entities to TriggerSequences</li>
 			<li>Added support for multi-select when modifying delays on TriggerSequences</li>
+			<li>Added support for proxy TriggerSequences</li>
 			<li>Added additional render filters for a variety of Sphere types, and others</li>
 			<li>Added a button to view changelog</li>
 			<li>Added ability to modify damage ranges in the ammo config editor</li>
@@ -239,7 +234,24 @@
 			<li>Added option to search from root in the search panel</li>
 			<li>Added info popup about how the config editors save</li>
 			<li>Added a cooldown when creating backups to prevent causing UI deadlocks</li>
-			<li>UI scrolling to a new entity no longer locks other controls</li
+			<li>Added support for renaming folders in the composite browser</li>
+			<li>Added support for dragging composites/folders to move them in file browser mode</li>
+			<li>Fixed rotation issue for spotlight previews in the viewport</li>
+			<li>Fixed dropdowns sticking on screen</li>
+			<li>Fixed selection steal when using keybinds to navigate UI</li>
+			<li>Fixed file browser mode when selecting a folder</li>
+			<li>Fixed a UI lock when the flowgraph focus is moving</li>
+			<li>Fixed various issues with form ownership to prevent things popping behind</li>
+			<li>Fixed the reverbs available to be selected</li>
+			<li>Fixed an issue where the Ammo editor would mess up Composite paths</li>
+			<li>Fixed an issue where nodes could vanish when changing composites</li>
+			<li>Fixed an issue where composite layouts could be lost after porting</li>
+			<li>Fixed pins showing in the parameter management UI</li>
+			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
+			<li>Simplified editor state restoring for resized splitters</li>
+			<li>Previously searched proxy searches are now remembered if appropriate</li>
+			<li>Backup manager no longer blocks the UI thread (added progress bar)</li>
+			<li>UI scrolling to a new entity no longer locks other controls</li>
 			<li>Updated the docs site to cover additional tools</li>
 		</ul>
 	</section>
