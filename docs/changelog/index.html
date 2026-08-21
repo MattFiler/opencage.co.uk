@@ -177,6 +177,18 @@
     
         <p><strong>CURRENTLY STAGING ONLY.</strong></p>
 		<ul>
+			<li>New animation clip editor:<ul>
+				<li>Browse all available animations by character and context</li>
+				<li>Preview animations on models with skeletons</li>
+				<li>Export animations to a variety of formats</li>
+			</ul></li>
+			<li>Added a new (experimental) animation tree editor:<ul>
+				<li>Browse all animation sets and the animation trees contained within them</li>
+				<li>Load an animation tree and browse its nodes</li>
+				<li>Add new tree nodes and links</li>
+				<li>Delete existing tree nodes and links</li>
+				<li>Select a node and modify its parameters</li>
+			</ul></li>
 			<li>Large improvements to the CAGEAnimation editor:<ul>
 				<li>Added a new bezier curve UI to correctly display parameters over time</li>
 				<li>Added new event timelines with colour coded keyframes</li>
@@ -187,12 +199,12 @@
 				<li>Entity parameters are now tidied up if unused</li>
 				<li>Various other fixes and improvements to better match in-game logic</li>
 			</ul></li>
-			<li>Added a new (experimental) animation tree editor:<ul>
-				<li>Browse all animation sets and the animation trees contained within them</li>
-				<li>Load an animation tree and browse its nodes</li>
-				<li>Add new tree nodes and links</li>
-				<li>Delete existing tree nodes and links</li>
-				<li>Select a node and modify its parameters</li>
+			<li>Improved model exporting:<ul>
+				<li>Added support for normals on export/import</li>
+				<li>Added support for skin weights on export/import</li>
+				<li>Added support for skeletons and bones on export for characters</li>
+				<li>Added a new model metadata json file that exports with a model to help reimporting</li>
+				<li>Fixed unit scale factor (models are no longer tiny)</li>
 			</ul></li>
 			<li>Added support for copy/pasting entities (replaces the old Duplicate option):<ul>
 				<li>Select one or more nodes in the flowgraph and CTRL+C/CTRL+V to copy/paste</li>
@@ -209,17 +221,24 @@
 				<li>Added an orange highlight to parameters which are overridden by an alias elsewhere</li>
 				<li>Added a blue highlight to parameters which are overridden by a connection in the flowgraph</li>
 			</ul></li>
+			<li>Reworked TriggerSequence editor:<ul>
+				<li>Added support for dragging and dropping TriggerSequence entries</li>
+				<li>Added support for multi-select when adding entities to TriggerSequences</li>
+				<li>Added support for multi-select when modifying delays on TriggerSequences</li>
+				<li>Added a search in the TriggerSequence entity list</li>
+				<li>Added support for proxy TriggerSequences</li>
+			</ul></li>
+			<li>Reworked the back button - it now takes you to the previously loaded composite, and is no longer relative to the currently loaded hierarchy</li>
+			<li>Added a dark mode option</li>
+			<li>Added a dropdown next to the new back button to view up to five previously loaded composites</li>
 			<li>Added a new 'Create' dropdown in the viewport UI which, when enabled, allows you to click on the viewport to create a new entity at that position</li>
-			<li>Added new UIs for Collision/Physics resource selection</li> <!-- todo - update this -->
 			<li>Added new annotations on nodes - you'll see (P) for ones that are proxied elsewhere, and (*) for ones that have one or more other nodes for the same entity</li>
+			<li>Added a new Blend Set editor for animations</li>
 			<li>Added an improved check for circular dependencies when making new instances</li>
 			<li>Added a new 'unsaved changes' tracker, which will highlight in the taskbar when a modification has been made and not saved</li>
-			<li>Added support for dragging and dropping TriggerSequence entries</li>
-			<li>Added support for multi-select when adding entities to TriggerSequences</li>
-			<li>Added support for multi-select when modifying delays on TriggerSequences</li>
-			<li>Added support for proxy TriggerSequences</li>
 			<li>Added additional render filters for a variety of Sphere types, and others</li>
-			<li>Added a button to view changelog</li>
+			<li>Added new render filter to show Occlusion Meshes and Collision Meshes</li>
+			<li>Added new option to show state resources (navmesh, cover positions)</li>
 			<li>Added ability to modify damage ranges in the ammo config editor</li>
 			<li>Added controls for the behaviour tree editor to the controls window</li>
 			<li>Added warnings if saving fails when updating configs</li>
@@ -231,11 +250,17 @@
 			<li>Added an option to save when closing with a level open</li>
 			<li>Added some potential improvements for hit testing in the flowgraph view</li>
 			<li>Added argument to allow folder selection when picking game installs</li>
+			<li>Added option to focus the flowgraph on a newly added node (now defaults off)</li>
+			<li>Added search functionality to the Composite selector</li>
 			<li>Added option to search from root in the search panel</li>
 			<li>Added info popup about how the config editors save</li>
 			<li>Added a cooldown when creating backups to prevent causing UI deadlocks</li>
 			<li>Added support for renaming folders in the composite browser</li>
 			<li>Added support for dragging composites/folders to move them in file browser mode</li>
+			<li>Added arrows to point to off-screen highlighted nodes</li>
+			<li>Added new UIs for Collision/Physics resource selection (editing currently disabled)</li> <!-- todo - update this -->
+			<li>Added a button to view changelog</li>
+			<li>Fixed 'Find References' right click on the entity list</li>
 			<li>Fixed rotation issue for spotlight previews in the viewport</li>
 			<li>Fixed dropdowns sticking on screen</li>
 			<li>Fixed selection steal when using keybinds to navigate UI</li>
@@ -247,10 +272,15 @@
 			<li>Fixed an issue where nodes could vanish when changing composites</li>
 			<li>Fixed an issue where composite layouts could be lost after porting</li>
 			<li>Fixed pins showing in the parameter management UI</li>
+			<li>Fixed grouping in Entity Palette after searching</li>
 			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
+			<li>Fixed a bug where force closing OpenCAGE could leave a viewport process open in the background</li>
+			<li>Removed the legacy Movers editor</li>
+			<li>Removed additional position/rotation controls on renderable resources - they are now autogenerated</li>
 			<li>Simplified editor state restoring for resized splitters</li>
 			<li>Previously searched proxy searches are now remembered if appropriate</li>
 			<li>Backup manager no longer blocks the UI thread (added progress bar)</li>
+			<li>PAK and BIN Commands data is now saved by default (for uncompressed levels), and no longer an option</li>
 			<li>UI scrolling to a new entity no longer locks other controls</li>
 			<li>Updated the docs site to cover additional tools</li>
 		</ul>
