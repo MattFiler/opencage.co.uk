@@ -178,7 +178,7 @@
         <p><strong>CURRENTLY STAGING ONLY.</strong></p>
 		<ul>
 			<li>New animation clip editor:<ul>
-				<li>Browse all available animations by character and context</li>
+				<li>Browse all available animations by character or env model and context</li>
 				<li>Preview animations on models with skeletons</li>
 				<li>Export animations to a variety of formats</li>
 			</ul></li>
@@ -228,6 +228,13 @@
 				<li>Added a search in the TriggerSequence entity list</li>
 				<li>Added support for proxy TriggerSequences</li>
 			</ul></li>
+			<li>Improved Texture Editor:<ul>
+				<li>Added support for importing non DX10 DDS images (including PNG, JPG, etc)</li>
+				<li>Added support for previewing and importing/exporting ASTC textures (for mobile ports)</li>
+				<li>Added previews for mip levels, and selection of mip levels on import</li>
+				<li>Added support for renaming imported textures</li>
+				<li>Corrected persistent/streamed storage (persistent textures are now half-res)</li>
+			</ul></li>
 			<li>Added a dark mode option</li>
 			<li>Added a dropdown next to the new back button to view up to five previously loaded composites</li>
 			<li>Added a new 'Create' dropdown in the viewport UI which, when enabled, allows you to click on the viewport to create a new entity at that position</li>
@@ -242,6 +249,8 @@
 			<li>Added controls for the behaviour tree editor to the controls window</li>
 			<li>Added warnings if saving fails when updating configs</li>
 			<li>Added previews for sound events, with an export option</li>
+			<li>Added ability to rename imported models</li>
+			<li>Added support for parsing the newly exported model metadata on import, to keep structures similar</li>
 			<li>Added support for the material picker when selecting materials for entity parameters</li>
 			<li>Added an option to port a composite across all levels</li>
 			<li>Added an option to overwrite source assets when porting</li>
@@ -263,11 +272,13 @@
 			<li>Fixed 'Find References' right click on the entity list</li>
 			<li>Fixed rotation issue for spotlight previews in the viewport</li>
 			<li>Fixed dropdowns sticking on screen</li>
+			<li>Fixed a separate window appearing briefly when viewport initialises</li>
 			<li>Fixed selection steal when using keybinds to navigate UI</li>
 			<li>Fixed file browser mode when selecting a folder</li>
 			<li>Fixed a UI lock when the flowgraph focus is moving</li>
 			<li>Fixed various issues with form ownership to prevent things popping behind</li>
 			<li>Fixed the reverbs available to be selected</li>
+			<li>Fixed an issue where the hack tool editor would take a long time to load</li>
 			<li>Fixed an issue where the Ammo editor would mess up Composite paths</li>
 			<li>Fixed an issue where nodes could vanish when changing composites</li>
 			<li>Fixed an issue where composite layouts could be lost after porting</li>
