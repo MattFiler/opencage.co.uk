@@ -181,6 +181,9 @@
 				<li>Browse all available animations by character or env model and context</li>
 				<li>Preview animations on models with skeletons</li>
 				<li>Export animations to a variety of formats</li>
+				<li>Import animations from a variety of formats (with preview)</li>
+				<li>Support for retargeting to Alien or Humanoid from the UE Mannequin skeleton on import</li>
+				<li>Now used to select animations for animation parameters</li>
 			</ul></li>
 			<li>Added a new (experimental) animation tree editor:<ul>
 				<li>Browse all animation sets and the animation trees contained within them</li>
@@ -213,6 +216,10 @@
 				<li>Copied entities on the flowgraph are pasted with their associated links and node layouts</li>
 				<li>Any copied entity keeps all its parameters across</li>
 				<li>Entities can be pasted across to any other composite</li>
+			</ul></li>
+			<li>Updated sound event selector:<ul>
+				<li>Import and export sounds to/from events</li>
+				<li>Preview sound events</li>
 			</ul></li>
 			<li>Reworked Entity Inspector:<ul>
 				<li>Now allows for multi-select, entities of the same type are grouped, others can be found on tabs</li>
@@ -248,7 +255,6 @@
 			<li>Added ability to modify damage ranges in the ammo config editor</li>
 			<li>Added controls for the behaviour tree editor to the controls window</li>
 			<li>Added warnings if saving fails when updating configs</li>
-			<li>Added previews for sound events, with an export option</li>
 			<li>Added ability to rename imported models</li>
 			<li>Added support for parsing the newly exported model metadata on import, to keep structures similar</li>
 			<li>Added support for the material picker when selecting materials for entity parameters</li>
@@ -283,6 +289,7 @@
 			<li>Fixed an issue where nodes could vanish when changing composites</li>
 			<li>Fixed an issue where composite layouts could be lost after porting</li>
 			<li>Fixed pins showing in the parameter management UI</li>
+			<li>Fixed various bugs related to loading iOS/Android/Switch builds of the game</li>
 			<li>Fixed grouping in Entity Palette after searching</li>
 			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
 			<li>Fixed a bug where force closing OpenCAGE could leave a viewport process open in the background</li>
