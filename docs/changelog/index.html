@@ -177,6 +177,19 @@
     
         <p><strong>CURRENTLY STAGING ONLY.</strong></p>
 		<ul>
+			<li>Added a new 'Save and Build' (instancing) option in the File menu:<ul>
+				<li>Generates instance-specific materials and properties for static geometry based on materials, remappings, and aliases</li>
+				<li>Generates navmeshes based on the ExclusiveMaster sets in the level</li>
+				<li>Generates radiosity for newly added and moved objects</li>
+				<li>Generates instances for collision and physics to match object positions and new scripted entities</li>
+				<li>Generates sound networks and spaces for sound routing and reverbs through the level</li>
+				<li>Generates cover, spotting, assault jobs for NPCs</li>
+				<li>Generates alphalight metadata for supported objects</li>
+				<li>Generates dynamic entity materials and models for particles, fog volumes, and more based on entity parameters</li>
+				<li>Generates environment animation links and other structuring for renderables and resources</li>
+				<li>Generates BVHs for occlusion and lighting</li>
+				<li>Generates environment map links</li>
+			</ul></li>
 			<li>New animation clip editor:<ul>
 				<li>Browse all available animations by character or env model and context</li>
 				<li>Preview animations on models with skeletons</li>
@@ -221,10 +234,16 @@
 				<li>Import and export sounds to/from events</li>
 				<li>Preview sound events</li>
 			</ul></li>
+			<li>Improved material editing:<ul>
+				<li>Feature permutations are now functional - you can select from the available permutations in your game data (generated on first launch)</li>
+				<li>Added ability to create new materials</li>
+				<li>For some ubershader types (e.g. fog, etc) permutations can be generated</li>
+			</ul></li>
 			<li>Reworked Entity Inspector:<ul>
 				<li>Now allows for multi-select, entities of the same type are grouped, others can be found on tabs</li>
 				<li>All entity parameters are now shown at once (removed 'Manage Parameters' popup)</li>
 				<li>Modified parameters are marked in bold, right click to reset to default values</li>
+				<li>Parameters are grouped by the entity they originate from (makes inheritance more obvious, and navigating easier)</li>
 				<li>Added an orange highlight to parameters which are overridden by an alias elsewhere</li>
 				<li>Added a blue highlight to parameters which are overridden by a connection in the flowgraph</li>
 			</ul></li>
@@ -236,11 +255,20 @@
 				<li>Added support for proxy TriggerSequences</li>
 			</ul></li>
 			<li>Improved Texture Editor:<ul>
+				<li>Global textures are now auto-imported into the level (makes levels completely independent, and allows editing of those textures)</li>
 				<li>Added support for importing non DX10 DDS images (including PNG, JPG, etc)</li>
 				<li>Added support for previewing and importing/exporting ASTC textures (for mobile ports)</li>
 				<li>Added previews for mip levels, and selection of mip levels on import</li>
 				<li>Added support for renaming imported textures</li>
 				<li>Corrected persistent/streamed storage (persistent textures are now half-res)</li>
+			</ul></li>
+			<li>Improved composite porting (no longer 'experimental'):<ul>
+				<li>Composite porting now supports every resource type - every composite can now be ported</li>
+				<li>Added an option to overwrite source assets when porting</li>
+				<li>Added an option to build (instance) the target level when porting</li>
+				<li>Added an option to port to every other level in one go</li>
+				<li>Fixed an issue where composite layouts could be lost after porting</li>
+				<li>Fixed a bug where porting would incorrectly skip shaders and materials carrying similar properties to existing assets in a level</li>
 			</ul></li>
 			<li>Added a dark mode option</li>
 			<li>Added a dropdown next to the new back button to view up to five previously loaded composites</li>
@@ -251,7 +279,7 @@
 			<li>Added a new 'unsaved changes' tracker, which will highlight in the taskbar when a modification has been made and not saved</li>
 			<li>Added additional render filters for a variety of Sphere types, and others</li>
 			<li>Added new render filter to show Occlusion Meshes and Collision Meshes</li>
-			<li>Added new option to show state resources (navmesh, cover positions)</li>
+			<li>Added new option to show state resources (navmesh, cover positions) in the viewport</li>
 			<li>Added ability to modify damage ranges in the ammo config editor</li>
 			<li>Added controls for the behaviour tree editor to the controls window</li>
 			<li>Added warnings if saving fails when updating configs</li>
@@ -259,7 +287,6 @@
 			<li>Added support for parsing the newly exported model metadata on import, to keep structures similar</li>
 			<li>Added support for the material picker when selecting materials for entity parameters</li>
 			<li>Added an option to port a composite across all levels</li>
-			<li>Added an option to overwrite source assets when porting</li>
 			<li>Added an option to stick the controls window on the top layer of the screen</li>
 			<li>Added new 'Focus on Selected' and 'Fix Camera on Selected' options for the viewport</li>
 			<li>Added an option to save when closing with a level open</li>
@@ -273,21 +300,24 @@
 			<li>Added support for renaming folders in the composite browser</li>
 			<li>Added support for dragging composites/folders to move them in file browser mode</li>
 			<li>Added arrows to point to off-screen highlighted nodes</li>
-			<li>Added new UIs for Collision/Physics resource selection (editing currently disabled)</li> <!-- todo - update this -->
+			<li>Added new UIs for Collision/Physics resource selection</li>
 			<li>Added a button to view changelog</li>
+			<li>Added context-aware positioning of pins on nodes (relays will always have their output in-line with their input)</li>
 			<li>Fixed 'Find References' right click on the entity list</li>
 			<li>Fixed rotation issue for spotlight previews in the viewport</li>
 			<li>Fixed dropdowns sticking on screen</li>
 			<li>Fixed a separate window appearing briefly when viewport initialises</li>
 			<li>Fixed selection steal when using keybinds to navigate UI</li>
+			<li>Fixed a bug where resources were thrown away for Commands BIN</li>
 			<li>Fixed file browser mode when selecting a folder</li>
 			<li>Fixed a UI lock when the flowgraph focus is moving</li>
 			<li>Fixed various issues with form ownership to prevent things popping behind</li>
+			<li>Fixed some material remapping defects resulting in different materials to retail</li>
 			<li>Fixed the reverbs available to be selected</li>
+			<li>Fixed a bug where the metadata table in Commands held unnecessary GUIDs that grew each save</li>
 			<li>Fixed an issue where the hack tool editor would take a long time to load</li>
 			<li>Fixed an issue where the Ammo editor would mess up Composite paths</li>
 			<li>Fixed an issue where nodes could vanish when changing composites</li>
-			<li>Fixed an issue where composite layouts could be lost after porting</li>
 			<li>Fixed pins showing in the parameter management UI</li>
 			<li>Fixed various bugs related to loading iOS/Android/Switch builds of the game</li>
 			<li>Fixed grouping in Entity Palette after searching</li>
@@ -296,6 +326,8 @@
 			<li>Reworked the back button - it now takes you to the previously loaded composite, and is no longer relative to the currently loaded hierarchy</li>
 			<li>Removed the legacy Movers editor</li>
 			<li>Removed additional position/rotation controls on renderable resources - they are now autogenerated</li>
+			<li>Optimised saving logic, viewport population, and level loading - should be noticeably faster</li>
+			<li>Improvements to memory overhead for the viewport</li>
 			<li>Simplified editor state restoring for resized splitters</li>
 			<li>Previously searched proxy searches are now remembered if appropriate</li>
 			<li>Backup manager no longer blocks the UI thread (added progress bar)</li>
