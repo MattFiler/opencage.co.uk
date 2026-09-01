@@ -33,44 +33,211 @@
     <link rel="stylesheet" href="assets/css/search.css">
     <link rel="stylesheet" href="assets/css/dark.css">
 
-</head> 
+    <style>
+        /* Brand stripe, matching opencage.co.uk and the app logo: the same purple gradient
+           theme-bg-dark already uses, with black diagonal bars laid over it. */
+        .theme-bg-dark {
+            background-image:
+                repeating-linear-gradient(-45deg, transparent 0, transparent 40px, #000 40px, #000 80px),
+                linear-gradient(45deg, #412b69 0%, #8e1073 100%);
+        }
+        /* The template's translucent skewed blocks fight the stripes - the stripe is the decoration now */
+        .theme-bg-dark .theme-bg-shapes-right,
+        .theme-bg-dark .theme-bg-shapes-left {
+            display: none;
+        }
+        .theme-bg-dark .page-heading,
+        .theme-bg-dark .page-intro,
+        .theme-bg-dark h3,
+        .theme-bg-dark .section-intro {
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.84);
+        }
+        /* These banners keep the purple ground in both themes, so the dark theme's muted grey
+           doesn't belong here - it drops to ~3:1 against the magenta end of the gradient. */
+        html[data-theme="dark"] .theme-bg-dark .page-intro,
+        html[data-theme="dark"] .theme-bg-dark .section-intro {
+            color: #fff !important;   /* dark.css sets the muted grey with !important */
+        }
+        .docs-banner-logo {
+            display: block;
+            width: 100%;
+            max-width: 330px;
+            height: auto;
+            margin: 0 auto 1.4rem;
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.55));
+        }
+        @media (max-width: 575px) {
+            .docs-banner-logo { max-width: 240px; }
+            .theme-bg-dark {
+                background-image:
+                    repeating-linear-gradient(-45deg, transparent 0, transparent 26px, #000 26px, #000 52px),
+                    linear-gradient(45deg, #412b69 0%, #8e1073 100%);
+            }
+        }
 
-<body>    
-    <header class="header fixed-top">
-<div class="branding docs-branding">
-            <div class="container-fluid position-relative py-2">
-                <div class="docs-logo-wrapper">
-	                <div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon me-2" src="assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
-                </div><!--//docs-logo-wrapper-->
-	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
-	                <div class="top-search-box d-none d-md-flex">
-		                <form class="search-form">
-				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
-				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
-				        </form>
-	                </div>
-					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
-						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
-			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
-		            </ul><!--//social-list-->
-		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
-	            </div><!--//docs-top-utilities-->
-            </div><!--//container-->
-        </div><!--//branding-->
-    </header><!--//header-->
+        /* Heading row that carries the theme toggle over on the right */
+        .docs-intro-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 15px;
+        }
+        .docs-intro-head h3 {
+            margin: 0;
+        }
+        .docs-intro-head .docs-top-utilities {
+            padding-top: 0;
+            flex: 0 0 auto;
+        }
+        /* the margin exists to space it from the navbar search box, which isn't here */
+        .docs-intro-head .docs-theme-toggle {
+            margin-left: 0;
+        }
+
+        .docs-hero-shot {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin-top: 1.75rem;
+            border-radius: 4px;
+        }
+
+        /* Intro call-to-action buttons: an accented icon panel split off from the label */
+        .docs-intro-actions {
+            margin-top: 1.6rem;
+        }
+        .docs-intro-btn {
+            --accent: #5d6778;
+            /* What the hover sweep and the icon panel become once filled. Defaults to the accent
+               and is only overridden where white label text would otherwise be too faint on it. */
+            --accent-fill: var(--accent);
+            position: relative;
+            display: flex;
+            align-items: stretch;
+            width: 100%;
+            /* the grid stretches the columns, so this keeps a button that wraps its label
+               the same height as its neighbours rather than leaving a ragged row */
+            height: 100%;
+            overflow: hidden;
+            border: 1px solid #e0e3e9;
+            border-radius: 5px;
+            background: #fff;
+            color: #252930;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.2;
+            text-decoration: none;
+            transition: color .25s ease, border-color .25s ease, box-shadow .15s ease;
+        }
+        /* The sweep. Sits behind the icon panel and label and grows out from the accented edge,
+           so the fill reads as the icon block's colour spreading across the rest of the button. */
+        .docs-intro-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--accent-fill);
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform .25s ease;
+        }
+        .docs-intro-btn:hover::before,
+        .docs-intro-btn:focus-visible::before {
+            transform: scaleX(1);
+        }
+        .docs-intro-btn:hover,
+        .docs-intro-btn:focus-visible {
+            color: #fff;
+            text-decoration: none;
+            border-color: var(--accent-fill);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.09);
+        }
+        .docs-intro-btn .docs-intro-btn-icon {
+            display: flex;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.6rem;
+            padding: 0 0.7rem;
+            background: var(--accent);
+            color: #fff;
+            font-size: 1.05rem;
+        }
+        /* Match the sweep so the filled button is one flat colour with no seam at the split */
+        .docs-intro-btn:hover .docs-intro-btn-icon,
+        .docs-intro-btn:focus-visible .docs-intro-btn-icon {
+            background: var(--accent-fill);
+        }
+        .docs-intro-btn .docs-intro-btn-icon,
+        .docs-intro-btn .docs-intro-btn-label {
+            position: relative;
+            z-index: 1;
+        }
+        /* Padding is kept lean because the tightest case is the three-across row at lg, where the
+           intro column drops to col-lg-8 (640px) and is narrower than the full-width col-12 at md */
+        .docs-intro-btn .docs-intro-btn-label {
+            display: flex;
+            flex: 1 1 auto;
+            align-items: center;
+            justify-content: center;
+            padding: 0.72rem 0.7rem;
+            text-align: center;
+            text-wrap: balance;
+        }
+        /* Between sm and md the thirds are ~172px, which no amount of trimming fits
+           "Follow on Bluesky" into - so let it wrap, evenly, and keep the row heights matched */
+        @media (min-width: 576px) and (max-width: 767.98px) {
+            .docs-intro-btn { font-size: 0.875rem; }
+            .docs-intro-btn .docs-intro-btn-icon { min-width: 2.3rem; padding: 0 0.55rem; }
+            .docs-intro-btn .docs-intro-btn-label { padding: 0.6rem 0.5rem; }
+        }
+
+        /* Bluesky's blue is too light to carry white label text once the whole button is filled
+           (3.6:1), so it fills with a deeper shade of itself. The rest already clear 4.5:1 and
+           fill with the brand colour itself.
+           Steam is its own slate blue rather than one of its near-black navies (#171a21 / #1b2838),
+           which would have been indistinguishable from the X and GitHub buttons beside it. */
+        .docs-intro-btn.is-steam   { --accent: #2a475e; }
+        .docs-intro-btn.is-discord { --accent: #5865f2; }
+        .docs-intro-btn.is-github  { --accent: #2b3137; }
+        .docs-intro-btn.is-x       { --accent: #14171a; }
+        .docs-intro-btn.is-bluesky { --accent: #0285ff; --accent-fill: #0a6fd1; }
+
+        html[data-theme="dark"] .docs-intro-btn {
+            background: #1a1e25;
+            border-color: #2c3340;
+            color: #c7cede;
+        }
+        html[data-theme="dark"] .docs-intro-btn:hover,
+        html[data-theme="dark"] .docs-intro-btn:focus-visible {
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+        }
+        /* The two near-black brands need lifting off a dark ground, and Steam goes up with them
+           so it stays distinct from the greys either side of it */
+        html[data-theme="dark"] .docs-intro-btn.is-github { --accent: #444d57; }
+        html[data-theme="dark"] .docs-intro-btn.is-x      { --accent: #3a3f45; }
+        html[data-theme="dark"] .docs-intro-btn.is-steam  { --accent: #31597a; }
+
+        /* Reduced motion still gets the fill - it just arrives rather than sweeping */
+        @media (prefers-reduced-motion: reduce) {
+            .docs-intro-btn,
+            .docs-intro-btn::before { transition: none; }
+        }
+    </style>
+
+</head>
+
+<body style="padding-top:0">       
     
-    
-    <div class="page-header theme-bg-dark py-5 text-center position-relative">
+    <div class="page-header theme-bg-dark text-center position-relative" style="padding: 5rem 0 5rem 0">
 	    <div class="theme-bg-shapes-right"></div>
 	    <div class="theme-bg-shapes-left"></div>
 	    <div class="container">
-		    <h1 class="page-heading single-col-max mx-auto">OpenCAGE Documentation</h1>
-		    <div class="page-intro single-col-max mx-auto">The ultimate Alien: Isolation modding guide.</div>
+		    <img class="docs-banner-logo" src="assets/images/logo-white.png" alt="OpenCAGE" width="2500" height="1225">
 		    <div class="main-search-box pt-3 d-block mx-auto">
                  <form class="search-form w-100">
-		            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+		            <input type="text" placeholder="Search docs..." name="search" class="form-control search-input">
 		            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
 		        </form>
              </div>
@@ -80,23 +247,63 @@
 	    <div class="container">
 		    <div class="docs-overview py-5">
 
-			    <div class="row justify-content-center docs-reveal">
+			    <div class="row justify-content-center">
 					<div class="col-12 col-lg-8">
-						<h3 style="margin-bottom:15px">Introduction</h3>
+						<!-- motion.js injects the theme toggle into .docs-top-utilities, which normally
+						     lives in the navbar - this page has none, so it gets a slot here -->
+						<div class="docs-intro-head">
+							<h3>Welcome!</h3>
+							<div class="docs-top-utilities"></div>
+						</div>
 
-						<p>Welcome to the documentation for OpenCAGE!</p>
 						<p>OpenCAGE is a community-created open-source modding toolkit for the game Alien: Isolation, intended to offer functionality that was originally available within CAGE (the Creative Assembly Game Editor).</p>
 						<p>While CAGE was never publicly released, years of reverse engineering efforts have resulted in a decent feature set for the community tools — it's possible to do a whole variety of things including asset import/export, level script modification/creation, core configuration edits, NPC and behaviour tweaks, weapon mods, and more!</p>
-						<p>The docs are broken down into sections below. This documentation is a work-in-progress, as are the tools themselves — some things may not yet be documented.</p>
-						<p>If you have any further questions, feel free to join the <a href="https://discord.gg/JJ4ECu9hpY">Discord</a>!</p>
+						<p>New here? Grab the tools from Steam, then start with the <a href="scripting-intro/">Scripting Introduction</a> — everything else is broken down into sections below. Don't forget to join the Discord to get tips and tricks from the community, and share any mods you're working on!</p>
+
+						<!-- 6+6 fills a row, so the remaining three wrap onto a second one on their own -
+						     no separate row markup needed, and all five stack at col-12 on phones -->
+						<div class="row g-2 docs-intro-actions">
+							<div class="col-12 col-sm-6">
+								<a class="docs-intro-btn is-steam" href="https://store.steampowered.com/app/3367530/OpenCAGE/">
+									<span class="docs-intro-btn-icon"><i class="fab fa-steam"></i></span>
+									<span class="docs-intro-btn-label">Download on Steam</span>
+								</a>
+							</div>
+							<div class="col-12 col-sm-6">
+								<a class="docs-intro-btn is-discord" href="https://discord.gg/JJ4ECu9hpY">
+									<span class="docs-intro-btn-icon"><i class="fab fa-discord"></i></span>
+									<span class="docs-intro-btn-label">Join the Discord</span>
+								</a>
+							</div>
+							<div class="col-12 col-sm-4">
+								<a class="docs-intro-btn is-github" href="https://github.com/mattfiler/opencage">
+									<span class="docs-intro-btn-icon"><i class="fab fa-github"></i></span>
+									<span class="docs-intro-btn-label">Star on GitHub</span>
+								</a>
+							</div>
+							<div class="col-12 col-sm-4">
+								<a class="docs-intro-btn is-x" href="https://twitter.com/mattfiler">
+									<span class="docs-intro-btn-icon"><i class="fab fa-x-twitter"></i></span>
+									<span class="docs-intro-btn-label">Follow on X</span>
+								</a>
+							</div>
+							<div class="col-12 col-sm-4">
+								<a class="docs-intro-btn is-bluesky" href="https://bsky.app/profile/mattfiler.co.uk">
+									<span class="docs-intro-btn-icon"><i class="fab fa-bluesky"></i></span>
+									<span class="docs-intro-btn-label">Follow on Bluesky</span>
+								</a>
+							</div>
+						</div>
+
+						<img class="docs-hero-shot" src="assets/images/editor-overview.png" alt="The OpenCAGE script editor: render filters and composite browser on the left, the 3D Viewport above the flowgraph in the centre, and the entity inspector on the right" width="2823" height="1223">
 					</div>
 				</div>
 
 				<div class="row justify-content-center mt-4">
 					<div class="col-12 col-lg-8">
 
-						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="40">
-							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+						<div class="docs-panel" data-open="false">
+							<button type="button" class="docs-panel-toggle" aria-expanded="false">
 								<span class="docs-panel-toggle-label">
 									<span>Getting Started</span>
 									<span class="docs-panel-hint">Scripting, installs, Viewport, launch, saving, porting &amp; backups</span>
@@ -239,8 +446,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="55">
-							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+						<div class="docs-panel" data-open="false">
+							<button type="button" class="docs-panel-toggle" aria-expanded="false">
 								<span class="docs-panel-toggle-label">
 									<span>Function Editors</span>
 									<span class="docs-panel-hint">Timelines, characters, trigger sequences &amp; special entity UIs</span>
@@ -303,8 +510,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="70">
-							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+						<div class="docs-panel" data-open="false">
+							<button type="button" class="docs-panel-toggle" aria-expanded="false">
 								<span class="docs-panel-toggle-label">
 									<span>Configuration Tools</span>
 									<span class="docs-panel-hint">Configs, galaxy, material mappings, behaviour trees &amp; text</span>
@@ -399,8 +606,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="100">
-							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+						<div class="docs-panel" data-open="false">
+							<button type="button" class="docs-panel-toggle" aria-expanded="false">
 								<span class="docs-panel-toggle-label">
 									<span>Resource Editors</span>
 									<span class="docs-panel-hint">Models, UI, materials, textures, animation, blends &amp; sound</span>
@@ -543,8 +750,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="130">
-							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+						<div class="docs-panel" data-open="false">
+							<button type="button" class="docs-panel-toggle" aria-expanded="false">
 								<span class="docs-panel-toggle-label">
 									<span>Detailed Documentation</span>
 									<span class="docs-panel-hint">Entities, enums, behaviour trees &amp; animation trees</span>
@@ -623,8 +830,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel is-open docs-reveal" data-open="true" data-reveal-delay="160">
-							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+						<div class="docs-panel" data-open="false">
+							<button type="button" class="docs-panel-toggle" aria-expanded="false">
 								<span class="docs-panel-toggle-label">
 									<span>Useful Info</span>
 									<span class="docs-panel-hint">Level names &amp; mission IDs</span>
@@ -697,12 +904,14 @@
 				<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
 				<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
 				<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+				<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
 				<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
 	        </ul><!--//social-list-->
 	        
-            <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
-            <small class="copyright">Developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a></small><br><br>
-            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+            <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+            <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+            <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
             
 	        
 	    </div>

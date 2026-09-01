@@ -31,11 +31,11 @@ html[data-theme="dark"] .card-title-text {
 	color: #f0f2f5;
 }
 
-html[data-theme="dark"] a:not(.btn):not(.card-link-mask):not(.nav-link):not(.docs-search-item) {
+html[data-theme="dark"] a:not(.btn):not(.card-link-mask):not(.nav-link):not(.docs-search-item):not(.docs-intro-btn) {
 	color: #4ad488;
 }
 
-html[data-theme="dark"] a:not(.btn):not(.card-link-mask):not(.nav-link):not(.docs-search-item):hover {
+html[data-theme="dark"] a:not(.btn):not(.card-link-mask):not(.nav-link):not(.docs-search-item):not(.docs-intro-btn):hover {
 	color: #6be0a0;
 }
 

@@ -1,188 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>OpenCAGE</title>
-    
     <meta charset="utf-8" />
+    <title>OpenCAGE</title>
+
+    <!-- The site front door is the documentation. GitHub Pages serves static files only, so this
+         has to be a client-side redirect - there is no way to return a real 301 from the repo.
+         location.replace runs before the body paints and keeps this page out of the back-button
+         history, so Back from /docs/ doesn't bounce straight forward again. The meta refresh is
+         the fallback for anything with JavaScript disabled, and the markup below is what shows
+         if both are ignored. -->
+    <script>window.location.replace("/docs/");</script>
+    <meta http-equiv="refresh" content="0; url=/docs/" />
+    <link rel="canonical" href="https://opencage.co.uk/docs/" />
+
     <meta name="description" content="OpenCAGE is an open source set of mod tools for Alien: Isolation." />
     <meta name="keywords" content="opencage, alien isolation, modding, alien isolation mod tools, mod tools, Alien: Isolation, mods, aliens isolation" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="favicon.ico" rel="icon" type="image/x-icon" />
-    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
-    
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+    <meta name="twitter:title" content="OpenCAGE" />
+    <meta name="twitter:description" content="OpenCAGE is an open source set of mod tools for Alien: Isolation." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         html, body {
             padding: 0; margin: 0; border: 0;
+            min-height: 100vh;
         }
         body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-family: 'Montserrat', sans-serif;
-            background-color: #412b69; 
-            background-image: linear-gradient(45deg,  #412b69 0%,#8e1073 100%); 
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#412b69', endColorstr='#8e1073',GradientType=1 ); 
-			min-height:100vh;
-        }
-        .main_content {
-            position: absolute;
-            top:0;bottom:0;left:0;right:0;
-            background: repeating-linear-gradient(
-                -45deg,
-                transparent,
-                transparent 40px,
-                #000 40px,
-                #000 80px
-            );
-            
-            color:white;
-            text-shadow: 0px 0px 20px rgba(0,0,0,0.84);
             text-align: center;
+            color: #fff;
+            background-color: #412b69;
+            background-image:
+                repeating-linear-gradient(-45deg, transparent 0, transparent 40px, #000 40px, #000 80px),
+                linear-gradient(45deg, #412b69 0%, #8e1073 100%);
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.84);
         }
-        .main_content h1 {
-            font-weight:bold;
-        }
-        .content_floater {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+        .redirect_inner {
             width: 100%;
-        }
-        .content_inner {
-            width: 100%; 
-            max-width: 750px;
+            max-width: 600px;
+            padding: 20px;
         }
         img {
-            margin: 15px;
+            display: block;
             width: calc(100% - 30px);
-            max-width: 600px;
-			object-fit: contain;
+            max-width: 420px;
+            height: auto;
+            margin: 0 auto 30px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.55));
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
         }
         a {
-            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
         }
-        button {
-            font-family: 'Montserrat', sans-serif;
-            display: inline-block;
-            font-weight: 400;
-            color: #212529;
-            text-align: center;
-            vertical-align: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            padding: .375rem .75rem;
-            line-height: 1.5;
-            border-radius: .25rem;
-            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-            background: rgba(255, 255, 255, 0.9);
-            color: black;
-            border: 2px solid white;
-            font-size:25px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: transparent;
-            color: white;
-        }
-        @media only screen and (max-width: 991px) {
-            .main_content h1 {
-                font-size:25px;
-                margin-top: 20px;
-                margin-bottom: 30px;
-            }
-			.main_content img {
-				width: 70%;
-			}
-            button {
-                display: block;
-                margin-bottom: 10px;
-            }
-        }
-        @media only screen and (min-width: 992px) {
-            .main_content h1 {
-                font-size:50px;
-                margin-top: 30px;
-                margin-bottom: 40px;
-            }
-        }
-        @media only screen and (max-height: 690px) {
-            .main_content h1 {
-                font-size:40px;
-            }
-			.main_content img {
-				max-height: 170px;
-			}
-        }
-        @media only screen and (max-height: 485px) {
-            .main_content h1 {
-                font-size:20px;
-            }
-			.main_content img {
-				max-height: 120px;
-			}
-			button {
-				font-size: 19px;
-			}
-        }
-		button {
-		    margin-bottom: 3px;
-		}
     </style>
 </head>
 <body>
-    <div class="main_content">
-        <center class="content_floater">
-            <div class="content_inner">
-                <img src="logo_trim_smaller.png" alt="OpenCAGE Logo">
-                <h1>OpenCAGE is an open source set of mod tools for Alien: Isolation</h1>
-                <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" title="Download on Steam"><button>Download&nbsp; <i class="fa-brands fa-steam"></i></button></a>
-                <a href="https://github.com/MattFiler/OpenCAGE/" title="View the source on GitHub"><button>Contribute&nbsp; <i class="fa-brands fa-github"></i></button></a>
-                <a href="docs/" title="Visit the documentation"><button>Learn more&nbsp; <i class="fa-solid fa-file"></i></button></a>
-                <a href="http://twitter.com/MattFiler" title="Follow on X (Twitter) for updates"><button>Follow&nbsp; <i class="fab fa-x-twitter"></i></button></a>
-                <a href="https://bsky.app/profile/mattfiler.co.uk" title="Follow on Bluesky for updates"><button>Follow&nbsp; <i class="fab fa-bluesky"></i></button></a>
-            </div>
-        </center>
+    <div class="redirect_inner">
+        <img src="logo_trim_smaller.png" alt="OpenCAGE">
+        <p>Taking you to the documentation&hellip;</p>
+        <p>If nothing happens, <a href="/docs/">continue to the OpenCAGE documentation</a>.</p>
     </div>
-    
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
 
-	  gtag('config', 'UA-39768980-14');
-	</script>
-    <script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "Project",
-			"name": "OpenCAGE",
-			"url": "http://opencage.co.uk",
-			"logo": "http://opencage.co.uk/icon.png",
-			"sameAs": "https://github.com/MattFiler/OpenCAGE"
-		}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-39768980-14');
     </script>
     <script type="application/ld+json">
         {
-            "@context": "http://schema.org", 
-            "@type": "BreadcrumbList", 
+            "@context": "https://schema.org",
+            "@type": "Project",
+            "name": "OpenCAGE",
+            "url": "http://opencage.co.uk",
+            "logo": "http://opencage.co.uk/icon.png",
+            "sameAs": "https://github.com/MattFiler/OpenCAGE"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
             "itemListElement": [
-                { 
-                    "@type": "ListItem", 
-                    "position": "0", 
-                    "item": { 
-                        "@id": "http://opencage.co.uk/", 
-                        "name": "OpenCAGE" 
-                    } 
+                {
+                    "@type": "ListItem",
+                    "position": "0",
+                    "item": {
+                        "@id": "http://opencage.co.uk/",
+                        "name": "OpenCAGE"
+                    }
                 },
-                { 
-                    "@type": "ListItem", 
-                    "position": "1", 
-                    "item": { 
-                        "@id": "http://opencage.co.uk/docs", 
-                        "name": "OpenCAGE Documentation" 
-                    } 
+                {
+                    "@type": "ListItem",
+                    "position": "1",
+                    "item": {
+                        "@id": "http://opencage.co.uk/docs",
+                        "name": "OpenCAGE Documentation"
+                    }
                 }
             ]
         }
     </script>
 </body>
+</html>
