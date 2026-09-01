@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Blend Set Editor</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's Blend Set Editor to edit the parametric animation blends in ANIMATION.PAK.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Blend Set Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Blend Set Editor to edit the parametric animation blends in ANIMATION.PAK." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+		.docs-caveat {
+			border-left: 4px solid #c45c26;
+			background: rgba(196, 92, 38, 0.08);
+			padding: 0.85rem 1rem;
+			margin: 0 0 1.25rem 0;
+		}
+		.docs-caveat p {
+			margin: 0;
+		}
+		.docs-caveat + .docs-caveat {
+			margin-top: 0.75rem;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#limits"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What Can Be Changed</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#layout"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Interface Layout</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#layout-tree">Blend Set List</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#layout-clips">Clips</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#layout-points">Blend Points</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#layout-users">Used By</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#editing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Blend Set Editor</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Open <b>Edit → Blend Sets</b> to edit the parametric blend sets stored in <code>ANIMATION.PAK</code>.</p>
+		<p>A blend set is what turns a continuous value into animation. "Aim at 30 degrees up and 10 to the left" isn't a clip the game ships — it's a mix of the four clips that surround that point. The blend set holds those clips, the grid of <b>blend points</b> they're arranged on, and which parameters drive the position within that grid.</p>
+		<p>Sets can be one, two or three dimensional depending on how many parameters steer them.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="limits">
+    <header class="docs-header">
+<h1 class="docs-heading">What Can Be Changed</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>A blend set has two halves, and only one of them is authored data.</p>
+		<p>The <b>authored half</b> is what you can edit here: which clips the set uses, how long each runs, whether it's mirrored, which clip each blend point plays, and how fast it plays. Everything in that half can be changed freely.</p>
+		<p>The <b>other half</b> is a lookup table the game reads at runtime, computed offline from where the blend points sit. That bake only ever refers to blend points by number, which is why the authored half can change without invalidating it.</p>
+
+		<div class="docs-caveat">
+			<p><b>Blend point positions are fixed.</b> Moving a blend point, or adding one, would need that lookup rebuilt — which isn't offered. Positions are shown so you can see the shape of the blend, but they can't be edited. That's deliberate: it stops you producing a file that looks correct in the editor and plays wrong in game.</p>
+		</div>
+    </section>
+</article>
+
+<article class="docs-article" id="layout">
+    <header class="docs-header">
+<h1 class="docs-heading">Interface Layout</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The blend set list is on the left; everything about the selected set is on the right. The header line above it gives you the shape at a glance — how many dimensions, how many clips, how many blend points — and the line under it names the parameters that drive each axis.</p>
+	</section>
+
+	<section class="docs-section" id="layout-tree">
+		<h2 class="section-heading">Blend Set List</h2>
+		<p>Sets are grouped the way their names are built: by animation set, then by the context inside it. Sets belonging to the animation set itself (rather than to one of its contexts) hang directly off it. Each animation set shows how many blend sets it holds.</p>
+		<p>The <b>Search</b> box matches the set's name and the names of the clips inside it, so you can find a blend by an animation you know is in it.</p>
+	</section>
+
+	<section class="docs-section" id="layout-clips">
+		<h2 class="section-heading">Clips</h2>
+		<p>The clips the set draws from, numbered. Each row shows its index, the clip name, its length in seconds, whether it's mirrored, and how many blend points use it.</p>
+		<p>That last column is worth watching — a clip used by no blend point is doing nothing.</p>
+	</section>
+
+	<section class="docs-section" id="layout-points">
+		<h2 class="section-heading">Blend Points</h2>
+		<p>One row per blend point, showing its index, its position along each driving axis, which clip it plays, and at what speed.</p>
+		<p>Beside the list is a picture of the blend space with the points laid out on it. Click a point in the picture to select its row, and vice versa. For a 3D blend, the picture shows the first slice.</p>
+	</section>
+
+	<section class="docs-section" id="layout-users">
+		<h2 class="section-heading">Used By</h2>
+		<p>Which characters can actually reach this blend set. Each row names the character, the context it's offered in — or <b>(the character itself)</b> when it isn't tied to a context — and the name that character asks for it by.</p>
+		<p><b>Give to character…</b> adds the set to another character or context; <b>Take away</b> removes the selected reference. Removing a reference doesn't delete the blend set, only that character's access to it.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="editing">
+    <header class="docs-header">
+        <h1 class="docs-heading">Editing</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>With a clip row selected, you can change:</p>
+		<ul>
+			<li><b>Clip</b> — the animation played. <b>Choose…</b> opens the <a href="/docs/animation-editor/">Animation Editor</a> as a picker so you can find it by name, length and content rather than typing it.</li>
+			<li><b>Length s</b> — the duration recorded for the clip.</li>
+			<li><b>Mirrored</b> — play the clip mirrored left-to-right.</li>
+		</ul>
+		<p>With a blend point row selected:</p>
+		<ul>
+			<li><b>Plays</b> — which of the set's clips this point uses, picked from the numbered list.</li>
+			<li><b>Speed</b> — the playback rate at that point.</li>
+		</ul>
+		<p>The blend set list isn't filtered when the window is used as a picker — the blend set a tree references generally doesn't belong to that tree's own animation set, so narrowing the list would hide most of the useful options.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="saving">
+    <header class="docs-header">
+        <h1 class="docs-heading">Saving</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Changes are held until you press <b>Save</b>, which becomes available once something has been edited. The status bar shows <b>unsaved changes</b> in the meantime, and closing the window with edits outstanding asks first.</p>
+		<p>Saving writes <code>ANIMATION.PAK</code> — it is separate from <b>File → Save Level</b> in the script editor, and applies to every level, since the archive is global.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+        <h1 class="docs-heading">Related Docs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/animation-editor/">Animation Editor</a> — browse, preview, export and import the clips a blend set uses</li>
+			<li><a href="/docs/animation-tree-editor/">Animation Tree Editor</a> — the graphs that reference blend sets</li>
+			<li><a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a> — node types, parameters, and pins</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>

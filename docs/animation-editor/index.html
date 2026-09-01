@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Animation Editor</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's Animation Editor to browse, preview, export and import Alien: Isolation animation clips.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Animation Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Animation Editor to browse, preview, export and import Alien: Isolation animation clips." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+		.docs-caveat {
+			border-left: 4px solid #c45c26;
+			background: rgba(196, 92, 38, 0.08);
+			padding: 0.85rem 1rem;
+			margin: 0 0 1.25rem 0;
+		}
+		.docs-caveat p {
+			margin: 0;
+		}
+		.docs-caveat + .docs-caveat {
+			margin-top: 0.75rem;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#structure"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>How Animations are Organised</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#browsing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Browsing</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#browsing-sets">Sets &amp; Contexts</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#browsing-clips">The Clip List</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#browsing-search">Searching</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#preview"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Previewing</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#export"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Exporting</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#export-rig">Choosing a Rig</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#export-mode">Export Modes</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#import"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Importing</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#import-options">Import Options</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#import-retarget">Retargeting</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#picker"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using it as a Picker</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Animation Editor</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Open <b>Edit → Animations</b> to browse everything in <code>DATA/GLOBAL/ANIMATION.PAK</code> — every animation clip the game ships, for characters and for props alike.</p>
+		<p>The editor lets you find a clip, watch it play on a model, export it to a DCC format, and bring new animation back in. It replaces the old raw PAK extract/repack window, which offered no way to see what a file actually contained.</p>
+		<p>This window is also what opens when you pick an animation for an entity parameter — see <a href="#picker">Using it as a Picker</a>.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="structure">
+    <header class="docs-header">
+<h1 class="docs-heading">How Animations are Organised</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Cathode does not keep a flat list of clips. It asks for animation the way the game needs it, and the editor mirrors that:</p>
+		<ul>
+			<li><b>Kind</b> — the two tabs at the top. <b>Character animations</b> covers anything rigged to a character skeleton; <b>Environment animations</b> covers props and world geometry.</li>
+			<li><b>Animation set</b> — roughly "one rig's worth of animation". Most sets are named after the skeleton they belong to. Sets whose names begin with <code>#</code> are the game's own grouping entries rather than characters, so they're sorted to the bottom of the list.</li>
+			<li><b>Context</b> — the state the character is in. A set's clips are grouped by context: one unnamed group that always applies, and then one group per state that overrides it. Around a quarter of the game's sets have more than one context, and some have dozens.</li>
+			<li><b>Clip</b> — the animation itself. A clip is referenced by the name its set plays it by, which is not the same as its filename.</li>
+		</ul>
+		<p>One more thing worth knowing before you export anything: <b>nearly every clip is authored on a shared rig</b> and moved onto the individual character's skeleton at runtime. The <b>Authored on</b> column tells you which rig a clip was actually built against, which matters when you come to export or preview it.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="browsing">
+    <header class="docs-header">
+<h1 class="docs-heading">Browsing</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The window is split top and bottom: animation sets above, the clips inside the selected set below, with a <b>Context</b> dropdown between them. Drag the splitter to rebalance — the position is remembered, as is which tab you were last on.</p>
+		<p>Both lists sort by any column: click a heading to sort by it, click again to reverse. Numeric columns sort as numbers, so you can order by length or frame count and get a sensible result.</p>
+	</section>
+
+	<section class="docs-section" id="browsing-sets">
+		<h2 class="section-heading">Sets &amp; Contexts</h2>
+		<p>The set list shows the set name, the skeleton it uses, how many contexts hold clips, and how many clips it holds in total. A set with no clips left in it is greyed out.</p>
+		<p>When every set on screen is named after its own rig — which is usually the case — the <b>Skeleton</b> column collapses and hands its width to the names.</p>
+		<p>Pick a set and the <b>Context</b> dropdown fills with the contexts that actually contain animation. The unnamed one is listed as <b>(always available)</b>, and each entry shows its clip count.</p>
+	</section>
+
+	<section class="docs-section" id="browsing-clips">
+		<h2 class="section-heading">The Clip List</h2>
+		<p>Each row describes one clip:</p>
+		<ul>
+			<li><b>Animation</b> — the name the set plays it by, which is what an animation parameter stores</li>
+			<li><b>File</b> — the file it lives in inside the PAK</li>
+			<li><b>Authored on</b> — the rig it was built against</li>
+			<li><b>Frames</b> and <b>Length</b> — how long it runs</li>
+			<li><b>Properties</b> — how many events it fires and how many settings are hung off it</li>
+			<li><b>Notes</b> — flagged when the clip is unusual; <b>additive</b> means it layers over whatever else is playing rather than replacing it</li>
+		</ul>
+		<p>Hover a row for its full path, plus any non-standard metadata it carries — how far a locomotion clip travels, where an aim clip points, which sound an audio event fires and from which bone.</p>
+		<p>A clip that could not be read is greyed out and says so in <b>Notes</b>. That is a defect in the file rather than in the clip you asked for, and the rest of the list still works.</p>
+		<p>The status bar along the bottom summarises the selection — frame rate, bone count, float tracks, and the rig it was authored on with that rig's bone count.</p>
+	</section>
+
+	<section class="docs-section" id="browsing-search">
+		<h2 class="section-heading">Searching</h2>
+		<p>The <b>Find</b> box above the set list matches set names and rig names first. If nothing is named what you typed, the search widens to look <i>inside</i> the sets, and the label changes to <b>N with a matching animation</b> — so searching for <code>reload</code> finds the sets that contain one even though no set is called that.</p>
+		<p>The <b>Find</b> box above the clip list searches the whole set rather than just the context on screen, whenever the set has more than one context. The label reads <b>N across the set</b> when it does.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="preview">
+    <header class="docs-header">
+<h1 class="docs-heading">Previewing</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Select a clip and hit <b>Preview…</b> (or double-click it) to open the <b>Animation Preview</b> window and watch it play.</p>
+		<p>Nothing in the game's data records which model goes with which animation set, so the first time you preview a set you're asked to pick one. Use <b>Choose Mesh…</b> to select a model and <b>Choose Rig…</b> to select a skeleton. Both choices are remembered per animation set, so you only do it once per character.</p>
+		<p>Playback controls:</p>
+		<ul>
+			<li><b>Play</b> / stop, a scrub bar, and a <b>Speed</b> dropdown from 0.1x to 2x</li>
+			<li><b>Loop</b> — repeat rather than stopping at the end</li>
+			<li><b>Root motion</b> — let the clip carry the character across the scene instead of holding it on the spot</li>
+			<li><b>Show mesh</b>, <b>Show rig</b>, <b>Show textures</b> — draw the model, the skeleton, and the model's materials</li>
+			<li><b>Parts of the mesh</b> — show or hide individual pieces, with <b>Show all</b> / <b>Hide all</b></li>
+		</ul>
+		<p>Underneath the viewport is the clip's timeline of <b>markers</b> — the moments the clip fires something. Click a marker to see what it does at that point: a footstep sound, an effect, a gameplay callback.</p>
+		<p><b>Export…</b> in this window writes out the clip and the mesh it's playing on together.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="export">
+    <header class="docs-header">
+<h1 class="docs-heading">Exporting</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p><b>Export All…</b> writes every clip currently listed. Select more than one row and the button becomes <b>Export Selected…</b> and writes just those. Everything goes into a single file.</p>
+		<p>Available formats are FBX, glTF (<code>.gltf</code> / <code>.glb</code>) and COLLADA — the formats that can actually carry an animation. OBJ isn't offered here for that reason.</p>
+		<p>Because a large export can be very large indeed, OpenCAGE checks the clip count, bone count and frame count against the format you chose and warns you before writing if the result is going to be big.</p>
+		<p>Clips that couldn't be read are skipped, and the summary at the end tells you how many were left out.</p>
+	</section>
+
+	<section class="docs-section" id="export-rig">
+		<h2 class="section-heading">Choosing a Rig</h2>
+		<p>An animation is only meaningful against a skeleton, so exporting asks which one to write it against. There's no guessing involved — the clips name the rig they were authored on, and that one sorts to the top of the list. Everything else is there if you want to experiment with retargeting.</p>
+	</section>
+
+	<section class="docs-section" id="export-mode">
+		<h2 class="section-heading">Export Modes</h2>
+		<p>The <b>Export as</b> dropdown decides what happens to bones the clip never mentions, and to the root. Viewing and re-importing want different things from the same clip:</p>
+		<ul>
+			<li><b>For viewing — held on the spot</b> — bones the clip doesn't touch stay at the rig's rest pose, so the character still looks like itself. Root motion is ignored and the animation plays in place.</li>
+			<li><b>For viewing — travelling as the clip carries it</b> — as above, but the root moves, so a walk cycle walks.</li>
+			<li><b>For editing and re-importing — exactly what the clip holds</b> — writes precisely what's stored, including the root as the engine sees it. This is the one to use if you intend to edit the animation and bring it back in.</li>
+		</ul>
+		<div class="docs-caveat">
+			<p>A rig rests its root a long way from identity, so an export that <i>looks</i> right is not necessarily an export that can come back in. If you're round-tripping an animation, always use <b>For editing and re-importing</b>.</p>
+		</div>
+	</section>
+</article>
+
+<article class="docs-article" id="import">
+    <header class="docs-header">
+<h1 class="docs-heading">Importing</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Select the animation set you want the clip to belong to, then hit <b>Import…</b> and pick an FBX, glTF, GLB or COLLADA file. The <b>Import animation</b> dialog opens, showing what OpenCAGE found in the file and everything that has to be decided before it goes in. Nothing is committed until you press <b>Import</b>.</p>
+		<p>Once you do, the clip is added to the set and <code>ANIMATION.PAK</code> is written straight away — an import that isn't saved has done nothing, so there's no separate save step. The clip list refreshes with your new animation selected.</p>
+	</section>
+
+	<section class="docs-section" id="import-options">
+		<h2 class="section-heading">Import Options</h2>
+		<ul>
+			<li><b>Play it by</b> — the name the set will use to reference the clip. Defaults to the filename, sanitised.</li>
+			<li><b>Stored as</b> — the path the clip takes inside the PAK.</li>
+			<li><b>Rig</b> — the skeleton the animation is built against. The rigs the chosen set can use are offered.</li>
+			<li><b>Root bone</b> — what to do with the rig's root, which belongs to the engine rather than the rig. <b>Leave to the engine unless the file animates it</b> is the default and is usually right; <b>Always leave to the engine</b> forces it; <b>Keep whatever the file holds</b> writes out root motion as authored.</li>
+			<li><b>Frame rate</b> — take it from the file, or force 24, 25, 30 or 60 fps.</li>
+			<li><b>Layer over what is already playing</b> — makes the clip additive rather than replacing whatever else is running.</li>
+		</ul>
+		<p>The summary panel updates every time you change something: how many frames and how long, how many of the file's animated nodes matched a bone on the rig, and what the file itself claims its frame rate is. Use it to check the import before committing — if only a handful of nodes matched, something is wrong with the rig choice.</p>
+		<p><b>Preview…</b> opens the animation preview on the imported result, so you can look at it rather than guess.</p>
+
+		<div class="docs-caveat">
+			<p><b>The root bone setting is what turns a character round.</b> If an imported animation comes out facing the wrong way or sliding across the floor, that's the first option to revisit.</p>
+		</div>
+	</section>
+
+	<section class="docs-section" id="import-retarget">
+		<h2 class="section-heading">Retargeting</h2>
+		<p>Import normally matches the file's nodes to the rig's bones by name, which requires the file to already be on that rig — in practice, that it came out of OpenCAGE in the first place.</p>
+		<p>Animation you find online generally isn't. Most of it is built on the <b>Unreal Engine mannequin</b>, which has different bone names, different proportions, and a different idea of which way is left. For those files, tick <b>Convert to Alien: Isolation skeletons</b> and OpenCAGE works out the corrective from the two rest poses and rebuilds the animation on the game's rig.</p>
+		<p>The checkbox only appears when the conversion is actually applicable — when the file is on a rig OpenCAGE recognises and the target is one it can build onto. If nothing matched by name and conversion is the only route in, it ticks itself.</p>
+		<p>Both the humanoid rigs and the alien are supported targets. Bones the game's rig has and the mannequin doesn't — the alien's tail, spikes and jaw, a human's armour bones — keep their rest shape and ride their parent, which is normal rather than an error. If the two rigs turn out to be mirror images of each other, the summary says so; that's also normal and is handled.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="picker">
+    <header class="docs-header">
+        <h1 class="docs-heading">Using it as a Picker</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Animation parameters used to be filled from a plain list of enum strings. They now open this window instead, so you can see what a clip is called, how long it runs and what it fires before committing to it.</p>
+		<p>The window opens on whatever the entity is already set to — right down to selecting the animation itself and scrolling to it — and the button at the bottom becomes <b>Use This Animation</b> (or <b>Use This Set</b> for an animation set parameter). Double-clicking a row picks it.</p>
+		<p>An animation parameter stores the name the set plays the clip by, and an animation set parameter stores the set's own name. Neither stores a path.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+        <h1 class="docs-heading">Related Docs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/blend-set-editor/">Blend Set Editor</a> — the parametric blends that mix several clips together</li>
+			<li><a href="/docs/animation-tree-editor/">Animation Tree Editor</a> — the graphs that choose and blend clips at runtime</li>
+			<li><a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a> — node types, parameters, and pins</li>
+			<li><a href="/docs/cage-animation-editor/">CAGEAnimation Editor</a> — scripted timelines, which are a separate system</li>
+			<li><a href="/docs/model-editor/">Model Editor</a> — importing and exporting the meshes animation plays on</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is in no way related to (or endorsed by) Creative Assembly or SEGA</small><br>
+			            <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>

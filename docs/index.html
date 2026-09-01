@@ -99,12 +99,12 @@
 							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Getting Started</span>
-									<span class="docs-panel-hint">Scripting, installs, Viewport, launch, options &amp; backups</span>
+									<span class="docs-panel-hint">Scripting, installs, Viewport, launch, saving, porting &amp; backups</span>
 								</span>
 							</button>
 							<div class="docs-panel-body">
 								<div class="docs-panel-body-inner">
-									<p class="docs-panel-intro">Start here if you're new to Cathode scripting, multiple installs, the Viewport, launching the game, Options, or backups.</p>
+									<p class="docs-panel-intro">Start here if you're new to Cathode scripting, multiple installs, the Viewport, launching the game, Options, or backups — plus building a level and porting content between levels.</p>
 									<div class="row">
 										<div class="col-12 col-md-6 py-2">
 											<div class="card shadow-sm">
@@ -202,6 +202,38 @@
 												</div>
 											</div>
 										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-hammer"></i>
+														</span>
+														<span class="card-title-text">Save and Build</span>
+													</h5>
+													<div class="card-text">
+														Regenerate a level's lighting, navmesh, collision, cover and sound after changing its geometry.
+													</div>
+													<a class="card-link-mask" href="save-and-build/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-right-to-bracket"></i>
+														</span>
+														<span class="card-title-text">Composite Porting</span>
+													</h5>
+													<div class="card-text">
+														Move a composite and every asset it depends on into another level.
+													</div>
+													<a class="card-link-mask" href="composite-porting/"></a>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -275,12 +307,12 @@
 							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Configuration Tools</span>
-									<span class="docs-panel-hint">Configs, galaxy, material mappings &amp; behaviour trees</span>
+									<span class="docs-panel-hint">Configs, galaxy, material mappings, behaviour trees &amp; text</span>
 								</span>
 							</button>
 							<div class="docs-panel-body">
 								<div class="docs-panel-body-inner">
-									<p class="docs-panel-intro">Tools for editing engine configurations, skybox stars, material remaps, and character AI trees.</p>
+									<p class="docs-panel-intro">Tools for editing engine configurations, skybox stars, material remaps, character AI trees, and the game's on-screen text.</p>
 									<div class="row">
 										<div class="col-12 col-md-6 py-2">
 											<div class="card shadow-sm">
@@ -346,6 +378,22 @@
 												</div>
 											</div>
 										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-language"></i>
+														</span>
+														<span class="card-title-text">Localisation Editor</span>
+													</h5>
+													<div class="card-text">
+														Edit and add the game's on-screen text across all nine shipped languages.
+													</div>
+													<a class="card-link-mask" href="localisation-editor/"></a>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -355,12 +403,12 @@
 							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Resource Editors</span>
-									<span class="docs-panel-hint">Models, UI, materials, textures, animation &amp; trees</span>
+									<span class="docs-panel-hint">Models, UI, materials, textures, animation, blends &amp; sound</span>
 								</span>
 							</button>
 							<div class="docs-panel-body">
 								<div class="docs-panel-body-inner">
-									<p class="docs-panel-intro">Editors for level and game resources — meshes, UI.PAK, materials, textures, animation archives, and animation trees.</p>
+									<p class="docs-panel-intro">Editors for level and game resources — meshes, UI.PAK, materials, textures, animation clips and trees, blend sets, and sound.</p>
 									<div class="row">
 										<div class="col-12 col-md-6 py-2">
 											<div class="card shadow-sm">
@@ -433,12 +481,12 @@
 														<span class="theme-icon-holder card-icon-holder me-2">
 															<i class="fa-solid fa-person-running"></i>
 														</span>
-														<span class="card-title-text">Animation Archive Editor</span>
+														<span class="card-title-text">Animation Editor</span>
 													</h5>
 													<div class="card-text">
-														Browse ANIMATION.PAK — Havok clips and metadata; raw extract/repack only for now.
+														Browse, preview, export and import animation clips — with retargeting for outside rigs.
 													</div>
-													<a class="card-link-mask" href="animation-archive-editor/"></a>
+													<a class="card-link-mask" href="animation-editor/"></a>
 												</div>
 											</div>
 										</div>
@@ -455,6 +503,38 @@
 														Browse and edit animation trees — clip selection, blends, parameters, and graph wiring.
 													</div>
 													<a class="card-link-mask" href="animation-tree-editor/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-sliders"></i>
+														</span>
+														<span class="card-title-text">Blend Set Editor</span>
+													</h5>
+													<div class="card-text">
+														Edit the parametric blends that mix several clips into one continuous motion.
+													</div>
+													<a class="card-link-mask" href="blend-set-editor/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-volume-high"></i>
+														</span>
+														<span class="card-title-text">Sound Events</span>
+													</h5>
+													<div class="card-text">
+														Preview, export and replace the audio behind the game's Wwise sound events.
+													</div>
+													<a class="card-link-mask" href="sound-events/"></a>
 												</div>
 											</div>
 										</div>

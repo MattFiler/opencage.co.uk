@@ -133,7 +133,7 @@
 			<p><b>Hardcoded parameters &amp; callbacks.</b> The game drives many animation trees through fixed parameter and callback names (via parameter / callback nodes). Those hooks are hardcoded in the engine — adding new ones, or renaming existing parameter / callback nodes, may do nothing or cause issues. Work with the parameters and callbacks already in the tree, and with the values they supply.</p>
 		</div>
 		<p>Open <b>Edit → Animation Trees</b> to launch the <b>Animation Tree Editor</b>. Animation trees live inside <code>ANIMATION.PAK</code> as <code>ANIM_TREE_DB</code> databases — they choose, blend, and layer clips based on parameters and game context.</p>
-		<p>This editor is separate from the raw <a href="/docs/animation-archive-editor/">Animation Archive Editor</a> (PAK browse/extract). Use it when you need to inspect or change tree graphs, node parameters, and wiring.</p>
+		<p>This editor is separate from the <a href="/docs/animation-editor/">Animation Editor</a>, which browses the clips themselves. Use this one when you need to inspect or change tree graphs, node parameters, and wiring.</p>
 		<p>For a full catalogue of node types, parameters, and pins, see <a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a>.</p>
     </section>
 </article>
@@ -259,7 +259,8 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
 			<li><a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a> — node types, parameters, and pins</li>
-			<li><a href="/docs/animation-archive-editor/">Animation Archive Editor</a> — raw <code>ANIMATION.PAK</code> browse / extract / repack</li>
+			<li><a href="/docs/animation-editor/">Animation Editor</a> — browse, preview, export and import the clips a tree plays</li>
+			<li><a href="/docs/blend-set-editor/">Blend Set Editor</a> — the parametric blends a tree can reference</li>
 		</ul>
     </section>
 </article>

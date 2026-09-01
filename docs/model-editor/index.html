@@ -135,21 +135,27 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Supported mesh formats for import and export: <b>FBX</b>, <b>GLTF</b>, and <b>OBJ</b>.</p>
+		<p>Supported mesh formats: <b>FBX</b>, <b>glTF</b> (<code>.gltf</code> / <code>.glb</code>), <b>COLLADA</b> (<code>.dae</code>) and <b>Wavefront OBJ</b>.</p>
+		<p>FBX and glTF are written by OpenCAGE itself rather than through Assimp, because Assimp's exporters mangle exactly the things you care about — it resamples animation down to a handful of keys in FBX, and damages animated content badly in glTF. Those two carry everything OpenCAGE writes; COLLADA and OBJ go through Assimp and carry progressively less (OBJ has no skinning and only one UV set).</p>
+		<p>Models export at their real size. FBX, COLLADA and OBJ all treat one unit as a centimetre while CATHODE and glTF work in metres, so OpenCAGE applies the right unit scale per format — a model no longer arrives in Blender at a hundredth of its size.</p>
     </section>
 
     <section class="docs-section" id="import">
 		<h2 class="section-heading">Import New</h2>
-		<p>Click <b>Import New</b>, pick a file, then use the import preview to choose which meshes to bring in. Optionally <b>Pick material for selected</b> meshes (opens the <a href="/docs/material-editor/">Material Editor</a>), then <b>Import</b>.</p>
-		<p>OpenCAGE creates a new CS2 entry from the filename. Imports need triangles (Assimp triangulates where needed), a usable bounding box, and under 32,768 vertices per converted mesh.</p>
+		<p>Click <b>Import New</b>, pick a file, then use the import preview to choose which meshes to bring in. You settle the model's <b>name</b> and any folders it should live in here too, with clashes checked as you type — nothing gets silently renamed after the fact.</p>
+		<p>Optionally <b>Pick material for selected</b> meshes (opens the <a href="/docs/material-editor/">Material Editor</a>), then <b>Import</b>.</p>
+		<p>If a <code>.cs2meta.json</code> sidecar sits beside the file (see below), OpenCAGE reads it and rebuilds the model with the structure it had when it was exported.</p>
+		<p>Imports need triangles (Assimp triangulates where needed), a usable bounding box, and under 32,768 vertices per converted mesh. Models are keyed by name when a level is read back, so a name that already exists is adjusted and you're told what it became — anything already placed still points at the original.</p>
     </section>
 
 	<section class="docs-section" id="export">
 		<h2 class="section-heading">Export &amp; Delete</h2>
 		<ul>
-			<li><b>Export</b> — writes the selected model to FBX/GLTF/OBJ. Related textures (diffuse, normal, and so on) can be written beside the file under a textures folder (sourced via the model's materials — see the <a href="/docs/texture-editor/">Texture Editor</a>).</li>
+			<li><b>Export</b> — writes the selected model out, with <b>normals</b> and <b>skin weights</b> carried across in the formats that support them. Related textures (diffuse, normal, and so on) can be written beside the file under a textures folder (sourced via the model's materials — see the <a href="/docs/texture-editor/">Texture Editor</a>).</li>
 			<li><b>Delete</b> — removes the model from the level after confirmation.</li>
 		</ul>
+		<p>Exporting a <b>skinned</b> model asks which skeleton to bind it to first, before the file dialog — a skinned model is only half a model without the rig its weights point at. The chosen skeleton is written into the file with the mesh bound to it.</p>
+		<p>Every export also writes a <code>.cs2meta.json</code> sidecar next to the model, holding everything the mesh formats can't carry: the component / LOD / submesh structure, render flags, vertex formats, and skinning data. <b>Keep it beside the model and leave the object names intact</b>, and the model can be imported straight back in as it was.</p>
 	</section>
 </article>
 
@@ -197,6 +203,8 @@
 		<ul>
 			<li><a href="/docs/material-editor/">Material Editor</a> — materials assigned to submeshes and used during textured preview / import</li>
 			<li><a href="/docs/texture-editor/">Texture Editor</a> — textures sampled by those materials</li>
+			<li><a href="/docs/animation-editor/">Animation Editor</a> — the clips that play on these models, and the rigs they use</li>
+			<li><a href="/docs/save-and-build/">Save and Build</a> — giving newly imported geometry lighting, collision and navmesh</li>
 			<li><a href="/docs/material-mapping-editor/">Material Mapping Editor</a> — From→To remaps that can swap materials on model instances</li>
 			<li><a href="/docs/level-viewer/">Viewport</a> — in-level 3D view of ModelReferences (separate from this editor window)</li>
 			<li>Renderable Instance <b>Change Model</b> — picks a CS2 from this editor for script/renderable placement</li>

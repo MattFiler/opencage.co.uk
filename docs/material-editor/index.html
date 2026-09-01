@@ -85,8 +85,9 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#editing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing Materials</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#samplers">Samplers</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#features">Features</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#permutations">Shader Permutations</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#parameters">Parameters</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#duplicating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Duplicating</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#creating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Creating Materials</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Tools</a></li>
 
@@ -110,7 +111,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>After loading a level, open <b>Edit → Materials</b> to launch the <b>Material Editor</b>. It edits the level's visual/render materials — texture samplers, ubershader features, and shader parameters stored under that level's <code>RENDERABLE</code> data (e.g. <code>LEVEL_MODELS.MTL</code> / <code>LEVEL_MODELS.CST</code>).</p>
 		<p>This is separate from <a href="/docs/configs/physical-materials/">Physical Materials</a> (collision / Havok surface types under Configurations). The Material Editor is about how things look.</p>
-		<p>The same window can also open as a picker (with <b>Use This Material</b>) from places like renderable instances, the <a href="/docs/material-mapping-editor/">Material Mapping Editor</a>, and <a href="/docs/model-editor/">Model Editor</a> import.</p>
+		<p>The same window can also open as a picker (with <b>Use This Material</b>) from places like renderable instances, the <a href="/docs/material-mapping-editor/">Material Mapping Editor</a>, <a href="/docs/model-editor/">Model Editor</a> import, and entity parameters that take a material — those used to be a plain text field.</p>
     </section>
 </article>
 
@@ -128,7 +129,7 @@
 		<h2 class="section-heading">Samplers</h2>
 		<p>Each material can reference textures through sampler slots (up to 12). Tabs list the sampler names for that ubershader — a bold tab usually means a texture is assigned.</p>
 		<ul>
-			<li><b>Edit Texture…</b> / <b>Pick Texture…</b> — opens the <a href="/docs/texture-editor/">Texture Editor</a> so you can choose or change the texture (level or global).</li>
+			<li><b>Edit Texture…</b> / <b>Pick Texture…</b> — opens the <a href="/docs/texture-editor/">Texture Editor</a> so you can choose or change the texture. Global textures are imported into the level on load, so they're pickable here like any other.</li>
 			<li><b>Clear Texture</b> — removes the assignment from that slot.</li>
 		</ul>
 		<p>A preview and reference details (sampler index, texture name/format, and so on) appear below when a texture is set.</p>
@@ -136,7 +137,22 @@
 
 	<section class="docs-section" id="features">
 		<h2 class="section-heading">Features</h2>
-		<p>Feature checkboxes toggle ubershader feature flags for the material's shader. Which options appear depends on the ubershader type — unsupported or unmapped features won't show.</p>
+		<p>Feature checkboxes toggle ubershader feature flags — dirt maps, detail normals, parallax, alpha blending, and so on, depending on the ubershader type.</p>
+		<p>A feature isn't just a switch inside one shader. Every combination of features is a <b>separate compiled shader</b>, and toggling one binds the material to a different one. That's why the checkboxes used to do nothing useful: the permutation you were asking for generally wasn't in the level.</p>
+		<p>They now work. Each checkbox tells you where the permutation it needs would come from:</p>
+		<ul>
+			<li><b>Already in this level</b> — the fastest case; the shader is sitting in the level's own pool.</li>
+			<li><b>Harvested from your game data</b> — pulled from the permutation database OpenCAGE builds from your install (see below).</li>
+			<li><b>Reconstructed by CathodeLib</b> — compiled from the available data in CathodeLib (usually instancing-related things like fog).</li>
+		</ul>
+		<p>Features whose permutation can't be reached by any of those three routes stay hidden, so a checkbox you can see is one you can actually use. Switching a feature migrates the material's existing shader constants onto the new shader rather than resetting them.</p>
+	</section>
+
+	<section class="docs-section" id="permutations">
+		<h2 class="section-heading">Shader Permutations</h2>
+		<p>The first time you launch OpenCAGE against a game install, it harvests a <b>shader permutation database</b> from your game data in the background — every (family, feature mask) combination the game actually ships, gathered from every level. You'll see progress in the status bar; nothing blocks while it runs, and if it fails you're simply left with the permutations each level already carries.</p>
+		<p>Beneath the feature list, the editor tells you how many combinations are currently reachable for the material's family, and <b>Permutation mask: 0x…</b> shows the material's current feature mask. Where more than one combination is available, you can pick from the full list directly rather than toggling features one at a time.</p>
+		<p>For some ubershader families — fog planes and spheres among them — permutations can be generated on demand rather than only found, this is due to the simplicity of their shaders. Support for this may expand over time.</p>
 	</section>
 
 	<section class="docs-section" id="parameters">
@@ -146,14 +162,18 @@
 	</section>
 </article>
 
-<article class="docs-article" id="duplicating">
+<article class="docs-article" id="creating">
     <header class="docs-header">
-<h1 class="docs-heading">Duplicating</h1>
+<h1 class="docs-heading">Creating Materials</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>There isn't a blank “new material” action. To create a variant, select a material and click <b>Duplicate Selected Material</b>. The clone is named with a <b>Clone</b> suffix so you can tune samplers/features/parameters independently.</p>
-		<p>Duplicates start from the same shader setup as the original — change what you need on the clone rather than assuming every shared field is fully isolated.</p>
+		<p>There are two ways to get a new material.</p>
+		<ul>
+			<li><b>New Material…</b> — builds one from nothing. You pick the <b>shader family</b> and a name, and that's all it asks: the family is the only thing that can't be changed later, and everything else the material needs is reachable from the editor once it exists.</li>
+			<li><b>Duplicate Selected</b> — clones the selected material, named with a <b>Clone</b> suffix, so you can tune samplers, features and parameters independently of the original.</li>
+		</ul>
+		<p>Only families that can actually be built on are offered when creating a material — if none are available for the level, the editor says so rather than producing something the game can't render.</p>
     </section>
 </article>
 
@@ -179,6 +199,7 @@
 			<li><a href="/docs/material-mapping-editor/">Material Mapping Editor</a> — From→To remaps for materials in the level (separate from editing a material's look)</li>
 			<li><a href="/docs/model-editor/">Model Editor</a> — model preview/import can use material data and open the Material Editor as a picker</li>
 			<li><a href="/docs/configs/physical-materials/">Physical Materials</a> — collision/surface types (<code>MATERIALS.BML</code>), not visual MTL materials</li>
+			<li><a href="/docs/save-and-build/">Save and Build</a> — resolves materials, remaps and alias overrides into the per-instance materials the game draws with</li>
 		</ul>
     </section>
 </article>

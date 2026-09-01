@@ -83,7 +83,10 @@
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#browsing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Browsing &amp; Preview</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#parts">Streamed &amp; Persistent</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#cubemaps">Cubemaps</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#import-export"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Import &amp; Export</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#formats">Supported Formats</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#import">Import &amp; Replace</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#export">Export &amp; Delete</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#flags"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Flags</a></li>
@@ -108,7 +111,8 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>After loading a level, open <b>Edit → Textures</b> to launch the <b>Texture Editor</b>. It browses and edits the level's texture package under <code>RENDERABLE</code> (e.g. <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code>), and can also browse global textures from <code>WORLD</code>.</p>
+		<p>After loading a level, open <b>Edit → Textures</b> to launch the <b>Texture Editor</b>. It browses and edits the level's texture package under <code>RENDERABLE</code> (e.g. <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code>).</p>
+		<p>Global textures used to sit in a separate, read-only source. They are now <b>imported into the level automatically</b> when it loads, which makes each level completely self-contained and means the textures it shares with the rest of the game can be edited like any other. There's no longer a source to switch between — everything the level uses is in one list.</p>
 		<p>The same window can open as a picker (with <b>Select This Texture</b>) from the <a href="/docs/material-editor/">Material Editor</a> (<b>Pick Texture…</b> / <b>Edit Texture…</b>). Materials assigned this way show up on models in the <a href="/docs/model-editor/">Model Editor</a> when textured preview is enabled.</p>
     </section>
 </article>
@@ -119,14 +123,24 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The left tree lists textures for the selected <b>Source</b>. Use <b>Search</b> to filter by name.</p>
-		<ul>
-			<li><b>Source</b> — switch between the loaded level and <b>GLOBAL</b>. Level textures can be edited; GLOBAL is view/export only (import, replace, delete, and flags stay disabled).</li>
-			<li><b>Streamed</b> / <b>Persistent</b> — dual preview tabs for the high-res and low-res parts of a texture. Empty parts show <code>(none)</code> and disable that tab.</li>
-			<li><b>Metadata</b> — width, height, depth, mips, and size for the current preview.</li>
-		</ul>
-		<p>The preview title shows the texture name and format (for example <code>MyTexture [DXT5]</code>).</p>
+		<p>The left tree lists the level's textures. Use <b>Search</b> to filter by name. The preview title shows the texture name and format (for example <code>MyTexture [DXT5]</code>), and the <b>Metadata</b> panel gives width, height, depth, mips and size for whatever is on screen.</p>
+		<p>Under each preview is a <b>mip level slider</b>. A texture is stored as a chain of progressively smaller copies, and the top one tells you least about how it was authored — step down the chain to see what the game actually shows at distance, and to check that a texture you imported built a sensible chain.</p>
     </section>
+
+	<section class="docs-section" id="parts">
+		<h2 class="section-heading">Streamed &amp; Persistent</h2>
+		<p>A texture has two slots, shown as the <b>Streamed</b> and <b>Persistent</b> preview tabs. Empty slots show <code>(none)</code> and disable their tab.</p>
+		<ul>
+			<li><b>Streamed</b> — the full-resolution chain, loaded on demand.</li>
+			<li><b>Persistent</b> — the copy that stays resident in memory, so it's meant to be the smaller of the two.</li>
+		</ul>
+		<p>In the shipped data the persistent copy is never a separately compressed image — it's the streamed chain starting a few levels in. OpenCAGE reproduces that exactly when it writes one, so an imported texture is stored the way the game stores its own. Earlier versions wrote the same full-resolution data into both slots, which was wrong; persistent copies are now correctly smaller.</p>
+	</section>
+
+	<section class="docs-section" id="cubemaps">
+		<h2 class="section-heading">Cubemaps</h2>
+		<p>Cubemaps can be viewed either as <b>2D faces</b> — the six faces laid out flat — or in <b>3D</b>, as an interactive sphere. When a cubemap has both slots filled, the <b>Source</b> dropdown beside the 3D view picks which of the two the sphere is built from.</p>
+	</section>
 </article>
 
 <article class="docs-article" id="import-export">
@@ -134,26 +148,35 @@
 <h1 class="docs-heading">Import &amp; Export</h1>
     </header>
 
-	<section class="docs-section" style="padding-top:0;">
-		<p>Import and replace accept <b>DX10 DDS</b> only. If OpenCAGE rejects a file you converted yourself, try the <a href="https://developer.nvidia.com/texture-tools-exporter" target="_blank" rel="noopener">NVIDIA Texture Tools Exporter</a>.</p>
+	<section class="docs-section" id="formats" style="padding-top:0;">
+		<h2 class="section-heading">Supported Formats</h2>
+		<p>Import no longer requires a DDS in exactly the right format. OpenCAGE reads <b>DDS</b>, <b>PNG</b>, <b>JPEG</b>, <b>TGA</b>, <b>BMP</b>, <b>TIFF</b>, <b>Radiance HDR</b> and <b>ASTC</b>, and converts to whichever of the game's formats you pick.</p>
+		<p>Two encoders do the work, both carried inside OpenCAGE and unpacked when first needed — Microsoft's <b>texconv</b> for the block and uncompressed formats the PC game uses, and Arm's <b>astcenc</b> for ASTC. A DDS that's already in the format you asked for is passed straight through without running either, which is the common case when you export from a texture tool.</p>
+		<p><b>ASTC</b> is offered on mobile builds only. Nothing in the PC data uses it, and offering it elsewhere would just be a way to make a texture the game can't load. See <a href="/docs/multiple-game-installs/">Multiple Game Installs</a> for working with the iOS / Android / Switch ports.</p>
     </section>
 
     <section class="docs-section" id="import">
 		<h2 class="section-heading">Import &amp; Replace</h2>
 		<ul>
-			<li><b>Import New</b> — adds a texture named from the DDS filename. Duplicate names are rejected.</li>
-			<li><b>Replace Selected</b> — overwrites the selected level texture with a new DX10 DDS.</li>
+			<li><b>Import New</b> — adds a new texture. You choose its <b>name</b> and any folders it should sit in as part of the import, with the clash check running as you type.</li>
+			<li><b>Replace Selected</b> — overwrites the selected texture with a new image.</li>
 		</ul>
-		<p>Imported/replaced pixel data is written into both the Streamed and Persistent parts of that entry.</p>
+		<p>Either way, an options dialog asks what to do with the image before anything is written:</p>
+		<ul>
+			<li><b>Format</b> — which of the game's formats to store it in. When replacing, this defaults to whatever the texture already is, so bringing a texture back in leaves the slot as the game shipped it. A brand new texture defaults to <b>BC7</b>, which is what seven of every ten textures in the game already use.</li>
+			<li><b>Mip levels</b> — how much of a mip chain to build, from the top level alone up to as many as the image allows.</li>
+			<li><b>Persistent copy</b> — whether to keep one, and how many levels down the chain it should start.</li>
+		</ul>
 	</section>
 
 	<section class="docs-section" id="export">
 		<h2 class="section-heading">Export &amp; Delete</h2>
 		<ul>
 			<li><b>Export Selected</b> — write one texture as DDS, PNG, or JPG.</li>
-			<li><b>Export All</b> — pick a folder, choose <b>Export all as</b> (DDS / PNG / JPG), then export the current Source list. The folder opens when finished.</li>
-			<li><b>Delete Selected</b> — removes a level texture after confirmation. Not available for GLOBAL.</li>
+			<li><b>Export All</b> — pick a folder, choose <b>Export all as</b> (DDS / PNG / JPG), then export the whole list. The folder opens when finished.</li>
+			<li><b>Delete Selected</b> — removes a texture after confirmation.</li>
 		</ul>
+		<p>ASTC textures export through the same route, so a mobile build's textures come out as ordinary images rather than as something only the game can read.</p>
 	</section>
 </article>
 
@@ -163,8 +186,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>On level textures, <b>State flags</b> and <b>Usage flags</b> checkboxes update live in memory (for example cube map, volume, post processing, lens flare). Usage options are power-of-two style flags from the game's texture usage enum.</p>
-		<p>Flag edits are disabled when <b>Source</b> is <b>GLOBAL</b>.</p>
+		<p><b>State flags</b> and <b>Usage flags</b> checkboxes update live in memory (for example cube map, volume, post processing, lens flare). Usage options are power-of-two style flags from the game's texture usage enum.</p>
     </section>
 </article>
 
@@ -175,7 +197,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>The Texture Editor has no separate Save button. Persist level texture changes with <b>File → Save Level</b> (<b>Ctrl+S</b>), which writes <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code> (or the compressed <code>.PAK.FZIP</code> variant) under the level's <code>RENDERABLE</code> folder.</p>
-		<p>Saving closes the game if it's running so install files aren't locked. GLOBAL textures are not saved from this editor.</p>
+		<p>Saving closes the game if it's running so install files aren't locked. Because global textures are imported into the level on load, edits to them are written into the level's own package — the game's global texture pak isn't modified, and the change applies to the level you're editing rather than to every level at once.</p>
     </section>
 </article>
 

@@ -89,8 +89,12 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#selection">Selection</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#deep-select">Deep Select</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#transform-gizmo">Moving Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#create-mode">Creating Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#copy-paste">Copy &amp; Paste</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#hiding-entities">Hiding Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#previews">Previews &amp; Render Filters</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#scene-filters">Occlusion &amp; Collision Meshes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#state-info">Navmesh &amp; Cover</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#options">Viewport Options</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#tips">Tips &amp; Troubleshooting</a></li>
 
@@ -134,7 +138,7 @@
 		<h2 class="section-heading">Basics</h2>
 		<p>When you load a level, the Viewport appears automatically (unless you've disabled it — see below). While the scene is filling in, OpenCAGE shows a <b>Populating … in viewport…</b> progress state.</p>
 		<p>Selection and transforms you make in the Viewport are the same edits as in the rest of the script editor — hierarchy, parameters, and the 3D view stay on the same selection.</p>
-		<p>The Viewport toolbar covers <b>Selection Mode</b>, gizmo <b>Control</b>, <b>Transform Snap</b>, and <b>Rotation Snap</b>.</p>
+		<p>The Viewport toolbar covers <b>Selection Mode</b>, gizmo <b>Control</b>, <b>Create</b> (entity placement), <b>State Info</b> (navmesh / cover overlays), <b>Transform Snap</b>, and <b>Rotation Snap</b>.</p>
     </section>
 
 	<section class="docs-section" id="disabling">
@@ -198,6 +202,20 @@
 		</ul>
 		<p>Click and drag the coloured gizmo handles to transform the entity. The current mode is shown in a small HUD.</p>
 		<p>Use <b>Transform Snap</b> and <b>Rotation Snap</b> on the Viewport toolbar to snap movement and rotation to stepped values while dragging.</p>
+		<p>An entity with more than one transform parameter only has the relevant one updated when you drag it, rather than all of them.</p>
+	</section>
+
+	<section class="docs-section" id="create-mode">
+		<h2 class="section-heading">Creating Entities</h2>
+		<p>The <b>Create</b> dropdown on the Viewport toolbar turns the view into a placement tool. Pick a function type from the dropdown and the button changes to <b>Create: &lt;type&gt;</b>; clicking in the Viewport then creates a new entity of that type at the position you clicked, in the composite you're currently editing.</p>
+		<p>This is much quicker than adding an entity from the palette and then dragging it into place — particularly for the things you place by eye, like trigger boxes, position markers and pathfinding nodes.</p>
+		<p>Choose <b>None</b> to leave create mode and go back to normal selection.</p>
+	</section>
+
+	<section class="docs-section" id="copy-paste">
+		<h2 class="section-heading">Copy &amp; Paste</h2>
+		<p>Select an entity in the Viewport and <b>Ctrl+C</b> / <b>Ctrl+V</b> copies and pastes it, keeping all of its parameters. The same clipboard works on the flowgraph, so you can copy in one view and paste in the other, and entities can be pasted into a different composite entirely.</p>
+		<p>This replaces the old <b>Duplicate</b> option. See <a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> for what happens to links and node layouts when you paste on the flowgraph.</p>
 	</section>
 
 	<section class="docs-section" id="hiding-entities">
@@ -216,12 +234,35 @@
 			<li><b>Position markers</b> — torus-and-axis gizmos for position markers, pathfinding nodes, and related point entities</li>
 			<li><b>Character previews</b> — simple capsule figures for character entities</li>
 			<li><b>Spline paths</b> — point markers, connecting lines, and direction arrows</li>
-			<li><b>Icon billboards</b> — icons for sounds, lights, particles, cameras, and sound objects</li>
+			<li><b>Icon billboards</b> — icons for sounds, lights, particles, cameras, sound objects, and UI icons</li>
+			<li><b>Spheres and pyramids</b> — for impact spheres, fog spheres, surface effect spheres, UI selection spheres, and similar radius-based entities</li>
 			<li><b>Environment maps</b> — coloured spheres at probe positions</li>
 		</ul>
-		<p>Each preview type has an associated render filter. Use the docked <b>Render Filters</b> panel (alongside Search / Composite Browser by default) to toggle individual function types on or off. This is useful for decluttering busy levels — hide box volumes you don't care about, for example, while keeping position markers visible.</p>
+		<p>Each preview type has an associated render filter, colour-coded in the list. Use the docked <b>Render Filters</b> panel (alongside Search / Composite Browser by default) to toggle individual function types on or off. This is useful for decluttering busy levels — hide box volumes you don't care about, for example, while keeping position markers visible.</p>
+		<p>Coverage is broad: trigger and camera volumes, NPC and navmesh areas, cover and spotting exclusion areas, sound barriers, environment zones and network nodes, particle, ribbon and GPU emitters, decals, refraction and water surfaces, pickups, and the pathfinding node types all have their own filter.</p>
 		<p>Under <b>Options → Viewport</b>, enable <b>Hide Nested Script Entities</b> to stop showing entity previews defined in nested composites. ModelReference entities are always shown regardless of render filter settings.</p>
 		<p>Under <b>Options → Misc</b>, <b>Reset Render Filters On Load</b> clears your filter toggles whenever a level loads.</p>
+	</section>
+
+	<section class="docs-section" id="scene-filters">
+		<h2 class="section-heading">Occlusion &amp; Collision Meshes</h2>
+		<p>Two extra filters at the bottom of the panel aren't tied to a function type at all — they draw scene geometry the game never renders:</p>
+		<ul>
+			<li><b>Occlusion Meshes</b> — the invisible geometry the engine uses to cull what's behind it</li>
+			<li><b>Collision Meshes</b> — what the player and physics actually collide with, which is not the same shape as the visible mesh</li>
+		</ul>
+		<p>Both are drawn in a flat filter colour and are off by default. They're the quickest way to check that geometry you've moved or ported has collision where you expect it — see <a href="/docs/save-and-build/">Save and Build</a>.</p>
+	</section>
+
+	<section class="docs-section" id="state-info">
+		<h2 class="section-heading">Navmesh &amp; Cover</h2>
+		<p>The <b>State Info</b> dropdown on the Viewport toolbar draws generated NPC state resources over the level. For each of the level's states you can show either:</p>
+		<ul>
+			<li><b>Navmesh</b> — where NPCs are able to walk</li>
+			<li><b>Cover</b> — the positions NPCs can take cover at</li>
+		</ul>
+		<p>Levels have more than one state — geometry that opens, closes or changes as the mission progresses — and each has its own generated navmesh and cover, so pick the state you're interested in. Choose <b>None</b> to turn the overlay off.</p>
+		<p>This is what these systems will actually be at runtime, so it's the right place to check the result of a build.</p>
 	</section>
 
 	<section class="docs-section" id="options">
@@ -230,14 +271,16 @@
 		<ul>
 			<li><b>Highlight Aliases</b> — show orange highlights on entities targeted by parameterized aliases in the active composite</li>
 			<li><b>Highlight Proxies</b> — show blue highlights on proxy targets when stepped into a nested composite</li>
+			<li><b>Focus on Selected</b> — move the camera to frame an entity whenever you select one</li>
+			<li><b>Fix Camera to Selected Entity</b> — keep the camera locked on the selection rather than framing it once. Turning this on turns on <b>Focus on Selected</b> too</li>
 			<li><b>Show Camera Position</b> — display camera X/Y/Z coordinates while moving</li>
 			<li><b>Render Wireframe</b> — draw ModelReference meshes as wireframe overlays</li>
 			<li><b>Hide Nested Script Entities</b> — hide render previews for entities defined in nested composites (ModelReferences are unaffected)</li>
 		</ul>
 		<p>Also useful:</p>
 		<ul>
-			<li><b>Render Filters</b> dock panel — toggle previews per function type</li>
-			<li>Viewport panel toolbar — <b>Selection Mode</b>, <b>Control</b> (gizmo), <b>Transform Snap</b>, <b>Rotation Snap</b></li>
+			<li><b>Render Filters</b> dock panel — toggle previews per function type, plus occlusion and collision meshes</li>
+			<li>Viewport panel toolbar — <b>Selection Mode</b>, <b>Control</b> (gizmo), <b>Create</b>, <b>State Info</b>, <b>Transform Snap</b>, <b>Rotation Snap</b></li>
 			<li><b>Options → Misc → Reset Render Filters On Load</b></li>
 			<li><b>Options → Controls</b> — open the controls dialog and check the <b>Viewport Controls</b> tab for a full shortcut list</li>
 		</ul>

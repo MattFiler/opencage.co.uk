@@ -95,6 +95,9 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#proxy-entities">Proxy Entities</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#script-editor"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>The Script Editor</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#interface-overview">Interface Overview</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#inspector">The Entity Inspector</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#node-annotations">Reading the Flowgraph</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#copy-paste">Copying &amp; Pasting</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#creating-script">Creating a Script</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#node-types">Node Types</a></li>
 
@@ -231,14 +234,53 @@
 		<ul>
 			<li><b>[1] Entity List</b> - This shows you every entity within the current composite separated by type, with various additional information.</li>
 			<li><b>[2] Flowgraph</b> - This contains the composite's flowgraphs, creating links between entities to drive logic (more later!).</li>
-			<li><b>[3] Entity Inspector</b> - This holds information about the selected entity, and allows you to add/remove/modify associated parameters.</li>
+			<li><b>[3] Entity Inspector</b> - This holds information about the selected entity, and is where you modify its parameters (see <a href="#inspector">The Entity Inspector</a> below).</li>
 			<li><b>[4] Composite Browser</b> - This contains all composites available within the current level (note, if you don't like this layout, navigate to Options > Composite Display, and uncheck 'Use File Browser Composite Viewer')</li>
 		</ul>
+		<p>Alongside those, several other panels can be docked wherever you like them: the 3D <a href="/docs/level-viewer/">Viewport</a>, <b>Search</b>, the <b>Entity Palette</b> (drag new function and variable entities straight onto the flowgraph, with a frequently-used list), and <b>Render Filters</b>. Composites can be dragged from the composite browser onto the flowgraph to create an instance of them.</p>
 		<p>By default, when you load a level in the script editor you'll be presented with its root composite. You can opt to either step in to composite instances within the root composite by selecting the instance entities and pressing the "Go" button in the entity inspector, or by searching for composites within the composite browser and selecting them from there. To select an entity, either click on it within the entity list, or select one of its nodes within the flowgraph.</p>
 		<p>The flowgraph area can be utilised to create links between entities to drive logic. For example, I could create a DebugCheckpoint entity which can be triggered from the in-game "Debug Checkpoints" menu. When that checkpoint is triggered, the entity's "on_checkpoint" pin is activated. I can hook other entities to that pin within the flowgraph to trigger additional logic when that happens. If you've ever used Blueprint or any other node-based scripting system this should be very familiar to you!</p>
 		<p>A composite can have any number of flowgraphs contained within it to define entity connections - typically it's best practice to keep similar logic contained within the same flowgraph (for example, all audio logic would usually be kept within an audio flowgraph within a composite). An entity can have any number of nodes within any of the composite's flowgraphs. You can easily locate nodes for entities by selecting the entity and pressing the 'References' button within the inspector. By default, selecting an entity will highlight the node for it within your active flowgraph, or take you to another flowgraph that contains it if it has no node within your current flowgraph.</p>
 		<p>Find the full controls for quickly navigating the flowgraph interface within the "Controls" menu tab in the script editor.</p>
 		<p>The whole script editor interface is resizable, dockable, and customisable. Your customisations will save between sessions. Find a variety of options for additional UI customisation within the "Options" menu tab.</p>
+	</section>
+
+    <section class="docs-section" id="inspector">
+        <h2 class="section-heading">The Entity Inspector</h2>
+		<p>Select an entity and its parameters fill the inspector. There's no longer a separate "Manage Parameters" step — <b>every parameter the entity has is shown at once</b>, whether or not it's been given a value.</p>
+		<p>Parameters are <b>grouped by the entity they originate from</b>. An entity inherits parameters through the type hierarchy, and the grouping makes that visible: you can see at a glance which parameters belong to the specific function type you're using and which come from further up.</p>
+		<p>The grid tells you the state of each parameter as well as its value:</p>
+		<ul>
+			<li><b>Bold</b> — this parameter has been changed from its default. Right-click it and choose <b>Reset to Default</b> to put it back (on an alias, that removes the override rather than resetting a value).</li>
+			<li><b>Blue value cell</b> — this parameter is fed by a link on the flowgraph. Whatever the inspector shows is ignored at runtime, because the link wins.</li>
+			<li><b>Orange value cell</b> — this parameter is overridden by an alias elsewhere. Again, what you see here isn't necessarily what the game uses.</li>
+		</ul>
+		<p>Those two highlights are worth taking seriously: "I changed the value and nothing happened" is nearly always one of them.</p>
+		<p>The inspector also handles <b>multiple selections</b>. Select several entities and those of the same type are grouped together so you can edit them in one go; anything of a different type gets its own tab. Highlights aren't shown while multi-editing, since a status that's true of one entity may not be true of the others.</p>
+	</section>
+
+    <section class="docs-section" id="node-annotations">
+        <h2 class="section-heading">Reading the Flowgraph</h2>
+		<p>Nodes carry small annotations that tell you something about the entity behind them:</p>
+		<ul>
+			<li><b>(P)</b> — this entity is proxied somewhere else, so something outside this composite is driving it.</li>
+			<li><b>(*)</b> — this entity has more than one node. Editing links on this node isn't the whole picture; use <b>References</b> in the inspector to find the others.</li>
+		</ul>
+		<p>Pins are positioned with context in mind — a relay always has its output in line with its input, so a chain of them reads as a straight line.</p>
+		<p>When something you've highlighted is off screen, an arrow points towards it from the edge of the canvas rather than leaving you to hunt for it.</p>
+		<p>The <b>back button</b> takes you to the previously loaded composite, and the dropdown next to it lists the last five, so retracing your steps through a deep hierarchy doesn't mean searching for each one again.</p>
+	</section>
+
+    <section class="docs-section" id="copy-paste">
+        <h2 class="section-heading">Copying &amp; Pasting</h2>
+		<p>Select one or more nodes and <b>Ctrl+C</b> / <b>Ctrl+V</b> copies and pastes them. This replaces the old Duplicate option and does considerably more:</p>
+		<ul>
+			<li>Copied entities keep <b>all of their parameters</b>.</li>
+			<li>Pasting on the flowgraph brings the <b>links between the copied entities</b> and their node layout with them.</li>
+			<li>Entities can be pasted into <b>any other composite</b>, not just the one you copied from.</li>
+			<li>Right-click and <b>Paste References</b> instead to create new nodes pointing at the <i>same</i> entities rather than copies of them — or aliases to them, if you're pasting into a different composite.</li>
+		</ul>
+		<p>The same clipboard works in the <a href="/docs/level-viewer/">Viewport</a>: select an entity there, copy, and paste it on the flowgraph or back into the 3D view.</p>
 	</section>
 
     <section class="docs-section" id="creating-script">

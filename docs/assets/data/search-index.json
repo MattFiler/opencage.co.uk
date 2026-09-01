@@ -1,86 +1,5 @@
 [
     {
-        "url":  "/docs/animation-archive-editor/",
-        "description":  "How OpenCAGE\u0027s Animation Archive Editor browses ANIMATION.PAK — Havok animation content, limits, and raw extract/repack.",
-        "type":  "page",
-        "category":  "Getting Started",
-        "keywords":  [
-            "animation",
-            "animation pak",
-            "havok",
-            "archive",
-            "extract",
-            "repack"
-        ],
-        "title":  "Animation Archive Editor"
-    },
-    {
-        "url":  "/docs/animation-archive-editor/#export-replace",
-        "description":  "On Animation Archive Editor",
-        "type":  "symbol",
-        "category":  "Animation Archive Editor",
-        "keywords":  [
-            "export-replace",
-            "animation editor"
-        ],
-        "title":  "Export \u0026 Replace"
-    },
-    {
-        "url":  "/docs/animation-archive-editor/#import-delete",
-        "description":  "On Animation Archive Editor",
-        "type":  "symbol",
-        "category":  "Animation Archive Editor",
-        "keywords":  [
-            "import-delete",
-            "animation editor"
-        ],
-        "title":  "Import, Delete \u0026 Export All"
-    },
-    {
-        "url":  "/docs/animation-archive-editor/#intro",
-        "description":  "On Animation Archive Editor",
-        "type":  "symbol",
-        "category":  "Animation Archive Editor",
-        "keywords":  [
-            "intro",
-            "animation editor"
-        ],
-        "title":  "Introduction"
-    },
-    {
-        "url":  "/docs/animation-archive-editor/#caveat",
-        "description":  "On Animation Archive Editor",
-        "type":  "symbol",
-        "category":  "Animation Archive Editor",
-        "keywords":  [
-            "caveat",
-            "animation editor"
-        ],
-        "title":  "Important Limits"
-    },
-    {
-        "url":  "/docs/animation-archive-editor/#using",
-        "description":  "On Animation Archive Editor",
-        "type":  "symbol",
-        "category":  "Animation Archive Editor",
-        "keywords":  [
-            "using",
-            "animation editor"
-        ],
-        "title":  "Using the Editor"
-    },
-    {
-        "url":  "/docs/animation-archive-editor/#anim-trees",
-        "description":  "On Animation Archive Editor",
-        "type":  "symbol",
-        "category":  "Animation Archive Editor",
-        "keywords":  [
-            "anim-trees",
-            "animation editor"
-        ],
-        "title":  "Animation Trees"
-    },
-    {
         "url":  "/docs/material-editor/",
         "description":  "How to use OpenCAGE\u0027s Material Editor to edit level visual materials, samplers, features, and shader parameters.",
         "type":  "page",
@@ -152,18 +71,6 @@
             "material editor"
         ],
         "title":  "Parameters"
-    },
-    {
-        "url":  "/docs/material-editor/#duplicating",
-        "description":  "On Material Editor",
-        "type":  "symbol",
-        "category":  "Material Editor",
-        "keywords":  [
-            "duplicating",
-            "clone",
-            "material editor"
-        ],
-        "title":  "Duplicating"
     },
     {
         "url":  "/docs/material-editor/#saving",
@@ -18015,12 +17922,12 @@
         "title":  "Backstage"
     },
     {
-        "url":  "/docs/configs/difficulty-settings/#alien-config-backstage-vent-killtraps",
+        "url":  "/docs/configs/difficulty-settings/#alien-config-backstage-killtraps",
         "description":  "Difficulty Settings",
         "type":  "symbol",
         "category":  "Configuration",
         "keywords":  [
-            "alien-config-backstage-vent-killtraps",
+            "alien-config-backstage-killtraps",
             "difficulty settings",
             "config",
             "configuration"
@@ -21063,14 +20970,1123 @@
         "title":  "ANIM_Spherical"
     },
     {
-        "description":  "On Animation Archive Editor",
+        "url":  "/docs/save-and-build/",
+        "description":  "How OpenCAGE\u0027s Save and Build option regenerates a level\u0027s instanced data - lighting, navmesh, collision, cover, and sound.",
+        "type":  "page",
+        "category":  "Getting Started",
         "keywords":  [
-            "contents",
-            "animation archive editor"
+            "save and build",
+            "instancing",
+            "build level",
+            "bake",
+            "navmesh",
+            "radiosity",
+            "collision",
+            "cover",
+            "sound network",
+            "instanced",
+            "instance",
+            "build",
+            "regenerate"
         ],
-        "type":  "heading",
-        "category":  "Animation Archive Editor",
-        "title":  "Archive Contents",
-        "url":  "/docs/animation-archive-editor/#contents"
+        "title":  "Save and Build"
+    },
+    {
+        "url":  "/docs/save-and-build/#intro",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "intro",
+            "save and build"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/save-and-build/#which",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "which",
+            "save level",
+            "when to build",
+            "save and build"
+        ],
+        "title":  "Which Save to Use"
+    },
+    {
+        "url":  "/docs/save-and-build/#generated",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "generated",
+            "generated",
+            "derived data",
+            "save and build"
+        ],
+        "title":  "What Gets Built"
+    },
+    {
+        "url":  "/docs/save-and-build/#gen-geometry",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "gen-geometry",
+            "instance materials",
+            "zones",
+            "environment maps",
+            "bvh",
+            "save and build"
+        ],
+        "title":  "Geometry \u0026 Materials"
+    },
+    {
+        "url":  "/docs/save-and-build/#gen-physics",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "gen-physics",
+            "collision",
+            "physics",
+            "havok",
+            "save and build"
+        ],
+        "title":  "Collision \u0026 Physics"
+    },
+    {
+        "url":  "/docs/save-and-build/#gen-ai",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "gen-ai",
+            "navmesh",
+            "cover",
+            "job positions",
+            "spotting",
+            "assault",
+            "save and build"
+        ],
+        "title":  "NPC Navigation \u0026 Jobs"
+    },
+    {
+        "url":  "/docs/save-and-build/#gen-lighting",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "gen-lighting",
+            "radiosity",
+            "alphalight",
+            "lightmap",
+            "save and build"
+        ],
+        "title":  "Lighting"
+    },
+    {
+        "url":  "/docs/save-and-build/#gen-sound",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "gen-sound",
+            "sound network",
+            "reverb",
+            "sound spaces",
+            "save and build"
+        ],
+        "title":  "Sound"
+    },
+    {
+        "url":  "/docs/save-and-build/#radiosity",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "radiosity",
+            "radiosity",
+            "patch",
+            "regenerate",
+            "meta marker",
+            "save and build"
+        ],
+        "title":  "How Radiosity is Handled"
+    },
+    {
+        "url":  "/docs/save-and-build/#checking",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "checking",
+            "state info",
+            "render filters",
+            "verify",
+            "save and build"
+        ],
+        "title":  "Checking the Result"
+    },
+    {
+        "url":  "/docs/save-and-build/#tips",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "tips",
+            "troubleshooting",
+            "save and build"
+        ],
+        "title":  "Tips \u0026 Troubleshooting"
+    },
+    {
+        "url":  "/docs/animation-editor/",
+        "description":  "How to use OpenCAGE\u0027s Animation Editor to browse, preview, export and import Alien: Isolation animation clips.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "animation",
+            "animations",
+            "animation pak",
+            "clip",
+            "preview",
+            "export",
+            "import",
+            "retarget",
+            "skeleton",
+            "rig",
+            "animation archive",
+            "animation archive editor",
+            "havok",
+            "anim"
+        ],
+        "title":  "Animation Editor"
+    },
+    {
+        "url":  "/docs/animation-editor/#intro",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "intro",
+            "animation editor"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/animation-editor/#structure",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "structure",
+            "animation set",
+            "context",
+            "clip",
+            "skeleton",
+            "animation editor"
+        ],
+        "title":  "How Animations are Organised"
+    },
+    {
+        "url":  "/docs/animation-editor/#browsing",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "browsing",
+            "browse",
+            "sort",
+            "animation editor"
+        ],
+        "title":  "Browsing"
+    },
+    {
+        "url":  "/docs/animation-editor/#browsing-sets",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "browsing-sets",
+            "animation set",
+            "context",
+            "animation editor"
+        ],
+        "title":  "Sets \u0026 Contexts"
+    },
+    {
+        "url":  "/docs/animation-editor/#browsing-clips",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "browsing-clips",
+            "clips",
+            "events",
+            "metadata",
+            "additive",
+            "animation editor"
+        ],
+        "title":  "The Clip List"
+    },
+    {
+        "url":  "/docs/animation-editor/#browsing-search",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "browsing-search",
+            "search",
+            "find",
+            "animation editor"
+        ],
+        "title":  "Searching"
+    },
+    {
+        "url":  "/docs/animation-editor/#preview",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "preview",
+            "preview",
+            "playback",
+            "markers",
+            "mesh",
+            "rig",
+            "animation editor"
+        ],
+        "title":  "Previewing"
+    },
+    {
+        "url":  "/docs/animation-editor/#export",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "export",
+            "export",
+            "fbx",
+            "gltf",
+            "collada",
+            "animation editor"
+        ],
+        "title":  "Exporting"
+    },
+    {
+        "url":  "/docs/animation-editor/#export-rig",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "export-rig",
+            "skeleton",
+            "rig",
+            "animation editor"
+        ],
+        "title":  "Choosing a Rig"
+    },
+    {
+        "url":  "/docs/animation-editor/#export-mode",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "export-mode",
+            "root motion",
+            "round trip",
+            "animation editor"
+        ],
+        "title":  "Export Modes"
+    },
+    {
+        "url":  "/docs/animation-editor/#import",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "import",
+            "import",
+            "fbx",
+            "gltf",
+            "collada",
+            "animation editor"
+        ],
+        "title":  "Importing"
+    },
+    {
+        "url":  "/docs/animation-editor/#import-options",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "import-options",
+            "root bone",
+            "frame rate",
+            "additive",
+            "animation editor"
+        ],
+        "title":  "Import Options"
+    },
+    {
+        "url":  "/docs/animation-editor/#import-retarget",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "import-retarget",
+            "retarget",
+            "unreal mannequin",
+            "ue mannequin",
+            "skeleton",
+            "animation editor"
+        ],
+        "title":  "Retargeting"
+    },
+    {
+        "url":  "/docs/animation-editor/#picker",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "picker",
+            "animation parameter",
+            "picker",
+            "animation editor"
+        ],
+        "title":  "Using it as a Picker"
+    },
+    {
+        "url":  "/docs/blend-set-editor/",
+        "description":  "How to use OpenCAGE\u0027s Blend Set Editor to edit the parametric animation blends in ANIMATION.PAK.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "blend set",
+            "blend",
+            "parametric",
+            "aim",
+            "animation",
+            "clips",
+            "animation pak",
+            "blend sets"
+        ],
+        "title":  "Blend Set Editor"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#intro",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "intro",
+            "blend set editor"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#limits",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "limits",
+            "baked",
+            "blend points",
+            "limits",
+            "blend set editor"
+        ],
+        "title":  "What Can Be Changed"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#layout",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "layout",
+            "layout",
+            "blend set editor"
+        ],
+        "title":  "Interface Layout"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#layout-tree",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "layout-tree",
+            "search",
+            "animation set",
+            "context",
+            "blend set editor"
+        ],
+        "title":  "Blend Set List"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#layout-clips",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "layout-clips",
+            "clips",
+            "mirrored",
+            "length",
+            "blend set editor"
+        ],
+        "title":  "Clips"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#layout-points",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "layout-points",
+            "blend points",
+            "blend space",
+            "speed",
+            "blend set editor"
+        ],
+        "title":  "Blend Points"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#layout-users",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "layout-users",
+            "characters",
+            "give to character",
+            "blend set editor"
+        ],
+        "title":  "Used By"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#editing",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "editing",
+            "edit",
+            "clip picker",
+            "blend set editor"
+        ],
+        "title":  "Editing"
+    },
+    {
+        "url":  "/docs/blend-set-editor/#saving",
+        "description":  "On Blend Set Editor",
+        "type":  "symbol",
+        "category":  "Blend Set Editor",
+        "keywords":  [
+            "saving",
+            "save",
+            "animation pak",
+            "blend set editor"
+        ],
+        "title":  "Saving"
+    },
+    {
+        "url":  "/docs/localisation-editor/",
+        "description":  "How to use OpenCAGE\u0027s Localisation Editor to edit and add the game\u0027s on-screen text across all nine languages.",
+        "type":  "page",
+        "category":  "Configuration",
+        "keywords":  [
+            "localisation",
+            "localization",
+            "text",
+            "strings",
+            "translation",
+            "subtitles",
+            "languages"
+        ],
+        "title":  "Localisation Editor"
+    },
+    {
+        "url":  "/docs/localisation-editor/#intro",
+        "description":  "On Localisation Editor",
+        "type":  "symbol",
+        "category":  "Localisation Editor",
+        "keywords":  [
+            "intro",
+            "localisation editor"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/localisation-editor/#structure",
+        "description":  "On Localisation Editor",
+        "type":  "symbol",
+        "category":  "Localisation Editor",
+        "keywords":  [
+            "structure",
+            "text db",
+            "string id",
+            "languages",
+            "localisation editor"
+        ],
+        "title":  "How Game Text is Stored"
+    },
+    {
+        "url":  "/docs/localisation-editor/#finding",
+        "description":  "On Localisation Editor",
+        "type":  "symbol",
+        "category":  "Localisation Editor",
+        "keywords":  [
+            "finding",
+            "search",
+            "string id",
+            "localisation editor"
+        ],
+        "title":  "Finding a String"
+    },
+    {
+        "url":  "/docs/localisation-editor/#editing",
+        "description":  "On Localisation Editor",
+        "type":  "symbol",
+        "category":  "Localisation Editor",
+        "keywords":  [
+            "editing",
+            "edit",
+            "save all languages",
+            "localisation editor"
+        ],
+        "title":  "Editing a String"
+    },
+    {
+        "url":  "/docs/localisation-editor/#adding",
+        "description":  "On Localisation Editor",
+        "type":  "symbol",
+        "category":  "Localisation Editor",
+        "keywords":  [
+            "adding",
+            "add new string",
+            "new string",
+            "localisation editor"
+        ],
+        "title":  "Adding a String"
+    },
+    {
+        "url":  "/docs/localisation-editor/#using",
+        "description":  "On Localisation Editor",
+        "type":  "symbol",
+        "category":  "Localisation Editor",
+        "keywords":  [
+            "using",
+            "scripts",
+            "string id",
+            "objectives",
+            "localisation editor"
+        ],
+        "title":  "Using Strings in Scripts"
+    },
+    {
+        "url":  "/docs/localisation-editor/#tips",
+        "description":  "On Localisation Editor",
+        "type":  "symbol",
+        "category":  "Localisation Editor",
+        "keywords":  [
+            "tips",
+            "tips",
+            "fonts",
+            "localisation editor"
+        ],
+        "title":  "Tips \u0026 Caveats"
+    },
+    {
+        "url":  "/docs/sound-events/",
+        "description":  "Previewing, exporting and replacing Alien: Isolation sound events from the sound event selector.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "sound",
+            "audio",
+            "wwise",
+            "sound event",
+            "soundbank",
+            "preview",
+            "import",
+            "export",
+            "replace",
+            "speech",
+            "dialogue",
+            "voice",
+            "lines"
+        ],
+        "title":  "Sound Events"
+    },
+    {
+        "url":  "/docs/sound-events/#intro",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "intro",
+            "sound events"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/sound-events/#events",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "events",
+            "wwise",
+            "soundbank",
+            "variation",
+            "sound events"
+        ],
+        "title":  "Events, Banks \u0026 Variations"
+    },
+    {
+        "url":  "/docs/sound-events/#scripting",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "scripting",
+            "sound",
+            "soundloadbank",
+            "load bank",
+            "play sound",
+            "entities",
+            "sound events",
+            "speech",
+            "dialogue"
+        ],
+        "title":  "Playing a Sound in a Script"
+    },
+    {
+        "url":  "/docs/sound-events/#scripting-speech",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "scripting-speech",
+            "speech",
+            "speechscript",
+            "dialogue",
+            "lines",
+            "characters",
+            "conversation",
+            "sound events"
+        ],
+        "title":  "Dialogue"
+    },
+    {
+        "url":  "/docs/sound-events/#preview",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "preview",
+            "play",
+            "shuffle",
+            "auto-play",
+            "sound events"
+        ],
+        "title":  "Previewing a Sound"
+    },
+    {
+        "url":  "/docs/sound-events/#export",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "export",
+            "export",
+            "wav",
+            "sound events"
+        ],
+        "title":  "Exporting Audio"
+    },
+    {
+        "url":  "/docs/sound-events/#replace",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "replace",
+            "replace",
+            "import",
+            "wav",
+            "sound events"
+        ],
+        "title":  "Replacing Audio"
+    },
+    {
+        "url":  "/docs/sound-events/#replace-prep",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "replace-prep",
+            "wav",
+            "vorbis",
+            "adpcm",
+            "pcm",
+            "codec",
+            "sound events"
+        ],
+        "title":  "Preparing a WAV"
+    },
+    {
+        "url":  "/docs/sound-events/#replace-copies",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "replace-copies",
+            "soundbanks",
+            "copies",
+            "sound events"
+        ],
+        "title":  "Every Copy is Replaced"
+    },
+    {
+        "url":  "/docs/sound-events/#metadata",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "metadata",
+            "metadata",
+            "soundbanks",
+            "sound events"
+        ],
+        "title":  "Soundbank Metadata"
+    },
+    {
+        "url":  "/docs/composite-porting/",
+        "description":  "How to port a composite and all of its assets from one Alien: Isolation level into another.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "port",
+            "porting",
+            "composite",
+            "transfer",
+            "copy between levels",
+            "assets"
+        ],
+        "title":  "Composite Porting"
+    },
+    {
+        "url":  "/docs/composite-porting/#intro",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "intro",
+            "composite porting"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/composite-porting/#options",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "options",
+            "port to all levels",
+            "overwrite",
+            "build after port",
+            "composite porting"
+        ],
+        "title":  "Port Options"
+    },
+    {
+        "url":  "/docs/composite-porting/#what",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "what",
+            "models",
+            "materials",
+            "collision",
+            "physics",
+            "resources",
+            "composite porting"
+        ],
+        "title":  "What Comes With It"
+    },
+    {
+        "url":  "/docs/composite-porting/#after",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "after",
+            "build",
+            "save and build",
+            "composite porting"
+        ],
+        "title":  "After the Port"
+    },
+    {
+        "url":  "/docs/composite-porting/#tips",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "tips",
+            "tips",
+            "backup",
+            "composite porting"
+        ],
+        "title":  "Tips \u0026 Caveats"
+    },
+    {
+        "url":  "/docs/configs/hair-and-skin-shading/",
+        "description":  "A guide to modifying the game\u0027s hair and skin shading settings through OpenCAGE.",
+        "type":  "page",
+        "category":  "Configuration",
+        "keywords":  [
+            "hair",
+            "skin",
+            "shading",
+            "subsurface",
+            "scattering",
+            "specular",
+            "characters"
+        ],
+        "title":  "Hair and Skin Shading"
+    },
+    {
+        "url":  "/docs/configs/hair-and-skin-shading/#intro",
+        "description":  "On Hair and Skin Shading",
+        "type":  "symbol",
+        "category":  "Hair and Skin Shading",
+        "keywords":  [
+            "intro",
+            "hair and skin shading"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/configs/hair-and-skin-shading/#skin",
+        "description":  "On Hair and Skin Shading",
+        "type":  "symbol",
+        "category":  "Hair and Skin Shading",
+        "keywords":  [
+            "skin",
+            "subsurface",
+            "scattering radius",
+            "scattering saturation",
+            "hair and skin shading"
+        ],
+        "title":  "Skin"
+    },
+    {
+        "url":  "/docs/configs/hair-and-skin-shading/#hair",
+        "description":  "On Hair and Skin Shading",
+        "type":  "symbol",
+        "category":  "Hair and Skin Shading",
+        "keywords":  [
+            "hair",
+            "specular",
+            "absorption",
+            "occlusion",
+            "softening",
+            "alpha threshold",
+            "hair and skin shading"
+        ],
+        "title":  "Hair"
+    },
+    {
+        "url":  "/docs/options/#dark-mode",
+        "description":  "On Options",
+        "type":  "symbol",
+        "category":  "Options",
+        "keywords":  [
+            "dark-mode",
+            "dark mode",
+            "theme",
+            "options"
+        ],
+        "title":  "Dark Mode"
+    },
+    {
+        "url":  "/docs/level-viewer/#create-mode",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "create-mode",
+            "create",
+            "place entity",
+            "viewport"
+        ],
+        "title":  "Creating Entities"
+    },
+    {
+        "url":  "/docs/level-viewer/#copy-paste",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "copy-paste",
+            "copy",
+            "paste",
+            "viewport"
+        ],
+        "title":  "Copy \u0026 Paste"
+    },
+    {
+        "url":  "/docs/level-viewer/#scene-filters",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "scene-filters",
+            "occlusion",
+            "collision",
+            "render filters",
+            "viewport"
+        ],
+        "title":  "Occlusion \u0026 Collision Meshes"
+    },
+    {
+        "url":  "/docs/level-viewer/#state-info",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "state-info",
+            "navmesh",
+            "cover",
+            "state info",
+            "viewport"
+        ],
+        "title":  "Navmesh \u0026 Cover"
+    },
+    {
+        "url":  "/docs/texture-editor/#parts",
+        "description":  "On Texture Editor",
+        "type":  "symbol",
+        "category":  "Texture Editor",
+        "keywords":  [
+            "parts",
+            "streamed",
+            "persistent",
+            "mips",
+            "texture editor"
+        ],
+        "title":  "Streamed \u0026 Persistent"
+    },
+    {
+        "url":  "/docs/texture-editor/#cubemaps",
+        "description":  "On Texture Editor",
+        "type":  "symbol",
+        "category":  "Texture Editor",
+        "keywords":  [
+            "cubemaps",
+            "cubemap",
+            "environment map",
+            "texture editor"
+        ],
+        "title":  "Cubemaps"
+    },
+    {
+        "url":  "/docs/texture-editor/#formats",
+        "description":  "On Texture Editor",
+        "type":  "symbol",
+        "category":  "Texture Editor",
+        "keywords":  [
+            "formats",
+            "dds",
+            "png",
+            "astc",
+            "bc7",
+            "formats",
+            "texture editor"
+        ],
+        "title":  "Supported Formats"
+    },
+    {
+        "url":  "/docs/material-editor/#permutations",
+        "description":  "On Material Editor",
+        "type":  "symbol",
+        "category":  "Material Editor",
+        "keywords":  [
+            "permutations",
+            "permutation",
+            "ubershader",
+            "feature mask",
+            "shader database",
+            "material editor"
+        ],
+        "title":  "Shader Permutations"
+    },
+    {
+        "url":  "/docs/material-editor/#creating",
+        "description":  "On Material Editor",
+        "type":  "symbol",
+        "category":  "Material Editor",
+        "keywords":  [
+            "creating",
+            "new material",
+            "duplicate",
+            "clone",
+            "material editor"
+        ],
+        "title":  "Creating Materials"
+    },
+    {
+        "url":  "/docs/scripting-intro/#inspector",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "inspector",
+            "inspector",
+            "parameters",
+            "multi-select",
+            "reset to default",
+            "cathode scripting introduction"
+        ],
+        "title":  "The Entity Inspector"
+    },
+    {
+        "url":  "/docs/scripting-intro/#node-annotations",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "node-annotations",
+            "flowgraph",
+            "annotations",
+            "proxy",
+            "back button",
+            "cathode scripting introduction"
+        ],
+        "title":  "Reading the Flowgraph"
+    },
+    {
+        "url":  "/docs/scripting-intro/#copy-paste",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "copy-paste",
+            "copy",
+            "paste",
+            "paste references",
+            "duplicate",
+            "cathode scripting introduction"
+        ],
+        "title":  "Copying \u0026 Pasting"
     }
 ]
