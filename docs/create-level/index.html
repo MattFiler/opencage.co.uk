@@ -3,20 +3,20 @@
 <head>
     <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
     <meta name="color-scheme" content="light dark">
-    <title>OpenCAGE: Composite Porting</title>
+    <title>OpenCAGE: Create Level</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to import and export composites, and every asset they depend on, between Alien: Isolation levels with OpenCAGE.">
+    <meta name="description" content="How to create a brand-new Alien: Isolation level with OpenCAGE, seed it with composites from other levels, and launch into it.">
     <meta name="author" content="Matt Filer">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
-	<meta name="twitter:title" content="OpenCAGE: Composite Porting" />
-	<meta name="twitter:description" content="How to import and export composites, and every asset they depend on, between Alien: Isolation levels with OpenCAGE." />
+	<meta name="twitter:title" content="OpenCAGE: Create Level" />
+	<meta name="twitter:description" content="How to create a brand-new Alien: Isolation level with OpenCAGE, seed it with composites from other levels, and launch into it." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
 
@@ -52,9 +52,6 @@
 		}
 		.docs-caveat p {
 			margin: 0;
-		}
-		.docs-caveat + .docs-caveat {
-			margin-top: 0.75rem;
 		}
     </style>
 
@@ -95,10 +92,9 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
 
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#export"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Export Composites</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#import"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Import Composites</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#what"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What Comes With It</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#after"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>After the Port</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#creating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Creating a Level</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#contents"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What a New Level Contains</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#after"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>After Creating It</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#tips"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Tips &amp; Caveats</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
@@ -109,7 +105,7 @@
 	<nav class="breadcrumb_parent">
 	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
 		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Composite Porting</li>
+		<li class="breadcrumb-item active" aria-current="page">Create Level</li>
 	  </ol>
 	</nav>
 </article>
@@ -120,81 +116,56 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Every level in Alien: Isolation carries its own copy of everything it uses. A model in one level's data isn't visible to another, so copying a composite between levels means copying every asset it depends on too.</p>
-		<p><b>File → Port Composites</b> does that for you, in whichever direction you need:</p>
-		<ul>
-			<li><b>Export Composites</b> — push composites from the level you have open into one or more other levels on disk. Each destination is loaded, written to and saved.</li>
-			<li><b>Import Composites</b> — pull composites from any other levels into the level you have open. The import happens in memory, and nothing touches disk until you save.</li>
-		</ul>
-		<p>Every resource type a composite can hold is supported, so every composite can be ported. The same import picker is also how <a href="/docs/create-level/">Create Level</a> seeds a brand-new level.</p>
+		<p>Every level OpenCAGE could open used to be one that shipped with the game. <b>File → Create Level</b> makes a new one from scratch: it builds the level folder, seeds it with the scripts and data every level needs, optionally brings composites (and everything they use) across from other levels, registers the level with the game, and opens it in the editor.</p>
+		<p>A new level is a real level as far as the game is concerned. It lives in <code>DATA/ENV/&lt;NAME&gt;</code> beside the shipped ones, it appears in the <a href="/docs/launch-game/">Launch Game</a> level list and the <a href="/docs/backup-manager/">Backup Manager</a>, and it goes through <a href="/docs/save-and-build/">Save and Build</a> like any other.</p>
     </section>
 </article>
 
-<article class="docs-article" id="export">
+<article class="docs-article" id="creating">
     <header class="docs-header">
-<h1 class="docs-heading">Export Composites</h1>
+<h1 class="docs-heading">Creating a Level</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The list shows the composites of the level you have open. Tick the ones to port — the filter box narrows the list as you type, and <b>Check all shown</b> / <b>Uncheck all shown</b> act on whatever the filter is currently showing. Then choose where they go:</p>
+		<p>Open <b>File → Create Level</b>. The dialog has three parts:</p>
 		<ul>
-			<li><b>Port composites to level</b> — the destination. The level you currently have open isn't offered, for obvious reasons.</li>
-			<li><b>Port to all levels</b> — port into every other level in the game in one go. The destination list is disabled when this is ticked. Useful for something you want available everywhere; slow, because each level is loaded and saved in turn.</li>
-			<li><b>Copy all composites referenced by these composites</b> — bring nested composites across as well. Without this, a composite that instances others arrives incomplete.</li>
-			<li><b>Overwrite existing destination composites</b> — if the destination already has a composite with the same ID, replace it rather than leaving the existing one alone. This is how you push an updated version of something you've already ported.</li>
-			<li><b>Overwrite existing destination assets</b> — same idea for the models, materials, textures and collision the composites reference.</li>
-			<li><b>Build After Port</b> — run a full <a href="/docs/save-and-build/">Save and Build</a> on each destination instead of a plain save, so the ported geometry gets lighting, collision, navmesh and the rest. See <a href="#after">After the Port</a>.</li>
+			<li><b>Level name</b> — letters, digits and underscores, up to 32 characters. It's stored upper-case, and a name that already exists is refused. The limit is real: <a href="/docs/launch-game/">Launch Game</a> boots the game straight into a level by writing its name into the game executable, and that space is fixed.</li>
+			<li><b>Composites to import (optional)</b> — click <b>Choose…</b> to open the composite picker. Pick a source level from the dropdown, tick the composites you want (there's a filter box, plus <b>Check all shown</b> / <b>Uncheck all shown</b>), then switch to another level and tick more if you like — a single pick can span any number of levels. Tick <b>Also bring composites they instance</b> to have nested composites come along. The summary under the button lists what you've chosen per level; <b>Clear</b> empties it. With nothing chosen, the level starts with just GLOBAL, PAUSEMENU and the required assets.</li>
+			<li><b>Create Level</b> — Alien: Isolation is closed if it's running, then a progress window follows each stage: creating the level, porting each source level's composites, and saving. A summary tells you what arrived, and the new level loads in the editor.</li>
 		</ul>
-		<p><b>Port Now</b> starts the port. Alien: Isolation is closed if it's running, then each destination level is loaded, the composites and their assets are transferred, and the level is saved — with a progress window for each stage. The summary at the end counts what was ported, including the composites yours instance.</p>
+		<p>The picker is the same <b>Import Composites</b> dialog described under <a href="/docs/composite-porting/#import">Composite Porting</a>, minus the overwrite options — a level that doesn't exist yet has nothing to overwrite.</p>
     </section>
 </article>
 
-<article class="docs-article" id="import">
+<article class="docs-article" id="contents">
     <header class="docs-header">
-<h1 class="docs-heading">Import Composites</h1>
+<h1 class="docs-heading">What a New Level Contains</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Pick a source from the <b>Level</b> dropdown and its composites are listed straight from that level's composite table — the level itself isn't loaded, so switching between sources is quick. Tick what you want (with the same filter and check-all controls as the export dialog), then switch to another level and tick more: one import can draw on any number of levels, and the summary line keeps count.</p>
+		<p>The level is built from <b>FRONTEND</b>, the menu level nothing else edits. A handful of a level's files can't be generated from nothing — behaviour trees, sound lookups, galaxy data, soundbank tables, material mappings and the collision and physics scaffolds — and those are copied from it. Everything else starts empty: no models, textures, materials, navmesh, lighting or sound network until you add geometry and build.</p>
+		<p>On the script side you get:</p>
 		<ul>
-			<li><b>Also bring composites they instance</b> — nested composites come along too.</li>
-			<li><b>Overwrite composites already here</b> — replace a composite the open level already has with the imported one. If it's open in a tab, that tab is refreshed.</li>
-			<li><b>Overwrite existing assets</b> — likewise for the models, materials, textures and collision they use.</li>
+			<li><b>GLOBAL</b> and <b>PAUSEMENU</b> — the engine instances both on every level, so they're brought across intact</li>
+			<li>The <b>required asset</b> composites the game expects to find</li>
+			<li>An empty <b>root composite</b> named after the level — this is the one you'll open first and build your level in</li>
+			<li>Anything you chose to import, with its models, materials, textures, collision, physics and animations, and its <a href="/docs/composite-porting/#what">flowgraph layouts</a>. Composites that arrive without saved layouts get the default pages.</li>
 		</ul>
-		<p><b>Import</b> ports everything into the level in the editor and refreshes the composite browser. A summary reports what arrived — composites, renderables, collision mappings, physics systems and animated models. Nothing has been written to disk at this point: save the level to keep it, or reload without saving to throw the import away.</p>
-		<div class="docs-caveat"><p>If an import stops part-way (the message will say so), the level in the editor may hold a partial import. Reload it without saving if in doubt.</p></div>
-    </section>
-</article>
-
-<article class="docs-article" id="what">
-    <header class="docs-header">
-<h1 class="docs-heading">What Comes With It</h1>
-    </header>
-
-	<section class="docs-section" style="padding-top:0;">
-		<p>A port carries far more than the script. Everything the composite's entities point at is brought across and rebound to the destination level's own indices:</p>
-		<ul>
-			<li><b>Models, materials, textures and shaders</b> — including the material remappings that decide what a model is actually drawn with</li>
-			<li><b>Renderable instances</b> — the link between a placed entity and the mesh it draws</li>
-			<li><b>Collision mappings and their Havok proxies</b> — including both the 32-bit and 64-bit collision data the game ships</li>
-			<li><b>Dynamic physics systems</b> — likewise, in both widths</li>
-			<li><b>Environment animations</b> — the animated-model records behind animated static geometry</li>
-			<li><b>Navmesh barriers, traversal segments and ExclusiveMaster state resources</b></li>
-			<li><b>Composite flowgraph layouts</b> — your node positions arrive with the composite rather than being lost</li>
-		</ul>
-		<p>Shared Havok proxies and physics systems are tracked as they're imported, so a composite that uses the same collision proxy in twenty places doesn't import twenty copies of it — and a composite instanced by several of the ones you picked is only ported once.</p>
+		<p>The level is also written into the game's package list straight away, so the game can find it without waiting for the next launch.</p>
     </section>
 </article>
 
 <article class="docs-article" id="after">
     <header class="docs-header">
-<h1 class="docs-heading">After the Port</h1>
+<h1 class="docs-heading">After Creating It</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>A ported composite has arrived in the destination level, but the destination level's <i>derived</i> data doesn't know about it yet — the new geometry has no baked lighting, the navmesh doesn't route around it, and the sound network hasn't seen it.</p>
-		<p>When exporting, tick <b>Build After Port</b> to have OpenCAGE run a build on each destination as part of the port. Otherwise — and always after an import, which only changes the level in the editor — use <b>File → Save and Build Level</b> yourself once the composite is placed where you want it.</p>
-		<p>Bear in mind that a build takes minutes per level. Porting to all levels <i>with</i> a build is an operation to start and walk away from.</p>
+		<ul>
+			<li><b>Add content.</b> Place entities with the <a href="/docs/level-viewer/#create-mode">Viewport's create mode</a>, drag composites from the Composite Browser into the Viewport or the flowgraph, import geometry with the <a href="/docs/model-editor/">Model Editor</a>, or pull more in with <b>File → Port Composites → Import Composites</b>.</li>
+			<li><b>Build it.</b> A new level has no navmesh, no collision or physics instances, no baked lighting and no sound network. <a href="/docs/save-and-build/">Save and Build</a> generates all of that from whatever you've placed — until you do, there's nothing to walk on.</li>
+			<li><b>Launch it.</b> In <a href="/docs/launch-game/">Launch Game</a>, tick <b>Load straight into a level</b> and pick your level from the list.</li>
+		</ul>
     </section>
 </article>
 
@@ -205,12 +176,10 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>Alien: Isolation is closed automatically</b> before a destination is written, since it holds write locks on level files.</li>
-			<li><b>Back up the destination first.</b> An export writes into other levels, and if you've ticked the overwrite options it will replace what's already there. The <a href="/docs/backup-manager/">Backup Manager</a> can snapshot every level at once.</li>
-			<li><b>Import when you want to look before you commit.</b> Because an import only changes the level in the editor, you can check the result in the <a href="/docs/level-viewer/">Viewport</a> and reload without saving if it isn't what you wanted.</li>
-			<li><b>Port the parent, not the pieces.</b> Porting a composite that instances others without the referenced-composites option gives you a composite whose instances point at nothing.</li>
-			<li><b>Re-porting replaces, if you let it.</b> To push an updated version of something you've already ported, tick both overwrite options — otherwise the existing copy in the destination wins.</li>
-			<li><b>Check what arrived before building.</b> It's much cheaper to fix a missing asset before a build than after one.</li>
+			<li><b>Start from something that stands up.</b> Importing a composite with floor and wall geometry (and its collision) at creation time is the quickest way to a level you can actually load into and walk around after a build.</li>
+			<li><b>Levels are keyed by folder name.</b> The game's text-database and package lists refer to a level by its folder, so pick a name you'll keep.</li>
+			<li><b>The base is the campaign variant.</b> FRONTEND carries the campaign versions of the shared sound and material tables; a level meant to sit alongside the DLC challenge maps will still work, but starts from the campaign data.</li>
+			<li><b>Back it up like any other level.</b> Once it exists, the <a href="/docs/backup-manager/">Backup Manager</a> can snapshot it before builds.</li>
 		</ul>
 	</section>
 </article>
@@ -222,11 +191,11 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><a href="/docs/create-level/">Create Level</a> — a new level seeded with composites from anywhere</li>
-			<li><a href="/docs/save-and-build/">Save and Build</a> — regenerating a level's instanced data after a port</li>
-			<li><a href="/docs/backup-manager/">Backup Manager</a> — snapshot the destination before porting into it</li>
+			<li><a href="/docs/composite-porting/">Composite Porting</a> — importing and exporting composites, with everything they depend on, between levels</li>
+			<li><a href="/docs/save-and-build/">Save and Build</a> — generating a level's navmesh, collision, lighting and sound</li>
+			<li><a href="/docs/launch-game/">Launch Game</a> — booting straight into your level</li>
+			<li><a href="/docs/level-viewer/">Viewport</a> — placing entities in 3D</li>
 			<li><a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> — what composites are and how they nest</li>
-			<li><a href="/docs/level-names/">Level Names</a> — what each level actually is</li>
 		</ul>
     </section>
 </article>

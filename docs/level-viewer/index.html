@@ -139,14 +139,15 @@
 		<h2 class="section-heading">Basics</h2>
 		<p>When you load a level, the Viewport appears automatically (unless you've disabled it — see below). While the scene is filling in, OpenCAGE shows a <b>Populating … in viewport…</b> progress state.</p>
 		<p>Selection and transforms you make in the Viewport are the same edits as in the rest of the script editor — hierarchy, parameters, and the 3D view stay on the same selection.</p>
+		<p>Resource edits reach it too: a model you import, a texture you replace or a material you change in the <a href="/docs/model-editor/">Model</a>, <a href="/docs/texture-editor/">Texture</a> or <a href="/docs/material-editor/">Material</a> editors shows up in the Viewport moments later, without saving or reloading the level.</p>
 		<p>The Viewport toolbar covers <b>Selection Mode</b>, gizmo <b>Control</b>, <b>Create</b> (entity placement), <b>State Info</b> (navmesh / cover overlays), <b>Transform Snap</b>, and <b>Rotation Snap</b>.</p>
     </section>
 
 	<section class="docs-section" id="disabling">
-		<h2 class="section-heading">Disabling the Viewport</h2>
-		<p>Steam includes a launch option that starts OpenCAGE with the Viewport turned off. Use that if you want lower memory usage and faster load times, knowing you won't get the 3D view.</p>
-		<p>In Steam: open OpenCAGE's properties → <b>Launch Options</b>, and choose the option that disables the Viewport.</p>
-		<p>If you run several OpenCAGE windows for different game installs, <b>Options → Manage Game Directories</b> has <b>Launch other editors without viewport</b> so those extra windows skip the 3D view. See <a href="/docs/multiple-game-installs/">Multiple Game Installs</a>.</p>
+		<h2 class="section-heading">Enabling &amp; Disabling the Viewport</h2>
+		<p><b>Options → Viewport → Enable Viewport</b> turns the 3D view on or off, and the setting is remembered. Turn it off if you want lower memory usage and faster load times, knowing you won't get the 3D view; the rest of the Viewport options are greyed out while it's off.</p>
+		<p>Turning it back on with unsaved changes asks whether to save first. The Viewport reads the level from disk, so anything edited while it was off wouldn't be in what it loads — answer <b>Yes</b> to save and open it straight away, or <b>No</b> to keep the setting on and have the Viewport open the next time a level is loaded.</p>
+		<p>Two other ways to run without it: the <code>-disable_viewport</code> launch option (set it under OpenCAGE's properties → <b>Launch Options</b> in Steam) turns the Viewport off for that session without changing the setting, and if you run several OpenCAGE windows for different game installs, <b>Options → Manage Game Directories</b> has <b>Launch other editors without viewport</b> so those extra windows skip the 3D view. See <a href="/docs/multiple-game-installs/">Multiple Game Installs</a>.</p>
 	</section>
 
 	<section class="docs-section" id="moving-camera">
@@ -185,7 +186,7 @@
 		<p>In Cathode scripts, entities inside a nested composite aren't directly selectable from the parent composite you're viewing — the script editor needs a path to reach them. That's what <b>aliases</b> are for: an alias in your current composite points at a chain of entities through composite instances, ending at the thing you actually want to work with.</p>
 		<p>Deep select creates that path for you automatically. When you deep-select something, OpenCAGE looks for an existing alias in the active composite whose path matches the entity chain you clicked through. If one already exists, it selects that. If not, it creates a new alias pointing at the right depth.</p>
 		<p>In <b>Deep Select</b> mode, each left-click on the <b>same piece of geometry</b> goes one composite level deeper — first click might select the composite instance, the next click the entity inside it, and so on. The alias's path grows to match. In <b>Advanced Deep Select</b> mode, a single click builds the full alias path straight to the deepest entity in one go.</p>
-		<p>Aliases created this way start out <b>parameter-free</b> — they're temporary helpers for navigation. If you click something else without having done anything to the alias, OpenCAGE removes it again so your composite doesn't fill up with unused aliases. Once you <b>move</b> an alias with the transform gizmo (which adds a position override), or otherwise give it parameters in the main editor window, it becomes a permanent part of your scripts — the same as if you'd created it manually in the flowgraph.</p>
+		<p>Aliases created this way start out <b>parameter-free</b> — they're temporary helpers for navigation. If you click something else without having used the alias, OpenCAGE removes it again so your composite doesn't fill up with unused aliases. Using it means any of: <b>moving</b> it with the transform gizmo (which adds a position override), giving it parameters in the main editor window, putting a node for it on a flowgraph, or linking it to something. Do any of those and it becomes a permanent part of your scripts — the same as if you'd created it manually in the flowgraph.</p>
 		<p>This is separate from the orange <b>Highlight Aliases</b> option, which shows entities that <b>already have</b> parameterized aliases in the composite you're editing. Deep select is about creating and navigating through aliases on the fly; the orange highlight is about visualizing overrides you've already set up.</p>
 		<p>Note — moving an entity via deep select (an alias) will override the position defined within the child composite. This works in a hierarchy, so aliases at the root level will override ones below. Read more about aliases in the <a href="/docs/scripting-intro/">Scripting Intro</a>.</p>
 	</section>
@@ -211,6 +212,7 @@
 		<p>The <b>Create</b> dropdown on the Viewport toolbar turns the view into a placement tool. Pick a function type from the dropdown and the button changes to <b>Create: &lt;type&gt;</b>; clicking in the Viewport then creates a new entity of that type at the position you clicked, in the composite you're currently editing.</p>
 		<p>This is much quicker than adding an entity from the palette and then dragging it into place — particularly for the things you place by eye, like trigger boxes, position markers and pathfinding nodes.</p>
 		<p>Choose <b>None</b> to leave create mode and go back to normal selection.</p>
+		<p>Composites can be placed the same way: <b>drag a composite from the Composite Browser onto the Viewport</b> and an instance of it is created in the composite you're editing, positioned where you dropped it. Dragging onto the flowgraph still works too, for when you'd rather place it by hand afterwards.</p>
 	</section>
 
 	<section class="docs-section" id="copy-paste">
@@ -270,6 +272,7 @@
 		<h2 class="section-heading">Viewport Options</h2>
 		<p>Most Viewport behaviour is controlled from <b>Options → Viewport</b> (also listed under <a href="/docs/options/#viewport">Options</a>):</p>
 		<ul>
+			<li><b>Enable Viewport</b> — turn the 3D view on or off; see <a href="#disabling">Enabling &amp; Disabling the Viewport</a></li>
 			<li><b>Highlight Aliases</b> — show orange highlights on entities targeted by parameterized aliases in the active composite</li>
 			<li><b>Highlight Proxies</b> — show blue highlights on proxy targets when stepped into a nested composite</li>
 			<li><b>Focus on Selected</b> — move the camera to frame an entity whenever you select one</li>
@@ -290,9 +293,9 @@
 	<section class="docs-section" id="tips">
 		<h2 class="section-heading">Tips &amp; Troubleshooting</h2>
 		<ul>
-			<li>If the 3D view looks wrong after edits, save and reload the level (or restart OpenCAGE).</li>
+			<li>Model, texture and material edits reach the Viewport on their own. If the 3D view still looks wrong after an edit, save and reload the level (or restart OpenCAGE).</li>
 			<li>Click the Viewport first before using camera/hotkeys — those shortcuts apply when the Viewport has focus.</li>
-			<li>If there's no Viewport at all, check Steam's launch options — you may have the disable-viewport option selected.</li>
+			<li>If there's no Viewport at all, check <b>Options → Viewport → Enable Viewport</b> first, then Steam's launch options — you may have <code>-disable_viewport</code> set.</li>
 			<li>Opening several editor windows? Use <b>Launch other editors without viewport</b> under Manage Game Directories to save memory — more in <a href="/docs/multiple-game-installs/">Multiple Game Installs</a>.</li>
 		</ul>
 	</section>

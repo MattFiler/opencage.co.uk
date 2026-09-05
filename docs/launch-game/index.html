@@ -89,6 +89,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#engine-patches">Engine Patches</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#debug-tools">Debug Tools</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#steam-tools">Steam-Only Tools</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#scripting-helpers"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Scripting Helpers</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Options</a></li>
 
 </ul></nav></div>
@@ -109,8 +110,8 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The toolbar <b>Launch Game</b> button opens the Launch Game dialog. From here you pick a starting level, toggle launch options, then hit <b>Start Alien: Isolation</b>.</p>
-		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — for example <b>Cinematic Tools</b> and <b>Hot Reloading</b> are Steam-only.</p>
+		<p>The toolbar <b>Launch Game</b> button opens the Launch Game dialog. From here you choose whether to boot straight into a level, toggle launch options and scripting helpers, then hit <b>Start Alien: Isolation</b>.</p>
+		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — the <a href="#scripting-helpers">Scripting Helpers</a> and <b>Cinematic Tools</b> are Steam-only.</p>
     </section>
 </article>
 
@@ -120,12 +121,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Starting Level</b> dropdown lists levels from the current game install. OpenCAGE prefers the level you're editing, otherwise your last used choice, otherwise the frontend.</p>
-		<ul>
-			<li>Choosing a normal level boots the game straight into that map — useful for testing a specific level without playing through from the start.</li>
-			<li>Choosing <b>FRONTEND</b> launches into the normal title/front-end flow.</li>
-		</ul>
-		<p>Your selection is remembered for next time.</p>
+		<p>Tick <b>Load straight into a level</b> and pick one from the list to have the game boot directly into that map — useful for testing a specific level without playing through from the start. Leave it unticked and the game starts at its main menu (FRONTEND) as normal.</p>
+		<p>The list holds every level in the current game install, including any you've made with <a href="/docs/create-level/">Create Level</a>. OpenCAGE prefers the level you're editing, otherwise your last used choice, and the selection is remembered for next time.</p>
+		<p>Booting into a level works by writing the level's name into the game executable, and that space is fixed: a level path longer than 32 characters (for a shipped level that's <code>Production/</code> plus the folder name) can't be launched into, and OpenCAGE will tell you so rather than corrupting the patch.</p>
     </section>
 </article>
 
@@ -171,10 +169,28 @@
 	<section class="docs-section" id="steam-tools">
 		<h2 class="section-heading">Steam-Only Tools</h2>
 		<ul>
-			<li><b>Enable Hot Reloading</b> — press <b>INSERT</b> in-game to hot reload the current level, handy for iterating on scripts without a full restart</li>
 			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them.</li>
 		</ul>
+		<p>Hot reloading has moved into the <a href="#scripting-helpers">Scripting Helpers</a> group, where you can also choose its key.</p>
 	</section>
+</article>
+
+<article class="docs-article" id="scripting-helpers">
+    <header class="docs-header">
+<h1 class="docs-heading">Scripting Helpers</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Scripting Helpers</b> group adds runtime tools to the game that make script iteration faster. They're provided by a small plugin OpenCAGE copies into the game folder when any helper is enabled (and removes when none are), configured through <code>OpenCAGE_Utils.ini</code> beside it. The plugin only supports the Steam build, so the whole group is disabled on other platforms.</p>
+		<ul>
+			<li><b>Enable Hot Reload</b> — press the chosen key in-game to reload the current level, handy for iterating on scripts without a full restart. The key defaults to <b>INSERT</b>; the dropdown beside the option offers DELETE, HOME, END, PAGE UP, PAGE DOWN and F1–F12 as alternatives.</li>
+			<li><b>Enable DebugText</b> — <a href="/docs/cathode-entities/#DebugText">DebugText</a> script entities draw their text on screen in-game.</li>
+			<li><b>Enable DebugTextStacking</b> — <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a> script entities draw their text on screen in-game, stacked under one another.</li>
+			<li><b>Enable DebugEnvironmentMarker</b> — <a href="/docs/cathode-entities/#DebugEnvironmentMarker">DebugEnvironmentMarker</a> script entities draw their text at a world position in-game.</li>
+			<li><b>Enable DebugPositionMarker</b> — <a href="/docs/cathode-entities/#DebugPositionMarker">DebugPositionMarker</a> script entities draw axes at a world position in-game.</li>
+		</ul>
+		<p>The debug entities exist in the shipped scripts but draw nothing in the retail game; these options bring them back, so a script that places a <b>DebugText</b> shows its message on screen as it would have in Creative Assembly's own tools.</p>
+    </section>
 </article>
 
 <article class="docs-article" id="related">

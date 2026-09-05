@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Inputs</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A guide to editing the game's default input bindings and controller presets through OpenCAGE.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Inputs" />
+	<meta name="twitter:description" content="A guide to editing the game's default input bindings and controller presets through OpenCAGE." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../../assets/css/theme.css">
+    <link rel="stylesheet" href="../../assets/css/motion.css">
+    <link rel="stylesheet" href="../../assets/css/search.css">
+    <link rel="stylesheet" href="../../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+	<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#sections"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Sections &amp; Devices</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#bindings"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Bindings</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#device-settings"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Device Settings</a></li>
+
+</ul></nav></div><div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -67px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item"><a href="/docs/configs/">Configurations</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Inputs</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article">
+
+	<section class="docs-section">
+		<h1 class="section-heading">Inputs</h1>
+		<p>To edit input bindings in OpenCAGE navigate to Edit > Configurations > Core Game > Inputs.</p>
+		<p>This edits <code>DATA/INPUT.XML</code> — the default bindings the game ships with, per input section and per controller preset, plus the per-device settings that sit above them. It's what a fresh profile starts from, and what the game's own controller-layout option switches between.</p>
+		<p>Action names are fixed — the engine asks for them by name — so the editor changes what an action is bound to, adds extra bindings for an action, or removes bindings. It doesn't invent new actions. Comments in the file are kept as they were.</p>
+	</section>
+
+	<section class="docs-section" id="sections">
+		<h2 class="section-heading">Sections &amp; Devices</h2>
+		<p>The file has three sections the engine looks up by name — <b>player_input</b>, <b>menu_input</b> and <b>debug_input</b> — each holding one or more device blocks. Pick the section and device to work on from the <b>Section and device</b> list at the top.</p>
+		<p>A gamepad can appear as several presets: preset 1 is the standard layout, preset 2 the left-handed one, and so on. Each preset is one of the controller layouts the game's options menu offers, so to change what "Layout 2" means in-game, edit gamepad preset 2 here.</p>
+	</section>
+
+	<section class="docs-section" id="bindings">
+		<h2 class="section-heading">Bindings</h2>
+		<p>The <b>Bindings</b> grid lists every binding in the selected device — a button, axis or slider naming an action and the input id it's bound to, along with its combo and toggle flags. Edit those in place. The same action can appear more than once, which is how one action answers to several inputs.</p>
+		<ul>
+			<li><b>Bind Action Again</b> — adds a second binding for the selected action, so it answers to another input as well.</li>
+			<li><b>Remove Binding</b> — removes the selected binding. If it's the last one for that action you're warned first, since an action with no binding can't be triggered from that device.</li>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="device-settings">
+		<h2 class="section-heading">Device Settings</h2>
+		<p>Above the bindings sit the <b>Device settings</b> — the two threshold blocks (dead zones and the like) that apply to a device type as a whole. They're shown for whichever device type you have selected, and edit the same way.</p>
+	</section>
+</article>
+
+<footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../../assets/plugins/popper.min.js"></script>
+    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../../assets/js/highlight-custom.js"></script>
+    <script src="../../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../../assets/js/docs.js"></script>
+    <script src="../../assets/js/motion.js"></script>
+    <script src="../../assets/js/search.js"></script>
+
+</body>
+</html>

@@ -144,9 +144,29 @@
     <section class="docs-section" id="import">
 		<h2 class="section-heading">Import New</h2>
 		<p>Click <b>Import New</b>, pick a file, then use the import preview to choose which meshes to bring in. You settle the model's <b>name</b> and any folders it should live in here too, with clashes checked as you type — nothing gets silently renamed after the fact.</p>
-		<p>Optionally <b>Pick material for selected</b> meshes (opens the <a href="/docs/material-editor/">Material Editor</a>), then <b>Import</b>.</p>
-		<p>If a <code>.cs2meta.json</code> sidecar sits beside the file (see below), OpenCAGE reads it and rebuilds the model with the structure it had when it was exported.</p>
+		<p>If a <code>.cs2meta.json</code> sidecar sits beside the file (see below), OpenCAGE reads it and rebuilds the model with the structure it had when it was exported, and pre-selects the materials each submesh used if the level still has them.</p>
 		<p>Imports need triangles (Assimp triangulates where needed), a usable bounding box, and under 32,768 vertices per converted mesh. Models are keyed by name when a level is read back, so a name that already exists is adjusted and you're told what it became — anything already placed still points at the original.</p>
+
+		<h3 class="section-heading" id="import-scale" style="font-size: 1.1rem; margin-top: 1.5rem;">Scale</h3>
+		<p>The <b>Scale</b> box multiplies the model as it comes in (the default of <code>1</code> keeps the file's real size, with the per-format unit conversion above already applied). The preview follows the value as you type. Resizing a <i>skinned</i> mesh pulls it away from the skeleton it's weighted to, so the box warns you when the model has bone weights.</p>
+
+		<h3 class="section-heading" id="import-rig" style="font-size: 1.1rem; margin-top: 1.5rem;">Skeletons &amp; Animations</h3>
+		<p>A file that's skinned, or that carries animations, gets an extra row describing what OpenCAGE found:</p>
+		<ul>
+			<li><b>Skinned to a rig the game already has</b> — the mesh is bound to that skeleton on import, with its bone weights intact, so it can play that skeleton's animations.</li>
+			<li><b>Skinned to a rig the game doesn't have</b> — the mesh comes in, the bone weights don't. There's nowhere to put a new skeleton: the engine wants bone groups, a mirror table, a ragdoll and an animation set before it will spawn a character, none of which can be authored here. To bring a character in with its skinning, bind it to one of the game's skeletons before exporting it.</li>
+			<li><b>Also import the animation(s)</b> — if the file carries clips, tick this and each one goes through the <a href="/docs/animation-editor/#import">animation import window</a> in turn, which asks which set and rig to build it against.</li>
+		</ul>
+		<p>Both need the game's animation data loaded; without it the row just says so and the mesh imports on its own.</p>
+
+		<h3 class="section-heading" id="import-materials" style="font-size: 1.1rem; margin-top: 1.5rem;">Materials</h3>
+		<p>Every submesh needs a CATHODE material. There are two ways to get one:</p>
+		<ul>
+			<li><b>Pick material for selected</b> — choose an existing level material for the selected meshes (opens the <a href="/docs/material-editor/">Material Editor</a> as a picker).</li>
+			<li><b>Generate one from the model</b> — the default for any submesh you haven't pointed at a material. OpenCAGE reads the textures, colours and skinning the model's own material carries and plans a new CATHODE material from them, one per source material, named after it. The preview shows the base colour it will use. Click <b>Edit generated material…</b> to see or change the plan for the selected mesh.</li>
+		</ul>
+		<p>The <b>Generate Material</b> dialog shows the <b>shader type</b> (family) OpenCAGE picked for the mesh and lets you change it, the material's <b>name</b>, and the <b>textures taken from the model</b> — which map fills which sampler, how it will be imported, and where it came from. A texture the level already has under the same name is reused rather than imported again. The <b>shader features</b> list is decided by which maps were found: a feature is set exactly when its map is present, which is how every shipped material is built. Tick <b>Always create a new material</b> to force a fresh material even where an identical one could be reused.</p>
+		<p>Textures are imported in the format and colour space their role needs (diffuse maps as sRGB, normal maps as two-channel linear data, and so on), and everything a model can't tell you — roughness, radiosity behaviour, priority — is taken from a similar material already in the level, so a generated material starts from values known to work there. Nothing is written until you click <b>Import</b>; if a material can't be generated you're told why and can import without it, in which case those submeshes use the fallback material.</p>
     </section>
 
 	<section class="docs-section" id="export">
