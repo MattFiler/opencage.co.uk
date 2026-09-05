@@ -279,11 +279,10 @@
 				<li>Fixed an issue where composite layouts could be lost after porting</li>
 				<li>Fixed a bug where porting would incorrectly skip shaders and materials carrying similar properties to existing assets in a level</li>
 				<li>Fixed various performance issues with porting, should be noticeably quicker</li>
-				<li>Extended support to support import, as well as export, making the user flow better</li>
-				<li>Allowed multi-select of composites to port, to speed up the process</li>
 			</ul></li>
 			<li>Added a 'Create Level' option in the File menu which can create a new level from scratch</li>
 			<li>Added a dark mode option</li>
+			<li>Added ability to render DebugText, DebugTextStacking, DebugEnvironmentMarker, and DebugPositionMarker outputs in-game via an overlay (STEAM ONLY)</li>
 			<li>Added a dropdown next to the new back button to view up to five previously loaded composites</li>
 			<li>Added a new 'Create' dropdown in the viewport UI which, when enabled, allows you to click on the viewport to create a new entity at that position</li>
 			<li>Added ability to drag and drop composites into the viewport to place them</li>
@@ -296,6 +295,9 @@
 			<li>Added new option to show state resources (navmesh, cover positions) in the viewport</li>
 			<li>Added ability to modify damage ranges in the ammo config editor</li>
 			<li>Added controls for the behaviour tree editor to the controls window</li>
+			<li>Added support for syncing modified resources (textures, models, materials) to the viewport</li>
+			<li>Added ability for child OpenCAGE editors to gain control of directory editing when primary is closed</li>
+			<li>Added ability to rebind the hot reload key</li>
 			<li>Added a Voice Mappings editor</li>
 			<li>Added a Level Text Database editor</li>
 			<li>Added a Font Config editor</li>
@@ -340,6 +342,7 @@
 			<li>Fixed an issue where the Ammo editor would mess up Composite paths</li>
 			<li>Fixed an issue where nodes could vanish when changing composites</li>
 			<li>Fixed pins showing in the parameter management UI</li>
+			<li>Fixed an issue where deep selected aliases would vanish after being added to the nodegraph</li>
 			<li>Fixed various bugs related to loading iOS/Android/Switch builds of the game</li>
 			<li>Fixed grouping in Entity Palette after searching</li>
 			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
