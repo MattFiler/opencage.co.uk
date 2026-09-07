@@ -206,7 +206,7 @@
 				<li>Delete existing tree nodes and links</li>
 				<li>Select a node and modify its parameters</li>
 			</ul></li>
-			<li>Large improvements to the CAGEAnimation editor:<ul>
+			<li>Improved CAGEAnimation editor:<ul>
 				<li>Added a new bezier curve UI to correctly display parameters over time</li>
 				<li>Added new event timelines with colour coded keyframes</li>
 				<li>Added a new list view of bezier entries with colour coded lines</li>
@@ -242,7 +242,6 @@
 				<li>Replacing a sound updates every copy the game ships, so it can't come back in a level that loads a different bank</li>
 				<li>Sound import/export supported on the Switch and mobile builds, encoding to whichever codec the sound it replaces used (Wwise Vorbis, Wwise ADPCM, or PCM)</li>
 			</ul></li>
-			<li>Fixed and re-enabled the Localisation editor</li>
 			<li>Improved material editing:<ul>
 				<li>Feature permutations are now functional - you can select from the available permutations in your game data (generated on first launch)</li>
 				<li>Added ability to create new materials</li>
@@ -250,7 +249,7 @@
 			</ul></li>
 			<li>Reworked Entity Inspector:<ul>
 				<li>Now allows for multi-select, entities of the same type are grouped, others can be found on tabs</li>
-				<li>All entity parameters are now shown at once (removed 'Manage Parameters' popup)</li>
+				<li>All entity parameters are now shown at once (removed 'Manage Parameters' popup), with defaults populated</li>
 				<li>Modified parameters are marked in bold, right click to reset to default values</li>
 				<li>Parameters are grouped by the entity they originate from (makes inheritance more obvious, and navigating easier)</li>
 				<li>Added an orange highlight to parameters which are overridden by an alias elsewhere</li>
@@ -299,18 +298,22 @@
 			<li>Added a new 'unsaved changes' tracker, which will highlight in the taskbar when a modification has been made and not saved</li>
 			<li>Added additional render filters for a variety of Sphere types, and others</li>
 			<li>Added new render filter to show Occlusion Meshes and Collision Meshes</li>
-			<li>Added new option to show state resources (navmesh, cover positions) in the viewport</li>
+			<li>Added new option to show state resources (navmesh, cover positions) in the viewport - will re-sync on rebuild</li>
+			<li>Added ability to sort the entity list by clicking the columns</li>
 			<li>Added ability to modify damage ranges in the ammo config editor</li>
 			<li>Added controls for the behaviour tree editor to the controls window</li>
 			<li>Added support for syncing modified resources (textures, models, materials) to the viewport - including newly imported ones</li>
 			<li>Added ability for child OpenCAGE editors to gain control of directory editing when primary is closed</li>
 			<li>Added ability to rebind the hot reload key</li>
+			<li>Added support for multi-select moving of objects in the viewport</li>
+			<li>Added new options for rendering selected entities: wireframe, transparent wireframe, none</li>
 			<li>Added a Voice Mappings editor</li>
 			<li>Added a Level Text Database editor</li>
 			<li>Added a Font Config editor</li>
+			<li>Added a Localisation editor</li>
 			<li>Added back the legacy Graphics Editor</li>
 			<li>Added warnings if saving fails when updating configs</li>
-			<li>Added support for multi-select deletion in the flowgraph</li>
+			<li>Added support for multi-select deletion in the flowgraph, viewport, and entity list</li>
 			<li>Added ability to rename imported models</li>
 			<li>Added support for parsing the newly exported model metadata on import, to keep structures similar</li>
 			<li>Added support for the material picker when selecting materials for entity parameters</li>
@@ -335,6 +338,7 @@
 			<li>Fixed 'Find References' right click on the entity list</li>
 			<li>Fixed rotation issue for spotlight previews in the viewport</li>
 			<li>Fixed dropdowns sticking on screen</li>
+			<li>Fixed an issue where multiple flowgraph layouts wouldn't appear due to name duplication</li>
 			<li>Fixed some memory leaks within the viewport which caused silent crashes</li>
 			<li>Fixed an issue where viewcones would break upon modification</li>
 			<li>Fixed a separate window appearing briefly when viewport initialises</li>
@@ -346,6 +350,7 @@
 			<li>Fixed various issues with form ownership to prevent things popping behind</li>
 			<li>Fixed some material remapping defects resulting in different materials to retail</li>
 			<li>Fixed the reverbs available to be selected</li>
+			<li>Fixed pin delays not syncing across flowgraph pages</li>
 			<li>Fixed a bug where the metadata table in Commands held unnecessary GUIDs that grew each save</li>
 			<li>Fixed an issue where the hack tool editor would take a long time to load</li>
 			<li>Fixed an issue where the Ammo editor would mess up Composite paths</li>
@@ -353,6 +358,8 @@
 			<li>Fixed pins showing in the parameter management UI</li>
 			<li>Fixed an issue where deep selected aliases would vanish after being added to the nodegraph</li>
 			<li>Fixed various bugs related to loading iOS/Android/Switch builds of the game</li>
+			<li>Fixed a crash when using Ctrl+MMB shortcut in entity hierarchy picker</li>
+			<li>Fixed some minor issues when resizing popups</li>
 			<li>Fixed grouping in Entity Palette after searching</li>
 			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
 			<li>Fixed a bug where force closing OpenCAGE could leave a viewport process open in the background</li>
@@ -370,7 +377,10 @@
 			<li>Improved 'focus on selected' mode in the viewport - it no longer jumps when stepping the hierarchy</li>
 			<li>Composite search now auto-searches (don't need to press 'Search')</li>
 			<li>Improvements to total memory overhead for the viewport</li>
+			<li>NPC_AlienConfig entities now have selection for the config type</li>
+			<li>Deleting all nodes for an entity with no other references can now auto-delete the entity (optional under 'Delete Entities When Nodes Deleted')</li>
 			<li>Simplified editor state restoring for resized splitters</li>
+			<li>Deleting nodes for an entity no longer prompts you first - you can turn that back on in the Options</li>
 			<li>Previously searched proxy searches are now remembered if appropriate</li>
 			<li>Backup manager no longer blocks the UI thread (added progress bar)</li>
 			<li>PAK and BIN Commands data is now saved by default (for uncompressed levels), and no longer an option</li>
