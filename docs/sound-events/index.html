@@ -126,6 +126,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Alien: Isolation's audio runs through <b>Wwise</b>. Scripts don't reference audio files — they fire <b>sound events</b> by name, and Wwise decides what that means: which take to play, whether to pick at random, which bank the audio comes from.</p>
 		<p>Whenever you set a sound event on an entity parameter, OpenCAGE opens the sound event selector. That window has a player along its bottom edge, so you can hear what an event actually sounds like before committing to it — and export or replace the audio behind it.</p>
+		<p>The same window opens from <b>View → Sound Editor</b> once a level is loaded, with no parameter behind it: every sound event the level knows, to listen through, look up in the soundbanks, export or replace, without first finding an entity that plays one. It stays open while you work in the editor and closes when the level does.</p>
     </section>
 </article>
 

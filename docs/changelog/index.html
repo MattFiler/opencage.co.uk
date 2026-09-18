@@ -213,6 +213,7 @@
 				<li>Added option to enable/disable bezier mode</li>
 				<li>Added a snap option to snap to timestamps</li>
 				<li>Added an interactive control for setting animation length</li>
+				<li>Added a new 'Animation Mode' which allows live-edit and preview of animation tracks via the inspector and viewport</li>
 				<li>Entity parameters are now tidied up if unused</li>
 				<li>Fixed an issue where some entity links were incorrectly destroyed</li>
 				<li>Various other fixes and improvements to better match in-game logic</li>
@@ -254,6 +255,9 @@
 				<li>Parameters are grouped by the entity they originate from (makes inheritance more obvious, and navigating easier)</li>
 				<li>Added an orange highlight to parameters which are overridden by an alias elsewhere</li>
 				<li>Added a blue highlight to parameters which are overridden by a connection in the flowgraph</li>
+				<li>Added a purple highlight to parameters which are controlled by CAGEAnimations</li>
+				<li>Zone name now shows on 'Zone' button if one, or opens a list if multiple - this calculation is performed from the root of the active hierarchy</li>
+				<li>Modified utility buttons to be on two rows</li>
 			</ul></li>
 			<li>Reworked TriggerSequence editor:<ul>
 				<li>Added support for dragging and dropping TriggerSequence entries</li>
@@ -276,9 +280,11 @@
 				<li>Added an option to overwrite source assets when porting</li>
 				<li>Added an option to build (instance) the target level when porting</li>
 				<li>Added an option to port to every other level in one go</li>
+				<li>Added an option to import/export from/to disk (allows sharing modded composites!)</li>
 				<li>Fixed an issue where composite layouts could be lost after porting</li>
 				<li>Fixed a bug where porting would incorrectly skip shaders and materials carrying similar properties to existing assets in a level</li>
 				<li>Fixed various performance issues with porting, should be noticeably quicker</li>
+				<li>Porting composites with proxies will now retain them in an 'unresolvable' state</li>
 			</ul></li>
 			<li>Improved Cinematic Tool:<ul>
 				<li>Zones are now loaded when moving the camera around</li>
@@ -314,6 +320,10 @@
 			<li>Added a Localisation editor</li>
 			<li>Added back the legacy Graphics Editor</li>
 			<li>Added warnings if saving fails when updating configs</li>
+			<li>Added a new vertex snapping mode (hold V when dragging, or keep it on from the Transform Snap menu)</li>
+			<li>Added ability to configure rotation/translation snapping increments</li>
+			<li>Added a new surface snapping mode (SHIFT+END keys)</li>
+			<li>Added a new 'drag to duplicate' mode (hold SHIFT when dragging the gizmo)</li>
 			<li>Added support for multi-select deletion in the flowgraph, viewport, and entity list</li>
 			<li>Added ability to rename imported models</li>
 			<li>Added support for parsing the newly exported model metadata on import, to keep structures similar</li>

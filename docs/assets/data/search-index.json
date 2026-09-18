@@ -19179,6 +19179,13 @@
         "category":  "Viewport",
         "keywords":  [
             "selection",
+            "multi-select",
+            "ctrl click",
+            "shift click",
+            "highlight mode",
+            "wireframe",
+            "triggersequence",
+            "delete",
             "viewport"
         ],
         "title":  "Selection"
@@ -19201,6 +19208,16 @@
         "category":  "Viewport",
         "keywords":  [
             "transform-gizmo",
+            "gizmo",
+            "move",
+            "rotate",
+            "snap",
+            "vertex snap",
+            "snap increments",
+            "snap to floor",
+            "shift end",
+            "duplicate",
+            "shift drag",
             "viewport"
         ],
         "title":  "Moving Entities"
@@ -19234,6 +19251,8 @@
         "category":  "Viewport",
         "keywords":  [
             "options",
+            "snap increments",
+            "selection highlight mode",
             "viewport"
         ],
         "title":  "Viewport Options"
@@ -19758,6 +19777,9 @@
         "category":  "Options",
         "keywords":  [
             "composite-display",
+            "dead proxies",
+            "dead proxy colour",
+            "unresolvable proxy",
             "options"
         ],
         "title":  "Composite Display"
@@ -19780,6 +19802,9 @@
         "category":  "Options",
         "keywords":  [
             "viewport",
+            "snap increments",
+            "selection highlight mode",
+            "highlight mode",
             "options"
         ],
         "title":  "Viewport"
@@ -19922,6 +19947,10 @@
         "category":  "Cathode Scripting Introduction",
         "keywords":  [
             "proxy-entities",
+            "dead proxy",
+            "change target",
+            "red node",
+            "unresolvable proxy",
             "cathode scripting introduction"
         ],
         "title":  "Proxy Entities"
@@ -19933,6 +19962,10 @@
         "category":  "Cathode Scripting Introduction",
         "keywords":  [
             "interface-overview",
+            "entity list",
+            "delete",
+            "sort",
+            "undo",
             "cathode scripting introduction"
         ],
         "title":  "Interface Overview"
@@ -20101,7 +20134,11 @@
             "keyframes",
             "bezier",
             "event tracks",
-            "function editor"
+            "function editor",
+            "animation mode",
+            "preview",
+            "live edit",
+            "playhead"
         ],
         "title":  "CAGEAnimation Editor"
     },
@@ -20123,6 +20160,8 @@
         "category":  "CAGEAnimation Editor",
         "keywords":  [
             "opening",
+            "close",
+            "live",
             "cageanimation"
         ],
         "title":  "Opening the Editor"
@@ -20185,9 +20224,11 @@
         "keywords":  [
             "saving",
             "pins",
+            "undo",
+            "live",
             "cageanimation"
         ],
-        "title":  "Saving"
+        "title":  "Saving \u0026 Undo"
     },
     {
         "url":  "/docs/character-editor/",
@@ -21622,7 +21663,8 @@
             "speech",
             "dialogue",
             "voice",
-            "lines"
+            "lines",
+            "sound editor"
         ],
         "title":  "Sound Events"
     },
@@ -21633,6 +21675,10 @@
         "category":  "Sound Events",
         "keywords":  [
             "intro",
+            "sound editor",
+            "view menu",
+            "selector",
+            "browse",
             "sound events"
         ],
         "title":  "Introduction"
@@ -21771,7 +21817,7 @@
     },
     {
         "url":  "/docs/composite-porting/",
-        "description":  "How to import and export composites, and every asset they depend on, between Alien: Isolation levels.",
+        "description":  "How to import and export composites, and every asset they depend on, between Alien: Isolation levels or as .ocp composite packages on disk.",
         "type":  "page",
         "category":  "Getting Started",
         "keywords":  [
@@ -21784,7 +21830,19 @@
             "import composites",
             "export composites",
             "import",
-            "export"
+            "export",
+            "ocp",
+            "archive",
+            "disk",
+            "share",
+            "export to disk",
+            "import from disk",
+            "to disk",
+            "from disk",
+            "package",
+            "composite package",
+            "double-click",
+            "drag and drop"
         ],
         "title":  "Composite Porting"
     },
@@ -21827,6 +21885,28 @@
             "composite porting"
         ],
         "title":  "After the Port"
+    },
+    {
+        "url":  "/docs/composite-porting/#unresolvable-proxies",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "unresolvable proxies",
+            "unresolvable proxy",
+            "dead proxy",
+            "proxy",
+            "proxies",
+            "red node",
+            "change target",
+            "change proxy target",
+            "re-point",
+            "retarget",
+            "missing target",
+            "unresolved",
+            "composite porting"
+        ],
+        "title":  "Unresolvable Proxies"
     },
     {
         "url":  "/docs/composite-porting/#tips",
@@ -21920,6 +22000,7 @@
             "create-mode",
             "create",
             "place entity",
+            "escape",
             "viewport"
         ],
         "title":  "Creating Entities"
@@ -21933,6 +22014,7 @@
             "copy-paste",
             "copy",
             "paste",
+            "duplicate",
             "viewport"
         ],
         "title":  "Copy \u0026 Paste"
@@ -21961,6 +22043,7 @@
             "navmesh",
             "cover",
             "state info",
+            "show state info",
             "viewport"
         ],
         "title":  "Navmesh \u0026 Cover"
@@ -22048,6 +22131,15 @@
             "parameters",
             "multi-select",
             "reset to default",
+            "purple",
+            "zone",
+            "cageanimation",
+            "references",
+            "resources",
+            "change target",
+            "dead proxy",
+            "missing",
+            "unresolvable proxy",
             "cathode scripting introduction"
         ],
         "title":  "The Entity Inspector"
@@ -22063,6 +22155,10 @@
             "annotations",
             "proxy",
             "back button",
+            "dead proxy",
+            "(!)",
+            "change proxy target",
+            "unresolvable proxy",
             "cathode scripting introduction"
         ],
         "title":  "Reading the Flowgraph"
@@ -22486,9 +22582,18 @@
             "overwrite",
             "build after port",
             "port now",
+            "to level",
+            "tree",
+            "nested",
+            "instanced",
+            "greyed",
+            "several levels",
+            "all levels",
+            "no levels",
+            "tick levels",
             "composite porting"
         ],
-        "title":  "Export Composites"
+        "title":  "Export to Level"
     },
     {
         "url":  "/docs/composite-porting/#import",
@@ -22500,9 +22605,369 @@
             "import",
             "bulk import",
             "pick composites",
-            "also bring composites they instance",
+            "from level",
+            "tree",
+            "nested",
+            "instanced",
             "composite porting"
         ],
-        "title":  "Import Composites"
+        "title":  "Import from Level"
+    },
+    {
+        "url":  "/docs/composite-porting/#levels",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "levels",
+            "between levels",
+            "to level",
+            "from level",
+            "composite porting"
+        ],
+        "title":  "Between Levels"
+    },
+    {
+        "url":  "/docs/composite-porting/#disk",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "disk",
+            "ocp",
+            "archive",
+            "share",
+            "to disk",
+            "from disk",
+            "other machine",
+            "other install",
+            "package",
+            "composite package",
+            "composite porting"
+        ],
+        "title":  "Composite Packages (.ocp)"
+    },
+    {
+        "url":  "/docs/composite-porting/#export-disk",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "export-disk",
+            "export to disk",
+            "ocp",
+            "archive",
+            "save composites to file",
+            "share composites",
+            "name",
+            "description",
+            "package",
+            "tree",
+            "nested",
+            "composite porting"
+        ],
+        "title":  "Export to Disk"
+    },
+    {
+        "url":  "/docs/composite-porting/#import-disk",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "import-disk",
+            "import from disk",
+            "ocp",
+            "archive",
+            "platform",
+            "overwrite",
+            "package",
+            "as-is",
+            "contents",
+            "more info",
+            "name",
+            "description",
+            "default",
+            "composite porting"
+        ],
+        "title":  "Import from Disk"
+    },
+    {
+        "url":  "/docs/composite-porting/#archive",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "archive",
+            "ocp",
+            "manifest",
+            "gzip",
+            "format",
+            "header",
+            "format version",
+            "composite porting"
+        ],
+        "title":  "Inside an .ocp File"
+    },
+    {
+        "url":  "/docs/level-viewer/#zones",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "zones",
+            "highlight zones",
+            "zone",
+            "streaming",
+            "triggersequence",
+            "viewport"
+        ],
+        "title":  "Zones"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#animation-mode",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "animation-mode",
+            "animation mode",
+            "preview",
+            "playhead",
+            "play",
+            "viewport",
+            "keyframe",
+            "cageanimation editor"
+        ],
+        "title":  "Animation Mode"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#previewing",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "previewing",
+            "playhead",
+            "play",
+            "scrub",
+            "viewport",
+            "cageanimation editor"
+        ],
+        "title":  "Previewing"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#keyframing-viewport",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "keyframing-viewport",
+            "keyframe",
+            "gizmo",
+            "viewport",
+            "purple",
+            "cageanimation editor"
+        ],
+        "title":  "Keyframing from the Viewport"
+    },
+    {
+        "url":  "/docs/composite-porting/#opening-packages",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "opening-packages",
+            "open",
+            "double-click",
+            "drag and drop",
+            "drop",
+            "file association",
+            "explorer",
+            "ocp",
+            "package",
+            "composite porting"
+        ],
+        "title":  "Opening a Package"
+    },
+    {
+        "url":  "/docs/composite-porting/#import-no-level",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "import-no-level",
+            "no level",
+            "destination",
+            "import into level",
+            "every level",
+            "build after import",
+            "on disk",
+            "ocp",
+            "package",
+            "several levels",
+            "all levels",
+            "no levels",
+            "tick levels",
+            "composite porting"
+        ],
+        "title":  "With No Level Open"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#tree-menu",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "tree-menu",
+            "track list",
+            "track tree",
+            "right-click",
+            "context menu",
+            "add entity",
+            "add parameter",
+            "add keyframe at time",
+            "remove entity",
+            "remove parameter",
+            "float",
+            "transform",
+            "cageanimation editor"
+        ],
+        "title":  "Track List Menu"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#visibility",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "visibility",
+            "show",
+            "hide",
+            "curves",
+            "checkbox",
+            "mixed state",
+            "frame",
+            "track",
+            "cageanimation editor"
+        ],
+        "title":  "Visibility"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#editing-keys",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "editing-keys",
+            "keyframes",
+            "select",
+            "drag",
+            "move",
+            "snap",
+            "shift+click",
+            "add keyframe here",
+            "tangent handles",
+            "bezier",
+            "linear",
+            "delete keyframe",
+            "cageanimation editor"
+        ],
+        "title":  "Editing Keyframes"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#navigation",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "navigation",
+            "pan",
+            "zoom",
+            "snap",
+            "middle-mouse",
+            "mouse wheel",
+            "reset view",
+            "interval",
+            "animation length",
+            "anim_length",
+            "green handle",
+            "timeline",
+            "cageanimation editor"
+        ],
+        "title":  "Pan, Zoom \u0026 Snap"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#string-events",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "string-events",
+            "string event",
+            "event name",
+            "add event here",
+            "forward",
+            "reverse",
+            "output pins",
+            "flowgraph",
+            "triggersequence",
+            "cageanimation editor"
+        ],
+        "title":  "String Event Tracks"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#anim-entity-tracks",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "anim-entity-tracks",
+            "animation entity",
+            "track bindings",
+            "marker",
+            "character",
+            "camera",
+            "play animation",
+            "assign",
+            "reassign",
+            "jump",
+            "bindings",
+            "cageanimation editor"
+        ],
+        "title":  "Animation Entity Tracks"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#related",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "related",
+            "cageanimation",
+            "scripting introduction",
+            "animation editor",
+            "animation tree editor",
+            "character editor",
+            "triggersequence editor",
+            "cageanimation editor"
+        ],
+        "title":  "Related"
+    },
+    {
+        "url":  "/docs/composite-porting/#related",
+        "description":  "On Composite Porting",
+        "type":  "symbol",
+        "category":  "Composite Porting",
+        "keywords":  [
+            "related",
+            "create level",
+            "save and build",
+            "backup manager",
+            "multiple game installs",
+            "cathode scripting introduction",
+            "level names",
+            "composite porting"
+        ],
+        "title":  "Related"
     }
 ]

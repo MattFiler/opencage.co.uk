@@ -96,6 +96,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#previews">Previews &amp; Render Filters</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#scene-filters">Occlusion &amp; Collision Meshes</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#state-info">Navmesh &amp; Cover</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#zones">Zones</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#options">Viewport Options</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#tips">Tips &amp; Troubleshooting</a></li>
 
@@ -121,7 +122,7 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<p>The <b>Viewport</b> is OpenCAGE's 3D view of the level — part of the script editor, shown above the composite display. Use it to place triggers, models, markers, and anything else that benefits from seeing the level in context.</p>
-				<p>This guide covers navigating the scene, selection, deep select, transform gizmos, and render filters.</p>
+				<p>This guide covers navigating the scene, selection, deep select, moving and snapping entities, creating and duplicating them, zones, and render filters.</p>
 			</div>
 			<div class="col-lg-4">
 				<img src="img/overview.png" alt="OpenCAGE Viewport showing Advanced Deep Select with a nested entity selected" width="100%">
@@ -140,7 +141,7 @@
 		<p>When you load a level, the Viewport appears automatically (unless you've disabled it — see below). While the scene is filling in, OpenCAGE shows a <b>Populating … in viewport…</b> progress state.</p>
 		<p>Selection and transforms you make in the Viewport are the same edits as in the rest of the script editor — hierarchy, parameters, and the 3D view stay on the same selection.</p>
 		<p>Resource edits reach it too: a model you import, a texture you replace or a material you change in the <a href="/docs/model-editor/">Model</a>, <a href="/docs/texture-editor/">Texture</a> or <a href="/docs/material-editor/">Material</a> editors shows up in the Viewport moments later, without saving or reloading the level.</p>
-		<p>The Viewport toolbar covers <b>Selection Mode</b>, gizmo <b>Control</b>, <b>Create</b> (entity placement), <b>State Info</b> (navmesh / cover overlays), <b>Transform Snap</b>, and <b>Rotation Snap</b>.</p>
+		<p>The Viewport toolbar covers <b>Selection Mode</b>, gizmo <b>Control</b>, <b>Create</b> (entity placement), <b>Show State Info</b> (navmesh / cover overlays), <b>Highlight Zones</b>, <b>Transform Snap</b>, and <b>Rotation Snap</b>.</p>
     </section>
 
 	<section class="docs-section" id="disabling">
@@ -164,6 +165,9 @@
 		<p>Click an entity in the hierarchy or flowgraph and it highlights in the Viewport; click something in the Viewport and the hierarchy jumps to that entity.</p>
 		<p><b>Left-click</b> an object in the Viewport to select it. By default, this selects the relevant entity in the composite you're currently viewing — for example, clicking a model inside a composite instance will select that composite instance entity, not the inner model directly.</p>
 		<p>Selected entities are highlighted in <b>green</b>. You can click empty space or press <b>Escape</b> to deselect.</p>
+		<p>You can select more than one thing. <b>Ctrl + click</b> adds an entity to the selection and <b>Shift + click</b> toggles it in or out; the entity list and inspector follow the whole set (the flowgraph highlights the nodes of the first-selected entity), the gizmo moves all of it together, and <b>Delete</b> removes it in one go (with one confirmation and one undo step). <b>Ctrl+C</b> / <b>Ctrl+V</b> copy and paste the whole selection too.</p>
+		<p>How the selection is drawn is up to you: <b>Options → Viewport → Selection Highlight Mode</b> offers <b>Green</b> (the tint above), <b>Wireframe</b> (the mesh's edges drawn over its surface — reads as an outline through the object), <b>Wireframe Transparent</b> (edges only, with the surface hidden, for seeing what's behind) and <b>None</b>. <b>Alt+1</b> to <b>Alt+4</b> switch between them without leaving the Viewport.</p>
+		<p>Select a <b>TriggerSequence</b> and everything it fires at is marked along with it, so you can see what a sequence — or a <a href="#zones">Zone</a> — actually covers.</p>
 		<p>Entities outside the composite you're currently editing are dimmed and can't be picked, which makes it easier to focus on the area you're working on. Step into a nested composite and the Viewport scope updates to match.</p>
 		<p>If <b>Highlight Aliases</b> is enabled under <b>Options → Viewport</b> (on by default), entities targeted by parameterized aliases in the active composite are shown with an <b>orange</b> highlight. The selected entity itself shows green rather than orange.</p>
 		<p>If <b>Highlight Proxies</b> is enabled, entities targeted by proxies are shown with a <b>blue</b> highlight when you've stepped into a nested composite.</p>
@@ -203,22 +207,32 @@
 			<li><b>5</b> — Disable / None</li>
 		</ul>
 		<p>Click and drag the coloured gizmo handles to transform the entity. The current mode is shown in a small HUD.</p>
-		<p>Use <b>Transform Snap</b> and <b>Rotation Snap</b> on the Viewport toolbar to snap movement and rotation to stepped values while dragging.</p>
 		<p>An entity with more than one transform parameter only has the relevant one updated when you drag it, rather than all of them.</p>
+
+		<h3 class="section-heading" style="font-size: 1.1rem; margin-top: 1.5rem;">Snapping</h3>
+		<p>Use <b>Transform Snap</b> and <b>Rotation Snap</b> on the Viewport toolbar to snap movement and rotation to stepped values while dragging. The values on offer are yours to change: <b>Options → Viewport → Snap Increments…</b> edits both lists (<b>Off</b> always stays), and the toolbar menus update as you add or remove a value.</p>
+		<p>Two other kinds of snap don't use a grid at all:</p>
+		<ul>
+			<li><b>Vertex snap</b> — hold <b>V</b> while dragging and the entity snaps to the nearest vertex of whatever mesh is under the cursor, so a prop lands exactly on a corner or a rail. Pick <b>Vertex</b> from the <b>Transform Snap</b> menu to keep it on without holding the key. The snap respects the gizmo axis you're dragging, and it never snaps an entity to itself.</li>
+			<li><b>Snap to floor</b> — with something selected, press <b>Shift + End</b> and it drops until it rests on the surface below (or rises onto the one above, if it was buried). This goes through the gizmo like any other move, so it's undoable and, in <a href="/docs/cage-animation-editor/#animation-mode">Animation Mode</a>, becomes a keyframe.</li>
+		</ul>
+
+		<h3 class="section-heading" style="font-size: 1.1rem; margin-top: 1.5rem;">Duplicating</h3>
+		<p>Hold <b>Shift</b> and drag a translate handle: the selection is duplicated in place and the copies follow the drag, leaving the originals where they were. The copies are made through the same path as a paste, so they keep every parameter. The duplication is one undo step and the drag that places the copies is another (one per copy, when several were duplicated), so undoing after a Shift-drag first puts the copies back where they spawned, and a further undo removes them. Let go before they arrive and the copies simply sit on top of the originals. In <a href="/docs/cage-animation-editor/#animation-mode">Animation Mode</a> Shift-drag doesn't duplicate — there a drag is a keyframe, and Shift leaves it a plain drag.</p>
 	</section>
 
 	<section class="docs-section" id="create-mode">
 		<h2 class="section-heading">Creating Entities</h2>
 		<p>The <b>Create</b> dropdown on the Viewport toolbar turns the view into a placement tool. Pick a function type from the dropdown and the button changes to <b>Create: &lt;type&gt;</b>; clicking in the Viewport then creates a new entity of that type at the position you clicked, in the composite you're currently editing.</p>
 		<p>This is much quicker than adding an entity from the palette and then dragging it into place — particularly for the things you place by eye, like trigger boxes, position markers and pathfinding nodes.</p>
-		<p>Choose <b>None</b> to leave create mode and go back to normal selection.</p>
+		<p>Choose <b>None</b> to leave create mode and go back to normal selection, or press <b>Escape</b> — from the Viewport or anywhere else in the editor, unless you're typing in a text box.</p>
 		<p>Composites can be placed the same way: <b>drag a composite from the Composite Browser onto the Viewport</b> and an instance of it is created in the composite you're editing, positioned where you dropped it. Dragging onto the flowgraph still works too, for when you'd rather place it by hand afterwards.</p>
 	</section>
 
 	<section class="docs-section" id="copy-paste">
 		<h2 class="section-heading">Copy &amp; Paste</h2>
 		<p>Select an entity in the Viewport and <b>Ctrl+C</b> / <b>Ctrl+V</b> copies and pastes it, keeping all of its parameters. The same clipboard works on the flowgraph, so you can copy in one view and paste in the other, and entities can be pasted into a different composite entirely.</p>
-		<p>This replaces the old <b>Duplicate</b> option. See <a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> for what happens to links and node layouts when you paste on the flowgraph.</p>
+		<p>This replaces the old <b>Duplicate</b> option. See <a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> for what happens to links and node layouts when you paste on the flowgraph. For a copy you want to place straight away, <a href="#transform-gizmo">Shift-drag</a> the gizmo instead.</p>
 	</section>
 
 	<section class="docs-section" id="hiding-entities">
@@ -243,7 +257,7 @@
 		</ul>
 		<p>Each preview type has an associated render filter, colour-coded in the list. Use the docked <b>Render Filters</b> panel (alongside Search / Composite Browser by default) to toggle individual function types on or off. This is useful for decluttering busy levels — hide box volumes you don't care about, for example, while keeping position markers visible.</p>
 		<p>Coverage is broad: trigger and camera volumes, NPC and navmesh areas, cover and spotting exclusion areas, sound barriers, environment zones and network nodes, particle, ribbon and GPU emitters, decals, refraction and water surfaces, pickups, and the pathfinding node types all have their own filter.</p>
-		<p>Under <b>Options → Viewport</b>, enable <b>Hide Nested Script Entities</b> to stop showing entity previews defined in nested composites. ModelReference entities are always shown regardless of render filter settings.</p>
+		<p>Under <b>Options → Viewport</b>, enable <b>Hide Nested Script Entities</b> to stop showing entity previews defined in nested composites. The level's models have a filter of their own: <b>ModelReference</b> is listed like any other type, starts ticked, and unticking it hides the models themselves rather than a stand-in shape.</p>
 		<p>Under <b>Options → Misc</b>, <b>Reset Render Filters On Load</b> clears your filter toggles whenever a level loads.</p>
 	</section>
 
@@ -259,13 +273,20 @@
 
 	<section class="docs-section" id="state-info">
 		<h2 class="section-heading">Navmesh &amp; Cover</h2>
-		<p>The <b>State Info</b> dropdown on the Viewport toolbar draws generated NPC state resources over the level. For each of the level's states you can show either:</p>
+		<p>The <b>Show State Info</b> dropdown on the Viewport toolbar draws generated NPC state resources over the level. For each of the level's states you can show either:</p>
 		<ul>
 			<li><b>Navmesh</b> — where NPCs are able to walk</li>
 			<li><b>Cover</b> — the positions NPCs can take cover at</li>
 		</ul>
 		<p>Levels have more than one state — geometry that opens, closes or changes as the mission progresses — and each has its own generated navmesh and cover, so pick the state you're interested in. Choose <b>None</b> to turn the overlay off.</p>
-		<p>This is what these systems will actually be at runtime, so it's the right place to check the result of a build.</p>
+		<p>This is what these systems will actually be at runtime, so it's the right place to check the result of a build. The overlays re-read the generated files every time the level is saved, so after a <a href="/docs/save-and-build/">Save and Build</a> they show the new navmesh and cover straight away. Adding or removing a state (an ExclusiveMaster) still needs the level reloaded before it appears in the list.</p>
+	</section>
+
+	<section class="docs-section" id="zones">
+		<h2 class="section-heading">Zones</h2>
+		<p>Zones are how the game streams a level: each one names a set of composites and entities that are loaded together, and only when the zone is active (there's more in the <a href="/docs/scripting-intro/#composites">Scripting Intro</a>). Getting them right matters — an entity in no zone, or in the wrong one, is missing or popping in at runtime — and they're invisible in the flowgraph.</p>
+		<p><b>Highlight Zones</b> on the Viewport toolbar tints every piece of geometry by the zone it belongs to, one colour per zone, so the boundaries are drawn on the level itself. The colouring follows your edits: rewire a zone's links, paste something into a zoned composite, delete an entity, and the tints update once the change settles. Turn it off when you don't need it — nothing is calculated while it's off, and turning it back on works everything out afresh.</p>
+		<p>Membership is worked out the way the build does it: from a <b>Zone</b> entity through its <b>composites</b> pin to the <b>TriggerSequence</b>s it names, and from their entries to the entities and composites they cover — with one deliberate difference. The build leaves the contents of a <i>shared</i> composite unzoned, whereas the Viewport colours each placement of one by the zone of the room it stands in, so a shared composite showing a zone colour here doesn't mean the build zones it. Select a TriggerSequence and its members are marked with it; the <a href="/docs/scripting-intro/#inspector">inspector's Zone button</a> names the zone the selected entity is in.</p>
 	</section>
 
 	<section class="docs-section" id="options">
@@ -279,12 +300,14 @@
 			<li><b>Fix Camera to Selected Entity</b> — keep the camera locked on the selection rather than framing it once. Turning this on turns on <b>Focus on Selected</b> too</li>
 			<li><b>Show Camera Position</b> — display camera X/Y/Z coordinates while moving</li>
 			<li><b>Render Wireframe</b> — draw ModelReference meshes as wireframe overlays</li>
-			<li><b>Hide Nested Script Entities</b> — hide render previews for entities defined in nested composites (ModelReferences are unaffected)</li>
+			<li><b>Hide Nested Script Entities</b> — hide render previews for entities defined in nested composites (models are drawn regardless; untick the ModelReference render filter to hide those)</li>
+			<li><b>Snap Increments…</b> — edit the values offered by the <b>Transform Snap</b> and <b>Rotation Snap</b> menus; see <a href="#transform-gizmo">Moving Entities</a></li>
+			<li><b>Selection Highlight Mode</b> — <b>Green</b>, <b>Wireframe</b>, <b>Wireframe Transparent</b> or <b>None</b>; see <a href="#selection">Selection</a></li>
 		</ul>
 		<p>Also useful:</p>
 		<ul>
 			<li><b>Render Filters</b> dock panel — toggle previews per function type, plus occlusion and collision meshes</li>
-			<li>Viewport panel toolbar — <b>Selection Mode</b>, <b>Control</b> (gizmo), <b>Create</b>, <b>State Info</b>, <b>Transform Snap</b>, <b>Rotation Snap</b></li>
+			<li>Viewport panel toolbar — <b>Selection Mode</b>, <b>Control</b> (gizmo), <b>Create</b>, <b>Show State Info</b>, <b>Highlight Zones</b>, <b>Transform Snap</b> (including <b>Vertex</b>), <b>Rotation Snap</b></li>
 			<li><b>Options → Misc → Reset Render Filters On Load</b></li>
 			<li><b>Options → Controls</b> — open the controls dialog and check the <b>Viewport Controls</b> tab for a full shortcut list</li>
 		</ul>

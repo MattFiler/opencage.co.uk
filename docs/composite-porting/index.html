@@ -9,14 +9,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to import and export composites, and every asset they depend on, between Alien: Isolation levels with OpenCAGE.">
+    <meta name="description" content="How to import and export composites, and every asset they depend on, between Alien: Isolation levels, or as .ocp composite packages on disk, with OpenCAGE.">
     <meta name="author" content="Matt Filer">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
 	<meta name="twitter:title" content="OpenCAGE: Composite Porting" />
-	<meta name="twitter:description" content="How to import and export composites, and every asset they depend on, between Alien: Isolation levels with OpenCAGE." />
+	<meta name="twitter:description" content="How to import and export composites, and every asset they depend on, between Alien: Isolation levels, or as .ocp composite packages on disk, with OpenCAGE." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
 
@@ -95,10 +95,18 @@
 <div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
 
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#export"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Export Composites</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#import"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Import Composites</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#levels"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Between Levels</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#export">Export to Level</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#import">Import from Level</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#disk"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Composite Packages (.ocp)</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#export-disk">Export to Disk</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#opening-packages">Opening a Package</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#import-disk">Import from Disk</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#import-no-level">With No Level Open</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#archive">Inside an .ocp File</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#what"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What Comes With It</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#after"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>After the Port</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#unresolvable-proxies">Unresolvable Proxies</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#tips"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Tips &amp; Caveats</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
@@ -120,49 +128,111 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Every level in Alien: Isolation carries its own copy of everything it uses. A model in one level's data isn't visible to another, so copying a composite between levels means copying every asset it depends on too.</p>
-		<p><b>File → Port Composites</b> does that for you, in whichever direction you need:</p>
+		<p>Every level in Alien: Isolation carries its own copy of everything it uses. A model in one level's data isn't visible to another, so copying a composite between levels means copying every asset it depends on too. OpenCAGE does that for you, in two forms:</p>
 		<ul>
-			<li><b>Export Composites</b> — push composites from the level you have open into one or more other levels on disk. Each destination is loaded, written to and saved.</li>
-			<li><b>Import Composites</b> — pull composites from any other levels into the level you have open. The import happens in memory, and nothing touches disk until you save.</li>
+			<li><b>File → Export Composites → To Level</b> and <b>File → Import Composites → From Level</b> move composites between levels in the game install you're editing.</li>
+			<li><b>File → Export Composites → To Disk</b> and <b>File → Import Composites → From Disk</b> go through an <b>OpenCAGE Composite Package</b> — an <code>.ocp</code> file holding the composites and everything they use, which can be imported into any level, on any install, on any machine. It's how you share a modded composite with someone else, or carry one between the <a href="/docs/multiple-game-installs/">game installs</a> you have set up.</li>
 		</ul>
-		<p>Every resource type a composite can hold is supported, so every composite can be ported. The same import picker is also how <a href="/docs/create-level/">Create Level</a> seeds a brand-new level.</p>
+		<p>Whichever route you take, the composites arrive with the composites they instance and every resource they reference — it's the same porting logic underneath, so every composite can be ported. The same picker is also how <a href="/docs/create-level/">Create Level</a> seeds a brand-new level.</p>
     </section>
 </article>
 
-<article class="docs-article" id="export">
+<article class="docs-article" id="levels">
     <header class="docs-header">
-<h1 class="docs-heading">Export Composites</h1>
+<h1 class="docs-heading">Between Levels</h1>
     </header>
 
-	<section class="docs-section" style="padding-top:0;">
-		<p>The list shows the composites of the level you have open. Tick the ones to port — the filter box narrows the list as you type, and <b>Check all shown</b> / <b>Uncheck all shown</b> act on whatever the filter is currently showing. Then choose where they go:</p>
+	<section class="docs-section" id="export" style="padding-top:0;">
+		<h2 class="section-heading">Export to Level</h2>
+		<p><b>File → Export Composites → To Level</b> pushes composites from the level you have open into one or more other levels on disk. Each destination is loaded, written to and saved.</p>
+		<p>The tree shows the composites of the level you have open, in the folders their names spell out, with every folder open. Tick the ones to port — ticking a folder ticks everything in it, the filter box narrows the tree as you type, <b>Check all</b> ticks whatever the filter is currently showing, and <b>Uncheck all</b> clears the whole selection, shown or not. Composites that a ticked one instances are ticked for you, greyed out and can't be unticked while it's ticked: a port always brings them along, so the tree shows what will actually move, and the count under it says how many were ticked and how many came with them. Then choose where they go:</p>
 		<ul>
-			<li><b>Port composites to level</b> — the destination. The level you currently have open isn't offered, for obvious reasons.</li>
-			<li><b>Port to all levels</b> — port into every other level in the game in one go. The destination list is disabled when this is ticked. Useful for something you want available everywhere; slow, because each level is loaded and saved in turn.</li>
-			<li><b>Copy all composites referenced by these composites</b> — bring nested composites across as well. Without this, a composite that instances others arrives incomplete.</li>
+			<li><b>Port composites to levels</b> — tick any number of destinations. The level you currently have open isn't offered, for obvious reasons. <b>All levels</b> and <b>No levels</b> tick or clear the whole list; with more than one ticked, OpenCAGE asks before starting, because each level is loaded and saved in turn.</li>
 			<li><b>Overwrite existing destination composites</b> — if the destination already has a composite with the same ID, replace it rather than leaving the existing one alone. This is how you push an updated version of something you've already ported.</li>
 			<li><b>Overwrite existing destination assets</b> — same idea for the models, materials, textures and collision the composites reference.</li>
-			<li><b>Build After Port</b> — run a full <a href="/docs/save-and-build/">Save and Build</a> on each destination instead of a plain save, so the ported geometry gets lighting, collision, navmesh and the rest. See <a href="#after">After the Port</a>.</li>
+			<li><b>Build after port (Save and Build)</b> — run a full <a href="/docs/save-and-build/">Save and Build</a> on each destination instead of a plain save, so the ported geometry gets lighting, collision, navmesh and the rest. See <a href="#after">After the Port</a>.</li>
 		</ul>
-		<p><b>Port Now</b> starts the port. Alien: Isolation is closed if it's running, then each destination level is loaded, the composites and their assets are transferred, and the level is saved — with a progress window for each stage. The summary at the end counts what was ported, including the composites yours instance.</p>
+		<p><b>Port Now</b> starts the port. Each destination level is loaded and the composites and their assets transferred; Alien: Isolation is then closed if it's running, and the level is saved — with a progress window for each stage. The summary at the end counts what was ported, including the composites yours instance. The destination keeps its own flowgraph pages and modified-parameter marks across the save, and gains yours for what arrived. OpenCAGE is out of action for the whole run — the editor window is disabled until the last level is saved — and if a level fails part-way, the message says which levels were written and which one to restore from the <a href="/docs/backup-manager/">Backup Manager</a>.</p>
+    </section>
+
+	<section class="docs-section" id="import">
+		<h2 class="section-heading">Import from Level</h2>
+		<p><b>File → Import Composites → From Level</b> pulls composites from any other levels into the level you have open. The import happens in memory, and nothing touches disk until you save.</p>
+		<p>Pick a source from the <b>Level</b> list on the left and its composites appear in the same tree, read straight from that level's script table — the level itself isn't loaded, so switching between sources is quick. Tick what you want (folders, filter and check-all work as in the export dialog, and the composites a ticked one instances are ticked and greyed for you), then switch to another level and tick more: one import can draw on any number of levels, and the summary line keeps count across them.</p>
+		<ul>
+			<li><b>Overwrite composites already here</b> — replace a composite the open level already has with the imported one. The composite editor is closed first (whatever composite you had open, along with any child tabs), since it would be holding the old copy.</li>
+			<li><b>Overwrite existing assets</b> — likewise for the models, materials, textures and collision they use.</li>
+		</ul>
+		<p><b>Import</b> ports everything into the level in the editor, refreshes the composite browser and opens the first composite you imported — in the editor and in the <a href="/docs/level-viewer/">Viewport</a>. A summary reports what arrived — composites, renderables, collision mappings and physics systems. Nothing has been written to disk at this point: save the level to keep it, or reload without saving to throw the import away.</p>
+		<div class="docs-caveat"><p>If an import stops part-way (the message will say so), the level in the editor may hold a partial import. Reload it without saving if in doubt.</p></div>
     </section>
 </article>
 
-<article class="docs-article" id="import">
+<article class="docs-article" id="disk">
     <header class="docs-header">
-<h1 class="docs-heading">Import Composites</h1>
+<h1 class="docs-heading">Composite Packages (.ocp)</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Pick a source from the <b>Level</b> dropdown and its composites are listed straight from that level's composite table — the level itself isn't loaded, so switching between sources is quick. Tick what you want (with the same filter and check-all controls as the export dialog), then switch to another level and tick more: one import can draw on any number of levels, and the summary line keeps count.</p>
+		<p>A level-to-level port only reaches levels in the install you're editing. An <b>OpenCAGE Composite Package</b> takes the same content out of the game entirely: the composites, every composite they instance, all of their resources and your editor metadata, in one compressed <code>.ocp</code> file that any copy of OpenCAGE can import into any level. Nothing about the destination has to match the source — a composite built in <b>TECH_HUB</b> on one machine can land in a brand-new level on another.</p>
+	</section>
+
+	<section class="docs-section" id="export-disk">
+		<h2 class="section-heading">Export to Disk</h2>
+		<p>With the source level loaded, open <b>File → Export Composites → To Disk</b>. At the top, say what the package is:</p>
 		<ul>
-			<li><b>Also bring composites they instance</b> — nested composites come along too.</li>
-			<li><b>Overwrite composites already here</b> — replace a composite the open level already has with the imported one. If it's open in a tab, that tab is refreshed.</li>
+			<li><b>Name</b> — what the package is called, shown in bold to whoever imports it. Left blank, the package has no name and the import window shows just the description (the file name is always under <b>More info…</b>).</li>
+			<li><b>Description</b> — what's in it and how to use it. Shown when the package is imported, so this is the place for anything the person importing needs to know.</li>
+		</ul>
+		<p>Below that the tree works like the level export — tick composites or folders, filter, <b>Check all</b> / <b>Uncheck all</b>, with what a ticked composite instances ticked and greyed for you — but there's no destination to choose. <b>Export to Disk...</b> asks where to save the file (it suggests the package name, or the last part of the composite's name, or <code>&lt;LEVEL&gt;_composites</code> for several) and writes it. The level you have open is not modified.</p>
+		<p>What goes in:</p>
+		<ul>
+			<li>The composites you ticked, and every composite they instance</li>
+			<li>Every model, material, texture, shader, collision mapping, physics system, environment map and animated-model record they use — the full list under <a href="#what">What Comes With It</a></li>
+			<li>Your <b>flowgraph layouts</b> and custom pin info for those composites, and the inspector's record of which parameters you've changed from their defaults, so they look and behave in the destination as they did in the source</li>
+		</ul>
+		<p><b>GLOBAL</b> and <b>PAUSEMENU</b> are left out even though every composite can reach them — every level already has its own — unless you tick them yourself.</p>
+		<p>Behind the scenes OpenCAGE ports into a blank temporary level, saves it and packs the result, so an export takes about as long as saving a small level. The summary tells you how many composites went in, including the instanced ones, and how big the file is. Textures dominate: a composite that uses a lot of unique textures makes a large file, while a handful of script-only composites make a tiny one.</p>
+    </section>
+
+	<section class="docs-section" id="opening-packages">
+		<h2 class="section-heading">Opening a Package</h2>
+		<p>There are three ways to open an <code>.ocp</code> file, and they all lead to the same import window:</p>
+		<ul>
+			<li><b>File → Import Composites → From Disk</b> and pick the file.</li>
+			<li><b>Drop it on OpenCAGE.</b> Drag the file from Explorer onto any part of the editor window — the flowgraph, the composite browser, the Viewport, anywhere.</li>
+			<li><b>Double-click it.</b> OpenCAGE registers <code>.ocp</code> as its own file type each time it starts (for your Windows account only — nothing needs administrator rights), so an <code>.ocp</code> opens in OpenCAGE from Explorer like any document. If OpenCAGE is already running, the file is handed to it and the import window opens there, in front. If it isn't, OpenCAGE starts — through Steam, so Steam needs to be running — and opens the file once it's up. Several files selected together open one after another.</li>
+		</ul>
+		<p>Whichever way it arrives, a package opened while a level is still loading waits until the load has finished, and one opened while another import window is up waits its turn.</p>
+    </section>
+
+	<section class="docs-section" id="import-disk">
+		<h2 class="section-heading">Import from Disk</h2>
+		<p>The import window reads the file's header — nothing is unpacked yet — and shows the package's name in bold with its description under it (either is left out if the author didn't give one). <b>More info…</b> shows where it came from: the file, the source level, when it was exported, the OpenCAGE version and platform that wrote it, and how many composites and files it holds. A warning appears if the file was made on a different platform or by a different version of OpenCAGE.</p>
+		<p>A package is imported as it is: the tree shows every composite it holds, with every folder open, and there's nothing to pick — the ones ticked at export are ported and bring the rest with them, exactly as they were packed. Two options remain, both on by default:</p>
+		<ul>
+			<li><b>Overwrite composites already here</b> — replace a composite the level already has (same ID) with the file's copy. With a level open, the composite editor is closed first.</li>
 			<li><b>Overwrite existing assets</b> — likewise for the models, materials, textures and collision they use.</li>
 		</ul>
-		<p><b>Import</b> ports everything into the level in the editor and refreshes the composite browser. A summary reports what arrived — composites, renderables, collision mappings, physics systems and animated models. Nothing has been written to disk at this point: save the level to keep it, or reload without saving to throw the import away.</p>
-		<div class="docs-caveat"><p>If an import stops part-way (the message will say so), the level in the editor may hold a partial import. Reload it without saving if in doubt.</p></div>
+		<p>With a level open in the editor, <b>Import</b> behaves exactly like an import from a level: everything is ported into the level in the editor, the first imported composite opens in the editor and the Viewport, and a summary counts what arrived. Flowgraph layouts and pin info arrive with it, so the flowgraphs look as they did where they were exported. One thing can differ: proxies to things the destination level doesn't have — a mission script's proxies to its own level's doors, say — arrive unresolvable, and the summary says so. See <a href="#unresolvable-proxies">Unresolvable Proxies</a>. Nothing is written to disk until you save.</p>
+		<p><b>Platforms.</b> The PC storefronts — Steam, Epic Games Store, GOG and the Windows Store — share one set of level files, so a file from one imports cleanly into another and the dialog only mentions the difference. Any file not from one of those — Switch, iOS/Android, Mac/Linux, or one whose platform can't be read — is flagged as unlikely to work. It isn't refused — you may know better than the header — but expect problems.</p>
+    </section>
+
+	<section class="docs-section" id="import-no-level">
+		<h2 class="section-heading">With No Level Open</h2>
+		<p>A package double-clicked or dropped before any level is loaded still opens the import window, with a <b>Destination</b> panel added, because the import then goes to a level on disk instead of the one in the editor:</p>
+		<ul>
+			<li><b>Import into levels</b> — tick the levels to write into; <b>All levels</b> and <b>No levels</b> tick or clear the whole list. Each ticked level is loaded, the composites are ported in, Alien: Isolation is closed if it's running, and the level is saved. With more than one ticked, OpenCAGE asks before starting, because it takes a while.</li>
+			<li><b>Build after import (Save and Build)</b> — run a full <a href="/docs/save-and-build/">Save and Build</a> on each level instead of a plain save. With every level ticked as well, that's a build of the whole campaign: start it and walk away.</li>
+		</ul>
+		<p>Each level keeps its own flowgraph pages and modified-parameter marks across the save, and gains the package's for what arrived. Afterwards, for a single level, OpenCAGE offers to open it. If a level fails part-way, the message says which levels were written and which one to restore from the <a href="/docs/backup-manager/">Backup Manager</a>.</p>
+		<div class="docs-caveat"><p>OpenCAGE is out of action for the whole run — the editor window is disabled until the last level is saved, with the progress windows showing where it's got to. Don't force-close it part-way: the level being written at that moment would be left incomplete.</p></div>
+    </section>
+
+	<section class="docs-section" id="archive">
+		<h2 class="section-heading">Inside an .ocp File</h2>
+		<p>An <code>.ocp</code> file is one gzip stream. It starts with a short header holding a JSON manifest: the format version, the OpenCAGE version and platform that wrote it, the source level and export time, the package's name and description, the list of composites with their IDs (and which of them were ticked), and every file in the archive with its length. After the manifest come the files of the temporary level the composites were ported into — the script (<code>COMMANDS.PAK</code>, which carries your layout, pin and parameter-modification tables inside it) and the resource paks — followed by a terminator.</p>
+		<p>The manifest comes first so the import window can read it without unpacking anything, and every file's length is checked on import: a truncated or damaged file is refused rather than half-imported. The <b>format version</b> in the header is the container's, so a later OpenCAGE can tell exactly what it's reading.</p>
     </section>
 </article>
 
@@ -179,9 +249,11 @@
 			<li><b>Collision mappings and their Havok proxies</b> — including both the 32-bit and 64-bit collision data the game ships</li>
 			<li><b>Dynamic physics systems</b> — likewise, in both widths</li>
 			<li><b>Environment animations</b> — the animated-model records behind animated static geometry</li>
-			<li><b>Navmesh barriers, traversal segments and ExclusiveMaster state resources</b></li>
+			<li><b>Environment map cubemaps</b> — the textures behind EnvironmentMap entities</li>
+			<li><b>Custom pin info</b> — the pins you've added to entities, so nodes keep their shape</li>
 			<li><b>Composite flowgraph layouts</b> — your node positions arrive with the composite rather than being lost</li>
 		</ul>
+		<p>Navmesh barrier, traversal segment and ExclusiveMaster state references ride along on the copied entities as they are; the data behind them belongs to the destination and is regenerated when it's built (see <a href="#after">After the Port</a>).</p>
 		<p>Shared Havok proxies and physics systems are tracked as they're imported, so a composite that uses the same collision proxy in twenty places doesn't import twenty copies of it — and a composite instanced by several of the ones you picked is only ported once.</p>
     </section>
 </article>
@@ -193,8 +265,18 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>A ported composite has arrived in the destination level, but the destination level's <i>derived</i> data doesn't know about it yet — the new geometry has no baked lighting, the navmesh doesn't route around it, and the sound network hasn't seen it.</p>
-		<p>When exporting, tick <b>Build After Port</b> to have OpenCAGE run a build on each destination as part of the port. Otherwise — and always after an import, which only changes the level in the editor — use <b>File → Save and Build Level</b> yourself once the composite is placed where you want it.</p>
+		<p>When exporting to a level, or importing a package into a level on disk, tick the build option to have OpenCAGE run a build on each destination as part of the port. Otherwise — and always after an import into the level in the editor, which only changes it in memory — use <b>File → Save and Build Level</b> yourself once the composite is placed where you want it.</p>
 		<p>Bear in mind that a build takes minutes per level. Porting to all levels <i>with</i> a build is an operation to start and walk away from.</p>
+    </section>
+
+	<section class="docs-section" id="unresolvable-proxies">
+		<h2 class="section-heading">Unresolvable Proxies</h2>
+		<p>A <a href="/docs/scripting-intro/#proxy-entities">proxy</a> points at an entity by its path from the root of the level, so a proxy only means something in the level it was written for. A mission script ported to another level — or another install — brings its proxies with it, but the doors, triggers and checkpoints they pointed at aren't there. Those proxies are <b>unresolvable</b>: they resolve to nothing until they're pointed somewhere that exists.</p>
+		<p>OpenCAGE keeps them rather than tidying them away. The proxy stays in the composite with every link through it, so the wiring of the script survives; what it pointed at is remembered (its function type, or the composite it was an instance of), so the node keeps the right pins. The summary at the end of a port or import lists every unresolvable proxy by composite, and the same message appears for each destination when porting to several levels.</p>
+		<p>In the flowgraph an unresolvable proxy is drawn in its own colour (a dark red by default — see <a href="/docs/options/">Options</a>) with a <b>(!)</b> marker in its title bar, and the links into and out of it are drawn in that colour too, so a script's broken spots stand out at a glance. Its subtitle reads <b>UNRESOLVABLE PROXY</b>, followed by what it used to point at when this level has a name for that. The <a href="/docs/scripting-intro/#inspector">inspector</a> says the same, and shows the stored path as far as it still leads anywhere.</p>
+		<p>To mend one, right-click its node and choose <b>Change Proxy Target...</b>, or press <b>Change Target</b> in the inspector. The usual proxy picker opens, rooted at the level's root composite and already opened as far down the old path as still exists, so you land where the break is. Pick the entity that should stand in — the door that plays the same role in this level, say — and the proxy points there, keeping its name, its parameters and every link. The node goes back to its normal colour; undo puts it back the way it was.</p>
+		<p>Nothing forces you to fix them before saving: an unresolvable proxy is saved like any other and can be re-pointed later. Until it is, though, the part of the script that goes through it does nothing in the game, and a proxy pointed at the wrong kind of entity won't do what the script expects either.</p>
+		<div class="docs-caveat"><p>A retail level never contains an unresolvable proxy, so a red node is always something a port, an import or a deletion did — a proxy also stops resolving when the entity it pointed at is deleted from the level. The same picker re-points those.</p></div>
     </section>
 </article>
 
@@ -205,11 +287,13 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>Alien: Isolation is closed automatically</b> before a destination is written, since it holds write locks on level files.</li>
-			<li><b>Back up the destination first.</b> An export writes into other levels, and if you've ticked the overwrite options it will replace what's already there. The <a href="/docs/backup-manager/">Backup Manager</a> can snapshot every level at once.</li>
-			<li><b>Import when you want to look before you commit.</b> Because an import only changes the level in the editor, you can check the result in the <a href="/docs/level-viewer/">Viewport</a> and reload without saving if it isn't what you wanted.</li>
-			<li><b>Port the parent, not the pieces.</b> Porting a composite that instances others without the referenced-composites option gives you a composite whose instances point at nothing.</li>
-			<li><b>Re-porting replaces, if you let it.</b> To push an updated version of something you've already ported, tick both overwrite options — otherwise the existing copy in the destination wins.</li>
+			<li><b>Alien: Isolation is closed automatically</b> before a destination level is written, since it holds write locks on level files. Exporting to disk doesn't touch the game's files, so it doesn't need to.</li>
+			<li><b>Back up the destination first.</b> A port into a level on disk writes into that level, and if you've ticked the overwrite options it will replace what's already there. The <a href="/docs/backup-manager/">Backup Manager</a> can snapshot every level at once.</li>
+			<li><b>Import into the open level when you want to look before you commit.</b> Because that only changes the level in the editor, you can check the result in the <a href="/docs/level-viewer/">Viewport</a> and reload without saving if it isn't what you wanted.</li>
+			<li><b>Re-porting replaces, if you let it.</b> To push an updated version of something you've already ported, tick both overwrite options — otherwise the existing copy in the destination wins. The same applies to an updated <code>.ocp</code> file.</li>
+			<li><b>An .ocp file is a snapshot.</b> It holds the composites and assets as they were when it was written. Change something and you'll need to export again.</li>
+			<li><b>Sharing a composite means sharing the file, nothing else.</b> Whoever imports it needs no assets from your install — everything the composite uses is inside. Keep the files with your mod's sources; they're the portable form of your work.</li>
+			<li><b>Double-clicking needs Steam.</b> With OpenCAGE closed, a double-clicked package starts OpenCAGE through Steam, the way the Play button does. If Steam isn't running, start it and open the file again.</li>
 			<li><b>Check what arrived before building.</b> It's much cheaper to fix a missing asset before a build than after one.</li>
 		</ul>
 	</section>
@@ -225,6 +309,7 @@
 			<li><a href="/docs/create-level/">Create Level</a> — a new level seeded with composites from anywhere</li>
 			<li><a href="/docs/save-and-build/">Save and Build</a> — regenerating a level's instanced data after a port</li>
 			<li><a href="/docs/backup-manager/">Backup Manager</a> — snapshot the destination before porting into it</li>
+			<li><a href="/docs/multiple-game-installs/">Multiple Game Installs</a> — several installs, each with its own levels to port between</li>
 			<li><a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> — what composites are and how they nest</li>
 			<li><a href="/docs/level-names/">Level Names</a> — what each level actually is</li>
 		</ul>

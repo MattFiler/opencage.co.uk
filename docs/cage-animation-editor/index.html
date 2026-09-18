@@ -94,7 +94,10 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#events"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Event Tracks</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#string-events">String Event Tracks</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#anim-entity-tracks">Animation Entity Tracks</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#animation-mode"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Animation Mode</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#previewing">Previewing</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#keyframing-viewport">Keyframing from the Viewport</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving &amp; Undo</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related</a></li>
 
 </ul></nav></div>
@@ -115,7 +118,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>CAGEAnimation Editor</b> is a timeline UI for <a href="/docs/cathode-entities/#CAGEAnimation">CAGEAnimation</a> function entities. It edits float curves over time, string events that fire pins on the flowgraph, and animation-entity bindings used by play-animation nodes.</p>
+		<p>The <b>CAGEAnimation Editor</b> is a timeline UI for <a href="/docs/cathode-entities/#CAGEAnimation">CAGEAnimation</a> function entities. It edits float curves over time, string events that fire pins on the flowgraph, and animation-entity bindings used by play-animation nodes — and, with <a href="#animation-mode">Animation Mode</a>, plays the result in the <a href="/docs/level-viewer/">Viewport</a> and turns moves made there into keyframes.</p>
 		<p>This is <b>not</b> the same as the <a href="/docs/animation-editor/">Animation Editor</a>, which browses the animation clips in <code>ANIMATION.PAK</code>. The CAGEAnimation Editor works on a scripting entity inside a composite.</p>
     </section>
 </article>
@@ -129,9 +132,9 @@
 		<ol>
 			<li>Select a <a href="/docs/cathode-entities/#CAGEAnimation">CAGEAnimation</a> entity in the composite list or flowgraph.</li>
 			<li>In the <b>Entity Inspector</b>, click <b>Function</b>.</li>
-			<li>The CAGEAnimation Editor opens on a working copy of that entity. Changes apply when you click <b>Save</b>.</li>
+			<li>The CAGEAnimation Editor opens on that entity. Every change is written to it as you make it, and each one is an undo step — there's no separate save. <b>Close</b> closes the window.</li>
 		</ol>
-		<p>While the editor is open you can jump to linked entities (for example from an Animation Entity binding) without closing the window. Save still writes back to the original <code>CAGEAnimation</code> by ID.</p>
+		<p>While the editor is open you can jump to linked entities (for example from an Animation Entity binding) without closing the window. Edits still go to the original <code>CAGEAnimation</code> by ID.</p>
     </section>
 </article>
 
@@ -147,7 +150,7 @@
 			<li><b>Timeline / curve graph</b> (centre) — float tracks as bezier or linear curves, event lanes underneath, and a time ruler at the bottom (including the playable animation-length handle).</li>
 			<li><b>Inspector</b> (right) — context panel for the current selection: a float keyframe, a string event, an animation-entity keyframe, or an Animation Entity track’s bindings.</li>
 		</ul>
-		<p>The footer has <b>Snap</b> / <b>Interval</b>, <b>Bezier curves</b>, and <b>Save</b>.</p>
+		<p>The footer has <b>Snap</b> / <b>Interval</b>, <b>Bezier curves</b>, <b>Animation Mode</b> (with <b>Play</b> and a time readout while it's on) and <b>Close</b>.</p>
     </section>
 </article>
 
@@ -205,7 +208,7 @@
 			<li><b>Mouse wheel</b> over the plot zooms the value range; over the timeline / event lanes zooms time. <b>Shift+wheel</b> pans the corresponding axis.</li>
 			<li><b>Z</b> resets the view to the full content range.</li>
 			<li>Enable <b>Snap</b> and pick an interval to quantise times while dragging and placing keys.</li>
-			<li>Drag the green handle on the timeline to set playable <b>animation length</b> (written as <code>anim_length</code> on save).</li>
+			<li>Drag the green handle on the timeline to set playable <b>animation length</b> (written to <code>anim_length</code> straight away, like every other edit).</li>
 		</ul>
     </section>
 </article>
@@ -257,14 +260,45 @@
     </section>
 </article>
 
-<article class="docs-article" id="saving">
+<article class="docs-article" id="animation-mode">
     <header class="docs-header">
-		<h1 class="docs-heading">Saving</h1>
+		<h1 class="docs-heading">Animation Mode</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Click <b>Save</b> to write the edited tracks, connections, and parameters back to the entity and close the editor. <code>anim_length</code> is updated from the timeline.</p>
-		<p>If you removed string events whose pins still have flowgraph connections (compiled links or live wires on the node), OpenCAGE warns before saving. Continuing will leave those links pointing at pins that no longer exist, so they will not fire.</p>
+		<p>A timeline tells you the numbers; <b>Animation Mode</b> shows you the motion. With it on, the editor drives the <a href="/docs/level-viewer/">Viewport</a> from a playhead, so a door swings, a camera tracks or a light moves as you scrub — and moving something out in the 3D view becomes a keyframe. It needs the Viewport: with the 3D view off, the button says so.</p>
+		<p>The one rule everything follows: <b>Animation Mode never changes an entity's own values.</b> An entity's position is where it rests when nothing is playing, and the animation is the only thing that moves it. That's what makes leaving the mode safe at any moment — everything the preview moved goes straight back where it was.</p>
+	</section>
+
+	<section class="docs-section" id="previewing">
+		<h2 class="section-heading">Previewing</h2>
+		<p>Click <b>Animation Mode</b> in the footer (it becomes <b>Exit Animation Mode</b>, in bold, while it's on). A playhead appears on the timeline, with <b>Play</b> and a time readout beside the button:</p>
+		<ul>
+			<li><b>Drag the playhead</b> along the timeline to scrub. Every transform the animation drives is posed in the Viewport for that time, using the same interpolation the graph is drawing — bezier or linear, whichever you have on.</li>
+			<li><b>Play</b> runs from the playhead to the end of the animation in real time and stops; playing from the end starts over. <b>Stop</b> halts it where it is.</li>
+			<li>Edit a curve while the mode is on and the Viewport updates without the playhead moving.</li>
+		</ul>
+		<p>Which things move depends on where you came from. A CAGEAnimation addresses its targets relative to its own composite, and the same composite can be instanced many times over, so the hierarchy you stepped through to reach the animation is what decides which placement is previewed. Open the editor from inside the instance you want to watch.</p>
+		<p>Only the entity's <b>position</b> parameter is previewed — x, y, z and yaw, pitch, roll. Float parameters on lights, sounds and the like are animated in-game as normal, but there's nothing in the Viewport to show them on.</p>
+	</section>
+
+	<section class="docs-section" id="keyframing-viewport">
+		<h2 class="section-heading">Keyframing from the Viewport</h2>
+		<p>Put the playhead where you want a keyframe, select the entity in the Viewport and move it with the transform gizmo. Instead of changing the entity's position, the move is recorded as keyframes at the playhead — on the animation's tracks for that entity, adding them (and the connection) if the entity wasn't in the animation yet. A drag is one undo step, however many values it wrote. The same goes for a value typed into the inspector while the mode is on, for an existing FLOAT or TRANSFORM parameter the animation can reach; adding a parameter the entity didn't have, or editing several entities at once, is applied to the entity as normal.</p>
+		<p>Anything the animation <i>can't</i> reach from its composite is edited normally, so you can still fix up scenery around the thing you're animating without leaving the mode.</p>
+		<p>The inspector shows what an animation controls: parameters driven by a CAGEAnimation in the hierarchy you're in get a <b>purple</b> value cell, alongside the blue and orange ones described in the <a href="/docs/scripting-intro/#inspector">Scripting Intro</a>.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="saving">
+    <header class="docs-header">
+		<h1 class="docs-heading">Saving &amp; Undo</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>There is nothing to save. Every edit — a keyframe moved, a track added, an event renamed, a binding changed — is written to the <code>CAGEAnimation</code> as you make it, and <code>anim_length</code> is kept up to date from the timeline. <b>Close</b> just closes the window (and leaves Animation Mode if it's on).</p>
+		<p>Each edit is an undo step in the main editor: <b>Edit → Undo</b> (or <b>Ctrl+Z</b> with the main window focused — the shortcut doesn't work inside this window) takes it back even while this window is open, and the window picks up the restored tracks. A gizmo drag in Animation Mode counts as one step, not one per value it recorded.</p>
+		<p>An event's pins on the <code>CAGEAnimation</code> node exist for as long as some keyframe uses that event name; removing the last one removes the forward and reverse pins. Deleting an event with the inspector's <b>Delete Event</b> button, or deleting a whole event track, warns first if any of the pins going away still have flowgraph connections. Renaming an event, or deleting one from the graph's right-click menu, doesn't — so check the node after those.</p>
     </section>
 </article>
 

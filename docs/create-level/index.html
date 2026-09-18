@@ -130,10 +130,10 @@
 		<p>Open <b>File → Create Level</b>. The dialog has three parts:</p>
 		<ul>
 			<li><b>Level name</b> — letters, digits and underscores, up to 32 characters. It's stored upper-case, and a name that already exists is refused. The limit is real: <a href="/docs/launch-game/">Launch Game</a> boots the game straight into a level by writing its name into the game executable, and that space is fixed.</li>
-			<li><b>Composites to import (optional)</b> — click <b>Choose…</b> to open the composite picker. Pick a source level from the dropdown, tick the composites you want (there's a filter box, plus <b>Check all shown</b> / <b>Uncheck all shown</b>), then switch to another level and tick more if you like — a single pick can span any number of levels. Tick <b>Also bring composites they instance</b> to have nested composites come along. The summary under the button lists what you've chosen per level; <b>Clear</b> empties it. With nothing chosen, the level starts with just GLOBAL, PAUSEMENU and the required assets.</li>
+			<li><b>Composites to import (optional)</b> — click <b>Choose…</b> to open the composite picker. Pick a source level from the list on the left, tick the composites you want in the tree (folders tick everything in them; there's a filter box, plus <b>Check all</b> / <b>Uncheck all</b>), then switch to another level and tick more if you like — a single pick can span any number of levels. Composites they instance are ticked and greyed for you, since they come along regardless. The list above the buttons shows what you've chosen per level; <b>Clear</b> empties it. With nothing chosen, the level starts with just GLOBAL, PAUSEMENU and the required assets.</li>
 			<li><b>Create Level</b> — Alien: Isolation is closed if it's running, then a progress window follows each stage: creating the level, porting each source level's composites, and saving. A summary tells you what arrived, and the new level loads in the editor.</li>
 		</ul>
-		<p>The picker is the same <b>Import Composites</b> dialog described under <a href="/docs/composite-porting/#import">Composite Porting</a>, minus the overwrite options — a level that doesn't exist yet has nothing to overwrite.</p>
+		<p>The picker is the same <b>Import from Level</b> dialog described under <a href="/docs/composite-porting/#import">Composite Porting</a>, minus the <b>Overwrite composites already here</b> option — a level that doesn't exist yet has no composites to overwrite. <b>Overwrite existing assets</b> is still offered, for when picks from several levels bring same-named models or textures. Composites you've saved as <code>.ocp</code> packages can be brought in once the level exists — <a href="/docs/composite-porting/#import-no-level">even before it's opened</a>.</p>
     </section>
 </article>
 
@@ -162,7 +162,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>Add content.</b> Place entities with the <a href="/docs/level-viewer/#create-mode">Viewport's create mode</a>, drag composites from the Composite Browser into the Viewport or the flowgraph, import geometry with the <a href="/docs/model-editor/">Model Editor</a>, or pull more in with <b>File → Port Composites → Import Composites</b>.</li>
+			<li><b>Add content.</b> Place entities with the <a href="/docs/level-viewer/#create-mode">Viewport's create mode</a>, drag composites from the Composite Browser into the Viewport or the flowgraph, import geometry with the <a href="/docs/model-editor/">Model Editor</a>, or pull more in with <b>File → Import Composites → From Level (or From Disk, for an <code>.ocp</code> package)</b>.</li>
 			<li><b>Build it.</b> A new level has no navmesh, no collision or physics instances, no baked lighting and no sound network. <a href="/docs/save-and-build/">Save and Build</a> generates all of that from whatever you've placed — until you do, there's nothing to walk on.</li>
 			<li><b>Launch it.</b> In <a href="/docs/launch-game/">Launch Game</a>, tick <b>Load straight into a level</b> and pick your level from the list.</li>
 		</ul>

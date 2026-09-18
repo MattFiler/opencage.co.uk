@@ -212,6 +212,7 @@
         <p>Proxies are very similar to aliases, except instead of pointing to an entity relative to the current composite, they point to an entity relative to the root composite - giving you a proxy of the instance of an entity within the level as it will be at runtime (as the root composite is the one that is loaded for the level, see above for more info about the root composite). Because of this, proxies are generally used for script-driven things as they have the wider context of the level as it will be during gameplay. They must also be enabled in order to function, and aren't implicitly active like aliases.</p>
         <p>As an example of the usage of a proxy, imagine you have a trigger which will be happening inside a composite you're instancing within your environment composite, and you want to know about the trigger within your mission script which is contained within another composite. From the root of the level, you could find the entity with the trigger, create a proxy of it, and then listen to the parameter with the trigger off of the proxy.</p>
         <p>As proxies must also be enabled, you could have logic behind if the proxy is active to do things like show/hide ModelReference entities within composites instanced somewhere within the level.</p>
+        <p>A proxy whose target isn't in the level — because the entity was deleted, or the composite was <a href="/docs/composite-porting/#unresolvable-proxies">ported</a> from a level that had it — is kept, and shown as an <b>unresolvable proxy</b>: a red node with a <b>(!)</b> marker, red links, and a <b>Change Target</b> button in the inspector to point it somewhere that exists.</p>
         <p>As you can imagine - all of these pointers and cross-references can become hard to track: OpenCAGE contains a few features to try and make this easier. One of those is the &quot;references&quot; button which you can see after clicking on an entity - this will show you all entities which point to it. Additionally, an updated view for entering composite instances is in development, which will show overridden parameters directly on the entities they apply to, to make navigating aliases easier.</p>
     </section>
 </article>
@@ -233,7 +234,7 @@
 		<p><img src="editor-ui.jpg" width="100%"></p>
 
 		<ul>
-			<li><b>[1] Entity List</b> - This shows you every entity within the current composite separated by type, with various additional information. Click a column header to sort the list by that column, and click it again to reverse the order - the arrow on the header shows the current sort, which is remembered between sessions.</li>
+			<li><b>[1] Entity List</b> - This shows you every entity within the current composite separated by type, with various additional information. Click a column header to sort the list by that column, and click it again to reverse the order - the arrow on the header shows the current sort, which is remembered between sessions. Select several rows with Ctrl or Shift+click and press <b>Delete</b> to remove them in one go (one confirmation, one undo step); <b>Ctrl+C</b> / <b>Ctrl+V</b> copy and paste from here too, and the arrow keys move between entities without stopping on the group headers.</li>
 			<li><b>[2] Flowgraph</b> - This contains the composite's flowgraphs, creating links between entities to drive logic (more later!).</li>
 			<li><b>[3] Entity Inspector</b> - This holds information about the selected entity, and is where you modify its parameters (see <a href="#inspector">The Entity Inspector</a> below).</li>
 			<li><b>[4] Composite Browser</b> - This contains all composites available within the current level (note, if you don't like this layout, navigate to Options > Composite Display, and uncheck 'Use File Browser Composite Viewer')</li>
@@ -256,8 +257,11 @@
 			<li><b>Bold</b> — this parameter has been changed from its default. Right-click it and choose <b>Reset to Default</b> to put it back (on an alias, that removes the override rather than resetting a value).</li>
 			<li><b>Blue value cell</b> — this parameter is fed by a link on the flowgraph. Whatever the inspector shows is ignored at runtime, because the link wins.</li>
 			<li><b>Orange value cell</b> — this parameter is overridden by an alias elsewhere. Again, what you see here isn't necessarily what the game uses.</li>
+			<li><b>Purple value cell</b> — this parameter is driven by a <a href="/docs/cage-animation-editor/">CAGEAnimation</a> somewhere in the hierarchy you're in. The value here is what the entity rests at when nothing is playing; while the animation runs it's overwritten outright by the keyframe values (they're absolute, not offsets from this), so the animation needn't start from what the inspector shows.</li>
 		</ul>
-		<p>Those two highlights are worth taking seriously: "I changed the value and nothing happened" is nearly always one of them.</p>
+		<p>Those highlights are worth taking seriously: "I changed the value and nothing happened" is nearly always one of them.</p>
+		<p>Above the parameters, the <b>Zone</b> button tells you which <a href="#composites">Zone</a> the entity is streamed with, worked out from the root of the hierarchy you've stepped through. It shows the zone's name when there's one, a count when there are several (click it to pick which to go to), and plain <b>Zone</b> when the entity isn't in any. <b>References</b> finds every node, alias and proxy for the entity, and <b>Resources</b> edits the resources attached to it.</p>
+		<p>For a proxy, the toolbar also has <b>Change Target</b>, which opens the proxy picker to point it at a different entity while keeping its links and parameters. The path shown under the name is where the proxy leads; for an <a href="/docs/composite-porting/#unresolvable-proxies">unresolvable proxy</a> it stops at the first hop that no longer exists, marked <b>MISSING</b>.</p>
 		<p>The inspector also handles <b>multiple selections</b>. Select several entities and those of the same type are grouped together so you can edit them in one go; anything of a different type gets its own tab. Highlights aren't shown while multi-editing, since a status that's true of one entity may not be true of the others.</p>
 	</section>
 
@@ -267,8 +271,9 @@
 		<ul>
 			<li><b>(P)</b> — this entity is proxied somewhere else, so something outside this composite is driving it.</li>
 			<li><b>(*)</b> — this entity has more than one node. Editing links on this node isn't the whole picture; use <b>References</b> in the inspector to find the others.</li>
+			<li><b>(!)</b> — this is an <a href="/docs/composite-porting/#unresolvable-proxies">unresolvable proxy</a>: what it points at isn't in the level. The node and its links are drawn in the unresolvable-proxy colour; right-click it and choose <b>Change Proxy Target...</b> to mend it.</li>
 		</ul>
-		<p>Pins are positioned with context in mind — a relay always has its output in line with its input, so a chain of them reads as a straight line.</p>
+		<p>Pins are positioned with context in mind — a relay always has its output in line with its input, so a chain of them reads as a straight line. Hover a pin and press <b>F1</b> to give it a delay, or <b>F2</b> to clear one (<b>F2</b> is also Find References, so over a pin it opens the node's references window at the same time).</p>
 		<p>When something you've highlighted is off screen, an arrow points towards it from the edge of the canvas rather than leaving you to hunt for it.</p>
 		<p>The <b>back button</b> takes you to the previously loaded composite, and the dropdown next to it lists the last five, so retracing your steps through a deep hierarchy doesn't mean searching for each one again.</p>
 	</section>

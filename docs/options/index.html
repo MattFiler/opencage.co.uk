@@ -149,9 +149,10 @@
 			<li><b>Show ShortGuids</b> — shows entity IDs (ShortGuids) in lists, names, breadcrumbs, aliases/proxies, and global search (off by default).</li>
 			<li><b>Populate All Node Pins When Created</b> — new flowgraph nodes get every pin added automatically (on by default).</li>
 			<li><b>Focus Canvas On Newly Created Node</b> — moves the flowgraph view to a node as soon as you add it (off by default).</li>
-			<li><b>Set Node Colours</b> — opens a colour picker for flowgraph node types (Functions, Instances, Proxies, Aliases, Variables). <b>Reset</b> restores the defaults.</li>
-			<li><b>Show Confirmation When Deleting Node</b> — asks before removing a flowgraph node (on by default).</li>
-			<li><b>Give Option To Delete Entity When No Nodes</b> — after the last node for an entity is removed, asks whether to delete the entity too (on by default).</li>
+			<li><b>Set Node Colours</b> — opens a colour picker for flowgraph node types (Functions, Instances, Proxies, Aliases, Variables, and <a href="/docs/composite-porting/#unresolvable-proxies">Unresolvable Proxies</a>, whose colour is also used for the links through them). <b>Reset</b> restores the defaults.</li>
+			<li><b>Show Confirmation When Deleting Node</b> — asks before removing a flowgraph node (off by default; removing a node is undone with <b>Ctrl+Z</b> like any other edit).</li>
+			<li><b>Give Option To Delete Entity When No Nodes</b> — after the last node for an entity is removed, asks whether to delete the entity too (on by default). Only asked when <b>Auto Delete Entities When Nodes Deleted</b> is off; with both off, the entity is left behind without its node.</li>
+			<li><b>Auto Delete Entities When Nodes Deleted</b> — when the last node for an entity is removed and nothing else references the entity, it's deleted along with the node without asking (on by default). An entity still referenced anywhere — a TriggerSequence, a CAGEAnimation, a proxy or an alias — is always left alone.</li>
 		</ul>
     </section>
 </article>
@@ -171,7 +172,9 @@
 			<li><b>Fix Camera to Selected Entity</b> — keeps the camera locked on the selection as it moves, rather than framing it once. Turning this on turns on <b>Focus on Selected</b> too; turning <b>Focus on Selected</b> off turns this off with it (off by default).</li>
 			<li><b>Show Camera Position</b> — shows camera X/Y/Z while moving (off by default).</li>
 			<li><b>Render Wireframe</b> — draws ModelReference meshes as wireframe (off by default).</li>
-			<li><b>Hide Nested Script Entities</b> — hides render previews for script entities in nested composites; ModelReferences stay visible (off by default).</li>
+			<li><b>Hide Nested Script Entities</b> — hides render previews for script entities in nested composites (off by default). Models are drawn regardless; the <b>ModelReference</b> render filter is what hides those.</li>
+			<li><b>Selection Highlight Mode</b> — how the Viewport marks the selection: <b>Green</b> (a tint over the mesh, the default), <b>Wireframe</b> (the mesh's edges drawn over it), <b>Wireframe Transparent</b> (edges only, with the surface hidden) or <b>None</b>. <b>Alt+1</b> to <b>Alt+4</b> switch between them in the Viewport.</li>
+			<li><b>Snap Increments…</b> — edits the values offered by the Viewport's <b>Transform Snap</b> and <b>Rotation Snap</b> menus. Add or remove entries in either list; <b>Off</b> never appears here because the menus always offer it and it can't be removed. <b>Reset to Defaults</b> restores the shipped lists. If you remove the increment currently selected, the nearest remaining one takes over. The menus update as you edit.</li>
 		</ul>
     </section>
 </article>
@@ -208,8 +211,8 @@
 		<ul>
 			<li><b>Flowgraph Controls</b> — zoom, pan, move nodes, links, pin shortcuts</li>
 			<li><b>Model Viewer Controls</b> — zoom, rotate, move, recenter</li>
-			<li><b>Viewport Controls</b> — camera, selection, step in/out, gizmos, hide/unhide (see also the <a href="/docs/level-viewer/">Viewport</a> docs)</li>
-			<li><b>Entity List Controls</b> — stepping into composite instances from the entity list</li>
+			<li><b>Viewport Controls</b> — camera, selection and multi-select, step in/out, gizmos, snapping, duplicate, hide/unhide (see also the <a href="/docs/level-viewer/">Viewport</a> docs)</li>
+			<li><b>Entity List Controls</b> — moving through the list, delete, copy and paste, stepping into composite instances</li>
 			<li><b>CAGEAnimation Controls</b> — timeline and curve shortcuts for the <a href="/docs/cage-animation-editor/">CAGEAnimation Editor</a></li>
 			<li><b>Behaviour Tree Controls</b> — shortcuts for the <a href="/docs/behaviour-tree-editor/">Behaviour Tree Editor</a></li>
 		</ul>
