@@ -112,9 +112,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>After loading a level, open <b>View → Texture Editor</b> to launch the <b>Texture Editor</b>. It browses and edits the level's texture package under <code>RENDERABLE</code> (e.g. <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code>).</p>
+		<p>After loading a level, open <b>View → Texture Editor</b> to launch the <b>Texture Editor</b>. It browses and edits the level's texture package under <code>RENDERABLE</code> (e.g. <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code>). The window, shown below with a texture selected, has three columns: the texture list with <b>Import New</b> and <b>Export All</b> under it, the preview in the middle, and the per-texture buttons and flags on the right.</p>
+		<p><img src="img/overview.jpg" alt="The Texture Editor window with a level texture selected, showing the texture tree on the left, the streamed preview with its mip slider and metadata in the middle, and the edit buttons and flag checkboxes on the right." width="100%"></p>
+		<p class="text-muted small"><i>The Texture Editor with ayz\diffuse\boombox[d].tga selected: tree and import/export buttons on the left, preview in the middle, per-texture actions and flags on the right.</i></p>
 		<p>Global textures used to sit in a separate, read-only source. They are now <b>imported into the level automatically</b> when it loads, which makes each level completely self-contained and means the textures it shares with the rest of the game can be edited like any other. There's no longer a source to switch between — everything the level uses is in one list.</p>
-		<p>The same window can open as a picker (with <b>Select This Texture</b>) from the <a href="/docs/material-editor/">Material Editor</a> (<b>Pick Texture…</b> / <b>Edit Texture…</b>). Materials assigned this way show up on models in the <a href="/docs/model-editor/">Model Editor</a> when textured preview is enabled.</p>
+		<p>The same window can open as a picker (with a <b>Select This Texture</b> button in the bottom-right corner) from the <a href="/docs/material-editor/">Material Editor</a> (<b>Pick Texture…</b> / <b>Edit Texture…</b>), from an <a href="/docs/cathode-entities/#EnvironmentMap">EnvironmentMap</a> entity's <b>Texture</b> parameter in the entity inspector (where it lists only the level's cubemaps), and when adding a decal in the <a href="/docs/character-editor/">Character Asset Editor</a>. Materials assigned this way show up on models in the <a href="/docs/model-editor/">Model Editor</a> when textured preview is enabled.</p>
     </section>
 </article>
 
@@ -124,8 +126,10 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The left tree lists the level's textures. Use <b>Search</b> to filter by name. The preview title shows the texture name and format (for example <code>MyTexture [DXT5]</code>), and the <b>Metadata</b> panel gives width, height, depth, mips and size for whatever is on screen.</p>
-		<p>Under each preview is a <b>mip level slider</b>. A texture is stored as a chain of progressively smaller copies, and the top one tells you least about how it was authored — step down the chain to see what the game actually shows at distance, and to check that a texture you imported built a sensible chain.</p>
+		<p>The left tree lists the level's textures. Use <b>Search</b> to filter by name. The preview title shows the texture name and format (<code>ayz\diffuse\boombox[d].tga [BC7]</code> in the figure above), and the <b>Metadata</b> panel gives width, height, depth, mips and size for whatever is on screen.</p>
+		<p>Under each preview is a <b>mip level slider</b>. A texture is stored as a chain of progressively smaller copies, and the top one tells you least about how it was authored — step down the chain to see what the game actually shows at distance, and to check that a texture you imported built a sensible chain. The label beside the slider names the level and its size, as below, while the <b>Metadata</b> panel keeps describing the whole texture. For a cubemap the slider is greyed out: its content is six chains rather than one, so the preview shows the whole face strip instead.</p>
+		<p><img src="img/mip-slider.jpg" alt="The streamed preview with the mip slider moved three levels down the chain, showing the 128 by 128 level and its label." style="max-width:100%;width:483px"></p>
+		<p class="text-muted small"><i>The mip slider three levels down the streamed chain: the label names the level and its size, and the Metadata panel still describes the full 1024 × 1024 texture.</i></p>
     </section>
 
 	<section class="docs-section" id="parts">
@@ -135,12 +139,18 @@
 			<li><b>Streamed</b> — the full-resolution chain, loaded on demand.</li>
 			<li><b>Persistent</b> — the copy that stays resident in memory, so it's meant to be the smaller of the two.</li>
 		</ul>
-		<p>In the shipped data the persistent copy is never a separately compressed image — it's the streamed chain starting a few levels in. OpenCAGE reproduces that exactly when it writes one, so an imported texture is stored the way the game stores its own. Earlier versions wrote the same full-resolution data into both slots, which was wrong; persistent copies are now correctly smaller.</p>
+		<p><img src="img/persistent-tab.jpg" alt="The Persistent tab of the preview showing the 128 by 128 resident copy of the same texture, with its own mip slider and metadata." style="max-width:100%;width:483px"></p>
+		<p class="text-muted small"><i>The Persistent tab for the same texture: 128 × 128 with six mip levels and 21 KB, against 1024 × 1024 with nine and 1.33 MB in the Streamed tab.</i></p>
+		<p>In the shipped data the persistent copy is never a separately compressed image — it's the streamed chain starting a few levels in. OpenCAGE reproduces that exactly when it writes one, so an imported texture is stored the way the game stores its own. You can see it in the figure above: the streamed copy of <code>boombox[d].tga</code> is 1024 × 1024 with nine levels, and its persistent copy is 128 × 128 with six — the same chain, starting three levels in. Earlier versions wrote the same full-resolution data into both slots, which was wrong; persistent copies are now correctly smaller.</p>
 	</section>
 
 	<section class="docs-section" id="cubemaps">
 		<h2 class="section-heading">Cubemaps</h2>
-		<p>Cubemaps can be viewed either as <b>2D faces</b> — the six faces laid out flat — or in <b>3D</b>, as an interactive sphere. When a cubemap has both slots filled, the <b>Source</b> dropdown beside the 3D view picks which of the two the sphere is built from.</p>
+		<p>Cubemaps can be viewed either as <b>2D faces</b> — the six faces side by side in one strip — or in <b>3D</b>, mapped onto a cube you can drag to rotate and scroll to zoom. Selecting a cubemap adds a <b>Cubemap view</b> row above the preview. 3D is the default and swaps the Streamed / Persistent tabs for the cube, as shown below; 2D faces brings the tabs back with the strip in place of the image. The <b>Source</b> dropdown beside the radio buttons picks which slot the cube is built from, but it's only enabled when a cubemap has both slots filled — every cubemap the game ships is streamed-only, so for those it stays greyed out.</p>
+		<p><img src="img/cubemap-3d.jpg" alt="The Texture Editor preview showing a cubemap mapped onto an interactive 3D cube, with the Cubemap view radio buttons and the greyed-out Source dropdown above it." style="max-width:100%;width:483px"></p>
+		<p class="text-muted small"><i>A cubemap in the 3D view. The Source dropdown is greyed out because, like every cubemap the game ships, this one has only a streamed copy.</i></p>
+		<p><img src="img/cubemap-2d.jpg" alt="The same cubemap in 2D faces mode: the six faces side by side in a strip on the Streamed tab, with the mip slider greyed out and the metadata panel below." style="max-width:100%;width:483px"></p>
+		<p class="text-muted small"><i>The same cubemap as 2D faces: the six 128 × 128 faces in one strip on the Streamed tab, with the mip slider greyed out.</i></p>
 	</section>
 </article>
 
@@ -159,15 +169,19 @@
     <section class="docs-section" id="import">
 		<h2 class="section-heading">Import &amp; Replace</h2>
 		<ul>
-			<li><b>Import New</b> — adds a new texture. You choose its <b>name</b> and any folders it should sit in as part of the import, with the clash check running as you type.</li>
-			<li><b>Replace Selected</b> — overwrites the selected texture with a new image.</li>
+			<li><b>Import New</b> — adds a new texture. You choose its <b>name</b> as part of the import (type <code>\</code> in it to put the texture in folders), with the clash check running as you type.</li>
+			<li><b>Replace Selected</b> — overwrites the selected texture with a new image. The slot keeps its usage flags, since those describe what the texture is for rather than the image in it.</li>
 		</ul>
-		<p>Either way, an options dialog asks what to do with the image before anything is written:</p>
+		<p>Either way, an options dialog asks what to do with the image before anything is written. It opens with the file's name and size on its top line, as below:</p>
+		<p><img src="img/import-options.jpg" alt="The Import texture dialog with a name box, the Store as format dropdown set to BC7, a Mipmaps slider, and the persistent-copy checkbox and slider." style="max-width:100%;width:542px"></p>
+		<p class="text-muted small"><i>The import options for a new 1024 × 1024 texture: name, format, how much of a mip chain to build, and where the persistent copy starts.</i></p>
 		<ul>
-			<li><b>Format</b> — which of the game's formats to store it in. When replacing, this defaults to whatever the texture already is, so bringing a texture back in leaves the slot as the game shipped it. A brand new texture defaults to <b>BC7</b>, which is what seven of every ten textures in the game already use.</li>
-			<li><b>Mip levels</b> — how much of a mip chain to build, from the top level alone up to as many as the image allows.</li>
-			<li><b>Persistent copy</b> — whether to keep one, and how many levels down the chain it should start.</li>
+			<li><b>Store as</b> — which of the game's formats to store it in; each entry in the list says what the format suits. When replacing, this defaults to whatever the texture already is, so bringing a texture back in leaves the slot as the game shipped it. A brand new texture defaults to <b>BC7</b>, which is what seven of every ten textures in the game already use.</li>
+			<li><b>Mipmaps</b> — how much of a mip chain to build, from the top level alone up to as many as the image allows; the label beside the slider says how small the chain gets. A DDS that already carries a chain caps the slider at what it has.</li>
+			<li><b>Keep a smaller copy in the persistent slot</b> — whether to keep one, and how many levels down the chain it should start; the label shows the size that gives. When replacing, this follows the split the slot already has, as below. For a cubemap or a volume texture the box is fixed, because the game only ever stores those in one slot (streamed for cubemaps, persistent for volumes).</li>
 		</ul>
+		<p><img src="img/replace-options.jpg" alt="The Replace texture dialog for the same image: no name box, the Store as dropdown set to BC7, the Mipmaps slider at its maximum, and the persistent-copy slider preset to three levels down, with Replace and Cancel buttons." style="max-width:100%;width:542px"></p>
+		<p class="text-muted small"><i>The same dialog when replacing boombox[d].tga: no name box, the format preset to the slot's BC7, and the persistent slider preset to three levels down — the split the slot already has.</i></p>
 	</section>
 
 	<section class="docs-section" id="export">
@@ -187,7 +201,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p><b>State flags</b> and <b>Usage flags</b> checkboxes update live in memory (for example cube map, volume, post processing, lens flare). Usage options are power-of-two style flags from the game's texture usage enum.</p>
+		<p><b>State flags</b> and <b>Usage flags</b> are the two checkbox lists on the right of the window, shown below for <code>boombox[d].tga</code>. State covers <code>ALLOW SRGB</code>, <code>CUBE</code>, <code>NON SOLID</code>, <code>SWIZZLED</code>, <code>VOLUME</code>, <code>EXPORTED WITH WARNINGS</code> and <code>FLASH TEXTURE</code>; usage covers <code>POST PROCESSING</code>, <code>LENS FLARE</code>, <code>GALAXY</code>, <code>LENS DUST</code>, <code>IS LEVEL PACK</code> and <code>IS GLOBAL PACK</code>. Both lists are greyed out until a texture is selected. Ticking a box updates the texture in memory straight away and refreshes the preview — there's nothing to apply, but the change isn't on disk until you save the level. Usage options are power-of-two style flags from the game's texture usage enum.</p>
+		<p><img src="img/flags.jpg" alt="The State flags and Usage flags checkbox lists on the right of the Texture Editor." style="max-width:100%;width:202px"></p>
+		<p class="text-muted small"><i>The flag lists for boombox[d].tga: ALLOW SRGB set for state, IS LEVEL PACK for usage.</i></p>
     </section>
 </article>
 

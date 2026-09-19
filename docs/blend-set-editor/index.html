@@ -125,7 +125,9 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Open <b>View → Blend Set Editor</b> to edit the parametric blend sets stored in <code>ANIMATION.PAK</code>.</p>
 		<p>A blend set is what turns a continuous value into animation. "Aim at 30 degrees up and 10 to the left" isn't a clip the game ships — it's a mix of the four clips that surround that point. The blend set holds those clips, the grid of <b>blend points</b> they're arranged on, and which parameters drive the position within that grid.</p>
-		<p>Sets can be one, two or three dimensional depending on how many parameters steer them.</p>
+		<p>Sets can be one, two or three dimensional depending on how many parameters steer them. The set below is a 3D one: three parameters, 56 clips, 106 blend points, and a picture that can only show the first slice of it.</p>
+		<p><img src="img/3d-blend.jpg" alt="A three-dimensional blend set, HUMAN\aimed_locomotion_cycle_blend, with 56 clips and 106 blend points; the header notes it is 3D and the picture shows only the first slice." style="max-width:100%;width:776px"></p>
+		<p class="text-muted small"><i>A 3D set: 56 locomotion clips over x_speed, z_speed and y_angular_velocity. Rows 4 and 5 are the same clip, the second played mirrored.</i></p>
     </section>
 </article>
 
@@ -151,12 +153,14 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The blend set list is on the left; everything about the selected set is on the right. The header line above it gives you the shape at a glance — how many dimensions, how many clips, how many blend points — and the line under it names the parameters that drive each axis.</p>
+		<p>The blend set list is on the left; everything about the selected set is on the right, split across three tabs — <b>Clips</b>, <b>Blend points</b> and <b>Used by</b> — with a picture of the blend space above them, as shown below. The header line at the top gives you the shape at a glance — how many dimensions, how many clips, how many blend points — and the grey line under it names the parameters that drive each axis and reminds you which half of the set is editable.</p>
+		<p><img src="img/overview.jpg" alt="The Blend Set Editor with HUMAN_WEAPON_HANDGUN\aim selected: the blend set tree on the left, the header and notice lines, the blend-space picture, and the Clips tab with its edit row." width="100%"></p>
+		<p class="text-muted small"><i>HUMAN → WEAPON_HANDGUN → aim: a two-dimensional set of 17 aim clips driven by spherical_blend_theta and spherical_blend_phi.</i></p>
 	</section>
 
 	<section class="docs-section" id="layout-tree">
 		<h2 class="section-heading">Blend Set List</h2>
-		<p>Sets are grouped the way their names are built: by animation set, then by the context inside it. Sets belonging to the animation set itself (rather than to one of its contexts) hang directly off it. Each animation set shows how many blend sets it holds.</p>
+		<p>Sets are grouped the way their names are built: by animation set, then by the context inside it — so <b>HUMAN → WEAPON_HANDGUN → aim</b> in the tree is the set the game knows as <code>HUMAN_WEAPON_HANDGUN\aim</code>, which is how the header line spells it. Sets belonging to the animation set itself (rather than to one of its contexts) hang directly off it, like <b>HUMAN → aim</b> — a different set from the handgun one. Each animation set shows how many blend sets it holds.</p>
 		<p>The <b>Search</b> box matches the set's name and the names of the clips inside it, so you can find a blend by an animation you know is in it.</p>
 	</section>
 
@@ -169,13 +173,19 @@
 	<section class="docs-section" id="layout-points">
 		<h2 class="section-heading">Blend Points</h2>
 		<p>One row per blend point, showing its index, its position along each driving axis, which clip it plays, and at what speed.</p>
-		<p>Beside the list is a picture of the blend space with the points laid out on it. Click a point in the picture to select its row, and vice versa. For a 3D blend, the picture shows the first slice.</p>
+		<p>Above the tabs is a picture of the blend space with the points laid out on it — each blue dot is a blend point, labelled with the clip it plays (labels are dropped where they'd overlap), and the faint grid behind them is the baked lookup the game reads. Click a point in the picture to select its row, and vice versa; the selected point is drawn orange. Hover a grid point to see which clips the game would mix there and in what proportion — the only way to see what a blend set actually does without playing it. For a 3D blend, the picture shows the first slice.</p>
+		<p><img src="img/blend-points.jpg" alt="The Blend points tab with point 12 (aim_up) selected; the same point is highlighted orange in the blend-space picture above, the Plays and Speed editors show its values, and a hover readout over a grid point lists the clips mixed there." width="100%"></p>
+		<p class="text-muted small"><i>Selecting a blend point in the list highlights it in the picture; hovering a grid point shows the mix the game would play there — here 85% aim_centre_left, 9% aim_centre_right and 5% aim_centre_up.</i></p>
 	</section>
 
 	<section class="docs-section" id="layout-users">
 		<h2 class="section-heading">Used By</h2>
-		<p>Which characters can actually reach this blend set. Each row names the character, the context it's offered in — or <b>(the character itself)</b> when it isn't tied to a context — and the name that character asks for it by.</p>
-		<p><b>Give to character…</b> adds the set to another character or context; <b>Take away</b> removes the selected reference. Removing a reference doesn't delete the blend set, only that character's access to it.</p>
+		<p>Which characters can actually reach this blend set — the game only finds a set through a character's own clip database, so one that nobody lists is dead weight. Each row names the character, the context it's offered in — or <b>(the character itself)</b> when it isn't tied to a context — and the name that character asks for it by.</p>
+		<p><img src="img/used-by.jpg" alt="The Used by tab listing the characters and contexts that reference the blend set, with the Give to character and Take away buttons below the list." style="max-width:100%;width:776px"></p>
+		<p class="text-muted small"><i>HUMAN_WEAPON_HANDGUN\aim as its characters see it: offered through their WEAPON_HANDGUN context, under the plain name aim.</i></p>
+		<p><b>Give to character…</b> opens the picker shown below, which lists characters already carrying blend sets first and everything else after. Choose a character to give the set to the character itself, or expand one and choose a context (an unnamed context is listed as <b>(default)</b>), then press <b>Add</b> or double-click it. <b>Take away</b> removes the selected reference. Removing a reference doesn't delete the blend set, only that character's access to it.</p>
+		<p><img src="img/give-to-character.jpg" alt="The Give to character dialog: a searchable tree of characters, those already carrying blend sets listed first, with 1ST_PERSON expanded to show its contexts, and the Add and Cancel buttons along the bottom." style="max-width:100%;width:462px"></p>
+		<p class="text-muted small"><i>Give to character…, with 1ST_PERSON expanded to its contexts. The Search box narrows the tree by character name.</i></p>
 	</section>
 </article>
 
@@ -187,7 +197,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>With a clip row selected, you can change:</p>
 		<ul>
-			<li><b>Clip</b> — the animation played. <b>Choose…</b> opens the <a href="/docs/animation-editor/">Animation Editor</a> as a picker so you can find it by name, length and content rather than typing it.</li>
+			<li><b>Clip</b> — the animation played. <b>Choose…</b> opens the <a href="/docs/animation-editor/">Animation Editor</a> as a picker, titled <b>Choose a clip for…</b> and started on a character that uses the set, so you can find it by name, length and content rather than typing it.</li>
 			<li><b>Length s</b> — the duration recorded for the clip.</li>
 			<li><b>Mirrored</b> — play the clip mirrored left-to-right.</li>
 		</ul>
@@ -196,7 +206,7 @@
 			<li><b>Plays</b> — which of the set's clips this point uses, picked from the numbered list.</li>
 			<li><b>Speed</b> — the playback rate at that point.</li>
 		</ul>
-		<p>The blend set list isn't filtered when the window is used as a picker — the blend set a tree references generally doesn't belong to that tree's own animation set, so narrowing the list would hide most of the useful options.</p>
+		<p>When the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> opens this window to choose a blend set for a node, it's titled <b>Choose a blend set</b> and gains a <b>Use This Blend Set</b> button. The list isn't filtered in that mode — the blend set a tree references generally doesn't belong to that tree's own animation set, so narrowing the list would hide most of the useful options.</p>
 	</section>
 </article>
 

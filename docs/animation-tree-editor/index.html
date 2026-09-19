@@ -133,8 +133,10 @@
 		<div class="docs-caveat">
 			<p><b>Hardcoded parameters &amp; callbacks.</b> The game drives many animation trees through fixed parameter and callback names (via parameter / callback nodes). Those hooks are hardcoded in the engine — adding new ones, or renaming existing parameter / callback nodes, may do nothing or cause issues. Work with the parameters and callbacks already in the tree, and with the values they supply.</p>
 		</div>
-		<p>Open <b>View → Animation Tree Editor</b> to launch the <b>Animation Tree Editor</b>. Animation trees live inside <code>ANIMATION.PAK</code> as <code>ANIM_TREE_DB</code> databases — they choose, blend, and layer clips based on parameters and game context.</p>
-		<p>This editor is separate from the <a href="/docs/animation-editor/">Animation Editor</a>, which browses the clips themselves. Use this one when you need to inspect or change tree graphs, node parameters, and wiring.</p>
+		<p>Open <b>View → Animation Tree Editor</b> to launch the <b>Animation Tree Editor</b>, shown below with a tree open. Animation trees live inside <code>ANIMATION.PAK</code> as <code>ANIM_TREE_DB</code> databases — they choose, blend, and layer clips based on parameters and game context.</p>
+		<p><img src="img/overview.jpg" alt="The Animation Tree Editor with the HUMANOID set's ACT_IDLE_AIM tree open: sets and trees on the left, the node graph in the centre, and the selected leaf's properties on the right." width="100%"></p>
+		<p class="text-muted small"><i>The Animation Tree Editor with HUMANOID › ACT_IDLE_AIM open and the Idle_To_Aim leaf selected.</i></p>
+		<p>This editor is separate from the <a href="/docs/animation-editor/">Animation Editor</a>, which browses the clips themselves. Use this one when you need to inspect or change tree graphs, node parameters, and wiring. The first time it opens after OpenCAGE starts there is a pause of a few seconds while the contents of <code>ANIMATION.PAK</code> are parsed — the window appears once that finishes.</p>
 		<p>For a full catalogue of node types, parameters, and pins, see <a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a>.</p>
     </section>
 </article>
@@ -145,30 +147,34 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The editor uses a docked layout. Panels cannot be closed from their tabs.</p>
+		<p>The editor uses a docked layout — see the screenshot in the Introduction: animation sets and trees on the left, the open tree's graph in the centre, and the selected node's properties on the right. Panels cannot be closed from their tabs.</p>
 	</section>
 
 	<section class="docs-section" id="layout-sets">
 		<h2 class="section-heading">Animation Sets</h2>
-		<p>Left dock — split into two lists:</p>
+		<p>Left dock — split into two unlabelled lists:</p>
 		<ul>
-			<li><b>Sets</b> (top) — each animation set / tree database loaded from the PAK</li>
-			<li><b>Trees</b> (bottom) — trees in the selected set</li>
+			<li><b>Upper list</b> — the animation sets found in the PAK, one tree database each (<code>ALIEN</code>, <code>CAT</code>, <code>FACEHUGGER</code> and <code>HUMANOID</code> in the retail data)</li>
+			<li><b>Lower list</b> — the trees in the selected set, sorted by name, with the search box above it</li>
 		</ul>
-		<p>Type in the search box above the trees list to filter by name (case-insensitive). Changing set clears the search and reloads that set's trees.</p>
-		<p>Select a tree to open its graph in the centre document area.</p>
+		<p>Type in the box between the two lists to filter the trees by name. The match is case-insensitive, so <code>AIM</code> lists <code>ACT_IDLE_AIM</code> alongside <code>Persistent_Act_Aim_Blindfire_Low</code>, as shown below. Changing set clears the search and reloads that set's trees.</p>
+		<p><img src="img/sets-filter.jpg" alt="The Animation Sets panel with HUMANOID selected and the trees list filtered by typing AIM into the search box." style="max-width:100%;width:391px"></p>
+		<p class="text-muted small"><i>HUMANOID selected above, AIM typed in the search box, and the lower list reduced to the eleven HUMANOID trees whose names contain it.</i></p>
+		<p>Select a tree to open its graph in the centre. Only one tree is open at a time — selecting another replaces it.</p>
 	</section>
 
 	<section class="docs-section" id="layout-graph">
 		<h2 class="section-heading">Graph Canvas</h2>
-		<p>Centre document tabs show the open tree as a node graph. Nodes are coloured by type. Flow generally runs left-to-right from the tree root (<code>ANIM_Tree_Top_Level</code>).</p>
-		<p>Pan and zoom the canvas as with other OpenCAGE node editors. Select a node to populate the properties panel.</p>
+		<p>The centre of the window shows the open tree as a node graph. Each node's title shows its name with its <code>ANIM_*</code> type underneath, and the title colour follows the type: leaves and the tree root green, selectors pale green, parameters / properties / interpolators blue, callbacks violet, parametrics orange, additive blends lilac, bilinear blends dark purple, metadata event listeners red, and the rest (bone masks, IK, weighted, spherical, event callbacks, property listeners) white. Flow runs left-to-right from the tree root (<code>ANIM_Tree_Top_Level</code>); the parameter and callback nodes that feed a node are laid out above it. The screenshot in <a href="#pins">Pins &amp; Connections</a> shows a small tree at a readable scale.</p>
+		<p>Drag with the middle mouse button to pan and roll the wheel to zoom (no modifier needed); dragging with the left button on empty space draws a selection rectangle instead. Select a node to populate the properties panel.</p>
 	</section>
 
 	<section class="docs-section" id="layout-props">
 		<h2 class="section-heading">Node Properties</h2>
-		<p>Right dock — property grid for the selected node. Every node has an editable <b>Name</b>; other fields depend on the node type (strings, floats, bools, enums, bone-mask flags, nested arrays, and so on).</p>
-		<p>Linked child / parameter references that are wired on the graph usually appear as read-only names in the grid — change those relationships via pins on the canvas.</p>
+		<p>Right dock — property grid for the selected node, captioned with the node's name and type. Every node has an editable <b>Name</b>; other fields depend on the node type (strings, floats, bools, enums, bone-mask flags, nested arrays, and so on), as in the randomised leaf below.</p>
+		<p><img src="img/node-properties.jpg" alt="The Node Properties panel for a randomised animation leaf, with the AnimationPool array expanded to show its eight slots and the first slot's fields." style="max-width:100%;width:549px"></p>
+		<p class="text-muted small"><i>Node Properties for Aimed_Idle (ANIM_Randomised_Animation): bold rows differ from the type's defaults, and the selected AnimationName row shows the picker button.</i></p>
+		<p>Graph wiring — children, callbacks, parameter bindings and state targets — is deliberately not listed in the grid: those are the links on the canvas, and you change them there. Values that differ from the node type's defaults are shown in <b>bold</b>. Rows that name an animation (<code>AnimationName</code>) or a blend set (<code>BlendSet</code>, <code>ExtraBlendSet</code>) get a <b>...</b> button when selected, which opens the <a href="/docs/animation-editor/">Animation Editor</a> (limited to the tree's set) or the <a href="/docs/blend-set-editor/">Blend Set Editor</a> as a picker — or just type the name.</p>
 	</section>
 </article>
 
@@ -190,25 +196,26 @@
 		<h2 class="section-heading">Editing Parameters</h2>
 		<p>With a node selected, edit values in the right-hand grid:</p>
 		<ul>
-			<li><b>Name</b> — renames the node in the tree and on the graph title</li>
-			<li>Scalars, bools, and enums — edit inline (dropdowns for enum types)</li>
+			<li><b>Name</b> — renames the node in the tree and on the graph title (empty and duplicate names are rejected)</li>
+			<li>Scalars, bools, and enums — edit inline: bools are checkboxes that toggle with a single click, enums are dropdowns, and rolling the mouse wheel over a number you are editing steps it (by 1 for integers, 0.1 for floats)</li>
 			<li><b>Bone masks</b> — flag checkboxes for body groups</li>
-			<li><b>Nested arrays</b> — expanded rows for pools and states (for example <code>AnimationPool</code> on randomised leaves, or <code>States</code> on selectors / parametrics). Empty animation pool slots are skipped on save</li>
+			<li><b>Nested arrays</b> — expandable rows for pools and states (for example <code>AnimationPool</code> on randomised leaves, or <code>States</code> on selectors / parametrics): the array row reads <code>Count: N</code> and expands to one row per slot, each summarised by its animation name or value — unused pool slots just read <code>Animation</code>, as in the Node Properties screenshot above. Empty animation pool slots are skipped on save</li>
 		</ul>
 		<p>See <a href="/docs/animation-tree-nodes/">Animation Tree Nodes</a> for which fields each type exposes.</p>
 	</section>
 
 	<section class="docs-section" id="editing-add">
 		<h2 class="section-heading">Adding Nodes</h2>
-		<p>Right-click empty canvas space and choose <b>Add Node</b>, then pick a type from the submenu (exact <code>ANIM_*</code> names, alphabetically). The tree root cannot be added from this menu — it already exists for every tree.</p>
-		<p>New nodes appear near the click position. Wire them into the graph with pins, and set parameters in the properties panel.</p>
+		<p>Right-click empty canvas space and choose <b>Add Node</b>, then pick a type from the submenu (exact <code>ANIM_*</code> names, alphabetically), as shown below. The tree root cannot be added from this menu — it already exists for every tree.</p>
+		<p><img src="img/add-node-menu.jpg" alt="Right-clicking empty canvas shows Add Node, whose submenu lists every ANIM_ node type except the tree root, alphabetically." style="max-width:100%;width:634px"></p>
+		<p>New nodes are named after their type (<code>Selector</code>, then <code>Selector_1</code> and so on), appear at the click position and are selected straight away so the properties panel shows them. Wire them into the graph with pins, and set parameters in the properties panel.</p>
 	</section>
 
 	<section class="docs-section" id="editing-delete">
 		<h2 class="section-heading">Deleting Nodes &amp; Links</h2>
 		<ul>
-			<li><b>Delete</b> — removes selected node(s) from the tree and graph (the tree root cannot be deleted)</li>
-			<li>Delete / remove link from the context menu — clears hovered or selected connections and clears the corresponding model references</li>
+			<li><b>Delete</b> key — removes the link under the cursor if there is one, otherwise the selected node(s), from both the tree and the graph (the tree root cannot be deleted)</li>
+			<li><b>Delete Node</b> / <b>Delete Link</b> from the right-click menu — removes the node or connection under the cursor; removing a link also clears the corresponding reference in the tree</li>
 		</ul>
 	</section>
 
@@ -217,10 +224,10 @@
 		<p>On the graph canvas:</p>
 		<ul>
 			<li><b>Add Node</b> — submenu of creatable node types (empty canvas)</li>
-			<li><b>Delete Node</b> — delete the selected node(s)</li>
+			<li><b>Delete Node</b> — delete the node under the cursor (right-click a node; the tree root offers Add Node instead, since it cannot be deleted)</li>
 			<li><b>Delete Link</b> — remove the hovered connection</li>
 		</ul>
-		<p>Availability depends on what is under the cursor / selected (for example Add Node when clicking empty space; Delete Link when hovering a link).</p>
+		<p>Only the item that applies is shown: <b>Add Node</b> on empty space (as in the Adding Nodes screenshot), <b>Delete Node</b> on a node, <b>Delete Link</b> on a link.</p>
 	</section>
 </article>
 
@@ -237,8 +244,10 @@
 			<li><b>Top</b> — value / reference inputs (parameters, callbacks, bindings)</li>
 			<li><b>Bottom</b> — value output (usually <code>value</code>)</li>
 		</ul>
-		<p>Connect a provider's bottom <code>value</code> pin to a consumer's top pin. Connect flow outputs on the right to the next node's left <code>trigger</code>.</p>
-		<p>Parameter, property, callback, and similar nodes typically have no <code>trigger</code> pin — they only expose a <code>value</code> output.</p>
+		<p>Connect a provider's bottom <code>value</code> pin to a consumer's top pin. Connect flow outputs on the right to the next node's left <code>trigger</code>. The small tree below has all four sides in use.</p>
+		<p><img src="img/pins.jpg" alt="The ACT_IMPACT tree on the canvas: the root's NODES pin feeds a ranged selector whose State pins fan out to five leaves, a Direction parameter feeds the selector's ParameterBinding pin from above, and an Impact_Done callback feeds each leaf's Callback pin." style="max-width:100%;width:634px"></p>
+		<p class="text-muted small"><i>HUMANOID › ACT_IMPACT: flow runs root → selector → leaves left-to-right; the parameter and callback above feed top pins from their bottom value pins.</i></p>
+		<p>Reading it left-to-right: the root's <code>NODES</code> output runs into the ranged selector's <code>trigger</code>; the selector's <code>State_01</code> to <code>State_05</code> pins fan out to the five <code>Impact_*</code> leaves (<code>State_06</code> onwards are unused); the <code>Direction</code> parameter's bottom <code>value</code> pin feeds the selector's <code>ParameterBinding</code> pin on top; and the <code>Impact_Done</code> callback's <code>value</code> pin is wired to the <code>Callback</code> pin of all five leaves — the leaves sit directly beneath it, so those five links overlap into one vertical line down the column (the small triangle under every <code>value</code> pin is the pin's own marker, not a link). Parameter, property, callback, and similar nodes have no <code>trigger</code> pin — they only expose a <code>value</code> output.</p>
 	</section>
 </article>
 
@@ -248,7 +257,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Use the toolbar <b>Save</b> button in the Animation Tree Editor window. That writes the edited tree databases back into the animation PAK entries — it is separate from <b>File → Save Level</b> in the script editor.</p>
+		<p>Use the toolbar <b>Save</b> button in the Animation Tree Editor window — the only toolbar item, top-left in the Introduction screenshot. That closes the game if it is running, rewrites every tree database into <code>ANIMATION.PAK</code>, and confirms with an "Animation trees saved." message — it is separate from <b>File → Save Level</b> in the script editor.</p>
 	</section>
 </article>
 

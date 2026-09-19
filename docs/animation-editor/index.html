@@ -157,14 +157,16 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The window is split top and bottom: animation sets above, the clips inside the selected set below, with a <b>Context</b> dropdown between them. Drag the splitter to rebalance — the position is remembered, as is which tab you were last on.</p>
+		<p>As shown below, the window is split top and bottom: animation sets above, the clips inside the selected set below, with a <b>Context</b> dropdown between them. Drag the splitter to rebalance — the position is remembered, as is which tab you were last on.</p>
+		<p><img src="img/overview.jpg" alt="The Animation Editor window with the ALIEN set selected in the top list, its always-available context chosen, and one clip highlighted in the clip list below with the summary line and the Import, Preview and Export buttons along the bottom." width="100%"></p>
+		<p class="text-muted small"><i>The Animations window on the Character animations tab: sets above, the clips in the chosen context below, and the selection summary beside the buttons.</i></p>
 		<p>Both lists sort by any column: click a heading to sort by it, click again to reverse. Numeric columns sort as numbers, so you can order by length or frame count and get a sensible result.</p>
 	</section>
 
 	<section class="docs-section" id="browsing-sets">
 		<h2 class="section-heading">Sets &amp; Contexts</h2>
 		<p>The set list shows the set name, the skeleton it uses, how many contexts hold clips, and how many clips it holds in total. A set with no clips left in it is greyed out.</p>
-		<p>When every set on screen is named after its own rig — which is usually the case — the <b>Skeleton</b> column collapses and hands its width to the names.</p>
+		<p>When every set on screen is named after its own rig — which a search often leaves you with, though not the full list in the screenshot above, where the first-person sets share a rig — the <b>Skeleton</b> column collapses and hands its width to the names.</p>
 		<p>Pick a set and the <b>Context</b> dropdown fills with the contexts that actually contain animation. The unnamed one is listed as <b>(always available)</b>, and each entry shows its clip count.</p>
 	</section>
 
@@ -181,7 +183,7 @@
 		</ul>
 		<p>Hover a row for its full path, plus any non-standard metadata it carries — how far a locomotion clip travels, where an aim clip points, which sound an audio event fires and from which bone.</p>
 		<p>A clip that could not be read is greyed out and says so in <b>Notes</b>. That is a defect in the file rather than in the clip you asked for, and the rest of the list still works.</p>
-		<p>The status bar along the bottom summarises the selection — frame rate, bone count, float tracks, and the rig it was authored on with that rig's bone count.</p>
+		<p>The line beside the buttons summarises the selection — frame count and frame rate, bone count, float tracks if it has any, and the rig it was authored on with that rig's bone count. The status bar along the very bottom counts the sets and clips in the PAK, and reports when it is being written.</p>
 	</section>
 
 	<section class="docs-section" id="browsing-search">
@@ -197,17 +199,19 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Select a clip and hit <b>Preview…</b> (or double-click it) to open the <b>Animation Preview</b> window and watch it play.</p>
-		<p>Nothing in the game's data records which model goes with which animation set, so the first time you preview a set you're asked to pick one. Use <b>Choose Mesh…</b> to select a model and <b>Choose Rig…</b> to select a skeleton. Both choices are remembered per animation set, so you only do it once per character.</p>
+		<p>Select a clip and hit <b>Preview…</b> (or double-click it) to open the <b>Animation Preview</b> window, shown below, and watch it play.</p>
+		<p><img src="img/preview.jpg" alt="The Animation Preview window showing the alien mesh mid-animation in the 3D viewport, the parts-of-the-mesh checklist on the right, the event marker timeline underneath with a marker selected, and the play, speed, loop and display toggles along the bottom." width="100%"></p>
+		<p class="text-muted small"><i>Animation Preview playing an ALIEN clip: the mesh above, the clip's event markers in lanes below.</i></p>
+		<p>Nothing in the game's data records which model goes with which animation set, so the first time you preview a set you're asked to pick one. Use <b>Choose Mesh…</b> to select a model and <b>Choose Rig…</b> to select a skeleton. Both choices are remembered per animation set, so you only do it once per character. The two lines beside those buttons say what's in use: the mesh, and the rig with its bone count — plus, when the clip was authored on a different rig, the route it was retargeted along. When something might otherwise look like a fault — a limb the clip never moves, an additive clip shown over the bind pose, a mesh that isn't skinned to the rig you picked — an amber note underneath says so.</p>
 		<p>Playback controls:</p>
 		<ul>
-			<li><b>Play</b> / stop, a scrub bar, and a <b>Speed</b> dropdown from 0.1x to 2x</li>
+			<li><b>Play</b> / <b>Pause</b>, a frame and time readout, a scrub ruler along the top of the timeline, and a <b>Speed</b> dropdown from 0.1x to 2x</li>
 			<li><b>Loop</b> — repeat rather than stopping at the end</li>
 			<li><b>Root motion</b> — let the clip carry the character across the scene instead of holding it on the spot</li>
 			<li><b>Show mesh</b>, <b>Show rig</b>, <b>Show textures</b> — draw the model, the skeleton, and the model's materials</li>
-			<li><b>Parts of the mesh</b> — show or hide individual pieces, with <b>Show all</b> / <b>Hide all</b></li>
+			<li><b>Parts of the mesh</b> — show or hide individual pieces, grouped by LOD with each piece's vertex count; the first LOD starts on and the rest off. <b>Show all</b> / <b>Hide all</b> flip the lot</li>
 		</ul>
-		<p>Underneath the viewport is the clip's timeline of <b>markers</b> — the moments the clip fires something. Click a marker to see what it does at that point: a footstep sound, an effect, a gameplay callback.</p>
+		<p>Underneath the viewport is the clip's timeline of <b>markers</b> — the moments the clip fires something, one lane per event name. Click a marker and the line beneath the timeline says when it fires and what it does: a footstep sound, an effect, a gameplay callback — or, as with the marker selected in the screenshot, that it's a named moment with nothing attached.</p>
 		<p><b>Export…</b> in this window writes out the clip and the mesh it's playing on together.</p>
     </section>
 </article>
@@ -226,16 +230,18 @@
 
 	<section class="docs-section" id="export-rig">
 		<h2 class="section-heading">Choosing a Rig</h2>
-		<p>An animation is only meaningful against a skeleton, so exporting asks which one to write it against. There's no guessing involved — the clips name the rig they were authored on, and that one sorts to the top of the list. Everything else is there if you want to experiment with retargeting.</p>
+		<p>An animation is only meaningful against a skeleton, so exporting opens the <b>Choose a skeleton</b> dialog shown below and asks which one to write it against. Each rig is listed with its bone count and how many of the clips being exported were authored on it. There's no guessing involved — the clips name the rig they were authored on, and that one sorts to the top of the list and is pre-selected. Everything else is there if you want to experiment with retargeting.</p>
+		<p><img src="img/choose-skeleton.jpg" alt="The Choose a skeleton dialog listing rigs with their bone counts, the rig the clips were authored on pre-selected at the top, and the Export as dropdown set to For viewing - held on the spot." style="max-width:100%;width:542px"></p>
+		<p class="text-muted small"><i>Export asks for a rig; the one the clips were authored on is pre-selected, and the Export as mode sits underneath.</i></p>
 	</section>
 
 	<section class="docs-section" id="export-mode">
 		<h2 class="section-heading">Export Modes</h2>
-		<p>The <b>Export as</b> dropdown decides what happens to bones the clip never mentions, and to the root. Viewing and re-importing want different things from the same clip:</p>
+		<p>The <b>Export as</b> dropdown at the bottom of that dialog decides what happens to bones the clip never mentions, and to the root. Viewing and re-importing want different things from the same clip:</p>
 		<ul>
-			<li><b>For viewing — held on the spot</b> — bones the clip doesn't touch stay at the rig's rest pose, so the character still looks like itself. Root motion is ignored and the animation plays in place.</li>
-			<li><b>For viewing — travelling as the clip carries it</b> — as above, but the root moves, so a walk cycle walks.</li>
-			<li><b>For editing and re-importing — exactly what the clip holds</b> — writes precisely what's stored, including the root as the engine sees it. This is the one to use if you intend to edit the animation and bring it back in.</li>
+			<li><b>For viewing - held on the spot</b> — bones the clip doesn't touch stay at the rig's rest pose, so the character still looks like itself. Root motion is ignored and the animation plays in place.</li>
+			<li><b>For viewing - travelling as the clip carries it</b> — as above, but the root moves, so a walk cycle walks.</li>
+			<li><b>For editing and re-importing - exactly what the clip holds</b> — writes precisely what's stored, including the root as the engine sees it. This is the one to use if you intend to edit the animation and bring it back in.</li>
 		</ul>
 		<div class="docs-caveat">
 			<p>A rig rests its root a long way from identity, so an export that <i>looks</i> right is not necessarily an export that can come back in. If you're round-tripping an animation, always use <b>For editing and re-importing</b>.</p>
@@ -249,7 +255,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Select the animation set you want the clip to belong to, then hit <b>Import…</b> and pick an FBX, glTF, GLB or COLLADA file. The <b>Import animation</b> dialog opens, showing what OpenCAGE found in the file and everything that has to be decided before it goes in. Nothing is committed until you press <b>Import</b>.</p>
+		<p>Select the animation set you want the clip to belong to, then hit <b>Import…</b> and pick an FBX, glTF, GLB or COLLADA file. The <b>Import animation into …</b> dialog opens, titled after the set you chose and pictured below, showing what OpenCAGE found in the file and everything that has to be decided before it goes in. Nothing is committed until you press <b>Import</b>.</p>
+		<p><img src="img/import.jpg" alt="The Import animation into ALIEN dialog showing the file path, the play-by name and stored-as path, the rig, root bone and frame rate dropdowns, and a summary reporting 196 frames and that the mannequin animation was converted onto the game's skeleton." style="max-width:100%;width:569px"></p>
+		<p class="text-muted small"><i>Import animation, reading a mannequin clip (<a href="https://sketchfab.com/3d-models/orange-justice-31b3596641af4e238c1491c450cc6df5" target="_blank">"Orange justice"</a> by <a href="https://sketchfab.com/Coldary" target="_blank">Coldary</a> on Sketchfab, <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>) onto the ALIEN set — the summary says it was converted rather than matched by name.</i></p>
 		<p>Once you do, the clip is added to the set and <code>ANIMATION.PAK</code> is written straight away — an import that isn't saved has done nothing, so there's no separate save step. The clip list refreshes with your new animation selected.</p>
 	</section>
 
@@ -259,11 +267,11 @@
 			<li><b>Play it by</b> — the name the set will use to reference the clip. Defaults to the filename, sanitised.</li>
 			<li><b>Stored as</b> — the path the clip takes inside the PAK.</li>
 			<li><b>Rig</b> — the skeleton the animation is built against. The rigs the chosen set can use are offered.</li>
-			<li><b>Root bone</b> — what to do with the rig's root, which belongs to the engine rather than the rig. <b>Leave to the engine unless the file animates it</b> is the default and is usually right; <b>Always leave to the engine</b> forces it; <b>Keep whatever the file holds</b> writes out root motion as authored.</li>
-			<li><b>Frame rate</b> — take it from the file, or force 24, 25, 30 or 60 fps.</li>
+			<li><b>Root bone</b> — what to do with the rig's root, which belongs to the engine rather than the rig. <b>Automatic - carry the character only if the file moves the root</b> is the default and is usually right; <b>Leave the root to the game, whatever the file does</b> forces it; <b>Keep as authored, root motion and all</b> writes out root motion exactly as the file has it.</li>
+			<li><b>Frame rate</b> — <b>As the file says</b>, or force 24, 25, 30 or 60 fps.</li>
 			<li><b>Layer over what is already playing</b> — makes the clip additive rather than replacing whatever else is running.</li>
 		</ul>
-		<p>The summary panel updates every time you change something: how many frames and how long, how many of the file's animated nodes matched a bone on the rig, and what the file itself claims its frame rate is. Use it to check the import before committing — if only a handful of nodes matched, something is wrong with the rig choice.</p>
+		<p>The summary panel updates every time you change something: how many frames and how long, how many of the file's animated nodes matched a bone on the rig (or, for a converted file, how many of the rig's bones it drives), what the file itself claims its frame rate is, and what will happen to the root. Use it to check the import before committing — if a file that should already be on the rig only matches a handful of nodes, something is wrong with the rig choice.</p>
 		<p><b>Preview…</b> opens the animation preview on the imported result, so you can look at it rather than guess.</p>
 
 		<div class="docs-caveat">
@@ -274,9 +282,9 @@
 	<section class="docs-section" id="import-retarget">
 		<h2 class="section-heading">Retargeting</h2>
 		<p>Import normally matches the file's nodes to the rig's bones by name, which requires the file to already be on that rig — in practice, that it came out of OpenCAGE in the first place.</p>
-		<p>Animation you find online generally isn't. Most of it is built on the <b>Unreal Engine mannequin</b>, which has different bone names, different proportions, and a different idea of which way is left. For those files, tick <b>Convert to Alien: Isolation skeletons</b> and OpenCAGE works out the corrective from the two rest poses and rebuilds the animation on the game's rig.</p>
-		<p>The checkbox only appears when the conversion is actually applicable — when the file is on a rig OpenCAGE recognises and the target is one it can build onto. If nothing matched by name and conversion is the only route in, it ticks itself.</p>
-		<p>Both the humanoid rigs and the alien are supported targets. Bones the game's rig has and the mannequin doesn't — the alien's tail, spikes and jaw, a human's armour bones — keep their rest shape and ride their parent, which is normal rather than an error. If the two rigs turn out to be mirror images of each other, the summary says so; that's also normal and is handled.</p>
+		<p>Animation you find online generally isn't. Most of it is built on the <b>Unreal Engine mannequin</b>, which has different bone names, different proportions, and a different idea of which way is left. For those files OpenCAGE works out the corrective from the two rest poses and rebuilds the animation on the game's rig by itself — when it has, the summary reads <b>Converted from the file's own skeleton onto …</b>, as in the screenshot above, rather than reporting how many nodes matched by name.</p>
+		<p>There is nothing to switch on. The conversion is applied when none of the file's nodes match a bone by name, the file looks like a rig OpenCAGE recognises, and the <b>Rig</b> you chose is one it can build onto. A file that already matches by name is imported as-is; one that matches nothing and can't be converted is reported as <b>This can't be imported</b>, with the reason.</p>
+		<p>Both the humanoid rigs and the alien are supported targets. Bones the game's rig has and the mannequin doesn't — the alien's tail, spikes and jaw, a human's armour bones — keep their rest shape and ride their parent, which is normal rather than an error. In the screenshot above the mannequin drives 20 of the alien's 127 bones. The game's rig keeps its own bone lengths, too; only the angles come across. If the two rigs turn out to be mirror images of each other, the summary says so; that's also normal and is handled.</p>
 	</section>
 </article>
 
@@ -287,7 +295,9 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>Animation parameters used to be filled from a plain list of enum strings. They now open this window instead, so you can see what a clip is called, how long it runs and what it fires before committing to it.</p>
-		<p>The window opens on whatever the entity is already set to — right down to selecting the animation itself and scrolling to it — and the button at the bottom becomes <b>Use This Animation</b> (or <b>Use This Set</b> for an animation set parameter). Double-clicking a row picks it.</p>
+		<p>The window opens titled <b>Choose an animation</b> (or <b>Choose an animation set</b>), on whatever the entity is already set to — right down to selecting the animation itself and scrolling to it — and an extra button appears at the bottom between <b>Import…</b> and <b>Preview…</b>: <b>Use This Animation</b> (or <b>Use This Set</b> for an animation set parameter), which hands the choice back to the parameter, as shown below. Double-clicking a row picks it.</p>
+		<p><img src="img/picker.jpg" alt="The animation browser opened as a picker, titled Choose an animation, with the current clip pre-selected and a Use This Animation button added between Import and Preview." width="100%"></p>
+		<p class="text-muted small"><i>The same window opened from an animation parameter: the clip the entity already uses is selected, and <b>Use This Animation</b> sits between <b>Import…</b> and <b>Preview…</b>.</i></p>
 		<p>An animation parameter stores the name the set plays the clip by, and an animation set parameter stores the set's own name. Neither stores a path.</p>
     </section>
 </article>

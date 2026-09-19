@@ -105,12 +105,17 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>After loading a level, open <b>View → Galaxy Editor</b> to launch the <b>Galaxy Editor</b>. It authors the level's skybox starfield: a generation definition plus the star list written under <code>RENDERABLE/GALAXY/</code>.</p>
+		<p>After loading a level, open <b>View → Galaxy Editor</b> to launch the <b>Galaxy Editor</b>, pictured below. It authors the level's skybox starfield: a generation definition plus the star list written under <code>RENDERABLE/GALAXY/</code>.</p>
+		<p><img src="img/galaxy-editor.jpg" alt="The Galaxy Editor window showing the DefaultGalaxy definition: name, 16384 stars, and two star template rows above the Add Entry, Remove Entry and Generate Galaxy buttons." style="max-width:100%;width:806px"></p>
+		<p class="text-muted small"><i>The Galaxy Editor opened on a retail level — every shipped level carries this same DefaultGalaxy definition.</i></p>
 		<ul>
 			<li><code>GALAXY.DEFINITION_BIN</code> — name, star count, and frequency-weighted star templates (authoring; used to regenerate)</li>
 			<li><code>GALAXY.ITEMS_BIN</code> — generated stars the game reads at runtime (size, intensity, colour, position)</li>
 		</ul>
 		<p>There is no 3D star preview or per-star position editor in this window — edit templates, then regenerate.</p>
+		<p>The <b>Galaxy Editor</b> item sits in the main window's <b>View</b> menu with the other asset editors, as shown below, and is greyed out until a level is loaded.</p>
+		<p><img src="img/view-menu.jpg" alt="The View menu of the main OpenCAGE window with the Galaxy Editor item highlighted." style="max-width:100%;width:227px"></p>
+		<p class="text-muted small"><i>The View menu with a level loaded: Galaxy Editor sits below the model, material and texture editors and above Sound Editor.</i></p>
     </section>
 </article>
 
@@ -120,14 +125,17 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Set the definition <b>Name:</b> and <b>Number of Stars:</b> (maximum <b>16384</b>). The grid lists star templates used as weighted RNG classes when generating:</p>
+		<p>Set the definition <b>Name:</b> and <b>Number of Stars:</b> (maximum <b>16384</b>). Every retail level ships the same definition, <code>DefaultGalaxy</code>: 16384 stars drawn from two templates, an 80% warm-white class (R 1, G 0.8, B 0.7) and a 20% blue-white class (R 0.7, G 0.7, B 1), both 0.0005–0.005 rad across at intensity 0.01–0.025 — the two rows in the screenshot above. The grid lists the star templates, used as weighted RNG classes when generating:</p>
 		<ul>
 			<li><b>Frequency</b> — relative weight (0–10000)</li>
 			<li><b>Min Size</b> / <b>Max Size</b> — size range in radians (0–10)</li>
 			<li><b>Min Intensity</b> / <b>Max Intensity</b> — intensity range (0–1)</li>
 			<li><b>R (0-1)</b> / <b>G (0-1)</b> / <b>B (0-1)</b> — colour components</li>
 		</ul>
-		<p>Use <b>Add Entry</b> / <b>Remove Entry</b> to grow or shrink the template list. New rows default to frequency <code>1</code>, a small size range, intensity <code>0.5</code>–<code>1</code>, and white colour.</p>
+		<p>Use <b>Add Entry</b> / <b>Remove Entry</b> to grow or shrink the template list. <b>Remove Entry</b> deletes the row that holds the selected cell. New rows are appended to the bottom and default to frequency <code>1</code>, size <code>0</code>–<code>0.001</code>, intensity <code>0.5</code>–<code>1</code>, and white colour, as in the figure below.</p>
+		<p><img src="img/galaxy-editor-add-entry.jpg" alt="The Galaxy Editor after Add Entry, with a new third template row selected showing the default values." style="max-width:100%;width:806px"></p>
+		<p class="text-muted small"><i>A freshly added template row (frequency 1, size 0–0.001, intensity 0.5–1, white) selected beneath the two retail rows; Remove Entry would delete it.</i></p>
+		<p>Cells are checked as you leave them: a blank, non-numeric or out-of-range value is rejected — the row shows an error icon in its header (hover it for the reason, e.g. <i>Intensity must be between 0 and 1.</i>) and the cell stays in edit until you fix it or press <b>Esc</b> to revert. Accepted edits are applied to the definition the moment you leave the cell.</p>
     </section>
 </article>
 
@@ -137,7 +145,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Click <b>Generate Galaxy</b> to regenerate the in-memory star list from the current definition (unseeded RNG; positions are random in roughly a unit cube). A successful run shows <b>Successfully regenerated galaxy!</b></p>
+		<p>Click <b>Generate Galaxy</b> to regenerate the in-memory star list from the current definition (unseeded RNG: each star is placed uniformly between −1 and 1 on every axis, picks its template in proportion to the frequencies, and takes a random size and intensity from that template's ranges). The name and star count are applied to the definition at this point. A successful run shows the <b>Galaxy Generated</b> box below, reading <b>Successfully regenerated galaxy!</b>; with zero stars or no templates it still succeeds, but produces an empty star list.</p>
+		<p><img src="img/galaxy-generated.jpg" alt="The Galaxy Generated information box reading Successfully regenerated galaxy! with an OK button." style="max-width:100%;width:259px"></p>
+		<p class="text-muted small"><i>The confirmation after a successful Generate Galaxy run.</i></p>
 		<p>Generating does not write to disk by itself — use <b>File → Save Level</b> afterward. There is no import/export of star lists.</p>
     </section>
 </article>
@@ -148,7 +158,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The Galaxy Editor has no separate Save button. Persist definition and items with <b>File → Save Level</b> (<b>Ctrl+S</b>), which writes both <code>GALAXY.DEFINITION_BIN</code> and <code>GALAXY.ITEMS_BIN</code> under the level's <code>RENDERABLE/GALAXY/</code> folder.</p>
+		<p>The Galaxy Editor has no separate Save button, and <b>Name:</b> / <b>Number of Stars:</b> are only copied into the definition when you click <b>Generate Galaxy</b> — so change them, generate, then save. Persist definition and items with <b>File → Save Level</b> (<b>Ctrl+S</b>), which writes both <code>GALAXY.DEFINITION_BIN</code> and <code>GALAXY.ITEMS_BIN</code> under the level's <code>RENDERABLE/GALAXY/</code> folder.</p>
 		<p>Saving closes the game if it's running so install files aren't locked.</p>
     </section>
 </article>

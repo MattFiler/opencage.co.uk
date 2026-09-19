@@ -124,9 +124,11 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ol>
 			<li>Select a <code>TriggerSequence</code> entity in the composite list or flowgraph.</li>
-			<li>In the <b>Entity Inspector</b>, click <b>Function</b>.</li>
+			<li>In the <b>Entity Inspector</b>, click <b>Function</b> (pictured below). The button is only enabled for entity types that have their own editor — TriggerSequence, CAGEAnimation and Character — and for a <b>proxy</b> to a TriggerSequence: a proxy carries its own copy of the sequence and method lists, and the editor edits those.</li>
 			<li>The TriggerSequence Editor opens, titled with that entity’s name.</li>
 		</ol>
+		<p><img src="img/inspector-function.jpg" alt="The Entity Inspector with a TriggerSequence selected, showing the Function button that opens the editor." style="max-width:100%;width:274px"></p>
+		<p class="text-muted small"><i>The inspector with TriggerSequence_2 selected. Function is only enabled for entity types with a dedicated editor.</i></p>
 		<p>Edits apply directly to the selected entity while the window is open. The window closes if you reload commands, select a different entity, or switch composite.</p>
     </section>
 </article>
@@ -137,12 +139,14 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The window is split horizontally:</p>
+		<p>The window is split horizontally, as in the screenshot below:</p>
 		<ul>
 			<li><b>Entities</b> (top) — ordered targets the sequence will trigger, each with a delay.</li>
 			<li><b>Triggers</b> (bottom) — named methods this sequence supports (start → finished pairs). These apply to every entity in the list above.</li>
 		</ul>
-		<p>Drag the splitter between the panels to resize. <b>Close</b> is in the bottom-right corner.</p>
+		<p>Drag the splitter between the panels to resize. <b>Close</b> is in the bottom-right corner. Here it is open on one of the Torrens lighting sequences, with a row and a trigger selected so that both details panels are showing — they stay hidden until you select something:</p>
+		<p><img src="img/overview.jpg" alt="The TriggerSequence Editor open on a Torrens lighting sequence, with the Entities list on top, the Triggers list below, and a row and a trigger selected so both details panels are showing." width="100%"></p>
+		<p class="text-muted small"><i>The editor on TriggerSequence_2 in BSP_Torrens: a run of wall-light entries with staggered delays above, the lgt_all_ON / lgt_all_OFF methods below.</i></p>
     </section>
 </article>
 
@@ -152,13 +156,16 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The Entities list shows each sequence entry as a row: the resolved entity hierarchy path, and the delay in seconds. Checkboxes on the left are used for bulk removal.</p>
-		<p>Click <b>Add Entities…</b> to open the hierarchy picker with checkboxes. Check one or more function entities (you can still follow into nested composites first), then confirm. All checked entities are inserted after the current selection (or at the end if nothing is selected). If nothing is checked, the highlighted row alone is added.</p>
+		<p>The Entities list shows each sequence entry as a row: the resolved entity hierarchy path, and the delay in seconds. Checkboxes on the left are used for bulk removal. The search box above the list filters rows by entity path (click <b>X</b> to clear it); while a filter is active the up / down buttons and drag reordering are disabled, because a row’s neighbours in a filtered list aren’t its neighbours in the sequence.</p>
+		<p>Click <b>Add Entities…</b> to open the hierarchy picker with checkboxes. Check one or more function entities, then click <b>Select Checked Entities</b>. The picker starts in the current composite, with a search box above the list: <b>Follow Entity Through</b> (enabled only while a composite instance is highlighted) steps into that instance, <b>&lt; Back</b> steps out again, and <b>Browse from level root</b> restarts at the level’s root so an entry can point into a different branch of the level. All checked entities are inserted after the current selection (or at the end if nothing is selected). If nothing is checked, the highlighted row alone is added.</p>
+		<p><img src="img/add-entities-picker.jpg" alt="The Select Entities picker opened from Add Entities, listing the composite’s function entities with checkboxes, a Browse from level root button, and Select Checked Entities to confirm." style="max-width:100%;width:765px"></p>
+		<p class="text-muted small"><i>Add Entities… opens the shared entity picker in multi-select mode. Two rows are ticked here; Follow Entity Through is greyed out because no composite instance is highlighted.</i></p>
 	</section>
 
 	<section class="docs-section" id="entity-details">
 		<h2 class="section-heading">Selected Entity Details</h2>
-		<p>Selecting a row shows the details panel:</p>
+		<p>Selecting a row shows the details panel to the right of the list, as below:</p>
+		<p><img src="img/entities-panel.jpg" alt="The Entities panel of the TriggerSequence Editor with one row selected and its details panel showing the resolved entity path, Go To, Select New and the delay field." width="100%"></p>
 		<ul>
 			<li><b>Entity To Trigger</b> — read-only resolved path. Use <b>Select New</b> to repoint this entry at a different function entity (single pick). Use <b>Go To</b> to jump the main editor to that entity (this closes the TriggerSequence Editor after confirmation). These actions require a single selected row.</li>
 			<li><b>Time To Wait Before Triggering (In Seconds)</b> — delay for the selection. With multiple rows selected (Ctrl/Shift+click), the same delay is applied to all of them. If selected delays differ, the field starts blank until you enter a value. Only numeric values are accepted.</li>
@@ -168,7 +175,7 @@
 	<section class="docs-section" id="reorder-remove">
 		<h2 class="section-heading">Reorder &amp; Remove</h2>
 		<ul>
-			<li><b>Drag</b> a row in the Entities list to reorder it (insertion mark shows where it will land). Up / down buttons still work as an alternative.</li>
+			<li><b>Drag</b> a row in the Entities list to reorder it (an insertion mark shows where it will land). The small up / down arrow buttons beside the list still work as an alternative; both are disabled while the list is filtered.</li>
 			<li>Sequence order is the firing order (subject to the entity’s <code>trigger_mode</code> and related parameters).</li>
 			<li>Check one or more rows and click <b>Remove Checked</b> to delete them after confirmation.</li>
 			<li>There is no single-row delete button for entities; use checkboxes + <b>Remove Checked</b>.</li>
@@ -182,7 +189,8 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The Triggers list is the set of start / end parameters this <code>TriggerSequence</code> exposes. Each line shows <code>method -&gt; method_finished</code>.</p>
+		<p>The Triggers list is the set of start / end parameters this <code>TriggerSequence</code> exposes. Each line shows <code>method -&gt; method_finished</code>; select one and its <b>Selected Trigger Details</b> panel appears beside the list:</p>
+		<p><img src="img/triggers-panel.jpg" alt="The Triggers panel listing the sequence’s method pairs, with one selected and its Parameter To Trigger field and Save button showing." width="100%"></p>
 		<p>These methods apply to <b>all</b> entities in the Entities list — when the sequence runs a method, every target is triggered with that method name (with its own delay).</p>
 		<ul>
 			<li><b>Add New Trigger</b> — inserts a method entry using the name currently in the Parameter field (or an empty name if the field is blank). Inserts after the selection, or at the end.</li>
@@ -210,7 +218,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>Click <b>Close</b> to leave the editor. Before closing, OpenCAGE checks that every sequence entry points at a real entity hierarchy. If any entry is empty or incomplete, you get an error and the window stays open so you can fix it.</p>
-		<p>There is no separate Save button — sequence and method edits are already on the entity. Persist them with the usual composite / level save.</p>
+		<p>There is no separate Save button — sequence and method edits are already on the entity. Persist them with the usual composite / level save. The whole session is recorded as a single undo step when the window closes (<b>Edit → Undo</b> lists it as “Edit trigger sequence of” the entity), so one <b>Ctrl+Z</b> afterwards puts both lists back as they were when the editor opened.</p>
     </section>
 </article>
 

@@ -108,8 +108,12 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Open <b>View → UI Editor</b> to browse <code>DATA/UI.PAK</code> — the archive that holds the game's UI files. The <b>Edit UI</b> window lists every entry (path + size). OpenCAGE itself doesn't edit the contents; you export a file, change it with an external tool, then replace it. Writes go straight back into the PAK (no separate pack step).</p>
-		<p>Saving changes closes Alien: Isolation if it's running, so the game isn't locking the archive.</p>
+		<p>Open <b>View → UI Editor</b> to browse <code>DATA/UI.PAK</code> — the archive that holds the game's UI files. The <b>Edit UI</b> window, shown below, lists every entry with its path inside the archive and its size in bytes. OpenCAGE itself doesn't edit the contents; you export a file, change it with an external tool, then replace it. Writes go straight back into the PAK (no separate pack step).</p>
+		<p><img src="img/overview.jpg" alt="The Edit UI window listing every entry in UI.PAK with its path and size, a row selected and the action buttons enabled along the bottom." width="100%"></p>
+		<p class="text-muted small"><i>The Edit UI window: search at the top, archive entries in the middle, the action buttons along the bottom.</i></p>
+		<p>There is no Save button: every replace, import or delete is written to the archive as soon as it happens, and the first time you open one of OpenCAGE's auto-saving editors a one-off <b>Automatic saving</b> reminder says so. Saving closes Alien: Isolation if it's running, so the game isn't locking the archive.</p>
+		<p>The <b>UI Editor</b> item sits in the main window's <b>View</b> menu with the other asset editors, as shown below. It doesn't need a level loaded.</p>
+		<p><img src="img/view-menu.jpg" alt="The View menu of the main OpenCAGE window with the UI Editor item highlighted." style="max-width:100%;width:227px"></p>
     </section>
 </article>
 
@@ -149,28 +153,35 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The list shows every path in the archive. Use the search box (and <b>Search</b>, or Enter) to filter by path. Select a row to enable the action buttons.</p>
+		<p>The list shows every path in the archive, sorted alphabetically. Type part of a path in the search box and press <b>Search</b> (or Enter) to filter it — matching ignores case, spaces and slash direction, so <code>credits</code> finds both <code>CREDITSSCREEN.GFX</code> and the <code>CREDITS*.HTML</code> pages, as shown below. Clear the box and search again to get the full list back. Select a row to enable <b>Export Selected</b>, <b>Replace Selected</b> and <b>Delete Selected</b>; <b>Import New File</b> and <b>Export All</b> are available as soon as the archive has loaded.</p>
+		<p><img src="img/search-credits.jpg" alt="The Edit UI list filtered by the search term credits, showing the CREDITSSCREEN.GFX package and the eight CREDITS HTML files." width="100%"></p>
+		<p class="text-muted small"><i>Searching for "credits" narrows the list to the credits GFX and the HTML pages it reads.</i></p>
     </section>
 
     <section class="docs-section" id="export-replace">
 		<h2 class="section-heading">Export &amp; Replace</h2>
+		<p>Everything is driven from the button bar along the bottom of the window, shown below.</p>
+		<p><img src="img/action-buttons.jpg" alt="The five action buttons along the bottom of the Edit UI window: Import New File, Export Selected, Delete Selected, Replace Selected and Export All." width="100%"></p>
+		<p class="text-muted small"><i>The button bar with a row selected, so all five buttons are enabled; Export Selected, Delete Selected and Replace Selected grey out while nothing is selected.</i></p>
 		<p>Typical workflow:</p>
 		<ol>
 			<li>Select a file → <b>Export Selected</b> → pick where to save it.</li>
 			<li>Edit the file externally (GFX in JPEXS, DDS via DirectXTex, and so on).</li>
 			<li>Back in Edit UI, select the same archive entry → <b>Replace Selected</b> → choose your edited file.</li>
 		</ol>
-		<p>Replace writes into <code>UI.PAK</code> immediately. Keep the same kind of file you exported — OpenCAGE doesn't validate content, but the game expects the entry to stay usable as that asset.</p>
+		<p>Replace writes into <code>UI.PAK</code> immediately; the <b>Size (bytes)</b> column updates to the new file's length so you can see it took. Keep the same kind of file you exported — OpenCAGE doesn't validate content, but the game expects the entry to stay usable as that asset.</p>
     </section>
 
 	<section class="docs-section" id="import-delete">
 		<h2 class="section-heading">Import, Delete &amp; Export All</h2>
 		<ul>
-			<li><b>Import New File</b> — pick a file from disk, then set the <b>Entry path</b> inside the archive. If that path already exists, you're asked whether to overwrite.</li>
+			<li><b>Import New File</b> — pick a file from disk, then give it an <b>Entry path</b> in the <b>Set Path</b> prompt (shown below). The box starts out holding just the file name; every retail entry lives under <code>DATA/UI/</code>, so change it to the full path, such as <code>DATA/UI/MY_IMAGE.DDS</code>. If that path already exists, you're asked whether to overwrite it.</li>
 			<li><b>Delete Selected</b> — removes the entry after confirmation.</li>
-			<li><b>Export All</b> — dumps every entry into a folder, preserving relative paths under the archive.</li>
+			<li><b>Export All</b> — pick a folder and every entry is written into it, recreating the <code>DATA/UI/...</code> folder structure; a message reports how many entries were exported.</li>
 		</ul>
 		<p>Import and delete also save the PAK immediately (and close the game if it's open).</p>
+		<p><img src="img/import-set-path.jpg" alt="The Set Path prompt shown by Import New File, asking for the entry path the new file should have inside UI.PAK." style="max-width:100%;width:522px"></p>
+		<p class="text-muted small"><i>The Set Path prompt with the full DATA/UI/... path typed in; it opens holding just the file name, so change it before pressing OK.</i></p>
 	</section>
 </article>
 

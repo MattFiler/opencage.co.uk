@@ -101,29 +101,38 @@
 
 	<section class="docs-section">
 		<h1 class="section-heading">Inputs</h1>
-		<p>To edit input bindings in OpenCAGE navigate to View > Configuration Editors > Core Game > Inputs.</p>
-		<p>This edits <code>DATA/INPUT.XML</code> — the default bindings the game ships with, per input section and per controller preset, plus the per-device settings that sit above them. It's what a fresh profile starts from, and what the game's own controller-layout option switches between.</p>
-		<p>Action names are fixed — the engine asks for them by name — so the editor changes what an action is bound to, adds extra bindings for an action, or removes bindings. It doesn't invent new actions. Comments in the file are kept as they were.</p>
+		<p>To edit input bindings in OpenCAGE navigate to View > Configuration Editors > Core Game > Inputs. The Inputs Editor opens as shown below: the <b>Section and device</b> list and the <b>Device settings</b> group on the left, the <b>Bindings</b> grid on the right, and the two buttons that act on it underneath.</p>
+		<p><img src="img/overview.jpg" alt="The Inputs Editor window, with the section-and-device list and device settings on the left and the bindings grid with its Bind Action Again and Remove Binding buttons on the right." width="100%"></p>
+		<p class="text-muted small"><i>The Inputs Editor as it opens, on the default gamepad layout — the Gameplay gamepad entry with no preset.</i></p>
+		<p>This edits <code>DATA/INPUT.XML</code> — the default bindings the game ships with, per input section and per controller preset, plus the per-device settings that sit above them in the file. It's what a fresh profile starts from, and what the game's own controller-layout option switches between.</p>
+		<p>Action names are fixed — the engine asks for them by name — so the editor changes what an action is bound to, adds extra bindings for an action, or removes bindings. It doesn't invent new actions. Comments in the file are kept as they were. There is no Save button: every change is written back to <code>INPUT.XML</code> as soon as you make it.</p>
 	</section>
 
 	<section class="docs-section" id="sections">
 		<h2 class="section-heading">Sections &amp; Devices</h2>
-		<p>The file has three sections the engine looks up by name — <b>player_input</b>, <b>menu_input</b> and <b>debug_input</b> — each holding one or more device blocks. Pick the section and device to work on from the <b>Section and device</b> list at the top.</p>
-		<p>A gamepad can appear as several presets: preset 1 is the standard layout, preset 2 the left-handed one, and so on. Each preset is one of the controller layouts the game's options menu offers, so to change what "Layout 2" means in-game, edit gamepad preset 2 here.</p>
+		<p>The file has three sections the engine looks up by name — <b>player_input</b>, <b>menu_input</b> and <b>debug_input</b> — each holding one or more device blocks. Pick the section and device to work on from the <b>Section and device</b> list at the top left, as shown above. The list labels the sections <b>Gameplay</b>, <b>Menus</b> and <b>Debug</b> respectively, followed by the device type and, where a gamepad block has them, its preset and remote scheme — so <i>Gameplay - gamepad, preset 2, remote scheme 5</i> is the <b>player_input</b> section's left-handed gamepad layout.</p>
+		<p>The Gameplay gamepad appears six times in the list, one entry per preset. The entry with no preset — <i>Gameplay - gamepad, remote scheme 4</i>, the one selected when the editor opens — is the standard layout; preset 1 is its alternate, preset 2 the left-handed layout, preset 3 the left-handed alternate, and presets 4 and 5 the Remote Play standard and left-handed layouts. Each preset is one of the controller layouts the game's options menu offers, so to change one of those layouts in-game, edit the matching preset here.</p>
 	</section>
 
 	<section class="docs-section" id="bindings">
 		<h2 class="section-heading">Bindings</h2>
-		<p>The <b>Bindings</b> grid lists every binding in the selected device — a button, axis or slider naming an action and the input id it's bound to, along with its combo and toggle flags. Edit those in place. The same action can appear more than once, which is how one action answers to several inputs.</p>
+		<p>The <b>Bindings</b> grid lists every binding in the selected device, one row each. <b>Kind</b> (button, axis or slider) and <b>Action</b> are fixed by the engine and can't be edited; <b>Bound to</b> is the input id (<code>w</code>, <code>lshift</code>, <code>mbutton_left</code>, <code>lt_button</code>, <code>lstick_x</code> and so on), <b>Combo</b> names two ids pressed together (e.g. <code>O+P</code>) and is used instead of Bound to, and <b>Toggle</b> is <code>true</code> to make the action toggle rather than be held. Edit those in place. Leaving Bound to empty ships the action unbound, which is how the game itself lists actions a device doesn't use — on the default gamepad, for instance, the move and look rows are empty and the sticks are bound as axes further down the grid. The same action can appear more than once, which is how one action answers to several inputs: on the Menus keyboard shown below, <code>ok</code> is bound to both <code>return</code> and <code>space</code>.</p>
+		<p><img src="img/bindings-menus-keyboard.jpg" alt="The Bindings grid for the Menus keyboard device, where the ok action is listed twice, bound to return and to space." width="100%"></p>
+		<p class="text-muted small"><i>Menus - keyboard: the ok action is bound twice, once to Return and once to Space.</i></p>
+		<p>The two buttons under the grid act on the row you have selected:</p>
 		<ul>
 			<li><b>Bind Action Again</b> — adds a second binding for the selected action, so it answers to another input as well.</li>
-			<li><b>Remove Binding</b> — removes the selected binding. If it's the last one for that action you're warned first, since an action with no binding can't be triggered from that device.</li>
+			<li><b>Remove Binding</b> — removes the selected binding. If it's the last one for that action you're warned first, as shown below: removing it drops the action from the file entirely, whereas clearing its Bound to column keeps the action in place but unbound, which is what the game itself does for actions a device doesn't use.</li>
 		</ul>
+		<p><img src="img/remove-last-binding.jpg" alt="The warning shown when removing the only binding an action has on a device, offering to remove it anyway or not." style="max-width:100%;width:412px"></p>
+		<p class="text-muted small"><i>The warning for an action's only binding, here move_forward on the Gameplay keyboard. No leaves everything as it was; Yes removes the action and writes the file.</i></p>
 	</section>
 
 	<section class="docs-section" id="device-settings">
 		<h2 class="section-heading">Device Settings</h2>
-		<p>Above the bindings sit the <b>Device settings</b> — the two threshold blocks (dead zones and the like) that apply to a device type as a whole. They're shown for whichever device type you have selected, and edit the same way.</p>
+		<p>Beneath the device list sit the <b>Device settings</b> — in the file they come before the sections, and they hold the settings that apply to every device of the selected type rather than to one section. The game ships two such blocks: gamepads have <code>slider_as_button_threshold</code> and <code>axis_as_buttons_threshold</code> (how far a trigger or stick must move before it counts as a button press), pictured below, and the mouse has <code>enabled</code> and <code>ui_slider_range</code>, how far either side of the default the in-game mouse slider can go (the stock 5 means five times slower or faster). Keyboards have none, so the group reads <i>No device settings for this device type</i> and its grid is greyed out whenever a keyboard is selected, as in the Menus keyboard screenshot above. The group follows whichever device you have selected, and its values edit in place just like the bindings.</p>
+		<p><img src="img/device-settings.jpg" alt="The Device settings group for gamepad devices, listing the slider-as-button and axis-as-buttons thresholds." style="max-width:100%;width:290px"></p>
+		<p class="text-muted small"><i>Device settings for every gamepad device: the two thresholds that decide when a slider or axis counts as a button press.</i></p>
 	</section>
 </article>
 

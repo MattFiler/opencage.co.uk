@@ -111,8 +111,10 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>After loading a level, open <b>View → Model Editor</b> to launch the <b>Model Editor</b>. It browses and edits the level's mesh package under <code>RENDERABLE</code> (e.g. <code>LEVEL_MODELS.PAK</code> / <code>MODELS_LEVEL.BIN</code>) — CS2 models used by ModelReference entities and other renderables.</p>
+		<p>After loading a level, open <b>View → Model Editor</b> to launch the <b>Model Editor</b>, shown below. It browses and edits the level's mesh package under <code>RENDERABLE</code> (e.g. <code>LEVEL_MODELS.PAK</code> / <code>MODELS_LEVEL.BIN</code>) — CS2 models used by ModelReference entities and other renderables.</p>
 		<p>The same window can open as a picker (with <b>Select This Model</b>) from a renderable instance's <b>Change Model</b> button.</p>
+		<p><img src="img/model-editor.jpg" alt="The Model Editor window: the model tree on the left scrolled to SHOTGUN_PICKUP_DISPLAY.cs2, a textured 3D preview of the shotgun pickup in the centre with Use Material Data ticked, and on the right the Preview Render Filter's submesh checkboxes with their i buttons, the Model Render Flags checkboxes and the Edit, Export and Delete buttons." width="100%"></p>
+		<p class="text-muted small"><i>The Model Editor with SHOTGUN_PICKUP_DISPLAY.cs2 selected: the Preview Render Filter lists the SHOTGUN LOD's submeshes, each with an i button; the model's other LOD groups sit further down the same panel.</i></p>
     </section>
 </article>
 
@@ -122,10 +124,10 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The left tree lists models in the loaded level. Use <b>Search</b> / <b>Clear</b> to filter. Select an entry to preview it in the centre 3D view.</p>
+		<p>The left tree lists the level's models, grouped into folders by their names, as shown above. Use <b>Search</b> / <b>Clear</b> to filter. Select a model (its <code>.cs2</code> entry) to preview all of it in the centre 3D view, or one of the numbered components beneath it to preview just that part; the preview's title shows what's selected, and <b>Edit</b>, <b>Export</b> and <b>Delete</b> on the right act on the selected model.</p>
 		<ul>
 			<li><b>Use Material Data</b> — textured preview when possible (same preference as <b>Options → Misc → Use Textured Model View</b>); materials come from the <a href="/docs/material-editor/">Material Editor</a> package, textures from the <a href="/docs/texture-editor/">Texture Editor</a>.</li>
-			<li><b>Preview Render Filter</b> — show/hide LOD groups and individual submeshes (<b>Show All</b> / <b>Hide All</b>). The <b>i</b> button opens submesh info (verts, indices, vertex format).</li>
+			<li><b>Preview Render Filter</b> — one group per LOD, with a checkbox per submesh (<b>Show All</b> / <b>Hide All</b> toggle a whole group). Only each component's first LOD is shown to begin with, and <code>COL_</code> collision hulls start hidden even then. The <b>i</b> button beside a submesh opens a small info window (vertices, indices, triangles, and what its vertex format carries).</li>
 		</ul>
     </section>
 </article>
@@ -143,7 +145,10 @@
 
     <section class="docs-section" id="import">
 		<h2 class="section-heading">Import New</h2>
-		<p>Click <b>Import New</b>, pick a file, then use the import preview to choose which meshes to bring in. You settle the model's <b>name</b> and any folders it should live in here too, with clashes checked as you type — nothing gets silently renamed after the fact.</p>
+		<p>Click <b>Import New</b>, pick a file, then use the import preview (shown below) to choose which meshes to bring in — tick or untick them in the tree on the left, and the preview follows. The line across the top says what was found: whether an OpenCAGE sidecar was read, how many components, LODs and submeshes the model will have, and how many materials will be built from the model's own textures, with how many textures that imports or reuses. You settle the model's <b>name</b> and any folders it should live in here too (use <code>\</code> for folders), with clashes checked as you type — nothing gets silently renamed after the fact.</p>
+		<p><img src="img/import-preview.jpg" alt="The model import preview for TOOLBOX_DISPLAY: the status line, name, scale and composite rows across the top, the mesh tree with a [generate ...] material tag per submesh on the left, the Model Preview on the right showing the toolbox drawn with its own base colour texture, and the Pick material for selected, Edit generated material, Import and Cancel buttons along the bottom." width="100%"></p>
+		<p class="text-muted small"><i>Importing a glTF with no sidecar: each submesh is tagged [generate …], so it gets a material built from the model's own textures unless you pick a level material for it; the Model Preview draws the toolbox with the base colour maps those materials will use, and the status line counts the materials and textures that will be created.</i></p>
+		<p><b>Also create a composite that places it</b> is ticked by default: the import then also creates a composite named after the model (rename it, folders included) holding a ModelReference for it, so the model can be dragged into the level the moment it lands. A mesh skinned to one of the game's skeletons gets a <b>DisplayModel</b> composite with an EnvironmentModelReference on that skeleton instead, which is what a character's <code>display_model</code> looks up.</p>
 		<p>If a <code>.cs2meta.json</code> sidecar sits beside the file (see below), OpenCAGE reads it and rebuilds the model with the structure it had when it was exported, and pre-selects the materials each submesh used if the level still has them.</p>
 		<p>Imports need triangles (Assimp triangulates where needed), a usable bounding box, and under 32,768 vertices per converted mesh. Models are keyed by name when a level is read back, so a name that already exists is adjusted and you're told what it became — anything already placed still points at the original.</p>
 
@@ -163,9 +168,11 @@
 		<p>Every submesh needs a CATHODE material. There are two ways to get one:</p>
 		<ul>
 			<li><b>Pick material for selected</b> — choose an existing level material for the selected meshes (opens the <a href="/docs/material-editor/">Material Editor</a> as a picker).</li>
-			<li><b>Generate one from the model</b> — the default for any submesh you haven't pointed at a material. OpenCAGE reads the textures, colours and skinning the model's own material carries and plans a new CATHODE material from them, one per source material, named after it. The preview shows the base colour it will use. Click <b>Edit generated material…</b> to see or change the plan for the selected mesh.</li>
+			<li><b>Generate one from the model</b> — the default for any submesh you haven't pointed at a material. OpenCAGE reads the textures, colours and skinning the model's own material carries and plans a new CATHODE material from them, one per source material, named after it. Each submesh in the tree says what it will draw with — <code>[generate …]</code> for a planned material, or <code>[…]</code> naming a level material you picked. The preview shows the base colour a planned material will use. Click <b>Edit generated material…</b> to see or change the plan for the selected mesh.</li>
 		</ul>
-		<p>The <b>Generate Material</b> dialog shows the <b>shader type</b> (family) OpenCAGE picked for the mesh and lets you change it, the material's <b>name</b>, and the <b>textures taken from the model</b> — which map fills which sampler, how it will be imported, and where it came from. A texture the level already has under the same name is reused rather than imported again. The <b>shader features</b> list is decided by which maps were found: a feature is set exactly when its map is present, which is how every shipped material is built. Tick <b>Always create a new material</b> to force a fresh material even where an identical one could be reused.</p>
+		<p>The <b>Generate Material</b> dialog shows the <b>shader type</b> (family) OpenCAGE picked for the mesh and lets you change it, the material's <b>name</b>, and the <b>textures taken from the model</b> — which map fills which sampler, how it will be imported, and where it came from. A texture the level already has under the same name is reused rather than imported again. The <b>shader features</b> list shows what the chosen permutation turns on. OpenCAGE asks for a feature exactly when its map is present, which is how every shipped material is built, but only a permutation the level ships (or the shader database holds) can be used — when that exact combination isn't compiled here, the nearest shipped permutation is taken instead and the list follows it rather than the maps, so it can carry features no map asked for (the toolbox below gets <code>EMISSIVE</code> and <code>RADIOSITY_STATIC</code> that way). The summary underneath says when that has happened; building the shader database, or installing an HLSL compiler, widens what can be built. Tick <b>Always create a new material</b> to force a fresh material even where an identical one could be reused. <b>Create Material</b> hands the plan back to the import preview.</p>
+		<p><img src="img/generate-material.jpg" alt="The Generate Material dialog for the toolbox's first submesh: the shader type CA_ENVIRONMENT, the suggested name TOOLBOX_DISPLAY\Metal_Painted_Yellow-_Metal_Painted_Yellow, one base colour texture row mapped to DIFFUSE_MAP and imported as BC7 sRGB, the shader features EMISSIVE and RADIOSITY_STATIC, a summary saying one texture will be imported and the nearest shipped permutation will be used, and the Always create a new material tickbox at the bottom left with Cancel and Create Material at the bottom right." style="max-width:100%;width:802px"></p>
+		<p class="text-muted small"><i>Editing the generated material for one submesh: the name is suggested from the model's file name and its own material name (characters a name can't hold become underscores), the base colour map was found beside the model and will be imported as BC7 sRGB (the From column shows the path as the glTF wrote it, spaces percent-encoded), and the summary explains that the exact feature combination isn't compiled here so the nearest shipped permutation is used — which is where its EMISSIVE and RADIOSITY_STATIC features come from.</i></p>
 		<p>Textures are imported in the format and colour space their role needs (diffuse maps as sRGB, normal maps as two-channel linear data, and so on), and everything a model can't tell you — roughness, radiosity behaviour, priority — is taken from a similar material already in the level, so a generated material starts from values known to work there. Nothing is written until you click <b>Import</b>; if a material can't be generated you're told why and can import without it, in which case those submeshes use the fallback material.</p>
     </section>
 
@@ -175,7 +182,9 @@
 			<li><b>Export</b> — writes the selected model out, with <b>normals</b> and <b>skin weights</b> carried across in the formats that support them. Related textures (diffuse, normal, and so on) can be written beside the file under a textures folder (sourced via the model's materials — see the <a href="/docs/texture-editor/">Texture Editor</a>).</li>
 			<li><b>Delete</b> — removes the model from the level after confirmation.</li>
 		</ul>
-		<p>Exporting a <b>skinned</b> model asks which skeleton to bind it to first, before the file dialog — a skinned model is only half a model without the rig its weights point at. The chosen skeleton is written into the file with the mesh bound to it.</p>
+		<p>Exporting a <b>skinned</b> model asks which skeleton to bind it to first, before the file dialog — a skinned model is only half a model without the rig its weights point at. The <b>Choose a skeleton</b> window (below) lists every skeleton in the game's animation data with its bone count and a <b>Fit</b> score — how far, on average, its bones sit from the vertices weighted to them — best fit first and pre-selected; skeletons with too few bones are greyed out. <b>Search</b> filters the list, <b>Export</b> uses the selected rig, and <b>Export without one</b> writes the mesh alone. The chosen skeleton is written into the file with the mesh bound to it.</p>
+		<p><img src="img/skeleton-picker.jpg" alt="The Choose a skeleton window shown when exporting a skinned model: a line saying the model uses 158 bone slots and that SAMUELS fits its skin weights best, a Search box, the list of skeletons with their bone counts and fit scores best fit first with SAMUELS pre-selected, and the Export without one, Export and Cancel buttons." style="max-width:100%;width:522px"></p>
+		<p class="text-muted small"><i>Exporting a mesh that uses 158 bone slots: the rigs that can hold it come first, best fit at the top, and SAMUELS is already selected; further down the list, a rig with too few bones is greyed out and marked <code>too small</code>.</i></p>
 		<p>Every export also writes a <code>.cs2meta.json</code> sidecar next to the model, holding everything the mesh formats can't carry: the component / LOD / submesh structure, render flags, vertex formats, and skinning data. <b>Keep it beside the model and leave the object names intact</b>, and the model can be imported straight back in as it was.</p>
 	</section>
 </article>
@@ -187,18 +196,20 @@
 
     <section class="docs-section" id="render-flags" style="padding-top:0;">
 		<h2 class="section-heading">Render Flags</h2>
-		<p>On the main window, <b>Model Render Flags</b> toggles flags for the previewed model (for example LOD / shadow / dynamic geom style options). Changes apply in memory immediately.</p>
+		<p>On the main window, the <b>Model Render Flags</b> group (on the right, under the Preview Render Filter in the first screenshot) toggles the engine's per-submesh flags — <b>DYNAMIC GEOM</b>, <b>HELPER NODE</b>, <b>IS LOD</b>, <b>TOP LOD OVERRIDE</b>, <b>IS SHADOW LOD</b>, <b>NEVER LOADED</b> and so on. A box is ticked when every submesh of the previewed model carries that flag, and ticking or unticking it applies to all of them. Changes apply in memory immediately.</p>
     </section>
 
 	<section class="docs-section" id="geometry">
 		<h2 class="section-heading">Geometry Editor</h2>
-		<p>Select a model and click <b>Edit</b> to open a second window for that CS2's hierarchy: components → LODs → submeshes.</p>
+		<p>Select a model and click <b>Edit</b> to open a second window, titled with the model's name, for that CS2's hierarchy: <b>Component N</b> → <b>Part N: &lt;LOD name&gt;</b> → <b>Mesh N</b>. Whatever you select is drawn in the <b>Selected Preview</b> (tick <b>Materials</b> for a textured view), <b>Selected Info</b> gives its name and vertex count, and the <b>Utilities</b> buttons change with the selection, as shown below:</p>
+		<p><img src="img/geometry-editor.jpg" alt="The geometry editor for SHOTGUN_PICKUP_DISPLAY.cs2: the fully expanded Component, Part and Mesh tree on the left with Mesh 0 selected, and on the right the Selected Preview with its Materials checkbox, the Selected Info panel showing the name, vertex count and Resize by box, and the Utilities buttons Replace Selected, Edit Material and Delete Selected." width="100%"></p>
+		<p class="text-muted small"><i>With a submesh selected, Utilities offers Replace Selected, Edit Material and Delete Selected; the Add buttons appear when a model, component or part is selected instead.</i></p>
 		<ul>
-			<li><b>Replace Selected</b> — replace a submesh with the first mesh from an FBX/GLTF/OBJ file</li>
-			<li><b>Edit Material</b> — assign a material via the <a href="/docs/material-editor/">Material Editor</a></li>
-			<li><b>Add New Component</b> / <b>Add New LOD</b> / <b>Add New Submesh</b> — grow the hierarchy from an imported mesh (first mesh in the file)</li>
-			<li><b>Delete Selected</b> — remove a component, LOD, or submesh</li>
-			<li>Scale and other info fields for the selected submesh appear in the info panel</li>
+			<li><b>Replace Selected</b> (submesh selected) — swap the submesh's geometry for the first mesh in a model file of any supported format; the material and render flags of the submesh it replaces are kept</li>
+			<li><b>Edit Material</b> (submesh selected) — assign a material via the <a href="/docs/material-editor/">Material Editor</a></li>
+			<li><b>Add New Component</b> (model selected) / <b>Add New LOD</b> (component selected) / <b>Add New Submesh</b> (part selected) — grow the hierarchy from an imported mesh (first mesh in the file); a new LOD is named after the file</li>
+			<li><b>Delete Selected</b> — remove a component, part or submesh (anything but the model itself)</li>
+			<li><b>Resize by</b> (submesh selected) — type a factor (<code>2</code> doubles it, <code>0.5</code> halves it) and click <b>Apply</b> to rewrite the submesh's geometry at that size. The box goes back to <code>1</code> afterwards because the resize is baked into the vertices, so apply it once rather than re-entering the same number</li>
 		</ul>
 		<p>For multi-mesh sources, prefer <b>Import New</b> with the mesh checkboxes; the per-submesh add/replace path only uses the first mesh in the file.</p>
 	</section>

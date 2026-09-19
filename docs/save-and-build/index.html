@@ -127,7 +127,9 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>A shipped Cathode level is not just its scripts and its models. Sitting alongside those is a large amount of <b>derived data</b> that the engine reads at runtime but never works out for itself: which surfaces receive which lights, where NPCs can walk, what a bullet collides with, where the alien can take cover, and how sound travels from room to room.</p>
 		<p>Creative Assembly generated all of that offline, in CAGE, whenever a level was built. If you move a wall in OpenCAGE and only write the scripts back, the wall moves — but its shadow, its collision, and the navmesh around it stay exactly where they were.</p>
-		<p><b>File → Save and Build Level</b> is the option that regenerates it. It performs a normal save, and then rebuilds the level's instanced data from whatever the level now actually contains.</p>
+		<p><b>File → Save and Build Level</b> is the option that regenerates it — it sits directly under the plain <b>Save Level</b> in the File menu, as shown below. It performs a normal save, and then rebuilds the level's instanced data from whatever the level now actually contains.</p>
+		<p><img src="img/file-menu.jpg" alt="The File menu in OpenCAGE, with Save Level and Save and Build Level listed one under the other." style="max-width:100%;width:720px"></p>
+		<p class="text-muted small"><i>Save Level has the Ctrl+S shortcut; Save and Build Level has no shortcut and is only reached from this menu.</i></p>
 		<p>This is the feature that makes it possible to add new geometry to a level and have the game treat it as real.</p>
     </section>
 </article>
@@ -138,7 +140,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The File menu offers both, and they are not interchangeable:</p>
+		<p>The File menu offers both (pictured in the introduction above), and they are not interchangeable:</p>
 		<ul>
 			<li><b>Save Level</b> — writes your scripts, models, textures, materials and other resources. Everything derived is left exactly as it was on disk. Fast, and the right choice for the vast majority of edits.</li>
 			<li><b>Save and Build Level</b> — does all of the above, then regenerates the instanced data. Considerably slower, and the right choice whenever you have changed the level physically.</li>
@@ -181,7 +183,9 @@
 
 	<section class="docs-section" id="gen-physics">
 		<h2 class="section-heading">Collision &amp; Physics</h2>
-		<p>Collision and physics instances are rebuilt to match where objects now are, including instances for newly scripted entities. This is what makes a moved wall solid in its new position rather than its old one.</p>
+		<p>Collision and physics instances are rebuilt to match where objects now are, including instances for newly scripted entities. This is what makes a moved wall solid in its new position rather than its old one. The Viewport can draw the generated collision over the level in solid cyan, as below — see <a href="#checking">Checking the Result</a> for the filter that switches it on.</p>
+		<p><img src="img/collision-overlay.jpg" alt="The Viewport inside the Torrens canteen with the Collision Meshes render filter on: the chair nearest the camera, the tables and the walls are all solid cyan, with only thin strips of the orange table and bench tops and the dark wall consoles showing through." width="100%"></p>
+		<p class="text-muted small"><i>The same view of the Torrens canteen as the navmesh screenshot under Checking the Result, with the Collision Meshes render filter on. The overlay is opaque rather than a wireframe, so anything with collision becomes a cyan block — the chair nearest the camera fills the middle of the frame — and the ordinary render only shows through where the visible mesh reaches past its collision, as the orange table and bench tops do here.</i></p>
 	</section>
 
 	<section class="docs-section" id="gen-ai">
@@ -233,9 +237,15 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>While a build runs, the progress window reads <b>Instancing &lt;level&gt;…</b>. Unlike a normal save it cannot report a percentage, so the bar runs as a marquee until the build finishes. Expect it to take substantially longer than a plain save — minutes rather than seconds on a large level.</p>
-		<p>Once it's done, two of the generated systems can be inspected without leaving OpenCAGE. In the <a href="/docs/level-viewer/">Viewport</a> toolbar, the <b>Show State Info</b> dropdown draws the generated <b>Navmesh</b> or <b>Cover</b> positions over the level, per state. If a region of your new geometry has no navmesh over it, NPCs will not walk there.</p>
-		<p>For collision, switch on <b>Collision Meshes</b> in the <b>Render Filters</b> panel and check that your new geometry has collision in the right place.</p>
+		<p>While a build runs, the progress window shown below reads <b>Instancing &lt;level&gt;…</b>. The generation phase cannot report a percentage, so the bar runs as a marquee; once the generated data starts being written to disk the title switches to <b>Saving &lt;level&gt;…</b> and the bar fills as it does for a normal save. Expect it to take substantially longer than a plain save — minutes rather than seconds on a large level.</p>
+		<p><img src="img/instancing-progress.jpg" alt="The build progress window titled Instancing PRODUCTION/BSP_TORRENS with a marquee progress bar." style="max-width:100%;width:802px"></p>
+		<p class="text-muted small"><i>The progress window during the generation phase: the green block scrolls across the bar rather than filling it, because there is no percentage to show yet.</i></p>
+		<p>Once it's done, two of the generated systems can be inspected without leaving OpenCAGE. In the <a href="/docs/level-viewer/">Viewport</a> toolbar, the <b>Show State Info</b> dropdown lists every state the level has — <b>State 0 (Default)</b> plus one per ExclusiveMaster — and under each, <b>Navmesh</b> and <b>Cover</b>. Pick one and the generated data is drawn over the level, as below (navmesh in translucent blue, cover positions in orange); the button relabels to show what is active, picking the same entry again turns it off, and <b>None</b> at the top of the list clears both. If a region of your new geometry has no navmesh over it, NPCs will not walk there.</p>
+		<p><img src="img/state-info-navmesh.jpg" alt="The Viewport inside the Torrens canteen with the generated navmesh drawn in blue across the open floor between the tables and the wall benches, and the State Info dropdown open on State 0 (Default) with Navmesh ticked." width="100%"></p>
+		<p class="text-muted small"><i>State 0 (Default) → Navmesh ticked on BSP_TORRENS: the walkable navmesh shows in blue across the canteen floor, stopping short of the tables and benches, and the button now reads State Info: Navmesh 0. Cover draws the cover positions in orange.</i></p>
+		<p>For collision, tick <b>Collision Meshes</b> at the top of the <b>Render Filters</b> panel — it shares the left-hand pane with the <b>Search</b> tab, and is only present while the viewport is enabled — and the level's collision geometry is drawn over the scene in solid cyan, as pictured under <a href="#gen-physics">Collision &amp; Physics</a>. Check that your new geometry has collision in the right place.</p>
+		<p><img src="img/render-filters.jpg" alt="The Render Filters panel with Collision Meshes ticked, directly beneath Occlusion Meshes at the top of the list." style="max-width:100%;width:343px"></p>
+		<p class="text-muted small"><i>Occlusion Meshes and Collision Meshes sit above the divider in the Render Filters panel; the per-entity-type filters follow below it.</i></p>
     </section>
 </article>
 
@@ -248,6 +258,7 @@
 		<ul>
 			<li><b>Build last, not constantly.</b> Do your script and layout work with plain saves, then build once you're ready to test the result in game. There is no benefit to building after every small edit, and it costs you minutes each time.</li>
 			<li><b>Alien: Isolation is closed automatically</b> when you save, as it holds write locks on the level files. That applies to a build too.</li>
+			<li><b>"Some data was not regenerated" after a build</b> means a baker failed, or the build hit something smaller it could not do as asked (a required model or gobo texture the level does not ship, a shader it could not compile). The level still saved, but any system the dialog lists as not regenerated kept whatever was already on disk — if that was the navmesh or collision, the game plays on the old layout until a later build succeeds.</li>
 			<li><b>A backup in progress blocks saving.</b> If the <a href="/docs/backup-manager/">Backup Manager</a> is working on the level you're editing, saving is refused until it finishes.</li>
 			<li><b>New geometry looks unlit in game?</b> Check whether the level fell through to a full regeneration — see <a href="#radiosity">How Radiosity is Handled</a>. Lighting on newly added objects is generated from your level's lights, so an object placed in a room with no light in it will stay dark.</li>
 			<li><b>NPCs won't path onto new floor?</b> The navmesh is generated from ExclusiveMaster sets — geometry outside those sets isn't considered walkable. Check the generated navmesh with the Viewport's <b>State Info</b> dropdown.</li>

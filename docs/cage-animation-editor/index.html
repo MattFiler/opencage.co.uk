@@ -144,13 +144,15 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The window is split into three main areas:</p>
+		<p>The window is split into three main areas, shown below on a retail cutscene animation:</p>
+		<p><img src="img/overview.jpg" alt="The CAGEAnimation Editor open on a retail cutscene animation: the animated-parameters tree on the left, the curve graph with event lanes and time ruler in the centre, and the footer controls." width="100%"></p>
+		<p class="text-muted small"><i>cutscene_20 in SCI_HUB: six position tracks on the medical-kit lid, one yellow string-event lane and thirteen blue Animation Entity lanes. Nothing is selected, so the inspector area on the right is empty.</i></p>
 		<ul>
 			<li><b>Animated parameters</b> (left) — a tree of linked entities and the float parameters being animated. Checkboxes toggle curve visibility on the graph.</li>
 			<li><b>Timeline / curve graph</b> (centre) — float tracks as bezier or linear curves, event lanes underneath, and a time ruler at the bottom (including the playable animation-length handle).</li>
 			<li><b>Inspector</b> (right) — context panel for the current selection: a float keyframe, a string event, an animation-entity keyframe, or an Animation Entity track’s bindings.</li>
 		</ul>
-		<p>The footer has <b>Snap</b> / <b>Interval</b>, <b>Bezier curves</b>, <b>Animation Mode</b> (with <b>Play</b> and a time readout while it's on) and <b>Close</b>.</p>
+		<p>The footer has <b>Snap</b> / <b>Interval</b> (the interval is greyed out until Snap is ticked), <b>Bezier curves</b>, <b>Animation Mode</b> (with <b>Play</b> and a time readout while it's on) and <b>Close</b>.</p>
     </section>
 </article>
 
@@ -165,7 +167,8 @@
 
 	<section class="docs-section" id="tree-menu">
 		<h2 class="section-heading">Track List Menu</h2>
-		<p>Right-click in the track tree:</p>
+		<p>Right-click in the track tree. What the menu offers depends on the node under the cursor — below it is open on a parameter node:</p>
+		<p><img src="img/tree-menu.jpg" alt="The track tree's right-click menu on a parameter node, offering Add Entity, Add Keyframe at Time and Remove Parameter." width="100%"></p>
 		<ul>
 			<li><b>Add Entity…</b> — always available. Pick a hierarchy target, then choose a parameter to animate. Supported types are <b>FLOAT</b> and <b>TRANSFORM</b> (transform components become separate float tracks).</li>
 			<li><b>Add Parameter…</b> — on an entity node. Adds another animated parameter for that entity.</li>
@@ -186,13 +189,15 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Each visible float track is drawn as a coloured curve. When the cursor is near a curve, that line thickens so you can tell which track you are targeting.</p>
+		<p>Each visible float track is drawn as a coloured curve. When the cursor is near a curve, that line thickens so you can tell which track you are targeting. Below, the middle keyframe of a shutter's <code>position [y]</code> track is selected: with <b>Bezier curves</b> on, its tangent handles are drawn either side of it, and the <b>Keyframe</b> panel on the right shows its value. The <code>position [Roll]</code> track has been unticked in the tree, which is why the entity node shows the mixed state.</p>
+		<p><img src="img/keyframe-selected.jpg" alt="A selected keyframe on the shutter's position [y] curve with its bezier tangent handles, and the Keyframe inspector showing its value and a Delete Keyframe button." width="100%"></p>
+		<p class="text-muted small"><i>Wall_Mid_View's shutter animation in SCI_HUB, with position [y]'s middle keyframe selected.</i></p>
 	</section>
 
 	<section class="docs-section" id="editing-keys">
 		<h2 class="section-heading">Editing Keyframes</h2>
 		<ul>
-			<li><b>Click</b> a keyframe diamond to select it. The inspector shows its value and a delete action.</li>
+			<li><b>Click</b> a keyframe to select it. The <b>Keyframe</b> panel on the right shows its <b>Value</b> and a <b>Delete Keyframe</b> button.</li>
 			<li><b>Drag</b> a keyframe to move time and/or value (subject to snap).</li>
 			<li><b>Shift+click</b> on a curve (or right-click → <b>Add Keyframe Here</b>) to insert a keyframe on that track. The add-keyframe menu only appears when you are actually hovering a curve.</li>
 			<li>With <b>Bezier curves</b> enabled, selected keyframes show tangent handles. With it off, segments are linear (tangent data is still stored).</li>
@@ -229,10 +234,12 @@
 
 	<section class="docs-section" id="string-events">
 		<h2 class="section-heading">String Event Tracks</h2>
-		<p>String event keyframes store a forward event name.</p>
+		<p>String event keyframes store a forward event name. Selecting one on the yellow lane opens the <b>Event</b> panel, as shown below.</p>
+		<p><img src="img/string-event.jpg" alt="A string event selected on the yellow lane, with the Event inspector showing its name field, the note that the reverse name is generated automatically, and Delete Event." width="100%"></p>
+		<p class="text-muted small"><i>detach_box at 47 s on cutscene_20's string lane; the forward name is edited here and the reverse_ pin is derived from it.</i></p>
 		<ul>
 			<li>Shift+click or right-click → <b>Add Event Here</b>, then enter the event name.</li>
-			<li>Selecting a keyframe shows the name field and delete action in the inspector.</li>
+			<li>Selecting a keyframe shows its <b>Event name</b> field and a <b>Delete Event</b> button in the inspector; the reverse event name is generated from the forward one automatically, so there's no field for it.</li>
 			<li>On the flowgraph, each unique string event becomes a pair of output pins (forward and reverse) on the <code>CAGEAnimation</code> node — the same pattern as <a href="/docs/trigger-sequence-editor/#method-pins">TriggerSequence method pins</a>.</li>
 		</ul>
 		<p>Clicking a string event <b>lane</b> (not a keyframe) does not open a side panel — there are no entity bindings to edit.</p>
@@ -241,14 +248,16 @@
 	<section class="docs-section" id="anim-entity-tracks">
 		<h2 class="section-heading">Animation Entity Tracks</h2>
 		<p>These tracks link the timeline to entities that play animations.</p>
-		<p><b>Track bindings</b> — click the blue lane (with no keyframe selected) to show three slots:</p>
+		<p><b>Track bindings</b> — click the blue lane (with no keyframe selected) to show the <b>Animation Entity Track</b> panel and its three slots, pictured below:</p>
+		<p><img src="img/anim-entity-track.jpg" alt="The Animation Entity Track panel for a selected blue lane, with MARKER and CAMERA slots bound to entities and an empty CHARACTER slot offering Assign." width="100%"></p>
+		<p class="text-muted small"><i>A camera lane from cutscene_20: MARKER and CAMERA are bound (Jump / Reassign…), CHARACTER is still empty (Assign…).</i></p>
 		<ul>
 			<li><b>MARKER</b> — typically a position marker / model reference</li>
 			<li><b>CHARACTER</b> — character or player variable</li>
 			<li><b>CAMERA</b> — camera resource</li>
 		</ul>
 		<p>These bound objects are linked to the play-animation entity on the event track, supplying context such as convergence positions and associated characters.</p>
-		<p>Each slot shows the assigned entity name (bold, coloured, and respecting <a href="/docs/options/#entity-display"><b>Show entity IDs</b></a>), with <b>Jump</b> and <b>Assign…</b> / <b>Reassign…</b>. Empty slots create a new connection for that binding type when you assign.</p>
+		<p>Each slot shows the assigned entity's name and type (bold, coloured, and respecting <a href="/docs/options/#entity-display"><b>Show entity IDs</b></a>), with <b>Jump</b> and <b>Assign…</b> / <b>Reassign…</b>. Empty slots read <b>(none)</b> with <b>Jump</b> disabled, and create a new connection for that binding type when you assign — in the shot above, the camera lane's <b>MARKER</b> and <b>CAMERA</b> are bound and <b>CHARACTER</b> is still empty.</p>
 		<p><b>Keyframes</b> on these tracks pick a play-animation entity:</p>
 		<ul>
 			<li><code>CMD_PlayAnimation</code></li>
@@ -256,7 +265,8 @@
 			<li><code>PlayEnvironmentAnimation</code></li>
 		</ul>
 		<p>The linked animation entity plays when the time marker reaches that keyframe on the event timeline.</p>
-		<p>The inspector shows the linked entity name, <b>Open in Inspector</b>, <b>Reassign…</b>, and delete. Marker labels on the timeline use the entity display name.</p>
+		<p>Selecting one of these keyframes opens the <b>Animation Entity</b> panel with the linked entity's name and type, <b>Open in Inspector</b>, <b>Reassign…</b> and <b>Delete Keyframe</b>, as below. Marker labels on the timeline use the entity display name.</p>
+		<p><img src="img/anim-entity-keyframe.jpg" alt="An Animation Entity keyframe selected on a blue lane, with the inspector naming the linked play-animation entity and offering Open in Inspector, Reassign and Delete Keyframe." width="100%"></p>
     </section>
 </article>
 
@@ -272,7 +282,9 @@
 
 	<section class="docs-section" id="previewing">
 		<h2 class="section-heading">Previewing</h2>
-		<p>Click <b>Animation Mode</b> in the footer (it becomes <b>Exit Animation Mode</b>, in bold, while it's on). A playhead appears on the timeline, with <b>Play</b> and a time readout beside the button:</p>
+		<p>Click <b>Animation Mode</b> in the footer (it becomes <b>Exit Animation Mode</b>, in bold, while it's on). A playhead appears on the timeline — a red line down the graph and lanes, with its time labelled at the top — with <b>Play</b> and a time readout beside the button, as shown below:</p>
+		<p><img src="img/animation-mode.jpg" alt="The editor in Animation Mode: a red playhead line stands on the timeline at 52.8 s, and the footer shows the time readout, Play and the bold exit button." width="100%"></p>
+		<p class="text-muted small"><i>Animation Mode on, with the playhead parked at 52.80 s on cutscene_20's lid-opening keyframes; the footer button now reads Exit Animation Mode in bold.</i></p>
 		<ul>
 			<li><b>Drag the playhead</b> along the timeline to scrub. Every transform the animation drives is posed in the Viewport for that time, using the same interpolation the graph is drawing — bezier or linear, whichever you have on.</li>
 			<li><b>Play</b> runs from the playhead to the end of the animation in real time and stops; playing from the end starts over. <b>Stop</b> halts it where it is.</li>

@@ -109,8 +109,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The toolbar <b>Options</b> menu configures the script editor — how composites and entities are shown, Viewport behaviour, save/launch helpers, and more.</p>
-		<p>Most items are checkboxes that stick between sessions. <b>Controls</b> opens a shortcut reference, and <b>Manage Game Directories</b> opens the multi-install manager.</p>
+		<p>The toolbar <b>Options</b> menu configures the script editor — how composites and entities are shown, Viewport behaviour, save/launch helpers, and more. It opens from the <b>Options</b> button on the main toolbar, between <b>View</b> and <b>Help</b>:</p>
+		<p><img src="img/options-menu.jpg" alt="The OpenCAGE toolbar with the Options menu open, listing Dark Mode, Composite Display, Entity Display, Viewport, Misc, Controls and Manage Game Directories." style="max-width:100%;width:720px"></p>
+		<p><b>Composite Display</b>, <b>Entity Display</b>, <b>Viewport</b> and <b>Misc</b> open submenus, mostly of checkboxes that stick between sessions. <b>Controls</b> opens a shortcut reference, and <b>Manage Game Directories</b> opens the multi-install manager.</p>
 		<p>The menu stays open after you tick something, so you can set several options in one go — it closes on an outside click, on Escape, or when it loses focus.</p>
     </section>
 </article>
@@ -121,8 +122,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The first item in the Options menu. <b>Dark Mode</b> switches the whole editor to a dark theme — the main window, dock panels, dialogs, the flowgraph canvas and the resource editors.</p>
-		<p>Themes swap live: you don't need to reload the level or restart OpenCAGE, and any windows you already have open re-theme with the rest. The setting is remembered between sessions and is off by default.</p>
+		<p>The first item in the Options menu. <b>Dark Mode</b> switches the whole editor to a dark theme — the main window, dock panels, dialogs, the flowgraph canvas and the resource editors. Below is the script editor with it on:</p>
+		<p><img src="img/dark-mode.jpg" alt="The OpenCAGE script editor with Dark Mode on: dark search panel, entity list, flowgraph canvas and inspector." width="100%"></p>
+		<p>Themes swap live: you don't need to reload the level or restart OpenCAGE, and any windows you already have open re-theme with the rest. The docked panels are rebuilt in place to pick up the new theme; in the rare case that can't be done, OpenCAGE offers to restart to finish the switch. The setting is remembered between sessions and is off by default.</p>
     </section>
 </article>
 
@@ -145,11 +147,16 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Entity Display</b> submenu controls how entities and their flowgraph nodes are shown, coloured and removed. Below it is open with the default ticks:</p>
+		<p><img src="img/options-entity-display.jpg" alt="The Options menu with the Entity Display submenu open, listing Show ShortGuids, the node pin and canvas focus options, Set Node Colours and the three node-deletion options." style="max-width:100%;width:720px"></p>
 		<ul>
 			<li><b>Show ShortGuids</b> — shows entity IDs (ShortGuids) in lists, names, breadcrumbs, aliases/proxies, and global search (off by default).</li>
 			<li><b>Populate All Node Pins When Created</b> — new flowgraph nodes get every pin added automatically (on by default).</li>
 			<li><b>Focus Canvas On Newly Created Node</b> — moves the flowgraph view to a node as soon as you add it (off by default).</li>
-			<li><b>Set Node Colours</b> — opens a colour picker for flowgraph node types (Functions, Instances, Proxies, Aliases, Variables, and <a href="/docs/composite-porting/#unresolvable-proxies">Unresolvable Proxies</a>, whose colour is also used for the links through them). <b>Reset</b> restores the defaults.</li>
+			<li><b>Set Node Colours</b> — opens the <b>Set Node Colours</b> window shown below, with a swatch for the text, title background and border colour of each flowgraph node type — Functions, Instances, Proxies, Aliases, Variables (which have no border swatch) and <a href="/docs/composite-porting/#unresolvable-proxies">Unresolvable Proxies</a>, whose colour is also used for the links through them. Click a swatch to pick a colour; open flowgraphs recolour straight away. <b>Reset</b> restores the defaults.
+				<p><img src="img/set-node-colours.jpg" alt="The Set Node Colours window with a row of text, title background and border colour swatches for each flowgraph node type and a Reset button." style="max-width:100%;width:299px"></p>
+				<p class="text-muted small"><i>The shipped default colours.</i></p>
+			</li>
 			<li><b>Show Confirmation When Deleting Node</b> — asks before removing a flowgraph node (off by default; removing a node is undone with <b>Ctrl+Z</b> like any other edit).</li>
 			<li><b>Give Option To Delete Entity When No Nodes</b> — after the last node for an entity is removed, asks whether to delete the entity too (on by default). Only asked when <b>Auto Delete Entities When Nodes Deleted</b> is off; with both off, the entity is left behind without its node.</li>
 			<li><b>Auto Delete Entities When Nodes Deleted</b> — when the last node for an entity is removed and nothing else references the entity, it's deleted along with the node without asking (on by default). An entity still referenced anywhere — a TriggerSequence, a CAGEAnimation, a proxy or an alias — is always left alone.</li>
@@ -163,7 +170,8 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Full Viewport usage is covered in the <a href="/docs/level-viewer/">Viewport</a> docs.</p>
+		<p>Full Viewport usage is covered in the <a href="/docs/level-viewer/">Viewport</a> docs. The submenu is shown below with the Viewport enabled and the <b>Selection Highlight Mode</b> list open; everything under <b>Enable Viewport</b> is greyed out while the Viewport is off.</p>
+		<p><img src="img/options-viewport.jpg" alt="The Options menu with the Viewport submenu open, showing Enable Viewport, the highlight and camera toggles, Selection Highlight Mode with its four modes, and Snap Increments." style="max-width:100%;width:848px"></p>
 		<ul>
 			<li><b>Enable Viewport</b> — turns the 3D Viewport on or off (on by default). Turning it off closes the 3D view and greys out the rest of this section. Turning it on again with unsaved changes asks whether to save first, because the Viewport reads the level from disk: <b>Yes</b> saves and opens it now, <b>No</b> leaves it to open the next time a level is loaded. See <a href="/docs/level-viewer/#disabling">Enabling &amp; Disabling the Viewport</a>.</li>
 			<li><b>Highlight Aliases</b> — orange highlight on entities targeted by parameterized aliases in the active composite (on by default).</li>
@@ -174,7 +182,10 @@
 			<li><b>Render Wireframe</b> — draws ModelReference meshes as wireframe (off by default).</li>
 			<li><b>Hide Nested Script Entities</b> — hides render previews for script entities in nested composites (off by default). Models are drawn regardless; the <b>ModelReference</b> render filter is what hides those.</li>
 			<li><b>Selection Highlight Mode</b> — how the Viewport marks the selection: <b>Green</b> (a tint over the mesh, the default), <b>Wireframe</b> (the mesh's edges drawn over it), <b>Wireframe Transparent</b> (edges only, with the surface hidden) or <b>None</b>. <b>Alt+1</b> to <b>Alt+4</b> switch between them in the Viewport.</li>
-			<li><b>Snap Increments…</b> — edits the values offered by the Viewport's <b>Transform Snap</b> and <b>Rotation Snap</b> menus. Add or remove entries in either list; <b>Off</b> never appears here because the menus always offer it and it can't be removed. <b>Reset to Defaults</b> restores the shipped lists. If you remove the increment currently selected, the nearest remaining one takes over. The menus update as you edit.</li>
+			<li><b>Snap Increments…</b> — opens the <b>Snap Increments</b> window shown below, which edits the values offered by the Viewport's <b>Transform Snap</b> and <b>Rotation Snap</b> menus. Type a value under either list and press <b>Add</b>, or select an entry and press <b>Remove Selected</b>; each list keeps itself sorted. <b>Off</b> never appears here because the menus always offer it and it can't be removed. <b>Reset to Defaults</b> restores the shipped lists. If you remove the increment currently selected, the nearest remaining one takes over. The menus update as you edit.
+				<p><img src="img/snap-increments.jpg" alt="The Snap Increments window with separate lists of transform and rotation snap values, Add and Remove Selected controls, and Reset to Defaults and Close buttons." style="max-width:100%;width:432px"></p>
+				<p class="text-muted small"><i>The shipped lists: 0.25 to 10 units, and 1 to 90 degrees.</i></p>
+			</li>
 		</ul>
     </section>
 </article>
@@ -185,6 +196,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Misc</b> submenu gathers the save, launch, layout and model-preview helpers. Below it is open with the Viewport enabled:</p>
+		<p><img src="img/options-misc.jpg" alt="The Options menu with the Misc submenu open, listing the save, model view, search window, layout, numeric step, launch and platform options, with Write Compressed greyed out." style="max-width:100%;width:720px"></p>
+		<p class="text-muted small"><i>Write Compressed is greyed out because it only reports the loaded level's state; Reset Render Filters On Load is listed only while the Viewport is enabled.</i></p>
 		<ul>
 			<li><b>Show Confirmation When Saving</b> — shows a “Saved changes!” popup after a successful save (on by default).</li>
 			<li><b>Prompt to Save on Close</b> — asks whether to save when you close OpenCAGE with a level open (off by default). Independent of the unsaved-changes indicator, which always flags in the taskbar once you've modified something.</li>
@@ -207,15 +221,19 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Opens a read-only <b>Controls</b> window with shortcut reference tabs:</p>
+		<p>Opens the read-only <b>Controls</b> window shown below, with shortcut reference tabs:</p>
+		<p><img src="img/controls-window.jpg" alt="The Controls window on its Flowgraph Controls tab, listing each action beside its key or mouse binding, with the Remain on top checkbox at the bottom." style="max-width:100%;width:706px"></p>
+		<p class="text-muted small"><i>The window opens on the Flowgraph Controls tab. Each tab is a read-only Action / Binding list.</i></p>
 		<ul>
-			<li><b>Flowgraph Controls</b> — zoom, pan, move nodes, links, pin shortcuts</li>
+			<li><b>Flowgraph Controls</b> — undo/redo, zoom, pan, move nodes, links, pin shortcuts, copy and paste, step in/out</li>
 			<li><b>Model Viewer Controls</b> — zoom, rotate, move, recenter</li>
 			<li><b>Viewport Controls</b> — camera, selection and multi-select, step in/out, gizmos, snapping, duplicate, hide/unhide (see also the <a href="/docs/level-viewer/">Viewport</a> docs)</li>
 			<li><b>Entity List Controls</b> — moving through the list, delete, copy and paste, stepping into composite instances</li>
-			<li><b>CAGEAnimation Controls</b> — timeline and curve shortcuts for the <a href="/docs/cage-animation-editor/">CAGEAnimation Editor</a></li>
 			<li><b>Behaviour Tree Controls</b> — shortcuts for the <a href="/docs/behaviour-tree-editor/">Behaviour Tree Editor</a></li>
+			<li><b>CAGEAnimation Controls</b> — timeline and curve shortcuts for the <a href="/docs/cage-animation-editor/">CAGEAnimation Editor</a></li>
 		</ul>
+		<p>Longer lists scroll, but the window can be resized to show more at once. <b>Viewport Controls</b> is the longest of the six — below it is shown with the window enlarged so every row is in view:</p>
+		<p><img src="img/controls-window-viewport.jpg" alt="The Controls window on its Viewport Controls tab, enlarged to show every camera, selection, gizmo, snapping, clipboard and hide binding." style="max-width:100%;width:786px"></p>
 		<p>Tick <b>Remain on top</b> to keep the window above the editor while you work, so you can refer to it without it disappearing behind the main window.</p>
     </section>
 </article>

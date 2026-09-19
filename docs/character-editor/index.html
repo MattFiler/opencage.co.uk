@@ -124,11 +124,13 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ol>
-			<li>Select a <a href="/docs/cathode-entities/#Character">Character</a> entity in the composite list or flowgraph.</li>
+			<li>Select a <a href="/docs/cathode-entities/#Character">Character</a> entity in the entity list or flowgraph.</li>
 			<li>In the <b>Entity Inspector</b>, click <b>Function</b>.</li>
-			<li>The Character Editor opens for that entity.</li>
+			<li>The Character Editor opens for that entity, as shown below.</li>
 		</ol>
 		<p>The window closes if you reload commands, select a different entity, or switch composite.</p>
+		<p><img src="img/character-editor.jpg" alt="The Character Editor window for a Character entity in SCI_HUB: the instance dropdown and Add New button at the top, the Composites group with Head, Torso, Arms, Legs, Shoes and Collision slots each with a Change button, and the Metadata group with skeleton, asset type, voice actor, gender, ethnicity, build and foley dropdowns." style="max-width:100%;width:680px"></p>
+		<p class="text-muted small"><i>NPC_LOGIC_DUDE in SCI_HUB: the dropdown names the placement by its resolved hierarchy path, and every composite slot and metadata field below belongs to that one placement.</i></p>
     </section>
 </article>
 
@@ -140,11 +142,15 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>A single <code>Character</code> entity can appear in more than one place in the level hierarchy. Accessory sets are keyed by <b>composite instance</b>, so each placement can have its own look.</p>
 		<ul>
-			<li>The dropdown at the top lists instances that already have an accessory-set entry for this character. Names follow the resolved hierarchy (and show short GUIDs if <b>Show entity IDs</b> is on).</li>
-			<li><b>Add New</b> opens an instance picker listing placements that do <b>not</b> yet have an accessory set. Choosing one creates a blank entry and selects it.</li>
-			<li>If every hierarchy path already has an entry (or there are no placements to add), the picker reports that there are no instances left to populate.</li>
+			<li>The dropdown at the top lists instances that already have an accessory-set entry for this character. Names follow the resolved hierarchy (and include ShortGuids if <b>Show ShortGuids</b> is enabled under <a href="/docs/options/#entity-display">Options → Entity Display</a>).</li>
+			<li><b>Add New</b> opens the <b>Add New Instance Reference</b> picker (shown below), listing placements that do <b>not</b> yet have an accessory set. Pick one and click <b>Add</b>: a new entry with default metadata and empty composite slots is created for it and selected in the dropdown.</li>
+			<li>If every hierarchy path already has an entry (or there are no placements to add), <b>Add New</b> shows an <i>Instances populated</i> message instead of the picker, as in the second figure below.</li>
 		</ul>
-		<p>Until at least one instance exists in the dropdown, the Composites and Metadata controls stay disabled.</p>
+		<p>Until at least one instance exists in the dropdown, the <b>Change</b> buttons and the Metadata dropdowns stay disabled (only <b>Add New</b> and the asset-set <b>Edit</b> button remain available).</p>
+		<p><img src="img/instance-picker.jpg" alt="The Add New Instance Reference window with its dropdown open, listing the hierarchy paths of this character that do not yet have an accessory set, and an Add button to the right." style="max-width:100%;width:866px"></p>
+		<p class="text-muted small"><i>Add New lists only the placements of this character that still need an accessory set; pick one and click Add.</i></p>
+		<p><img src="img/no-instances-left.jpg" alt="The Instances populated message box over the Character Editor, reading There are no instances to be populated!, shown when every placement of the character already has an accessory set." style="max-width:100%;width:680px"></p>
+		<p class="text-muted small"><i>Every placement of NPC_LOGIC_DUDE_1 already has an entry, so Add New shows this message instead of the picker.</i></p>
     </section>
 </article>
 
@@ -163,7 +169,9 @@
 			<li><b>Shoes</b></li>
 			<li><b>Collision</b></li>
 		</ul>
-		<p>Pick a composite to update that slot immediately on the accessory-set entry.</p>
+		<p>The picker (shown below) opens with the slot’s current composite already selected in the tree. Type in the search box to filter composites by name (the <b>X</b> button clears it), then click <b>Select Composite</b> to update that slot immediately on the accessory-set entry.</p>
+		<p><img src="img/composite-picker.jpg" alt="The Select Composite window opened from the Head slot’s Change button, with a search box above a composite tree in which the slot’s current head composite is selected, and a Select Composite button below." style="max-width:100%;width:470px"></p>
+		<p class="text-muted small"><i>The picker for the Head slot: the tree opens with the current HEAD_ALBERT composite selected under NPC\MALE\HEAVY\AFRICAN\HEAD.</i></p>
     </section>
 </article>
 
@@ -181,14 +189,16 @@
 		<p>Skeleton choice is split into two related dropdowns:</p>
 		<ul>
 			<li>The wide <b>Skeleton</b> list is the face / body skeleton name used by the character.</li>
-			<li>The smaller list beside it filters that list by <b>gendered skeleton group</b> (from OpenCAGE’s gendered skeleton table). Changing the group refreshes which skeleton names are available.</li>
+			<li>The smaller, unlabelled list beside it is the <b>gendered skeleton group</b> (<code>MALE</code> or <code>FEMALENPC</code>, taken from the game’s skeleton definitions). Changing the group refreshes which skeleton names the wide list offers.</li>
 		</ul>
     </section>
 
 	<section class="docs-section" id="asset-type">
 		<h2 class="section-heading">Asset Type</h2>
 		<p><b>Asset Type</b> picks a <a href="/docs/cathode-enums/#CUSTOM_CHARACTER_ASSETS">CUSTOM_CHARACTER_ASSETS</a> set (colours and decals used for customizable NPC clothing).</p>
-		<p>Click <b>Edit</b> next to Asset Type to open the <b>Character Asset Editor</b>, which edits the global <code>CUSTOMCHARACTERASSETDATA.BIN</code> file (primary / secondary / tertiary colours and decal lists per asset set). That window is shared config data, not per-instance accessory-set fields.</p>
+		<p>Click <b>Edit</b> next to Asset Type to open the <b>Character Asset Editor</b> (titled <i>Edit Character Asset Sets</i>), which edits the global <code>CUSTOMCHARACTERASSETDATA.BIN</code> file (primary / secondary / tertiary colours and decal lists per asset set). That window (shown below) is shared config data, not per-instance accessory-set fields; the same editor is also available without a character selected from <b>View → Configuration Editors → Characters → Asset Sets</b>.</p>
+		<p><img src="img/asset-editor.jpg" alt="The Edit Character Asset Sets window: an asset-set dropdown at the top, Primary, Secondary and Tertiary colour swatch lists with Add New and Remove Selected buttons on the left, a Decals list with thumbnails on the right, and a Save button." style="max-width:100%;width:671px"></p>
+		<p class="text-muted small"><i>ASSETSET_01: the three colour lists and the decal list each have their own Add New and Remove Selected buttons; Save writes CUSTOMCHARACTERASSETDATA.BIN straight away.</i></p>
     </section>
 
 	<section class="docs-section" id="attributes">
@@ -211,7 +221,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>There is no separate Save button in the Character Editor. Edits write straight into the loaded level’s accessory-set data. Persist them with the usual level save — OpenCAGE writes <code>CHARACTERACCESSORYSETS.BIN</code> as part of saving the level.</p>
-		<p>Asset-set colour/decal edits made via <b>Edit</b> live in <code>CUSTOMCHARACTERASSETDATA.BIN</code> and follow that editor’s save behaviour.</p>
+		<p>Asset-set colour/decal edits made via <b>Edit</b> live in <code>CUSTOMCHARACTERASSETDATA.BIN</code>. That window has its own <b>Save</b> button, which writes the file immediately and closes the window; closing it without saving discards the changes.</p>
     </section>
 </article>
 

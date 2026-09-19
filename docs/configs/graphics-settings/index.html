@@ -111,9 +111,14 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>To edit graphics presets in OpenCAGE, go to <b>View → Configuration Editors → Core Game → Graphics Settings</b>.</p>
-		<p>The Graphics Settings Editor edits the lists of selectable Video options written to <code>DATA/ENGINE_SETTINGS.XML</code> — things like windowed resolutions, FOV, shadow quality, and LOD distance. It does <b>not</b> turn those settings on for you; it adds (or removes) choices that appear on the in-game <b>Video</b> settings page, which players pick at runtime.</p>
-		<p>Each preset list has <b>Add New</b> and <b>Remove Selected</b>. Click <b>Save</b> when you're done — OpenCAGE warns that you may need to delete the game's settings save if you removed a preset the player still has selected (the game can hard-crash loading a missing preset name).</p>
+		<p>To edit graphics presets in OpenCAGE, open the <b>View</b> dropdown on the main toolbar and go to <b>Configuration Editors → Core Game → Graphics Settings</b> — it's the last item in the Core Game list, as shown below. No level needs to be loaded.</p>
+		<p><img src="img/view-menu.jpg" alt="The View toolbar dropdown open in OpenCAGE with Configuration Editors and Core Game expanded and Graphics Settings highlighted." style="max-width:100%;width:564px"></p>
+		<p>The Graphics Settings Editor edits the lists of selectable Video options written to <code>DATA/ENGINE_SETTINGS.XML</code> — things like windowed resolutions, FOV, shadow quality, and LOD distance. It does <b>not</b> turn those settings on for you; it adds (or removes) choices that appear on the in-game <b>Video</b> settings page, which players pick at runtime. The editor is a single window, shown below: five preset lists, two small groups of extra checkboxes in the top-right corner, and a <b>Save</b> button.</p>
+		<p><img src="img/overview.jpg" alt="The Graphics Settings Editor window with its five preset lists, the two extra-option checkbox groups in the top-right corner and the Save button." width="100%"></p>
+		<p class="text-muted small"><i>The editor as it opens on a stock ENGINE_SETTINGS.XML; the rows shown are the vanilla presets.</i></p>
+		<p>Each preset list has <b>Add New</b> and <b>Remove Selected</b> buttons beneath it. <b>Add New</b> opens the small popup shown below — give the entry a name and its value (windowed resolutions take a width and a height, as in the example), then click <b>Add Item</b> and it appears in the list. <b>Remove Selected</b> deletes the highlighted row; select one first, or the editor tells you nothing is selected. Your changes to the lists are not written to <code>ENGINE_SETTINGS.XML</code> until you click <b>Save</b> — OpenCAGE then confirms the save and warns that you may need to delete the game's settings save if you removed a preset the player still has selected, because the game can hard-crash loading a missing preset name. That warning is pictured under <a href="#reverting">Reverting</a>.</p>
+		<p><img src="img/add-new.jpg" alt="The Add Item popup for a windowed resolution preset, with fields for the preset name, width and height." style="max-width:100%;width:466px"></p>
+		<p class="text-muted small"><i>Add New opens this popup. Windowed resolutions ask for a name, width and height; the other lists ask for a name and a single value.</i></p>
     </section>
 </article>
 
@@ -156,9 +161,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Besides the preset lists, the editor also exposes:</p>
+		<p>Besides the preset lists, the editor also exposes two groups of checkboxes in its top-right corner, <b>Extra Planar Reflection Options</b> and <b>Extra Stereo Mode Options</b>, pictured below. All four are unticked on a stock install.</p>
+		<p><img src="img/extra-options.jpg" alt="The Extra Planar Reflection Options and Extra Stereo Mode Options checkbox groups from the top-right corner of the editor." style="max-width:100%;width:198px"></p>
+		<p class="text-muted small"><i>The two extra-option groups in the top-right corner of the editor; each ticked box adds one more choice to the in-game Video menu.</i></p>
 		<ul>
-			<li><b>High Gloss Planar Reflections</b> — adds an extra planar-reflection quality above the normal On/Off options.</li>
+			<li><b>High Gloss Planar Reflections</b> — adds a third <i>High Gloss</i> planar-reflection quality above the normal Off/On options.</li>
 			<li><b>Stereo Mode: Oculus Rift</b> / <b>3D TV</b> / <b>Anaglyph</b> — toggles whether those stereo modes appear as Video options (alongside the always-present Off mode).</li>
 		</ul>
     </section>
@@ -171,7 +178,9 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>To restore stock graphics presets, open the <a href="/docs/backup-manager/#revert-configs">Backup Manager</a>, click <b>Revert Configs</b>, then <b>Reset Graphics Settings</b>. That overwrites <code>DATA/ENGINE_SETTINGS.XML</code> with the vanilla file and closes the game if it's running.</p>
-		<p>Reset only touches the install config — it does not clear the player's own settings save. If you removed presets they still have selected, clear that save as well (or re-add the missing preset names).</p>
+		<p>Reset only touches the install config — it does not clear the player's own settings save. If you removed presets they still have selected, clear that save as well (or re-add the missing preset names). The warning the editor shows after every Save, pictured below, is about exactly this.</p>
+		<p><img src="img/save-warning.jpg" alt="The warning message box OpenCAGE shows after saving graphics settings, reminding you that the game cannot load a settings file that names a missing preset." style="max-width:100%;width:389px"></p>
+		<p class="text-muted small"><i>The warning shown after every Save — a removed preset the player still has selected can crash the game until their settings save is cleared or the preset is re-added.</i></p>
     </section>
 </article>
 

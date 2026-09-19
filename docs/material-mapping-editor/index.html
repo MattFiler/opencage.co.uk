@@ -106,9 +106,13 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>After loading a level, open <b>View → Material Mapping Editor</b> to launch the mapping editor. It manages named sets of <b>From → To</b> material remaps stored in the level's <code>WORLD/MATERIAL_MAPPINGS.PAK</code>.</p>
-		<p>Material remappings are applied to <a href="/docs/scripting-intro/#compositeinstance-entities">composite instances</a> (via the <code>mapping</code> parameter — use <b>Select</b> in the entity inspector, or open this window as a picker with <b>Select Set</b>). That remaps materials on <a href="/docs/cathode-entities/#ModelReference">ModelReference</a> entities within that instance's immediate child composite — without editing the materials themselves.</p>
-		<p><b>Note:</b> currently only the mappings are previewed in the editor. They are not yet saved and respected by the game at runtime — support for that is coming soon.</p>
+		<p>After loading a level, open <b>View → Material Mapping Editor</b> to launch the mapping editor — the window itself is titled <b>Edit Material Mapping</b>, shown below. It manages named sets of <b>From → To</b> material remaps stored in the level's <code>WORLD/MATERIAL_MAPPINGS.PAK</code>.</p>
+		<p><img src="img/overview.jpg" alt="The Edit Material Mapping window with the bsp_torrens/bridge/walls_padded_01 set selected in the folder tree on the left and its eight From/To material remaps listed on the right." width="100%"></p>
+		<p class="text-muted small"><i>The Material Mapping Editor: mapping sets on the left, the selected set's From → To rows on the right.</i></p>
+		<p>Material remappings are applied to <a href="/docs/scripting-intro/#compositeinstance-entities">composite instances</a> via their <code>mapping</code> parameter: select the <code>mapping</code> row in the entity inspector and click the <b>…</b> button at the right of its value, as shown below — this opens the same window as a picker with a <b>Select Set</b> button. That remaps materials on <a href="/docs/cathode-entities/#ModelReference">ModelReference</a> entities within that instance's immediate child composite — without editing the materials themselves.</p>
+		<p><img src="img/inspector-mapping.jpg" alt="The entity inspector for a composite instance with the mapping parameter row selected, showing the set name and the ... button that opens the picker." style="max-width:100%;width:276px"></p>
+		<p class="text-muted small"><i>A composite instance's mapping parameter in the entity inspector; the … button opens the Material Mapping Editor as a picker.</i></p>
+		<p><b>Note:</b> mappings are written back to <code>MATERIAL_MAPPINGS.PAK</code> and applied to the level's placed models when you save, so the game shows the remapped materials on its next launch.</p>
 		<p>This is separate from the <a href="/docs/material-editor/">Material Editor</a>, which edits a material's samplers, features, and shader parameters.</p>
     </section>
 </article>
@@ -119,9 +123,13 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The left tree lists mapping sets for the loaded level. Names with <code>/</code> show as folders.</p>
-		<p>Click <b>Add New Set</b>, enter a unique <b>Name:</b>, then <b>OK</b> to create an empty set. There isn't a rename or delete-set action in the editor — only add sets and edit the rows inside them.</p>
-		<p>When the window is opened as a picker, <b>Select Set</b> returns the currently selected set to the caller.</p>
+		<p>The left tree lists mapping sets for the loaded level. Names with <code>/</code> show as folders. Every retail level ships the same library of around a thousand sets, grouped by level and room (e.g. <code>bsp_torrens/bridge/walls_padded_01</code>), so the tree is long — expand the folder for the area you're working in, as in the screenshot above.</p>
+		<p>Click <b>Add New Set</b>, enter a unique <b>Name:</b>, then <b>OK</b> to create an empty set (the dialog is shown below). Names are compared case-insensitively and a duplicate is refused with a <b>Duplicate Name</b> warning. There isn't a rename or delete-set action in the editor — only add sets and edit the rows inside them.</p>
+		<p><img src="img/add-new-set.jpg" alt="The Add New Material Mapping Set dialog with a Name field containing mymod/bridge/orange_trim." style="max-width:100%;width:386px"></p>
+		<p class="text-muted small"><i>Add New Set: a name containing / is shown as nested folders in the tree.</i></p>
+		<p>When the window is opened as a picker, <b>Select Set</b> applies the highlighted set to the entity (or to every entity in a multi-selection) and closes the window; the set the entity currently uses is pre-selected when the picker opens, as shown below.</p>
+		<p><img src="img/picker-select-set.jpg" alt="The Material Mapping Editor in picker mode with the entity's current set pre-selected and a Select Set button shown beneath the tree." width="100%"></p>
+		<p class="text-muted small"><i>Picker mode: the entity's current set is pre-selected and Select Set applies the highlighted set to the entity.</i></p>
     </section>
 </article>
 
@@ -133,11 +141,13 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Select a set to show its mappings in the <b>From</b> / <b>To</b> list on the right. Remaps apply when material names match exactly (case-sensitive).</p>
 		<ul>
-			<li><b>Add Mapping</b> — dialog with <b>From:</b> / <b>To:</b>; use <b>Browse…</b> to pick materials from the <a href="/docs/material-editor/">Material Editor</a></li>
-			<li>Double-click a row — <b>Edit Mapping</b> with the same fields</li>
-			<li><b>Edit From</b> / <b>Edit To</b> — open the <a href="/docs/material-editor/">Material Editor</a> picker for the selected row</li>
+			<li><b>Add Mapping</b> — opens a small dialog with <b>From:</b> / <b>To:</b> fields; type a material name or use <b>Browse…</b> to pick one from the <a href="/docs/material-editor/">Material Editor</a></li>
+			<li>Double-click a row — <b>Edit Mapping</b>, the same dialog pre-filled with that row's From and To (shown below)</li>
+			<li><b>Edit From</b> / <b>Edit To</b> — with a row selected, open the <a href="/docs/material-editor/">Material Editor</a> as a picker for that row's From or To material; choose one and click <b>Use This Material</b></li>
 			<li><b>Remove Mapping</b> (or <b>Delete</b>) — remove the selected row</li>
 		</ul>
+		<p><img src="img/edit-mapping.jpg" alt="The Edit Mapping dialog showing a From: field and a To: field, each with a Browse... button, and OK and Cancel buttons." style="max-width:100%;width:514px"></p>
+		<p class="text-muted small"><i>Add Mapping and Edit Mapping share this dialog; Browse… opens the Material Editor as a picker.</i></p>
 		<p>Edits apply in memory immediately; connected Viewport views can update without waiting for a disk save.</p>
     </section>
 </article>

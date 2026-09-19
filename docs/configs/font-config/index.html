@@ -101,23 +101,30 @@
 
 	<section class="docs-section">
 		<h1 class="section-heading">Font Config</h1>
-		<p>To edit the font config in OpenCAGE navigate to View > Configuration Editors > Core Game > Font Config.</p>
-		<p>The font config decides which typeface each <b>language</b> uses for each of the game's named font slots, and which Scaleform font library those faces are loaded from. Pick a language from the <b>Language</b> dropdown to see its settings.</p>
+		<p>To edit the font config in OpenCAGE navigate to View > Configuration Editors > Core Game > Font Config, as shown below. This opens the <b>Font Config Editor</b>; there is no Save button, as every change is written to the config the moment you make it.</p>
+		<p><img src="img/menu.jpg" alt="The View menu in OpenCAGE opened to Configuration Editors, Core Game, with Font Config highlighted." style="max-width:100%;width:564px"></p>
+		<p>The font config decides which typeface each <b>language</b> uses for each of the game's named font slots, and which Scaleform font library those faces are loaded from. Pick a language from the <b>Language</b> list on the left to see its settings.</p>
+		<p><img src="img/overview.jpg" alt="The Font Config Editor with english selected in the Language list, its font library set to fonts_en.gfx, and the five font slots listed in the Fonts grid." width="100%"></p>
+		<p class="text-muted small"><i>The Font Config Editor as it opens: languages on the left, the selected language's library and font slots on the right.</i></p>
 	</section>
 
 	<section class="docs-section" id="library">
 		<h2 class="section-heading">Font Library</h2>
-		<p><b>Font library (.gfx)</b> is the Scaleform library this language's faces come out of — <code>fonts_en.gfx</code>, for example. Languages that need different glyph sets point at different libraries; a library must actually contain a typeface before a slot can use it.</p>
+		<p><b>Font library (.gfx)</b> is the Scaleform library this language's faces come out of — <code>fonts_en.gfx</code>, for example. Languages that need different glyph sets point at different libraries; a library must actually contain a typeface before a slot can use it, and the library itself has to exist in <code>DATA/UI.PAK</code>. Russian is the one retail language that uses a different library: it points at <code>fonts_ru.gfx</code> and swaps the Isolation and Jixellation typefaces for the Cyrillic faces <code>Isolation_Bold_RU</code> and <code>JixellationRU</code> from that library, as shown below.</p>
+		<p><img src="img/russian.jpg" alt="The Font Config Editor with russian selected: the font library is fonts_ru.gfx and the Isolation and Jixellation slots use the Cyrillic typefaces Isolation_Bold_RU and JixellationRU." width="100%"></p>
+		<p class="text-muted small"><i>Russian points at fonts_ru.gfx and swaps two of its typefaces for Cyrillic faces from that library; the JectRex and Nostromo slots are unchanged.</i></p>
 	</section>
 
 	<section class="docs-section" id="fonts">
 		<h2 class="section-heading">Font Slots</h2>
-		<p>The <b>Fonts</b> grid maps each of the game's font slots to a typeface and style from the library. Edit the typeface and style in place, use <b>Add Font</b> to give the language a slot it doesn't yet have, and <b>Remove Font</b> to drop the selected one.</p>
+		<p>The <b>Fonts</b> grid maps each of the game's font slots to a typeface and style from the library, one row per slot. <b>Slot</b> is the name the game's UI asks for (<code>$Isolation</code>, <code>$NostromoBoldCond</code> and so on — rename one the UI still asks for and that text is left unstyled), <b>Typeface</b> is the face inside the library (<code>Nostromo</code>, for example) and <b>Style</b> is one of <code>normal</code>, <code>bold</code>, <code>italic</code> or <code>bold_italic</code>. All three columns are edited in place: select a cell and start typing, or press F2; below, the Style cell of the <code>$JixellationReg</code> row is open for editing. Use <b>Add Font</b> to give the language a slot it doesn't yet have (it appends a <code>$NewFont</code> row using Isolation in bold, with the slot name ready to overtype), and <b>Remove Font</b> to drop the selected one.</p>
+		<p><img src="img/edit-slot.jpg" alt="The Font Config Editor with the $JixellationReg row selected in the Fonts grid and its Style cell open for editing, with the Add Font and Remove Font buttons below." width="100%"></p>
+		<p class="text-muted small"><i>Editing a slot's style in place; the change is written to the config as soon as it is typed.</i></p>
 	</section>
 
 	<section class="docs-section" id="files">
 		<h2 class="section-heading">Which File is Written</h2>
-		<p>The PC build reads <code>DATA/FONT_CONFIG.XML</code>. The Switch and mobile builds ship the same data as <code>FONT_CONFIG_SWITCH</code>, and some installs also carry a <code>.BML</code> copy beside the XML. The editor loads whichever of these exists (XML first) and writes <b>every</b> variant it finds on save, so the copies can't drift apart.</p>
+		<p>The PC build reads <code>DATA/FONT_CONFIG.XML</code>. The Switch and mobile builds ship the same data as <code>FONT_CONFIG_SWITCH</code>, and some installs also carry a <code>.BML</code> copy beside the XML. The editor loads whichever of these exists (XML first) and writes <b>every</b> variant it finds after each edit, so the copies can't drift apart.</p>
 	</section>
 </article>
 

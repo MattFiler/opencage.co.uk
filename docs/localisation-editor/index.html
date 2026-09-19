@@ -121,9 +121,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Open <b>View → Configuration Editors → Core Game → Localisation</b> to edit the game's on-screen text.</p>
+		<p>Open <b>View → Configuration Editors → Core Game → Localisation</b> to edit the game's on-screen text. It opens in its own window, shown below, and doesn't need a level loaded — it works directly on the shared text files.</p>
 		<p>Nearly every piece of text the game shows you — objective text, terminal contents, audio log titles, UI labels, subtitles — is a <b>localised string</b> looked up by ID rather than written into the script. The Localisation Editor is where you edit those strings, and where you add new ones for your own content.</p>
 		<p>The editor works across all nine shipped languages at once: <b>Czech</b>, <b>English</b>, <b>French</b>, <b>German</b>, <b>Italian</b>, <b>Polish</b>, <b>Portuguese</b>, <b>Russian</b> and <b>Spanish</b>.</p>
+		<p><img src="img/overview.jpg" alt="The Localisation Editor with an objective string selected: the search box, Add new string button and grouped string list on the left, and one labelled text box per language on the right above the Save all languages button." width="100%"></p>
+		<p class="text-muted small"><i>The Localisation Editor: every string on the left, grouped by text file; the selected string's text in each language on the right.</i></p>
     </section>
 </article>
 
@@ -148,9 +150,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The list on the left holds every string in the game, grouped by the text file it belongs to. Each row shows the string ID and its English text; a string with no English value shows an em dash.</p>
+		<p>The list on the left holds every string in the game, grouped under a heading per text file (<code>OBJECTIVES</code>, <code>M3401</code> and so on — the file name without <code>.TXT</code>). Each row shows the string ID and its English text; a string with no English value shows an em dash.</p>
 		<p>The <b>Search (ID or English)</b> box above the list filters as you type — a short delay after each keystroke, because the full string list is large. It matches on both the ID and the English text, so you can find a string either by its name or by something you saw on screen in game.</p>
-		<p>The selection is preserved across searches where possible, so refining a filter doesn't lose the row you were working on.</p>
+		<p><img src="img/search.jpg" alt="The string list filtered by the search box to every string containing the word looter, spread across seven text-file groups, with the previously selected row still highlighted." style="max-width:100%;width:600px"></p>
+		<p class="text-muted small"><i>Searching 'looter' narrows the list to matches from seven different text files; the selection survives the filter.</i></p>
+		<p>In the example above the list has been narrowed to every string mentioning <i>looter</i> — all of them matched on their English text rather than their ID — and the group headings show which text files the matches came from. The selection is preserved across searches where possible, so refining a filter doesn't lose the row you were working on, and the language panel stays filled with the row you had selected.</p>
     </section>
 </article>
 
@@ -161,8 +165,10 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>Select a row and the panel on the right fills with one text box per language, each labelled with the language name. Edit whichever you need — you do not have to fill in all of them, and languages you leave alone are written back unchanged.</p>
-		<p><b>Save all languages</b> writes every box back to its language's file in one go. The list updates to show the new English text immediately.</p>
-		<p>The language panel scrolls and reflows with the window, so widen the editor if you're working with long text.</p>
+		<p><img src="img/editing.jpg" alt="The language panel showing the selected string's text in each labelled language box, with the Save all languages button along the bottom." style="max-width:100%;width:594px"></p>
+		<p class="text-muted small"><i>One box per language; Save all languages writes them all back at once.</i></p>
+		<p><b>Save all languages</b>, the button along the bottom of the language panel, writes every box back to its language's file in one go and confirms with a <i>Saved</i> message. The list updates to show the new English text immediately.</p>
+		<p>The language panel scrolls — at a typical window height only the first six or so languages are in view, as in the figure, with the rest behind the scrollbar — and reflows with the window, so widen the editor if you're working with long text.</p>
 
 		<div class="docs-caveat">
 			<p><b>Saving writes straight to the game's text files.</b> There is no separate level save, and no undo. If you're making sweeping changes, take a backup of <code>DATA/TEXT/</code> first — the <a href="/docs/backup-manager/">Backup Manager</a>'s config reset doesn't cover text files.</p>
@@ -176,14 +182,16 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p><b>Add new string…</b> opens a dialog for creating an ID that doesn't exist yet. You choose:</p>
+		<p><b>Add new string…</b> opens a dialog for creating an ID that doesn't exist yet. The dialog, shown below, asks for three things.</p>
+		<p><img src="img/add-string.jpg" alt="The Add new localised string dialog with OBJECTIVES chosen as the text file, a mod-style string ID typed in, and the English, French and German boxes filled while Czech is still empty." style="max-width:100%;width:542px"></p>
+		<p class="text-muted small"><i>Adding a string: pick the text file, name the ID, and fill in whichever languages you have.</i></p>
 		<ul>
 			<li><b>Text file (group)</b> — which file the new string is appended to. Pick the one that matches where your content lives.</li>
 			<li><b>String ID</b> — the name your scripts will use. Both fields are required.</li>
-			<li>The text itself, per language.</li>
+			<li>The text itself, per language. Fill in the ones you have — any you leave blank are added with empty text, like Czech in the figure.</li>
 		</ul>
-		<p>The string is appended to all nine language files at once, and the list reloads with your new entry selected so you can carry on editing it.</p>
-		<p>If the ID already exists, or the string can't be written, the editor tells you and nothing is added.</p>
+		<p>Press <b>OK</b> and the string is appended to all nine language files at once; the list reloads with your new entry selected so you can carry on editing it.</p>
+		<p>IDs can't contain <code>[</code> or <code>]</code>. If the ID already exists in any language's copy of the file, or a language is missing that file, the editor tells you and nothing is added — every check runs before anything is written, so a failure never leaves the string half-added.</p>
     </section>
 </article>
 
@@ -207,7 +215,7 @@
 		<ul>
 			<li><b>Keep IDs distinctive.</b> Prefixing your own strings with something specific to your mod makes them easy to find later and avoids colliding with the game's own naming.</li>
 			<li><b>Fill in English at minimum.</b> It's the fallback most people will see, and it's what the string list displays.</li>
-			<li><b>Text files are grouped by mission.</b> Adding a string to a file that isn't loaded for your level means the game won't find it — put your strings somewhere your content is actually running.</li>
+			<li><b>Text files are grouped by mission.</b> Adding a string to a file that isn't loaded for your level means the game won't find it — put your strings somewhere your content is actually running. Which shared files a level loads is set in the <a href="/docs/configs/level-text-dbs/">Level Text DBs</a> editor, which can also give a level a text database of its own; its <b>Edit Selected Database Contents</b> button opens this same editor scoped to just that database, with the scope shown in the title bar.</li>
 			<li><b>Non-Latin languages need the right font.</b> Russian and Czech in particular rely on the game's font configuration; text outside a font's character set won't render.</li>
 		</ul>
 	</section>
@@ -221,6 +229,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
 			<li><a href="/docs/configs/">Configurations</a> — the other engine configuration editors</li>
+			<li><a href="/docs/configs/level-text-dbs/">Level Text DBs</a> — which text databases each level loads; opens this editor on a single database</li>
 			<li><a href="/docs/mission-ids/">Mission IDs</a> — campaign mission IDs and codenames</li>
 			<li><a href="/docs/ui-editor/">UI Editor</a> — the UI archive that displays this text</li>
 			<li><a href="/docs/backup-manager/">Backup Manager</a> — snapshots and config resets</li>

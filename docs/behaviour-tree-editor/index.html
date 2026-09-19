@@ -110,13 +110,16 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Open <b>View → Behaviour Tree Editor</b> to launch the <b>OpenCAGE Behaviour Tree Editor</b>. Unlike the other editors under <b>View</b>, this runs as a <b>separate process</b> (a Brainiac Designer fork with OpenCAGE's LegendPlugin node set) and works on <b>global</b> AI data — you don't need a level loaded.</p>
+		<p>Open <b>View → Behaviour Tree Editor</b> (shown below) to launch the <b>OpenCAGE Behaviour Tree Editor</b>. Unlike the other editors under <b>View</b>, this runs as a <b>separate process</b> (a Brainiac Designer fork with OpenCAGE's LegendPlugin node set) and works on <b>global</b> AI data — you don't need a level loaded.</p>
+		<p><img src="img/view-menu.jpg" alt="OpenCAGE's View menu open with the Behaviour Tree Editor entry highlighted." style="max-width:100%;width:785px"></p>
 		<p>Authoritative trees live in:</p>
 		<ul>
 			<li><code>DATA/BINARY_BEHAVIOR/_DIRECTORY_CONTENTS.BML</code> — packed catalogue the game loads</li>
 		</ul>
-		<p>On startup the editor extracts trees to <code>DATA/BEHAVIOR/*.xml</code> for editing (it clears existing XMLs first). That folder is scratch space — don't treat leftover XMLs as a permanent source of truth.</p>
-		<p>Closing the script editor, or choosing <b>Behaviour Trees</b> again, kills any open Behaviour Tree Editor instance. Save first if you have unsaved graphs.</p>
+		<p>On startup the editor extracts every tree to <code>DATA/BEHAVIOR/*.xml</code> for editing (it clears existing XMLs first) and lists them under <b>Behaviours</b> in the Explorer, as shown below. That folder is scratch space — don't treat leftover XMLs as a permanent source of truth.</p>
+		<p><img src="img/first-open.jpg" alt="The Behaviour Tree Editor on first launch, with the extracted trees listed under Behaviours in the Explorer and no tree open yet." width="100%"></p>
+		<p class="text-muted small"><i>Nothing is open yet: the palette groups under the tree list start collapsed, and the document area and Properties panel stay empty until you open a tree.</i></p>
+		<p>Closing OpenCAGE, or choosing <b>View → Behaviour Tree Editor</b> again, kills any open Behaviour Tree Editor instance without prompting. Save first if you have unsaved graphs.</p>
     </section>
 </article>
 
@@ -128,12 +131,14 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>The main layout:</p>
 		<ul>
-			<li><b>Explorer</b> — list of behaviour trees (top) and the node palette (bottom): <b>Actions</b>, <b>Conditions</b>, <b>Decorators</b>, <b>Selectors</b>, <b>Sequences</b></li>
-			<li>Document tabs — graph canvas for the open tree</li>
-			<li><b>Properties</b> — property grid for the selected node</li>
+			<li><b>Explorer</b> (left) — the <b>Behaviours</b> tree listing every tree in the catalogue (top) and the node palette (bottom), whose groups start collapsed: <b>Actions</b>, <b>Conditions</b>, <b>Decorators</b>, <b>Selectors</b>, <b>Sequences</b></li>
+			<li>Document tabs (centre) — one graph canvas per open tree, with <b>Save</b>, <b>Show Properties</b> and <b>Save Image Of Behavior</b> buttons in its top-right corner</li>
+			<li><b>Properties</b> (right) — property grid for the selected node</li>
 		</ul>
-		<p>Double-click a tree in Explorer to open it. Drag nodes from the palette onto the canvas and wire the graph; select a node to edit its properties. The in-tool help (?) opens the <a href="/docs/behaviour-trees/">Behaviour Tree Nodes</a> reference.</p>
-		<p>You can also export a graph snapshot via <b>Save Image Of Behavior</b> (<code>*.emf</code> / <code>*.png</code>). This editor does not edit per-level <code>WORLD/BEHAVIOR_TREE.DB</code> files.</p>
+		<p>Double-click a tree in Explorer to open it as a document tab, as shown below. Drag nodes from the palette onto the canvas and wire the graph; select a node to edit its properties in the <b>Properties</b> panel (<b>Show Properties</b>, next to <b>Save</b>, pops the selected node's properties out into a floating panel). Left-drag the background to pan and scroll to zoom when a graph runs off the canvas, as it does here. The <b>?</b> button in the window's top-right corner opens the <a href="/docs/behaviour-trees/">Behaviour Tree Nodes</a> reference.</p>
+		<p><img src="img/overview.jpg" alt="The Behaviour Tree Editor with a tree open: Explorer and node palette on the left, the graph canvas in the middle with a node selected, and its properties on the right." width="100%"></p>
+		<p class="text-muted small"><i>alien_flamed_unaware open in a document tab with its Sequence node selected; the node's parameters appear in the Properties panel on the right.</i></p>
+		<p>You can also export a graph snapshot with the <b>Save Image Of Behavior</b> button, the rightmost of the three in the canvas's top-right corner (the dialog is titled <i>Save Graph As Image</i>; <code>*.emf</code> or <code>*.png</code>). This editor does not edit per-level <code>WORLD/BEHAVIOR_TREE.DB</code> files.</p>
     </section>
 </article>
 
@@ -143,7 +148,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Shortcuts depend on focus — graph canvas vs Explorer. There is no <b>Ctrl+S</b> save shortcut; use the toolbar <b>Save Behavior</b> button.</p>
+		<p>Shortcuts depend on focus — graph canvas vs Explorer. There is no <b>Ctrl+S</b> save shortcut; use the <b>Save</b> button in the top-right corner of the open tree's canvas (its tooltip reads <i>Save Behavior</i>). The same list of controls is available in OpenCAGE under <b>Options → Controls</b>, on the <b>Behaviour Tree Controls</b> tab.</p>
 	</section>
 
 	<section class="docs-section" id="shortcuts-canvas">
@@ -170,9 +175,9 @@
 		<p>When the Explorer tree list has focus:</p>
 		<ul>
 			<li><b>F2</b> — rename the selected behaviour or folder</li>
-			<li><b>Delete</b> — delete the selected behaviour or group (same as toolbar <b>Delete Behavior/Group</b>)</li>
+			<li><b>Delete</b> — delete the selected behaviour or group from the catalogue (this is the only way to do it: the Explorer has no toolbar or context menu)</li>
 		</ul>
-		<p>Explorer does not use Ctrl+C / Ctrl+V / Ctrl+X. <b>Delete</b> here removes trees from the catalogue, not nodes from an open graph.</p>
+		<p>Explorer does not use Ctrl+C / Ctrl+V / Ctrl+X, and there is no button for creating a brand-new tree — the shipped catalogue is edited, renamed (<b>F2</b>) or deleted in place. <b>Delete</b> here removes trees from the catalogue, not nodes from an open graph.</p>
 	</section>
 </article>
 
@@ -182,8 +187,10 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Use <b>Save</b> (<b>Save Behavior</b>) in the Behaviour Tree Editor — not OpenCAGE's <b>File → Save Level</b>. Save writes XML for the tree(s), then <b>repackages all</b> <code>DATA/BEHAVIOR/*.xml</code> files back into <code>_DIRECTORY_CONTENTS.BML</code>.</p>
-		<p>If you close with unsaved graphs, the <b>Unsaved Behaviors</b> dialog offers <b>Save Selected Behaviors</b>, <b>Discard All Unsaved Changes</b>, or <b>Cancel</b>.</p>
+		<p>Use the <b>Save</b> button at the top-right of the tree's canvas (shown below) — not OpenCAGE's <b>File → Save Level</b>. Save writes XML for the tree(s), then <b>repackages all</b> <code>DATA/BEHAVIOR/*.xml</code> files back into <code>_DIRECTORY_CONTENTS.BML</code>.</p>
+		<p><img src="img/canvas-save.jpg" alt="The graph canvas for one tree, with the Save, Show Properties and Save Image Of Behavior buttons in its top-right corner." style="max-width:100%;width:790px"></p>
+		<p class="text-muted small"><i>Each open tree has its own Save button at the top-right of its canvas; beside it are Show Properties and Save Image Of Behavior.</i></p>
+		<p>If you close the editor's window with unsaved graphs, the <b>Unsaved Behaviors</b> dialog lists them with checkboxes and offers <b>Save Selected Behaviors</b>, <b>Discard All Unsaved Changes</b>, or <b>Cancel</b>.</p>
     </section>
 </article>
 

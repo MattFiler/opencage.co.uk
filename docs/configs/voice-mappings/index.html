@@ -100,24 +100,33 @@
 
 	<section class="docs-section">
 		<h1 class="section-heading">Voice Mappings</h1>
-		<p>To edit voice mappings in OpenCAGE navigate to View > Configuration Editors > Characters > Voice Mappings.</p>
+		<p>To edit voice mappings in OpenCAGE navigate to View > Configuration Editors > Characters > Voice Mappings, which opens the <b>Voice Mapping Editor</b> shown below. There's no Save button: every addition and removal is written back to the file as you make it.</p>
+		<p><img src="img/voice-mapping-editor.jpg" alt="The Voice Mapping Editor window: the expanded tree of character attributes and voices on the left, and the Adding to label, attribute and voice dropdowns and buttons on the right." width="100%"></p>
+		<p class="text-muted small"><i>The Voice Mapping Editor as it opens on the stock file: the whole tree on the left, and on the right what you're adding to — with nothing selected, all characters at the top level.</i></p>
 		<p>Voice mappings decide which <b>voice actor type</b> a spawned character is spoken by, based on the character's attributes. They live in <code>CHR_INFO/CUSTOMCHARACTERVOICETYPEMAPPINGS.BIN</code> — plain XML despite the name, with a readme at the top of the file describing the format. Comments in the file are kept as they were.</p>
 	</section>
 
 	<section class="docs-section" id="how">
 		<h2 class="section-heading">How the Game Picks a Voice</h2>
 		<p>The mappings are a tree of character attributes — <b>CharacterClass</b>, <b>Gender</b>, <b>Ethnicity</b> and <b>Build</b> — nested in any order, with the permitted voice types listed at each level. When a character spawns, the game walks down the tree matching the character's attributes and takes the voices from the <b>deepest</b> set that matches, picking at random between every type listed there.</p>
-		<p>So a set only needs voices at the depth it cares about. The catch is a nested set that lists no voices of its own and only nests deeper sets: it can't answer for a character whose deeper attribute doesn't match anything below it. The editor flags those with <b>(no voices of its own)</b> so you can give them a fallback.</p>
+		<p>So a set only needs voices at the depth it cares about. The catch is a nested set that lists no voices of its own and only nests deeper sets: it can't answer for a character whose deeper attribute doesn't match anything below it. The editor flags those with <b>(no voices of its own)</b> after the set's name, as in the tree below, so you can give them a fallback. You'll see it on most of the stock sets — CIVILIAN, SECURITY, INNOCENT and MELEE_HUMAN keep all their voices under MALE and FEMALE sets; only ANDROID and ANDROID_HEAVY list theirs directly — so it isn't an error in an untouched file, just a set that can't answer for a character whose gender matches neither.</p>
+		<p><img src="img/voice-mapping-no-voices.jpg" alt="A close-up of the mappings tree showing the CIVILIAN set marked (no voices of its own) above its MALE and FEMALE gender sets, each with its own voice types." width="100%"></p>
+		<p class="text-muted small"><i>CIVILIAN lists no voices itself — only its MALE and FEMALE sets do — so the editor marks it, and SECURITY below it the same.</i></p>
 	</section>
 
 	<section class="docs-section" id="editing">
 		<h2 class="section-heading">Editing the Tree</h2>
-		<p>The <b>Character attributes and voices</b> tree shows the whole file. Select a set and the panel on the right shows what you're adding to:</p>
+		<p>The <b>Character attributes and voices</b> tree shows the whole file. Select a set and the <b>Adding to</b> line at the top of the panel on the right names the set your next addition lands in, as shown below — selecting a voice counts as selecting the set it belongs to, and with nothing selected you're adding at the top level, for all characters.</p>
+		<p><img src="img/voice-mapping-editor-selected.jpg" alt="The Voice Mapping Editor with the Gender MALE set under CharacterClass CIVILIAN selected, the Adding to label naming that set, and Ethnicity chosen as the attribute to narrow by." width="100%"></p>
+		<p class="text-muted small"><i>With CIVILIAN / MALE selected and Ethnicity picked to narrow by, the Adding to line names the set your next Add lands in, and Remove Selected becomes available.</i></p>
+		<p>Under the <b>Adding to</b> line are the three things you can do:</p>
 		<ul>
-			<li><b>Add Attribute</b> — nests a new attribute set inside the selected one, for voices that only apply to characters with that further attribute. Pick the attribute to narrow by from the <b>Narrow by another attribute</b> dropdown first.</li>
-			<li><b>Add Voice</b> — adds a voice actor type (e.g. <code>CV1</code>) to the selected set. The game picks at random between every type listed in the set it settles on.</li>
-			<li><b>Remove Selected</b> — removes the selected voice or attribute set (and everything nested under it).</li>
+			<li><b>Add Attribute</b> — nests a new attribute set inside the selected one, for voices that only apply to characters with that further attribute. Pick the attribute kind (CharacterClass, Gender, Ethnicity or Build) and its value in the <b>Narrow by another attribute</b> box first — the value list offers the types the file's readme documents, though you can type another. A set can't hold the same attribute value twice — CIVILIAN holds a MALE and a FEMALE gender set, but couldn't hold two MALE ones.</li>
+			<li><b>Add Voice</b> — adds a voice actor type to the selected set. The <b>Voice actor type</b> list offers every type the file's readme documents (<code>CV1</code>–<code>CV4</code> for male and <code>CV5</code>–<code>CV6</code> for female civilians, <code>RT1</code>–<code>RT3</code> for male security, <code>AN1</code>–<code>AN3</code> for androids and <code>ANH</code> for the heavy android) plus any already used in the file, and you can type a new one. A set can't list the same type twice. The game picks at random between every type listed in the set it settles on.</li>
+			<li><b>Remove Selected</b> — removes the selected voice or attribute set (and everything nested under it). It's only available once something is selected, and asks you to confirm when the set has anything nested under it, as shown below.</li>
 		</ul>
+		<p><img src="img/voice-mapping-remove-confirm.jpg" alt="The Remove attribute set confirmation asking whether to remove CharacterClass CIVILIAN / Gender MALE and everything inside it." width="100%"></p>
+		<p class="text-muted small"><i>Removing a set with anything nested under it asks first; a single voice, or an empty set, goes straight away.</i></p>
 	</section>
 </article>
 

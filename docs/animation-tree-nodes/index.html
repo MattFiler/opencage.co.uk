@@ -106,12 +106,16 @@
 </ol>
 </nav>
 <p style="margin: 8px 0 0 0;">Reference for animation tree node types, parameters, and graph pins. For how to open and edit trees, see the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> guide.</p>
-<p style="margin: 8px 0 0 0;"><b>Pin sides:</b> left = flow input, right = flow output(s), top = value/reference input, bottom = value output. Value wiring is provider <code>value</code> to consumer top pin.</p>
+<p style="margin: 8px 0 0 0; padding-bottom: 0;"><b>Pin sides:</b> left = flow input, right = flow output(s), top = value/reference input, bottom = value output. Value wiring is provider <code>value</code> to consumer top pin. The canvas below shows all four sides on an ANIM_Selector: its <code>trigger</code> arrives on the left from the tree root's <code>NODES</code> output, an ANIM_Parameter's bottom <code>value</code> pin feeds <code>ParameterBinding</code> on the top, and each wired <code>State_xx</code> on the right leads to an ANIM_Animation leaf with its own top <code>Callback</code> and bottom <code>value</code> pins. Node headers are coloured by group: green for playback leaves and the tree root, blue for parameter and property providers, pale green for selectors, orange for parametrics, lilac for additive blends, purple for ANIM_Callback, red for ANIM_Metadata_Event_Listener, dark purple for the bilinear nodes and white for the rest.</p>
+<p style="margin: 12px 0 0 0; padding-bottom: 0;"><img src="img/pin-sides.jpg" alt="An animation tree on the graph canvas: a selector node receives its trigger on the left from the tree root, a parameter node feeds its ParameterBinding pin on the top, and its State outputs on the right run to animation leaves whose value pins sit on the bottom." style="max-width:100%;width:630px"></p>
+<p class="text-muted small"><i>A selector on the canvas (selected, hence the orange outline): left trigger from the root, top ParameterBinding from a parameter node, right State_01 and State_02 outputs to two animation leaves.</i></p>
 </article>
 <article class="docs-article" id="root"><header class="docs-header"><h1 class="docs-heading">Root</h1></header><p style="margin:0">Tree root node present in every animation tree.</p>
 <section class="docs-section" id="ANIM_Tree_Top_Level">
 <h2 class="section-heading">ANIM_Tree_Top_Level</h2>
-<p>Root of an animation tree. Created with the tree - not available from the Add Node menu.</p>
+<p>Root of an animation tree. Created with the tree - not available from the Add Node menu, which otherwise lists every type in this reference alphabetically. Right-click empty canvas to open it, as shown below.</p>
+<p><img src="img/add-node-menu.jpg" alt="The graph canvas right-click menu with its Add Node submenu open, listing every ANIM_ node type except the tree root in alphabetical order." style="max-width:100%;width:535px"></p>
+<p class="text-muted small"><i>Add Node lists every other type in this reference; the tree root is the one type it never offers.</i></p>
 <h5>Pins:</h5><ul>
 <li><code style="background:#8e1073;color:white;" title="Name">NODES</code> <code style="background:#412b69;color:white;" title="Pin">flow output (right) -> child trigger</code></li>
 </ul>
@@ -134,7 +138,9 @@
 <article class="docs-article" id="playback"><header class="docs-header"><h1 class="docs-heading">Playback</h1></header><p style="margin:0">Leaf nodes that play animation clips.</p>
 <section class="docs-section" id="ANIM_Animation">
 <h2 class="section-heading">ANIM_Animation</h2>
-<p>Plays a single named animation clip.</p>
+<p>Plays a single named animation clip. Selecting one on the canvas fills the Node Properties panel with the parameters listed below; the panel caption gives the node name and type.</p>
+<p><img src="img/animation-leaf-properties.jpg" alt="The Node Properties panel for an ANIM_Animation node, listing Name, AnimationName, Looping, Mirrored, Mask and the converge and time-offset fields." style="max-width:100%;width:544px"></p>
+<p class="text-muted small"><i>Node Properties for an ANIM_Animation leaf - the rows are this section's Parameters; the Callback link is a pin on the canvas, not a row.</i></p>
 <h5>Pins:</h5><ul>
 <li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">Callback</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
@@ -156,7 +162,9 @@
 <section class="docs-section" id="ANIM_Randomised_Animation">
 <h2 class="section-heading">ANIM_Randomised_Animation</h2>
 <p>Picks from a weighted pool of up to 8 animation entries.</p>
-<p>Each pool entry exposes AnimationName, Mirrored, Weight, LoopsBeforeReselection, and time offsets. Empty AnimationName slots are skipped on save.</p>
+<p>Each pool entry exposes AnimationName, Mirrored, Weight, LoopsBeforeReselection, and time offsets, edited by expanding <code>AnimationPool</code> in the Node Properties panel, as shown below; the panel lists all 8 slots, and a collapsed slot shows its clip name. Empty AnimationName slots are skipped on save.</p>
+<p><img src="img/randomised-pool.jpg" alt="The Node Properties panel for an ANIM_Randomised_Animation node with its AnimationPool expanded to show two weighted animation entries." style="max-width:100%;width:622px"></p>
+<p class="text-muted small"><i>AnimationPool on a randomised leaf: each of the 8 slots carries its own clip name, weight and offsets. Here slots 0 and 1 play the same clip, the second mirrored and weighted higher.</i></p>
 <h5>Pins:</h5><ul>
 <li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">Callback</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>
@@ -270,7 +278,9 @@
 <section class="docs-section" id="ANIM_Selector">
 <h2 class="section-heading">ANIM_Selector</h2>
 <p>Selects among up to 16 child states by discrete parameter value.</p>
-<p>Each state has Value (uint), FootSyncOnSelect, and a linked child Node (via pin).</p>
+<p>Each state has Value (uint), FootSyncOnSelect, and a linked child Node (via pin). Expand <code>States</code> in the Node Properties panel to edit the values, as shown below. The entries are numbered from 0 there, so <code>[0]</code> is pin <code>State_01</code>, and each state's child is whatever is wired to that <code>State_xx</code> output on the canvas.</p>
+<p><img src="img/selector-states.jpg" alt="The Node Properties panel for an ANIM_Selector node with its States array expanded, each state showing a Value and FootSyncOnSelect field." style="max-width:100%;width:622px"></p>
+<p class="text-muted small"><i>States on an ANIM_Selector: all 16 entries are listed, the first three expanded here; a collapsed entry shows its Value.</i></p>
 <h5>Pins:</h5><ul>
 <li><code style="background:#8e1073;color:white;" title="Name">trigger</code> <code style="background:#412b69;color:white;" title="Pin">flow input (left)</code></li>
 <li><code style="background:#8e1073;color:white;" title="Name">ParameterBinding</code> <code style="background:#412b69;color:white;" title="Pin">value input (top)</code></li>

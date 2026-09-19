@@ -103,9 +103,12 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>To edit hair and skin shading in OpenCAGE navigate to <b>View → Configuration Editors → Core Game → Hair and Skin Shading</b>.</p>
+		<p>To edit hair and skin shading in OpenCAGE navigate to View > Configuration Editors > Core Game > Hair and Skin Shading, as shown below. This opens the <b>Hair and Skin Shading Editor</b>.</p>
+		<p><img src="img/menu.jpg" alt="The View menu in OpenCAGE with Configuration Editors and Core Game expanded, showing the Hair and Skin Shading entry." style="max-width:100%;width:644px"></p>
 		<p>Characters aren't shaded with the same model as the rest of the world. Skin uses subsurface scattering — light entering the surface, bouncing around under it, and leaving somewhere slightly different — and hair uses an anisotropic model that gives it two specular highlights rather than one. Both are driven by global settings rather than per-material ones, so a change here affects every character in the game.</p>
-		<p>The values are stored in <code>DATA/SKIN_SHADING_SETTINGS.TXT</code> and <code>DATA/HAIR_SHADING_SETTINGS.TXT</code>. Edits are written as soon as you change a field, so there's no save button — close the window when you're done.</p>
+		<p>The values are stored in <code>DATA/SKIN_SHADING_SETTINGS.TXT</code> and <code>DATA/HAIR_SHADING_SETTINGS.TXT</code>. Edits are written as soon as you change a field, so there's no save button — close the window when you're done. The whole editor is shown below: the two skin fields sit in the small group at the top and the twenty hair fields fill the larger group beneath it.</p>
+		<p><img src="img/overview.jpg" alt="The Hair and Skin Shading Editor window: two skin fields in a small group at the top and twenty hair fields in four columns in the larger group below." width="100%"></p>
+		<p class="text-muted small"><i>The editor as it opens on a stock install. Every setting is a numeric box, and values are written the moment you change them.</i></p>
 		<p>These are engine-wide rendering settings with no per-level override. If you want to get back to stock values, use <b>Reset Configs</b> in the <a href="/docs/backup-manager/">Backup Manager</a>.</p>
     </section>
 </article>
@@ -116,7 +119,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Two values control the subsurface scattering:</p>
+		<p>Two values control the subsurface scattering — they're the pair in the <b>Skin</b> group at the top of the editor:</p>
 		<ul>
 			<li><b>Scattering Radius</b> — how far light spreads under the surface before it leaves. Larger values give softer, waxier skin; smaller values make it read more like a hard surface.</li>
 			<li><b>Scattering Saturation</b> — how much colour the scattered light picks up on its way through. This is what produces the reddish bleed around nostrils, ears and fingers.</li>
@@ -130,12 +133,13 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Hair has considerably more to tune. The settings group loosely into transparency, highlights, absorption, occlusion, and softening.</p>
+		<p>Hair has considerably more to tune. The settings group loosely into transparency, highlights, absorption, occlusion, and softening. The window doesn't separate them that way — it lays all twenty out in a grid of four columns, pictured below — so find each field by its label.</p>
+		<p><img src="img/hair-group.jpg" alt="The hair group of the editor: twenty numeric fields arranged in four columns of five." width="100%"></p>
 
 		<h2 class="section-heading" style="font-size: 1.1rem;">Transparency</h2>
 		<ul>
 			<li><b>Alpha Threshold</b> — the cutoff below which a hair pixel is discarded entirely when drawing.</li>
-			<li><b>Alpha Threshold (Shadows)</b> — the same cutoff used when hair is casting a shadow. Kept separate because hair that looks right on screen often casts an unconvincingly solid shadow at the same threshold.</li>
+			<li><b>Alpha Threshold (Shadows)</b> — the same cutoff used when hair is casting a shadow. Kept separate because hair that looks right on screen often casts an unconvincingly solid shadow at the same threshold. The stock settings file doesn't set this one, so the editor shows a placeholder of 0.1 until you change it.</li>
 		</ul>
 
 		<h2 class="section-heading" style="font-size: 1.1rem;">Highlights</h2>

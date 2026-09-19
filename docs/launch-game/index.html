@@ -110,8 +110,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The toolbar <b>Launch Game</b> button opens the Launch Game dialog. From here you choose whether to boot straight into a level, toggle launch options and scripting helpers, then hit <b>Start Alien: Isolation</b>.</p>
-		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — the <a href="#scripting-helpers">Scripting Helpers</a> and <b>Cinematic Tools</b> are Steam-only.</p>
+		<p>The <b>Launch Game</b> button at the right-hand end of the main toolbar (beside <b>Manage Backups</b>, shown below) opens the Launch Game dialog. From here you choose whether to boot straight into a level, toggle launch options and scripting helpers, then hit <b>Start Alien: Isolation</b>. The button is only enabled for Steam, Epic Games Store and GOG installs, because launching works by patching the game executable.</p>
+		<p><img src="img/toolbar-launch-game.jpg" alt="OpenCAGE's main toolbar with the Launch Game button at its right-hand end, beside Manage Backups." style="max-width:100%;width:576px"></p>
+		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — the <a href="#scripting-helpers">Scripting Helpers</a> and <b>Cinematic Tools</b> are Steam-only. The dialog itself is shown below: the level picker sits at the top; a single <b>Launch Options</b> group holds the four UI mods at the top of its left-hand column, with the engine patches, debug tools and Cinematic Tools filling the rest of both columns; the <b>Scripting Helpers</b> group sits underneath; and <b>Start Alien: Isolation</b> is the button along the bottom. Options that don't apply to your install are greyed out; on the Steam install pictured, with the bundled tools present, everything is available.</p>
+		<p><img src="img/launch-game.jpg" alt="The Launch Game dialog: level picker at the top with PRODUCTION/BSP_TORRENS chosen, the Launch Options group of checkboxes with Enable Cinematic Tools among them, the Scripting Helpers group with Enable Hot Reload ticked and its key set to INSERT, and the Start Alien: Isolation button." style="max-width:100%;width:394px"></p>
+		<p class="text-muted small"><i>The Launch Game dialog on a Steam install with a level chosen; Enable Hot Reload is ticked, so its key dropdown is live.</i></p>
     </section>
 </article>
 
@@ -121,9 +124,12 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Tick <b>Load straight into a level</b> and pick one from the list to have the game boot directly into that map — useful for testing a specific level without playing through from the start. Leave it unticked and the game starts at its main menu (FRONTEND) as normal.</p>
-		<p>The list holds every level in the current game install, including any you've made with <a href="/docs/create-level/">Create Level</a>. OpenCAGE prefers the level you're editing, otherwise your last used choice, and the selection is remembered for next time.</p>
-		<p>Booting into a level works by writing the level's name into the game executable, and that space is fixed: a level path longer than 32 characters (for a shipped level that's <code>Production/</code> plus the folder name) can't be launched into, and OpenCAGE will tell you so rather than corrupting the patch.</p>
+		<p>Tick <b>Load straight into a level</b> and pick one from the list beneath it (the list is greyed out until the box is ticked) to have the game boot directly into that map — useful for testing a specific level without playing through from the start. Leave it unticked and the game starts at its main menu (FRONTEND) as normal.</p>
+		<p><img src="img/level-list.jpg" alt="The Load straight into a level checkbox ticked with the level list dropped down over the dialog, showing the install's PRODUCTION levels including the DLC maps." style="max-width:100%;width:394px"></p>
+		<p class="text-muted small"><i>The level list on a retail install: the campaign maps plus the DLC ones under PRODUCTION/DLC. FRONTEND is never offered.</i></p>
+		<p>The list holds every level in the current game install, including any you've made with <a href="/docs/create-level/">Create Level</a>. OpenCAGE preselects the level you're editing (PRODUCTION/BSP_TORRENS above), otherwise your last used choice, and the selection is remembered for next time.</p>
+		<p>Booting into a level works by writing the level's name into the game executable, and that space is fixed: a level path longer than 32 characters (for a shipped level that's <code>Production/</code> plus the folder name) can't be launched into, and OpenCAGE will refuse with the message shown below rather than corrupting the patch.</p>
+		<p><img src="img/level-name-too-long.jpg" alt="OpenCAGE's Level name too long error message refusing to launch into a level whose path is longer than 32 characters." style="max-width:100%;width:386px"></p>
     </section>
 </article>
 
@@ -133,7 +139,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>These swap in OpenCAGE's modified pause/frontend/loading/game-over menus (by patching GFX files inside <code>UI.PAK</code> — see also the <a href="/docs/ui-editor/">UI Editor</a>):</p>
+		<p>These are the four boxes at the top of the left-hand column of <b>Launch Options</b>. They swap in OpenCAGE's modified pause/frontend/loading/game-over menus by patching GFX files inside <code>UI.PAK</code> (see also the <a href="/docs/ui-editor/">UI Editor</a>), and the file is rewritten the moment you tick or untick a box, so the change is in place whether you launch from this dialog or not:</p>
 		<ul>
 			<li><b>Enable Debug Checkpoints</b> — adds debug checkpoints to the pause menu under <b>Load Game</b>. Checkpoints are per-map and load a scripted game state so you can jump to specific moments. They're created in level scripts with the <a href="/docs/cathode-entities/#DebugCheckpoint">DebugCheckpoint</a> entity.</li>
 			<li><b>Enable Level Selection</b> — frontend menu with level selection (where you'd normally load a save)</li>
@@ -150,6 +156,7 @@
 
 	<section class="docs-section" id="engine-patches" style="padding-top:0;">
 		<h2 class="section-heading">Engine Patches</h2>
+		<p>The rest of <b>Launch Options</b> — Skip Frontend and Patch Current-Gen Optimisations under the UI mods, plus the debug tools, No UI and Render Constant Ambient in the right-hand column — are written into the game executable the moment you toggle them. OpenCAGE warns if it can't write, which usually means the game is still running. Cinematic Tools is the exception: it's only applied when you launch.</p>
 		<ul>
 			<li><b>Skip Frontend</b> — skips the title screen when loading directly into a level</li>
 			<li><b>Patch Current-Gen Optimisations</b> — restores script functionality that was left out of the PC build (the game incorrectly still honours a “current gen” script flag). In vanilla this re-enables things like additional lighting, monitors, and effects.</li>
@@ -169,7 +176,7 @@
 	<section class="docs-section" id="steam-tools">
 		<h2 class="section-heading">Steam-Only Tools</h2>
 		<ul>
-			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them.</li>
+			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. The box is greyed out when they aren't available — on non-Steam installs, or if the bundled files are missing. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them.</li>
 		</ul>
 		<p>Hot reloading has moved into the <a href="#scripting-helpers">Scripting Helpers</a> group, where you can also choose its key.</p>
 	</section>
@@ -181,9 +188,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Scripting Helpers</b> group adds runtime tools to the game that make script iteration faster. They're provided by a small plugin OpenCAGE copies into the game folder when any helper is enabled (and removes when none are), configured through <code>OpenCAGE_Utils.ini</code> beside it. The plugin only supports the Steam build, so the whole group is disabled on other platforms.</p>
+		<p>The <b>Scripting Helpers</b> group adds runtime tools to the game that make script iteration faster. They're provided by a small plugin OpenCAGE copies into the game folder when any helper is enabled (and removes when none are), configured through <code>OpenCAGE_Utils.ini</code> beside it. The plugin only supports the Steam build, so the whole group is greyed out on other platforms. The key dropdown beside <b>Enable Hot Reload</b> only comes alive once that box is ticked, as shown below.</p>
+		<p><img src="img/scripting-helpers-key.jpg" alt="The Launch Game dialog with the Enable Hot Reload key dropdown open, listing INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12." style="max-width:100%;width:394px"></p>
+		<p class="text-muted small"><i>The hot reload key dropdown, open: INSERT is the default, with DELETE, HOME, END, PAGEUP, PAGEDOWN and the function keys as alternatives.</i></p>
 		<ul>
-			<li><b>Enable Hot Reload</b> — press the chosen key in-game to reload the current level, handy for iterating on scripts without a full restart. The key defaults to <b>INSERT</b>; the dropdown beside the option offers DELETE, HOME, END, PAGE UP, PAGE DOWN and F1–F12 as alternatives.</li>
+			<li><b>Enable Hot Reload</b> — press the chosen key in-game to reload the current level, handy for iterating on scripts without a full restart. The key defaults to <b>INSERT</b>; the dropdown beside the option offers DELETE, HOME, END, PAGEUP, PAGEDOWN and F1–F12 as alternatives.</li>
 			<li><b>Enable DebugText</b> — <a href="/docs/cathode-entities/#DebugText">DebugText</a> script entities draw their text on screen in-game.</li>
 			<li><b>Enable DebugTextStacking</b> — <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a> script entities draw their text on screen in-game, stacked under one another.</li>
 			<li><b>Enable DebugEnvironmentMarker</b> — <a href="/docs/cathode-entities/#DebugEnvironmentMarker">DebugEnvironmentMarker</a> script entities draw their text at a world position in-game.</li>
@@ -199,10 +208,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Outside the Launch Game dialog:</p>
+		<p>Outside the Launch Game dialog, under the toolbar's <b>Options</b> dropdown (shown below):</p>
 		<ul>
 			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog (so extras like Cinematic Tools / Hot Reloading from that dialog aren't applied). Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
 		</ul>
+		<p><img src="img/options-misc-open-game-on-save.jpg" alt="The toolbar's Options menu with the Misc submenu open, showing the Open Game On Save item unticked." style="max-width:100%;width:489px"></p>
     </section>
 </article>
 

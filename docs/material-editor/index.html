@@ -123,43 +123,55 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The left list shows materials for the loaded level, grouped by ubershader type. Use <b>Search</b> / <b>Clear</b> to filter, then select a material to edit it on the right. Edits apply in memory immediately (Viewport and other views that use the material can update without waiting for a disk save).</p>
+		<p>The left list shows materials for the loaded level, grouped by ubershader type. Use <b>Search</b> / <b>Clear</b> to filter, then select a material to edit it on the right, as shown below. Edits apply in memory immediately (Viewport and other views that use the material can update without waiting for a disk save).</p>
+		<p><img src="img/overview.jpg" alt="The Material Editor with the CIRCUITBOARD material selected: the material list with Search and Clear above it and New Material and Duplicate Selected below on the left, and on the right the Samplers tabs with the DIFFUSE_MAP tab open and its circuit-board texture previewed." width="100%"></p>
+		<p class="text-muted small"><i>CIRCUITBOARD selected: the level's materials on the left, and on the right the Samplers tabs for the selected one — the bold tabs are the slots with a texture assigned.</i></p>
 		<p>The footer shows the material's <b>Ubershader Type</b> (read-only).</p>
     </section>
 
     <section class="docs-section" id="samplers">
 		<h2 class="section-heading">Samplers</h2>
-		<p>Each material can reference textures through sampler slots (up to 12). Tabs list the sampler names for that ubershader — a bold tab usually means a texture is assigned.</p>
+		<p>A material can hold up to 12 texture references, and the tabs list every sampler slot its ubershader declares (17 for <code>CA_ENVIRONMENT</code> — <code>DIFFUSE_MAP</code>, <code>NORMAL_MAP</code>, <code>DIRT_MAP</code> and the rest). A <b>bold</b> tab has a texture assigned, and the editor opens on the first tab that does — in the screenshot above that's <code>DIFFUSE_MAP</code>, showing its texture.</p>
 		<ul>
-			<li><b>Edit Texture…</b> / <b>Pick Texture…</b> — opens the <a href="/docs/texture-editor/">Texture Editor</a> so you can choose or change the texture. Global textures are imported into the level on load, so they're pickable here like any other.</li>
-			<li><b>Clear Texture</b> — removes the assignment from that slot.</li>
+			<li><b>Pick Texture…</b> (empty slot) or <b>Edit Texture…</b> (slot already filled) — opens the <a href="/docs/texture-editor/">Texture Editor</a> as a picker; choose a texture and press <b>Select This Texture</b>. Global textures are imported into the level on load, so they're pickable here like any other.</li>
+			<li><b>Clear Texture</b> — removes the assignment from that slot (greyed out when nothing is assigned).</li>
 		</ul>
-		<p>A preview and reference details (sampler index, texture name/format, and so on) appear below when a texture is set.</p>
+		<p>Each tab names its sampler and texture at the top, then shows the preview, the two buttons, and beneath them the sampler index, texture reference index and — when a texture is set — the texture's name and format.</p>
     </section>
 
 	<section class="docs-section" id="features">
 		<h2 class="section-heading">Features</h2>
-		<p>Feature checkboxes toggle ubershader feature flags — dirt maps, detail normals, parallax, alpha blending, and so on, depending on the ubershader type.</p>
+		<p>Feature checkboxes toggle ubershader feature flags — dirt maps, detail normals, parallax, alpha blending, and so on, depending on the ubershader type. The same box holds the material's <b>Render priority</b>: 70 is the world pass that draws geometry lit, opaque and textured (retail's hand-held weapons use it too), and lower values are special passes — 52 translucent, 39 unlit, 31 untextured over everything — so a first-person model left at a world priority draws behind the player's hands.</p>
 		<p>A feature isn't just a switch inside one shader. Every combination of features is a <b>separate compiled shader</b>, and toggling one binds the material to a different one. That's why the checkboxes used to do nothing useful: the permutation you were asking for generally wasn't in the level.</p>
-		<p>They now work. Each checkbox tells you where the permutation it needs would come from:</p>
+		<p><img src="img/features.jpg" alt="The Features box for a CA_ENVIRONMENT material: the permutation mask, a render priority of 70, a note that only combinations the game data ships are available, the Change combination button and a long list of greyed-out feature checkboxes with a few ticked." style="max-width:100%;width:496px"></p>
+		<p class="text-muted small"><i>CIRCUITBOARD's Features box. For CA_ENVIRONMENT and most other families the checkboxes are read-only, and Change combination… picks from the 1,223 combinations the game ships for the family.</i></p>
+		<p>How the checkboxes behave now depends on the shader family. For most families — <code>CA_ENVIRONMENT</code>, which nearly all world geometry uses, included — OpenCAGE has no shader source to compile new permutations from, so the checkboxes are greyed out, as above, and simply describe the shader the material is bound to. The note above them says how many combinations your game data ships for the family, and <b>Change combination…</b> opens a picker listing them (see <a href="#permutations">Shader Permutations</a> below). For the handful of families OpenCAGE carries reconstructed shader source for — fog planes and fog spheres, particles, ribbons, effect overlays, simple water and simple refraction — the checkboxes are live, and hovering one tells you where the permutation it needs would come from:</p>
 		<ul>
 			<li><b>Already in this level</b> — the fastest case; the shader is sitting in the level's own pool.</li>
 			<li><b>Harvested from your game data</b> — pulled from the permutation database OpenCAGE builds from your install (see below).</li>
 			<li><b>Reconstructed by CathodeLib</b> — compiled from the available data in CathodeLib (usually instancing-related things like fog).</li>
 		</ul>
-		<p>Features whose permutation can't be reached by any of those three routes stay hidden, so a checkbox you can see is one you can actually use. Switching a feature migrates the material's existing shader constants onto the new shader rather than resetting them.</p>
+		<p>Features whose permutation can't be reached by any of those three routes stay hidden, so a checkbox you can see is one you can actually use; a note under the list says how many were left out.</p>
+		<p><img src="img/features-live.jpg" alt="The right-hand panel for a fog sphere material: an empty Samplers box, a Features box with a permutation mask, a render priority of 39, twelve live feature checkboxes with four ticked and a note that two features are not listed, an empty Parameters box, and the Ubershader Type footer reading CA_FOGSPHERE." style="max-width:100%;width:496px"></p>
+		<p class="text-muted small"><i>A CA_FOGSPHERE material: the families OpenCAGE carries shader source for get live checkboxes, and features nothing in the game data uses are hidden — two here. Fog spheres have no samplers or parameters, so those boxes are empty.</i></p>
+		<p>Switching a feature migrates the material's existing shader constants onto the new shader rather than resetting them.</p>
 	</section>
 
 	<section class="docs-section" id="permutations">
 		<h2 class="section-heading">Shader Permutations</h2>
 		<p>The first time you launch OpenCAGE against a game install, it harvests a <b>shader permutation database</b> from your game data in the background — every (family, feature mask) combination the game actually ships, gathered from every level. You'll see progress in the status bar; nothing blocks while it runs, and if it fails you're simply left with the permutations each level already carries.</p>
-		<p>Beneath the feature list, the editor tells you how many combinations are currently reachable for the material's family, and <b>Permutation mask: 0x…</b> shows the material's current feature mask. Where more than one combination is available, you can pick from the full list directly rather than toggling features one at a time.</p>
-		<p>For some ubershader families — fog planes and spheres among them — permutations can be generated on demand rather than only found, this is due to the simplicity of their shaders. Support for this may expand over time.</p>
+		<p>At the top of the Features box, <b>Permutation mask: 0x…</b> shows the material's current feature mask, and for a read-only family the note beneath it says how many combinations are currently reachable — the level's own pool plus whatever the harvest found. Where more than one is available, <b>Change combination…</b> opens the picker shown below rather than making you toggle features one at a time.</p>
+		<p><img src="img/combination-picker.jpg" alt="The Choose a feature combination dialog: a column of three-state feature filters on the left, and on the right every shipped combination with its features, mask, source, how many materials use it and how many extra textures it would need, with the material's current combination in bold." width="100%"></p>
+		<p class="text-muted small"><i>Change combination… after Clear filters: every permutation the game ships for CA_ENVIRONMENT, the material's current one in bold, and rows in red that would need textures the material doesn't have.</i></p>
+		<p>The picker opens with the filters set to the material's current features, so the list starts at one row; <b>Clear filters</b> shows everything and <b>Match current</b> puts the filters back. Click a filter to require that feature on or off, or right-click it for "don't care". Each row shows the features in that combination, its mask, whether it came from this level or from the harvested game data, how many materials in the level already use it, and — in red — how many textures it would need that this material doesn't have. Double-click a row or press <b>Use this</b> to rebind; the button stays greyed out while the current combination is the one selected. Pick a red row anyway and the editor warns that the material's features and textures disagree, and keeps that warning at the top of the Features box until you set the missing textures or choose a combination that matches.</p>
+		<p>For some ubershader families — fog planes and spheres, particles, ribbons, effect overlays, simple water and simple refraction — permutations can be compiled on demand rather than only found, because OpenCAGE carries reconstructed shader source for them. Those are the families whose feature checkboxes are live. Compiling needs <code>d3dcompiler_43.dll</code> (part of the DirectX runtime); if it's missing the editor says so and every family falls back to picking from shipped combinations. Support for this may expand over time.</p>
 	</section>
 
 	<section class="docs-section" id="parameters">
 		<h2 class="section-heading">Parameters</h2>
-		<p>Parameters expose pixel-shader constants for the material (floats, vectors, colours). Colour-like parameters (names containing colour/tint, etc.) get a colour preview and <b>Pick Color…</b>.</p>
+		<p>Parameters expose pixel-shader constants for the material (floats, vectors, colours), each in its own box labelled with its name and type. Colour-like parameters — three- or four-component vectors whose name contains colour or tint — get a swatch, R/G/B/A boxes and <b>Pick Color…</b>, as the diffuse tint does below; other vectors get X/Y/Z/W boxes, and a scalar gets a single <b>Value</b> box whatever it's called, which is why the specular tint has no swatch. A value is committed when you leave its box.</p>
+		<p><img src="img/parameters.jpg" alt="The Parameters box for a CA_ENVIRONMENT material: each shader parameter in its own group labelled with its type, scalar parameters with a single Value field, and the diffuse tint showing a dark colour swatch, R, G, B and A fields and a Pick Color button." style="max-width:100%;width:496px"></p>
+		<p class="text-muted small"><i>Colour-like vector parameters get a swatch and Pick Color…; the Float and Half scalars around it get a single Value box.</i></p>
 		<p>Only parameters that the shader maps into the material's constant buffer are listed.</p>
 	</section>
 </article>
@@ -172,10 +184,12 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>There are two ways to get a new material.</p>
 		<ul>
-			<li><b>New Material…</b> — builds one from nothing. You pick the <b>shader family</b> and a name, and that's all it asks: the family is the only thing that can't be changed later, and everything else the material needs is reachable from the editor once it exists.</li>
+			<li><b>New Material…</b> — builds one from nothing. The <b>New material</b> dialog shown below asks for the <b>shader type</b> and a name, and that's all: the family is the only thing that can't be changed later, and everything else the material needs is reachable from the editor once it exists.</li>
 			<li><b>Duplicate Selected</b> — clones the selected material, named with a <b>Clone</b> suffix, so you can tune samplers, features and parameters independently of the original.</li>
 		</ul>
-		<p>Only families that can actually be built on are offered when creating a material — if none are available for the level, the editor says so rather than producing something the game can't render.</p>
+		<p><img src="img/new-material.jpg" alt="The New material dialog: a Shader type dropdown set to CA_ENVIRONMENT, a note that 1223 permutations are available from this level and that features are chosen from those combinations, a Material name box reading new material, and Create and Cancel buttons." style="max-width:100%;width:462px"></p>
+		<p class="text-muted small"><i>New Material… asks for the shader type and a name; everything else is set in the editor afterwards.</i></p>
+		<p>Only families that can actually be built on are offered — the ones this level already uses, plus any the harvested database knows, marked <i>(not used in this level)</i>. Under the dropdown the dialog says how many permutations are available for that family and, for a read-only family, that its features will be chosen from those shipped combinations rather than ticked freely. If no family is available for the level, the editor says so rather than producing something the game can't render.</p>
     </section>
 </article>
 

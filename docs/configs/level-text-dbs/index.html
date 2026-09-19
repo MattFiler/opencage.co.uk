@@ -107,24 +107,32 @@
 			<li><b>Shared databases</b> under <code>DATA/TEXT</code>, listed per level in <code>DATA/LEVEL_TEXT_DATABASES.XML</code></li>
 			<li><b>Databases inside the level</b>, shipped in its own <code>TEXT</code> folder and listed in <code>TEXT/TEXT_DB_LIST.TXT</code></li>
 		</ul>
-		<p>Pick a level from the <b>Level</b> dropdown to see and change both lists for it. The list also has a <b>globals</b> entry: the block of shared databases every level loads, whatever level it is.</p>
+		<p>Pick a level from the <b>Level</b> list on the left to see and change both lists for it: the shared databases sit in the middle, the level's own on the right, as shown below. The top entry, <b>(globals - every level)</b>, is the block of shared databases every level loads, whatever level it is; select it and the right-hand group is greyed out, since globals have no level folder. Every tick is saved the moment you make it — there is no Save button.</p>
+		<p><img src="img/overview.jpg" alt="The Level Text Database Editor with BSP_Torrens selected: the level list on the left, the shared DATA/TEXT checklist in the middle with the databases Torrens loads ticked, and the empty databases-inside-the-level group on the right." width="100%"></p>
+		<p class="text-muted small"><i>BSP_Torrens loads its strings from the shared databases; the note under the list flags CV0, which the config names but which does not exist under DATA/TEXT.</i></p>
 		<p>The config keys a level by its folder name only, not its path — two levels with the same folder name in different subfolders would share an entry.</p>
 	</section>
 
 	<section class="docs-section" id="shared">
 		<h2 class="section-heading">Shared Databases</h2>
-		<p><b>Shared databases (DATA/TEXT)</b> is a checklist of every database under <code>DATA/TEXT</code>. Tick the ones this level should load; the change is written to <code>DATA/LEVEL_TEXT_DATABASES.XML</code>. Databases ticked under <b>globals</b> don't need ticking again per level.</p>
+		<p><b>Shared databases (DATA/TEXT)</b> is a checklist of every database under <code>DATA/TEXT</code>. Tick the ones this level should load; the change is written to <code>DATA/LEVEL_TEXT_DATABASES.XML</code>. Databases ticked under <b>globals</b> don't need ticking again per level. A name the config lists but <code>DATA/TEXT</code> has no file for stays at the bottom of the list, ticked and marked <i>(file missing)</i>, with a note under the list saying so — retail names <code>CV0</code> for most levels, and no such database ships, which is the note in the screenshot above. Untick it to drop it from the file.</p>
 	</section>
 
 	<section class="docs-section" id="local">
 		<h2 class="section-heading">Databases Inside the Level</h2>
-		<p><b>Databases inside the level</b> lists the databases in the level's own <code>TEXT</code> folder, with a tick for each one the level actually loads; that list is written to the level's <code>TEXT/TEXT_DB_LIST.TXT</code>.</p>
-		<p><b>New Database…</b> creates an empty database inside the level, in every language the game has, and lists it — the quickest way to give a level strings of its own without touching the shared files.</p>
+		<p><b>Databases inside the level</b> lists the databases in the level's own <code>TEXT</code> folder, with a tick for each one the level actually loads; that list is written to the level's <code>TEXT/TEXT_DB_LIST.TXT</code>. The campaign levels ship no <code>TEXT</code> folder of their own, so for them this group is empty and says so; most of the DLC challenge and salvage maps do, as shown below for ChallengeMap4. A database the list names but the folder no longer holds is kept ticked and marked <i>(file missing)</i>, just like the shared list.</p>
+		<p><img src="img/local-dbs.jpg" alt="The databases-inside-the-level group for ChallengeMap4, listing the databases in its TEXT folder with every one ticked, CV0 marked as file missing, and the New Database and Edit Selected Database Contents buttons beneath." style="max-width:100%;width:380px"></p>
+		<p class="text-muted small"><i>ChallengeMap4 ships its own TEXT folder; every database ticked here is named in its TEXT_DB_LIST.TXT.</i></p>
+		<p><b>New Database…</b> creates an empty database inside the level, in every language the game has, and lists it — the quickest way to give a level strings of its own without touching the shared files. It asks only for a name, as below. If that name is already a shared database under <code>DATA/TEXT</code>, OpenCAGE warns first: a database inside the level with the same name replaces the shared one for that level, which is a legitimate way to override a shared bank but rarely what a new database is for.</p>
+		<p><img src="img/new-database.jpg" alt="The New Text Database prompt asking for a name for the new database in ChallengeMap4, noting it is created in all nine languages, with a Create button." style="max-width:100%;width:760px"></p>
+		<p class="text-muted small"><i>New Database… only asks for a name; the empty database is written to every language folder and listed for the level straight away.</i></p>
 	</section>
 
 	<section class="docs-section" id="editing">
 		<h2 class="section-heading">Editing the Text</h2>
-		<p>This editor only decides <i>which</i> databases a level loads. To change the strings inside one, select it and click <b>Edit Selected Database Contents</b>, which opens the <a href="/docs/localisation-editor/">Localisation Editor</a> on that database in every language.</p>
+		<p>This editor only decides <i>which</i> databases a level loads. To change the strings inside one, select it in either list and click the <b>Edit Selected Database Contents</b> button beneath that list (it is greyed out until a row is selected), which opens the <a href="/docs/localisation-editor/">Localisation Editor</a> on that database in every language, with the folder and database named in its title bar, as below. A row marked <i>(file missing)</i> has no file to open, so the button just tells you so.</p>
+		<p><img src="img/edit-contents.jpg" alt="The Localisation Editor opened on the shared TORRENS database, its title bar naming DATA/TEXT / TORRENS, with the string list on the left and the nine language text boxes on the right." width="100%"></p>
+		<p class="text-muted small"><i>Edit Selected Database Contents opens the Localisation Editor on just that database — here the shared TORRENS bank, named in the title bar.</i></p>
 	</section>
 </article>
 

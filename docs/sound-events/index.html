@@ -126,7 +126,9 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Alien: Isolation's audio runs through <b>Wwise</b>. Scripts don't reference audio files — they fire <b>sound events</b> by name, and Wwise decides what that means: which take to play, whether to pick at random, which bank the audio comes from.</p>
 		<p>Whenever you set a sound event on an entity parameter, OpenCAGE opens the sound event selector. That window has a player along its bottom edge, so you can hear what an event actually sounds like before committing to it — and export or replace the audio behind it.</p>
-		<p>The same window opens from <b>View → Sound Editor</b> once a level is loaded, with no parameter behind it: every sound event the level knows, to listen through, look up in the soundbanks, export or replace, without first finding an entity that plays one. It stays open while you work in the editor and closes when the level does.</p>
+		<p>The same window opens from <b>View → Sound Editor</b> once a level is loaded, with no parameter behind it: every sound event the level knows (shown below), to listen through, look up in the soundbanks, export or replace, without first finding an entity that plays one. The box along the top filters the list as you type. It stays open while you work in the editor and closes when the level does. Only one of these windows is open at a time, so editing a sound event parameter in the inspector closes the Sound Editor and opens the picker in its place.</p>
+		<p><img src="img/sound-editor.jpg" alt="The Sound Editor window: a searchable list of every sound event in the level, with the preview player along the bottom edge showing the loaded take, its variations and the Replace and Export buttons." style="max-width:100%;width:761px"></p>
+		<p class="text-muted small"><i>View → Sound Editor with an event selected. Opened from a parameter instead, the same window is titled Select for 'sound_event' and gains a Select button.</i></p>
     </section>
 </article>
 
@@ -142,8 +144,10 @@
 			<li>A <b>soundbank</b> is the container the audio ships in. The same event can appear in several banks, because banks are loaded per level.</li>
 			<li>A <b>variation</b> is one of the actual takes behind an event. Most interesting events sit behind a random or switch container and pick between several takes at runtime — footsteps, impacts, and vocalisations especially.</li>
 		</ul>
-		<p>The player exposes every variation it managed to resolve, which is the only way to hear what an event will really sound like in the game rather than one arbitrary take of it.</p>
-		<p>The first time you open the selector, OpenCAGE starts indexing the game's soundbanks in the background so the first sound you click is ready rather than waiting on a cold index.</p>
+		<p>The player exposes every variation it managed to resolve — below, the eight random takes behind <code>play_facehugger_egg_opens</code> — which is the only way to hear what an event will really sound like in the game rather than one arbitrary take of it.</p>
+		<p><img src="img/player-variations.jpg" alt="The preview player with its variations dropdown open, listing the eight random takes behind the event." style="max-width:100%;width:767px"></p>
+		<p class="text-muted small"><i>Every take the event resolved to is listed; Shuffle picks one at random the way the game would.</i></p>
+		<p>The first time you open the selector, OpenCAGE starts indexing the game's soundbanks in the background so the first sound you click is ready rather than waiting on a cold index. While that runs the player's status line reads <i>Indexing the game's soundbanks...</i>, then <i>Decoding...</i> for each take.</p>
     </section>
 </article>
 
@@ -158,7 +162,7 @@
 			<li><a href="/docs/cathode-entities/#Sound">Sound</a> — plays a sound event. Set its <code>sound_event</code> parameter and trigger it; that parameter is what opens the selector described on this page.</li>
 			<li><a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> — loads the soundbank the event lives in. The audio isn't resident until something loads its bank, so a <a href="/docs/cathode-entities/#Sound">Sound</a> entity firing an event from an unloaded bank plays nothing.</li>
 		</ul>
-		<p>Which bank to load is exactly what the <b>Metadata</b> button tells you — select the event, read off the soundbank it's listed in, and point a <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> at that. See <a href="#metadata">Soundbank Metadata</a>.</p>
+		<p>Which bank to load is exactly what the <b>Show Soundbanks</b> button tells you — select the event, read off the soundbank it's listed in, and point a <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> at that. See <a href="#metadata">Soundbank Metadata</a>.</p>
 		<p>Banks that are permanently resident don't need loading; those are configured separately under <a href="/docs/configs/perma-soundbanks/">Permanent Soundbanks</a>.</p>
     </section>
 
@@ -170,7 +174,8 @@
 			<li><a href="/docs/cathode-entities/#SpeechScript">SpeechScript</a> — <b>a whole exchange</b>. Takes up to five characters (<code>character_01</code>…<code>character_05</code>, each with an alt) and up to ten lines. Each line has a <code>line_NN_event</code> for the sound event, a <code>line_NN_character</code> naming which of the five slots delivers it, and — from the second line onwards — a <code>line_NN_delay</code> for the pause before it. Fires <code>on_script_ended</code> when the last line finishes.</li>
 		</ul>
 		<p>Use <a href="/docs/cathode-entities/#Speech">Speech</a> for a barked line or a one-off; use <a href="/docs/cathode-entities/#SpeechScript">SpeechScript</a> for back-and-forth conversation, where hand-wiring a chain of <a href="/docs/cathode-entities/#Speech">Speech</a> entities and delays would be far more work.</p>
-		<p>Both still need their bank loaded, so the <b>Metadata</b> → <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> step above applies to dialogue as much as to any other sound.</p>
+		<p>In the selector, a dialogue event shows its subtitle in the <b>Content</b> column, and the search box matches on that text as well as on the event name — so you can find a line by what's said. Lines whose audio depends on who is speaking can't be previewed; the player's status line says so when you select one.</p>
+		<p>Both still need their bank loaded, so the <b>Show Soundbanks</b> → <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> step above applies to dialogue as much as to any other sound.</p>
 	</section>
 </article>
 
@@ -180,13 +185,14 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Select an event in the list and the player fills in. Controls, left to right:</p>
+		<p>Select an event in the list and the player fills in, as in the screenshots above. The top row is the transport; the row beneath is everything about the take that's loaded:</p>
 		<ul>
-			<li><b>Play</b> / <b>Stop</b>, with a seek bar and elapsed time you can scrub</li>
-			<li>A <b>variations</b> dropdown listing every take behind the event</li>
-			<li><b>Shuffle</b> — jump to a random variation, which is roughly what the game does</li>
-			<li><b>Export</b> and <b>Replace</b> — see below</li>
+			<li><b>Play</b> / <b>Stop</b>, with a seek bar you can scrub and the elapsed / total time. Play becomes <b>Pause</b> while the sound runs, and on a long sound a darker portion of the bar shows how far decoding has got.</li>
+			<li>A <b>status line</b> naming the soundbank the event is declared in, with a count of the others (<i>Mission_DLC_ChallengeMap4 +4</i> in the screenshots), the container path it resolved through — <code>Random</code>, <code>Switch &gt; Random</code> and so on — its sample rate and channel layout, and the media id and the bank or package it lives in. It's cut short with an ellipsis when the window is narrow, as it is above; hover over it for the whole line, or widen the window. If an event resolves to no audio at all, this line says why instead — an event that only changes sound settings, say, or dynamic dialogue that depends on who is speaking.</li>
 			<li><b>Auto-play</b> — start playing as soon as you select an event, so you can arrow through a list and hear each one</li>
+			<li>A <b>variations</b> dropdown listing every take behind the event — <i>Variation 1 of 8 (Random)</i> and so on. It only appears when there's more than one.</li>
+			<li><b>Shuffle</b> — jump to a different variation at random, which is roughly what the game does (also only shown when there's more than one)</li>
+			<li><b>Replace</b> and <b>Export</b> — see below. Replace is hidden for an event that resolved to no audio.</li>
 		</ul>
 		<p>Audio is decoded on demand rather than up front, so a long sound may take a moment before it starts.</p>
     </section>
@@ -198,7 +204,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p><b>Export</b> writes the variation currently selected out as a <code>.wav</code>. The file is decoded from whatever the game stores it as, so you get plain uncompressed audio you can open anywhere.</p>
+		<p><b>Export</b> writes the variation currently selected out as a <code>.wav</code>, named after the event by default. The file is decoded from whatever the game stores it as, so you get plain uncompressed audio you can open anywhere.</p>
 		<p>Exporting waits for the decode to finish first, which for a long sound is a few seconds — the button greys out while it works.</p>
 		<p>Note that this exports <b>one variation</b>, not the whole event. If an event has eight footstep takes and you want all of them, export each in turn.</p>
     </section>
@@ -216,16 +222,18 @@
 			<li>Mono or stereo, duration, and sample rate</li>
 			<li>What it was encoded to, and at what quality</li>
 			<li>How big the new audio is against the audio it replaces</li>
-			<li>Any notes worth knowing before you commit</li>
+			<li>Any notes worth knowing before you commit — how many copies of the audio the game ships and which banks hold them, whether the files holding it will grow, or a copy that couldn't be reached</li>
 		</ul>
-		<p>Confirm and the replacement is applied.</p>
+		<p><img src="img/replace-summary.jpg" alt="The Replace confirmation dialog summarising the incoming audio, its encoding, its size against the original and how many copies the game ships, before asking whether to replace the sound." style="max-width:100%;width:761px"></p>
+		<p class="text-muted small"><i>The summary shown before a replacement is written. Nothing changes until you answer Yes.</i></p>
+		<p>Answer <b>Yes</b> and the replacement is applied; the variation is then reloaded into the player, so you can play the new audio straight back.</p>
 	</section>
 
 	<section class="docs-section" id="replace-prep">
 		<h2 class="section-heading">Preparing a WAV</h2>
 		<p>Replacement audio must be a <code>.wav</code>. A few things to keep in mind:</p>
 		<ul>
-			<li><b>Match the original's channel count where you can.</b> Replacing a mono sound with a stereo file changes how the engine positions it in 3D space.</li>
+			<li><b>Match the original's channel count where you can.</b> Replacing a mono sound with a stereo file changes how the engine positions it in 3D space. The summary describes the file you chose but doesn't compare it with the original — the player's status line is where you read off the original's sample rate and channel layout.</li>
 			<li><b>The encoding follows the original.</b> On PC everything is Wwise Vorbis. The Switch build also stores some sounds as Wwise ADPCM and a few as plain PCM — OpenCAGE encodes to whichever codec the sound it's replacing used, so the game can still read it.</li>
 			<li><b>Size matters, but isn't fatal.</b> The summary tells you how the new audio compares to the old; a much larger file grows the container it lives in.</li>
 			<li><b>A variation with no audio of its own can't be replaced.</b> Some entries in a container are references rather than media — the player says so if you try.</li>
@@ -235,7 +243,7 @@
 	<section class="docs-section" id="replace-copies">
 		<h2 class="section-heading">Every Copy is Replaced</h2>
 		<p>The same audio is often shipped in several banks at once, because banks are loaded per level and a sound used in three levels lives in three places.</p>
-		<p>A replacement therefore updates <b>every copy</b> the game ships, not just the one you were listening to. If it only changed one, the old sound would come back in whichever level loaded a different bank — which reads as a bug in the game rather than an unfinished edit.</p>
+		<p>A replacement therefore updates <b>every copy</b> the game ships, not just the one you were listening to — the summary says how many there are and names the banks, as in the dialog above. If it only changed one, the old sound would come back in whichever level loaded a different bank — which reads as a bug in the game rather than an unfinished edit.</p>
 		<p>If some copies write and others fail, OpenCAGE says so explicitly rather than reporting success, since a partial replacement leaves the sound changed in some places and not others.</p>
 
 		<div class="docs-caveat">
@@ -250,7 +258,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>With an event selected, the <b>Metadata</b> button lists every soundbank the event appears in. That tells you which levels can actually fire it — an event that isn't in a bank your level loads won't play, however correctly the script is wired.</p>
+		<p>With an event selected, the <b>Show Soundbanks</b> button at the bottom right of the window lists every soundbank the event appears in, as shown below. The player's status line already names one of them and counts the rest (<i>Mission_DLC_ChallengeMap4 +4</i>); this is the full list. It tells you which levels can actually fire the event — one that isn't in a bank your level loads won't play, however correctly the script is wired.</p>
+		<p><img src="img/show-soundbanks.jpg" alt="The Soundbanks dialog listing the five soundbanks that declare the selected event, shown over the Sound Editor." style="max-width:100%;width:761px"></p>
+		<p class="text-muted small"><i>Show Soundbanks: the banks this event is declared in — any one of these is a valid target for a SoundLoadBank entity.</i></p>
 		<p>This is where you get the bank name to give a <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> entity, so the event you're about to fire is actually loaded — see <a href="#scripting">Playing a Sound in a Script</a>.</p>
 		<p>If the event isn't listed in any soundbank at all, it says so. That usually means the name is wrong or the event belongs to content that isn't shipped.</p>
 		<p>Which banks are permanently resident is configured separately — see <a href="/docs/configs/perma-soundbanks/">Permanent Soundbanks</a>.</p>
