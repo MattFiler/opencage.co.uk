@@ -88,13 +88,16 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#disabling">Disabling the Viewport</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#moving-camera">Moving the Camera</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#selection">Selection</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#box-select">Box Select</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#deep-select">Deep Select</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#transform-gizmo">Moving Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#create-mode">Creating Entities</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#copy-paste">Copy &amp; Paste</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#hiding-entities">Hiding Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#context-menu">Right-click Menu</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#previews">Previews &amp; Render Filters</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#scene-filters">Occlusion &amp; Collision Meshes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#galaxy">The Sky</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#state-info">Navmesh &amp; Cover</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#zones">Zones</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#options">Viewport Options</a></li>
@@ -122,7 +125,7 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<p>The <b>Viewport</b> is OpenCAGE's 3D view of the level — part of the script editor, docked above the flowgraph in the composite display. Use it to place triggers, models, markers, and anything else that benefits from seeing the level in context.</p>
-				<p>This guide covers navigating the scene, selection, deep select, moving and snapping entities, creating and duplicating them, zones, and render filters.</p>
+				<p>This guide covers navigating the scene, selection and box select, deep select, the right-click menu, moving and snapping entities, creating and duplicating them, the sky, zones, and render filters.</p>
 			</div>
 			<div class="col-lg-4">
 				<img src="img/overview.jpg" alt="The OpenCAGE script editor with the Viewport docked above the flowgraph and a canteen table selected in green." width="100%">
@@ -155,7 +158,7 @@
 
 	<section class="docs-section" id="moving-camera">
 		<h2 class="section-heading">Moving the Camera</h2>
-		<p>To look around the scene, hold the right mouse button and drag. Whilst doing this, you can use <b>W</b>, <b>A</b>, <b>S</b>, and <b>D</b> to move the camera in 3D space. <b>Q</b> and <b>E</b> move down and up. Hold <b>Shift</b> to move faster.</p>
+		<p>To look around the scene, hold the right mouse button and drag. The look starts once the mouse has moved a few pixels (or as soon as you fly with the keys below), so a plain right-click doesn't turn the view — it opens the <a href="#context-menu">right-click menu</a> instead. Whilst dragging, you can use <b>W</b>, <b>A</b>, <b>S</b>, and <b>D</b> to move the camera in 3D space. <b>Q</b> and <b>E</b> move down and up. Hold <b>Shift</b> to move faster.</p>
 		<p>Hold the middle mouse button and drag to pan the camera without changing your viewing angle.</p>
 		<p>Scroll the mouse wheel to adjust movement speed — a small readout appears in the corner when you change it.</p>
 		<p>Press <b>Z</b> to recenter the camera on whatever is currently selected.</p>
@@ -167,13 +170,20 @@
 		<p>Click an entity in the hierarchy or flowgraph and it highlights in the Viewport; click something in the Viewport and the hierarchy jumps to that entity.</p>
 		<p><b>Left-click</b> an object in the Viewport to select it. By default, this selects the relevant entity in the composite you're currently viewing — for example, clicking a model inside a composite instance will select that composite instance entity, not the inner model directly.</p>
 		<p>Selected entities are highlighted in <b>green</b>. You can click empty space or press <b>Escape</b> to deselect.</p>
-		<p>You can select more than one thing. <b>Ctrl + click</b> adds an entity to the selection and <b>Shift + click</b> toggles it in or out; the entity list and inspector follow the whole set (the flowgraph highlights the nodes of the first-selected entity), the gizmo moves all of it together, and <b>Delete</b> removes it in one go (with one confirmation and one undo step). <b>Ctrl+C</b> / <b>Ctrl+V</b> copy and paste the whole selection too.</p>
+		<p>You can select more than one thing. <b>Ctrl + click</b> adds an entity to the selection and <b>Shift + click</b> toggles it in or out, or <a href="#box-select">drag a box</a> round several at once; the entity list and inspector follow the whole set (the flowgraph highlights the nodes of the first-selected entity), the gizmo moves all of it together, and <b>Delete</b> removes it in one go (with one confirmation and one undo step). A drag, a rotation or a <b>Shift + End</b> floor snap of several entities is one undo step too (<b>Move 5 entities</b>), and undoing or redoing it reselects every entity it touched. <b>Ctrl+C</b> / <b>Ctrl+V</b> copy and paste the whole selection, and <b>Ctrl+D</b> duplicates it — see <a href="#copy-paste">Copy &amp; Paste</a>.</p>
 		<p>How the selection is drawn is up to you: <b>Options → Viewport → Selection Highlight Mode</b> offers <b>Green</b> (the tint above), <b>Wireframe</b> (the mesh's edges drawn over its surface — reads as an outline through the object), <b>Wireframe Transparent</b> (edges only, with the surface hidden, for seeing what's behind) and <b>None</b>. <b>Alt+1</b> to <b>Alt+4</b> switch between them without leaving the Viewport.</p>
-		<p>Select a <b>TriggerSequence</b> and everything it fires at is marked along with it, so you can see what a sequence — or a <a href="#zones">Zone</a> — actually covers.</p>
+		<p>Select a <b>TriggerSequence</b> and everything it fires at is marked along with it; select a <b>Zone</b> entity and everything the zone claims is marked the same way, so you can see what a sequence or a <a href="#zones">Zone</a> actually covers.</p>
 		<p>Entities outside the composite you're currently editing are dimmed and can't be picked, which makes it easier to focus on the area you're working on. Step into a nested composite and the Viewport scope updates to match.</p>
 		<p>If <b>Highlight Aliases</b> is enabled under <b>Options → Viewport</b> (on by default), entities targeted by parameterized aliases in the active composite are shown with an <b>orange</b> highlight. The selected entity itself shows green rather than orange.</p>
 		<p>If <b>Highlight Proxies</b> is enabled, entities targeted by proxies are shown with a <b>blue</b> highlight when you've stepped into a nested composite.</p>
 		<p>You can click on render previews too — not just model references. Box volumes, position markers, character previews, spline paths, sound icons, and other filtered entity types are all selectable (see more below).</p>
+	</section>
+
+	<section class="docs-section" id="box-select">
+		<h2 class="section-heading">Box Select</h2>
+		<p>To select several things at once, hold the left button anywhere that isn't a gizmo handle and drag (with <b>Create</b> off — in create mode a click places an entity instead): once the mouse has moved a few pixels a box is drawn, and letting go selects everything inside it. An entity is taken when the middle of its on-screen bounds is inside the box and the whole of it would fit — so a prop only has to be mostly boxed, while geometry bigger than the box (a floor, a wall, an environment composite spread through every room) is left out unless the box is big enough to hold all of it. Anything reaching behind the camera is never taken, and there's no occlusion test, so a box selects through walls.</p>
+		<p>A plain box replaces the selection (a box round nothing clears it, like a click on nothing); <b>Ctrl</b>-drag adds what the box holds and <b>Shift</b>-drag toggles each entity in or out. Press <b>Escape</b>, or the right or middle button, mid-drag to cancel. The box picks what a click would: only entities in the composite you're editing (dimmed ones, filtered-out previews and anything you've hidden with <b>H</b> are skipped), and in <b>Advanced Deep Select</b> mode each entity in the box gets a deep-select alias as a click would, up to 64 new aliases per box, nearest the middle of the box first.</p>
+		<p>Because a press might become a box, a plain click selects when you release the button rather than when you press it.</p>
 	</section>
 
 	<section class="docs-section" id="deep-select">
@@ -221,7 +231,7 @@
 		</ul>
 
 		<h3 class="section-heading" style="font-size: 1.1rem; margin-top: 1.5rem;">Duplicating</h3>
-		<p>Hold <b>Shift</b> and drag a translate handle: the selection is duplicated in place and the copies follow the drag, leaving the originals where they were. The copies are made through the same path as a paste, so they keep every parameter. The duplication is one undo step and the drag that places the copies is another (one per copy, when several were duplicated), so undoing after a Shift-drag first puts the copies back where they spawned, and a further undo removes them. Let go before they arrive and the copies simply sit on top of the originals. In <a href="/docs/cage-animation-editor/#animation-mode">Animation Mode</a> Shift-drag doesn't duplicate — there a drag is a keyframe, and Shift leaves it a plain drag.</p>
+		<p>Hold <b>Shift</b> and drag a translate handle: the selection is duplicated in place and the copies follow the drag, leaving the originals where they were. The copies are made through the same path as a paste, so they keep every parameter. The whole Shift-drag — the copies and the drag that places them — is one undo step (<b>Duplicate 3 entities</b>), so a single <b>Ctrl+Z</b> removes the copies rather than leaving them stacked on the originals. Let go before they arrive and the copies simply sit on top of the originals — which is what <b>Ctrl+D</b> does without a drag; see <a href="#copy-paste">Copy &amp; Paste</a>. In <a href="/docs/cage-animation-editor/#animation-mode">Animation Mode</a> Shift-drag doesn't duplicate — there a drag is a keyframe, and Shift leaves it a plain drag.</p>
 	</section>
 
 	<section class="docs-section" id="create-mode">
@@ -230,13 +240,13 @@
 		<p><img src="img/create-menu.jpg" alt="The Create dropdown on the Viewport toolbar with None ticked, followed by the function types that can be placed by clicking in the scene, each with its filter colour." width="100%"></p>
 		<p>This is much quicker than adding an entity from the palette and then dragging it into place — particularly for the things you place by eye, like trigger boxes, position markers and pathfinding nodes.</p>
 		<p>Choose <b>None</b> to leave create mode and go back to normal selection, or press <b>Escape</b> — from the Viewport or anywhere else in the editor, unless you're typing in a text box.</p>
-		<p>Composites can be placed the same way: <b>drag a composite from the Composite Browser onto the Viewport</b> and an instance of it is created in the composite you're editing, positioned where you dropped it. Dragging onto the flowgraph still works too, for when you'd rather place it by hand afterwards.</p>
+		<p>Composites can be placed the same way: <b>drag a composite from the Composite Browser onto the Viewport</b> and an instance of it is created in the composite you're editing, positioned where you dropped it. Dragging onto the flowgraph still works too, for when you'd rather place it by hand afterwards. Function types drag out of the <a href="/docs/scripting-intro/">Entity Palette</a> the same way: a type with a <code>position</code> parameter (a model, a light, a sound, a trigger sequence...) is created where you drop it, with the cursor showing whether it can be dropped; one without a position does nothing when dropped on the Viewport, so drop it on the flowgraph instead.</p>
 	</section>
 
 	<section class="docs-section" id="copy-paste">
 		<h2 class="section-heading">Copy &amp; Paste</h2>
 		<p>Select an entity in the Viewport and <b>Ctrl+C</b> / <b>Ctrl+V</b> copies and pastes it, keeping all of its parameters. The same clipboard works on the flowgraph, so you can copy in one view and paste in the other, and entities can be pasted into a different composite entirely.</p>
-		<p>This replaces the old <b>Duplicate</b> option. See <a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> for what happens to links and node layouts when you paste on the flowgraph. For a copy you want to place straight away, <a href="#transform-gizmo">Shift-drag</a> the gizmo instead.</p>
+		<p><b>Ctrl+D</b> (or <b>Duplicate</b> on the <a href="#context-menu">right-click menu</a>) duplicates the selection in place: the copies land exactly on the originals and come back selected, ready for the gizmo, as one undo step. It goes through the same paste path, so the copies keep every parameter, and it leaves whatever is on your clipboard alone. For a copy you want to place straight away, <a href="#transform-gizmo">Shift-drag</a> the gizmo instead. See <a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> for what happens to links and node layouts when you paste on the flowgraph.</p>
 	</section>
 
 	<section class="docs-section" id="hiding-entities">
@@ -244,6 +254,17 @@
 		<p>Need to temporarily get something out of the way while you work on geometry behind it? With an entity selected, press <b>H</b> to hide it in the Viewport. This is display-only — it doesn't delete or modify anything in your scripts.</p>
 		<p>Press <b>Shift + H</b> to unhide everything you've hidden in the current composite scope.</p>
 		<p>Hides reset automatically when you navigate to a different composite or step into/out of a composite instance, so you won't accidentally carry hidden state across contexts.</p>
+	</section>
+
+	<section class="docs-section" id="context-menu">
+		<h2 class="section-heading">Right-click Menu</h2>
+		<p>Right-click in the Viewport — press and release without moving the mouse — and a menu opens at the cursor with the actions that apply to the selection. Right-click something that isn't selected and it's selected first, as a left-click would select it; right-click something that's already part of the selection and the menu acts on the whole selection; right-click empty space and the selection is left as it is. Each entry does exactly what its shortcut does:</p>
+		<ul>
+			<li><b>Copy</b> (<b>Ctrl+C</b>), <b>Paste</b> (<b>Ctrl+V</b>), <b>Duplicate</b> (<b>Ctrl+D</b>) and <b>Delete</b> (<b>Delete</b>) — see <a href="#copy-paste">Copy &amp; Paste</a>. <b>Paste</b> is greyed out while OpenCAGE's entity clipboard is empty.</li>
+			<li><b>Focus on Selection</b> (<b>Z</b>), <b>Snap to Floor</b> (<b>Shift + End</b>), <b>Hide</b> (<b>H</b>) and <b>Unhide All</b> (<b>Shift + H</b>).</li>
+			<li><b>Step Into Composite</b> steps into the composite instance under the cursor, as <b>Ctrl + middle-click</b> does. <b>Select Parent Composite</b> steps back out of the composite instance you're in and selects that instance — where pressing <b>-</b> until it leaves the composite lands. <b>Deselect All</b> (<b>Escape</b>).</li>
+		</ul>
+		<p>Entries with nothing to act on are greyed out — <b>Unhide All</b> with nothing hidden, <b>Select Parent Composite</b> at the root, and so on. The next click or key press in the Viewport closes the menu and does nothing else (so <b>Escape</b> closes it without deselecting); a click anywhere else in the editor closes it as it would any menu, and it goes when a level loads. A right press while a box is being drawn drops the box and opens nothing, and one in the middle of a gizmo drag opens nothing either.</p>
 	</section>
 
 	<section class="docs-section" id="previews">
@@ -276,6 +297,12 @@
 		<p>Both are drawn in a flat filter colour and are off by default. They're the quickest way to check that geometry you've moved or ported has collision where you expect it — see <a href="/docs/save-and-build/">Save and Build</a>.</p>
 	</section>
 
+	<section class="docs-section" id="galaxy">
+		<h2 class="section-heading">The Sky</h2>
+		<p>Where a level looks out into space, the Viewport draws the level's own galaxy — the starfield in <code>RENDERABLE/GALAXY/GALAXY.ITEMS_BIN</code> — as its sky, on black, the way the game draws it, so windows and exteriors read as they do in game. <b>Options → Viewport → Render Galaxy</b> turns it off and puts the plain sky back; it's on by default. A level with no galaxy keeps the plain sky either way, and only the stars are drawn — the level's planets aren't part of the sky.</p>
+		<p>The stars come from the level as loaded, and <b>Generate Galaxy</b> in the <a href="/docs/galaxy-editor/">Galaxy Editor</a> swaps the new starfield in straight away, without a save. Stars are drawn at the game's brightness for a full-height frame; in a Viewport shorter than 1080 pixels they're brightened to match, so the galaxy doesn't fade into the pixels of a small docked panel.</p>
+	</section>
+
 	<section class="docs-section" id="state-info">
 		<h2 class="section-heading">Navmesh &amp; Cover</h2>
 		<p>The <b>Show State Info</b> dropdown on the Viewport toolbar draws generated NPC state resources over the level. For each of the level's states you can show one or both of:</p>
@@ -294,7 +321,9 @@
 		<p>Zones are how the game streams a level: each one names a set of composites and entities that are loaded together, and only when the zone is active (there's more in the <a href="/docs/scripting-intro/#composites">Scripting Intro</a>). Getting them right matters — an entity in no zone, or in the wrong one, is missing or popping in at runtime — and they're invisible in the flowgraph.</p>
 		<p><b>Highlight Zones</b> on the Viewport toolbar tints every piece of geometry by the zone it belongs to, one colour per zone, so the boundaries are drawn on the level itself — shown below from inside the Torrens canteen, where the room and the tables in it fall into different zones. The colour replaces the geometry's textures while it's on, so a change of colour always marks a zone boundary. The colouring follows your edits: rewire a zone's links, paste something into a zoned composite, delete an entity, and the tints update once the change settles. Turn it off when you don't need it — nothing is calculated while it's off, and turning it back on works everything out afresh.</p>
 		<p><img src="img/zones.jpg" alt="The Viewport with Highlight Zones on: the canteen drawn flat in zone colours, the room in one colour and its tables in another." width="100%"></p>
-		<p>Membership is worked out the way the build does it: from a <b>Zone</b> entity through its <b>composites</b> pin to the <b>TriggerSequence</b>s it names, and from their entries to the entities and composites they cover — with one deliberate difference. The build leaves the contents of a <i>shared</i> composite unzoned, whereas the Viewport colours each placement of one by the zone of the room it stands in, so a shared composite showing a zone colour here doesn't mean the build zones it. Select a TriggerSequence and its members are marked with it; the <a href="/docs/scripting-intro/#inspector">inspector's Zone button</a> names the zone the selected entity is in.</p>
+		<p>Membership is worked out the way the build does it: from a <b>Zone</b> entity through its <b>composites</b> pin to the <b>TriggerSequence</b>s it names, and from their entries to the entities and composites they cover — with one deliberate difference. The build leaves the contents of a <i>shared</i> composite unzoned, whereas the Viewport colours each placement of one by the zone of the room it stands in, so a shared composite showing a zone colour here doesn't mean the build zones it. Select a TriggerSequence and its members are marked with it, and select a <b>Zone</b> entity and everything it claims — what its sequences name, and everything inside those — is marked the same way; the <a href="/docs/scripting-intro/#inspector">inspector's Zone button</a> names the zone the selected entity is in.</p>
+		<p>While <b>Highlight Zones</b> is on, the rest of the editor shows the same colours: every node on the flowgraph is striped in its zone's colour, and the inspector shows a matching square beside the entity's name (hover it for the zone's name). The colours are read off the same table the Viewport draws from, so they only appear while the Viewport is on and highlighting zones, and only when you reached the composite by stepping down from the level root — a zone is per placement, so a composite opened on its own has no zone to show.</p>
+		<p>To put things into a zone, right-click the <b>TriggerSequence</b> that fills it: select the entities, then right-click the sequence's flowgraph node (in the entity list, <b>Ctrl + click</b> the entities and the sequence together, then right-click the sequence). <b>Add Selected To TriggerSequence</b> and <b>Remove Selected From TriggerSequence</b> put the selected entities in or take them out, one undo step each. <b>Auto-add New Entities To TriggerSequence</b> makes every composite instance, model, light or other placeable entity you create from then on join it — here, or in a composite you step into from here — until you click it again or load another level; while it's on, right-clicking an entity in one of those nested composites offers the same Add and Remove entries, naming the sequence. The Viewport's zone colours follow every change.</p>
 	</section>
 
 	<section class="docs-section" id="options">
@@ -310,6 +339,7 @@
 			<li><b>Fix Camera to Selected Entity</b> — keep the camera locked on the selection rather than framing it once. Turning this on turns on <b>Focus on Selected</b> too</li>
 			<li><b>Show Camera Position</b> — display camera X/Y/Z coordinates while moving</li>
 			<li><b>Render Wireframe</b> — draw ModelReference meshes as wireframe overlays</li>
+			<li><b>Render Galaxy</b> — draw the level's galaxy (its starfield) as the Viewport sky, as the game does; off shows the plain sky instead. On by default; see <a href="#galaxy">The Sky</a></li>
 			<li><b>Hide Nested Script Entities</b> — hide render previews for entities defined in nested composites (models are drawn regardless; untick the ModelReference render filter to hide those)</li>
 			<li><b>Selection Highlight Mode</b> — <b>Green</b>, <b>Wireframe</b>, <b>Wireframe Transparent</b> or <b>None</b> (<b>Alt+1</b> to <b>Alt+4</b>); see <a href="#selection">Selection</a></li>
 			<li><b>Snap Increments…</b> (below the separator) — edit the values offered by the <b>Transform Snap</b> and <b>Rotation Snap</b> menus; see <a href="#transform-gizmo">Moving Entities</a></li>
@@ -332,6 +362,8 @@
 			<li>Click the Viewport first before using camera/hotkeys — those shortcuts apply when the Viewport has focus.</li>
 			<li>If there's no Viewport at all, check <b>Options → Viewport → Enable Viewport</b> first, then Steam's launch options — you may have <code>-disable_viewport</code> set.</li>
 			<li>Opening several editor windows? Use <b>Launch other editors without viewport</b> under Manage Game Directories to save memory — more in <a href="/docs/multiple-game-installs/">Multiple Game Installs</a>.</li>
+			<li><b>Ctrl+S</b> saves and <b>Ctrl+Shift+S</b> saves and builds from inside the Viewport too, so you don't have to click back into the editor first — see <a href="/docs/save-and-build/">Save and Build</a>.</li>
+			<li>If the Viewport never appears and OpenCAGE reports that the level viewer's .NET runtime is missing from its folder, the viewer's files are incomplete: on a Steam install, verify the integrity of OpenCAGE's files; on a build from source, export the viewer from the Godot editor rather than copying a <code>dotnet build</code> output into its folder.</li>
 		</ul>
 	</section>
 </article>

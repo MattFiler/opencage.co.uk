@@ -148,19 +148,15 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>The <b>Entity Display</b> submenu controls how entities and their flowgraph nodes are shown, coloured and removed. Below it is open with the default ticks:</p>
-		<p><img src="img/options-entity-display.jpg" alt="The Options menu with the Entity Display submenu open, listing Show ShortGuids, the node pin and canvas focus options, Set Node Colours and the three node-deletion options." style="max-width:100%;width:720px"></p>
+		<p><img src="img/options-entity-display.jpg" alt="The Options menu with the Entity Display submenu open, listing Show ShortGuids, the node pin and canvas focus options and Show Confirmation When Deleting Node." style="max-width:100%;width:720px"></p>
 		<ul>
 			<li><b>Show ShortGuids</b> — shows entity IDs (ShortGuids) in lists, names, breadcrumbs, aliases/proxies, and global search (off by default).</li>
 			<li><b>Populate All Node Pins When Created</b> — new flowgraph nodes get every pin added automatically (on by default).</li>
 			<li><b>Focus Canvas On Newly Created Node</b> — moves the flowgraph view to a node as soon as you add it (off by default).</li>
-			<li><b>Set Node Colours</b> — opens the <b>Set Node Colours</b> window shown below, with a swatch for the text, title background and border colour of each flowgraph node type — Functions, Instances, Proxies, Aliases, Variables (which have no border swatch) and <a href="/docs/composite-porting/#unresolvable-proxies">Unresolvable Proxies</a>, whose colour is also used for the links through them. Click a swatch to pick a colour; open flowgraphs recolour straight away. <b>Reset</b> restores the defaults.
-				<p><img src="img/set-node-colours.jpg" alt="The Set Node Colours window with a row of text, title background and border colour swatches for each flowgraph node type and a Reset button." style="max-width:100%;width:299px"></p>
-				<p class="text-muted small"><i>The shipped default colours.</i></p>
-			</li>
 			<li><b>Show Confirmation When Deleting Node</b> — asks before removing a flowgraph node (off by default; removing a node is undone with <b>Ctrl+Z</b> like any other edit).</li>
-			<li><b>Give Option To Delete Entity When No Nodes</b> — after the last node for an entity is removed, asks whether to delete the entity too (on by default). Only asked when <b>Auto Delete Entities When Nodes Deleted</b> is off; with both off, the entity is left behind without its node.</li>
-			<li><b>Auto Delete Entities When Nodes Deleted</b> — when the last node for an entity is removed and nothing else references the entity, it's deleted along with the node without asking (on by default). An entity still referenced anywhere — a TriggerSequence, a CAGEAnimation, a proxy or an alias — is always left alone.</li>
 		</ul>
+		<p>Node colours aren't set here any more: each node is coloured by its type, and the colours aren't configurable.</p>
+		<p>Nor is there a choice about what happens to an entity when its last node is removed. It's deleted with the node — unless it's something the level places in the world (a model, a light or another of the types on the Viewport's <b>Create</b> menu), or something else still refers to it: a TriggerSequence, a CAGEAnimation, a proxy or an alias. Those are left in the composite without a node. Hold <b>Shift</b> while removing nodes to delete their entities outright, whatever they are. The nodes and any entities that go with them undo as one step.</p>
     </section>
 </article>
 
@@ -180,6 +176,7 @@
 			<li><b>Fix Camera to Selected Entity</b> — keeps the camera locked on the selection as it moves, rather than framing it once. Turning this on turns on <b>Focus on Selected</b> too; turning <b>Focus on Selected</b> off turns this off with it (off by default).</li>
 			<li><b>Show Camera Position</b> — shows camera X/Y/Z while moving (off by default).</li>
 			<li><b>Render Wireframe</b> — draws ModelReference meshes as wireframe (off by default).</li>
+			<li><b>Render Galaxy</b> — draws the level's own starfield (its <code>GALAXY.ITEMS_BIN</code>) as the Viewport's sky, on black, the way the game does (on by default). Off, the Viewport shows its plain sky. A level with no galaxy keeps the plain sky either way, and <b>Generate Galaxy</b> in the <a href="/docs/galaxy-editor/">Galaxy Editor</a> updates the Viewport straight away. Planets aren't drawn in the sky.</li>
 			<li><b>Hide Nested Script Entities</b> — hides render previews for script entities in nested composites (off by default). Models are drawn regardless; the <b>ModelReference</b> render filter is what hides those.</li>
 			<li><b>Selection Highlight Mode</b> — how the Viewport marks the selection: <b>Green</b> (a tint over the mesh, the default), <b>Wireframe</b> (the mesh's edges drawn over it), <b>Wireframe Transparent</b> (edges only, with the surface hidden) or <b>None</b>. <b>Alt+1</b> to <b>Alt+4</b> switch between them in the Viewport.</li>
 			<li><b>Snap Increments…</b> — opens the <b>Snap Increments</b> window shown below, which edits the values offered by the Viewport's <b>Transform Snap</b> and <b>Rotation Snap</b> menus. Type a value under either list and press <b>Add</b>, or select an entry and press <b>Remove Selected</b>; each list keeps itself sorted. <b>Off</b> never appears here because the menus always offer it and it can't be removed. <b>Reset to Defaults</b> restores the shipped lists. If you remove the increment currently selected, the nearest remaining one takes over. The menus update as you edit.

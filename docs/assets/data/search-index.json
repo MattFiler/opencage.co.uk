@@ -449,6 +449,10 @@
         "category":  "Galaxy Editor",
         "keywords":  [
             "intro",
+            "viewport",
+            "render galaxy",
+            "preview",
+            "sky",
             "galaxy editor"
         ],
         "title":  "Introduction"
@@ -474,6 +478,10 @@
         "keywords":  [
             "generate",
             "regenerate",
+            "viewport",
+            "reciprocal",
+            "star size",
+            "brightness",
             "galaxy editor"
         ],
         "title":  "Generate Galaxy"
@@ -12742,6 +12750,9 @@
             "SwitchLevel",
             "cathode entities",
             "entity",
+            "level picker",
+            "level_name",
+            "dropdown",
             "interface"
         ],
         "title":  "SwitchLevel"
@@ -19186,6 +19197,9 @@
             "wireframe",
             "triggersequence",
             "delete",
+            "box select",
+            "undo",
+            "move entities",
             "viewport"
         ],
         "title":  "Selection"
@@ -19791,6 +19805,11 @@
         "category":  "Options",
         "keywords":  [
             "entity-display",
+            "colour all nodes by zone",
+            "zone colour",
+            "node colours",
+            "delete entity",
+            "node deletion",
             "options"
         ],
         "title":  "Entity Display"
@@ -19805,6 +19824,10 @@
             "snap increments",
             "selection highlight mode",
             "highlight mode",
+            "render galaxy",
+            "galaxy",
+            "starfield",
+            "sky",
             "options"
         ],
         "title":  "Viewport"
@@ -21031,7 +21054,9 @@
             "instanced",
             "instance",
             "build",
-            "regenerate"
+            "regenerate",
+            "ctrl+shift+s",
+            "shortcut"
         ],
         "title":  "Save and Build"
     },
@@ -22015,6 +22040,9 @@
             "copy",
             "paste",
             "duplicate",
+            "ctrl+d",
+            "duplicate in place",
+            "right-click",
             "viewport"
         ],
         "title":  "Copy \u0026 Paste"
@@ -22609,6 +22637,8 @@
             "tree",
             "nested",
             "instanced",
+            "open composite after import",
+            "open after import",
             "composite porting"
         ],
         "title":  "Import from Level"
@@ -22687,6 +22717,7 @@
             "name",
             "description",
             "default",
+            "open composite after import",
             "composite porting"
         ],
         "title":  "Import from Disk"
@@ -22719,6 +22750,10 @@
             "zone",
             "streaming",
             "triggersequence",
+            "colour all nodes by zone",
+            "zone entity",
+            "add selected to triggersequence",
+            "auto-add",
             "viewport"
         ],
         "title":  "Zones"
@@ -22969,5 +23004,152 @@
             "composite porting"
         ],
         "title":  "Related"
+    },
+    {
+        "url":  "/docs/level-viewer/#box-select",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "box-select",
+            "box select",
+            "marquee",
+            "drag select",
+            "multi-select",
+            "ctrl-drag",
+            "shift-drag",
+            "selection",
+            "viewport"
+        ],
+        "title":  "Box Select"
+    },
+    {
+        "url":  "/docs/level-viewer/#context-menu",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "context-menu",
+            "context menu",
+            "right-click",
+            "right click",
+            "duplicate",
+            "snap to floor",
+            "select parent composite",
+            "step into composite",
+            "deselect all",
+            "unhide all",
+            "viewport"
+        ],
+        "title":  "Right-click Menu"
+    },
+    {
+        "url":  "/docs/level-viewer/#galaxy",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "galaxy",
+            "sky",
+            "starfield",
+            "stars",
+            "render galaxy",
+            "GALAXY.ITEMS_BIN",
+            "generate galaxy",
+            "planets",
+            "viewport"
+        ],
+        "title":  "The Sky"
+    },
+    {
+        "url":  "/docs/scripting-intro/#node-colours",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "node-colours",
+            "node colours",
+            "node colour",
+            "category colour",
+            "proxy outline",
+            "alias outline",
+            "dashed outline",
+            "data links",
+            "unresolvable proxy",
+            "cathode scripting introduction"
+        ],
+        "title":  "Node Colours"
+    },
+    {
+        "url":  "/docs/scripting-intro/#level-picker",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "level-picker",
+            "level picker",
+            "switchlevel",
+            "level_name",
+            "levelname",
+            "level dropdown",
+            "lift",
+            "barrier",
+            "cathode scripting introduction"
+        ],
+        "title":  "Picking a Level for SwitchLevel"
+    },
+    {
+        "url":  "/docs/scripting-intro/#zones",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "zones",
+            "zone",
+            "highlight zones",
+            "zone colour",
+            "colour all nodes by zone",
+            "add selected to triggersequence",
+            "remove selected from triggersequence",
+            "auto-add new entities",
+            "triggersequence",
+            "cathode scripting introduction"
+        ],
+        "title":  "Zones in the Script Editor"
+    },
+    {
+        "url":  "/docs/trigger-sequence-editor/#context-menu",
+        "description":  "On TriggerSequence Editor",
+        "type":  "symbol",
+        "category":  "TriggerSequence Editor",
+        "keywords":  [
+            "context-menu",
+            "context menu",
+            "right-click",
+            "add selected to triggersequence",
+            "remove selected from triggersequence",
+            "flowgraph",
+            "entity list",
+            "triggersequence",
+            "triggersequence editor"
+        ],
+        "title":  "Adding Entities Without the Editor"
+    },
+    {
+        "url":  "/docs/trigger-sequence-editor/#auto-add",
+        "description":  "On TriggerSequence Editor",
+        "type":  "symbol",
+        "category":  "TriggerSequence Editor",
+        "keywords":  [
+            "auto-add",
+            "auto-add new entities to triggersequence",
+            "auto add",
+            "zone",
+            "placed entities",
+            "nested composites",
+            "triggersequence",
+            "triggersequence editor"
+        ],
+        "title":  "Auto-add New Entities"
     }
 ]

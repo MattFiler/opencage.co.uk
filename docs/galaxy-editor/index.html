@@ -110,9 +110,9 @@
 		<p class="text-muted small"><i>The Galaxy Editor opened on a retail level — every shipped level carries this same DefaultGalaxy definition.</i></p>
 		<ul>
 			<li><code>GALAXY.DEFINITION_BIN</code> — name, star count, and frequency-weighted star templates (authoring; used to regenerate)</li>
-			<li><code>GALAXY.ITEMS_BIN</code> — generated stars the game reads at runtime (size, intensity, colour, position)</li>
+			<li><code>GALAXY.ITEMS_BIN</code> — generated stars the game reads at runtime and the Viewport draws as its sky (size, intensity, colour, position)</li>
 		</ul>
-		<p>There is no 3D star preview or per-star position editor in this window — edit templates, then regenerate.</p>
+		<p>There is no per-star editor in this window — edit templates, then regenerate. The result shows in the <a href="/docs/level-viewer/">Viewport</a>, which draws the level's galaxy as its sky the way the game does (<b>Options → Viewport → Render Galaxy</b>, on by default) and swaps in a regenerated one the moment you generate it. A level with no stars keeps the Viewport's plain sky.</p>
 		<p>The <b>Galaxy Editor</b> item sits in the main window's <b>View</b> menu with the other asset editors, as shown below, and is greyed out until a level is loaded.</p>
 		<p><img src="img/view-menu.jpg" alt="The View menu of the main OpenCAGE window with the Galaxy Editor item highlighted." style="max-width:100%;width:227px"></p>
 		<p class="text-muted small"><i>The View menu with a level loaded: Galaxy Editor sits below the model, material and texture editors and above Sound Editor.</i></p>
@@ -145,10 +145,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Click <b>Generate Galaxy</b> to regenerate the in-memory star list from the current definition (unseeded RNG: each star is placed uniformly between −1 and 1 on every axis, picks its template in proportion to the frequencies, and takes a random size and intensity from that template's ranges). The name and star count are applied to the definition at this point. A successful run shows the <b>Galaxy Generated</b> box below, reading <b>Successfully regenerated galaxy!</b>; with zero stars or no templates it still succeeds, but produces an empty star list.</p>
+		<p>Click <b>Generate Galaxy</b> to regenerate the in-memory star list from the current definition, the way the game's own generator does. Each star picks its template in proportion to the frequencies and points along a random direction (a random point in the unit cube, normalised, so the cube's corners come out a touch denser — as in the game). Its size is drawn so that the <i>reciprocal</i> of the size is uniform between the template's size bounds, which makes small stars the common ones, as in every shipped galaxy; its intensity is uniform between the intensity bounds. A template with a size bound of 0 gets a uniform size instead. Only the random sequence differs from the game's — it's unseeded, so no two runs match. The name and star count are applied to the definition at this point. A successful run shows the <b>Galaxy Generated</b> box below, reading <b>Successfully regenerated galaxy!</b>, and the Viewport swaps in the new starfield straight away; with zero stars or no templates it still succeeds, but produces an empty star list and the Viewport goes back to its plain sky.</p>
 		<p><img src="img/galaxy-generated.jpg" alt="The Galaxy Generated information box reading Successfully regenerated galaxy! with an OK button." style="max-width:100%;width:259px"></p>
 		<p class="text-muted small"><i>The confirmation after a successful Generate Galaxy run.</i></p>
-		<p>Generating does not write to disk by itself — use <b>File → Save Level</b> afterward. There is no import/export of star lists.</p>
+		<p>Earlier versions of OpenCAGE drew star sizes uniformly, which made a regenerated galaxy's stars roughly twice the size and four times as bright as the game's for the stock template ranges. If you generated a galaxy with one of those, generate it again to bring it into line.</p>
+		<p>Generating does not write to disk by itself — the Viewport shows the new galaxy at once, but the game reads the files, so use <b>File → Save Level</b> afterward. There is no import/export of star lists.</p>
     </section>
 </article>
 

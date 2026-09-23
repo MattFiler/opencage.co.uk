@@ -127,9 +127,9 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>A shipped Cathode level is not just its scripts and its models. Sitting alongside those is a large amount of <b>derived data</b> that the engine reads at runtime but never works out for itself: which surfaces receive which lights, where NPCs can walk, what a bullet collides with, where the alien can take cover, and how sound travels from room to room.</p>
 		<p>Creative Assembly generated all of that offline, in CAGE, whenever a level was built. If you move a wall in OpenCAGE and only write the scripts back, the wall moves — but its shadow, its collision, and the navmesh around it stay exactly where they were.</p>
-		<p><b>File → Save and Build Level</b> is the option that regenerates it — it sits directly under the plain <b>Save Level</b> in the File menu, as shown below. It performs a normal save, and then rebuilds the level's instanced data from whatever the level now actually contains.</p>
+		<p><b>File → Save and Build Level</b> (<b>Ctrl+Shift+S</b>) is the option that regenerates it — it sits directly under the plain <b>Save Level</b> in the File menu, as shown below. It performs a normal save, and then rebuilds the level's instanced data from whatever the level now actually contains.</p>
 		<p><img src="img/file-menu.jpg" alt="The File menu in OpenCAGE, with Save Level and Save and Build Level listed one under the other." style="max-width:100%;width:720px"></p>
-		<p class="text-muted small"><i>Save Level has the Ctrl+S shortcut; Save and Build Level has no shortcut and is only reached from this menu.</i></p>
+		<p class="text-muted small"><i>Save Level has the <b>Ctrl+S</b> shortcut and Save and Build Level has <b>Ctrl+Shift+S</b>. Both shortcuts also work while the Viewport has the focus.</i></p>
 		<p>This is the feature that makes it possible to add new geometry to a level and have the game treat it as real.</p>
     </section>
 </article>

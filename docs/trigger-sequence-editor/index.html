@@ -91,6 +91,8 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#triggers"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Triggers</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#method-pins">Method Pins</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#closing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Closing</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#context-menu"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Adding Entities Without the Editor</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#auto-add">Auto-add New Entities</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related</a></li>
 
 </ul></nav></div>
@@ -157,9 +159,10 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>The Entities list shows each sequence entry as a row: the resolved entity hierarchy path, and the delay in seconds. Checkboxes on the left are used for bulk removal. The search box above the list filters rows by entity path (click <b>X</b> to clear it); while a filter is active the up / down buttons and drag reordering are disabled, because a row’s neighbours in a filtered list aren’t its neighbours in the sequence.</p>
-		<p>Click <b>Add Entities…</b> to open the hierarchy picker with checkboxes. Check one or more function entities, then click <b>Select Checked Entities</b>. The picker starts in the current composite, with a search box above the list: <b>Follow Entity Through</b> (enabled only while a composite instance is highlighted) steps into that instance, <b>&lt; Back</b> steps out again, and <b>Browse from level root</b> restarts at the level’s root so an entry can point into a different branch of the level. All checked entities are inserted after the current selection (or at the end if nothing is selected). If nothing is checked, the highlighted row alone is added.</p>
+		<p>Click <b>Add Entities…</b> to open the hierarchy picker with checkboxes. Check one or more function entities, then click <b>Select Checked Entities</b>. The picker starts in the current composite, with a search box above the list. <b>Follow Entity Through</b> (enabled only while a composite instance is highlighted) steps into that instance, and the composite you’re in — with the path you followed to get there — is shown along the bottom as a clickable breadcrumb, the same one the main editor uses: click any segment to jump back up to that composite, with the instance you came through selected so you can see which way you went, or click <b>&lt; Back</b> to go up one level. <b>Browse from level root</b> restarts at the level’s root so an entry can point into a different branch of the level. All checked entities are inserted after the current selection (or at the end if nothing is selected). If nothing is checked, the highlighted row alone is added.</p>
 		<p><img src="img/add-entities-picker.jpg" alt="The Select Entities picker opened from Add Entities, listing the composite’s function entities with checkboxes, a Browse from level root button, and Select Checked Entities to confirm." style="max-width:100%;width:765px"></p>
 		<p class="text-muted small"><i>Add Entities… opens the shared entity picker in multi-select mode. Two rows are ticked here; Follow Entity Through is greyed out because no composite instance is highlighted.</i></p>
+		<p>You don’t have to open the editor to do this. Right-clicking a TriggerSequence on the flowgraph or in the entity list can add or remove the selected entities directly — see <a href="#context-menu">Adding Entities Without the Editor</a>.</p>
 	</section>
 
 	<section class="docs-section" id="entity-details">
@@ -220,6 +223,32 @@
 		<p>Click <b>Close</b> to leave the editor. Before closing, OpenCAGE checks that every sequence entry points at a real entity hierarchy. If any entry is empty or incomplete, you get an error and the window stays open so you can fix it.</p>
 		<p>There is no separate Save button — sequence and method edits are already on the entity. Persist them with the usual composite / level save. The whole session is recorded as a single undo step when the window closes (<b>Edit → Undo</b> lists it as “Edit trigger sequence of” the entity), so one <b>Ctrl+Z</b> afterwards puts both lists back as they were when the editor opened.</p>
     </section>
+</article>
+
+<article class="docs-article" id="context-menu">
+    <header class="docs-header">
+		<h1 class="docs-heading">Adding Entities Without the Editor</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>For the everyday job — putting the things you’ve just placed into a sequence, or taking them out again — you don’t need the editor at all. Select the entities, then right-click the TriggerSequence:</p>
+		<ul>
+			<li>On the <b>flowgraph</b>, right-click the sequence’s node. A right-click leaves your selection alone, so the selected nodes are what goes in, and the sequence itself never ends up in its own list.</li>
+			<li>In the <b>entity list</b>, a right-click selects the row under it unless that row is already selected — so <b>Ctrl</b>+click the entities <i>and</i> the sequence first, then right-click the sequence.</li>
+		</ul>
+		<p>The menu then offers:</p>
+		<ul>
+			<li><b>Add Selected To TriggerSequence</b> — appends the selected entities that aren’t in the sequence yet to the end of it, as one undo step. The label counts them (“Add 3 Selected To TriggerSequence”) and is greyed out when there’s nothing to add. Only function entities and composite instances can go in — the same things the editor’s picker offers.</li>
+			<li><b>Remove Selected From TriggerSequence</b> — takes out every entry that names a selected entity. An entity listed at two timings is two entries, and both go. Also one undo step.</li>
+		</ul>
+		<p>The same items appear on a <b>proxy</b> to a TriggerSequence, which carries a list of its own. If the editor is open on that sequence it’s closed first, and whatever it had changed is recorded as its own undo step before the addition goes on top. With the <a href="/docs/level-viewer/#zones">Viewport</a> open, select the sequence afterwards to see what it now covers.</p>
+	</section>
+
+	<section class="docs-section" id="auto-add">
+		<h2 class="section-heading">Auto-add New Entities</h2>
+		<p>The third item, <b>Auto-add New Entities To TriggerSequence</b>, is a toggle. While it’s ticked, everything placeable you create joins the sequence as you make it — composite instances, and the kinds of entity the Viewport can place (models, lights, fog spheres and so on) — whether you add it from a Create menu, paste it, or place it in the Viewport. That includes entities made in a composite you step into from the sequence’s composite, not just the one it lives in, which is how a level’s zone sequences name geometry inside nested composites. Every addition is undoable, like a manual add.</p>
+		<p>While it’s on, right-clicking any entity in those composites also offers Add and Remove for that sequence by name, so you can correct a stray one without going back to the sequence’s node. Click the item again to stop. It also stops when you load another level or delete the sequence (or its composite), and it isn’t saved with the level.</p>
+	</section>
 </article>
 
 <article class="docs-article" id="related">
