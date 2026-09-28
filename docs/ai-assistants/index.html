@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: AI Assistants</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to let an AI assistant such as Claude drive OpenCAGE through the Model Context Protocol: set-up, what it can do, and how its changes are undone and saved.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: AI Assistants" />
+	<meta name="twitter:description" content="How to let an AI assistant such as Claude drive OpenCAGE through the Model Context Protocol: set-up, what it can do, and how its changes are undone and saved." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+		.docs-caveat {
+			border-left: 4px solid #c45c26;
+			background: rgba(196, 92, 38, 0.08);
+			padding: 0.85rem 1rem;
+			margin: 0 0 1.25rem 0;
+		}
+		.docs-caveat p {
+			margin: 0;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#setup"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Setting Up</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#how"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>How It Works</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#tools"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What It Can Do</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#example"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>An Example</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#changes"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Undo, Saving &amp; Flowgraphs</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#tips"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Tips &amp; Caveats</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">AI Assistants</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>OpenCAGE can be driven by an AI assistant, such as Claude, through the <a href="https://modelcontextprotocol.io/" target="_blank">Model Context Protocol</a> (MCP). You describe what you want — "create a new level which spawns the player in a corridor built from SCI_AndroidLab's pieces" — and the assistant does it in OpenCAGE:</p>
+		<ul>
+			<li>creates the level;</li>
+			<li>finds the player spawner and the corridor pieces in SCI_AndroidLab and ports them in;</li>
+			<li>places them;</li>
+			<li>sets the spawn up;</li>
+			<li>saves and builds the level.</li>
+		</ul>
+		<p>The assistant works in the OpenCAGE window you have open, through the same code the editor's own menus and dialogs use. Everything it does appears in the editor and the <a href="/docs/level-viewer/">Viewport</a> as it happens. Script changes land on the editor's undo history, and nothing is written to the game until it (or you) saves.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="setup">
+    <header class="docs-header">
+<h1 class="docs-heading">Setting Up</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>OpenCAGE ships a small program for this, <code>OpenCAGE.MCP.exe</code>, in the folder OpenCAGE is installed in, beside <code>OpenCAGE.exe</code>. On Steam, find that folder with right-click OpenCAGE → <b>Manage</b> → <b>Browse local files</b>. Your AI app runs that program. If OpenCAGE isn't open, the program starts it the first time the assistant uses it.</p>
+		<p><b>Claude Desktop:</b> open <b>Settings → Developer → Edit Config</b> and add OpenCAGE to <code>claude_desktop_config.json</code>, using the path to your OpenCAGE folder (backslashes doubled), then restart Claude Desktop:</p>
+<pre><code class="json">{
+  "mcpServers": {
+    "opencage": {
+      "command": "C:\\Path\\To\\OpenCAGE\\OpenCAGE.MCP.exe"
+    }
+  }
+}</code></pre>
+		<p><b>Claude Code:</b> add it once from a terminal:</p>
+<pre><code class="bash">claude mcp add opencage -- "C:\Path\To\OpenCAGE\OpenCAGE.MCP.exe"</code></pre>
+		<p><b>Other MCP apps:</b> any app that can run a local ("stdio") MCP server works the same way: give it the path to <code>OpenCAGE.MCP.exe</code>. The program also takes these optional arguments:</p>
+		<ul>
+			<li><code>--editor &lt;path&gt;</code> — the <code>OpenCAGE.exe</code> to start, if not the one beside it;</li>
+			<li><code>--no-launch</code> — only work with an OpenCAGE that is already open;</li>
+			<li>anything after <code>--</code> — passed to OpenCAGE when the program starts it, for example <code>-- -disable_viewport</code>.</li>
+		</ul>
+		<p>Assistants can only reach OpenCAGE while <b>Options → Misc → Allow AI Assistants (MCP)</b> is ticked. It is on by default. Untick it and nothing can drive the editor: an assistant that tries, even one that started OpenCAGE itself, is told to turn the option back on.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="how">
+    <header class="docs-header">
+<h1 class="docs-heading">How It Works</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><b>One editor, the one you're using.</b> <code>OpenCAGE.MCP.exe</code> passes the assistant's requests to the open OpenCAGE over a local connection. Only programs running as you, on your PC, can use it. With more than one OpenCAGE open, the first one opened takes the requests.</li>
+			<li><b>One thing at a time.</b> The assistant's requests run one after another, in the editor, just as if you'd used the menus. You can keep working in OpenCAGE between them. Loading or saving a level and porting composites take as long as they do from the menus.</li>
+			<li><b>Message boxes.</b> The assistant can't click OpenCAGE's message boxes. Any that appear while it's working are answered with the most cautious button (No, then Cancel, then OK), and what they said is passed back to the assistant.</li>
+			<li><b>Seeing the level.</b> The assistant can take a picture of the Viewport (with the camera moved to what it wants to look at) to check what it has built.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="tools">
+    <header class="docs-header">
+<h1 class="docs-heading">What It Can Do</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>These are the tools the assistant is given. You don't call them yourself — describe what you want and the assistant picks them — but knowing them helps you ask for what's possible.</p>
+		<div class="table-responsive my-3">
+		<table class="table table-bordered">
+			<thead><tr><th>Area</th><th>Tools</th></tr></thead>
+			<tbody>
+				<tr><td>Levels &amp; game</td><td><code>get_editor_state</code>, <code>list_levels</code>, <code>load_level</code>, <code>create_level</code> (optionally importing composites), <code>save_level</code> (optionally Save &amp; Build, choosing which bakers run), <code>list_backups</code>, <code>create_backup</code>, <code>restore_backup</code>, <code>delete_backups</code>, <code>launch_game</code>, <code>launch_options</code>, <code>close_game</code>, <code>game_directories</code>, <code>runtime_utils</code></td></tr>
+				<tr><td>Finding things</td><td><code>find_composites</code>, <code>get_composite</code>, <code>describe_entity</code>, <code>find_entities</code> (by name, type, value or place), <code>find_references</code>, <code>get_placements</code>, <code>get_zones</code>, <code>list_dead_proxies</code>, <code>list_function_types</code>, <code>describe_function_type</code>, <code>list_enums</code>, <code>list_enum_string_values</code></td></tr>
+				<tr><td>Scripting</td><td><code>create_entities</code> (functions, composite instances, variables, aliases and proxies, with positions, parameters, links and flowgraph nodes), <code>create_composite</code>, <code>set_parameters</code>, <code>remove_parameters</code>, <code>rename_entity</code>, <code>delete_entities</code>, <code>copy_entities</code>, <code>add_links</code>, <code>remove_links</code>, <code>set_trigger_sequence</code>, <code>retarget_proxy</code>, <code>remove_references</code></td></tr>
+				<tr><td>Composites</td><td><code>manage_composites</code> (rename, move, folders, delete), <code>deinstance</code> and <code>group_into_composite</code> — the <a href="/docs/scripting-intro/#refactoring">De-instance and Create Composite</a> commands</td></tr>
+				<tr><td>Flowgraphs</td><td><code>get_flowgraph</code>, <code>layout_flowgraph</code> (gives a composite shown as a link list flowgraph pages that draw all its links), <code>edit_flowgraph_pages</code>, <code>edit_flowgraph_nodes</code>, <code>capture_flowgraph</code></td></tr>
+				<tr><td>CAGEAnimation</td><td><code>get_cage_animation</code>, <code>find_cage_animations</code>, <code>animate_parameters</code> (keyframes), <code>set_animation_events</code>, <code>preview_cage_animation</code>, <code>set_animated_model</code></td></tr>
+				<tr><td>Entity resources</td><td><code>get_entity_resources</code>, <code>set_renderable</code> (model and materials), <code>set_collision</code>, <code>set_physics_system</code>, <code>get_character_appearance</code>, <code>set_character_appearance</code></td></tr>
+				<tr><td>Collision &amp; physics</td><td><code>list_collision_proxies</code>, <code>import_collision_proxy</code>, <code>list_physics_systems</code>, <code>import_physics_system</code>, <code>export_collision_mesh</code></td></tr>
+				<tr><td>Other levels</td><td><code>search_level</code>, <code>describe_level_composite</code>, <code>port_composites</code> (see <a href="/docs/composite-porting/">Composite Porting</a>), <code>export_composites_to_levels</code>, <code>release_level_cache</code></td></tr>
+				<tr><td>Models</td><td><code>list_models</code>, <code>describe_model</code>, <code>place_model</code>, <code>import_model</code>, <code>export_model</code>, <code>edit_model</code></td></tr>
+				<tr><td>Materials &amp; textures</td><td><code>list_materials</code>, <code>describe_material</code>, <code>create_material</code>, <code>edit_material</code>, <code>list_material_permutations</code>, <code>retry_shader_harvest</code>, <code>list_material_mappings</code>, <code>edit_material_mapping</code>, <code>list_textures</code>, <code>describe_texture</code>, <code>import_texture</code>, <code>export_textures</code>, <code>edit_texture</code></td></tr>
+				<tr><td>Sky &amp; UI</td><td><code>get_galaxy</code>, <code>set_galaxy</code>, <code>list_ui_files</code>, <code>edit_ui_pak</code></td></tr>
+				<tr><td>Animation &amp; sound</td><td><code>list_animation_sets</code>, <code>list_animations</code>, <code>describe_animation</code>, <code>list_skeletons</code>, <code>export_animations</code>, <code>import_animation</code>, <code>list_blend_sets</code>, <code>edit_blend_set</code>, <code>list_anim_trees</code>, <code>get_anim_tree</code>, <code>edit_anim_tree</code>, <code>get_behaviour_tree</code>, <code>edit_behaviour_tree</code>, <code>list_sound_banks</code>, <code>describe_sound_event</code>, <code>export_sound</code>, <code>replace_sound</code></td></tr>
+				<tr><td>Packages</td><td><code>export_composite_package</code>, <code>inspect_composite_package</code>, <code>import_composite_package</code></td></tr>
+				<tr><td>Configuration &amp; text</td><td><code>list_config_files</code>, <code>read_config</code>, <code>write_config</code>, <code>edit_config_elements</code>, <code>get_config_record</code>, <code>set_config_record</code>, <code>reset_configs</code>, <code>list_strings</code>, <code>set_strings</code>, <code>list_text_databases</code>, <code>set_text_databases</code> — what the <a href="/docs/configs/">configuration editors</a> edit</td></tr>
+				<tr><td>Editor &amp; viewport</td><td><code>open_composite</code>, <code>select_entities</code>, <code>editor_options</code>, <code>undo</code>, <code>redo</code>, <code>capture_viewport</code>, <code>get_viewport_state</code>, <code>set_viewport_view</code>, <code>viewport_action</code>, <code>place_in_viewport</code>, <code>get_composite_preview</code></td></tr>
+			</tbody>
+		</table>
+		</div>
+    </section>
+</article>
+
+<article class="docs-article" id="example">
+    <header class="docs-header">
+<h1 class="docs-heading">An Example</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Asked for "a new level which spawns the player in a corridor built from SCI_AndroidLab", an assistant works through something like this:</p>
+		<ol>
+			<li><code>create_level</code> makes and opens a new level, as <a href="/docs/create-level/">File → Create Level</a> does.</li>
+			<li><code>search_level</code> on <code>PRODUCTION/SCI_ANDROIDLAB</code> finds <code>Archetypes\Script\Mission\SpawnPositionSelect</code>, the composite that holds the player's Character. It also finds the corridor pieces under <code>AYZ\Science\...\Corridor_Elements</code>, and where the level places them.</li>
+			<li><code>port_composites</code> brings them in, with their models, materials, textures and collision. The player's display models (<code>DisplayModel:RIPLEY_FP</code> and the suit variants) come along automatically.</li>
+			<li><code>create_entities</code> places the floor, wall and arch pieces in the new level's root composite, spaced by their sizes. It also places a <code>SpawnPositionSelect</code> instance on the floor, with <code>spawn_on_reset</code> set to true so the player spawns there when the level starts.</li>
+			<li><code>create_composite</code> can add some script as well. For example, a light that a <code>ThinkOnce</code> switches on at the start. Its flowgraph page is laid out automatically.</li>
+			<li><code>capture_viewport</code> lets it look at the result, and <code>save_level</code> with Save &amp; Build writes the level and builds its navmesh, lighting and the rest. Then it's ready for <a href="/docs/launch-game/">Launch Game</a>.</li>
+		</ol>
+    </section>
+</article>
+
+<article class="docs-article" id="changes">
+    <header class="docs-header">
+<h1 class="docs-heading">Undo, Saving &amp; Flowgraphs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><b>Undo.</b> Every scripting change the assistant makes is one step on the editor's undo history, named with an <code>AI:</code> prefix ("AI: Add 17 entities"). <b>Edit → Undo</b> (or asking the assistant to undo) takes it back. This covers everything in the level's script: entities, parameters, links, trigger sequences, CAGEAnimations, entity resources (models, collision, physics), flowgraph pages and nodes, and composites (new, renamed, moved, deleted, De-instance, Create Composite). Porting composites, imports, and changes to models, materials, textures, animations, sounds, configuration files and text can't be undone, as when you make them yourself; the tools that change files every level shares can do a dry run first.</li>
+			<li><b>Saving.</b> Nothing reaches the game until the level is saved. The assistant saves only when asked (or when its task says to). After script changes, the level needs a <a href="/docs/save-and-build/">Save and Build</a> before they work in game. Configuration files are the exception: they're shared by every level and written straight away.</li>
+			<li><b>Flowgraphs stay drawn.</b> When the assistant adds links to a composite shown as flowgraph pages, the new links are drawn on its pages, next to what they connect, so they survive the next save. A new composite gets pages laid out for it. A link the flowgraph editor has no way to draw is refused with an explanation (usually it runs the wrong way), rather than made and lost later. Composites shown as a plain link list are left as they are, unless the assistant is asked to lay them out.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="tips">
+    <header class="docs-header">
+        <h1 class="docs-heading">Tips &amp; Caveats</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><b>Be specific about where things come from.</b> The assistant finds its way around faster if you name a level to borrow from, and the kind of content you want.</li>
+			<li><b>Back up first.</b> Ask for a backup (or make one with the <a href="/docs/backup-manager/">Backup Manager</a>) before letting an assistant loose on a level you care about. Saving is always a separate, explicit step.</li>
+			<li><b>Level design still takes looking at.</b> The assistant places pieces by the numbers: their positions, sizes and how the shipped levels arrange them. Check the result in the Viewport, and ask for fixes.</li>
+			<li><b>Launching the game kills a running copy.</b> So does saving, as usual.</li>
+		</ul>
+	</section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+        <h1 class="docs-heading">Related Docs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> — composites, entities, links and parameters</li>
+			<li><a href="/docs/create-level/">Create Level</a> — what a new level contains</li>
+			<li><a href="/docs/composite-porting/">Composite Porting</a> — bringing content in from other levels</li>
+			<li><a href="/docs/save-and-build/">Save and Build</a> — building a level so it runs in game</li>
+			<li><a href="/docs/level-viewer/">Viewport</a> — seeing the level in 3D</li>
+			<li><a href="/docs/options/#misc">Options</a> — turning AI assistants on and off</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>

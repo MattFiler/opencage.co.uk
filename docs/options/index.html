@@ -135,8 +135,10 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>Use File Browser Composite Viewer</b> — switches the composite list to a file-browser style panel (off by default).</li>
+			<li><b>Composite Browser Mode</b> — what the Composite Browser panel shows under its tree: <b>Tree Only</b> (just the tree), <b>Tree And Browser</b> (a folder-by-folder file browser below it, with a clickable path row like the one above the flowgraph), or <b>Tree And Preview</b> (the default: every composite in the level in one flat list, each as a rendered preview of its content, which the search box above the tree filters as you type). See <a href="/docs/level-viewer/#composite-previews">Composite Previews</a> for where the previews come from.</li>
 			<li><b>Search Only Composite Names</b> — composite search matches only the composite name, not folder path segments (off by default).</li>
+			<li><b>Show Composite Previews In Tree Views</b> — the same previews, small, beside the names in the composite tree and in every window that picks a composite (off by default, since it makes the rows taller).</li>
+			<li><b>Composite Preview Scale</b> — how big those previews are drawn, from 50% to 200% of their normal size, in the flat list and the tree views alike. They are captured at one size, so the largest settings soften them a little.</li>
 		</ul>
     </section>
 </article>
@@ -207,6 +209,7 @@
 			<li><b>Show Game Platform</b> — appends the detected platform (e.g. Steam) to the window title — handy with <a href="/docs/multiple-game-installs/">multiple installs</a> open (off by default).</li>
 			<li><b>Write Compressed</b> — status only: shows whether the loaded level's Commands are compressed. Not user-togglable.</li>
 			<li><b>Reset Render Filters On Load</b> — when loading a level, turns all Viewport render filters off (shown only if the Viewport is available; off by default).</li>
+			<li><b>Allow AI Assistants (MCP)</b> — lets AI assistants such as Claude drive OpenCAGE through <code>OpenCAGE.MCP.exe</code>. Only programs running as you, on this PC, can connect (on by default; not in the picture above). See <a href="/docs/ai-assistants/">AI Assistants</a>.</li>
 		</ul>
 		<p>Saving an uncompressed level now always writes both the PAK and BIN forms of the Commands data — that used to be an option here and no longer is. Compressed levels still save as BIN only.</p>
     </section>

@@ -157,6 +157,12 @@
         "category":  "Model Editor",
         "keywords":  [
             "import",
+            "collision",
+            "collision proxy",
+            "havok",
+            "physics",
+            "physics system",
+            "rigid body",
             "model editor"
         ],
         "title":  "Import New"
@@ -19794,6 +19800,22 @@
             "dead proxies",
             "dead proxy colour",
             "unresolvable proxy",
+            "composite previews",
+            "show composite previews in tree views",
+            "preview images",
+            "thumbnails",
+            "file browser",
+            "composite browser mode",
+            "tree only",
+            "tree and browser",
+            "tree and preview",
+            "use file browser composite viewer",
+            "breadcrumb",
+            "composite preview scale",
+            "preview scale",
+            "preview size",
+            "bigger previews",
+            "smaller previews",
             "options"
         ],
         "title":  "Composite Display"
@@ -19839,6 +19861,9 @@
         "category":  "Options",
         "keywords":  [
             "misc",
+            "allow ai assistants",
+            "mcp",
+            "claude",
             "options"
         ],
         "title":  "Misc"
@@ -19989,6 +20014,12 @@
             "delete",
             "sort",
             "undo",
+            "composite previews",
+            "composite browser",
+            "file browser",
+            "thumbnails",
+            "composite browser mode",
+            "tree and preview",
             "cathode scripting introduction"
         ],
         "title":  "Interface Overview"
@@ -23039,6 +23070,8 @@
             "step into composite",
             "deselect all",
             "unhide all",
+            "de-instance",
+            "create composite",
             "viewport"
         ],
         "title":  "Right-click Menu"
@@ -23151,5 +23184,268 @@
             "triggersequence editor"
         ],
         "title":  "Auto-add New Entities"
+    },
+    {
+        "url":  "/docs/level-viewer/#composite-previews",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "composite-previews",
+            "composite previews",
+            "preview images",
+            "thumbnails",
+            "composite browser",
+            "file browser",
+            "select composite",
+            "save",
+            "COMMANDS.PAK",
+            "flowgraph layouts",
+            "transparent background",
+            "composite browser mode",
+            "tree and preview",
+            "preview scale",
+            "preview size",
+            "viewport"
+        ],
+        "title":  "Composite Previews"
+    },
+    {
+        "url":  "/docs/model-editor/#import-collision",
+        "description":  "On Model Editor",
+        "type":  "symbol",
+        "category":  "Model Editor",
+        "keywords":  [
+            "import-collision",
+            "collision",
+            "collision proxy",
+            "collision mesh",
+            "collision editor",
+            "havok",
+            "set havok",
+            "import mesh",
+            "from model",
+            "collision mapping",
+            "physics",
+            "model editor"
+        ],
+        "title":  "Collision"
+    },
+    {
+        "url":  "/docs/model-editor/#import-physics",
+        "description":  "On Model Editor",
+        "type":  "symbol",
+        "category":  "Model Editor",
+        "keywords":  [
+            "import-physics",
+            "physics",
+            "physics system",
+            "physics system editor",
+            "rigid body",
+            "dynamic physics system",
+            "set physics",
+            "havok",
+            "convex hull",
+            "import mesh",
+            "from model",
+            "mass",
+            "friction",
+            "model editor"
+        ],
+        "title":  "Physics"
+    },
+    {
+        "url":  "/docs/scripting-intro/#refactoring",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "refactoring",
+            "de-instance",
+            "deinstance",
+            "create composite",
+            "refactor",
+            "restructure",
+            "composite instance",
+            "cathode scripting introduction"
+        ],
+        "title":  "De-instancing \u0026 Creating Composites"
+    },
+    {
+        "url":  "/docs/scripting-intro/#deinstance",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "deinstance",
+            "de-instance",
+            "pull apart",
+            "flatten",
+            "unpack instance",
+            "composite instance",
+            "inline composite",
+            "cathode scripting introduction"
+        ],
+        "title":  "De-instance"
+    },
+    {
+        "url":  "/docs/scripting-intro/#create-composite",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "create-composite",
+            "create composite",
+            "group into composite",
+            "new composite from selection",
+            "extract composite",
+            "composite parameters",
+            "pins",
+            "cathode scripting introduction"
+        ],
+        "title":  "Create Composite"
+    },
+    {
+        "url":  "/docs/ai-assistants/",
+        "description":  "How to let an AI assistant such as Claude drive OpenCAGE through the Model Context Protocol: set-up, what it can do, and how its changes are undone and saved.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "ai",
+            "ai assistant",
+            "claude",
+            "mcp",
+            "model context protocol",
+            "automation",
+            "llm",
+            "chatbot",
+            "opencage.mcp"
+        ],
+        "title":  "AI Assistants"
+    },
+    {
+        "url":  "/docs/ai-assistants/#intro",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "intro",
+            "ai",
+            "claude",
+            "mcp",
+            "ai assistants"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/ai-assistants/#setup",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "setup",
+            "claude desktop",
+            "claude code",
+            "claude_desktop_config.json",
+            "opencage.mcp.exe",
+            "mcp server",
+            "install",
+            "ai assistants"
+        ],
+        "title":  "Setting Up"
+    },
+    {
+        "url":  "/docs/ai-assistants/#how",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "how",
+            "pipe",
+            "message boxes",
+            "viewport picture",
+            "one editor",
+            "ai assistants"
+        ],
+        "title":  "How It Works"
+    },
+    {
+        "url":  "/docs/ai-assistants/#tools",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "tools",
+            "mcp tools",
+            "create_entities",
+            "port_composites",
+            "save_level",
+            "capture_viewport",
+            "set_parameters",
+            "cageanimation",
+            "materials",
+            "textures",
+            "collision",
+            "animations",
+            "sounds",
+            "localisation",
+            "ai assistants"
+        ],
+        "title":  "What It Can Do"
+    },
+    {
+        "url":  "/docs/ai-assistants/#example",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "example",
+            "corridor",
+            "player spawn",
+            "spawnpositionselect",
+            "spawn_on_reset",
+            "sci_androidlab",
+            "ai assistants"
+        ],
+        "title":  "An Example"
+    },
+    {
+        "url":  "/docs/ai-assistants/#changes",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "changes",
+            "undo",
+            "saving",
+            "flowgraph pages",
+            "links",
+            "ai assistants"
+        ],
+        "title":  "Undo, Saving \u0026 Flowgraphs"
+    },
+    {
+        "url":  "/docs/ai-assistants/#tips",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "tips",
+            "backup",
+            "caveats",
+            "ai assistants"
+        ],
+        "title":  "Tips \u0026 Caveats"
+    },
+    {
+        "url":  "/docs/ai-assistants/#related",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "related",
+            "ai assistants"
+        ],
+        "title":  "Related Docs"
     }
 ]
