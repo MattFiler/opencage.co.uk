@@ -84,6 +84,7 @@
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#editing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing Trees</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#creating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Creating Trees</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#shortcuts"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Keyboard Shortcuts</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#shortcuts-canvas">Graph Canvas</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#shortcuts-explorer">Explorer</a></li>
@@ -138,7 +139,24 @@
 		<p>Double-click a tree in Explorer to open it as a document tab, as shown below. Drag nodes from the palette onto the canvas and wire the graph; select a node to edit its properties in the <b>Properties</b> panel (<b>Show Properties</b>, next to <b>Save</b>, pops the selected node's properties out into a floating panel). Left-drag the background to pan and scroll to zoom when a graph runs off the canvas, as it does here. The <b>?</b> button in the window's top-right corner opens the <a href="/docs/behaviour-trees/">Behaviour Tree Nodes</a> reference.</p>
 		<p><img src="img/overview.jpg" alt="The Behaviour Tree Editor with a tree open: Explorer and node palette on the left, the graph canvas in the middle with a node selected, and its properties on the right." width="100%"></p>
 		<p class="text-muted small"><i>alien_flamed_unaware open in a document tab with its Sequence node selected; the node's parameters appear in the Properties panel on the right.</i></p>
-		<p>You can also export a graph snapshot with the <b>Save Image Of Behavior</b> button, the rightmost of the three in the canvas's top-right corner (the dialog is titled <i>Save Graph As Image</i>; <code>*.emf</code> or <code>*.png</code>). This editor does not edit per-level <code>WORLD/BEHAVIOR_TREE.DB</code> files.</p>
+		<p>You can also export a graph snapshot with the <b>Save Image Of Behavior</b> button, the rightmost of the three in the canvas's top-right corner (the dialog is titled <i>Save Graph As Image</i>; <code>*.emf</code> or <code>*.png</code>). Levels don't hold trees of their own: each level's <code>WORLD/BEHAVIOR_TREE.DB</code> only lists which trees its characters can run, and OpenCAGE generates that list when the level is saved (see <a href="#assigning">Assigning Trees</a>).</p>
+    </section>
+</article>
+
+<article class="docs-article" id="creating">
+    <header class="docs-header">
+<h1 class="docs-heading">Creating Trees</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Click <b>New Tree...</b> on the Explorer's toolbar, or right-click the tree list and choose <b>New Behaviour Tree...</b>. Give the tree a name and choose what to start it from:</p>
+		<ul>
+			<li><b>A copy of an existing tree</b> — the tree selected in the list, or <b>NoBehaviour</b> if none is. <b>NoBehaviour</b> is the smallest main tree the game ships: it has the branches every character's main tree needs (saving and loading, death, scripted control), so it's the place to start a new main tree from. Copying one of the shipped trees, such as <code>alien_behave</code>, starts you from that character's behaviour instead.</li>
+			<li><b>An empty tree</b> — for a subtree that other trees will reference.</li>
+		</ul>
+		<p>A name can use letters, digits and underscores (up to 64 characters), and must differ from every other tree's by more than capitalisation. The tree is created and added to <code>_DIRECTORY_CONTENTS.BML</code> straight away, and opens in a new tab.</p>
+		<p><b>Rename</b> (<b>F2</b>, or from the right-click menu) and <b>Delete</b> follow the same naming rules. A tree that's still in use can't be renamed or deleted: the editor says what's using it — another tree that references it (including an open tree with unsaved changes), a character class that runs it, a level whose list of trees still names it, or the game itself (it always needs <b>PlayerBehaviour</b> and <b>NoBehaviour</b>). A level's list only changes when the level is saved in OpenCAGE, so once no class uses a tree, save the levels named before deleting it. Changing only the capitalisation of a name is allowed, because the game finds trees ignoring case.</p>
+		<p>A new tree does nothing until a character class runs it (see <a href="#assigning">Assigning Trees</a>) or another tree references it.</p>
     </section>
 </article>
 
@@ -174,10 +192,10 @@
 		<h2 class="section-heading">Explorer</h2>
 		<p>When the Explorer tree list has focus:</p>
 		<ul>
-			<li><b>F2</b> — rename the selected behaviour or folder</li>
-			<li><b>Delete</b> — delete the selected behaviour or group from the catalogue (this is the only way to do it: the Explorer has no toolbar or context menu)</li>
+			<li><b>F2</b> — rename the selected tree</li>
+			<li><b>Delete</b> — delete the selected tree from the catalogue, after asking</li>
 		</ul>
-		<p>Explorer does not use Ctrl+C / Ctrl+V / Ctrl+X, and there is no button for creating a brand-new tree — the shipped catalogue is edited, renamed (<b>F2</b>) or deleted in place. <b>Delete</b> here removes trees from the catalogue, not nodes from an open graph.</p>
+		<p>Both keys only act when the tree list has focus, not the node palette under it, and both refuse a tree that's in use (see <a href="#creating">Creating Trees</a>). The same commands are on the Explorer's toolbar (<b>New Tree...</b>, <b>Delete</b>) and on the tree list's right-click menu. Explorer does not use Ctrl+C / Ctrl+V / Ctrl+X, and <b>Delete</b> here removes trees from the catalogue, not nodes from an open graph.</p>
 	</section>
 </article>
 
@@ -187,7 +205,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Use the <b>Save</b> button at the top-right of the tree's canvas (shown below) — not OpenCAGE's <b>File → Save Level</b>. Save writes XML for the tree(s), then <b>repackages all</b> <code>DATA/BEHAVIOR/*.xml</code> files back into <code>_DIRECTORY_CONTENTS.BML</code>.</p>
+		<p>Use the <b>Save</b> button at the top-right of the tree's canvas (shown below) — not OpenCAGE's <b>File → Save Level</b>. Save writes XML for the tree(s), then <b>repackages all</b> <code>DATA/BEHAVIOR/*.xml</code> files back into <code>_DIRECTORY_CONTENTS.BML</code>. Creating, renaming and deleting a tree repackage it straight away too. If one of those files can't be read, has no root node for the game to load, or references a tree that doesn't exist, nothing is written and the editor names the file: a broken tree there would hand every tree after it to the wrong characters. Until that's fixed you can't create, rename or delete trees, and closing the editor with unsaved changes stops so you can fix it. If the editor is closed anyway, it asks the next time it starts whether to keep the trees that weren't written or load the game's copy instead.</p>
 		<p><img src="img/canvas-save.jpg" alt="The graph canvas for one tree, with the Save, Show Properties and Save Image Of Behavior buttons in its top-right corner." style="max-width:100%;width:790px"></p>
 		<p class="text-muted small"><i>Each open tree has its own Save button at the top-right of its canvas; beside it are Show Properties and Save Image Of Behavior.</i></p>
 		<p>If you close the editor's window with unsaved graphs, the <b>Unsaved Behaviors</b> dialog lists them with checkboxes and offers <b>Save Selected Behaviors</b>, <b>Discard All Unsaved Changes</b>, or <b>Cancel</b>.</p>
@@ -200,7 +218,8 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Editing a tree changes the global definition. To point a character at a tree name from that catalogue, use <b>View → Configuration Editors → Characters → Attributes</b> and the <b>Behaviour Tree</b> field (names come from <code>_DIRECTORY_CONTENTS.BML</code>).</p>
+		<p>Editing a tree changes the global definition. To point a character at a tree name from that catalogue, use <b>View → Configuration Editors → Characters → Attributes</b> and the <b>Behaviour Tree</b> field (names come from <code>_DIRECTORY_CONTENTS.BML</code>, so a tree you've just created is listed as soon as you switch back to the Attributes editor).</p>
+		<p>The game only loads the trees a level lists in its <code>WORLD/BEHAVIOR_TREE.DB</code>. OpenCAGE generates that list from the character attribute configs every time a level is saved: the tree each character class runs, plus <b>PlayerBehaviour</b> and <b>NoBehaviour</b>, which the game gives to players itself. So after giving a class a new tree, <b>save each level you're going to play</b> before launching it — a character whose tree its level doesn't list crashes the game when it spawns. When you close the Attributes editor after changing a tree, it lists the levels that still need saving.</p>
     </section>
 </article>
 
@@ -210,7 +229,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>To restore stock trees, open the <a href="/docs/backup-manager/">Backup Manager</a> → <b>Revert Configs</b> → <b>Reset Behaviour Trees</b>. That closes the game and Behaviour Tree Editor if open, restores the vanilla BML, and refreshes the <code>DATA/BEHAVIOR</code> extract.</p>
+		<p>To restore stock trees, open the <a href="/docs/backup-manager/">Backup Manager</a> → <b>Revert Configs</b> → <b>Reset Behaviour Trees</b>. That closes the game and Behaviour Tree Editor if open, restores the vanilla BML, and refreshes the <code>DATA/BEHAVIOR</code> extract. Trees you created are removed: if a character class still runs one, OpenCAGE says which, and that class needs pointing at another tree before you play.</p>
     </section>
 </article>
 

@@ -185,6 +185,8 @@
       <ul>
          <li>Defines the <a href="/docs/behaviour-trees/">behaviour tree</a> to use for the character. If the spawning <a href="/docs/cathode-entities/#Character">Character</a> entity has 'is_player' checked the tree will override to 'PlayerBehaviour'.</li>
          <li>By default, the tree <code>NoBehaviour</code> can be used to make characters passive.</li>
+         <li>Any tree in the <a href="/docs/behaviour-tree-editor/">Behaviour Tree Editor</a> can be chosen, including ones you <a href="/docs/behaviour-tree-editor/#creating">create</a> there.</li>
+         <li>A level only loads the trees its <code>WORLD/BEHAVIOR_TREE.DB</code> lists, and OpenCAGE generates that list from these settings whenever the level is saved. After changing a class's tree, save each level you're going to play: a character whose tree its level doesn't list crashes the game when it spawns. Closing this editor lists any levels that still need saving.</li>
       </ul>
       <li>
          <code style="background:#8e1073;color:white;">Attack Group</code>

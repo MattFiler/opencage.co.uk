@@ -506,7 +506,7 @@
     },
     {
         "url":  "/docs/behaviour-tree-editor/",
-        "description":  "How to use OpenCAGE\u0027s Behaviour Tree Editor to browse and edit global character AI trees.",
+        "description":  "How to use OpenCAGE\u0027s Behaviour Tree Editor to browse, create and edit global character AI trees.",
         "type":  "page",
         "category":  "Getting Started",
         "keywords":  [
@@ -514,7 +514,9 @@
             "behavior tree",
             "brainiac",
             "ai",
-            "legendplugin"
+            "legendplugin",
+            "new behaviour tree",
+            "behavior_tree.db"
         ],
         "title":  "Behaviour Tree Editor"
     },
@@ -541,6 +543,22 @@
             "behaviour tree editor"
         ],
         "title":  "Editing Trees"
+    },
+    {
+        "url":  "/docs/behaviour-tree-editor/#creating",
+        "description":  "On Behaviour Tree Editor",
+        "type":  "heading",
+        "category":  "Behaviour Tree Editor",
+        "keywords":  [
+            "creating",
+            "new tree",
+            "new behaviour tree",
+            "copy",
+            "rename",
+            "delete",
+            "behaviour tree editor"
+        ],
+        "title":  "Creating Trees"
     },
     {
         "url":  "/docs/behaviour-tree-editor/#shortcuts",
@@ -608,6 +626,7 @@
             "assigning",
             "characters",
             "attributes",
+            "behavior_tree.db",
             "behaviour tree editor"
         ],
         "title":  "Assigning Trees"
