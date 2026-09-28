@@ -291,6 +291,13 @@
 				<li>Added a new animation track utility - capture camera positions, set timings, and play back a smooth track</li>
 				<li>Improved initial DOF and speed values</li>
 			</ul></li>
+			<li>Added Collision/Physics editor:<ul>
+				<li>Allows selection of physics or collision proxies on DYNAMIC_PHYSICS_SYSTEM and COLLISION_MAPPING resources</li>
+				<li>Allows import of new physics or collision meshes</li>
+			</ul></li>
+			<li>Added MCP support:<ul>
+				<li>Connect Claude and other AI chat apps to OpenCAGE to drive actions such as config editing, script editing, or level population</li>
+			</ul></li>
 			<li>Added a 'Create Level' option in the File menu which can create a new level from scratch</li>
 			<li>Added a dark mode option</li>
 			<li>Added support for undo/redo across most of the app</li>
@@ -330,6 +337,7 @@
 			<li>Added warnings if saving fails when updating configs</li>
 			<li>Added a new vertex snapping mode (hold V when dragging, or keep it on from the Transform Snap menu)</li>
 			<li>Added ability to configure rotation/translation snapping increments</li>
+			<li>Added right click to add to TriggerSequence on node</li>
 			<li>Added improved hierarchy navigation in the proxy/alias selector</li>
 			<li>Added a new surface snapping mode (SHIFT+END keys)</li>
 			<li>Added a new 'drag to duplicate' mode (hold SHIFT when dragging the gizmo)</li>
@@ -353,7 +361,6 @@
 			<li>Added support for renaming folders in the composite browser</li>
 			<li>Added support for dragging composites/folders to move them in file browser mode</li>
 			<li>Added arrows to point to off-screen highlighted nodes</li>
-			<li>Added new UIs for Collision/Physics resource selection</li>
 			<li>Added a button to view changelog</li>
 			<li>Added crash log reporting for the viewport</li>
 			<li>Added context-aware positioning of pins on nodes (relays will always have their output in-line with their input)</li>
@@ -368,6 +375,7 @@
 			<li>Fixed selection steal when using keybinds to navigate UI</li>
 			<li>Fixed a bug where resources were thrown away for Commands BIN</li>
 			<li>Fixed file browser mode when selecting a folder</li>
+			<li>Fixed an issue on scaled displays in Windows breaking layouts and formatting</li>
 			<li>Fixed a UI lock when the flowgraph focus is moving</li>
 			<li>Fixed various issues with form ownership to prevent things popping behind</li>
 			<li>Fixed some material remapping defects resulting in different materials to retail</li>
@@ -400,6 +408,7 @@
 			<li>Composite search now auto-searches (don't need to press 'Search')</li>
 			<li>Improvements to total memory overhead for the viewport</li>
 			<li>NPC_AlienConfig entities now have selection for the config type</li>
+			<li>RewireLocation/Display_Element_On_Map/MapAnchor/Map_Floor_Change entities now have selection for the map elements</li>
 			<li>Deleting all nodes for an entity with no other references can now auto-delete the entity (optional under 'Delete Entities When Nodes Deleted')</li>
 			<li>Simplified editor state restoring for resized splitters</li>
 			<li>Deleting nodes for an entity no longer prompts you first - you can turn that back on in the Options</li>
