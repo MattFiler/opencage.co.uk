@@ -12777,7 +12777,7 @@
             "entity",
             "level picker",
             "level_name",
-            "dropdown",
+            "level list",
             "interface"
         ],
         "title":  "SwitchLevel"
@@ -23143,7 +23143,7 @@
             "switchlevel",
             "level_name",
             "levelname",
-            "level dropdown",
+            "level list",
             "lift",
             "barrier",
             "cathode scripting introduction"
