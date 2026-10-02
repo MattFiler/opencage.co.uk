@@ -302,16 +302,16 @@
 				<div class="row justify-content-center mt-4">
 					<div class="col-12 col-lg-8">
 
-						<div class="docs-panel" data-open="false">
-							<button type="button" class="docs-panel-toggle" aria-expanded="false">
+						<div class="docs-panel is-open" data-open="true">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Getting Started</span>
-									<span class="docs-panel-hint">Scripting, installs, Viewport, launch, Live Link, debug text, saving, porting, new levels, backups &amp; AI assistants</span>
+									<span class="docs-panel-hint">Scripting, Viewport, Options, installs &amp; backups</span>
 								</span>
 							</button>
 							<div class="docs-panel-body">
 								<div class="docs-panel-body-inner">
-									<p class="docs-panel-intro">Start here if you're new to Cathode scripting, multiple installs, the Viewport, launching the game, editing a running level over Live Link, putting debug text on screen, Options, or backups — plus building a level, porting content between levels, and creating levels of your own.</p>
+									<p class="docs-panel-intro">Start here if you're new to OpenCAGE — how Cathode scripting and the script editor work, the Viewport and Options, multiple game installs, and taking backups before you experiment.</p>
 									<div class="row">
 										<div class="col-12 col-md-6 py-2">
 											<div class="card shadow-sm">
@@ -326,6 +326,38 @@
 														An intro to Cathode's scripting system and overview of OpenCAGE's script editor.
 													</div>
 													<a class="card-link-mask" href="scripting-intro/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-cube"></i>
+														</span>
+														<span class="card-title-text">Viewport</span>
+													</h5>
+													<div class="card-text">
+														A guide to OpenCAGE's 3D Viewport.
+													</div>
+													<a class="card-link-mask" href="level-viewer/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-sliders"></i>
+														</span>
+														<span class="card-title-text">Options</span>
+													</h5>
+													<div class="card-text">
+														What each Options menu setting does in the script editor.
+													</div>
+													<a class="card-link-mask" href="options/"></a>
 												</div>
 											</div>
 										</div>
@@ -350,17 +382,33 @@
 												<div class="card-body">
 													<h5 class="card-title mb-3">
 														<span class="theme-icon-holder card-icon-holder me-2">
-															<i class="fa-solid fa-cube"></i>
+															<i class="fa-solid fa-floppy-disk"></i>
 														</span>
-														<span class="card-title-text">Viewport</span>
+														<span class="card-title-text">Backup Manager</span>
 													</h5>
 													<div class="card-text">
-														A guide to OpenCAGE's 3D Viewport.
+														Snapshot and restore level files, plus reset global configs to stock.
 													</div>
-													<a class="card-link-mask" href="level-viewer/"></a>
+													<a class="card-link-mask" href="backup-manager/"></a>
 												</div>
 											</div>
 										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="docs-panel is-open" data-open="true">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+								<span class="docs-panel-toggle-label">
+									<span>In-Game Testing</span>
+									<span class="docs-panel-hint">Launching, Live Link &amp; debug text</span>
+								</span>
+							</button>
+							<div class="docs-panel-body">
+								<div class="docs-panel-body-inner">
+									<p class="docs-panel-intro">Try your changes out in Alien: Isolation — boot straight into a level, edit it while it runs with Live Link, and put debug text on screen to see what your scripts are doing.</p>
+									<div class="row">
 										<div class="col-12 col-md-6 py-2">
 											<div class="card shadow-sm">
 												<div class="card-body">
@@ -409,54 +457,22 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-12 col-md-6 py-2">
-											<div class="card shadow-sm">
-												<div class="card-body">
-													<h5 class="card-title mb-3">
-														<span class="theme-icon-holder card-icon-holder me-2">
-															<i class="fa-solid fa-sliders"></i>
-														</span>
-														<span class="card-title-text">Options</span>
-													</h5>
-													<div class="card-text">
-														What each Options menu setting does in the script editor.
-													</div>
-													<a class="card-link-mask" href="options/"></a>
-												</div>
-											</div>
-										</div>
-										<div class="col-12 col-md-6 py-2">
-											<div class="card shadow-sm">
-												<div class="card-body">
-													<h5 class="card-title mb-3">
-														<span class="theme-icon-holder card-icon-holder me-2">
-															<i class="fa-solid fa-robot"></i>
-														</span>
-														<span class="card-title-text">AI Assistants</span>
-													</h5>
-													<div class="card-text">
-														Let an AI assistant such as Claude build and edit levels in OpenCAGE, through the Model Context Protocol.
-													</div>
-													<a class="card-link-mask" href="ai-assistants/"></a>
-												</div>
-											</div>
-										</div>
-										<div class="col-12 col-md-6 py-2">
-											<div class="card shadow-sm">
-												<div class="card-body">
-													<h5 class="card-title mb-3">
-														<span class="theme-icon-holder card-icon-holder me-2">
-															<i class="fa-solid fa-floppy-disk"></i>
-														</span>
-														<span class="card-title-text">Backup Manager</span>
-													</h5>
-													<div class="card-text">
-														Snapshot and restore level files, plus reset global configs to stock.
-													</div>
-													<a class="card-link-mask" href="backup-manager/"></a>
-												</div>
-											</div>
-										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="docs-panel is-open" data-open="true">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
+								<span class="docs-panel-toggle-label">
+									<span>Building Levels</span>
+									<span class="docs-panel-hint">Saving, porting, new levels &amp; AI assistants</span>
+								</span>
+							</button>
+							<div class="docs-panel-body">
+								<div class="docs-panel-body-inner">
+									<p class="docs-panel-intro">Rebuild a level after changing its geometry, port composites between levels, make new levels from scratch, or have an AI assistant build them for you.</p>
+									<div class="row">
 										<div class="col-12 col-md-6 py-2">
 											<div class="card shadow-sm">
 												<div class="card-body">
@@ -505,13 +521,29 @@
 												</div>
 											</div>
 										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-robot"></i>
+														</span>
+														<span class="card-title-text">AI Assistants</span>
+													</h5>
+													<div class="card-text">
+														Let an AI assistant such as Claude build and edit levels in OpenCAGE, through the Model Context Protocol.
+													</div>
+													<a class="card-link-mask" href="ai-assistants/"></a>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="docs-panel" data-open="false">
-							<button type="button" class="docs-panel-toggle" aria-expanded="false">
+						<div class="docs-panel is-open" data-open="true">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Function Editors</span>
 									<span class="docs-panel-hint">Timelines, characters, trigger sequences &amp; special entity UIs</span>
@@ -574,8 +606,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel" data-open="false">
-							<button type="button" class="docs-panel-toggle" aria-expanded="false">
+						<div class="docs-panel is-open" data-open="true">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Configuration Tools</span>
 									<span class="docs-panel-hint">Configs, galaxy, material mappings, behaviour trees &amp; text</span>
@@ -670,8 +702,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel" data-open="false">
-							<button type="button" class="docs-panel-toggle" aria-expanded="false">
+						<div class="docs-panel is-open" data-open="true">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Resource Editors</span>
 									<span class="docs-panel-hint">Models, UI, materials, textures, animation, blends &amp; sound</span>
@@ -814,8 +846,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel" data-open="false">
-							<button type="button" class="docs-panel-toggle" aria-expanded="false">
+						<div class="docs-panel is-open" data-open="true">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Detailed Documentation</span>
 									<span class="docs-panel-hint">Entities, enums, behaviour trees &amp; animation trees</span>
@@ -894,8 +926,8 @@
 							</div>
 						</div>
 
-						<div class="docs-panel" data-open="false">
-							<button type="button" class="docs-panel-toggle" aria-expanded="false">
+						<div class="docs-panel is-open" data-open="true">
+							<button type="button" class="docs-panel-toggle" aria-expanded="true">
 								<span class="docs-panel-toggle-label">
 									<span>Useful Info</span>
 									<span class="docs-panel-hint">Level names &amp; mission IDs</span>
