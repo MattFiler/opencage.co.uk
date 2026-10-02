@@ -20382,6 +20382,10 @@
             "legs",
             "shoes",
             "collision",
+            "select composite",
+            "composite picker",
+            "composite preview",
+            "show preview",
             "character"
         ],
         "title":  "Composites"
