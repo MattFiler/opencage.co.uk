@@ -205,11 +205,11 @@
 			<li><b>Keep Global Search Window Open</b> — after jumping to an entity from global search, the search window stays open (off by default).</li>
 			<li><b>Reset UI Layouts</b> — restores the default window size and dock panel layout. If the Viewport is open, it's kept and repositioned.</li>
 			<li><b>Set Numeric Step</b> — sets how much position and rotation values change when you nudge numeric fields in inspectors (defaults: position <code>0.1</code>, rotation <code>1.0</code>).</li>
-			<li><b>Open Game On Save</b> — after save, launches into the level you're editing. Uses some of the same patch flags as <a href="/docs/launch-game/">Launch Game</a>, but skips extras from that dialog such as Cinematic Tools / Hot Reloading (off by default).</li>
+			<li><b>Open Game On Save</b> — after save, launches into the level you're editing. Uses some of the same patch flags as <a href="/docs/launch-game/">Launch Game</a>, but doesn't start Cinematic Tools, and leaves the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a> (Hot Reload, <a href="/docs/live-link/">Live Link</a> and the rest) as that dialog last set them (off by default).</li>
 			<li><b>Show Game Platform</b> — appends the detected platform (e.g. Steam) to the window title — handy with <a href="/docs/multiple-game-installs/">multiple installs</a> open (off by default).</li>
 			<li><b>Write Compressed</b> — status only: shows whether the loaded level's Commands are compressed. Not user-togglable.</li>
 			<li><b>Reset Render Filters On Load</b> — when loading a level, turns all Viewport render filters off (shown only if the Viewport is available; off by default).</li>
-			<li><b>Allow AI Assistants (MCP)</b> — lets AI assistants such as Claude drive OpenCAGE through <code>OpenCAGE.MCP.exe</code>. Only programs running as you, on this PC, can connect (on by default; not in the picture above). See <a href="/docs/ai-assistants/">AI Assistants</a>.</li>
+			<li><b>Allow AI Assistants (MCP)</b> — lets AI assistants such as Claude drive OpenCAGE through <code>OpenCAGE.MCP.exe</code>. Only programs running as you, on this PC, can connect (on by default; not in the picture above). While an assistant is working, the status bar says so. See <a href="/docs/ai-assistants/">AI Assistants</a>, and <a href="/docs/ai-assistants/#working">While It Works</a> for that label and the question when you close OpenCAGE mid-task.</li>
 		</ul>
 		<p>Saving an uncompressed level now always writes both the PAK and BIN forms of the Commands data — that used to be an option here and no longer is. Compressed levels still save as BIN only.</p>
     </section>

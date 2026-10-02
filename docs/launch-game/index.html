@@ -114,7 +114,10 @@
 		<p><img src="img/toolbar-launch-game.jpg" alt="OpenCAGE's main toolbar with the Launch Game button at its right-hand end, beside Manage Backups." style="max-width:100%;width:576px"></p>
 		<p>Options patch the game install and (for some UI mods) replace GFX files under <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — the <a href="#scripting-helpers">Scripting Helpers</a> and <b>Cinematic Tools</b> are Steam-only. The dialog itself is shown below: the level picker sits at the top; a single <b>Launch Options</b> group holds the four UI mods at the top of its left-hand column, with the engine patches, debug tools and Cinematic Tools filling the rest of both columns; the <b>Scripting Helpers</b> group sits underneath; and <b>Start Alien: Isolation</b> is the button along the bottom. Options that don't apply to your install are greyed out; on the Steam install pictured, with the bundled tools present, everything is available.</p>
 		<p><img src="img/launch-game.jpg" alt="The Launch Game dialog: level picker at the top with PRODUCTION/BSP_TORRENS chosen, the Launch Options group of checkboxes with Enable Cinematic Tools among them, the Scripting Helpers group with Enable Hot Reload ticked and its key set to INSERT, and the Start Alien: Isolation button." style="max-width:100%;width:394px"></p>
-		<p class="text-muted small"><i>The Launch Game dialog on a Steam install with a level chosen; Enable Hot Reload is ticked, so its key dropdown is live.</i></p>
+		<p class="text-muted small"><i>The Launch Game dialog on a Steam install with a level chosen; Enable Hot Reload is ticked, so its key dropdown is live. The current dialog also has Enable Live Link at the bottom of the Scripting Helpers group, pictured under <a href="#scripting-helpers">Scripting Helpers</a>.</i></p>
+		<p>The game loads levels from disk, so if the level you have open has unsaved changes when you press <b>Start Alien: Isolation</b>, OpenCAGE asks whether to save it first. <b>Yes</b> saves the level (as <b>File → Save Level</b> does) and starts the game, <b>No</b> starts it without saving, and <b>Cancel</b> does neither. If the save doesn't go through, the game isn't started either. If you've added models or other content that needs building, cancel and use <b>File → Save and Build Level</b> first (see <a href="/docs/save-and-build/">Save and Build</a>).</p>
+		<p><img src="img/unsaved-changes.jpg" alt="The Unsaved changes message: the level has unsaved changes, the game loads what is saved on disk so it will not have them, Save the level before launching? with Yes, No and Cancel buttons." style="max-width:100%;width:395px"></p>
+		<p>While the game is running with <a href="#scripting-helpers">Enable Live Link</a> ticked (Steam only), a <a href="/docs/live-link/#live-link-button">Live Link</a> button joins <b>Launch Game</b> on the toolbar, to its right. A game started without it gets no button.</p>
     </section>
 </article>
 
@@ -197,8 +200,11 @@
 			<li><b>Enable DebugTextStacking</b> — <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a> script entities draw their text on screen in-game, stacked under one another.</li>
 			<li><b>Enable DebugEnvironmentMarker</b> — <a href="/docs/cathode-entities/#DebugEnvironmentMarker">DebugEnvironmentMarker</a> script entities draw their text at a world position in-game.</li>
 			<li><b>Enable DebugPositionMarker</b> — <a href="/docs/cathode-entities/#DebugPositionMarker">DebugPositionMarker</a> script entities draw axes at a world position in-game.</li>
+			<li><b>Enable Live Link</b> — the game serves OpenCAGE's <a href="/docs/live-link/">Live Link</a>, and OpenCAGE connects to it by itself a few seconds after the game starts: script edits (entities added or deleted, links, parameters) reach the running level without a reload, entity methods can be triggered from the Entity Inspector or the flowgraph, and the Viewport's camera and the game's can follow each other. Starting the game with it ticked also brings up the <a href="/docs/live-link/#live-link-button">Live Link</a> button on the toolbar, switched on. It's for script tweaks only: models, textures, materials and new composites still need the level saved and loaded again (see <a href="/docs/live-link/#scripts-only">what Live Link sends</a>).</li>
 		</ul>
-		<p>The debug entities exist in the shipped scripts but draw nothing in the retail game; these options bring them back, so a script that places a <b>DebugText</b> shows its message on screen as it would have in Creative Assembly's own tools.</p>
+		<p>The debug entities exist in the shipped scripts but draw nothing in the retail game; these options bring them back, so a script that places a <b>DebugText</b> shows its message on screen as it would have in Creative Assembly's own tools. See <a href="/docs/debug-text/">Debug Text &amp; Markers</a> for what each one draws, and how to show a script's values with them.</p>
+		<p><img src="img/live-link.jpg" alt="The Launch Game dialog with Enable Live Link ticked at the bottom of the Scripting Helpers group." style="max-width:100%;width:394px"></p>
+		<p class="text-muted small"><i>Enable Live Link, the last box in the Scripting Helpers group. (Cinematic Tools is greyed out here only because its files weren't installed on the test machine.)</i></p>
     </section>
 </article>
 
@@ -210,7 +216,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Outside the Launch Game dialog, under the toolbar's <b>Options</b> dropdown (shown below):</p>
 		<ul>
-			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog (so extras like Cinematic Tools / Hot Reloading from that dialog aren't applied). Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
+			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog, so Cinematic Tools isn't started, and the <a href="#scripting-helpers">Scripting Helpers</a> (Hot Reload, Live Link and the rest) stay as the dialog last set them: the plugin behind them stays in the game folder between runs. Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
 		</ul>
 		<p><img src="img/options-misc-open-game-on-save.jpg" alt="The toolbar's Options menu with the Misc submenu open, showing the Open Game On Save item unticked." style="max-width:100%;width:489px"></p>
     </section>

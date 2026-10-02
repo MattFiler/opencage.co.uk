@@ -94,6 +94,7 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#setup"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Setting Up</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#how"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>How It Works</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#working">While It Works</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#tools"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What It Can Do</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#example"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>An Example</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#changes"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Undo, Saving &amp; Flowgraphs</a></li>
@@ -166,10 +167,23 @@
 		<ul>
 			<li><b>One editor, the one you're using.</b> <code>OpenCAGE.MCP.exe</code> passes the assistant's requests to the open OpenCAGE over a local connection. Only programs running as you, on your PC, can use it. With more than one OpenCAGE open, the first one opened takes the requests.</li>
 			<li><b>One thing at a time.</b> The assistant's requests run one after another, in the editor, just as if you'd used the menus. You can keep working in OpenCAGE between them. Loading or saving a level and porting composites take as long as they do from the menus.</li>
-			<li><b>Message boxes.</b> The assistant can't click OpenCAGE's message boxes. Any that appear while it's working are answered with the most cautious button (No, then Cancel, then OK), and what they said is passed back to the assistant.</li>
+			<li><b>Message boxes.</b> The assistant can't click OpenCAGE's message boxes. Any that appear while it's working are answered with the most cautious button (No, then Cancel, then OK), and what they said is passed back to the assistant. Questions put to you, such as the one when you <a href="#working">close OpenCAGE</a> mid-task, are left for you to answer.</li>
 			<li><b>Seeing the level.</b> The assistant can take a picture of the Viewport (with the camera moved to what it wants to look at) to check what it has built.</li>
 		</ul>
     </section>
+
+	<section class="docs-section" id="working">
+		<h2 class="section-heading">While It Works</h2>
+		<p>While the assistant is running one of OpenCAGE's tools, the left end of the status bar, along the bottom of the OpenCAGE window, shows a blue label: <b>AI assistant working: <i>tool</i>...</b>, naming the tool, such as <b>AI assistant working: Open level...</b> or <b>AI assistant working: Find composites...</b>. OpenCAGE's usual status messages (loading, saving, undo) appear beside it. The label stays for about three seconds after each call, so an assistant making several calls in a row shows one steady label, and it goes once the assistant stops. While it's up, let the assistant finish before you edit or close OpenCAGE.</p>
+		<p><img src="img/working-label.jpg" alt="The bottom left corner of the OpenCAGE window: the Composite Browser, Entity Palette and My First Script Entities tabs, and under them, at the left end of the status bar, a blue label reading AI assistant working: Find composites..." style="max-width:100%;width:520px"></p>
+		<p>Closing OpenCAGE while a tool is running asks first, in a box titled <b>Close OpenCAGE?</b>: <b>An AI assistant is in the middle of a task in OpenCAGE (<i>tool</i>). Closing OpenCAGE now stops it part-way through. Close OpenCAGE anyway?</b></p>
+		<p><img src="img/close-question.jpg" alt="The Close OpenCAGE? box with a warning sign: An AI assistant is in the middle of a task in OpenCAGE (Open level). Closing OpenCAGE now stops it part-way through. Close OpenCAGE anyway? With Yes and No buttons." style="max-width:100%;width:409px"></p>
+		<ul>
+			<li><b>No</b>, the default, keeps OpenCAGE open, and the assistant's task carries on.</li>
+			<li><b>Yes</b> closes OpenCAGE, and the task stops part-way. If <a href="/docs/options/#misc">Prompt to Save on Close</a> is on and the level has changes, <b>Save level?</b> comes next, as usual. The assistant is told OpenCAGE closed, and OpenCAGE is started again on its next request, as it is when it isn't open.</li>
+		</ul>
+		<p>While the question is up, the assistant waits for you: anything new it asks OpenCAGE for is turned away until you've answered, and a level that's loading carries on loading but doesn't open its panels until then. The question only comes up while a tool is actually running. Between calls, even while the label is still showing, OpenCAGE closes as it always does.</p>
+	</section>
 </article>
 
 <article class="docs-article" id="tools">
@@ -183,7 +197,7 @@
 		<table class="table table-bordered">
 			<thead><tr><th>Area</th><th>Tools</th></tr></thead>
 			<tbody>
-				<tr><td>Levels &amp; game</td><td><code>get_editor_state</code>, <code>list_levels</code>, <code>load_level</code>, <code>create_level</code> (optionally importing composites), <code>save_level</code> (optionally Save &amp; Build, choosing which bakers run), <code>list_backups</code>, <code>create_backup</code>, <code>restore_backup</code>, <code>delete_backups</code>, <code>launch_game</code>, <code>launch_options</code>, <code>close_game</code>, <code>game_directories</code>, <code>runtime_utils</code></td></tr>
+				<tr><td>Levels &amp; game</td><td><code>get_editor_state</code>, <code>list_levels</code>, <code>load_level</code>, <code>create_level</code> (optionally importing composites), <code>save_level</code> (optionally Save &amp; Build, choosing which bakers run), <code>list_backups</code>, <code>create_backup</code>, <code>restore_backup</code>, <code>delete_backups</code>, <code>launch_game</code>, <code>launch_options</code>, <code>close_game</code>, <code>game_directories</code>, <code>runtime_utils</code> (<a href="/docs/live-link/#ai-assistants">Live Link</a> to the running game)</td></tr>
 				<tr><td>Finding things</td><td><code>find_composites</code>, <code>get_composite</code>, <code>describe_entity</code>, <code>find_entities</code> (by name, type, value or place), <code>find_references</code>, <code>get_placements</code>, <code>get_zones</code>, <code>list_dead_proxies</code>, <code>list_function_types</code>, <code>describe_function_type</code>, <code>list_enums</code>, <code>list_enum_string_values</code></td></tr>
 				<tr><td>Scripting</td><td><code>create_entities</code> (functions, composite instances, variables, aliases and proxies, with positions, parameters, links and flowgraph nodes), <code>create_composite</code>, <code>set_parameters</code>, <code>remove_parameters</code>, <code>rename_entity</code>, <code>delete_entities</code>, <code>copy_entities</code>, <code>add_links</code>, <code>remove_links</code>, <code>set_trigger_sequence</code>, <code>retarget_proxy</code>, <code>remove_references</code></td></tr>
 				<tr><td>Composites</td><td><code>manage_composites</code> (rename, move, folders, delete), <code>deinstance</code> and <code>group_into_composite</code> — the <a href="/docs/scripting-intro/#refactoring">De-instance and Create Composite</a> commands</td></tr>
@@ -198,7 +212,7 @@
 				<tr><td>Animation &amp; sound</td><td><code>list_animation_sets</code>, <code>list_animations</code>, <code>describe_animation</code>, <code>list_skeletons</code>, <code>export_animations</code>, <code>import_animation</code>, <code>list_blend_sets</code>, <code>edit_blend_set</code>, <code>list_anim_trees</code>, <code>get_anim_tree</code>, <code>edit_anim_tree</code>, <code>get_behaviour_tree</code>, <code>edit_behaviour_tree</code>, <code>list_sound_banks</code>, <code>describe_sound_event</code>, <code>export_sound</code>, <code>replace_sound</code></td></tr>
 				<tr><td>Packages</td><td><code>export_composite_package</code>, <code>inspect_composite_package</code>, <code>import_composite_package</code></td></tr>
 				<tr><td>Configuration &amp; text</td><td><code>list_config_files</code>, <code>read_config</code>, <code>write_config</code>, <code>edit_config_elements</code>, <code>get_config_record</code>, <code>set_config_record</code>, <code>reset_configs</code>, <code>list_strings</code>, <code>set_strings</code>, <code>list_text_databases</code>, <code>set_text_databases</code> — what the <a href="/docs/configs/">configuration editors</a> edit</td></tr>
-				<tr><td>Editor &amp; viewport</td><td><code>open_composite</code>, <code>select_entities</code>, <code>editor_options</code>, <code>undo</code>, <code>redo</code>, <code>capture_viewport</code>, <code>get_viewport_state</code>, <code>set_viewport_view</code>, <code>viewport_action</code>, <code>place_in_viewport</code>, <code>get_composite_preview</code></td></tr>
+				<tr><td>Editor &amp; viewport</td><td><code>open_composite</code>, <code>select_entities</code>, <code>editor_options</code>, <code>undo</code>, <code>redo</code>, <code>capture_viewport</code>, <code>get_viewport_state</code>, <code>set_viewport_view</code>, <code>set_viewport_camera</code>, <code>viewport_action</code>, <code>place_in_viewport</code>, <code>get_composite_preview</code></td></tr>
 			</tbody>
 		</table>
 		</div>
@@ -231,7 +245,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
 			<li><b>Undo.</b> Every scripting change the assistant makes is one step on the editor's undo history, named with an <code>AI:</code> prefix ("AI: Add 17 entities"). <b>Edit → Undo</b> (or asking the assistant to undo) takes it back. This covers everything in the level's script: entities, parameters, links, trigger sequences, CAGEAnimations, entity resources (models, collision, physics), flowgraph pages and nodes, and composites (new, renamed, moved, deleted, De-instance, Create Composite). Porting composites, imports, and changes to models, materials, textures, animations, sounds, configuration files and text can't be undone, as when you make them yourself; the tools that change files every level shares can do a dry run first.</li>
-			<li><b>Saving.</b> Nothing reaches the game until the level is saved. The assistant saves only when asked (or when its task says to). After script changes, the level needs a <a href="/docs/save-and-build/">Save and Build</a> before they work in game. Configuration files are the exception: they're shared by every level and written straight away.</li>
+			<li><b>Saving.</b> Nothing reaches the game until the level is saved, unless the game is running with <a href="/docs/live-link/">Live Link</a>, which takes script edits as they're made. The assistant saves only when asked (or when its task says to). Script changes need only a save (a <a href="/docs/save-and-build/">Save and Build</a> is for physical changes: added or moved geometry and models). Configuration files are the exception: they're shared by every level and written straight away.</li>
 			<li><b>Flowgraphs stay drawn.</b> When the assistant adds links to a composite shown as flowgraph pages, the new links are drawn on its pages, next to what they connect, so they survive the next save. A new composite gets pages laid out for it. A link the flowgraph editor has no way to draw is refused with an explanation (usually it runs the wrong way), rather than made and lost later. Composites shown as a plain link list are left as they are, unless the assistant is asked to lay them out.</li>
 		</ul>
     </section>
@@ -248,6 +262,7 @@
 			<li><b>Back up first.</b> Ask for a backup (or make one with the <a href="/docs/backup-manager/">Backup Manager</a>) before letting an assistant loose on a level you care about. Saving is always a separate, explicit step.</li>
 			<li><b>Level design still takes looking at.</b> The assistant places pieces by the numbers: their positions, sizes and how the shipped levels arrange them. Check the result in the Viewport, and ask for fixes.</li>
 			<li><b>Launching the game kills a running copy.</b> So does saving, as usual.</li>
+			<li><b>Try changes in the running game.</b> With the game started with <b>Enable Live Link</b>, the assistant's script edits reach it as they're made, as yours do, and <code>runtime_utils</code> lets it check what the game is running, call methods on entities and take screenshots of the game. <code>set_viewport_view</code>'s <code>live_link_camera</code> links the game's camera and the Viewport's. See <a href="/docs/live-link/">Live Link</a>.</li>
 		</ul>
 	</section>
 </article>
@@ -264,6 +279,7 @@
 			<li><a href="/docs/composite-porting/">Composite Porting</a> — bringing content in from other levels</li>
 			<li><a href="/docs/save-and-build/">Save and Build</a> — building a level so it runs in game</li>
 			<li><a href="/docs/level-viewer/">Viewport</a> — seeing the level in 3D</li>
+			<li><a href="/docs/live-link/">Live Link</a> — script edits and method calls in the running game</li>
 			<li><a href="/docs/options/#misc">Options</a> — turning AI assistants on and off</li>
 		</ul>
     </section>

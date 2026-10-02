@@ -18631,6 +18631,8 @@
         "category":  "Launch Game",
         "keywords":  [
             "intro",
+            "unsaved changes",
+            "save before launching",
             "launch game"
         ],
         "title":  "Introduction"
@@ -19204,6 +19206,9 @@
         "category":  "Viewport",
         "keywords":  [
             "moving-camera",
+            "live link camera",
+            "live link",
+            "camera sync",
             "viewport"
         ],
         "title":  "Moving the Camera"
@@ -20050,6 +20055,16 @@
         "category":  "Cathode Scripting Introduction",
         "keywords":  [
             "creating-script",
+            "live link",
+            "resync",
+            "debug text",
+            "debugtext",
+            "trigger method",
+            "new instance of composite",
+            "create composite instance entity",
+            "composite preview",
+            "show preview",
+            "no preview",
             "cathode scripting introduction"
         ],
         "title":  "Creating a Script"
@@ -20105,6 +20120,8 @@
         "category":  "Cathode Scripting Introduction",
         "keywords":  [
             "script-editor",
+            "composite toolbar",
+            "find instances",
             "cathode scripting introduction"
         ],
         "title":  "The Script Editor"
@@ -22081,6 +22098,25 @@
         "title":  "Creating Entities"
     },
     {
+        "url":  "/docs/level-viewer/#measure",
+        "description":  "On Viewport",
+        "type":  "symbol",
+        "category":  "Viewport",
+        "keywords":  [
+            "measure",
+            "measuring",
+            "ruler",
+            "distance",
+            "height",
+            "vertical",
+            "horizontal",
+            "metres",
+            "vertex snap",
+            "viewport"
+        ],
+        "title":  "Measuring Distances"
+    },
+    {
         "url":  "/docs/level-viewer/#copy-paste",
         "description":  "On Viewport",
         "type":  "symbol",
@@ -22218,6 +22254,8 @@
             "dead proxy",
             "missing",
             "unresolvable proxy",
+            "trigger method",
+            "live link",
             "cathode scripting introduction"
         ],
         "title":  "The Entity Inspector"
@@ -22237,6 +22275,9 @@
             "(!)",
             "change proxy target",
             "unresolvable proxy",
+            "set delay",
+            "clear delay",
+            "trigger in game",
             "cathode scripting introduction"
         ],
         "title":  "Reading the Flowgraph"
@@ -22596,6 +22637,9 @@
             "debugenvironmentmarker",
             "runtime utils",
             "insert key",
+            "live link",
+            "enable live link",
+            "debugtextstacking",
             "launch game"
         ],
         "title":  "Scripting Helpers"
@@ -22669,6 +22713,10 @@
             "all levels",
             "no levels",
             "tick levels",
+            "search",
+            "search button",
+            "filter",
+            "check all",
             "composite porting"
         ],
         "title":  "Export to Level"
@@ -22839,6 +22887,23 @@
             "cageanimation editor"
         ],
         "title":  "Previewing"
+    },
+    {
+        "url":  "/docs/cage-animation-editor/#in-game",
+        "description":  "On CAGEAnimation Editor",
+        "type":  "symbol",
+        "category":  "CAGEAnimation Editor",
+        "keywords":  [
+            "in-game",
+            "in game",
+            "live link",
+            "preview in game",
+            "animation mode",
+            "loop",
+            "run events",
+            "cageanimation editor"
+        ],
+        "title":  "Previewing in the Game"
     },
     {
         "url":  "/docs/cage-animation-editor/#keyframing-viewport",
@@ -23389,6 +23454,23 @@
         "title":  "How It Works"
     },
     {
+        "url":  "/docs/ai-assistants/#working",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "working",
+            "ai assistant working",
+            "status bar",
+            "busy",
+            "close opencage?",
+            "closing mid-task",
+            "mcp",
+            "ai assistants"
+        ],
+        "title":  "While It Works"
+    },
+    {
         "url":  "/docs/ai-assistants/#tools",
         "description":  "On AI Assistants",
         "type":  "symbol",
@@ -23408,6 +23490,9 @@
             "animations",
             "sounds",
             "localisation",
+            "runtime_utils",
+            "set_viewport_camera",
+            "live link",
             "ai assistants"
         ],
         "title":  "What It Can Do"
@@ -23464,6 +23549,768 @@
         "keywords":  [
             "related",
             "ai assistants"
+        ],
+        "title":  "Related Docs"
+    },
+    {
+        "url":  "/docs/live-link/",
+        "description":  "How OpenCAGE\u0027s Live Link edits Alien: Isolation while it runs: new scripts and script tweaks without a reload, lights and props placed and tuned in the game\u0027s own render, entity methods called in the game, and linked game and Viewport cameras.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "live link",
+            "livelink",
+            "live editing",
+            "edit while running",
+            "no reload",
+            "runtime utils",
+            "trigger method",
+            "resync",
+            "camera sync",
+            "lights",
+            "lighting",
+            "props",
+            "level building",
+            "debug text",
+            "real time",
+            "activity",
+            "script activity",
+            "watch scripts run"
+        ],
+        "title":  "Live Link"
+    },
+    {
+        "url":  "/docs/live-link/#intro",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "intro",
+            "live link"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/live-link/#scripts-only",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "scripts-only",
+            "script edits only",
+            "what is sent",
+            "entities",
+            "links",
+            "parameters",
+            "models",
+            "textures",
+            "materials",
+            "new composite",
+            "not updating",
+            "doesn\u0027t update",
+            "live link"
+        ],
+        "title":  "Live Link Is for Script Tweaks Only"
+    },
+    {
+        "url":  "/docs/live-link/#use-cases",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "use-cases",
+            "what you can do",
+            "examples",
+            "workflows",
+            "live link"
+        ],
+        "title":  "What You Can Do With It"
+    },
+    {
+        "url":  "/docs/live-link/#new-script",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "new-script",
+            "new script",
+            "without saving",
+            "build a script",
+            "new composite",
+            "live link"
+        ],
+        "title":  "Build a New Script Without Saving"
+    },
+    {
+        "url":  "/docs/live-link/#script-changes",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "script-changes",
+            "tweak",
+            "small changes",
+            "re-initialised",
+            "trigger method",
+            "live link"
+        ],
+        "title":  "See Small Script Changes at Once"
+    },
+    {
+        "url":  "/docs/live-link/#lights",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "lights",
+            "lighting",
+            "lightreference",
+            "light prefab",
+            "lgt_col",
+            "intensity",
+            "colour",
+            "light_switch_on",
+            "radiosity",
+            "baked lighting",
+            "light placement",
+            "place light",
+            "move light",
+            "light in game",
+            "see lights in game",
+            "realtime",
+            "tune lights",
+            "live link"
+        ],
+        "title":  "Lighting in Real Time: Place and Tune Lights"
+    },
+    {
+        "url":  "/docs/live-link/#level-building",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "level-building",
+            "props",
+            "prefabs",
+            "place",
+            "dress",
+            "modelreference",
+            "not built",
+            "save and build",
+            "models",
+            "models in game",
+            "see models in game",
+            "place models",
+            "in-game render",
+            "dress a room",
+            "live link"
+        ],
+        "title":  "Build and Dress the Level in the Game\u0027s Render"
+    },
+    {
+        "url":  "/docs/live-link/#debugging",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "debugging",
+            "debugtext",
+            "debugtextstacking",
+            "on screen values",
+            "on_up",
+            "live link"
+        ],
+        "title":  "Debug Scripts With Values on Screen"
+    },
+    {
+        "url":  "/docs/live-link/#more-uses",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "more-uses",
+            "framing",
+            "camera",
+            "set things off",
+            "every instance",
+            "activity",
+            "see what a script is doing",
+            "live link"
+        ],
+        "title":  "And More"
+    },
+    {
+        "url":  "/docs/live-link/#requirements",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "requirements",
+            "steam",
+            "same level",
+            "same install",
+            "live link"
+        ],
+        "title":  "Requirements"
+    },
+    {
+        "url":  "/docs/live-link/#starting",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "starting",
+            "enable live link",
+            "launch game",
+            "connect",
+            "live link"
+        ],
+        "title":  "Starting Live Link"
+    },
+    {
+        "url":  "/docs/live-link/#unsaved-changes",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "unsaved-changes",
+            "unsaved changes",
+            "save before launching",
+            "live link"
+        ],
+        "title":  "Unsaved Changes"
+    },
+    {
+        "url":  "/docs/live-link/#live-link-button",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "live-link-button",
+            "live link button",
+            "toolbar",
+            "no live link button",
+            "overlay",
+            "connected",
+            "disconnect",
+            "live link"
+        ],
+        "title":  "The Live Link Button"
+    },
+    {
+        "url":  "/docs/live-link/#editing",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "editing",
+            "auto push",
+            "script edits",
+            "running instances",
+            "live link"
+        ],
+        "title":  "Editing While the Game Runs"
+    },
+    {
+        "url":  "/docs/live-link/#what-is-sent",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "what-is-sent",
+            "re-initialised",
+            "reinitialised",
+            "start_on_reset",
+            "undo",
+            "aliases",
+            "links",
+            "cageanimation",
+            "triggersequence",
+            "composite instance",
+            "mission",
+            "live link"
+        ],
+        "title":  "What Reaches the Game"
+    },
+    {
+        "url":  "/docs/live-link/#save-and-reload",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "save-and-reload",
+            "new composite",
+            "resources",
+            "models",
+            "textures",
+            "materials",
+            "not updating",
+            "different level",
+            "reload",
+            "navmesh",
+            "open game on save",
+            "root variables",
+            "variable defaults",
+            "live link"
+        ],
+        "title":  "What Needs a Reload"
+    },
+    {
+        "url":  "/docs/live-link/#waiting",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "waiting",
+            "waiting",
+            "pause menu",
+            "loading",
+            "cutscene",
+            "checkpoint",
+            "no level is running",
+            "live link"
+        ],
+        "title":  "Level Start \u0026 Pause"
+    },
+    {
+        "url":  "/docs/live-link/#resync",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "resync",
+            "resync",
+            "out of step",
+            "hot reload",
+            "live link"
+        ],
+        "title":  "Resync"
+    },
+    {
+        "url":  "/docs/live-link/#clean-state",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "clean-state",
+            "reset",
+            "revert",
+            "discard",
+            "start over",
+            "hot reload",
+            "undo",
+            "live link"
+        ],
+        "title":  "Getting Back to a Clean State"
+    },
+    {
+        "url":  "/docs/live-link/#calling-methods",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "calling-methods",
+            "trigger method",
+            "trigger in game",
+            "call method",
+            "start",
+            "trigger",
+            "methods",
+            "entity inspector",
+            "method pin",
+            "flowgraph",
+            "live link"
+        ],
+        "title":  "Triggering Methods"
+    },
+    {
+        "url":  "/docs/live-link/#activity",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "activity",
+            "script activity",
+            "show activity",
+            "clear activity",
+            "watch scripts run",
+            "see what a script is doing",
+            "links light up",
+            "flowgraph",
+            "orange links",
+            "blue links",
+            "glow",
+            "counts",
+            "clear",
+            "trace",
+            "debugging",
+            "live link"
+        ],
+        "title":  "Watching Your Scripts Run"
+    },
+    {
+        "url":  "/docs/live-link/#activity-what-lights",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "activity-what-lights",
+            "activity",
+            "logic links",
+            "trigger links",
+            "data links",
+            "orange",
+            "blue",
+            "reads",
+            "writes",
+            "dashes",
+            "dimly lit",
+            "never ran",
+            "parameters",
+            "aliases",
+            "live link"
+        ],
+        "title":  "What Lights Up"
+    },
+    {
+        "url":  "/docs/live-link/#activity-counts",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "activity-counts",
+            "activity",
+            "counts",
+            "trigger counts",
+            "how many times",
+            "fired",
+            "called",
+            "trigger method",
+            "clear activity",
+            "live link"
+        ],
+        "title":  "Counts Beside the Pins"
+    },
+    {
+        "url":  "/docs/live-link/#activity-instance",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "activity-instance",
+            "activity",
+            "instance path",
+            "every instance",
+            "counts added together",
+            "composite browser",
+            "live link"
+        ],
+        "title":  "Which Instance It Shows"
+    },
+    {
+        "url":  "/docs/live-link/#activity-limits",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "activity-limits",
+            "activity",
+            "no flowgraph pages",
+            "output parameter",
+            "written from inside",
+            "every frame",
+            "keeps glowing",
+            "redrawn less often",
+            "aliases left out",
+            "at most 512",
+            "another level is running",
+            "live link"
+        ],
+        "title":  "Limits"
+    },
+    {
+        "url":  "/docs/live-link/#camera",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "camera",
+            "live link camera",
+            "camera sync",
+            "sync viewport camera to game",
+            "sync game camera to viewport",
+            "cinematic tools",
+            "viewcone",
+            "zones",
+            "live link"
+        ],
+        "title":  "Live Link Camera"
+    },
+    {
+        "url":  "/docs/live-link/#ai-assistants",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "ai-assistants",
+            "mcp",
+            "runtime_utils",
+            "live_link_camera",
+            "set_viewport_camera",
+            "launch_options",
+            "activity",
+            "live link"
+        ],
+        "title":  "AI Assistants"
+    },
+    {
+        "url":  "/docs/live-link/#troubleshooting",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "troubleshooting",
+            "different level",
+            "too old",
+            "no live link button",
+            "OpenCAGE_Utils.log",
+            "unsupported live link protocol",
+            "not serving live link",
+            "show activity lights nothing",
+            "live link"
+        ],
+        "title":  "Troubleshooting"
+    },
+    {
+        "url":  "/docs/live-link/#status-messages",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "status-messages",
+            "status bar",
+            "applied to",
+            "not in the running level",
+            "could not be constructed",
+            "did not answer",
+            "variables changed",
+            "live link"
+        ],
+        "title":  "What the Status Bar Says"
+    },
+    {
+        "url":  "/docs/live-link/#related",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "related",
+            "live link"
+        ],
+        "title":  "Related Docs"
+    },
+    {
+        "url":  "/docs/debug-text/",
+        "description":  "How to put text, script values and position markers on screen in Alien: Isolation with the DebugText, DebugTextStacking, DebugPositionMarker and DebugEnvironmentMarker entities.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "debug text",
+            "debugtext",
+            "debugtextstacking",
+            "debugpositionmarker",
+            "debugenvironmentmarker",
+            "debugging",
+            "on screen text",
+            "script values",
+            "markers",
+            "scripting helpers",
+            "print",
+            "print to screen",
+            "debug print",
+            "watch variable",
+            "show variable"
+        ],
+        "title":  "Debug Text \u0026 Markers"
+    },
+    {
+        "url":  "/docs/debug-text/#intro",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "intro",
+            "debug entities",
+            "runtime utils",
+            "debug text \u0026 markers"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/debug-text/#enabling",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "enabling",
+            "enable debugtext",
+            "enable debugtextstacking",
+            "enable debugenvironmentmarker",
+            "enable debugpositionmarker",
+            "scripting helpers",
+            "launch game",
+            "steam",
+            "debug text \u0026 markers"
+        ],
+        "title":  "Turning Them On"
+    },
+    {
+        "url":  "/docs/debug-text/#debugtext",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "debugtext",
+            "text_input",
+            "int_input",
+            "float_input",
+            "bool_input",
+            "vector_input",
+            "enum_input",
+            "alignment",
+            "duration",
+            "clear_all",
+            "clear_of_alignment",
+            "debug text \u0026 markers"
+        ],
+        "title":  "DebugText"
+    },
+    {
+        "url":  "/docs/debug-text/#seeing-values",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "seeing-values",
+            "script values",
+            "show a value",
+            "reference",
+            "logiccounter",
+            "variableint",
+            "count",
+            "watch",
+            "watch variable",
+            "print value",
+            "variables",
+            "variablestring",
+            "variablefloat",
+            "variablebool",
+            "variablevector",
+            "variableenum",
+            "debug text \u0026 markers"
+        ],
+        "title":  "Seeing Script Values"
+    },
+    {
+        "url":  "/docs/debug-text/#stacking",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "stacking",
+            "debugtextstacking",
+            "log",
+            "clear_last",
+            "last five",
+            "on_up",
+            "repeats",
+            "skips",
+            "order",
+            "tick",
+            "log values",
+            "debug text \u0026 markers"
+        ],
+        "title":  "DebugTextStacking"
+    },
+    {
+        "url":  "/docs/debug-text/#markers",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "markers",
+            "world position",
+            "through walls",
+            "debug text \u0026 markers"
+        ],
+        "title":  "Markers"
+    },
+    {
+        "url":  "/docs/debug-text/#position-marker",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "position-marker",
+            "debugpositionmarker",
+            "axes",
+            "world_pos",
+            "rotation",
+            "debug text \u0026 markers"
+        ],
+        "title":  "DebugPositionMarker"
+    },
+    {
+        "url":  "/docs/debug-text/#environment-marker",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "environment-marker",
+            "debugenvironmentmarker",
+            "label",
+            "target",
+            "max_string_length",
+            "debug text \u0026 markers"
+        ],
+        "title":  "DebugEnvironmentMarker"
+    },
+    {
+        "url":  "/docs/debug-text/#log-file",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "log-file",
+            "OpenCAGE_Utils.log",
+            "log file",
+            "debug text \u0026 markers"
+        ],
+        "title":  "The Log File"
+    },
+    {
+        "url":  "/docs/debug-text/#tips",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "tips",
+            "live link",
+            "start",
+            "hot reload",
+            "nothing shows",
+            "debug text \u0026 markers"
+        ],
+        "title":  "Tips"
+    },
+    {
+        "url":  "/docs/debug-text/#related",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "related",
+            "debug text \u0026 markers"
         ],
         "title":  "Related Docs"
     }

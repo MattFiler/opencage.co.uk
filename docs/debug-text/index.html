@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Debug Text &amp; Markers</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to put text, script values and position markers on screen in Alien: Isolation with the DebugText, DebugTextStacking, DebugPositionMarker and DebugEnvironmentMarker entities.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Debug Text &amp; Markers" />
+	<meta name="twitter:description" content="How to put text, script values and position markers on screen in Alien: Isolation with the DebugText, DebugTextStacking, DebugPositionMarker and DebugEnvironmentMarker entities." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#enabling"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Turning Them On</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#debugtext"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>DebugText</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#seeing-values"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Seeing Script Values</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#stacking"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>DebugTextStacking</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#markers"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Markers</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#position-marker">DebugPositionMarker</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#environment-marker">DebugEnvironmentMarker</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#log-file"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>The Log File</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#tips"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Tips</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Debug Text &amp; Markers</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Four script entities put information on screen while the game runs, which makes them the quickest way to see what a script is doing: what fired, in what order, and with what values.</p>
+		<ul>
+			<li><a href="#debugtext">DebugText</a> shows a line of text at one of nine places on the screen, followed by any values linked into it.</li>
+			<li><a href="#stacking">DebugTextStacking</a> adds a line to a small log on the left of the screen each time it starts.</li>
+			<li><a href="#position-marker">DebugPositionMarker</a> draws a set of axes at a point in the level, showing where it is and which way it faces.</li>
+			<li><a href="#environment-marker">DebugEnvironmentMarker</a> draws a label at a point in the level, or on an entity.</li>
+		</ul>
+		<p>They were Creative Assembly's own debugging aids, and they're still in the scripts the game shipped with, but the retail game switches them off and draws nothing for them. OpenCAGE's runtime utils, the plugin it puts in the game folder for the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a>, switch them back on and draw them over the game. They draw these four only: other debug entities in the entity reference, such as DebugGraph and DebugObjectMarker, aren't drawn by them. (DebugCheckpoint has a box of its own, <b>Enable Debug Checkpoints</b>, in <a href="/docs/launch-game/">Launch Game</a>.)</p>
+		<p><img src="img/overview.jpg" alt="Alien: Isolation in a Torrens corridor with debug text over it: Read from the counter: [247] at the top left, Crates delivered so far: [247] in yellow at the top centre, Tick [243] to Tick [247] in green on the middle left, Inputs: [hello] [7] [2.5] [true] [1, 2, 3] at the bottom left, and in the corridor a set of red, green and blue axes beside a crate, with the green label Supply crate on the crate." width="100%"></p>
+		<p class="text-muted small"><i>All four in the game. Top left and top centre, two DebugTexts showing a counter's value, one read straight from the counter and one from a VariableInt it's written into; middle left, a DebugTextStacking logging the last five ticks; bottom left, a DebugText showing five kinds of input (all but an enum); and at the crate, a DebugPositionMarker's axes and a DebugEnvironmentMarker's label. The whole script was added while the game ran, over <a href="/docs/live-link/">Live Link</a>.</i></p>
+    </section>
+</article>
+
+<article class="docs-article" id="enabling">
+    <header class="docs-header">
+<h1 class="docs-heading">Turning Them On</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Press <b>Launch Game</b> on the main toolbar, and under <b>Scripting Helpers</b> tick a box for each one you want drawn:</p>
+		<ul>
+			<li><b>Enable DebugText</b></li>
+			<li><b>Enable DebugTextStacking</b></li>
+			<li><b>Enable DebugEnvironmentMarker</b></li>
+			<li><b>Enable DebugPositionMarker</b></li>
+		</ul>
+		<p>Then press <b>Start Alien: Isolation</b>. Tick <b>Enable Live Link</b> in the same group too if you want to add debug entities and start them while the game runs (see <a href="#tips">Tips</a>).</p>
+		<p>The runtime utils only support the Steam version of the game, so on other platforms the Scripting Helpers are greyed out. They stay in the game folder as Launch Game last set them, so a game started some other way (from Steam, or by <a href="/docs/options/#misc">Options → Misc → Open Game On Save</a>) draws whatever was ticked the last time you started the game from that window. See <a href="/docs/launch-game/#scripting-helpers">Launch Game</a> for the rest of the group.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="debugtext">
+    <header class="docs-header">
+<h1 class="docs-heading">DebugText</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>A <a href="/docs/cathode-entities/#DebugText">DebugText</a> shows its <code>text</code> on screen when it starts. After the text come its inputs, each in square brackets, always in this order:</p>
+		<ol>
+			<li><code>text_input</code></li>
+			<li><code>int_input</code></li>
+			<li><code>float_input</code></li>
+			<li><code>bool_input</code></li>
+			<li><code>vector_input</code></li>
+			<li><code>enum_input</code></li>
+		</ol>
+		<p>An input is shown when it's linked, or when it's set to something other than its empty value: blank text, 0, false and 0, 0, 0 are left out unless they're linked. An enum is shown whenever it's set, even to its first value (0). Whole numbers show as they are, decimals to six significant figures, dropping trailing zeros (<b>2.5</b>; 1234.5678 shows as 1234.57), bools as <b>true</b> or <b>false</b>, vectors as <b>x, y, z</b>, and enums as their index number (the numbers on the <a href="/docs/cathode-enums/">Cathode Enums</a> page). So a DebugText with the text <b>Inputs:</b> and the first five inputs set shows:</p>
+		<pre><code>Inputs: [hello] [7] [2.5] [true] [1, 2, 3]</code></pre>
+		<p>The rest of its parameters decide where and how it's drawn:</p>
+		<ul>
+			<li><code>alignment</code>: where on the screen it goes, laid out as below. <b>CENTRE</b> is the default. Several DebugTexts at one alignment are listed one under another, in the order they started (at the bottom of the screen, that's towards the edge, so keep to one or two there).</li>
+			<li><code>size</code>: how big the text is. 20 by default.</li>
+			<li><code>colour</code>: red, green and blue, each from 0 to 255. White by default.</li>
+			<li><code>duration</code>: how many seconds it stays on screen, 5 by default. Set it to 0 or less (-1, say) to keep it there until it's stopped.</li>
+		</ul>
+		<div class="table-responsive my-3">
+		<table class="table table-bordered text-center">
+			<tbody>
+				<tr><td>TOP_LEFT</td><td>TOP_CENTRE</td><td>TOP_RIGHT</td></tr>
+				<tr><td>LEFT</td><td>CENTRE</td><td>RIGHT</td></tr>
+				<tr><td>BOTTOM_LEFT</td><td>BOTTOM_CENTRE</td><td>BOTTOM_RIGHT</td></tr>
+			</tbody>
+		</table>
+		</div>
+		<p>While it's on screen, a DebugText reads its text and inputs again about ten times a second (and its alignment, size and colour with them), so a linked value updates as it changes. Link its <code>int_input</code> to a counter and you'll see the number climb: see <a href="#seeing-values">Seeing Script Values</a>.</p>
+		<p>Its methods:</p>
+		<ul>
+			<li><b>start</b> shows it. Starting one that's already on screen starts it over, with its duration from the beginning.</li>
+			<li><b>stop</b> hides it.</li>
+			<li><b>clear_all</b> hides every DebugText on screen, wherever it is. It doesn't touch a DebugTextStacking's lines.</li>
+			<li><b>clear_of_alignment</b> hides the DebugTexts at this one's alignment.</li>
+		</ul>
+		<p><code>namespace</code>, <code>pause_game</code>, <code>cancel_pause_with_button_press</code>, <code>priority</code> and <code>ci_type</code> aren't used by the runtime utils.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="seeing-values">
+    <header class="docs-header">
+<h1 class="docs-heading">Seeing Script Values</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>A DebugText can show you any value a script is working with: a number, a piece of text, whether something is true, a vector. Its input pins (<code>text_input</code>, <code>int_input</code> and the rest) sit along the top of its node in the flowgraph. Link the one that matches the value's type to where the value lives, in one of two ways:</p>
+		<ul>
+			<li><b>Straight to the entity.</b> Link the input pin to the <code>reference</code> pin along the bottom of the entity's node. Link <code>int_input</code> to a <a href="/docs/cathode-entities/#LogicCounter">LogicCounter</a>'s <code>reference</code>, and the DebugText shows the counter's count.</li>
+			<li><b>Through a variable.</b> Have the value written into a Variable entity of the same type, then link the input pin to that variable's <code>reference</code>. For a counter, link its <code>Count</code> to a <a href="/docs/cathode-entities/#VariableInt">VariableInt</a>'s <code>reference</code>, and the DebugText's <code>int_input</code> to that same <code>reference</code>. It's handy when the value is already kept in a variable, or when several things need it.</li>
+		</ul>
+		<p>The Variable entity for each input is the one of its type: a <a href="/docs/cathode-entities/#VariableString">VariableString</a> for <code>text_input</code>, a <a href="/docs/cathode-entities/#VariableInt">VariableInt</a> for <code>int_input</code>, a <a href="/docs/cathode-entities/#VariableFloat">VariableFloat</a> for <code>float_input</code>, a <a href="/docs/cathode-entities/#VariableBool">VariableBool</a> for <code>bool_input</code>, a <a href="/docs/cathode-entities/#VariableVector">VariableVector</a> for <code>vector_input</code> and a <a href="/docs/cathode-entities/#VariableEnum">VariableEnum</a> for <code>enum_input</code>.</p>
+		<p>You can't link an output like the counter's <code>Count</code> straight into <code>int_input</code>: OpenCAGE won't make that link. Go through the entity's <code>reference</code>, or a variable, as above. In the flowgraph, each of these links runs between the input pin on top of the DebugText's node and the <code>reference</code> pin on the bottom of the other node, drawn in blue, as every link that carries data is.</p>
+		<p><img src="img/flowgraph.jpg" alt="A flowgraph: Looper, a TriggerLooper, has its target linked to Up on Counter, a LogicCounter. Counter's on_Up is linked to start on TickLog, a DebugTextStacking. Blue links run from Counter's reference pin, on the bottom of its node, to the int_input pins on top of CountText, a DebugText, and of TickLog." style="max-width:100%;width:910px"></p>
+		<p class="text-muted small"><i>A counter shown two ways. A TriggerLooper fires the counter's Up; CountText, a DebugText, shows the count all the time, and TickLog, a DebugTextStacking, adds a line each time it goes up. The blue links carry the value from the counter's reference to each int_input.</i></p>
+		<p>To build that yourself:</p>
+		<ol>
+			<li>Open the level's root composite (the orange globe in the Composite Browser), so <a href="/docs/live-link/">Live Link</a> can add the script to the running game. Add each entity with a right-click on the flowgraph and <b>Create Entity → New Function</b>, and link pins by dragging from one to the other (see <a href="/docs/scripting-intro/#creating-script">Creating a Script</a>). For a data link (steps 3 and 4), drag from the <code>int_input</code> pin onto the counter's node, pick <b>reference</b> in the <b>Select Destination Pin</b> window that opens, and press <b>Connect</b>.</li>
+			<li>Add a <a href="/docs/cathode-entities/#TriggerLooper">TriggerLooper</a> and a LogicCounter, and link the looper's <code>target</code> to the counter's <code>Up</code>. Give the looper a <code>delay</code> (1 second, say) and a <code>count</code> high enough to watch, and tick the counter's <code>is_limitless</code>.</li>
+			<li>Add a DebugText with some <code>text</code> and a <code>duration</code> of -1, so it stays up, and link its <code>int_input</code> to the counter's <code>reference</code>.</li>
+			<li>For a log of each tick, add a DebugTextStacking, link the counter's <code>on_Up</code> to its <code>start</code>, and its <code>int_input</code> to the counter's <code>reference</code> too.</li>
+			<li>Start the DebugText and the looper: from something already in the level that fires when you want, or by triggering <b>start</b> over <a href="/docs/live-link/#calling-methods">Live Link</a> (<b>▶ Trigger Method</b> in the Entity Inspector, or a right-click on the <b>start</b> pin).</li>
+		</ol>
+    </section>
+</article>
+
+<article class="docs-article" id="stacking">
+    <header class="docs-header">
+<h1 class="docs-heading">DebugTextStacking</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>A <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a> keeps a log on screen. Each time it starts, it adds a line: its <code>text</code>, followed by its inputs in square brackets, shown the same way as a <a href="#debugtext">DebugText</a>'s (it has <code>int_input</code>, <code>float_input</code>, <code>bool_input</code>, <code>vector_input</code> and <code>enum_input</code>, but no <code>text_input</code>). The line is read once, as it starts, and doesn't change after that, so each one is a record of that moment. Start it once a second with a counter linked in, and you get a line for each tick.</p>
+		<ul>
+			<li>The lines form a block on the middle left of the screen, newest at the bottom. Every DebugTextStacking in the level adds to the same block.</li>
+			<li>Only the last five lines are kept: a sixth pushes the oldest out.</li>
+			<li>Lines stay until they're pushed out, until <b>clear_all</b> empties the block or <b>clear_last</b> removes the newest line, or until the level changes. There's no duration.</li>
+			<li><code>size</code> and <code>colour</code> work as a DebugText's do. <code>namespace</code>, <code>ci_type</code> and <code>needs_debug_opt_to_render</code> aren't used.</li>
+			<li>It shares the middle left with DebugTexts at <b>LEFT</b>, so give those another alignment while you're using one.</li>
+		</ul>
+		<p><b>Start it after the value changes.</b> To log a value each time it changes, start the DebugTextStacking from something that fires once the change has happened, such as a LogicCounter's <code>on_Up</code>, which fires after <code>Up</code> has added one. Don't start it from the same trigger that changes the value. When one trigger is linked to two things, they don't run in any fixed order, so the stack can read the value before the change or after it, and the log repeats some numbers and skips others.</p>
+		<p>That's what happened the first time the counter above was built. The looper's <code>target</code> was linked to both the counter's <code>Up</code> and the stack's <code>start</code>, with the count passed through a VariableInt, and the log read 5, 5, 6, 8, 8. Rewired so the counter's <code>on_Up</code> starts the stack, with the stack's <code>int_input</code> linked to the counter's <code>reference</code> (as in the <a href="#seeing-values">flowgraph above</a>), it logged 243, 244, 245, 246, 247: one line per tick, one apart, as in the <a href="#intro">screenshot at the top</a>.</p>
+		<p><b>Read the value from where it lives.</b> Link the stack's input straight to the entity that holds the value (the counter's <code>reference</code>, as in that rewiring), rather than to a variable the value is copied into. It then reads the value itself at the moment it starts, so what it logs doesn't depend on the copy having been made first.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="markers">
+    <header class="docs-header">
+<h1 class="docs-heading">Markers</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The two marker entities mark a place in the level rather than the screen. Each is drawn while it's started, so start it (with a link, or by triggering <b>start</b> over <a href="/docs/live-link/#calling-methods">Live Link</a>), and it goes a moment after it stops. They're drawn over the game's picture, so they show through walls and doors.</p>
+    </section>
+
+	<section class="docs-section" id="position-marker">
+		<h2 class="section-heading">DebugPositionMarker</h2>
+		<p>A <a href="/docs/cathode-entities/#DebugPositionMarker">DebugPositionMarker</a> draws a set of axes at its <code>world_pos</code>, turned to that position's rotation: red for X, green for Y and blue for Z, each 0.6 metres long, with a white dot where they meet. It's a quick way to check where a position is and which way it faces before you use it for something else. In the <a href="#intro">screenshot at the top</a>, it's the axes beside the crate, turned 30 degrees.</p>
+	</section>
+
+	<section class="docs-section" id="environment-marker">
+		<h2 class="section-heading">DebugEnvironmentMarker</h2>
+		<p>A <a href="/docs/cathode-entities/#DebugEnvironmentMarker">DebugEnvironmentMarker</a> draws its <code>text</code> centred on its <code>world_pos</code>, in its <code>colour</code> and at its <code>size</code>. Link its <code>target</code> to another entity's <code>reference</code>, and the label is drawn at that entity instead and follows it when it moves: a label on a prop stays with the prop.</p>
+		<p>The text is cut to <code>max_string_length</code> characters, and that's 10 by default, so raise it for anything longer: <b>Supply crate</b> showed as <b>Supply cra</b> until <code>max_string_length</code> was raised to 32.</p>
+		<p><img src="img/marker-label.jpg" alt="Two views of the environment marker's green label on a supply crate: on the left it reads Supply cra, on the right Supply crate, on the crate after it was moved." style="max-width:100%;width:824px"></p>
+		<p class="text-muted small"><i>Left: <code>max_string_length</code> at its default of 10 cuts the label short. Right: raised to 32, with <code>target</code> linked to the crate, the whole label shows and follows the crate to where it was moved.</i></p>
+		<p>Its <code>int_input</code>, <code>float_input</code>, <code>bool_input</code>, <code>vector_input</code> and <code>enum_input</code>, and its <code>namespace</code>, <code>duration</code>, <code>scale_with_distance</code>, <code>scroll_speed</code> and <code>show_distance_from_target</code>, aren't used by the runtime utils.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="log-file">
+    <header class="docs-header">
+<h1 class="docs-heading">The Log File</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The runtime utils write <code>OpenCAGE_Utils.log</code> in the game folder, beside <code>AI.exe</code>. Every DebugText and DebugTextStacking that starts (with its box ticked in <a href="#enabling">Launch Game</a>) is written to it, with the time and its text as it was at that moment, inputs included:</p>
+		<pre><code>22:03:20.362  DebugText: Inputs: [hello] [7] [2.5] [true] [1, 2, 3]
+22:07:09.391  DebugTextStacking: Tick [230]
+22:07:10.394  DebugTextStacking: Tick [231]</code></pre>
+		<p>So it's the place to look for a message that was gone before you could read it, or for more history than the five lines a stack keeps. A DebugText is written when it starts, not each time its value updates. The log is started afresh each time the game starts, so read it before starting the game again. It also records what <a href="/docs/live-link/#troubleshooting">Live Link</a> did.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="tips">
+    <header class="docs-header">
+<h1 class="docs-heading">Tips</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><b>Use them with Live Link.</b> With <a href="/docs/live-link/">Live Link</a> connected, add a DebugText (or a whole debugging script: a looper, a counter, texts, a stack, markers and their links) while the game runs, select it and pick <b>start</b> from <b>▶ Trigger Method</b> in the Entity Inspector, and it's on screen within seconds, without saving. When you're done, delete them, or keep them for next time.</li>
+			<li><b>An edit hides a DebugText.</b> Live Link re-initialises every entity whose parameters you change (relinking one doesn't), so changing a DebugText that's on screen (its text, say) takes it off the screen. Trigger <b>start</b> again to show it with the change. Markers stop the same way when they're edited. A DebugTextStacking's lines stay: start it again to add a line with the change.</li>
+			<li><b>Keep it up while you work.</b> A DebugText's <code>duration</code> is 5 seconds by default; set it to -1 to keep it on screen until it's stopped.</li>
+			<li><b>Everything clears when the level changes.</b> That includes the <a href="/docs/launch-game/#scripting-helpers">hot reload key</a>, which loads the level again from disk: the level's own debug entities draw again as they start, but what Live Link added is dropped until you <a href="/docs/live-link/#resync">Resync</a>.</li>
+			<li><b>Nothing shows?</b> Check the box for that entity was ticked when you started the game from <a href="#enabling">Launch Game</a> (ticking it while the game runs only takes effect the next time you start it from there), that it's the Steam version, and that the entity has been started. With its box ticked, the <a href="#log-file">log</a> shows whether a DebugText or DebugTextStacking started at all.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+<h1 class="docs-heading">Related Docs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/live-link/">Live Link</a> — adding and starting debug entities while the game runs</li>
+			<li><a href="/docs/launch-game/#scripting-helpers">Launch Game</a> — the Scripting Helpers that switch these entities on</li>
+			<li><a href="/docs/cathode-entities/#DebugText">DebugText</a>, <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a>, <a href="/docs/cathode-entities/#DebugPositionMarker">DebugPositionMarker</a> and <a href="/docs/cathode-entities/#DebugEnvironmentMarker">DebugEnvironmentMarker</a> — every parameter, in the entity reference</li>
+			<li><a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> — composites, entities, links and the flowgraph</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>

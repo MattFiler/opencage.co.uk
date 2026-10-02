@@ -96,6 +96,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#anim-entity-tracks">Animation Entity Tracks</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#animation-mode"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Animation Mode</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#previewing">Previewing</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#in-game">Previewing in the Game</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#keyframing-viewport">Keyframing from the Viewport</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving &amp; Undo</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related</a></li>
@@ -292,6 +293,24 @@
 		</ul>
 		<p>Which things move depends on where you came from. A CAGEAnimation addresses its targets relative to its own composite, and the same composite can be instanced many times over, so the hierarchy you stepped through to reach the animation is what decides which placement is previewed. Open the editor from inside the instance you want to watch.</p>
 		<p>Only the entity's <b>position</b> parameter is previewed — x, y, z and yaw, pitch, roll. Float parameters on lights, sounds and the like are animated in-game as normal, but there's nothing in the Viewport to show them on.</p>
+	</section>
+
+	<section class="docs-section" id="in-game">
+		<h2 class="section-heading">Previewing in the Game</h2>
+		<p>With the game running and <a href="/docs/live-link/">Live Link</a> connected, an <b>In game</b> box appears beside <b>Animation Mode</b>. Leave it ticked (it is by default, and OpenCAGE remembers your choice) and Animation Mode plays the animation in the running game as well as the Viewport. The game uses its own animation code, so it shows everything the animation drives, including lights and other float parameters, not just positions.</p>
+		<ul>
+			<li><b>Drag the playhead</b> and the game holds the animation at that time. Scrubbing doesn't fire the animation's events, so the level's scripts don't react.</li>
+			<li><b>Play</b> plays it in the game in real time, and the playhead follows the game. Tick <b>Loop</b> to keep it going round, and <b>Run events</b> if you want its events to reach the level's scripts as they would in play. It always stops just short of the end, so the animation never reports itself finished.</li>
+			<li><b>Edit a key</b> and the change reaches the game a moment later, as every script edit does over Live Link. The game keeps the animation at the playhead while it updates.</li>
+			<li><b>Exit Animation Mode</b> (or close the editor, or untick In game) and the game gets its animation back exactly as it was, so a level that was mid-way through playing it carries on from there.</li>
+		</ul>
+		<p>A row under the timeline says what the game is doing, such as <b>Game: held at 1.25 s</b> or <b>Game: playing 2.10 s</b>, or why it can't show it. Common reasons:</p>
+		<ul>
+			<li><b>disabled in the game</b>: the level hasn't enabled this animation yet. Many animations are only enabled for the moment they play.</li>
+			<li><b>not in the running level</b>: the animation or its composite is new since the level was loaded. Save and reload it.</li>
+			<li><b>waiting</b>: the level is still starting, or is paused (see <a href="/docs/live-link/#waiting">Live Link</a>).</li>
+		</ul>
+		<p>Animation Mode can run on the game alone: with In game ticked you don't need the Viewport open. Cinematic animations (the ones that play a cutscene) can't be driven in the game yet.</p>
 	</section>
 
 	<section class="docs-section" id="keyframing-viewport">

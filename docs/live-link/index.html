@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Live Link</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How OpenCAGE's Live Link edits Alien: Isolation while it runs: new scripts and script tweaks without a reload, lights and props placed and tuned in the game's own render, entity methods called in the game, and linked game and Viewport cameras.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Live Link" />
+	<meta name="twitter:description" content="How OpenCAGE's Live Link edits Alien: Isolation while it runs: new scripts and script tweaks without a reload, lights and props placed and tuned in the game's own render, entity methods called in the game, and linked game and Viewport cameras." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#use-cases"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What You Can Do With It</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#new-script">Build a New Script</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#script-changes">Small Script Changes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#lights">Lighting in Real Time</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#level-building">Build &amp; Dress the Level</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#debugging">Debug With On-Screen Values</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#more-uses">And More</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#requirements"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Requirements</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#starting"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Starting Live Link</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#unsaved-changes">Unsaved Changes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#live-link-button">The Live Link Button</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#editing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing While the Game Runs</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#what-is-sent">What Reaches the Game</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#save-and-reload">What Needs a Reload</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#waiting">Level Start &amp; Pause</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#resync"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Resync</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#clean-state"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Getting Back to a Clean State</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#calling-methods"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Triggering Methods</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#activity"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Watching Your Scripts Run</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#activity-what-lights">What Lights Up</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#activity-counts">Counts</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#activity-instance">Which Instance</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#activity-limits">Limits</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#camera"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Live Link Camera</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#ai-assistants"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>AI Assistants</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#troubleshooting"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Troubleshooting</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#status-messages">What the Status Bar Says</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Live Link</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p><b>Live Link</b> connects OpenCAGE to Alien: Isolation while the game is running. With the game playing the level you have open, the script edits you make reach it moments later, without saving or reloading the level. You can also trigger an entity's methods (<b>start</b>, <b>trigger</b>, <b>show</b>...) in the game straight from the Entity Inspector or a method pin on the flowgraph, have the game's camera and the Viewport's follow each other, and <a href="#activity">watch your scripts run</a>, as the flowgraph lights up each link the game uses and counts how often each output fires and each method is called.</p>
+		<div id="scripts-only" style="border-left:4px solid #EEBF41;padding:0.6rem 1rem;margin:0 0 1rem 0;">
+			<p><b>Live Link is for script tweaks only.</b> What reaches the running game is changes to a level's scripting: <b>entities added or deleted</b>, <b>links made or broken</b>, and <b>parameters changed</b> (moving an entity included). Nothing else is sent.</p>
+			<p style="margin-bottom:0;">Changes to <b>models, textures, materials</b> or any other asset, <b>new composites</b> (created, ported or imported), and what <a href="/docs/save-and-build/">Save and Build</a> works out (navmesh, cover, baked lighting) never reach a level that's already running: the game only picks them up when you save the level and load it again. See <a href="#save-and-reload">What Needs a Reload</a>.</p>
+		</div>
+		<p>It's also the quickest way to light and dress a level: place a light or a prop, move it and change it in OpenCAGE, and the game draws it within a second. See <a href="#use-cases">What You Can Do With It</a>.</p>
+		<p>It makes for quick iteration on a script. Add a <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a>, give it some text and pick <b>start</b> from <b>▶ Trigger Method</b> in the Entity Inspector, and the text is on screen in the game (with <b>Enable DebugTextStacking</b> ticked in <a href="/docs/launch-game/#scripting-helpers">Launch Game</a> too, so the game draws it). Change the text and trigger <b>start</b> again, and the new text appears on a line under the old one: a DebugTextStacking adds a line each time it starts, and an edit doesn't clear the ones already there (call its <b>clear_all</b> method to empty the stack, or <b>clear_last</b> to remove the newest line).</p>
+		<p><img src="img/connected.jpg" alt="The OpenCAGE window connected to the game: the Live Link button pressed on the main toolbar, Resync on the composite toolbar, Live Link Camera on the Viewport toolbar, and Trigger Method at the top of the Entity Inspector for a selected DebugTextStacking named HelloFromOpenCAGE." width="100%"></p>
+		<p class="text-muted small"><i>OpenCAGE connected to the game: Live Link is pressed on the main toolbar, Resync sits on the composite toolbar, Live Link Camera on the Viewport toolbar, and the Entity Inspector offers ▶ Trigger Method for the selected DebugTextStacking.</i></p>
+		<p><img src="img/game-overlay.jpg" alt="Alien: Isolation showing the text Hello from OpenCAGE - added over the live link on the left of the screen, and OpenCAGE Live Link in green in the top-right corner with a line about the last call under it." width="100%"></p>
+		<p class="text-muted small"><i>The same DebugTextStacking in the game, added and started over Live Link. In the top-right corner, OpenCAGE Live Link shows the game is connected, with the last thing done underneath.</i></p>
+    </section>
+</article>
+
+<article class="docs-article" id="use-cases">
+    <header class="docs-header">
+<h1 class="docs-heading">What You Can Do With It</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>A few of the things Live Link is good for, each with a link to the details further down. All of it happens in the running game without saving the level, so save when you want to keep your work (see <a href="#editing">Editing While the Game Runs</a>).</p>
+	</section>
+
+	<section class="docs-section" id="new-script">
+		<h2 class="section-heading">Build a New Script Without Saving</h2>
+		<p>You can put a whole new piece of script together while the game runs: add the entities, link them up, <a href="#calling-methods">trigger <b>start</b></a> (or link something to start it), watch what it does, then change it and go again. Every entity and link you add reaches the game a moment later. A test script of a TriggerLooper ticking a LogicCounter, DebugTexts showing the count, a DebugTextStacking logging each tick and a couple of markers was built this way in the root of a running level, and was running within seconds, without a save.</p>
+		<p>To try it, open the level's root composite (the orange globe in the Composite Browser), add entities with a right-click on the flowgraph and <b>Create Entity → New Function</b>, and drag from one pin to another to link them, as in <a href="/docs/scripting-intro/#creating-script">Creating a Script</a>. <a href="/docs/debug-text/#seeing-values">Debug Text &amp; Markers</a> builds that counter script step by step, with a picture of it running in the game.</p>
+		<p>The main limit is a <b>brand-new composite</b>. The running level doesn't have it, so the game turns it away with <b>Composite XXXXXXXX is not in the running level - save and reload the level to add new composites</b>. Build in a composite the level already has (its root, say), and save and reload once you move the script into a composite of its own. See <a href="#save-and-reload">What Needs a Reload</a>.</p>
+	</section>
+
+	<section class="docs-section" id="script-changes">
+		<h2 class="section-heading">See Small Script Changes at Once</h2>
+		<p>In a script that's already there, change a value, a delay or some text in the Entity Inspector, or make or break a link on the flowgraph, and the game has it a moment later, with no save and no reload (see <a href="#what-is-sent">What Reaches the Game</a>).</p>
+		<p>Each entity whose parameters you change is re-initialised (making or breaking a link doesn't do that), so if it was running, it stops. Start it again, or trigger the method that sets the logic off (<b>trigger</b>, <b>start</b>...) with the inspector's <a href="#calling-methods">▶ Trigger Method</a> or a right-click on its pin. That way you can run the same bit of script again and again as you tune it, without playing back to the point where it would fire.</p>
+	</section>
+
+	<section class="docs-section" id="lights">
+		<h2 class="section-heading">Lighting in Real Time: Place and Tune Lights</h2>
+		<p>This is where Live Link saves the most time. Place a light, move it, and change its colour and brightness in OpenCAGE, and the game lights the level with it within a second. You tune it by eye in the game's own render, rather than saving and reloading after every tweak.</p>
+		<ol>
+			<li>Open the level's root composite (the orange globe in the Composite Browser), or a composite you step into from it, and add your lights there. The game only follows the Viewport's camera in the level itself.</li>
+			<li>Set <a href="#camera">Live Link Camera</a> to <b>Sync viewport camera to game</b>, and fly the Viewport to the spot you're lighting. The game draws it from the Viewport's camera, with its own lighting, materials and post effects, so you're looking at the real result as you work.</li>
+			<li>Add the light: drag one of the level's light prefabs from the Composite Browser onto the Viewport (the one below is <code>AYZ\Science\Lighting\Small_Floor_Light</code>), or drag a LightReference from the Entity Palette onto the Viewport. Either is created where you drop it (see <a href="/docs/level-viewer/#create-mode">Creating Entities</a>), and appears in the game straight away.</li>
+			<li>Select it, and move it with the gizmo or type in its position. The light moves in the game.</li>
+			<li>Change its colour and intensity in the Entity Inspector. On a light prefab these are the instance's parameters, such as <code>lgt_col</code> for the colour and <code>lgt_spot_IntMult</code>, <code>lgt_omni_IntMult</code> and <code>lgt_emissive_IntMult</code> for the intensities. On a LightReference they're its own <code>colour</code> and <code>intensity_multiplier</code>: a new one starts white at an intensity of 1, so give it a colour and raise its <code>intensity_multiplier</code> and <code>end_attenuation</code> until it clearly lights the space (8 and 3 for the one further down).</li>
+		</ol>
+		<p><img src="img/lights-grid.jpg" alt="Four frames of the game drawing a Torrens corridor with a small floor light in it: placed and coloured cyan, moved across the corridor, moved back to the middle with its intensity lowered, then with a new colour and intensity that turn the corridor orange." width="100%"></p>
+		<p class="text-muted small"><i>A Small_Floor_Light prefab dropped on a corridor floor, as the game drew it from the Viewport's camera: placed and coloured cyan, moved across the corridor, moved back and dimmed, then given a new colour and intensity. Each change showed in the game within a second.</i></p>
+		<p>Because you're looking at the game's render, you see exactly where the light has ended up. Move it too far and you'll see it go behind a door.</p>
+		<p><img src="img/light-inspector.jpg" alt="The OpenCAGE window with the Live Link button pressed and the floor light's instance selected, named DocsLight in the Entity Inspector, which lists some of its lgt_ parameters with the rest of the instance's parameters." width="100%"></p>
+		<p class="text-muted small"><i>The floor light's instance (named DocsLight in the inspector) selected, with Live Link pressed on the main toolbar. Some of its <code>lgt_</code> parameters are in view in the Entity Inspector, with the rest of the instance's parameters; scroll up the list for <code>lgt_col</code> and the intensities.</i></p>
+		<p><b>New lights work too.</b> A plain LightReference added to the level's root, with a colour, an <code>intensity_multiplier</code> of 8, an <code>end_attenuation</code> of 3 and <code>light_on_reset</code> ticked, lit the corridor as soon as it was added. Moving it and changing its intensity showed at once, and deleting it took the light away. Adding a LightReference also brings up <b>Its resource references changed (models, collision and the like): those need the level saved and reloaded</b>, on the status bar and in the game's overlay. For a new light that note is expected: the light works anyway.</p>
+		<p><img src="img/light-new.jpg" alt="The Torrens corridor before, and after a new LightReference is added, flooding it magenta, with the resource note at the end of the overlay's line in the top-right corner." width="100%"></p>
+		<p class="text-muted small"><i>Before, and after adding a plain LightReference: the corridor is flooded magenta the moment it's added. The resource note at the end of the overlay's line is the expected one.</i></p>
+		<p>Lights the level already has change the same way: recolour them, or switch them on and off by triggering <b>light_switch_on</b> and <b>light_switch_off</b> (see <a href="#calling-methods">Triggering Methods</a>), whether their composite is used once or many times.</p>
+		<p><b>Baked lighting isn't recalculated.</b> Live Link changes the lights themselves: the light they cast directly. The light that bounces around the level (its radiosity) is baked by <a href="/docs/save-and-build/">Save and Build</a>, so Live Link leaves it as the last build left it. See <a href="/docs/save-and-build/#radiosity">How Radiosity is Handled</a> for what a build redoes.</p>
+	</section>
+
+	<section class="docs-section" id="level-building">
+		<h2 class="section-heading">Build and Dress the Level in the Game's Render</h2>
+		<p>Instances of composites the level already has are built by the game as you place them: props, light prefabs, NPC spawns, whole prefab walls. Drag one from the Composite Browser onto the Viewport, move it, turn it or delete it, and the game does the same, so with <a href="#camera">Live Link Camera</a> following the Viewport you can dress a room while looking at it in the game. The level's own geometry can be moved too. Move the floor the player is standing on, though, and they drop through it for a moment while its collision is rebuilt.</p>
+		<p><img src="img/props-placed.jpg" alt="Three frames of the game: a Torrens corridor before, seen from further back through a doorway, then closer up with a supply crate placed in it, and with the crate moved and turned." width="100%"></p>
+		<p class="text-muted small"><i>Before (from further back), then a supply crate (an instance of <code>AYZ\_Props_\Static\Generic\Container_Shells</code>) placed in the corridor, then moved and turned, each step drawn by the game straight away.</i></p>
+		<p>A model placed <b>on its own</b>, as a new ModelReference entity rather than inside an instance of a composite, isn't built by the running game: the status bar says it's <b>not built, as a level load would not build them</b>. Plain static models come from what Save and Build bakes, so it appears once you use <b>File → Save and Build Level</b> and load the level again. The same goes for new models, imports and material edits, and the navmesh, cover and baked lighting stay as the last build left them too: see <a href="#save-and-reload">What Needs a Reload</a>.</p>
+		<p>To see a model in the game straight away, place an instance of a composite the level already has that contains it, rather than the bare model. Props such as <code>AYZ\_Props_\Static\Generic\Container_Shells</code> are composites, so find the prop in the Composite Browser and drag it onto the Viewport (see <a href="/docs/level-viewer/#create-mode">Creating Entities</a>). A model of your own that no composite in the level uses yet still needs Save and Build.</p>
+	</section>
+
+	<section class="docs-section" id="debugging">
+		<h2 class="section-heading">Debug Scripts With Values on Screen</h2>
+		<p>With the debug boxes ticked under <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a> in Launch Game, the game draws the debug entities, so it can show you what your script is doing: a DebugText shows its text and the values linked to it, updating as they change; DebugTextStackings keep a log of the last five lines, in one block on the left of the screen; a DebugPositionMarker draws axes at a position; and a DebugEnvironmentMarker labels a spot, or an entity it follows. Add them, link them and trigger their <b>start</b> over Live Link like anything else.</p>
+		<p><a href="/docs/debug-text/">Debug Text &amp; Markers</a> covers them all, including <a href="/docs/debug-text/#seeing-values">how to see a script's values</a> and <a href="/docs/debug-text/#stacking">keeping a log</a>. If a DebugTextStacking's log repeats or skips values, start it from the link that fires once the value has changed (a LogicCounter's <b>on_Up</b>, say) rather than from the same trigger that changes it (two links fired by one trigger run in no fixed order), and link its input straight to the counter's <b>reference</b>.</p>
+		<p>To see which links a script follows, rather than the values it works with, switch on <a href="#activity">Show Activity</a> and watch the flowgraph light up as the game runs it.</p>
+	</section>
+
+	<section class="docs-section" id="more-uses">
+		<h2 class="section-heading">And More</h2>
+		<ul>
+			<li><b>Scrub and play animations in the game.</b> In the <a href="/docs/cage-animation-editor/#in-game">CAGEAnimation Editor</a>, Animation Mode with <b>In game</b> ticked holds the animation at the playhead in the running game and plays it from there, so you can time a door, a lift or a light sweep against the real level while you edit its keys.</li>
+			<li><b>Frame shots, and check what the player would see.</b> With <a href="#camera">Live Link Camera</a> on <b>Sync viewport camera to game</b>, the game draws the level from wherever you put the Viewport's camera, anywhere in the level.</li>
+			<li><b>Find where the game's camera is.</b> On <b>Sync game camera to viewport</b>, the Viewport follows the game's camera, so you can see in the editor where it is and what it's looking at.</li>
+			<li><b>Set things off without playing up to them.</b> Lights, NPC spawns, screen effects and sequences can be set off by triggering their methods from the Entity Inspector's <a href="#calling-methods">Trigger Method</a> or a pin on the flowgraph, rather than playing to the point where the script would.</li>
+			<li><b>See what a script is doing.</b> With <a href="#activity">Show Activity</a> on, each flowgraph link lights up as the running game uses it, orange for logic and blue for data, with a count beside each pin it fires or calls, so you can follow a script as it runs, see which way it went and how often, and find the parts that never fire.</li>
+			<li><b>Check a change everywhere at once.</b> An edit to a composite reaches every running instance of it, so you can see how it plays out in each place the level uses it (see <a href="#editing">Editing While the Game Runs</a>).</li>
+		</ul>
+	</section>
+</article>
+
+<article class="docs-article" id="requirements">
+    <header class="docs-header">
+<h1 class="docs-heading">Requirements</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><b>The Steam version of the game.</b> Live Link is served inside the game by OpenCAGE's runtime utils, the same plugin behind the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a>, and they only support the Steam build. On other platforms the <b>Enable Live Link</b> box is greyed out and the Live Link button never appears.</li>
+			<li><b>The game started from OpenCAGE</b>, from the <a href="/docs/launch-game/">Launch Game</a> window with <b>Enable Live Link</b> ticked. A game started without it has no Live Link to connect to. The runtime utils stay in the game folder as Launch Game last set them, so a game started some other way (from Steam, say) serves Live Link too if Enable Live Link was ticked the last time you started the game from Launch Game.</li>
+			<li><b>The game running the level you have open</b>, as it's saved on disk. Edits for any other level are refused. The easy way is to tick <b>Load straight into a level</b> in the same window, which picks the level you're editing for you.</li>
+			<li><b>The same install.</b> If you have <a href="/docs/multiple-game-installs/">several game installs</a>, each OpenCAGE window only looks for the game from the install it's editing.</li>
+			<li><b>One at a time.</b> The game takes one Live Link connection, so while one OpenCAGE window is connected, another stays waiting: switch the first window's Live Link button off to use another. Only one running game can serve Live Link, so with several installs, run one game with it at a time.</li>
+		</ul>
+		<p>The game only accepts Live Link connections from the same PC.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="starting">
+    <header class="docs-header">
+<h1 class="docs-heading">Starting Live Link</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ol>
+			<li>Press <b>Launch Game</b> on the main toolbar. Opening the window closes the game if it's already running.</li>
+			<li>Under <b>Scripting Helpers</b>, tick <b>Enable Live Link</b>. It stays ticked for next time.</li>
+			<li>Tick <b>Load straight into a level</b>, and check the level under it is the one you have open (OpenCAGE preselects it).</li>
+			<li>Press <b>Start Alien: Isolation</b>.</li>
+		</ol>
+		<p>Starting the game this way installs OpenCAGE's runtime utils in the game folder with Live Link switched on, and switches the <a href="#live-link-button">Live Link button</a> on, so OpenCAGE connects by itself a few seconds after the game starts. The status bar at the bottom of the OpenCAGE window says <b>Live Link: connected to the game</b> when it has.</p>
+		<p><img src="img/launch-game.jpg" alt="The Launch Game window with Enable Live Link ticked at the bottom of the Scripting Helpers group, above the Start Alien: Isolation button." style="max-width:100%;width:394px"></p>
+		<p class="text-muted small"><i>Enable Live Link is the last box in the Scripting Helpers group.</i></p>
+    </section>
+
+	<section class="docs-section" id="unsaved-changes">
+		<h2 class="section-heading">Unsaved Changes</h2>
+		<p>The game loads the level from disk, so edits you haven't saved won't be in it. If the open level has unsaved changes when you press <b>Start Alien: Isolation</b>, OpenCAGE asks whether to save first:</p>
+		<p><img src="img/unsaved-changes.jpg" alt="The Unsaved changes message: PRODUCTION/BSP_TORRENS has unsaved changes, the game loads what is saved on disk so it will not have them, Save the level before launching? with Yes, No and Cancel buttons." style="max-width:100%;width:395px"></p>
+		<ul>
+			<li><b>Yes</b> saves the level, as <b>File → Save Level</b> does, then starts the game. If the save doesn't go through, the game isn't started either.</li>
+			<li><b>No</b> starts the game without saving. What you haven't saved won't be in the game until you edit that composite again or <a href="#resync">Resync</a> it.</li>
+			<li><b>Cancel</b> does neither.</li>
+		</ul>
+		<p>If you've added models or other content that needs building, press <b>Cancel</b> and use <b>File → Save and Build Level</b> first (see <a href="/docs/save-and-build/">Save and Build</a>). The question comes up whenever you start the game with unsaved changes, with or without Live Link.</p>
+	</section>
+
+	<section class="docs-section" id="live-link-button">
+		<h2 class="section-heading">The Live Link Button</h2>
+		<p>While this install's game is running and serving Live Link (started with Enable Live Link ticked, as under <a href="#requirements">Requirements</a>), a <b>Live Link</b> button appears on the main toolbar, to the right of <b>Launch Game</b>, and it stays there while OpenCAGE is connected. It shows pressed while Live Link is on, whether it's connected or still waiting for the game, and clicking it switches it off (disconnecting from the game) or back on. Hover over it to see where it stands: connected, or waiting for the game.</p>
+		<p><img src="img/toolbar.jpg" alt="OpenCAGE's main toolbar with the Live Link button, pressed, to the right of Launch Game." style="max-width:100%;width:511px"></p>
+		<p>The button remembers its setting. Left on, OpenCAGE connects whenever you start the game with Live Link, and reconnects by itself if the game restarts. There's no button for a game started without Live Link, which has nothing to connect to, or for a game from another of your <a href="/docs/multiple-game-installs/">game installs</a>: close it and start this install's game from Launch Game with Enable Live Link ticked.</p>
+		<p>In the game, <b>OpenCAGE Live Link</b> shows in green in the top-right corner while it's connected, with a line under it for a few seconds about the last thing done: an edit applied, a method called, or something waiting. You can see it in the <a href="#intro">screenshot above</a>.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="editing">
+    <header class="docs-header">
+<h1 class="docs-heading">Editing While the Game Runs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>While Live Link is connected, your script edits go to the game automatically: there's nothing to press, and no option to hold them back. A moment after you stop editing (about a third of a second, so a drag or a run of undos goes as one), OpenCAGE sends the whole composite you changed, and the game brings <b>every running instance</b> of it in line with the editor, without a reload. The status bar says what the game did with it: how many running instances it applied to, and how many entities were added, removed or changed.</p>
+		<p>Sending an edit to the game doesn't save it. The level on disk is unchanged, and the edit is still an unsaved change in OpenCAGE. The game only holds it in memory, so it's gone once the game closes or loads the level again (with the hot reload key, a level change, or starting the game again). To keep your work, save the level when you're done: <b>File → Save Level</b>, which closes the game.</p>
+    </section>
+
+	<section class="docs-section" id="what-is-sent">
+		<h2 class="section-heading">What Reaches the Game</h2>
+		<p>Only script edits are sent: these, and nothing else. Anything that isn't on this list (an asset change, a new composite) needs the level saved and reloaded, as listed under <a href="#save-and-reload">What Needs a Reload</a>.</p>
+		<ul>
+			<li>Entities added and deleted, including new instances of composites the level already has, which are placed with all of their contents.</li>
+			<li>Parameter changes, including alias overrides on entities inside nested instances.</li>
+			<li>Links made or broken on the flowgraph.</li>
+			<li>Entities moved, in the Viewport or the inspector. Move the floor the player is standing on, and they drop through it for a moment while its collision is rebuilt.</li>
+			<li>Keyframes and events in the <a href="/docs/cage-animation-editor/">CAGEAnimation editor</a>, as you make them, and TriggerSequence entries when you close the <a href="/docs/trigger-sequence-editor/">TriggerSequence editor</a>. The entity is re-initialised, so start it again to see the change.</li>
+			<li><b>Edit → Undo</b> and <b>Edit → Redo</b>, <a href="/docs/scripting-intro/#deinstance">De-instance</a>, and edits made by an <a href="#ai-assistants">AI assistant</a>.</li>
+		</ul>
+		<p>Every entity whose parameters you change (moving it included) is <b>re-initialised</b>: put back in the state it starts the level in, then left to react to the edit, as though the level had just started. So something that was running when you edited it (a Thinker, a looping effect, text a DebugText put on screen, the axes a DebugPositionMarker draws) stops, and needs starting again unless it has <code>start_on_reset</code> set. <a href="#calling-methods">Triggering</a> its <b>start</b> from the inspector or the flowgraph is the quickest way to do that. A new entity starts the same way: if it doesn't start by itself, it waits for a link or a call to start it.</p>
+		<p>An <b>instance of a composite</b> is re-initialised along with everything inside it. Moving one, changing its parameters, or changing the default of one of its composite's variables (which re-initialises every instance of that composite) starts all of its logic over. That's usually what you want, but take care with an instance that runs a mission. Starting it over does whatever the mission does when it starts, and that can include sending the player to another level.</p>
+	</section>
+
+	<section class="docs-section" id="save-and-reload">
+		<h2 class="section-heading">What Needs a Reload</h2>
+		<p>Live Link only carries script edits, so everything else you change in OpenCAGE stays out of the running game, however long you wait: no error, the game just never sees it. For these, save the level and load it in the game again:</p>
+		<ul>
+			<li><b>A new composite</b> the running level doesn't have: one you've created (including with <a href="/docs/scripting-intro/#create-composite">Create Composite</a>), ported or imported. Instances of composites the level already has are fine.</li>
+			<li><b>Resources</b>: models, materials, textures, collision and the like. Edits you make to them (in the <a href="/docs/model-editor/">Model</a>, <a href="/docs/material-editor/">Material</a> or <a href="/docs/texture-editor/">Texture</a> editors, say) don't change the script, so nothing is sent and the running game never sees them. If a script edit changes which resources an entity uses (a ModelReference pointed at another model), the game still takes the rest of the edit, and the status bar says those resources need the level saved and reloaded. Adding a LightReference brings up the same note, but its light works straight away (see <a href="#lights">Lighting in Real Time</a>).</li>
+			<li><b>A new default for one of the level's root variables</b>: the variables of the composite the level starts from. The level reads their defaults when it loads, so the game keeps the old ones until then, and the status bar says so. The variables of every other composite take new defaults straight away.</li>
+			<li><b>A model placed on its own</b>: a new ModelReference entity, rather than an instance of a composite the level already has. The game doesn't build it (the status bar says it's <b>not built, as a level load would not build them</b>), as plain static models come from what Save and Build bakes. It appears once you Save and Build and load the level again.</li>
+			<li><b>What <a href="/docs/save-and-build/">Save and Build</a> works out from the layout</b>: navmesh, cover and job positions, sound, and baked lighting. Props and prefabs you place, and anything you move, over Live Link appear where you put them, but NPCs go by the navmesh, cover and job positions of the last build, and the baked (bounced) lighting stays as the last build left it, until you Save and Build and load the level again.</li>
+			<li><b>Anything else the game only reads when it loads a level.</b></li>
+		</ul>
+		<p>Saving closes the game, as it always has, so save once you're ready to restart it: <b>File → Save Level</b>, or <b>File → Save and Build Level</b> when there's content to build, then start the game again from Launch Game. With <a href="/docs/options/#misc">Options → Misc → Open Game On Save</a> ticked, saving starts the game again in the level for you, and OpenCAGE reconnects once it's up.</p>
+		<p>The game must be running the level you have open in OpenCAGE. Edits and method calls for any other level are turned away with <b>The game is running a different level</b>, rather than landing in the wrong place.</p>
+		<p>Unsaved edits you made <b>before</b> Live Link connected aren't in the game, which loaded the level from disk. They reach it the next time you edit that composite (the whole composite is sent), or when you <a href="#resync">Resync</a> it.</p>
+	</section>
+
+	<section class="docs-section" id="waiting">
+		<h2 class="section-heading">Level Start &amp; Pause</h2>
+		<p>The game only takes edits and method calls while the level is being played. While it's still starting (loading, the intro and the opening cutscene), while the pause menu is open, while a cutscene or a message on screen (a DisplayMessage waiting for the player to close it, say) has paused the level's scripts, or after a death while it restarts from a checkpoint, they wait, and the overlay in the game says <b>Waiting for the game</b> and why. Once the level has been playing for 5 seconds, they're carried out in the order you made them.</p>
+		<p>If they've waited 20 seconds and the level still isn't being played, the game turns them away. OpenCAGE sends its edits again by itself a few seconds later, so they get there in the end. A method call isn't repeated, so call it again once the game is playing.</p>
+		<p>When the game isn't playing a level at all, between levels or while it unloads one, edits and calls aren't held. They're turned away at once with <b>No level is running</b> or <b>The game is unloading the level</b> (or <b>The game is running a different level</b> at the game's main menu, which is a level of its own), and OpenCAGE doesn't send them again. The level the game loads next comes from disk, so once it's being played, <a href="#resync">Resync</a> each composite you changed meanwhile.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="resync">
+    <header class="docs-header">
+<h1 class="docs-heading">Resync</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>While connected, a <b>Resync</b> button, with a refresh icon, sits on the composite toolbar at the top of the composite panel (with <b>Create Entity</b> and <b>Create Flowgraph</b>, above the Viewport), after <b>Create Flowgraph</b> and a divider. It sends the composite you have open to the game again, so every running instance of it matches the editor.</p>
+		<p><img src="img/resync.jpg" alt="The composite toolbar while connected: Create Entity and Create Flowgraph, then a divider, Resync, another divider and Show Activity on the left; Delete, Rename, Find Instances and Port on the right." style="max-width:100%;width:947px"></p>
+		<p>Edits are already sent as you make them, so Resync is only needed when the game has fallen out of step with the editor:</p>
+		<ul>
+			<li>for edits you made before Live Link connected, which the game doesn't have;</li>
+			<li>after the game has loaded the level again from disk (with the hot reload key, say), which puts back what's saved and drops what Live Link sent.</li>
+		</ul>
+		<p>Resync sends only the composite you have open, so do it in each composite you've changed. If the game turns it away (because it's running another level, say), a message says why.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="clean-state">
+    <header class="docs-header">
+<h1 class="docs-heading">Getting Back to a Clean State</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><b>Undo an edit</b>: <b>Edit → Undo</b> is sent like any other edit. The entities it touches are re-initialised again, and the game isn't rewound to before the edit.</li>
+			<li><b>Put the game back to what's saved</b>: press the hot reload key (<a href="/docs/launch-game/#scripting-helpers">Enable Hot Reload</a> in Launch Game), or start the game again from Launch Game. Everything Live Link sent is dropped. <a href="#resync">Resync</a> any composite whose unsaved edits you want back.</li>
+			<li><b>Throw away your unsaved edits</b>: reopening the level in OpenCAGE without saving sends nothing to the game. The game keeps what it was sent until it loads the level again, so reload it there too.</li>
+			<li><b>Switch Live Link off</b>: clicking the <a href="#live-link-button">Live Link button</a> disconnects. The game keeps the edits it already has, and edits you make while it's off only reach the game once it's back on and you edit that composite again or Resync it.</li>
+			<li><b>Camera</b>: set <a href="#camera">Live Link Camera</a> to <b>Disabled</b> to give the game its camera back and move the Viewport yourself.</li>
+			<li><b>Stop the game serving Live Link</b>: the runtime utils stay in the game folder between runs, so untick <b>Enable Live Link</b> and start the game from Launch Game once.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="calling-methods">
+    <header class="docs-header">
+<h1 class="docs-heading">Triggering Methods</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>While connected, you can trigger any of an entity's methods in the running game, from two places:</p>
+		<ul>
+			<li><b>The Entity Inspector.</b> With one entity selected, the <a href="/docs/scripting-intro/#inspector">Entity Inspector</a>'s toolbar starts with a <b>▶ Trigger Method</b> drop-down. It lists every method the entity has by name, its own and those it inherits (<b>start</b>, <b>stop</b>, <b>pause</b>, <b>resume</b>... on a DebugTextStacking). Pick one to trigger it.</li>
+			<li><b>The flowgraph.</b> Right-click a method pin, an input on the left of a node, and choose <b>Trigger '<i>pin</i>' in Game</b>, below <b>Set Delay</b> and <b>Clear Delay</b>: <b>Trigger 'start' in Game</b> on a DebugTextStacking's <b>start</b>, say. It works on a composite instance's method pins too (<b>Trigger 'Fire' in Game</b> on an instance with a <b>Fire</b> method). It isn't offered on outputs, data pins or a node's body.</li>
+		</ul>
+		<p><img src="img/call-in-game.jpg" alt="The Entity Inspector toolbar with the Trigger Method drop-down to the left of Delete Entity." style="max-width:100%;width:278px"></p>
+		<p><img src="img/pin-menu.jpg" alt="A DebugTextStacking node named HelloFromOpenCAGE on the flowgraph, with the right-click menu of its start pin open: Set Delay, Clear Delay, and under a divider, Trigger 'start' in Game." style="max-width:100%;width:640px"></p>
+		<p>Both send the same call. It's carried out in the game on its next frame, just as if a link had fired into that pin. It goes to the instance you reached by stepping down from the level's root composite (the path at the top of the composite panel). If you opened the composite on its own from the Composite Browser, it goes to every running instance of it.</p>
+		<p>A call waits for the edits you made just before it to reach the game first, so you can add an entity and trigger its <b>start</b> straight away. The status bar says <b>Live Link: calling "start" on <i>entity</i>...</b> while it waits, then <b>Live Link: called "start" on <i>entity</i></b> (ending <b>(every instance)</b> when it went to every instance) or <b>Live Link: could not call "start" on <i>entity</i> - </b> and the reason. One call goes at a time: trigger another before the game has taken the last one, and the status bar says <b>Live Link: still waiting for the game to take the last call</b>. The drop-down doesn't appear when several entities are selected, or for an entity with no methods (a composite's parameter entities, say), and neither appears while Live Link isn't connected.</p>
+		<p>If a call fails, the status bar says why:</p>
+		<ul>
+			<li><b>Not called, as the edits made before it have not reached the game yet</b>: the level is still starting. The edits go in by themselves, so call again once it's being played.</li>
+			<li><b>The entity is not in any running instance of the composite</b>: the game hasn't built the entity. Its edit hasn't reached the game, it's one the game doesn't build, or the composite isn't used in the running level.</li>
+			<li><b>The instance path does not resolve in the running level</b>: the instance you stepped down through isn't in the running game, for example one added since the last save whose edit didn't reach it. <a href="#resync">Resync</a> the composite that holds it, or open the composite on its own to call every instance.</li>
+			<li><b>Composite XXXXXXXX is not in the running level</b>: a new composite, which needs the level <a href="#save-and-reload">saved and reloaded</a>.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="activity">
+    <header class="docs-header">
+<h1 class="docs-heading">Watching Your Scripts Run</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>While connected, the composite toolbar has a <b>Show Activity</b> button, with a live indicator icon, after <b>Resync</b> and another divider. Press it, and the flowgraph shows what the running game is doing with the composite you have open: each link lights up the moment the game uses it, <b>orange</b> for a logic link and <b>blue</b> for a data link, glowing with dashes running along it the way it went, then fades to a dim shade of its colour that stays until you clear it. Beside the pins, <a href="#activity-counts">counts</a> show how many times each output has fired and each method has been called. You can watch a script run as you play, see which way it went and how often, and find the links that never fire.</p>
+		<p><img src="img/activity.jpg" alt="The OpenCAGE window with Show Activity pressed and Clear Activity beside it on the composite toolbar, showing CCTV_Camera_Passive, reached through BSP_Torrens, ENVIRONMENT_Torrens and Torrens in the path at the top. The trigger links from a Thinker to a VectorDistance, from a VariableFloat to a FloatGreaterThan and on to two LogicOnces glow orange with light dashes. The data links between two VariablePositions, the PointTrackers that write them, two GetRotations, the VectorDistance, the VariableFloat and the FloatGreaterThan glow bright blue. Counts in brackets sit beside the pins, such as on_think [5297] on the Thinker and [5297] trigger on the VectorDistance." width="100%"></p>
+		<p class="text-muted small"><i>CCTV_Camera_Passive, reached from the level's root through ENVIRONMENT_Torrens and Torrens, with Show Activity pressed and Clear Activity beside it. Its Thinker triggers the VectorDistance many times a second, the VectorDistance reads its two inputs from the GetRotations and writes its result into the VariableFloat, and the PointTrackers at the top write into the VariablePositions every frame, so the whole page keeps glowing. The numbers in brackets are the counts so far.</i></p>
+		<ul>
+			<li><b>Show Activity</b> switches it on and off. It's the same in every composite you open, and OpenCAGE remembers it for next time. Switching it off clears what was lit and the counts, and the game stops keeping track.</li>
+			<li><b>Clear Activity</b>, beside it while Show Activity is on (its icon is the same with a cross through it), forgets what has lit up and the counts so far in the composite you have open, so you only see what happens from then on. Links light up, and counts start again from nothing, as the game uses them.</li>
+		</ul>
+		<p>Opening another composite, or stepping into another instance, starts afresh. Each of the composite's flowgraph pages lights its own links, and a page you switch to catches up straight away. If Live Link disconnects, what was lit and counted stays on the flowgraph, with Show Activity and Clear Activity on the toolbar, until you clear it or switch Show Activity off.</p>
+		<p>Keeping track costs the game very little, and next to nothing while Show Activity is off.</p>
+	</section>
+
+	<section class="docs-section" id="activity-what-lights">
+		<h2 class="section-heading">What Lights Up</h2>
+		<ul>
+			<li><b>A logic link</b> lights orange when its entity fires the output it leaves from. Every link out of that output lights together, as the game follows them all, and the dashes run from the output to the method it calls.</li>
+			<li><b>A data link</b> (drawn blue) lights a brighter blue when a value goes through it, either way: when the entity at its top pin reads a value through it, or when an entity sends a value out through it, such as a SetInteger writing its <code>Result</code> into a VariableInt's <code>reference</code>, or a PointTracker writing its <code>result</code>. The dashes run the way the value went the last time: into the entity reading it, or from the one writing it into where it's written. When that happens depends on the entity: a TriggerSelect reads its <code>index</code> and a SetInteger writes its <code>Result</code> each time they're triggered, while PointTrackers read and write every frame. Some entities also light a data link when they only look up what's linked to it, such as a list of objects they've been given.</li>
+			<li><b>The composite's <a href="/docs/scripting-intro/#parameter-entities">parameters</a></b> light like any other entity: a method called on the instance from outside lights the links leading on from that parameter inside it, and links that fire out through a parameter, or pass a value through one, light too (with one exception, under <a href="#activity-limits">Limits</a>). In the composite that holds the instance, the links to and from the instance's node light as well.</li>
+			<li><b>Aliases</b>: a link on an alias node lights when the entity the alias points at, in the instance it reaches into, uses it.</li>
+		</ul>
+		<p>A link that's lit but no longer glowing, a dim orange or blue, has been used since you last cleared, though not in the last second and a half. One that keeps its usual colour hasn't been used, so after playing through part of the level, those are the parts of the script that never ran (apart from the cases under <a href="#activity-limits">Limits</a>).</p>
+		<p><img src="img/activity-fade.jpg" alt="Part of CCTV_Camera_Passive's flowgraph twice. Top, labelled Just used: the trigger link from the Thinker's on_think [5609] to the VectorDistance's [5609] trigger glows orange with light dashes, and the data links from two GetRotations into the VectorDistance, and from its Result to a VariableFloat, glow bright blue with light dashes. Bottom, labelled After the glow has faded: the same links in plain dim orange and blue, their counts muted at [5947], and [1] beside the Thinker's stop." style="max-width:100%;width:822px"></p>
+		<p class="text-muted small"><i>Top: links the game had just used, with the dashes running the way each one went: down from the GetRotations into the VectorDistance's <code>LHS</code> and <code>RHS</code> as it reads them, and up from its <code>Result</code> into the VariableFloat as it writes its result there. Bottom: the same links a few seconds after the Thinker was stopped with <a href="#calling-methods">Trigger Method</a>. They stay dimly lit, and the counts stay where they stopped, until you press Clear Activity. The Thinker's <code>stop</code> shows <b>[1]</b> for that call.</i></p>
+	</section>
+
+	<section class="docs-section" id="activity-counts">
+		<h2 class="section-heading">Counts Beside the Pins</h2>
+		<p>While Show Activity is on, each pin the game uses gets a count in brackets, in bold beside its name:</p>
+		<ul>
+			<li><b><i>name</i> [<i>n</i>]</b>, beside an output on the right of a node: how many times the entity has fired it.</li>
+			<li><b>[<i>n</i>] <i>name</i></b>, beside a method on the left of a node: how many times it has been called, however it was called: through a link, by a TriggerSequence, or by you with <a href="#calling-methods">Trigger Method or a pin's Trigger in Game</a>.</li>
+		</ul>
+		<p>A count is bright while the pin is in use, and muted once it hasn't been used for a second and a half, like the links. Counts over 9999 are shortened, to <b>[10k]</b>, <b>[1.2M]</b> and so on. A composite parameter's node shows its count on whichever side its pin is drawn. If a label no longer fits beside its count, the label is cut short, never the count. The counts start again from nothing when you press Clear Activity, switch Show Activity off and on, open another composite or step into another instance.</p>
+		<p>They show how often each part of a script ran: how many times a loop went round, which way a choice went and how often, or whether something meant to happen once happened twice. Each time an output fires, the methods linked to it are called, so in the pictures above the Thinker's <code>on_think</code> and the VectorDistance <code>trigger</code> it's linked to show the same number.</p>
+	</section>
+
+	<section class="docs-section" id="activity-instance">
+		<h2 class="section-heading">Which Instance It Shows</h2>
+		<p>A composite can be used in many places in a level. Like a <a href="#calling-methods">method call</a>, Show Activity follows the instance you reached by stepping down from the level's root composite (the path at the top of the composite panel), so you see what that one does: in the pictures above, the one camera reached through ENVIRONMENT_Torrens and Torrens. If you opened the composite on its own from the Composite Browser, it shows every running instance of it at once: a link lights when any of them uses it, including links that only some of them use, and the counts are theirs added together.</p>
+	</section>
+
+	<section class="docs-section" id="activity-limits">
+		<h2 class="section-heading">Limits</h2>
+		<ul>
+			<li><b>It's drawn on the flowgraph.</b> A composite that opens with no flowgraph pages, its links listed in the Entity Inspector instead (see <a href="/docs/scripting-intro/#interface-overview">Interface Overview</a>), has nothing to light. Counts, likewise, only show beside the pins a node draws: a method called on an alias's target by a TriggerSequence, say, with no link drawn to that pin on the alias node, is counted but has nowhere to show it (an <a href="#ai-assistants">AI assistant</a> can still list it).</li>
+			<li><b>A value written into the composite's own parameter from inside.</b> When an entity inside a composite writes a value into one of the composite's own <a href="/docs/scripting-intro/#parameter-entities">parameters</a> (a SetInteger's <code>Result</code> linked to an output parameter, say), the game never reports it, so that link stays unlit. Reading a parameter, firing out through one, and writing into an instance's parameter from the composite that holds it all light as usual.</li>
+			<li><b>Links used all the time keep glowing</b>, such as those a PointTracker reads and writes every frame. That's the game using them. A page with a lot glowing at once takes OpenCAGE longer to draw, so it's redrawn less often, and its dashes move more slowly, in bigger steps. Only the page on show is redrawn, and only while something on it glows: pages behind it, and links that have faded, cost nothing.</li>
+			<li><b>Aliases into a great many instances.</b> OpenCAGE asks the game to watch the instance you're looking at and the instances its aliases reach into, up to 512 at once, which covers even the Torrens composite in BSP_TORRENS and its aliases into 160 other composites. A composite whose aliases reach into more instances than that leaves the rest out, and the status bar says how many: <b>Live Link: showing script activity (<i>N</i> instance(s) reached through aliases are left out - at most 512 at once)</b>. Alias links into those don't light, so open the composite the alias points into to watch it there. An older copy of OpenCAGE's runtime utils in the game watches 32 at most, and the status bar says so: start the game from Launch Game again, which updates them.</li>
+			<li><b>Only the level you have open.</b> As with edits, the game must be running the level open in OpenCAGE. If it's running another, the status bar says <b>Live Link: script activity can't be shown - Another level is running</b>, and Show Activity picks up again by itself once the game is back on your level.</li>
+		</ul>
+	</section>
+</article>
+
+<article class="docs-article" id="camera">
+    <header class="docs-header">
+<h1 class="docs-heading">Live Link Camera</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>While connected, the <a href="/docs/level-viewer/">Viewport</a> toolbar has a <b>Live Link Camera</b> drop-down, after <b>Highlight Zones</b>. It links the Viewport's camera to the game's, one way or the other, and your choice is remembered.</p>
+		<p><img src="img/camera-menu.jpg" alt="The Live Link Camera drop-down open on the Viewport toolbar, with Disabled ticked above Sync viewport camera to game and Sync game camera to viewport." style="max-width:100%;width:300px"></p>
+		<ul>
+			<li><b>Disabled</b>: the game's camera and the Viewport's each move on their own.</li>
+			<li><b>Sync viewport camera to game</b>: the game draws the level from the Viewport's camera (where it is, which way it looks, and its vertical field of view), and what you hear comes from there too. Fly around the Viewport and the game goes with you. Every zone of the level streams in while it follows, so you can go anywhere, not only near the player. It works in gameplay, in cutscenes and in the pause menu, and the overlay in the game says <b>Camera: following OpenCAGE</b>.</li>
+			<li><b>Sync game camera to viewport</b>: the Viewport shows what the game's camera sees, field of view included, so you can play the level and watch it in the editor at the same time. The Viewport's camera can't be moved by hand meanwhile (flying, looking, panning and focusing do nothing).</li>
+		</ul>
+		<p><img src="img/game-follows-viewport.jpg" alt="Alien: Isolation drawing a Torrens corridor from the Viewport's camera, with OpenCAGE Live Link and Camera: following OpenCAGE in the top-right corner." width="100%"></p>
+		<p class="text-muted small"><i>The game drawing a corridor on the Torrens from the Viewport's camera. The overlay in the top-right corner reads Camera: following OpenCAGE.</i></p>
+		<p><img src="img/viewport-follows-game.jpg" alt="The OpenCAGE window with the Viewport showing the game's view of the Torrens cryo room, and Live Link Camera on the Viewport toolbar." width="100%"></p>
+		<p class="text-muted small"><i>The other way round: the Viewport following the game's camera.</i></p>
+		<p>Both follow only while the Viewport shows the level itself (its root composite, or a composite you stepped into from there) and the game is running the level you have open. The game gets its own camera back when you choose <b>Disabled</b>, when Live Link disconnects, or when you open another composite on its own. The player's camera is never moved, so the view goes straight back to it.</p>
+		<p>With <b>Sync game camera to viewport</b>, the Viewport's camera stays locked for as long as that choice is on and Live Link is connected, even when it has nothing to follow, as in a composite opened on its own: open the level's root composite to see the game's view again. Choose <b>Disabled</b> to move the Viewport yourself again.</p>
+		<p><b>Game logic sees the Viewport's camera too.</b> While the game draws from the Viewport's camera, anything that checks what the player's camera sees reacts to it instead: camera viewcone triggers, the alien's checks for whether it's in view, and AI conditions on the camera's direction. It's the same as with Cinematic Tools' free camera, so bear it in mind when testing things that depend on being seen.</p>
+		<p><b>Cinematic Tools</b> can stay loaded. While OpenCAGE is driving the game's camera, OpenCAGE's camera wins, and Cinematic Tools' comes back once OpenCAGE lets go. With <b>Sync game camera to viewport</b>, the Viewport follows Cinematic Tools' free camera while it's on.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="ai-assistants">
+    <header class="docs-header">
+<h1 class="docs-heading">AI Assistants</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>An <a href="/docs/ai-assistants/">AI assistant</a> connected to OpenCAGE can use Live Link too. Its script edits go to the game automatically, as yours do, and it has tools of its own:</p>
+		<ul>
+			<li><code>runtime_utils</code>: the connection's status, connect and disconnect; what the game is running and where its camera is; push a composite; call a method on an entity; describe a composite's running instances; take a screenshot of the game; load a level; and <a href="#activity">Show Activity</a> (<code>activity</code>): switch it on or off, clear it, or list the links the game has used in the open composite, with how often and how long ago, and how many times each output fired and each method was called.</li>
+			<li><code>set_viewport_view</code> with <code>live_link_camera</code>: the Live Link Camera choice, <code>disabled</code>, <code>viewport_to_game</code> or <code>game_to_viewport</code>.</li>
+			<li><code>set_viewport_camera</code>: puts the Viewport's camera at a position and direction, and the game's with it while the game follows the Viewport.</li>
+			<li><code>launch_options</code> with <code>live_link</code>: the Enable Live Link box.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="troubleshooting">
+    <header class="docs-header">
+<h1 class="docs-heading">Troubleshooting</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><b>There's no Live Link button.</b> It only appears while this install's game is running and serving Live Link (or while OpenCAGE is connected), and only for the Steam version. If the game is running, it wasn't started with Live Link, or it's from another game install: close it and start it from Launch Game with Enable Live Link ticked.</li>
+			<li><b>"The game is running a different level".</b> The game has a different level loaded from the one open in OpenCAGE. Save, and load the same level in the game, or start the game again from Launch Game with that level picked.</li>
+			<li><b>Edits or calls are "waiting".</b> The level is still starting, the pause menu is open, a cutscene or an on-screen message has paused the level (close the message in the game), or the game is restarting from a checkpoint after a death. See <a href="#waiting">Level Start &amp; Pause</a>.</li>
+			<li><b>"No level is running".</b> The game is between levels, or unloading one. Load the level in the game, then <a href="#resync">Resync</a> what you changed.</li>
+			<li><b>"The game's runtime utils are too old to follow the viewport camera"</b> (or <b>too old for the viewport to follow the game camera</b>), from <a href="#camera">Live Link Camera</a>. The game is running an older copy of OpenCAGE's runtime utils. Start it from the Launch Game window again, which updates them.</li>
+			<li><b>"Unsupported Live Link protocol (OpenCAGE and the game's OpenCAGE_Utils.asi are different versions)".</b> The runtime utils in the game folder don't match this OpenCAGE, usually after an update. Start the game from Launch Game again, which replaces them.</li>
+			<li><b>"The game is running but not serving Live Link".</b> The game wasn't started with Enable Live Link, another OpenCAGE window is already connected, or another copy of the game is serving Live Link (<code>OpenCAGE_Utils.log</code> then says it could not listen on 127.0.0.1:8765). Close the others and start the game from Launch Game.</li>
+			<li><b>An edit didn't show up.</b> Check the status bar for what the game said (see <a href="#status-messages">below</a>). A new composite, a model placed on its own, or a change to a model, material, texture or other resource, needs the level <a href="#save-and-reload">saved and reloaded</a>. Edits made before connecting need a <a href="#resync">Resync</a>.</li>
+			<li><b>My live edits have gone from the game.</b> The game loaded the level again from disk, which only has what you've saved. <a href="#resync">Resync</a> each composite you changed, or save and start the game again.</li>
+			<li><b>Show Activity lights nothing.</b> The script hasn't run since you switched Show Activity on or cleared it: play up to it, or set it off by <a href="#calling-methods">triggering a method</a>. Check you're watching the instance that runs (open the composite from the Composite Browser to watch every instance of it), and that the composite has flowgraph pages. If the status bar says <b>the game's OpenCAGE_Utils.asi is too old to show script activity</b>, the game is running an older copy of OpenCAGE's runtime utils: start it from Launch Game again, which updates them. See <a href="#activity-limits">Limits</a> for the rest.</li>
+			<li><b>Something stopped when I edited it.</b> Edited entities are re-initialised, so start it again (<a href="#calling-methods">trigger its <b>start</b></a>).</li>
+			<li><b>The game closed when I saved.</b> Saving always closes the game. Start it again from Launch Game. With <b>Options → Misc → Open Game On Save</b> ticked, OpenCAGE starts it again by itself once the save is done, and Live Link reconnects.</li>
+		</ul>
+		<p>The game also writes what Live Link did (every edit applied, call made or request turned away) to <code>OpenCAGE_Utils.log</code> in the game folder. OpenCAGE's status bar messages clear after a few seconds, so the log is where to look for one you missed. It's started afresh each time the game starts, so read it before starting the game again.</p>
+    </section>
+
+	<section class="docs-section" id="status-messages">
+		<h2 class="section-heading">What the Status Bar Says</h2>
+		<p>Each edit the game answers puts a line on the status bar, starting <b>Live Link: <i>composite</i> -</b>, for a few seconds:</p>
+		<ul>
+			<li><b>Applied to N instance(s): … added, … removed, … modified</b>: done. <b>0 instance(s)</b> means the composite isn't used anywhere in the running level, so nothing visible changes.</li>
+			<li><b>… N of the composite's variables added, removed or changed</b>: counted apart from the entities. Instances of the composite are re-initialised to pick up changed defaults. When it ends <b>save and reload to use changed ones</b>, the composite is the level's root (see <a href="#save-and-reload">What Needs a Reload</a>).</li>
+			<li><b>Unchanged since it was last applied</b>: nothing to do.</li>
+			<li><b>Composite XXXXXXXX is not in the running level - save and reload the level to add new composites</b>: see <a href="#save-and-reload">What Needs a Reload</a>.</li>
+			<li><b>… not built, as a level load would not build them</b>: not an error. The game leaves these entities out when it loads the level too. A model placed on its own is one of these until you <a href="/docs/save-and-build/">Save and Build</a> and load the level again.</li>
+			<li><b>… could not be constructed - they are tried again on the next push</b>: the game couldn't make an entity (an unknown type, or a proxy whose target is missing). Fix it and edit the composite again, or <a href="#resync">Resync</a>.</li>
+			<li><b>Its resource references changed … need the level saved and reloaded</b>: the rest of the edit went in. A new LightReference brings this up too, and its light works anyway.</li>
+			<li><b>Could not swap the composite's data in … - reload the level</b>: save, and start the game again.</li>
+			<li><b>The game did not answer</b>: nothing came back within 30 seconds. Check the game is still running and not stuck on a loading screen, then Resync.</li>
+		</ul>
+    </section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+<h1 class="docs-heading">Related Docs</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/launch-game/#scripting-helpers">Launch Game</a> — Enable Live Link and the other Scripting Helpers</li>
+			<li><a href="/docs/scripting-intro/#inspector">Cathode Scripting Introduction</a> — the Entity Inspector, and scripting in general</li>
+			<li><a href="/docs/level-viewer/#moving-camera">Viewport</a> — moving the Viewport's camera</li>
+			<li><a href="/docs/save-and-build/">Save and Build</a> — for changes that need a reload</li>
+			<li><a href="/docs/ai-assistants/">AI Assistants</a> — driving OpenCAGE from an AI assistant</li>
+			<li><a href="/docs/debug-text/">Debug Text &amp; Markers</a> — putting text, script values and markers on screen in the game</li>
+			<li><a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a> — handy for trying Live Link out</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>

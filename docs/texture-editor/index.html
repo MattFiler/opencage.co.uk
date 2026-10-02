@@ -213,7 +213,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The Texture Editor has no separate Save button. Persist level texture changes with <b>File → Save Level</b> (<b>Ctrl+S</b>), which writes <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code> (or the compressed <code>.PAK.FZIP</code> variant) under the level's <code>RENDERABLE</code> folder.</p>
+		<p>The Texture Editor has no separate Save button. Persist level texture changes with <b>File → Save Level</b> (<b>Ctrl+S</b>), which writes <code>LEVEL_TEXTURES.ALL.PAK</code> / <code>LEVEL_TEXTURE_HEADERS.ALL.BIN</code> (or the compressed <code>.PAK.FZIP</code> variant) under the level's <code>RENDERABLE</code> folder. Texture changes don't reach a running game over <a href="/docs/live-link/#scripts-only">Live Link</a>, which only carries script edits: save the level and load it in the game again to see them.</p>
 		<p>Saving closes the game if it's running so install files aren't locked. Because global textures are imported into the level on load, edits to them are written into the level's own package — the game's global texture pak isn't modified, and the change applies to the level you're editing rather than to every level at once.</p>
     </section>
 </article>
