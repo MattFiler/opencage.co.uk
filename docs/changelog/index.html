@@ -232,7 +232,11 @@
 				<li>Added support for skeletons and bones on export for characters</li>
 				<li>Added a rescale option on import</li>
 				<li>Added a new model metadata json file that exports with a model to help reimporting</li>
+				<li>Added support for previewing TGA textures, and ones embedded in GLBs on import</li>
 				<li>Fixed unit scale factor (models are no longer tiny)</li>
+				<li>Fixed a bug where large imported models would render incorrectly in-game</li>
+				<li>Fixed an issue where UVs would store incorrectly depending on formatting</li>
+				<li>Fixed a scale bug when previewing models with multiple submeshes in the model editor</li>
 				<li>Imported models can now optionally create their own composite, with auto-generated ModelReferences set up for submeshes</li>
 			</ul></li>
 			<li>Added support for copy/pasting entities (replaces the old Duplicate option):<ul>
@@ -391,6 +395,7 @@
 			<li>Fixed a UI lock when the flowgraph focus is moving</li>
 			<li>Fixed various issues with form ownership to prevent things popping behind</li>
 			<li>Fixed some material remapping defects resulting in different materials to retail</li>
+			<li>Fixed composite tree diverging when new composites are added/imported</li>
 			<li>Fixed the reverbs available to be selected</li>
 			<li>Fixed pin delays not syncing across flowgraph pages</li>
 			<li>Fixed a bug where the metadata table in Commands held unnecessary GUIDs that grew each save</li>
