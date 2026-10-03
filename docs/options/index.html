@@ -124,7 +124,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>The first item in the Options menu. <b>Dark Mode</b> switches the whole editor to a dark theme — the main window, dock panels, dialogs, the flowgraph canvas and the resource editors. Below is the script editor with it on:</p>
 		<p><img src="img/dark-mode.jpg" alt="The OpenCAGE script editor with Dark Mode on: dark search panel, entity list, flowgraph canvas and inspector." width="100%"></p>
-		<p>Themes swap live: you don't need to reload the level or restart OpenCAGE, and any windows you already have open re-theme with the rest. The docked panels are rebuilt in place to pick up the new theme; in the rare case that can't be done, OpenCAGE offers to restart to finish the switch. The setting is remembered between sessions and is off by default.</p>
+		<p>Themes swap live: you don't need to reload the level or restart OpenCAGE, and any windows you already have open re-theme with the rest. The docked panels are rebuilt in place to pick up the new theme, and you stay where you were: the same composite, stepped down as you were, with the same selection. In the rare case that can't be done, OpenCAGE offers to restart to finish the switch. The setting is remembered between sessions and is off by default.</p>
     </section>
 </article>
 
@@ -203,7 +203,7 @@
 			<li><b>Prompt to Save on Close</b> — asks whether to save when you close OpenCAGE with a level open (off by default). Independent of the unsaved-changes indicator, which always flags in the taskbar once you've modified something.</li>
 			<li><b>Use Textured Model View</b> — model previews try to load textures/materials (on by default).</li>
 			<li><b>Keep Global Search Window Open</b> — after jumping to an entity from global search, the search window stays open (off by default).</li>
-			<li><b>Reset UI Layouts</b> — restores the default window size and dock panel layout. If the Viewport is open, it's kept and repositioned.</li>
+			<li><b>Reset UI Layouts</b> — restores the default window size and dock panel layout. If the Viewport is open, it's kept and repositioned. You stay where you were: the same composite, stepped down as you were, with the same selection.</li>
 			<li><b>Set Numeric Step</b> — sets how much position and rotation values change when you nudge numeric fields in inspectors (defaults: position <code>0.1</code>, rotation <code>1.0</code>).</li>
 			<li><b>Open Game On Save</b> — after save, launches into the level you're editing. Uses some of the same patch flags as <a href="/docs/launch-game/">Launch Game</a>, and sets up the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a> (Hot Reload, <a href="/docs/live-link/">Live Link</a> and the rest) as they're ticked in that dialog, but doesn't start Cinematic Tools (off by default).</li>
 			<li><b>Show Game Platform</b> — appends the detected platform (e.g. Steam) to the window title — handy with <a href="/docs/multiple-game-installs/">multiple installs</a> open (off by default).</li>

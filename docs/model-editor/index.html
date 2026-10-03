@@ -163,6 +163,7 @@
 			<li><b>Also import the animation(s)</b> — if the file carries clips, tick this and each one goes through the <a href="/docs/animation-editor/#import">animation import window</a> in turn, which asks which set and rig to build it against.</li>
 		</ul>
 		<p>Both need the game's animation data loaded; without it the row just says so and the mesh imports on its own.</p>
+		<p>An animated prop exported from the <a href="/docs/animation-editor/#preview">Animation Preview</a> needs its <code>.cs2meta.json</code> sidecar to come back as it was, because that's where each part's placement is recorded. If the sidecar isn't there, the row warns in red that parts will come in out of place, and says what to name the sidecar so they don't.</p>
 
 		<h3 class="section-heading" id="import-materials" style="font-size: 1.1rem; margin-top: 1.5rem;">Materials</h3>
 		<p>Every submesh needs a CATHODE material. There are two ways to get one:</p>
@@ -197,7 +198,7 @@
 		<p>Exporting a <b>skinned</b> model asks which skeleton to bind it to first, before the file dialog — a skinned model is only half a model without the rig its weights point at. The <b>Choose a skeleton</b> window (below) lists every skeleton in the game's animation data with its bone count and a <b>Fit</b> score — how far, on average, its bones sit from the vertices weighted to them — best fit first and pre-selected; skeletons with too few bones are greyed out. <b>Search</b> filters the list, <b>Export</b> uses the selected rig, and <b>Export without one</b> writes the mesh alone. The chosen skeleton is written into the file with the mesh bound to it.</p>
 		<p><img src="img/skeleton-picker.jpg" alt="The Choose a skeleton window shown when exporting a skinned model: a line saying the model uses 158 bone slots and that SAMUELS fits its skin weights best, a Search box, the list of skeletons with their bone counts and fit scores best fit first with SAMUELS pre-selected, and the Export without one, Export and Cancel buttons." style="max-width:100%;width:522px"></p>
 		<p class="text-muted small"><i>Exporting a mesh that uses 158 bone slots: the rigs that can hold it come first, best fit at the top, and SAMUELS is already selected; further down the list, a rig with too few bones is greyed out and marked <code>too small</code>.</i></p>
-		<p>Every export also writes a <code>.cs2meta.json</code> sidecar next to the model, holding everything the mesh formats can't carry: the component / LOD / submesh structure, render flags, vertex formats, and skinning data. <b>Keep it beside the model and leave the object names intact</b>, and the model can be imported straight back in as it was.</p>
+		<p>Every export also writes a <code>.cs2meta.json</code> sidecar next to the model, holding everything the mesh formats can't carry: the component / LOD / submesh structure, render flags, vertex formats, and skinning data. <b>Keep it beside the model and leave the object names intact</b>, and the model can be imported straight back in as it was. The sidecar is named after the model's file, extension and all (<code>chair.fbx.cs2meta.json</code> beside <code>chair.fbx</code>), so if you save the model under a new name, rename the sidecar to match.</p>
 	</section>
 </article>
 

@@ -22260,6 +22260,9 @@
             "unresolvable proxy",
             "trigger method",
             "live link",
+            "spline",
+            "splinepath",
+            "edit spline",
             "cathode scripting introduction"
         ],
         "title":  "The Entity Inspector"

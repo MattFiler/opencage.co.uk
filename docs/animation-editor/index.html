@@ -202,7 +202,8 @@
 		<p>Select a clip and hit <b>Preview…</b> (or double-click it) to open the <b>Animation Preview</b> window, shown below, and watch it play.</p>
 		<p><img src="img/preview.jpg" alt="The Animation Preview window showing the alien mesh mid-animation in the 3D viewport, the parts-of-the-mesh checklist on the right, the event marker timeline underneath with a marker selected, and the play, speed, loop and display toggles along the bottom." width="100%"></p>
 		<p class="text-muted small"><i>Animation Preview playing an ALIEN clip: the mesh above, the clip's event markers in lanes below.</i></p>
-		<p>Nothing in the game's data records which model goes with which animation set, so the first time you preview a set you're asked to pick one. Use <b>Choose Mesh…</b> to select a model and <b>Choose Rig…</b> to select a skeleton. Both choices are remembered per animation set, so you only do it once per character. The two lines beside those buttons say what's in use: the mesh, and the rig with its bone count — plus, when the clip was authored on a different rig, the route it was retargeted along. When something might otherwise look like a fault — a limb the clip never moves, an additive clip shown over the bind pose, a mesh that isn't skinned to the rig you picked — an amber note underneath says so.</p>
+		<p>Nothing in the game's data records which model goes with which animation set, so the first time you preview a set you're asked to pick one. Use <b>Choose Mesh…</b> to select a model and <b>Choose Rig…</b> to select a skeleton. Both choices are remembered per animation set, so you only do it once per character. A character's mesh brings its own rig: pick one and the preview moves onto the rig that mesh is skinned to, wherever the clip can be retargeted onto it the way the game plays it. The two lines beside those buttons say what's in use: the mesh, and the rig with its bone count — plus, when the clip was authored on a different rig, the route it was retargeted along. When something might otherwise look like a fault — a limb the clip never moves, an additive clip shown over the bind pose, a mesh that isn't skinned to the rig you picked, a clip authored on a rig the game's files don't hold — an amber note underneath says so.</p>
+		<p>For a clip on the <b>Character animations</b> tab, <b>Choose Mesh…</b> lists the skinned meshes in the open level that the clip can be shown on properly: those skinned to the rig in use, and those whose own rig the clip can be retargeted onto. For a clip whose rig the game's files don't hold, that means the characters with enough bones to play it. If nothing fits, every skinned mesh is listed, with a message explaining that the clip will play on it bone for bone. <b>Choose Rig…</b> opens the same <a href="#export-rig">Choose a skeleton</a> dialog as an export; with a character's mesh on show, the rig that mesh is skinned to comes first and is pre-selected, marked <b>the mesh on show</b>. You can still pick another rig; if the mesh isn't skinned to it, the amber note says so and names the rig the mesh belongs to.</p>
 		<p>Playback controls:</p>
 		<ul>
 			<li><b>Play</b> / <b>Pause</b>, a frame and time readout, a scrub ruler along the top of the timeline, and a <b>Speed</b> dropdown from 0.1x to 2x</li>
@@ -212,7 +213,7 @@
 			<li><b>Parts of the mesh</b> — show or hide individual pieces, grouped by LOD with each piece's vertex count; the first LOD starts on and the rest off. <b>Show all</b> / <b>Hide all</b> flip the lot</li>
 		</ul>
 		<p>Underneath the viewport is the clip's timeline of <b>markers</b> — the moments the clip fires something, one lane per event name. Click a marker and the line beneath the timeline says when it fires and what it does: a footstep sound, an effect, a gameplay callback — or, as with the marker selected in the screenshot, that it's a named moment with nothing attached.</p>
-		<p><b>Export…</b> in this window writes out the clip and the mesh it's playing on together.</p>
+		<p><b>Export…</b> in this window writes out the clip and the mesh it's playing on together, with a prop assembled the way the preview draws it. As with a <a href="/docs/model-editor/#export">model export</a>, a <code>.cs2meta.json</code> sidecar is written beside the file. Keep it there, renamed to match if you save the model under a new name, so that importing the model again brings every part back as it was.</p>
     </section>
 </article>
 
@@ -246,6 +247,7 @@
 		<div class="docs-caveat">
 			<p>A rig rests its root a long way from identity, so an export that <i>looks</i> right is not necessarily an export that can come back in. If you're round-tripping an animation, always use <b>For editing and re-importing</b>.</p>
 		</div>
+		<p>An animation you've edited in Blender can come back in as an FBX saved with Blender's default export settings. Blender thins out the keys as it saves, so set <b>Simplify</b> (under <b>Bake Animation</b>) to 0 in its FBX export options if you want every key kept as you left it.</p>
 	</section>
 </article>
 

@@ -327,7 +327,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>There is nothing to save. Every edit — a keyframe moved, a track added, an event renamed, a binding changed — is written to the <code>CAGEAnimation</code> as you make it, and <code>anim_length</code> is kept up to date from the timeline. <b>Close</b> just closes the window (and leaves Animation Mode if it's on).</p>
+		<p>There is nothing to save. Every edit — a keyframe moved, a track added, an event renamed, a binding changed — is written to the <code>CAGEAnimation</code> as you make it, and <code>anim_length</code> is kept up to date from the timeline. The inspector shows a new length, in bold as a changed value, a moment after you set it, while this window is still open. <b>Close</b> just closes the window (and leaves Animation Mode if it's on).</p>
 		<p>Each edit is an undo step in the main editor: <b>Edit → Undo</b> (or <b>Ctrl+Z</b> with the main window focused — the shortcut doesn't work inside this window) takes it back even while this window is open, and the window picks up the restored tracks. A gizmo drag in Animation Mode counts as one step, not one per value it recorded.</p>
 		<p>An event's pins on the <code>CAGEAnimation</code> node exist for as long as some keyframe uses that event name; removing the last one removes the forward and reverse pins. Deleting an event with the inspector's <b>Delete Event</b> button, or deleting a whole event track, warns first if any of the pins going away still have flowgraph connections. Renaming an event, or deleting one from the graph's right-click menu, doesn't — so check the node after those.</p>
     </section>
