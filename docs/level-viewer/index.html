@@ -225,6 +225,16 @@
 		<p>Click and drag the coloured gizmo handles to transform the entity. The current mode is shown in a small HUD.</p>
 		<p>An entity with more than one transform parameter only has the relevant one updated when you drag it, rather than all of them.</p>
 
+		<h3 class="section-heading" style="font-size: 1.1rem; margin-top: 1.5rem;">Moving the Gizmo's Origin</h3>
+		<p>The gizmo normally sits on the selected entity (or in the middle of a multi-selection), and rotating turns everything about that point. To turn about somewhere else — a door about its hinge, say — move the gizmo first: hold <b>Ctrl + Shift</b> and drag one of the translate handles. Only the gizmo moves. The entity stays where it is and nothing in the level changes, so there's nothing to undo. A thin line runs from the moved gizmo back to the entity's own origin while it's away from it.</p>
+		<ul>
+			<li>Switch to a rotate mode (<b>3</b> or <b>4</b>) and the rings sit on the new origin: the selection swings round it as it turns, keeping its shape. With <b>Rotation Snap</b> on it turns in whole steps from where it started.</li>
+			<li>Translating carries the origin along with the selection, so it stays in the same place relative to it.</li>
+			<li>With vertex snap on (hold <b>V</b>, or <b>Vertex</b> from the <b>Transform Snap</b> menu), the origin snaps to vertices as you drag it — including the selected entity's own, which is how to put it exactly on a corner or a hinge.</li>
+			<li><b>Ctrl + Shift + click</b> a translate handle to put the gizmo back on the entity, or press <b>Escape</b> mid-drag to put it back where the drag began.</li>
+		</ul>
+		<p>The moved origin lasts as long as the selection does. Select something else and it's forgotten: the gizmo is back on the entity the next time you select it. A Shift-drag duplicate (below) keeps it, so the copy turns about the same point.</p>
+
 		<h3 class="section-heading" style="font-size: 1.1rem; margin-top: 1.5rem;">Snapping</h3>
 		<p>Use <b>Transform Snap</b> and <b>Rotation Snap</b> on the Viewport toolbar to snap movement and rotation to stepped values while dragging. The values on offer are yours to change: <b>Options → Viewport → Snap Increments…</b> opens the dialog below, with a list of transform increments (in units) and rotation increments (in degrees) to add to or remove from — <b>Off</b> always stays, and <b>Reset to Defaults</b> puts the stock lists back (0.25 to 10 units, 1° to 90°). The toolbar menus update as you add or remove a value.</p>
 		<p><img src="img/snap-increments.jpg" alt="The Snap Increments dialog with editable lists of transform and rotation snap values." style="max-width:100%;width:432px"></p>

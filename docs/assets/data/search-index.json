@@ -19262,6 +19262,11 @@
             "shift end",
             "duplicate",
             "shift drag",
+            "gizmo origin",
+            "pivot",
+            "move pivot",
+            "rotate around point",
+            "ctrl shift drag",
             "viewport"
         ],
         "title":  "Moving Entities"
@@ -19840,6 +19845,10 @@
             "preview size",
             "bigger previews",
             "smaller previews",
+            "search only composite names",
+            "composite search",
+            "search folder names",
+            "search by name",
             "options"
         ],
         "title":  "Composite Display"
