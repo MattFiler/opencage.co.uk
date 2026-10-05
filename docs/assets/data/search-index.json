@@ -23196,6 +23196,8 @@
             "de-instance",
             "create composite",
             "make unique",
+            "create composite variant",
+            "create composite from selected",
             "viewport"
         ],
         "title":  "Right-click Menu"
@@ -23393,6 +23395,9 @@
             "composite instance",
             "duplicate composite",
             "make unique",
+            "create composite variant",
+            "create composite from selected",
+            "de-instance composite instance",
             "cathode scripting introduction"
         ],
         "title":  "De-instancing \u0026 Creating Composites"
@@ -23410,9 +23415,10 @@
             "unpack instance",
             "composite instance",
             "inline composite",
+            "de-instance composite instance",
             "cathode scripting introduction"
         ],
-        "title":  "De-instance"
+        "title":  "De-instance Composite Instance"
     },
     {
         "url":  "/docs/scripting-intro/#create-composite",
@@ -23427,9 +23433,11 @@
             "extract composite",
             "composite parameters",
             "pins",
+            "create composite from selected",
+            "from selected",
             "cathode scripting introduction"
         ],
-        "title":  "Create Composite"
+        "title":  "Create Composite From Selected"
     },
     {
         "url":  "/docs/scripting-intro/#duplicate",
@@ -23445,9 +23453,12 @@
             "clone composite",
             "change one instance",
             "composite browser",
+            "create composite variant",
+            "variant",
+            "composite variant",
             "cathode scripting introduction"
         ],
-        "title":  "Duplicate \u0026 Make Unique"
+        "title":  "Duplicate \u0026 Create Composite Variant"
     },
     {
         "url":  "/docs/ai-assistants/",

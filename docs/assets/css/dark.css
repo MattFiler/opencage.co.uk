@@ -419,3 +419,16 @@ html[data-theme="dark"] .sl-overlay {
 html[data-theme="dark"] .theme-bg-light {
 	background: #1a1f27 !important;
 }
+
+/* Icons drawn for each theme (the editor's own light and dark art): both copies are in the page, one shows */
+.theme-icon-dark {
+	display: none;
+}
+
+html[data-theme="dark"] .theme-icon-light {
+	display: none;
+}
+
+html[data-theme="dark"] .theme-icon-dark {
+	display: inline;
+}
