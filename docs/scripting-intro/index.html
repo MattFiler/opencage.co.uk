@@ -100,6 +100,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#node-annotations">Reading the Flowgraph</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#node-colours">Node Colours</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#copy-paste">Copying &amp; Pasting</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#arrange">Tidying a Flowgraph</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#refactoring">De-instancing &amp; Creating Composites</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#creating-script">Creating a Script</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#node-types">Node Types</a></li>
@@ -311,6 +312,20 @@
 			<li>Right-click and <b>Paste Reference</b> instead to create new nodes pointing at the <i>same</i> entities rather than copies of them — or aliases to them, if you paste in a composite above the one you copied from, on the path you stepped down through to reach it. Anywhere else it's greyed out.</li>
 		</ul>
 		<p>The same clipboard works in the <a href="/docs/level-viewer/">Viewport</a>: select an entity there, copy, and paste it on the flowgraph or back into the 3D view — with <b>Ctrl+C</b> / <b>Ctrl+V</b>, <b>Ctrl+D</b> to duplicate in place, or the same entries on the Viewport's right-click menu, where <b>Paste</b> is greyed out while the clipboard is empty.</p>
+	</section>
+
+    <section class="docs-section" id="arrange">
+        <h2 class="section-heading">Tidying a Flowgraph</h2>
+		<p>A page that's got messy, or one another tool drew, can be laid out again for you. Right-click an empty part of the canvas and choose <b>Arrange Page</b>, or right-click the page's tab and choose <b>Arrange flowgraph</b>. To tidy just part of a page, select two or more nodes, right-click one of them and choose <b>Arrange Selected Nodes</b>. Only those nodes move, and the group keeps its top-left corner where it was.</p>
+		<ul>
+			<li>Trigger links read from left to right, and the nodes in each column are ordered so links cross as little as possible.</li>
+			<li>A node joined only by value links (the blue ones), such as a parameter, sits just above or below the node it feeds, as on the pages OpenCAGE ships.</li>
+			<li>Where a value link would still run a long way across the page, the entity at one end gets another node, next to the node at the other end. It's marked <b>*</b>, like any entity with more than one node (see <a href="#node-annotations">Reading the Flowgraph</a>).</li>
+			<li>Groups of nodes that aren't linked to each other are placed side by side, biggest first, with any unlinked nodes at the end.</li>
+		</ul>
+		<p>Arrange only changes how the page is drawn. The script's links stay exactly the same, and each is still drawn once. The whole arrangement is one step for <b>Edit → Undo</b>, which also removes any nodes it added. Arranging a page that's already arranged changes nothing. Afterwards the view zooms out to show the whole page or, if it's too big to fit, its top-left corner.</p>
+		<p><img src="flowgraph-arrange.jpg" alt="Two views of the same 42-node flowgraph page. On the left the nodes are packed in a grid with links running in every direction across them; on the right they are laid out in columns, with the links running left to right." style="max-width:100%;width:1382px"></p>
+		<p class="text-muted small"><i>Left: a page laid out in a grid by a script, with links running all over it. Right: the same page after <b>Arrange Page</b>.</i></p>
 	</section>
 
     <section class="docs-section" id="refactoring">

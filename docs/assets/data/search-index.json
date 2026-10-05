@@ -22314,6 +22314,29 @@
         "title":  "Copying \u0026 Pasting"
     },
     {
+        "url":  "/docs/scripting-intro/#arrange",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "arrange",
+            "arrange page",
+            "arrange selected nodes",
+            "arrange flowgraph",
+            "tidy",
+            "tidy up",
+            "untangle",
+            "tangled",
+            "messy flowgraph",
+            "auto layout",
+            "layout",
+            "organise nodes",
+            "multiple nodes",
+            "cathode scripting introduction"
+        ],
+        "title":  "Tidying a Flowgraph"
+    },
+    {
         "url":  "/docs/create-level/",
         "description":  "How to create a brand-new Alien: Isolation level with OpenCAGE, seed it with composites from other levels, and launch into it.",
         "type":  "page",
@@ -23509,6 +23532,9 @@
             "runtime_utils",
             "set_viewport_camera",
             "live link",
+            "arrange",
+            "edit_flowgraph_pages",
+            "tidy flowgraph",
             "ai assistants"
         ],
         "title":  "What It Can Do"
