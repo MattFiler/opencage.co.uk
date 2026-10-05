@@ -23195,6 +23195,7 @@
             "unhide all",
             "de-instance",
             "create composite",
+            "make unique",
             "viewport"
         ],
         "title":  "Right-click Menu"
@@ -23390,6 +23391,8 @@
             "refactor",
             "restructure",
             "composite instance",
+            "duplicate composite",
+            "make unique",
             "cathode scripting introduction"
         ],
         "title":  "De-instancing \u0026 Creating Composites"
@@ -23427,6 +23430,24 @@
             "cathode scripting introduction"
         ],
         "title":  "Create Composite"
+    },
+    {
+        "url":  "/docs/scripting-intro/#duplicate",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "duplicate",
+            "duplicate composite",
+            "copy composite",
+            "make unique",
+            "unique instance",
+            "clone composite",
+            "change one instance",
+            "composite browser",
+            "cathode scripting introduction"
+        ],
+        "title":  "Duplicate \u0026 Make Unique"
     },
     {
         "url":  "/docs/ai-assistants/",
@@ -23535,6 +23556,7 @@
             "arrange",
             "edit_flowgraph_pages",
             "tidy flowgraph",
+            "duplicate_composite",
             "ai assistants"
         ],
         "title":  "What It Can Do"
