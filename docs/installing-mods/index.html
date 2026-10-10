@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Installing Mods</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to install, combine, update and remove Alien: Isolation mods with OpenCAGE's Mod Manager.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Installing Mods" />
+	<meta name="twitter:description" content="How to install, combine, update and remove Alien: Isolation mods with OpenCAGE's Mod Manager." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#opening"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Opening the Mod Manager</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#adding"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Adding Mods</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#installing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Installing Mods</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#order">The Order of Your Mods</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#clashes">When Mods Change the Same Thing</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#removing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Turning Mods Off</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#updating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Updating a Mod</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#own-changes"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Your Own Changes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#changed-since">Changes After Installing</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#keep-safe">Keep Your Changes Safe</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#repair"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>After a Game Update</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#questions"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Questions</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Installing Mods</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>OpenCAGE's <b>Mod Manager</b> installs mods for Alien: Isolation. You don't need to know anything about modding to use it: add the mods you've downloaded, tick the ones you want, and click <b>Apply</b>.</p>
+		<p>You can install as many mods as you like at the same time - including several that change the same level or the same game settings. The Mod Manager combines them for you, and tells you if two of them want different things. You can turn any mod off again later, and turning all of them off gives you back exactly the game you started with.</p>
+		<p>Mods come as files ending in <b>.omp</b> (an <i>OpenCAGE Mod Package</i>). Each one is a single file, however much it changes.</p>
+		<p><b>Before you start:</b> close Alien: Isolation whenever you install or remove mods. The game keeps its files open while it runs, so the Mod Manager can't change them until it's closed.</p>
+		<p>Want to make your own mods? See <a href="/docs/making-mods/">Making Mods</a>.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="opening">
+    <header class="docs-header">
+<h1 class="docs-heading">Opening the Mod Manager</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Open OpenCAGE, then click <b>Mod Manager</b> on the toolbar at the top of the window. You don't need to open a level first.</p>
+		<p><img src="img/toolbar.jpg" alt="The OpenCAGE toolbar, with the Mod Manager button next to Manage Backups." style="max-width:100%;width:700px"></p>
+		<p>Each time it opens, the Mod Manager checks your game files. This takes a moment the first time, and the line at the top tells you when it's done. With no mods added yet, it looks like this:</p>
+		<p><img src="img/manager-empty.jpg" alt="The Mod Manager with no mods: an empty list on the left, and on the right a reminder of how to add mods." width="100%"></p>
+    </section>
+</article>
+
+<article class="docs-article" id="adding">
+    <header class="docs-header">
+<h1 class="docs-heading">Adding Mods</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>There are three ways to add a mod to your list. Use whichever is easiest:</p>
+		<ul>
+			<li>Click <b>Add Mod...</b> at the bottom of the Mod Manager and pick one or more <b>.omp</b> files.</li>
+			<li>Drag <b>.omp</b> files from a folder onto the Mod Manager window.</li>
+			<li>Double-click an <b>.omp</b> file in Windows. OpenCAGE opens (if it isn't open already) and adds it to the Mod Manager.</li>
+		</ul>
+		<p>Adding a mod doesn't change your game yet: it goes into your list unticked. The Mod Manager keeps its own copy, so you can delete the file you downloaded afterwards.</p>
+		<p>Click a mod in the list to see its picture, who made it, its description, and what it changes:</p>
+		<p><img src="img/manager-added.jpg" alt="Five mods in the Mod Manager's list, none ticked yet. Relentless Alien is selected, and its picture, author, version, description and what it changes are shown on the right." width="100%"></p>
+    </section>
+</article>
+
+<article class="docs-article" id="installing">
+    <header class="docs-header">
+<h1 class="docs-heading">Installing Mods</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Tick the box beside each mod you want to play with. Its status changes to <b>Will be installed</b> - nothing happens to your game until you click <b>Apply</b>, so you can tick and untick as much as you like first.</p>
+		<p><img src="img/manager-ticked.jpg" alt="Four mods ticked, each showing Will be installed. Torrens Night Shift is selected, and its details say it shares the level BSP_TORRENS with other ticked mods." width="100%"></p>
+		<p>When you're ready, click <b>Apply</b>. If anything is worth knowing first, the Mod Manager tells you before it changes anything. For example, it lists any level that more than one of your mods changes - those are put back together with every mod's changes in them, which takes a minute or so each - and anything two of your mods both want to change:</p>
+		<p><img src="img/before-applying.jpg" alt="The Before applying window. It explains that BSP_TORRENS will be combined from several mods, and that Patient Alien and Relentless Alien both change the same setting, with the mod lower in the list being used." style="max-width:100%;width:706px"></p>
+		<p>Click <b>Apply</b> to go ahead, or <b>Cancel</b> to change your mind. While the mods go in, a small window shows what's happening:</p>
+		<p><img src="img/applying.jpg" alt="A progress window saying OpenCAGE is combining two versions of BSP_TORRENS." style="max-width:100%;width:446px"></p>
+		<p>When it's done, you'll see a summary of what was combined and which version was used wherever two mods clashed:</p>
+		<p><img src="img/applied.jpg" alt="The Mods applied window, summarising that BSP_TORRENS was combined from several mods and which mod was used where two changed the same setting." style="max-width:100%;width:706px"></p>
+		<p>Your mods now show <b>Installed</b>. Start the game as you normally would and they'll be there.</p>
+		<p><img src="img/manager-installed.jpg" alt="The Mod Manager after applying: all five mods ticked and showing Installed." width="100%"></p>
+		<p>If something goes wrong part-way - a file is in use, say - nothing is changed: the Mod Manager puts everything back as it was and tells you why it stopped.</p>
+    </section>
+
+	<section class="docs-section" id="order">
+		<h2 class="section-heading">The Order of Your Mods</h2>
+		<p>The order of your list only matters when two mods change <i>the very same thing</i> - the same setting, the same line of text, or the same part of a level. When that happens, <b>the mod lower in the list wins</b>.</p>
+		<p>To change the order, drag a mod up or down the list, or select it and click <b>Move Up</b> or <b>Move Down</b>. The new order takes effect the next time you click <b>Apply</b>.</p>
+    </section>
+
+	<section class="docs-section" id="clashes">
+		<h2 class="section-heading">When Mods Change the Same Thing</h2>
+		<p>Most mods work together without you having to do anything. The Mod Manager looks inside the files mods change and keeps every change from every mod - so two mods that change different settings in the same file both work, two mods that change different text both work, and two mods that change the same level are combined into one level with both mods' changes in it.</p>
+		<p>A clash only happens when two mods change exactly the same thing. Click a ticked mod to see whether it clashes with any of the others:</p>
+		<p><img src="img/manager-clash.jpg" alt="Patient Alien selected. Its details list a clash: Patient Alien and Relentless Alien both change the alien's menace cooldown time, and the mod lower in the list wins." width="100%"></p>
+		<p>Everything else both mods change is still kept. If you'd rather have the other mod's version of the clashing setting, move that mod lower in the list and click <b>Apply</b> again.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="removing">
+    <header class="docs-header">
+<h1 class="docs-heading">Turning Mods Off</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>To take a mod out of your game, untick it. Its status changes to <b>Will be removed</b>; click <b>Apply</b> to remove it. Your other mods stay installed, exactly as if the one you removed had never been there.</p>
+		<p><img src="img/manager-pending.jpg" alt="Quicker Killtraps unticked and showing Will be removed, while the other mods stay Installed. The bottom of the window reminds you to click Apply." width="100%"></p>
+		<p>Untick every mod and click <b>Apply</b> to go back to the game you started with.</p>
+		<p>A mod you've turned off stays in your list, so you can turn it back on whenever you like. To take it off the list completely, select it and click <b>Remove</b> (you'll need the .omp file again to add it back). A mod has to be turned off before it can be removed.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="updating">
+    <header class="docs-header">
+<h1 class="docs-heading">Updating a Mod</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Got a new version of a mod you already have? Add it the same way as before. It replaces the old version in your list, in the same place and still ticked if it was. If the old version was installed, click <b>Apply</b> to swap in the new one.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="own-changes">
+    <header class="docs-header">
+<h1 class="docs-heading">Your Own Changes</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>If you also change the game yourself with OpenCAGE - editing a level's scripts, say, or a setting - the Mod Manager looks after those changes too. Mods are combined with your changes rather than replacing them, and turning mods off gives you your changes back. The top of the Mod Manager tells you when you've changed files yourself:</p>
+		<p><img src="img/manager-own-changes.jpg" alt="The top of the Mod Manager saying you've changed the level SOLACE and four other game files yourself, and that OpenCAGE keeps the originals so mods are combined with your changes." width="100%"></p>
+		<p>Where a mod changes the very same thing you did, the mod's version is used while it's installed. Turn the mod off and yours comes back.</p>
+    </section>
+
+	<section class="docs-section" id="changed-since">
+		<h2 class="section-heading">Changes After Installing</h2>
+		<p>If you change something a mod installed - for example, you edit a level after installing a mod for it - and then click <b>Apply</b>, the Mod Manager won't just overwrite your work. It asks what you'd like to do:</p>
+		<p><img src="img/keep-changes.jpg" alt="The Keep your changes? window, listing the file that was changed since the mods were installed, with Keep my changes, Throw them away and Cancel buttons." style="max-width:100%;width:706px"></p>
+		<ul>
+			<li><b>Keep my changes</b> saves your changes as a new mod called <i>My changes</i> (with the date) at the bottom of your list. It stays installed, and you can turn it off like any other mod. It holds those files exactly as they are now, including what your other mods had changed in them.</li>
+			<li><b>Throw them away</b> rebuilds those files from your mods, as if you'd never changed them. You'll be asked to confirm, because this can't be undone.</li>
+			<li><b>Cancel</b> leaves everything as it is.</li>
+		</ul>
+    </section>
+
+	<section class="docs-section" id="keep-safe">
+		<h2 class="section-heading">Keep Your Changes Safe</h2>
+		<p>OpenCAGE keeps a copy of the original version of a game file before it first changes it, so it can always combine mods with your changes and put things back. Files changed before that - by an older version of OpenCAGE, or by a mod installed by hand - have no original copy. When that's the case, the top of the Mod Manager says so, with a <b>Keep those changes safe...</b> link:</p>
+		<p><img src="img/manager-keep-safe.jpg" alt="The top of the Mod Manager saying a game file in TECH_HUB was changed without OpenCAGE keeping the original, with a Keep those changes safe link." width="100%"></p>
+		<p>Click it to fix that in a few minutes. OpenCAGE copies your files, asks you to have Steam check the game's files (which puts the original versions back), keeps copies of those originals, then puts your files straight back. Your game ends up exactly as it was, and nothing is lost.</p>
+		<p><img src="img/keep-safe.jpg" alt="The Keep Your Changes Safe window, explaining the three steps and listing the changed file." style="max-width:100%;width:746px"></p>
+		<p>Until you do, a mod that changes the same level as those files can't be combined with them, and the Mod Manager will tell you that when you click <b>Apply</b>.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="repair">
+    <header class="docs-header">
+<h1 class="docs-heading">After a Game Update</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Steam sometimes puts the game's original files back - after a game update, or when you use <b>Verify integrity of game files</b>. If that happens to files your mods changed, those mods show <b>Needs repair</b>. Click <b>Repair</b> and the Mod Manager puts your mods back in.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="questions">
+    <header class="docs-header">
+<h1 class="docs-heading">Questions</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p><b>Can I use two mods that change the same level?</b><br>Yes. The level is rebuilt with both mods' changes in it. Where they both change the very same thing, the mod lower in your list is used, and the Mod Manager tells you.</p>
+		<p><b>Applying stopped with a message. Is my game broken?</b><br>No. If anything goes wrong while mods go in, the Mod Manager puts every file back the way it was before you clicked <b>Apply</b>, then tells you what went wrong. The most common reason is the game still running.</p>
+		<p><b>OpenCAGE closed (or my PC turned off) while mods were going in.</b><br>The next time you open the Mod Manager, it puts your game files back the way they were before that started. Then just click <b>Apply</b> again.</p>
+		<p><b>It says to restart OpenCAGE before working on animations.</b><br>OpenCAGE reads the game's animations when it starts, and your mods have just changed them. The animation editors would still show (and save) the old ones, so they won't save until you restart OpenCAGE.</p>
+		<p><b>It says a mod was made for a different version of the game.</b><br>Mods are made for one version of the game. Mods for the PC version work with Steam, Epic Games Store and GOG copies alike, but they can't be installed on other versions (such as the Nintendo Switch version), and those versions' mods can't be installed on PC.</p>
+		<p><b>Does removing a mod really undo everything it changed?</b><br>Yes. Every file is put back exactly as it was, byte for byte.</p>
+		<p><b>Where does the Mod Manager keep my mods?</b><br>Inside your game folder, in <code>DATA/MODTOOLS/MODS</code>, along with the copies of original files it keeps. Don't change anything in there by hand.</p>
+		<p><b>Why does applying take longer for some mods?</b><br>A level that more than one of your mods changes (or that you've changed yourself as well) is put back together from all of them, which takes a minute or so per level - longer when one of those mods rebuilt the level's lighting and navigation, as the combined level then has to be rebuilt too. Everything else goes in within seconds. A level is only put back together when something about it has changed: turning other mods on or off leaves it alone.</p>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>

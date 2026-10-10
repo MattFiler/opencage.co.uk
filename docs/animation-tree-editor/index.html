@@ -104,8 +104,12 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#editing-params">Editing Parameters</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#editing-add">Adding Nodes</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#editing-delete">Deleting Nodes &amp; Links</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-arrange">Arranging Nodes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-ghosts">Ghost Nodes</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#editing-copy-paste">Copying &amp; Pasting</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#editing-context">Right-Click Menu</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#pins"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Pins &amp; Connections</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#pins-drawing">Drawing Links</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
@@ -165,8 +169,11 @@
 
 	<section class="docs-section" id="layout-graph">
 		<h2 class="section-heading">Graph Canvas</h2>
-		<p>The centre of the window shows the open tree as a node graph. Each node's title shows its name with its <code>ANIM_*</code> type underneath, and the title colour follows the type: leaves and the tree root green, selectors pale green, parameters / properties / interpolators blue, callbacks violet, parametrics orange, additive blends lilac, bilinear blends dark purple, metadata event listeners red, and the rest (bone masks, IK, weighted, spherical, event callbacks, property listeners) white. Flow runs left-to-right from the tree root (<code>ANIM_Tree_Top_Level</code>); the parameter and callback nodes that feed a node are laid out above it. The screenshot in <a href="#pins">Pins &amp; Connections</a> shows a small tree at a readable scale.</p>
+		<p>The centre of the window shows the open tree as a node graph. Each node's title shows its full name with its <code>ANIM_*</code> type underneath, and the title colour follows the type: leaves and the tree root green, selectors pale green, parameters / properties / interpolators blue, callbacks violet, parametrics orange, additive blends lilac, bilinear blends dark purple, metadata event listeners red, and the rest (bone masks, IK, weighted, spherical, event callbacks, property listeners) white. The screenshot in <a href="#pins">Pins &amp; Connections</a> shows a small tree at a readable scale.</p>
+		<p>A tree nobody has laid out by hand is laid out automatically every time it opens, the same way each time, and fitted to the view. Flow runs left-to-right from the tree root (<code>ANIM_Tree_Top_Level</code>), and each parameter or callback sits directly above the node that reads it. A value read in several places gets a <a href="#editing-ghosts">ghost</a> — another copy of the same node — beside each reader, so no link runs across the graph. Nodes that nothing links to, such as unused parameters and listeners, sit in rows under the tree. Once you've changed a tree's layout, it opens as you left it instead: see <a href="#editing-arrange">Arranging Nodes</a>.</p>
+		<p>A node drawn more than once has a <b>*</b> marker at the right-hand end of its title, as on the <a href="/docs/scripting-intro/#node-annotations">scripting flowgraph</a>.</p>
 		<p>Drag with the middle mouse button to pan and roll the wheel to zoom (no modifier needed); dragging with the left button on empty space draws a selection rectangle instead. Select a node to populate the properties panel.</p>
+		<p>Zoomed out past where the titles can be read, each node is drawn in its colour with its type's icon on it, as nodes on script pages are, so a large tree can still be read at a glance. The same icons sit beside each type in the <a href="#editing-add">Add Node</a> menu.</p>
 	</section>
 
 	<section class="docs-section" id="layout-props">
@@ -206,17 +213,49 @@
 
 	<section class="docs-section" id="editing-add">
 		<h2 class="section-heading">Adding Nodes</h2>
-		<p>Right-click empty canvas space and choose <b>Add Node</b>, then pick a type from the submenu (exact <code>ANIM_*</code> names, alphabetically), as shown below. The tree root cannot be added from this menu — it already exists for every tree.</p>
+		<p>Right-click empty canvas space and choose <b>Add Node</b>, then pick a type from the submenu (exact <code>ANIM_*</code> names, alphabetically, each with its type's icon), as shown below. The tree root cannot be added from this menu — it already exists for every tree.</p>
 		<p><img src="img/add-node-menu.jpg" alt="Right-clicking empty canvas shows Add Node, whose submenu lists every ANIM_ node type except the tree root, alphabetically." style="max-width:100%;width:634px"></p>
-		<p>New nodes are named after their type (<code>Selector</code>, then <code>Selector_1</code> and so on), appear at the click position and are selected straight away so the properties panel shows them. Wire them into the graph with pins, and set parameters in the properties panel.</p>
+		<p>New nodes are named after their type (<code>Selector</code>, then <code>Selector_1</code> and so on), appear at the click position and are selected straight away so the properties panel shows them. Wire them into the tree by <a href="#pins-drawing">drawing links</a>, and set parameters in the properties panel.</p>
 	</section>
 
 	<section class="docs-section" id="editing-delete">
 		<h2 class="section-heading">Deleting Nodes &amp; Links</h2>
 		<ul>
-			<li><b>Delete</b> key — removes the link under the cursor if there is one, otherwise the selected node(s), from both the tree and the graph (the tree root cannot be deleted)</li>
-			<li><b>Delete Node</b> / <b>Delete Link</b> from the right-click menu — removes the node or connection under the cursor; removing a link also clears the corresponding reference in the tree</li>
+			<li><b>Delete</b> key — removes the link under the cursor if there is one, otherwise the selected node(s), from both the tree and the graph; a node drawn more than once loses only the selected copy, and leaves the tree with its last copy (the tree root cannot be deleted)</li>
+			<li><b>Shift+Delete</b> — removes the selected node(s) from the tree, with every copy on the graph</li>
+			<li><b>Delete Node</b> / <b>Delete Link</b> from the right-click menu — removes the node under the cursor (every copy of it) or the connection under the cursor; removing a link also clears the corresponding reference in the tree</li>
 		</ul>
+	</section>
+
+	<section class="docs-section" id="editing-arrange">
+		<h2 class="section-heading">Arranging Nodes</h2>
+		<p>Drag a node with the left button to move it. The first time you change a tree's layout — moving a node, adding or removing a <a href="#editing-ghosts">ghost</a>, moving a link onto another copy, or <b>Arrange Tree</b> — the editor keeps that tree's layout, and from then on the tree opens with every node where you left it. Until then the tree is laid out afresh each time it opens, so nodes and links you add just find their place in it. Kept layouts are written when you <a href="#saving">save</a>.</p>
+		<p>Right-click empty canvas and choose <b>Arrange Tree</b> to lay the whole tree out again, the way a tree nobody has laid out by hand is drawn, and fit it to the view. Ghosts you added yourself are removed, and new ones are added wherever a value is read far from where it sits. The result is kept as the tree's layout. There is no undo in the Animation Tree Editor, so this replaces a layout you made by hand.</p>
+		<p>If a tree has changed since its layout was kept — by a mod, say, or by a tool that doesn't know about layouts — nodes the layout doesn't have are placed beside what they link to, and nodes that are gone drop out of it.</p>
+	</section>
+
+	<section class="docs-section" id="editing-ghosts">
+		<h2 class="section-heading">Ghost Nodes</h2>
+		<p>A ghost is another copy of a node on the graph, so that a value read in several places can sit beside each node that reads it. It is still one node in the tree: every copy shows the same properties, a rename retitles every copy, and each of the node's links is drawn from one copy or another. Every copy has the <b>*</b> marker on its title.</p>
+		<ul>
+			<li><b>Add Ghost Node</b> — right-click a node to add a copy of it just below and to the right, selected, with no links drawn from it yet</li>
+			<li><b>Go To Next Ghost</b> (<b>F3</b>) — selects the node's next copy and brings it into view</li>
+			<li><b>Delete Ghost</b> (<b>Delete</b>) — removes just that copy; the links it drew are drawn from another copy instead</li>
+			<li><b>Delete Node</b> (<b>Shift+Delete</b>) — deletes the node from the tree, with every copy</li>
+		</ul>
+		<p>To choose which copy draws a link, draw the link again from that copy. The tree already has the link, so it just moves onto the copy you drew it from — see <a href="#pins-drawing">Drawing Links</a>. The tree root can't have ghosts.</p>
+	</section>
+
+	<section class="docs-section" id="editing-copy-paste">
+		<h2 class="section-heading">Copying &amp; Pasting</h2>
+		<p>Copy and paste work as they do on <a href="/docs/scripting-intro/">script pages</a>, with a choice between new nodes and more copies of the same ones:</p>
+		<ul>
+			<li><b>Copy</b> (<b>Ctrl+C</b>) — copies the selected nodes; right-clicking a node outside the selection copies just that one. The tree root can't be copied</li>
+			<li><b>Paste</b> (<b>Ctrl+V</b>) — adds new nodes to the tree, each a copy of a copied node with all its settings, named to be unique in the tree (<code>Idle</code> becomes <code>Idle_1</code>). They keep the links that ran between the copied nodes, and none to anything else. They are laid out as the copied nodes were, from the cursor, and selected. You can paste into another open tree, even one in another set</li>
+			<li><b>Paste Reference</b> — adds <a href="#editing-ghosts">ghosts</a> of the copied nodes themselves rather than new nodes, so it only works in the tree they were copied from</li>
+		</ul>
+		<p>An animation's context and converge parameters aren't drawn as links, so they aren't dropped: a pasted animation keeps them, reading the same parameters in the tree it was copied from, or the parameters of the same names in another tree. Parameters and callbacks you copy along with the nodes that read them are pasted as new ones under new names, which the game doesn't drive (see the note on hardcoded parameters in the <a href="#intro">Introduction</a>): to keep a copy reading the parameters the game sets, copy just the nodes that read them and link the copies to the original parameters.</p>
+		<p>A node copied with its ghosts is pasted as one new node. What is pasted is the copied nodes as they are at the time of the paste, and a node deleted since it was copied is left out. As with <a href="#editing-add">added nodes</a>, pasted animations, selectors and blends are only saved once they are linked into the tree, and a foot sync selector needs an animation on both its strike pins before the trees can be saved.</p>
 	</section>
 
 	<section class="docs-section" id="editing-context">
@@ -224,10 +263,16 @@
 		<p>On the graph canvas:</p>
 		<ul>
 			<li><b>Add Node</b> — submenu of creatable node types (empty canvas)</li>
-			<li><b>Delete Node</b> — delete the node under the cursor (right-click a node; the tree root offers Add Node instead, since it cannot be deleted)</li>
-			<li><b>Delete Link</b> — remove the hovered connection</li>
+			<li><b>Arrange Tree</b> — lay the whole tree out again (empty canvas; see <a href="#editing-arrange">Arranging Nodes</a>)</li>
+			<li><b>Paste</b> (<b>Ctrl+V</b>) / <b>Paste Reference</b> — paste the copied nodes as new nodes, or as ghosts of them (empty canvas; see <a href="#editing-copy-paste">Copying &amp; Pasting</a>)</li>
+			<li><b>Copy</b> (<b>Ctrl+C</b>) — copy the selection, or the node under the cursor if it isn't selected</li>
+			<li><b>Add Ghost Node</b> — add another copy of the node under the cursor (see <a href="#editing-ghosts">Ghost Nodes</a>)</li>
+			<li><b>Go To Next Ghost</b> (<b>F3</b>) — select the node's next copy and bring it into view</li>
+			<li><b>Delete Ghost</b> (<b>Delete</b>) — remove just this copy of the node</li>
+			<li><b>Delete Node</b> (<b>Shift+Delete</b>) — delete the node under the cursor, and every copy of it</li>
+			<li><b>Delete Link</b> (<b>Delete</b>) — remove the hovered connection</li>
 		</ul>
-		<p>Only the item that applies is shown: <b>Add Node</b> on empty space (as in the Adding Nodes screenshot), <b>Delete Node</b> on a node, <b>Delete Link</b> on a link.</p>
+		<p>Only the items that apply are shown: <b>Add Node</b>, <b>Arrange Tree</b>, <b>Paste</b> and <b>Paste Reference</b> on empty space (the pastes greyed out when there is nothing to paste, and <b>Paste Reference</b> also in any tree but the one copied from), the node items on a node (<b>Go To Next Ghost</b> and <b>Delete Ghost</b> only when it's drawn more than once), and <b>Delete Link</b> on a link. The tree root can't be copied, ghosted or deleted, so right-clicking it shows the empty-space items.</p>
 	</section>
 </article>
 
@@ -247,7 +292,19 @@
 		<p>Connect a provider's bottom <code>value</code> pin to a consumer's top pin. Connect flow outputs on the right to the next node's left <code>trigger</code>. The small tree below has all four sides in use.</p>
 		<p><img src="img/pins.jpg" alt="The ACT_IMPACT tree on the canvas: the root's NODES pin feeds a ranged selector whose State pins fan out to five leaves, a Direction parameter feeds the selector's ParameterBinding pin from above, and an Impact_Done callback feeds each leaf's Callback pin." style="max-width:100%;width:634px"></p>
 		<p class="text-muted small"><i>HUMANOID › ACT_IMPACT: flow runs root → selector → leaves left-to-right; the parameter and callback above feed top pins from their bottom value pins.</i></p>
-		<p>Reading it left-to-right: the root's <code>NODES</code> output runs into the ranged selector's <code>trigger</code>; the selector's <code>State_01</code> to <code>State_05</code> pins fan out to the five <code>Impact_*</code> leaves (<code>State_06</code> onwards are unused); the <code>Direction</code> parameter's bottom <code>value</code> pin feeds the selector's <code>ParameterBinding</code> pin on top; and the <code>Impact_Done</code> callback's <code>value</code> pin is wired to the <code>Callback</code> pin of all five leaves — the leaves sit directly beneath it, so those five links overlap into one vertical line down the column (the small triangle under every <code>value</code> pin is the pin's own marker, not a link). Parameter, property, callback, and similar nodes have no <code>trigger</code> pin — they only expose a <code>value</code> output.</p>
+		<p>Reading it left-to-right: the root's <code>NODES</code> output runs into the ranged selector's <code>trigger</code>; the selector's <code>State_01</code> to <code>State_05</code> pins fan out to the five <code>Impact_*</code> leaves (<code>State_06</code> onwards are unused); the <code>Direction</code> parameter's bottom <code>value</code> pin feeds the selector's <code>ParameterBinding</code> pin on top; and the <code>Impact_Done</code> callback's <code>value</code> pin is wired to the <code>Callback</code> pin of all five leaves (the small triangle under every <code>value</code> pin is the pin's own marker, not a link). Parameter, property, callback, and similar nodes have no <code>trigger</code> pin — they only expose a <code>value</code> output.</p>
+		<p>This picture predates the current automatic layout: the leaves sit directly beneath <code>Impact_Done</code>, so its five links overlap into one vertical line down the column. Opened now, the tree is laid out as <a href="#layout-graph">Graph Canvas</a> describes.</p>
+	</section>
+
+	<section class="docs-section" id="pins-drawing">
+		<h2 class="section-heading">Drawing Links</h2>
+		<p>A link you draw on the canvas changes the tree:</p>
+		<ul>
+			<li><b>Flow</b> — a flow output on the right (<code>State_01</code> onwards, <code>base_node</code>, <code>additive_node</code>, <code>child</code>, <code>NODES</code>, <code>LeftStrikeChild</code>, <code>RightStrikeChild</code>) dragged onto a node's <code>trigger</code> makes that node its child</li>
+			<li><b>Values</b> — a bottom <code>value</code> pin dragged onto a top pin binds it: a parameter into <code>ParameterBinding</code>, <code>ParameterBindingX</code> / <code>Y</code> / <code>Z</code>, <code>WeightControlParameter</code>, <code>Parameter</code>, <code>SourceParameter</code> or <code>IkEffector</code>; a callback into <code>Callback</code>, <code>RandomCallback</code> or <code>OverflowCallback</code>; and a node in the flow into a property listener's <code>LeafNode</code></li>
+		</ul>
+		<p>A new link replaces whatever was there before: a flow output holds one child (except the root's <code>NODES</code> pin, which takes any number), and a top pin reads one value. A link the tree can't hold is refused with a message saying why: the wrong kind of node for the pin, a node linked to itself, or a loop (a node made the child of something already below it).</p>
+		<p>Drawing a link the tree already has, between other copies of the same nodes, adds nothing: the link moves onto the copies you drew it between. That is how you choose which <a href="#editing-ghosts">ghost</a> draws a link.</p>
 	</section>
 </article>
 
@@ -258,6 +315,9 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>Use the toolbar <b>Save</b> button in the Animation Tree Editor window — the only toolbar item, top-left in the Introduction screenshot. That closes the game if it is running, rewrites every tree database into <code>ANIMATION.PAK</code>, and confirms with an "Animation trees saved." message — it is separate from <b>File → Save Level</b> in the script editor.</p>
+		<p>The same Save writes the layouts you've made (see <a href="#editing-arrange">Arranging Nodes</a>) into <code>ANIMATION.PAK</code> alongside the trees, in an entry of OpenCAGE's own that the game never reads. Because they live in the same file, the layouts always stay with the trees they draw: if a game file check puts the original trees back, your layouts go with them, and a mod made with <a href="/docs/making-mods/">Create a Mod</a> that changes your trees takes their layouts with it. When the <a href="/docs/installing-mods/">Mod Manager</a> combines several mods, each tree keeps only a layout made for the version of it that ends up installed; any other tree is laid out automatically until you arrange it.</p>
+		<p>OpenCAGE holds <code>ANIMATION.PAK</code> in memory from when it starts. If the Mod Manager or a game file check changes the file while OpenCAGE is open, Save won't write over it, because that would put the old trees back. Restart OpenCAGE first; any tree changes you hadn't saved are lost.</p>
+		<p>Node names are stored in the PAK as numbers, so Save also adds the names of nodes you've added or renamed to the PAK's list of names. That is how they keep their names the next time OpenCAGE loads the trees.</p>
 	</section>
 </article>
 

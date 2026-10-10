@@ -20648,6 +20648,54 @@
         "title":  "Deleting Nodes \u0026 Links"
     },
     {
+        "url":  "/docs/animation-tree-editor/#editing-arrange",
+        "description":  "On Animation Tree Editor",
+        "type":  "heading",
+        "category":  "Animation Tree Editor",
+        "keywords":  [
+            "editing-arrange",
+            "arrange tree",
+            "layout",
+            "auto layout",
+            "move nodes",
+            "animation tree editor"
+        ],
+        "title":  "Arranging Nodes"
+    },
+    {
+        "url":  "/docs/animation-tree-editor/#editing-ghosts",
+        "description":  "On Animation Tree Editor",
+        "type":  "heading",
+        "category":  "Animation Tree Editor",
+        "keywords":  [
+            "editing-ghosts",
+            "ghost",
+            "add ghost node",
+            "go to next ghost",
+            "delete ghost",
+            "copies",
+            "animation tree editor"
+        ],
+        "title":  "Ghost Nodes"
+    },
+    {
+        "url":  "/docs/animation-tree-editor/#editing-copy-paste",
+        "description":  "On Animation Tree Editor",
+        "type":  "heading",
+        "category":  "Animation Tree Editor",
+        "keywords":  [
+            "editing-copy-paste",
+            "copy",
+            "paste",
+            "paste reference",
+            "duplicate",
+            "ctrl+c",
+            "ctrl+v",
+            "animation tree editor"
+        ],
+        "title":  "Copying \u0026 Pasting"
+    },
+    {
         "url":  "/docs/animation-tree-editor/#editing-context",
         "description":  "On Animation Tree Editor",
         "type":  "heading",
@@ -24388,5 +24436,336 @@
             "debug text \u0026 markers"
         ],
         "title":  "Related Docs"
+    },
+    {
+        "url":  "/docs/installing-mods/",
+        "description":  "How to install, combine, update and remove Alien: Isolation mods with OpenCAGE\u0027s Mod Manager.",
+        "type":  "page",
+        "category":  "Mods",
+        "keywords":  [
+            "mod manager",
+            "install mods",
+            "omp",
+            "mods"
+        ],
+        "title":  "Installing Mods"
+    },
+    {
+        "url":  "/docs/installing-mods/#opening",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "opening",
+            "mod manager",
+            "toolbar",
+            "installing mods"
+        ],
+        "title":  "Opening the Mod Manager"
+    },
+    {
+        "url":  "/docs/installing-mods/#adding",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "adding",
+            "add mod",
+            "omp",
+            "drag and drop",
+            "double-click",
+            "installing mods"
+        ],
+        "title":  "Adding Mods"
+    },
+    {
+        "url":  "/docs/installing-mods/#installing",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "installing",
+            "apply",
+            "install",
+            "tick",
+            "installing mods"
+        ],
+        "title":  "Installing Mods"
+    },
+    {
+        "url":  "/docs/installing-mods/#order",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "order",
+            "load order",
+            "priority",
+            "move up",
+            "move down",
+            "installing mods"
+        ],
+        "title":  "The Order of Your Mods"
+    },
+    {
+        "url":  "/docs/installing-mods/#clashes",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "clashes",
+            "conflict",
+            "clash",
+            "combine",
+            "same level",
+            "installing mods"
+        ],
+        "title":  "When Mods Change the Same Thing"
+    },
+    {
+        "url":  "/docs/installing-mods/#removing",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "removing",
+            "uninstall",
+            "remove",
+            "disable",
+            "installing mods"
+        ],
+        "title":  "Turning Mods Off"
+    },
+    {
+        "url":  "/docs/installing-mods/#updating",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "updating",
+            "update",
+            "new version",
+            "installing mods"
+        ],
+        "title":  "Updating a Mod"
+    },
+    {
+        "url":  "/docs/installing-mods/#own-changes",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "own-changes",
+            "own changes",
+            "my changes",
+            "installing mods"
+        ],
+        "title":  "Your Own Changes"
+    },
+    {
+        "url":  "/docs/installing-mods/#changed-since",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "changed-since",
+            "keep my changes",
+            "throw them away",
+            "my changes",
+            "installing mods"
+        ],
+        "title":  "Changes After Installing"
+    },
+    {
+        "url":  "/docs/installing-mods/#keep-safe",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "keep-safe",
+            "keep those changes safe",
+            "verify integrity",
+            "original files",
+            "installing mods"
+        ],
+        "title":  "Keep Your Changes Safe"
+    },
+    {
+        "url":  "/docs/installing-mods/#repair",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "repair",
+            "repair",
+            "needs repair",
+            "game update",
+            "verify integrity",
+            "installing mods"
+        ],
+        "title":  "After a Game Update"
+    },
+    {
+        "url":  "/docs/installing-mods/#questions",
+        "description":  "On Installing Mods",
+        "type":  "symbol",
+        "category":  "Installing Mods",
+        "keywords":  [
+            "questions",
+            "faq",
+            "help",
+            "installing mods"
+        ],
+        "title":  "Questions"
+    },
+    {
+        "url":  "/docs/making-mods/",
+        "description":  "How to turn your OpenCAGE changes into a mod that other players can install with the Mod Manager - and make it work well alongside other mods.",
+        "type":  "page",
+        "category":  "Mods",
+        "keywords":  [
+            "create a mod",
+            "export mod",
+            "omp",
+            "mods"
+        ],
+        "title":  "Making Mods"
+    },
+    {
+        "url":  "/docs/making-mods/#creating",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "creating",
+            "create a mod",
+            "export",
+            "save mod",
+            "making mods"
+        ],
+        "title":  "Creating a Mod"
+    },
+    {
+        "url":  "/docs/making-mods/#choosing",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "choosing",
+            "changed files",
+            "config values",
+            "making mods"
+        ],
+        "title":  "Choosing What Goes In"
+    },
+    {
+        "url":  "/docs/making-mods/#details",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "details",
+            "picture",
+            "description",
+            "author",
+            "version",
+            "making mods"
+        ],
+        "title":  "Name, Description and Picture"
+    },
+    {
+        "url":  "/docs/making-mods/#new-version",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "new-version",
+            "update",
+            "new version",
+            "making mods"
+        ],
+        "title":  "A New Version of Your Mod"
+    },
+    {
+        "url":  "/docs/making-mods/#sharing",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "sharing",
+            "share",
+            "omp",
+            "making mods"
+        ],
+        "title":  "Sharing Your Mod"
+    },
+    {
+        "url":  "/docs/making-mods/#working-together",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "working-together",
+            "compatibility",
+            "combine",
+            "making mods"
+        ],
+        "title":  "Mods That Work Together"
+    },
+    {
+        "url":  "/docs/making-mods/#how-combined",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "how-combined",
+            "merge",
+            "combine",
+            "conflict",
+            "clash",
+            "making mods"
+        ],
+        "title":  "How Mods Are Combined"
+    },
+    {
+        "url":  "/docs/making-mods/#tips",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "tips",
+            "best practices",
+            "compatibility",
+            "making mods"
+        ],
+        "title":  "Tips"
+    },
+    {
+        "url":  "/docs/making-mods/#testing",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "testing",
+            "test",
+            "compatibility",
+            "making mods"
+        ],
+        "title":  "Testing With Other Mods"
+    },
+    {
+        "url":  "/docs/making-mods/#details-technical",
+        "description":  "On Making Mods",
+        "type":  "symbol",
+        "category":  "Making Mods",
+        "keywords":  [
+            "details-technical",
+            "package format",
+            "behavior_tree.db",
+            "main.pkg",
+            "commands.bin",
+            "making mods"
+        ],
+        "title":  "Technical Details"
     }
 ]

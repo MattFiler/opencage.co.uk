@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Making Mods</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to turn your OpenCAGE changes into a mod that other players can install with the Mod Manager - and make it work well alongside other mods.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Making Mods" />
+	<meta name="twitter:description" content="How to turn your OpenCAGE changes into a mod that other players can install with the Mod Manager - and make it work well alongside other mods." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#creating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Creating a Mod</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#choosing">Choosing What Goes In</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#details">Name, Description and Picture</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#new-version">A New Version of Your Mod</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#sharing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Sharing Your Mod</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#working-together"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Mods That Work Together</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#how-combined">How Mods Are Combined</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#tips">Tips</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#testing">Testing With Other Mods</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#details-technical"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Technical Details</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Making Mods</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Anything you change in the game with OpenCAGE - a level's scripts, its models and textures, the alien's settings, behaviour trees, in-game text and more - can be turned into a mod that other players install with the <a href="/docs/installing-mods/">Mod Manager</a>.</p>
+		<p>There's nothing special to do while you work: make your changes in OpenCAGE as you normally would. OpenCAGE keeps a copy of each game file's original version the first time it changes it, so it always knows exactly what you changed. When you're happy, <b>Create a Mod</b> packs those changes into a single <b>.omp</b> file.</p>
+		<p>Mods made this way hold only what you changed, so they're small, and the Mod Manager can combine them with other players' mods - even ones that change the same level or the same settings.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="creating">
+    <header class="docs-header">
+<h1 class="docs-heading">Creating a Mod</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Open the <b>Mod Manager</b> from the toolbar and click <b>Create a Mod...</b> at the bottom of it. Save any level you have open first, so your latest changes are included.</p>
+		<p><img src="img/create-mod.jpg" alt="The Create a Mod window. On the left, everything that's been changed in the game, ticked to go in the mod: the level SOLACE as one item, two settings each showing its old and new value, a changed and a new behaviour tree, and a text file. On the right, the mod's name, author, version, description, what it changes and its picture, and a Save Mod button at the bottom." width="100%"></p>
+    </section>
+
+	<section class="docs-section" id="choosing">
+		<h2 class="section-heading">Choosing What Goes In</h2>
+		<p>The left of the window lists everything that's different from the original game, in plain words:</p>
+		<ul>
+			<li><b>Levels</b> - each level you've changed, as a single item, with what you changed in it (its scripts, rebuilt lighting and navigation, its text). A level's files only work together, so they always go in together. Hover over a level to see its files.</li>
+			<li><b>Settings</b> - grouped by what they're for, such as <i>The alien (DEFAULT.BML)</i>. Each change shows the value it had and the value you gave it, for example <i>AreaSweep › menace cool down time: 30 → 45</i>, so you can untick any you only changed while testing.</li>
+			<li><b>Behaviour trees</b> - each tree you changed or added, as a single item.</li>
+			<li><b>Other files</b> - everything else, such as in-game text or the user interface. Changed animation trees (<code>ANIMATION.PAK</code>) take the layouts you gave them in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> with them.</li>
+		</ul>
+		<p>Everything starts ticked. Untick anything that shouldn't be in this mod. If you have mods installed, what they changed isn't listed - only your own work goes into your mod.</p>
+		<p>The line at the bottom of the window counts what's ticked, for example <i>In your mod: 1 level, 2 settings, 2 behaviour trees, 1 other file.</i></p>
+    </section>
+
+	<section class="docs-section" id="details">
+		<h2 class="section-heading">Name, Description and Picture</h2>
+		<p>On the right, fill in what players see in their Mod Manager:</p>
+		<ul>
+			<li><b>Mod name</b>, <b>Author</b> and <b>Version</b>.</li>
+			<li><b>Description</b> - what the mod does and anything players should know.</li>
+			<li><b>What it changes</b> - filled in for you from what you've ticked (for example <i>Changes the level SOLACE; changes 2 settings for the alien, items; changes 1 behaviour tree and adds 1 new one</i>). Edit it if you'd like to say it differently.</li>
+			<li><b>Picture...</b> - an optional screenshot or image, shown beside your mod in the Mod Manager. Large pictures are made smaller automatically.</li>
+		</ul>
+		<p>Click <b>Save Mod...</b>, choose where to save it, and you're done.</p>
+    </section>
+
+	<section class="docs-section" id="new-version">
+		<h2 class="section-heading">A New Version of Your Mod</h2>
+		<p>To release an update, make your changes, open <b>Create a Mod...</b> again, and choose <b>A new version of '<i>your mod</i>'</b> from the <b>This is</b> list at the top right. Your mod's details are filled in again and its version number goes up by one (change it if you like).</p>
+		<p>Players who add the new version get it in place of the old one, in the same spot in their list, rather than as a second copy. A mod is only offered here once it's in your own Mod Manager's list - add your earlier version to it if it isn't.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="sharing">
+    <header class="docs-header">
+<h1 class="docs-heading">Sharing Your Mod</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Your mod is the one <b>.omp</b> file you saved. Share it however you like. Anyone with OpenCAGE can install it by adding it to their Mod Manager, dragging it onto the Mod Manager, or double-clicking it - see <a href="/docs/installing-mods/">Installing Mods</a>.</p>
+		<p>A mod works on the version of the game it was made with: mods made with the PC version (Steam, Epic Games Store or GOG) install on any PC copy, but not on other versions of the game.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="working-together">
+    <header class="docs-header">
+<h1 class="docs-heading">Mods That Work Together</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Players often install lots of mods at once. The Mod Manager is built for that: it combines every installed mod's changes, and only has to choose between two mods when they change exactly the same thing.</p>
+    </section>
+
+	<section class="docs-section" id="how-combined">
+		<h2 class="section-heading">How Mods Are Combined</h2>
+		<p>When more than one installed mod changes the same file, the Mod Manager looks at what each mod changed inside it compared to the original game, and keeps all of it:</p>
+		<table class="table table-bordered">
+			<thead><tr><th>What the mods change</th><th>Combined</th></tr></thead>
+			<tbody>
+				<tr><td>Settings (alien, characters, weapons, difficulty, items and the other config files)</td><td>Setting by setting, including entries added to or removed from lists</td></tr>
+				<tr><td>Behaviour trees</td><td>Node by node, including whole new trees</td></tr>
+				<tr><td>Animation tree layouts (how the Animation Tree Editor draws each tree, kept inside <code>ANIMATION.PAK</code> with the trees)</td><td>Tree by tree, each from the latest mod (or the player's own layouts) made for the version of that tree that's installed. A layout made for another version is left out, and that tree is laid out automatically</td></tr>
+				<tr><td>In-game text</td><td>String by string</td></tr>
+				<tr><td>The user interface and other packed files</td><td>File by file inside the pack</td></tr>
+				<tr><td>Other text and XML files</td><td>Line by line, or element by element</td></tr>
+				<tr><td>A level</td><td>Composite by composite and entity by entity - every parameter, link, alias, proxy, trigger sequence and keyframe - plus textures and models replaced by name, and new composites with everything they use. The level is then rebuilt with all of it (navigation, collision and lighting included), along with its flowgraph pages.</td></tr>
+				<tr><td>A level that isn't in the original game</td><td>Can't be combined: if two mods add a level with the same name, the one lower in the list is used</td></tr>
+				<tr><td>Any other kind of file</td><td>Can't be combined: the version from the mod lower in the list is used</td></tr>
+			</tbody>
+		</table>
+		<p>Where two mods change the very same thing - the same setting, the same parameter on the same entity - the mod lower in the player's list wins, and the Mod Manager tells them which mod's version was used.</p>
+		<p><b>An example.</b> Two mods both edit the same composite - say the room composite a cutscene plays in. Mod A adds a light and links it to the cutscene's start. Mod B changes how long the cutscene's camera takes to blend in, and adds some debug text. With both installed, the composite has A's light and its link, B's new timing and B's text: each mod's changes are carried over entity by entity, and parameter by parameter within an entity. Only if both mods changed that same camera's blend time would one of them win - the lower one - and the player would be told. The composite's flowgraph pages are combined too, so it still opens with every change drawn.</p>
+		<p><b>Deleting things.</b> If one mod deletes an entity that another mod changes, the mod lower in the list wins again: a deletion lower down removes it, a change lower down brings it back as that mod has it - and either way the player is told. Links to something that's gone are dropped. A composite that one mod deletes but another mod still uses is kept, so the level is never left using a composite that isn't there.</p>
+    </section>
+
+	<section class="docs-section" id="tips">
+		<h2 class="section-heading">Tips</h2>
+		<ul>
+			<li><b>Only change what your mod needs.</b> Every change in your mod can clash with another mod that changes the same thing. If you changed something just to test, change it back (or untick it) before you create the mod.</li>
+			<li><b>One idea per mod.</b> Players can mix and match small mods, and turn off the one they don't like.</li>
+			<li><b>Add new things rather than repurposing existing ones.</b> A new entity or composite can't clash with anyone; changing an existing one can.</li>
+			<li><b>Start from the original game.</b> Make your mod with no other mods installed, so it holds only your own work. (If you do have mods installed, OpenCAGE still only puts your own changes in - but testing is easier from a clean start.)</li>
+			<li><b>Write a good description.</b> Say what the mod does, and which other mods it's known to clash with.</li>
+		</ul>
+    </section>
+
+	<section class="docs-section" id="testing">
+		<h2 class="section-heading">Testing With Other Mods</h2>
+		<p>To see how your mod gets on with others, add it and the mods you want to try it with to your Mod Manager, tick them all, and click <b>Apply</b>. Before anything changes, the Mod Manager lists every clash between them, so you can see straight away whether your mod and another change the same thing.</p>
+		<p>Your own copy of the game already holds your changes, so for a true test, untick every mod and click <b>Apply</b> to get back to the original game first - see <a href="/docs/installing-mods/#own-changes">Your Own Changes</a> for how your own work is kept alongside mods.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="details-technical">
+    <header class="docs-header">
+<h1 class="docs-heading">Technical Details</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>For the curious, and for tool makers:</p>
+		<ul>
+			<li>A mod holds each file it changes as it was when you created the mod - stored as a small patch against the original game file wherever that's smaller. When installing, the Mod Manager rebuilds every affected file from its original and the versions in each installed mod, so mods never depend on each other or on the order they were added.</li>
+			<li>Some files are never part of a mod because the Mod Manager works them out again after every install: each level's behaviour tree list (<code>WORLD/BEHAVIOR_TREE.DB</code>, from the character configs), the game's list of extra levels (<code>DATA/PACKAGES/MAIN.PKG</code>), and <code>COMMANDS.BIN</code> (which only the game's development builds read).</li>
+			<li>Every install is done as a single step: the files it's about to change are kept safe first, and anything that goes wrong puts all of them back.</li>
+			<li>A level several mods change is combined and saved the way its authors saved it: plainly when none of them rebuilt the level, or with a full rebuild (lighting, navigation, cover) when one did. So mods that only change scripts are combined quickly, and keep the level's original lighting.</li>
+			<li>Applying only remakes what's changed: a file or level made from exactly the same mods as last time, and still as it was left, is left alone. Turning one mod on or off only touches what that mod changes.</li>
+			<li>The Mod Manager's own files live in the game folder under <code>DATA/MODTOOLS/MODS</code>.</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>
