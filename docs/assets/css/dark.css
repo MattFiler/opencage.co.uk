@@ -211,6 +211,14 @@ html[data-theme="dark"] .docs-panel-toggle::after {
 	border-color: #9aa3b2;
 }
 
+html[data-theme="dark"] .docs-panel-heading {
+	color: #f0f2f5;
+}
+
+html[data-theme="dark"] .docs-panel-heading .docs-panel-hint {
+	color: #9aa3b2;
+}
+
 html[data-theme="dark"] .docs-article,
 html[data-theme="dark"] .docs-article p,
 html[data-theme="dark"] .docs-article li {

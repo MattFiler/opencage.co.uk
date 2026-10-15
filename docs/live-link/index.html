@@ -444,7 +444,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>While connected, the <a href="/docs/level-viewer/">Viewport</a> toolbar has a <b>Live Link Camera</b> drop-down, after <b>Highlight Zones</b>. It links the Viewport's camera to the game's, one way or the other, and your choice is remembered.</p>
+		<p>While connected, the <a href="/docs/level-viewer/">Viewport</a> toolbar has a <b>Live Link Camera</b> drop-down, after <b>Highlight Zones</b>. It links the Viewport's camera to the game's, one way or the other. It's on <b>Disabled</b> each time Live Link connects, so the game starts out on its own camera and the Viewport stays where you left it until you pick a sync.</p>
 		<p><img src="img/camera-menu.jpg" alt="The Live Link Camera drop-down open on the Viewport toolbar, with Disabled ticked above Sync viewport camera to game and Sync game camera to viewport." style="max-width:100%;width:300px"></p>
 		<ul>
 			<li><b>Disabled</b>: the game's camera and the Viewport's each move on their own.</li>
@@ -459,6 +459,7 @@
 		<p>With <b>Sync game camera to viewport</b>, the Viewport's camera stays locked for as long as that choice is on and Live Link is connected, even when it has nothing to follow, as in a composite opened on its own: open the level's root composite to see the game's view again. Choose <b>Disabled</b> to move the Viewport yourself again.</p>
 		<p><b>Game logic sees the Viewport's camera too.</b> While the game draws from the Viewport's camera, anything that checks what the player's camera sees reacts to it instead: camera viewcone triggers, the alien's checks for whether it's in view, and AI conditions on the camera's direction. It's the same as with Cinematic Tools' free camera, so bear it in mind when testing things that depend on being seen.</p>
 		<p><b>Cinematic Tools</b> can stay loaded. While OpenCAGE is driving the game's camera, OpenCAGE's camera wins, and Cinematic Tools' comes back once OpenCAGE lets go. With <b>Sync game camera to viewport</b>, the Viewport follows Cinematic Tools' free camera while it's on.</p>
+		<p><b>Keep your mouse cursor.</b> While a level is played, the game normally takes over the mouse cursor, which gets in the way of flying the Viewport beside it. Tick <b>Unlock Mouse</b> in the Launch Game dialog's <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a> and the game leaves the cursor alone. When you want to look around in the game itself, click its window and press the Unlock Mouse key (<b>F4</b> unless you chose another); press it again to free the cursor.</p>
     </section>
 </article>
 
@@ -471,7 +472,7 @@
 		<p>An <a href="/docs/ai-assistants/">AI assistant</a> connected to OpenCAGE can use Live Link too. Its script edits go to the game automatically, as yours do, and it has tools of its own:</p>
 		<ul>
 			<li><code>runtime_utils</code>: the connection's status, connect and disconnect; what the game is running and where its camera is; push a composite; call a method on an entity; describe a composite's running instances; take a screenshot of the game; load a level; and <a href="#activity">Show Activity</a> (<code>activity</code>): switch it on or off, clear it, or list the links the game has used in the open composite, with how often and how long ago, and how many times each output fired and each method was called.</li>
-			<li><code>set_viewport_view</code> with <code>live_link_camera</code>: the Live Link Camera choice, <code>disabled</code>, <code>viewport_to_game</code> or <code>game_to_viewport</code>.</li>
+			<li><code>set_viewport_view</code> with <code>live_link_camera</code>: the Live Link Camera choice, <code>disabled</code>, <code>viewport_to_game</code> or <code>game_to_viewport</code>. Set it after connecting: it goes back to <code>disabled</code> whenever Live Link connects.</li>
 			<li><code>set_viewport_camera</code>: puts the Viewport's camera at a position and direction, and the game's with it while the game follows the Viewport.</li>
 			<li><code>launch_options</code> with <code>live_link</code>: the Enable Live Link box.</li>
 		</ul>

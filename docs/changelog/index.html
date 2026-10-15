@@ -244,6 +244,7 @@
 				<li>Fixed a bug where large imported models would render incorrectly in-game</li>
 				<li>Fixed an issue where UVs would store incorrectly depending on formatting</li>
 				<li>Fixed a scale bug when previewing models with multiple submeshes in the model editor</li>
+				<li>Fixed vertex colour read/write</li>
 				<li>Imported models can now optionally create their own composite, with auto-generated ModelReferences set up for submeshes</li>
 			</ul></li>
 			<li>Added support for copy/pasting entities (replaces the old Duplicate option):<ul>
@@ -354,7 +355,8 @@
 			<li>Added a Font Config editor</li>
 			<li>Added a Localisation editor</li>
 			<li>Added categories for function entities - used for grouping in the function browser</li>
-			<li>Added icons for function entity categories - shown when zooming out</li>
+			<li>Added icons for function entity categories</li>
+			<li>Added a new flowgraph design when zoomed out for clarity - shows icons and names when hovered</li>
 			<li>Added new function-specific node colours for quicker script navigation (colours are no longer driven by entity type)</li>
 			<li>Added new dotted outline for proxy/alias nodes</li>
 			<li>Added back the legacy Graphics Editor</li>
@@ -366,6 +368,7 @@
 			<li>Added a new surface snapping mode (SHIFT+END keys)</li>
 			<li>Added a new 'drag to duplicate' mode (hold SHIFT when dragging the gizmo)</li>
 			<li>Added support for multi-select deletion in the flowgraph, viewport, and entity list</li>
+			<li>Added new 'Unlock Mouse' launch option which toggles allowing the game to steal your cursor</li>
 			<li>Added ability to rename imported models</li>
 			<li>Added support for parsing the newly exported model metadata on import, to keep structures similar</li>
 			<li>Added support for the material picker when selecting materials for entity parameters</li>
@@ -422,6 +425,8 @@
 			<li>Fixed instances where some popups would unexpectedly close on editor context changes (e.g. selecting a new entity)</li>
 			<li>Fixed a crash when using Ctrl+MMB shortcut in entity hierarchy picker</li>
 			<li>Fixed some minor issues when resizing popups</li>
+			<li>Fixed vertex colours in the viewport</li>
+			<li>Fixed incorrect face ordering in cubemap previews (and added a new spherical preview mode)</li>
 			<li>Fixed grouping in Entity Palette after searching</li>
 			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
 			<li>Fixed a bug where force closing OpenCAGE could leave a viewport process open in the background</li>
@@ -437,6 +442,7 @@
 			<li>Libraries are no longer packaged in the OpenCAGE executable, should save some time on load (and update size)</li>
 			<li>Behaviour tree DB in levels are regenerated when saving based on selected trees in the attribute editor</li>
 			<li>Reworked the launch game tool - you can now check to load into a level, otherwise it will load to frontend as normal (clearer)</li>
+			<li>Moved help buttons to the title bar, and linked through to new docs for all forms</li>
 			<li>Optimised saving logic, viewport population, and level loading - should be noticeably faster</li>
 			<li>Improved 'focus on selected' mode in the viewport - it no longer jumps when stepping the hierarchy</li>
 			<li>Improved quality of various icons across the UI</li>

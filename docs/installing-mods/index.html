@@ -130,7 +130,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Open OpenCAGE, then click <b>Mod Manager</b> on the toolbar at the top of the window. You don't need to open a level first.</p>
 		<p><img src="img/toolbar.jpg" alt="The OpenCAGE toolbar, with the Mod Manager button next to Manage Backups." style="max-width:100%;width:700px"></p>
-		<p>Each time it opens, the Mod Manager checks your game files. This takes a moment the first time, and the line at the top tells you when it's done. With no mods added yet, it looks like this:</p>
+		<p>Each time it opens, the Mod Manager checks your game files. The first check reads every file, which takes a minute or so (longer if the game is on a hard drive); after that it only reads the files that have changed since, so it's quick. The line at the top tells you when it's done. With no mods added yet, it looks like this:</p>
 		<p><img src="img/manager-empty.jpg" alt="The Mod Manager with no mods: an empty list on the left, and on the right a reminder of how to add mods." width="100%"></p>
     </section>
 </article>
@@ -249,6 +249,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>Steam sometimes puts the game's original files back - after a game update, or when you use <b>Verify integrity of game files</b>. If that happens to files your mods changed, those mods show <b>Needs repair</b>. Click <b>Repair</b> and the Mod Manager puts your mods back in.</p>
+		<p>You don't need to tell the Mod Manager this has happened. It remembers the size of every game file and when it was last changed, and anything that rewrites a file - Steam, another tool, or you - changes that. The next time it checks your game files, it reads those files again and sees what's in them now.</p>
     </section>
 </article>
 
@@ -261,7 +262,7 @@
 		<p><b>Can I use two mods that change the same level?</b><br>Yes. The level is rebuilt with both mods' changes in it. Where they both change the very same thing, the mod lower in your list is used, and the Mod Manager tells you.</p>
 		<p><b>Applying stopped with a message. Is my game broken?</b><br>No. If anything goes wrong while mods go in, the Mod Manager puts every file back the way it was before you clicked <b>Apply</b>, then tells you what went wrong. The most common reason is the game still running.</p>
 		<p><b>OpenCAGE closed (or my PC turned off) while mods were going in.</b><br>The next time you open the Mod Manager, it puts your game files back the way they were before that started. Then just click <b>Apply</b> again.</p>
-		<p><b>It says to restart OpenCAGE before working on animations.</b><br>OpenCAGE reads the game's animations when it starts, and your mods have just changed them. The animation editors would still show (and save) the old ones, so they won't save until you restart OpenCAGE.</p>
+		<p><b>Do I need to restart OpenCAGE after applying mods?</b><br>No. Anything OpenCAGE has open that your mods changed - the level you're working on, the animations, the game's text - is loaded again once the mods are in, and you're taken back to where you were in the level. If you have changes you haven't saved in any of those, the Mod Manager asks first whether to save them. Windows showing files the mods change are closed; if one of them only saves when you click its Save button, you're asked to close it yourself first, so nothing in it is lost.</p>
 		<p><b>It says a mod was made for a different version of the game.</b><br>Mods are made for one version of the game. Mods for the PC version work with Steam, Epic Games Store and GOG copies alike, but they can't be installed on other versions (such as the Nintendo Switch version), and those versions' mods can't be installed on PC.</p>
 		<p><b>Does removing a mod really undo everything it changed?</b><br>Yes. Every file is put back exactly as it was, byte for byte.</p>
 		<p><b>Where does the Mod Manager keep my mods?</b><br>Inside your game folder, in <code>DATA/MODTOOLS/MODS</code>, along with the copies of original files it keeps. Don't change anything in there by hand.</p>

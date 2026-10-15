@@ -153,6 +153,24 @@ html.docs-motion body.docs-leaving {
 	font-size: 0.95rem;
 }
 
+/* A panel that is always open: a plain heading where the toggle would be (the configs page) */
+.docs-panel-heading {
+	padding: 1rem 1.25rem;
+	font-weight: 600;
+	font-size: 1.05rem;
+	color: #252930;
+}
+
+.docs-panel-heading .docs-panel-hint {
+	font-size: 0.8rem;
+	font-weight: 500;
+	color: #919aaa;
+}
+
+.docs-panel-static > .docs-panel-body {
+	height: auto;
+}
+
 .cta-section {
 	transition: transform 220ms ease, filter 220ms ease;
 }

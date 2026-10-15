@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Physics System Editor</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's Physics System Editor to browse a level's physics systems, change a rigid body's mass, friction and damping, and import new systems from a mesh.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Physics System Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Physics System Editor to browse a level's physics systems, change a rigid body's mass, friction and damping, and import new systems from a mesh." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#systems"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Systems &amp; Bodies</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#edit-body"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing a Body</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#import"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Importing a System</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#assigning"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Assigning a System</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Tools</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Physics System Editor</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Props that fall, roll, smash and get knocked about move by a <b>physics system</b> in the level's <code>WORLD/PHYSICS.HKX</code>. A system holds one or more <b>rigid bodies</b>, each with a shape and the values the physics engine moves it by: its mass, friction, bounciness and so on. A <b>PhysicsSystem</b> entity in the prop's composite names its system through its <b>Dynamic Physics System</b> resource.</p>
+		<p>After loading a level, open <b>View → Physics System Editor</b> to browse the level's systems, look at their bodies, change a body's values, and import new systems from a mesh, as shown below.</p>
+		<p><img src="img/overview.jpg" alt="The Physics System Editor on Torrens with system 92, BOTTLE_SPIRIT_01_TEMPLATE, selected: the system list on the left, the preview on the right drawing the bottle's shapes in blue, and under it the body list with Bottle_Spirit_01 (a ListShape, Dynamic (box), mass 1.5) selected above Break_01 to Break_10, the detail line reading MassInv=0.6667, InertiaInv, Friction=0.5, Restitution=0.1, Gravity=1, and the Edit Body... button at the bottom right." width="100%"></p>
+		<p class="text-muted small"><i>A spirit bottle's system on Torrens: one body for the whole bottle and thirteen for the pieces it breaks into.</i></p>
+		<p>The same window opens as a picker from a PhysicsSystem entity's <b>Resources</b> button in the <a href="/docs/scripting-intro/#inspector">entity inspector</a>, by clicking <b>Set Physics...</b> in its <b>Dynamic Physics System</b> group. As a picker it's titled <b>Select Physics System</b> and has a <b>Select System</b> button (see <a href="#assigning">Assigning a System</a>).</p>
+	</section>
+</article>
+
+<article class="docs-article" id="systems">
+    <header class="docs-header">
+<h1 class="docs-heading">Systems &amp; Bodies</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The list on the left has one row per system: its <b>Index</b> (the number a Dynamic Physics System resource stores), its <b>Name</b>, and the full <b>Path</b> that name ends. Retail systems are named after the composite they belong to. Type in <b>Filter:</b> to narrow the list by index or name.</p>
+		<p>Select a system to draw all of its bodies' shapes in the <b>Preview</b> (drag to orbit, scroll to zoom), with a count of bodies, triangles and shapes underneath. Its bodies are listed below the preview:</p>
+		<ul>
+			<li><b>Body</b>: the body's name. Retail names a body after the ModelReference it moves.</li>
+			<li><b>Shape</b>: the Havok shape it collides as. Most are a <code>ConvexVerticesShape</code>, a convex hull; a <code>ListShape</code> groups several.</li>
+			<li><b>Motion</b>: <b>Dynamic</b> bodies are moved by physics (the <i>box</i> or <i>sphere</i> says how its spin is worked out); <b>Keyframed</b> and <b>Fixed</b> bodies are moved by the game, or not at all, and have no mass.</li>
+			<li><b>Mass</b>: in kilograms, <b>∞</b> for a body with no mass.</li>
+			<li><b>Filter</b>: the body's collision filter, which decides what it collides with.</li>
+			<li><b>Radius</b>: the radius of a sphere around the body, in metres.</li>
+			<li><b>LinDamp</b>: its linear damping (see below).</li>
+		</ul>
+		<p>Selecting a body shows the rest of its values on the line under the list: its inverse mass and inverse inertia (what the engine actually stores), friction, restitution, gravity factor, and where it sits in the file.</p>
+		<p>A system belongs to its prop's composite, so every copy of that prop placed in the level uses the same one: change a body and every copy changes with it.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="edit-body">
+    <header class="docs-header">
+<h1 class="docs-heading">Editing a Body</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Select a body and click <b>Edit Body...</b>, or double-click its row, to change its values:</p>
+		<p><img src="img/edit-body.jpg" alt="The Edit Rigid Body dialog for Bottle_Spirit_01, Dynamic (box): a note that a new mass keeps the body's shape and its inertia scales with it, then Mass (kg) 1.500, Friction 0.50, Restitution 0.10, Linear damping 0.000, Angular damping 0.050 and Gravity factor 1.00, with Apply and Cancel buttons." style="max-width:100%;width:442px"></p>
+		<p class="text-muted small"><i>Editing the whole bottle's body. The boxes open on its current values.</i></p>
+		<ul>
+			<li><b>Mass (kg)</b>: how heavy it is, from 0.001 to 100,000. A heavier body is harder to push and hits harder. The body keeps its shape: its resistance to spinning scales with the new mass. A Keyframed or Fixed body has no mass to change, so the box is greyed out.</li>
+			<li><b>Friction</b>: how much it grips what it slides on. 0 slides like ice; most retail props use around 0.5, and some go much higher.</li>
+			<li><b>Restitution</b>: how bouncy it is, from 0 (no bounce) to 1 (bounces back as hard as it hit).</li>
+			<li><b>Linear damping</b> and <b>Angular damping</b>: how quickly its movement and spin die away on their own, from 0 (they don't) to 1,000.</li>
+			<li><b>Gravity factor</b>: how strongly gravity pulls it. 1 is normal, 0 floats, and a negative value rises.</li>
+		</ul>
+		<p><b>Apply</b> writes only the values you changed, then lists the body again with its new values and says it goes into the physics files when the level is next saved. Damping and gravity factor are stored at reduced precision, to about three significant figures, so they may come back very slightly rounded.</p>
+		<p>A body's values can only be edited on a PC level for now. A mobile or Switch level stores its physics in a different format, and the editor says so if you try.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="import">
+    <header class="docs-header">
+<h1 class="docs-heading">Importing a System</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>As in the <a href="/docs/collision-editor/#import">Collision Editor</a>, two buttons under the list make a new system from a mesh: <b>Import Mesh...</b> for a model file, and <b>From Model...</b> for a model the level already has. Opened from <b>Set Physics...</b>, From Model... starts on the model the composite already draws.</p>
+		<p>A physics body is convex, so the mesh becomes its convex hull, simplified to at most 64 corners as the game's own props are. A concave model such as a chair tumbles as its outline. Flat meshes such as decals and loose paper are refused, because a body needs volume. The preview shows the hull, marked <b>not yet a system</b>, while a dialog asks for the new system's settings:</p>
+		<p><img src="img/import-preview.jpg" alt="The Physics System Editor previewing a 46-corner hull of SHIP_SMALL_BRIDGE_PILOTCHAIR_DISPLAY as a flat, rounded slab in blue, with the body list empty, Edit Body... greyed out, and the status line reading 46-corner hull of SHIP_SMALL_BRIDGE_PILOTCHAIR_DISPLAY · not yet a system." width="100%"></p>
+		<p><img src="img/new-system.jpg" alt="The New Physics System dialog: 46-corner convex hull of SHIP_SMALL_BRIDGE_PILOTCHAIR_DISPLAY (simplified from 81), volume 67.039 L, convex radius 1.09 cm, one dynamic body; then System name OPENCAGE\IMPORTED, Body name Body, Mass (kg) 20.10, Friction 0.50, Restitution 0.40, and a greyed Placement box reading No model in the composite to place it at, with Create System and Cancel buttons." style="max-width:100%;width:442px"></p>
+		<p class="text-muted small"><i>A pilot chair imported with From Model...: its legs and seat become one 46-corner hull, simplified from 81.</i></p>
+		<ul>
+			<li><b>System name</b> and <b>Body name</b>: opened from Set Physics..., these follow the retail convention: the system is named after the composite and the body after the composite's ModelReference. Opened from View, they're placeholders.</li>
+			<li><b>Mass (kg)</b>: suggested from the hull's volume, between 0.1 and 50 kg. Friction and restitution start at 0.5 and 0.4. All three can be changed later with <a href="#edit-body">Edit Body...</a>.</li>
+			<li><b>Placement</b>: opened from Set Physics..., this puts the body where the composite's model sits, as the game's own props are, so the body lines up with what's drawn. Opened from View there's no composite, so it's greyed out.</li>
+		</ul>
+		<p><b>Create System</b> adds it at the end of the list with the next index, selected. <b>Cancel</b> puts the preview back.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="assigning">
+    <header class="docs-header">
+<h1 class="docs-heading">Assigning a System</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Opened from <b>Set Physics...</b>, the window starts with the entity's current system selected. Select another (a new import is already selected) and click <b>Select System</b>, or double-click its row, to give it to the entity and close the window. Opened from <b>View</b>, <b>Select System</b> is hidden and a double-click only selects the row.</p>
+		<p><a href="/docs/save-and-build/#gen-physics">Save and Build</a> then puts the system in the world wherever the PhysicsSystem entity is.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="saving">
+    <header class="docs-header">
+<h1 class="docs-heading">Saving</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The editor has no Save button of its own. Imported systems and edited bodies are held in memory and written when you save the level with <b>File → Save Level</b> (<b>Ctrl+S</b>). On PC that's both <code>PHYSICS.HKX</code> and <code>PHYSICS.HKX64</code>, which always get the same change. A mobile or Switch level has only the 64-bit file, so an import writes only that one.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+<h1 class="docs-heading">Related Tools</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/collision-editor/">Collision Editor</a>: the static collision objects are solid with</li>
+			<li><a href="/docs/model-editor/#import-physics">Model Editor</a>: import a model, then give it physics with From Model...</li>
+			<li><a href="/docs/save-and-build/">Save and Build</a>: places physics systems where their entities now are</li>
+			<li><a href="/docs/cathode-entities/#PhysicsSystem">PhysicsSystem</a>: the entity that places a system</li>
+		</ul>
+	</section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>

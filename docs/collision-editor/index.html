@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Collision Editor</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to use OpenCAGE's Collision Editor to browse, preview and import the collision proxies a level's objects collide with.">
+    <meta name="author" content="Matt Filer">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Collision Editor" />
+	<meta name="twitter:description" content="How to use OpenCAGE's Collision Editor to browse, preview and import the collision proxies a level's objects collide with." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head>
+
+<body class="docs-page">
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#proxies"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Proxies &amp; Preview</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#import"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Importing a Proxy</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#assigning"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Assigning a Proxy</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#saving"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Saving</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Tools</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Collision Editor</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Alien: Isolation doesn't collide with the meshes it draws. Each solid object has a separate, simpler <b>collision proxy</b>: a Havok shape in the level's <code>WORLD/COLLISION.HKX</code> that the player walks on, the Alien paths around and bullets stop against. A <a href="/docs/cathode-entities/#ModelReference">ModelReference</a> names its proxy through the <b>Collision Mapping</b> resource attached to it.</p>
+		<p>After loading a level, open <b>View → Collision Editor</b> to browse every proxy the level has, preview them, and import new ones from a mesh, as shown below.</p>
+		<p><img src="img/overview.jpg" alt="The Collision Editor on Torrens: the proxy list on the left scrolled to the bottom with proxy 1186, marked World host (primary) with 2,623 instances, selected, and the preview on the right drawing the whole ship's collision in blue; the status line under the preview reads 2,623 instances, 49,053 triangles / 769 shapes, the domain, and 2623×StaticCompoundShape." width="100%"></p>
+		<p class="text-muted small"><i>The Collision Editor on Torrens with the world host selected: the preview draws all of the ship's static collision at once.</i></p>
+		<p>The same window opens as a picker from an entity's <b>Resources</b> button in the <a href="/docs/scripting-intro/#inspector">entity inspector</a>, by clicking <b>Set Havok...</b> in its <b>Collision Mapping</b> group. As a picker it's titled <b>Select Collision Havok Compound</b> and has a <b>Select Compound</b> button (see <a href="#assigning">Assigning a Proxy</a>).</p>
+	</section>
+</article>
+
+<article class="docs-article" id="proxies">
+    <header class="docs-header">
+<h1 class="docs-heading">Proxies &amp; Preview</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The list on the left has one row per proxy:</p>
+		<ul>
+			<li><b>Proxy</b>: the proxy's number. This is what a Collision Mapping stores, and what <b>Set Havok...</b> shows once one is picked (<b>Proxy #312 · 4 instances</b>, say).</li>
+			<li><b>Instances</b>: how many shapes the proxy is built from. Most are a handful of mesh pieces.</li>
+			<li><b>Data Offset</b>: where the proxy sits in <code>COLLISION.HKX</code>, for cross-checking with other tools.</li>
+			<li><b>Role</b>: blank for an ordinary proxy. <b>World host</b> marks the compound the level's static collision is gathered into, with thousands of instances; those rows are greyed out because they stand for the whole level rather than one object.</li>
+		</ul>
+		<p>Type in <b>Filter:</b> to narrow the list. It matches the proxy number, instance count, data offset and role, so typing <code>world</code> finds the world host. The line under the list counts what's shown against the total.</p>
+		<p>Select a row to draw that proxy in the <b>Preview</b>. Drag to orbit and scroll to zoom, as in the <a href="/docs/model-editor/">Model Editor</a>'s preview. The preview draws the triangles the game collides with, as they're stored, so a proxy looks the same before and after you import it. The status line underneath gives the instance count, the triangle and shape count, the <b>domain</b> (the box the proxy spans, in metres) and the most common shape types.</p>
+		<p><img src="img/proxy.jpg" alt="The Collision Editor with proxy 312 selected: an archway frame drawn in blue in the preview, made of four mesh pieces, with the status line reading 4 instances, 130 triangles / 4 shapes, domain (-1.2,0.5,-1) to (1.2,2.6,0.7), 4×BvCompressedMeshShape." width="100%"></p>
+		<p class="text-muted small"><i>Proxy 312, an archway frame built from four mesh pieces in 130 triangles. Real collision is much simpler than the model it stands in for.</i></p>
+	</section>
+</article>
+
+<article class="docs-article" id="import">
+    <header class="docs-header">
+<h1 class="docs-heading">Importing a Proxy</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Two buttons under the list make a new proxy:</p>
+		<ul>
+			<li><b>Import Mesh...</b>: pick a model file. The formats and units are the same as a <a href="/docs/model-editor/#import">model import</a> (FBX, glTF, COLLADA or OBJ), and the file is read the same way, so the mesh lands in the game's space and size as a model would. Every mesh in the file goes into the one proxy.</li>
+			<li><b>From Model...</b>: opens the <a href="/docs/model-editor/">Model Editor</a> as a picker. Choose a model the level already has and its first LOD becomes the proxy. This is the usual choice for a model you've imported, since the collision then matches what's drawn.</li>
+		</ul>
+		<p>Either way, the preview shows the triangles first, marked <b>not yet a proxy</b>, and you're asked before anything is created:</p>
+		<p><img src="img/import-preview.jpg" alt="The Collision Editor previewing the SHIP_SMALL_BRIDGE_PILOTCHAIR_DISPLAY model's triangles: a chair base with four legs drawn in blue, with the status line reading 582 triangles from SHIP_SMALL_BRIDGE_PILOTCHAIR_DISPLAY · not yet a proxy." width="100%"></p>
+		<p><img src="img/import-question.jpg" alt="The Import collision mesh question: Create a new collision proxy from 582 triangles (SHIP_SMALL_BRIDGE_PILOTCHAIR_DISPLAY)? It goes into COLLISION.HKX and COLLISION.HKX64 when the level is next saved. Yes and No buttons." style="max-width:100%;width:406px"></p>
+		<p class="text-muted small"><i>Importing a pilot chair with From Model...: the preview shows its 582 triangles, and the question names the files the proxy will be written to.</i></p>
+		<p>Click <b>Yes</b> and the new proxy appears at the end of the list, selected, and the line under the list says which number it got. <b>No</b> puts the preview back as it was.</p>
+		<p>Keep collision meshes simple. The game tests them for every step, ray and bullet, so a few hundred triangles that follow the shape are worth more than every bevel of the render mesh. A wall that only needs to stop the player can be a handful of quads. The preview shows exactly what you'll get, so check it before saying yes.</p>
+		<p>A proxy carries a <b>physics material</b> (what footsteps and bullet impacts sound and look like) and a collision type. Imported from a mapping's <b>Set Havok...</b>, it takes the mapping's material, so set the material on the mapping first. Imported from <b>View → Collision Editor</b>, there's no mapping to take one from, so it has no material.</p>
+		<p>Existing proxies can't be changed or deleted here: importing only ever adds one to the end.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="assigning">
+    <header class="docs-header">
+<h1 class="docs-heading">Assigning a Proxy</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Opened from <b>Set Havok...</b>, the window starts with the mapping's current proxy selected. Select another (a new import is already selected) and click <b>Select Compound</b>, or double-click its row, to give it to the mapping and close the window. <b>Clear</b> beside <b>Set Havok...</b> takes the proxy off the mapping again.</p>
+		<p>Opened from <b>View</b>, there's nothing to assign to, so <b>Select Compound</b> is hidden and a double-click only selects the row.</p>
+		<p>The proxy goes into the world wherever the mapping's entity is: <a href="/docs/save-and-build/#gen-physics">Save and Build</a> places a copy of it there, as it does for the level's own collision.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="saving">
+    <header class="docs-header">
+<h1 class="docs-heading">Saving</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The editor has no Save button of its own. An imported proxy is held in memory and written when you save the level with <b>File → Save Level</b> (<b>Ctrl+S</b>). On PC that's both <code>COLLISION.HKX</code> and <code>COLLISION.HKX64</code>, which always get the same new proxy. A mobile or Switch level has only the 64-bit file, so only that one is written.</p>
+		<p>To see the collision in place, use <a href="/docs/save-and-build/">Save and Build</a>, then turn on the Viewport's collision render filter (see <a href="/docs/save-and-build/#checking">Checking the Result</a>).</p>
+	</section>
+</article>
+
+<article class="docs-article" id="related">
+    <header class="docs-header">
+<h1 class="docs-heading">Related Tools</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li><a href="/docs/physics-editor/">Physics System Editor</a>: the dynamic counterpart, for props that fall and roll</li>
+			<li><a href="/docs/model-editor/#import-collision">Model Editor</a>: import a model, then give it collision with From Model...</li>
+			<li><a href="/docs/save-and-build/">Save and Build</a>: places collision where its objects now are</li>
+			<li><a href="/docs/level-viewer/">Viewport</a>: draw the built collision over the level</li>
+		</ul>
+	</section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div>
+	    </div>
+    </div><!--//docs-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+
+
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script>
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script>
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script>
+
+</body>
+</html>

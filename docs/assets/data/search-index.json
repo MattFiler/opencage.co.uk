@@ -241,6 +241,231 @@
         "title":  "Related Tools"
     },
     {
+        "url":  "/docs/collision-editor/",
+        "description":  "How to use OpenCAGE\u0027s Collision Editor to browse, preview and import the collision proxies a level\u0027s objects collide with.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "collision",
+            "collision proxy",
+            "collision mesh",
+            "havok",
+            "collision.hkx",
+            "set havok",
+            "import collision"
+        ],
+        "title":  "Collision Editor"
+    },
+    {
+        "url":  "/docs/collision-editor/#intro",
+        "description":  "On Collision Editor",
+        "type":  "heading",
+        "category":  "Collision Editor",
+        "keywords":  [
+            "intro",
+            "collision mapping",
+            "view menu",
+            "collision editor"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/collision-editor/#proxies",
+        "description":  "On Collision Editor",
+        "type":  "heading",
+        "category":  "Collision Editor",
+        "keywords":  [
+            "proxies",
+            "proxy",
+            "instances",
+            "data offset",
+            "world host",
+            "filter",
+            "preview",
+            "collision editor"
+        ],
+        "title":  "Proxies \u0026 Preview"
+    },
+    {
+        "url":  "/docs/collision-editor/#import",
+        "description":  "On Collision Editor",
+        "type":  "heading",
+        "category":  "Collision Editor",
+        "keywords":  [
+            "import",
+            "import mesh",
+            "from model",
+            "import collision",
+            "physics material",
+            "collision editor"
+        ],
+        "title":  "Importing a Proxy"
+    },
+    {
+        "url":  "/docs/collision-editor/#assigning",
+        "description":  "On Collision Editor",
+        "type":  "heading",
+        "category":  "Collision Editor",
+        "keywords":  [
+            "assigning",
+            "set havok",
+            "select compound",
+            "collision mapping",
+            "collision editor"
+        ],
+        "title":  "Assigning a Proxy"
+    },
+    {
+        "url":  "/docs/collision-editor/#saving",
+        "description":  "On Collision Editor",
+        "type":  "heading",
+        "category":  "Collision Editor",
+        "keywords":  [
+            "saving",
+            "save level",
+            "collision.hkx64",
+            "collision editor"
+        ],
+        "title":  "Saving"
+    },
+    {
+        "url":  "/docs/collision-editor/#related",
+        "description":  "On Collision Editor",
+        "type":  "heading",
+        "category":  "Collision Editor",
+        "keywords":  [
+            "related",
+            "physics",
+            "models",
+            "save and build",
+            "collision editor"
+        ],
+        "title":  "Related Tools"
+    },
+    {
+        "url":  "/docs/physics-editor/",
+        "description":  "How to use OpenCAGE\u0027s Physics System Editor to browse a level\u0027s physics systems, change a rigid body\u0027s mass, friction and damping, and import new systems from a mesh.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "physics",
+            "physics system",
+            "rigid body",
+            "mass",
+            "friction",
+            "havok",
+            "physics.hkx",
+            "set physics"
+        ],
+        "title":  "Physics System Editor"
+    },
+    {
+        "url":  "/docs/physics-editor/#intro",
+        "description":  "On Physics System Editor",
+        "type":  "heading",
+        "category":  "Physics System Editor",
+        "keywords":  [
+            "intro",
+            "dynamic physics system",
+            "physicssystem",
+            "view menu",
+            "physics system editor"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/physics-editor/#systems",
+        "description":  "On Physics System Editor",
+        "type":  "heading",
+        "category":  "Physics System Editor",
+        "keywords":  [
+            "systems",
+            "rigid body",
+            "bodies",
+            "motion",
+            "keyframed",
+            "dynamic",
+            "mass",
+            "filter",
+            "physics system editor"
+        ],
+        "title":  "Systems \u0026 Bodies"
+    },
+    {
+        "url":  "/docs/physics-editor/#edit-body",
+        "description":  "On Physics System Editor",
+        "type":  "heading",
+        "category":  "Physics System Editor",
+        "keywords":  [
+            "edit-body",
+            "edit body",
+            "mass",
+            "friction",
+            "restitution",
+            "bounce",
+            "damping",
+            "gravity factor",
+            "physics system editor"
+        ],
+        "title":  "Editing a Body"
+    },
+    {
+        "url":  "/docs/physics-editor/#import",
+        "description":  "On Physics System Editor",
+        "type":  "heading",
+        "category":  "Physics System Editor",
+        "keywords":  [
+            "import",
+            "import mesh",
+            "from model",
+            "convex hull",
+            "new physics system",
+            "placement",
+            "physics system editor"
+        ],
+        "title":  "Importing a System"
+    },
+    {
+        "url":  "/docs/physics-editor/#assigning",
+        "description":  "On Physics System Editor",
+        "type":  "heading",
+        "category":  "Physics System Editor",
+        "keywords":  [
+            "assigning",
+            "set physics",
+            "select system",
+            "physics system editor"
+        ],
+        "title":  "Assigning a System"
+    },
+    {
+        "url":  "/docs/physics-editor/#saving",
+        "description":  "On Physics System Editor",
+        "type":  "heading",
+        "category":  "Physics System Editor",
+        "keywords":  [
+            "saving",
+            "save level",
+            "physics.hkx64",
+            "physics system editor"
+        ],
+        "title":  "Saving"
+    },
+    {
+        "url":  "/docs/physics-editor/#related",
+        "description":  "On Physics System Editor",
+        "type":  "heading",
+        "category":  "Physics System Editor",
+        "keywords":  [
+            "related",
+            "collision",
+            "models",
+            "save and build",
+            "physics system editor"
+        ],
+        "title":  "Related Tools"
+    },
+    {
         "url":  "/docs/texture-editor/",
         "description":  "How to use OpenCAGE\u0027s Texture Editor to browse, import, export, and replace level textures.",
         "type":  "page",
@@ -20032,6 +20257,10 @@
             "change target",
             "red node",
             "unresolvable proxy",
+            "find references",
+            "references window",
+            "search scope",
+            "show aliases",
             "cathode scripting introduction"
         ],
         "title":  "Proxy Entities"
@@ -22724,6 +22953,9 @@
             "debugenvironmentmarker",
             "runtime utils",
             "insert key",
+            "unlock mouse",
+            "mouse cursor",
+            "f4 key",
             "live link",
             "enable live link",
             "debugtextstacking",
