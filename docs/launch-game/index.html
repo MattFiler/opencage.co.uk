@@ -90,6 +90,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#debug-tools">Debug Tools</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#steam-tools">Steam-Only Tools</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#scripting-helpers"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Scripting Helpers</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#cinematic-tools-or-helpers">Cinematic Tools or Scripting Helpers</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Options</a></li>
 
 </ul></nav></div>
@@ -117,7 +118,7 @@
 		<p class="text-muted small"><i>The Launch Game dialog on a Steam install with a level chosen; Enable Hot Reload, Unlock Mouse and Cap FPS are ticked, so their dropdowns are live.</i></p>
 		<p>The game loads levels from disk, so if the level you have open has unsaved changes when you press <b>Start Alien: Isolation</b>, OpenCAGE asks whether to save it first. <b>Yes</b> saves the level (as <b>File → Save Level</b> does) and starts the game, <b>No</b> starts it without saving, and <b>Cancel</b> does neither. If the save doesn't go through, the game isn't started either. If you've added models or other content that needs building, cancel and use <b>File → Save and Build Level</b> first (see <a href="/docs/save-and-build/">Save and Build</a>).</p>
 		<p><img src="img/unsaved-changes.jpg" alt="The Unsaved changes message: the level has unsaved changes, the game loads what is saved on disk so it will not have them, Save the level before launching? with Yes, No and Cancel buttons." style="max-width:100%;width:395px"></p>
-		<p>While the game is running with <a href="#scripting-helpers">Enable Live Link</a> ticked (Steam only), a <a href="/docs/live-link/#live-link-button">Live Link</a> button joins <b>Launch Game</b> on the toolbar, to its right. A game started without it gets no button.</p>
+		<p>While the game is running with <a href="#scripting-helpers">Enable Live Link</a> ticked (Steam only), a <a href="/docs/live-link/#live-link-button">Live Link</a> button joins <b>Launch Game</b> on the toolbar, to its right. A game started without it, or with <a href="#cinematic-tools-or-helpers">Cinematic Tools</a>, gets no button.</p>
     </section>
 </article>
 
@@ -179,7 +180,7 @@
 	<section class="docs-section" id="steam-tools">
 		<h2 class="section-heading">Steam-Only Tools</h2>
 		<ul>
-			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. The box is greyed out when they aren't available — on non-Steam installs, or if the bundled files are missing. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them.</li>
+			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. The box is greyed out when they aren't available — on non-Steam installs, or if the bundled files are missing. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them. Cinematic Tools and the <a href="#scripting-helpers">Scripting Helpers</a> are one or the other: while this box is ticked, the helpers are switched off (see <a href="#cinematic-tools-or-helpers">Cinematic Tools or Scripting Helpers</a>).</li>
 		</ul>
 		<p>Hot reloading has moved into the <a href="#scripting-helpers">Scripting Helpers</a> group, where you can also choose its key.</p>
 	</section>
@@ -191,7 +192,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Scripting Helpers</b> group adds runtime tools to the game that make script iteration faster. They're provided by a small plugin OpenCAGE copies into the game folder when any helper is enabled (and removes when none are), configured through <code>OpenCAGE.RuntimeUtils.ini</code> beside it. The plugin only supports the Steam build, so the whole group is greyed out on other platforms. The dropdowns beside <b>Enable Hot Reload</b>, <b>Unlock Mouse</b> and <b>Cap FPS</b> only come alive once their box is ticked, as shown below.</p>
+		<p>The <b>Scripting Helpers</b> group adds runtime tools to the game that make script iteration faster. They're provided by a small plugin OpenCAGE copies into the game folder when any helper is enabled, or Cinematic Tools are (and removes when none are), configured through <code>OpenCAGE.RuntimeUtils.ini</code> beside it. The plugin only supports the Steam build, so the whole group is greyed out on other platforms. The dropdowns beside <b>Enable Hot Reload</b>, <b>Unlock Mouse</b> and <b>Cap FPS</b> only come alive once their box is ticked, as shown below.</p>
 		<p><img src="img/scripting-helpers-key.jpg" alt="The Launch Game dialog with the Enable Hot Reload key dropdown open, listing INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12." style="max-width:100%;width:464px"></p>
 		<p class="text-muted small"><i>The hot reload key dropdown, open: INSERT is the default, with DELETE, HOME, END, PAGEUP, PAGEDOWN and the function keys as alternatives.</i></p>
 		<ul>
@@ -208,6 +209,15 @@
 		<p><img src="img/live-link.jpg" alt="The Launch Game dialog with Enable Live Link ticked at the bottom of the Scripting Helpers group." style="max-width:100%;width:464px"></p>
 		<p class="text-muted small"><i>Enable Live Link, the last box in the left-hand column of the Scripting Helpers group.</i></p>
     </section>
+
+	<section class="docs-section" id="cinematic-tools-or-helpers">
+		<h2 class="section-heading">Cinematic Tools or Scripting Helpers</h2>
+		<p>A game started from Launch Game runs either <a href="#steam-tools">Cinematic Tools</a> or the scripting helpers, never both. They're for different jobs, filming and working on a level's scripts, and both take over the game's camera: Cinematic Tools with their free camera, and Live Link with its <a href="/docs/live-link/#camera">camera sync</a>.</p>
+		<p>While <b>Enable Cinematic Tools</b> is ticked, the <b>Scripting Helpers</b> group is greyed out and its title says why. None of the helpers run in the game, Live Link included, so OpenCAGE shows no <a href="/docs/live-link/#live-link-button">Live Link</a> button for that game. The boxes you've ticked in the group stay ticked, and work again as soon as you untick Enable Cinematic Tools. Cinematic Tools still get OpenCAGE's plugin in the game folder, which streams in the level around their free camera.</p>
+		<p><img src="img/launch-game-cinematic-tools.jpg" alt="The Launch Game dialog with Enable Cinematic Tools ticked and the Scripting Helpers group greyed out under the title Scripting Helpers (off while Cinematic Tools are enabled), with Enable DebugText, Enable Live Link and Cap FPS still ticked but greyed." style="max-width:100%;width:464px"></p>
+		<p class="text-muted small"><i>Enable Cinematic Tools ticked: the Scripting Helpers are greyed out, keeping their ticks for the next game started without Cinematic Tools.</i></p>
+		<p><a href="#related">Open Game On Save</a> never starts Cinematic Tools, so a game it starts runs the helpers as they're ticked, whether or not Enable Cinematic Tools is.</p>
+	</section>
 </article>
 
 <article class="docs-article" id="related">
@@ -218,7 +228,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Outside the Launch Game dialog, under the toolbar's <b>Options</b> dropdown (shown below):</p>
 		<ul>
-			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog, so Cinematic Tools isn't started, but the <a href="#scripting-helpers">Scripting Helpers</a> (Hot Reload, Live Link and the rest) are still set up as they're ticked in the dialog, just as when you start the game from it. Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
+			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog, so Cinematic Tools isn't started, but the <a href="#scripting-helpers">Scripting Helpers</a> (Hot Reload, Live Link and the rest) are still set up as they're ticked in the dialog, even while Enable Cinematic Tools is ticked there (as Cinematic Tools don't run, nothing else has the game's camera). Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
 		</ul>
 		<p><img src="img/options-misc-open-game-on-save.jpg" alt="The toolbar's Options menu with the Misc submenu open, showing the Open Game On Save item unticked." style="max-width:100%;width:489px"></p>
     </section>

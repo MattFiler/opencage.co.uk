@@ -197,7 +197,7 @@
 		<ul>
 			<li>The composites you ticked, and every composite they instance</li>
 			<li>Every model, material, texture, shader, collision mapping, physics system, environment map and animated-model record they use — the full list under <a href="#what">What Comes With It</a></li>
-			<li>Your <b>flowgraph layouts</b> and custom pin info for those composites, and the inspector's record of which parameters you've changed from their defaults, so they look and behave in the destination as they did in the source</li>
+			<li>Your <b>flowgraph layouts</b> and custom pin info for those composites, the inspector's record of which parameters you've changed from their defaults, and which of their vector parameters you've chosen to <a href="/docs/scripting-intro/#treat-as-colour">treat as colours</a>, so they look and behave in the destination as they did in the source</li>
 		</ul>
 		<p><b>GLOBAL</b> and <b>PAUSEMENU</b> are left out even though every composite can reach them — every level already has its own — unless you tick them yourself.</p>
 		<p>Behind the scenes OpenCAGE ports into a blank temporary level, saves it and packs the result, so an export takes about as long as saving a small level. The summary tells you how many composites went in, including the instanced ones, and how big the file is. Textures dominate: a composite that uses a lot of unique textures makes a large file, while a handful of script-only composites make a tiny one.</p>
@@ -261,6 +261,7 @@
 			<li><b>Environment map cubemaps</b> — the textures behind EnvironmentMap entities</li>
 			<li><b>Custom pin info</b> — the pins you've added to entities, so nodes keep their shape</li>
 			<li><b>Composite flowgraph layouts</b> — your node positions arrive with the composite rather than being lost</li>
+			<li><b>Colour parameters</b> — vector parameters you've set to <a href="/docs/scripting-intro/#treat-as-colour">Treat As Colour</a> are still edited as colours in the destination</li>
 		</ul>
 		<p>Navmesh barrier, traversal segment and ExclusiveMaster state references ride along on the copied entities as they are; the data behind them belongs to the destination and is regenerated when it's built (see <a href="#after">After the Port</a>).</p>
 		<p>Shared Havok proxies and physics systems are tracked as they're imported, so a composite that uses the same collision proxy in twenty places doesn't import twenty copies of it — and a composite instanced by several of the ones you picked is only ported once.</p>

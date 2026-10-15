@@ -226,6 +226,7 @@
 		<ul>
 			<li><b>The Steam version of the game.</b> Live Link is served inside the game by OpenCAGE's runtime utils, the same plugin behind the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a>, and they only support the Steam build. On other platforms the <b>Enable Live Link</b> box is greyed out and the Live Link button never appears.</li>
 			<li><b>The game started from OpenCAGE</b>, from the <a href="/docs/launch-game/">Launch Game</a> window with <b>Enable Live Link</b> ticked. A game started without it has no Live Link to connect to. The runtime utils stay in the game folder as Launch Game last set them, so a game started some other way (from Steam, say) serves Live Link too if Enable Live Link was ticked the last time you started the game from Launch Game.</li>
+			<li><b>Cinematic Tools off.</b> A game started with <b>Enable Cinematic Tools</b> ticked has their free camera instead: Cinematic Tools and the Scripting Helpers are <a href="/docs/launch-game/#cinematic-tools-or-helpers">one or the other</a>, so while that box is ticked the helpers, Enable Live Link among them, are greyed out, and the game serves no Live Link.</li>
 			<li><b>The game running the level you have open</b>, as it's saved on disk. Edits for any other level are refused. The easy way is to tick <b>Load straight into a level</b> in the same window, which picks the level you're editing for you.</li>
 			<li><b>The same install.</b> If you have <a href="/docs/multiple-game-installs/">several game installs</a>, each OpenCAGE window only looks for the game from the install it's editing.</li>
 			<li><b>One at a time.</b> The game takes one Live Link connection, so while one OpenCAGE window is connected, another stays waiting: switch the first window's Live Link button off to use another. Only one running game can serve Live Link, so with several installs, run one game with it at a time.</li>
@@ -242,7 +243,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ol>
 			<li>Press <b>Launch Game</b> on the main toolbar. Opening the window closes the game if it's already running.</li>
-			<li>Under <b>Scripting Helpers</b>, tick <b>Enable Live Link</b>. It stays ticked for next time.</li>
+			<li>Under <b>Scripting Helpers</b>, tick <b>Enable Live Link</b>. It stays ticked for next time. If the group is greyed out, untick <b>Enable Cinematic Tools</b> under Launch Options first.</li>
 			<li>Tick <b>Load straight into a level</b>, and check the level under it is the one you have open (OpenCAGE preselects it).</li>
 			<li>Press <b>Start Alien: Isolation</b>.</li>
 		</ol>
@@ -267,7 +268,7 @@
 		<h2 class="section-heading">The Live Link Button</h2>
 		<p>While this install's game is running and serving Live Link (started with Enable Live Link ticked, as under <a href="#requirements">Requirements</a>), a <b>Live Link</b> button appears on the main toolbar, to the right of <b>Launch Game</b>, and it stays there while OpenCAGE is connected. It shows pressed while Live Link is on, whether it's connected or still waiting for the game, and clicking it switches it off (disconnecting from the game) or back on. Hover over it to see where it stands: connected, or waiting for the game.</p>
 		<p><img src="img/toolbar.jpg" alt="OpenCAGE's main toolbar with the Live Link button, pressed, to the right of Launch Game." style="max-width:100%;width:511px"></p>
-		<p>The button remembers its setting. Left on, OpenCAGE connects whenever you start the game with Live Link, and reconnects by itself if the game restarts. There's no button for a game started without Live Link, which has nothing to connect to, or for a game from another of your <a href="/docs/multiple-game-installs/">game installs</a>: close it and start this install's game from Launch Game with Enable Live Link ticked.</p>
+		<p>The button remembers its setting. Left on, OpenCAGE connects whenever you start the game with Live Link, and reconnects by itself if the game restarts. There's no button for a game started without Live Link, which has nothing to connect to, for one started with Cinematic Tools, which have its camera instead, or for a game from another of your <a href="/docs/multiple-game-installs/">game installs</a>: close it and start this install's game from Launch Game with Enable Live Link ticked and Enable Cinematic Tools unticked.</p>
 		<p>In the game, <b>OpenCAGE Live Link</b> shows in green in the top-right corner while it's connected, with a line under it for a few seconds about the last thing done: an edit applied, a method called, or something waiting. You can see it in the <a href="#intro">screenshot above</a>.</p>
 	</section>
 </article>

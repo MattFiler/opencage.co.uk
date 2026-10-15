@@ -18845,9 +18845,27 @@
         "category":  "Launch Game",
         "keywords":  [
             "steam-tools",
-            "launch game"
+            "launch game",
+            "cinematic tools",
+            "free camera"
         ],
         "title":  "Steam-Only Tools"
+    },
+    {
+        "url":  "/docs/launch-game/#cinematic-tools-or-helpers",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "cinematic-tools-or-helpers",
+            "cinematic tools",
+            "free camera",
+            "scripting helpers greyed out",
+            "live link button missing",
+            "live link camera",
+            "launch game"
+        ],
+        "title":  "Cinematic Tools or Scripting Helpers"
     },
     {
         "url":  "/docs/launch-game/#intro",
@@ -20234,6 +20252,23 @@
             "cathode scripting introduction"
         ],
         "title":  "Parameter Entities"
+    },
+    {
+        "url":  "/docs/scripting-intro/#treat-as-colour",
+        "description":  "On Cathode Scripting Introduction",
+        "type":  "symbol",
+        "category":  "Cathode Scripting Introduction",
+        "keywords":  [
+            "treat-as-colour",
+            "treat as colour",
+            "treat as vector",
+            "colour parameter",
+            "color picker",
+            "colour picker",
+            "vector parameter",
+            "cathode scripting introduction"
+        ],
+        "title":  "Colour Parameters"
     },
     {
         "url":  "/docs/scripting-intro/#alias-entities",
