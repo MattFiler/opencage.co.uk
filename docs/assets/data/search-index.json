@@ -18868,6 +18868,23 @@
         "title":  "Cinematic Tools or Scripting Helpers"
     },
     {
+        "url":  "/docs/launch-game/#possess-characters",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "possess-characters",
+            "possess characters",
+            "possess",
+            "control the alien",
+            "control a character",
+            "play as the alien",
+            "take control of npc",
+            "launch game"
+        ],
+        "title":  "Possess Characters"
+    },
+    {
         "url":  "/docs/launch-game/#intro",
         "description":  "On Launch Game",
         "type":  "symbol",

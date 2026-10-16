@@ -130,15 +130,18 @@
 
 	<section class="docs-section" id="choosing">
 		<h2 class="section-heading">Choosing What Goes In</h2>
-		<p>The left of the window lists everything that's different from the original game, in plain words:</p>
+		<p>The left of the window lists everything that's different from the original game, in plain words. OpenCAGE remembers when you changed each composite, model, texture and material, and saves that with the level, so what you've worked on is listed by name with when you last changed it, newest first:</p>
 		<ul>
-			<li><b>Levels</b> - each level you've changed, as a single item, with what you changed in it (its scripts, rebuilt lighting and navigation, its text). A level's files only work together, so they always go in together. Hover over a level to see its files.</li>
+			<li><b>Scripts you've changed</b> - each composite you've edited, with the level it's in. A composite you've changed in several levels is one item, which ticks it in all of them (expand it to choose levels). Only the changes you made to it go in, not OpenCAGE's own tidying, such as the defaults it fills in when you select an entity.</li>
+			<li><b>Models, textures and materials you've changed</b> - each one by name. Models, textures and materials a ticked composite has added come with it automatically, so they aren't listed. A material mapping, collision or physics change can only go in with the rest of its level, and says so.</li>
+			<li><b>Levels</b> - each level you've changed. A level you made with Create Level always goes in whole. For any other level, <i>Everything else you've changed in it</i> is the whole level as it is now: tick it to include every change in the level, listed or not. A level changed before OpenCAGE kept this history can only go in whole. A level's text files are listed separately. Hover over a level to see its files.</li>
 			<li><b>Settings</b> - grouped by what they're for, such as <i>The alien (DEFAULT.BML)</i>. Each change shows the value it had and the value you gave it, for example <i>AreaSweep › menace cool down time: 30 → 45</i>, so you can untick any you only changed while testing.</li>
 			<li><b>Behaviour trees</b> - each tree you changed or added, as a single item.</li>
-			<li><b>Other files</b> - everything else, such as in-game text or the user interface. Changed animation trees (<code>ANIMATION.PAK</code>) take the layouts you gave them in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> with them.</li>
+			<li><b>Other files</b> - everything else, such as in-game text or the user interface, with when you last changed it in OpenCAGE. Changed animation trees (<code>ANIMATION.PAK</code>) take the layouts you gave them in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> with them.</li>
 		</ul>
-		<p>Everything starts ticked. Untick anything that shouldn't be in this mod. If you have mods installed, what they changed isn't listed - only your own work goes into your mod.</p>
-		<p>The line at the bottom of the window counts what's ticked, for example <i>In your mod: 1 level, 2 settings, 2 behaviour trees, 1 other file.</i></p>
+		<p>What you've changed starts ticked, apart from the rest of each level. Untick anything that shouldn't be in this mod. If you have mods installed, what they changed isn't listed - only your own work goes into your mod.</p>
+		<p>If a composite you've ticked needs another change you made - a pin you added to a composite it uses, or something an alias in it points at that you added - that change goes in too, and you're told when the mod is saved. When only part of a level goes in, OpenCAGE builds that part onto a copy of the original level before saving the mod, so saving takes longer, and longer again if you rebuilt the level's lighting and navigation, because the copy is rebuilt as well.</p>
+		<p>The line at the bottom of the window counts what's ticked, for example <i>In your mod: 3 composites, 1 other level change, 2 settings, 1 behaviour tree.</i></p>
     </section>
 
 	<section class="docs-section" id="details">
