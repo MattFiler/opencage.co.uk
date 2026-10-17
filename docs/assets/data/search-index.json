@@ -24962,6 +24962,24 @@
         "title":  "Name, Description and Picture"
     },
     {
+        "url":  "/docs/making-mods/#installs",
+        "description":  "On Making Mods",
+        "type":  "heading",
+        "category":  "Making Mods",
+        "keywords":  [
+            "installs",
+            "replacement mod",
+            "combinable mod",
+            "replaces what it changes",
+            "combines with other mods",
+            "how it installs",
+            "wholesale",
+            "exclusive",
+            "making mods"
+        ],
+        "title":  "How It Installs"
+    },
+    {
         "url":  "/docs/making-mods/#new-version",
         "description":  "On Making Mods",
         "type":  "symbol",

@@ -86,6 +86,7 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#creating"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Creating a Mod</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#choosing">Choosing What Goes In</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#details">Name, Description and Picture</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#installs">How It Installs</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#new-version">A New Version of Your Mod</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#sharing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Sharing Your Mod</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#working-together"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Mods That Work Together</a></li>
@@ -132,13 +133,13 @@
 		<h2 class="section-heading">Choosing What Goes In</h2>
 		<p>The left of the window lists everything that's different from the original game, in plain words. OpenCAGE remembers when you changed each composite, model, texture and material, and saves that with the level, so what you've worked on is listed by name with when you last changed it, newest first:</p>
 		<ul>
-			<li><b>Levels</b> - each level you've changed. A level you made with Create Level always goes in whole. Under any other level are the scripts (composites), models, textures and materials you've edited in it, each by name, and its text files. Only the changes you made to a script go in, not OpenCAGE's own tidying, such as the defaults it fills in when you select an entity. Models, textures and materials a ticked script has added come with it automatically, so they aren't listed. A material mapping, collision or physics change can only go in with the whole level, and says so. Last comes <i>The whole level</i>: tick it to include every change in the level, listed or not - including any made before OpenCAGE kept this history. A level changed only before then can only go in whole. Hover over <i>The whole level</i> to see the level's files. A level's box is part-filled when only some of it is ticked; click it to tick the whole level.</li>
+			<li><b>Levels</b> - each level you've changed. A level you made with Create Level always goes in whole. Under any other level are the scripts (composites), models, textures and materials you've edited in it, each by name, and its text files. Only the changes you made to a script go in, not OpenCAGE's own tidying, such as the defaults it fills in when you select an entity. Models, textures and materials a ticked script has added come with it automatically, so they aren't listed. A material mapping, collision or physics change can only go in with the whole level, and says so. Last comes <i>The whole level</i>: tick it to include every change in the level, listed or not - including any made before OpenCAGE kept this history. A level changed only before then can only go in whole. Which text databases a level loads, set in the <a href="/docs/configs/level-text-dbs/">Level Text DBs</a> editor, goes in with the level. Hover over <i>The whole level</i> to see the level's files. A level's box is part-filled when only some of it is ticked; click it to tick the whole level.</li>
 			<li><b>Settings</b> - grouped by what they're for, such as <i>The alien (DEFAULT.BML)</i>. Each change shows the value it had and the value you gave it, for example <i>AreaSweep › menace cool down time: 30 → 45</i>, so you can untick any you only changed while testing.</li>
 			<li><b>Behaviour trees</b> - each tree you changed or added, as a single item.</li>
-			<li><b>Other files</b> - everything else, such as in-game text or the user interface, with when you last changed it in OpenCAGE. The user interface (<code>UI.PAK</code>) and the animations (<code>ANIMATION.PAK</code>) list what you changed inside them, so you can leave some of it out: each UI file you changed or added, and each animation tree, animation you imported or replaced, blend set and tree layout you changed. An animation brings its animation data and its entry in the game's list of animations with it, and a changed animation tree brings the layout you gave it in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a>. With everything inside ticked, the file goes in as it is; with some of it unticked, your mod holds the original file with only the ticked changes in it.</li>
+			<li><b>Other files</b> - everything else, such as in-game text or the user interface, with when you last changed it in OpenCAGE. The user interface (<code>UI.PAK</code>) and the animations (<code>ANIMATION.PAK</code>) list what you changed inside them, so you can leave some of it out: each UI file you changed or added, and each animation tree, animation you imported or replaced, blend set and tree layout you changed. An animation brings its animation data and its entry in the game's list of animations with it, and a changed animation tree brings the layout you gave it in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a>. With everything inside ticked, the file goes in as it is; with some of it unticked, your mod holds the original file with only the ticked changes in it. A change to the text databases every level loads, or to those of a level that isn't otherwise listed, is an item of its own here.</li>
 		</ul>
 		<p>What you've changed starts ticked, apart from <i>The whole level</i> of a level whose changes are listed one by one. If you changed a level before OpenCAGE kept this history, tick <i>The whole level</i> so those changes go in too. Untick anything that shouldn't be in this mod. If you have mods installed, what they changed isn't listed - only your own work goes into your mod.</p>
-		<p>If a composite you've ticked needs another change you made - a pin you added to a composite it uses, or something an alias in it points at that you added - that change goes in too, and you're told when the mod is saved. When only part of a level goes in, OpenCAGE builds that part onto a copy of the original level before saving the mod, so saving takes longer, and longer again if you rebuilt the level's lighting and navigation, because the copy is rebuilt as well.</p>
+		<p>If a composite you've ticked needs another change you made - a pin you added to a composite it uses, or something an alias in it points at that you added - that change goes in too, and you're told when the mod is saved. When only part of a level goes in, OpenCAGE builds that part onto a copy of the original level before saving the mod, so saving takes longer. If you rebuilt the level with Save &amp; Build and what you ticked changes something a build makes - a model, a light, collision or navigation, say - the copy is rebuilt as well, which takes longer again; a change to a level's logic alone only needs the copy saved.</p>
 		<p>The line at the bottom of the window counts what's ticked, for example <i>In your mod: 3 composites, 1 other level change, 2 settings, 1 behaviour tree, 2 animation trees.</i></p>
     </section>
 
@@ -152,6 +153,16 @@
 			<li><b>Picture...</b> - an optional screenshot or image, shown beside your mod in the Mod Manager. Large pictures are made smaller automatically.</li>
 		</ul>
 		<p>Click <b>Save Mod...</b>, choose where to save it, and you're done.</p>
+    </section>
+
+	<section class="docs-section" id="installs">
+		<h2 class="section-heading">How It Installs</h2>
+		<p>Under <b>Save this as</b>, <b>How it installs</b> chooses which kind of mod you're making:</p>
+		<ul>
+			<li><b>Replaces what it changes</b> - a <i>replacement mod</i>. It installs exactly as you made it: each level and file it changes goes in whole, as you have it - lighting and navigation you've rebuilt included - so nothing is put together or rebuilt when you save it or when players install it, and it installs as quickly as a mod can. The trade-off is that no other mod can change the same levels or files while it's on: a player's Mod Manager won't apply the two together, and asks them to choose. Their own changes to those levels and files are set aside while it's on, and come back when it's turned off.</li>
+			<li><b>Combines with other mods</b> - a <i>combinable mod</i>. Only what you tick goes in, down to a single script or setting. When players install it alongside other mods that change the same levels and files, every mod's changes are kept (see <a href="#how-combined">How Mods Are Combined</a>). The trade-off is time: a level other mods change too is put back together with all of their changes when they're installed together, which takes a while if the level needs its lighting and navigation rebuilt.</li>
+		</ul>
+		<p>Either way, which text databases a level loads goes in with the level, and is kept alongside every other mod's levels whichever way they install. With <b>Replaces what it changes</b> chosen, ticking anything in a level, a settings file or a packed file ticks all of it. A new version of a mod installs the same way as the one before it, unless you change it.</p>
     </section>
 
 	<section class="docs-section" id="new-version">
@@ -178,7 +189,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Players often install lots of mods at once. The Mod Manager is built for that: it combines every installed mod's changes, and only has to choose between two mods when they change exactly the same thing.</p>
+		<p>Players often install lots of mods at once. The Mod Manager is built for that: it combines every installed mod's changes, and only has to choose between two mods when they change exactly the same thing. (This is for combinable mods: a replacement mod is never combined - see <a href="#installs">How It Installs</a>.)</p>
     </section>
 
 	<section class="docs-section" id="how-combined">
