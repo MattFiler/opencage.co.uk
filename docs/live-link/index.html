@@ -224,7 +224,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>The Steam version of the game.</b> Live Link is served inside the game by OpenCAGE's runtime utils, the same plugin behind the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a>, and they only support the Steam build. On other platforms the <b>Enable Live Link</b> box is greyed out and the Live Link button never appears.</li>
+			<li><b>The Steam, GOG or Epic Games Store version of the game.</b> Live Link is served inside the game by OpenCAGE's runtime utils, the same plugin behind the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a>, and they support those three PC releases. On other platforms the <b>Enable Live Link</b> box is greyed out and the Live Link button never appears.</li>
 			<li><b>The game started from OpenCAGE</b>, from the <a href="/docs/launch-game/">Launch Game</a> window with <b>Enable Live Link</b> ticked. A game started without it has no Live Link to connect to. The runtime utils stay in the game folder as Launch Game last set them, so a game started some other way (from Steam, say) serves Live Link too if Enable Live Link was ticked the last time you started the game from Launch Game.</li>
 			<li><b>Cinematic Tools off.</b> A game started with <b>Enable Cinematic Tools</b> ticked has their free camera instead: Cinematic Tools and the Scripting Helpers are <a href="/docs/launch-game/#cinematic-tools-or-helpers">one or the other</a>, so while that box is ticked the helpers, Enable Live Link among them, are greyed out, and the game serves no Live Link.</li>
 			<li><b>The game running the level you have open</b>, as it's saved on disk. Edits for any other level are refused. The easy way is to tick <b>Load straight into a level</b> in the same window, which picks the level you're editing for you.</li>
@@ -487,7 +487,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>There's no Live Link button.</b> It only appears while this install's game is running and serving Live Link (or while OpenCAGE is connected), and only for the Steam version. If the game is running, it wasn't started with Live Link, or it's from another game install: close it and start it from Launch Game with Enable Live Link ticked.</li>
+			<li><b>There's no Live Link button.</b> It only appears while this install's game is running and serving Live Link (or while OpenCAGE is connected), and only for the Steam, GOG and Epic Games Store versions. If the game is running, it wasn't started with Live Link, or it's from another game install: close it and start it from Launch Game with Enable Live Link ticked.</li>
 			<li><b>"The game is running a different level".</b> The game has a different level loaded from the one open in OpenCAGE. Save, and load the same level in the game, or start the game again from Launch Game with that level picked.</li>
 			<li><b>Edits or calls are "waiting".</b> The level is still starting, the pause menu is open, a cutscene or an on-screen message has paused the level (close the message in the game), or the game is restarting from a checkpoint after a death. See <a href="#waiting">Level Start &amp; Pause</a>.</li>
 			<li><b>"No level is running".</b> The game is between levels, or unloading one. Load the level in the game, then <a href="#resync">Resync</a> what you changed.</li>

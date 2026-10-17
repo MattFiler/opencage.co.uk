@@ -191,7 +191,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <a href="/docs/launch-game/#ui-mods">Launch Game</a> dialog can also patch GFX files inside <code>UI.PAK</code> (debug checkpoints, level select, and so on). Those writes go to the same archive as Edit UI — if you hand-edit UI files and then toggle Launch Game UI mods (or the reverse), one can overwrite the other.</p>
+		<p>The <a href="/docs/launch-game/#ui-mods">Launch Game</a> dialog's UI mods (debug checkpoints, level select, and so on) don't change anything Edit UI lists: they add OpenCAGE's own copies of the menus to <code>UI.PAK</code>, which Edit UI doesn't show. While one of those boxes is ticked, though, the game shows OpenCAGE's menu instead of its own, so a change you make here to that menu (<code>PAUSEMENU.GFX</code>, <code>NEWFRONTENDMENU.GFX</code>, <code>LOADINGSCREEN.GFX</code> or <code>GAMEOVERMENU.GFX</code>) only shows in the game with the box unticked.</p>
     </section>
 </article>
 
