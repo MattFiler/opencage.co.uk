@@ -125,9 +125,29 @@
 
         /* ---- Hero: the stripe banner, with the editor rising out of its lower edge ---- */
         .hero {
+            position: relative;
             padding: 128px var(--gutter) 290px;
             text-align: center;
             text-shadow: 0 0 20px rgba(0, 0, 0, 0.84);
+        }
+        /* The release ribbon: a white sash off the left edge, notched at its end like an offer label */
+        .release-tag {
+            position: absolute; left: 0; top: 88px; z-index: 3;
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 11px 34px 11px var(--gutter);
+            background: #fff; color: #160f1d;
+            font: 800 .82rem/1 'Montserrat', system-ui, sans-serif; letter-spacing: .09em; text-transform: uppercase;
+            text-decoration: none; text-shadow: none;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 50%, 100% 100%, 0 100%);
+            transition: background-color .15s ease;
+        }
+        .release-tag::before {
+            content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--magenta);
+        }
+        .release-tag:hover { background: #f6c8ec; }
+        @media (prefers-reduced-motion: no-preference) {
+            .release-tag { animation: release-in .6s cubic-bezier(.2, .7, .2, 1) .3s both; }
+            @keyframes release-in { from { transform: translateX(-100%); } to { transform: none; } }
         }
         .hero-logo {
             width: min(520px, 80vw); margin: 0 auto 30px;
@@ -149,7 +169,8 @@
             margin: -230px auto 0;
         }
         @media (max-width: 575px) {
-            .hero { padding-top: 100px; padding-bottom: 150px; }
+            .hero { padding-top: 124px; padding-bottom: 150px; }
+            .release-tag { top: 76px; padding: 9px 28px 9px var(--gutter); font-size: .72rem; }
             .hero-shot { margin-top: -110px; }
         }
 
@@ -170,7 +191,7 @@
         /* ---- Feature index ---- */
         .index {
             width: min(var(--wrap), 100% - 2 * var(--gutter));
-            margin: 0 auto; padding: clamp(64px, 8vw, 104px) 0 0;
+            margin: 0 auto; padding: clamp(64px, 8vw, 38px) 0 0;
             text-align: center;
         }
         .index h2 { margin: 0 0 22px; font-weight: 800; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem); }
@@ -186,7 +207,7 @@
         /* ---- Feature sections ---- */
         .feature {
             width: min(var(--wrap), 100% - 2 * var(--gutter));
-            margin: 0 auto; padding: clamp(64px, 8vw, 116px) 0;
+            margin: 0 auto; padding: clamp(64px, 8vw, 38px) 0;
             display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
             gap: clamp(32px, 4.5vw, 72px); align-items: center;
         }
@@ -252,7 +273,7 @@
         .footer-links { list-style: none; margin: 0 0 22px; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
         .footer-links a { color: var(--text); font-weight: 600; text-decoration: none; }
         .footer-links a:hover { color: var(--hot); }
-        .footer p { margin: 0 auto 6px; max-width: 70ch; }
+        .footer p { margin: 0 auto 6px; }
         .footer p a { color: var(--muted); text-underline-offset: 3px; }
 
         /* ---- Scroll reveal (only when scripts run, and never with reduced motion) ---- */
@@ -267,13 +288,10 @@
     </style>
 </head>
 <body>
-    <a class="skip" href="#features">Skip to the features</a>
-
     <nav class="topbar" aria-label="Main">
         <div class="topbar-inner">
             <a class="brand" href="/"><img src="logo_trim_smaller.png" alt="OpenCAGE home" width="2500" height="1225"></a>
             <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
                 <li><a href="/docs/">Docs</a></li>
                 <li class="wide"><a href="/docs/changelog/">Changelog</a></li>
                 <li class="wide"><a href="https://discord.gg/JJ4ECu9hpY">Discord</a></li>
@@ -285,8 +303,9 @@
 
     <main>
         <header class="hero stripes">
+            <!--<a class="release-tag" href="https://store.steampowered.com/app/3367530/OpenCAGE/">Version 1.0 Now Available!</a>-->
             <img class="hero-logo" src="logo_trim_smaller.png" alt="OpenCAGE" width="2500" height="1225">
-            <h1>Open source mod tools for Alien:&nbsp;Isolation</h1>
+            <h1>Open-source mod tools for Alien:&nbsp;Isolation</h1>
             <p class="hero-lede">Fly through every level in 3D, rewrite the game&rsquo;s scripts, import your own models, build brand new levels &ndash; and watch your changes appear in the running game.</p>
             <div class="actions">
                 <a class="btn btn-solid" href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fa-brands fa-steam" aria-hidden="true"></i> Download on Steam</a>
@@ -300,34 +319,15 @@
                 <img src="images/hero-editor-1600.jpg" srcset="images/hero-editor-800.jpg 800w, images/hero-editor-1600.jpg 1600w" sizes="(max-width: 1248px) calc(100vw - 48px), 1200px" width="1600" height="900" fetchpriority="high" alt="OpenCAGE editing the airport's baggage collection area: the 3D viewport above the composite's flowgraph, with a seat selected and its parameters open">
             </figure>
         </div>
-
-        <section class="index" id="features" aria-labelledby="features-title">
-            <h2 id="features-title">Inside OpenCAGE</h2>
-            <ul class="chips">
-                <li><a href="#viewport">3D Viewport</a></li>
-                <li><a href="#script-editing">Script Editing</a></li>
-                <li><a href="#your-scripts">Build Your Own Scripts</a></li>
-                <li><a href="#script-debugging">Script Debugging</a></li>
-                <li><a href="#scripted-animations">Scripted Animations</a></li>
-                <li><a href="#animations">Animations</a></li>
-                <li><a href="#live-editing">Live Editing</a></li>
-                <li><a href="#model-import">Model Import</a></li>
-                <li><a href="#materials">Materials &amp; Textures</a></li>
-                <li><a href="#level-creation">Level Creation</a></li>
-                <li><a href="#launch-game">Launch Options</a></li>
-                <li><a href="#mod-packaging">Mod Packaging</a></li>
-                <li><a href="#game-configuration">Game Configuration</a></li>
-                <li><a href="#behaviour-trees">Behaviour Trees</a></li>
-            </ul>
-        </section>
+		
+		<br><br>
 
         <section class="feature flip" id="viewport" aria-labelledby="viewport-title">
             <div class="feature-text reveal">
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="viewport-title">3D Viewport</h2>
-                        <p class="caption-sub">Explore every level of Alien: Isolation in 3D</p>
+                        <h2 id="viewport-title">Browse Levels in a 3D Viewport</h2>
                     </div>
                 </div>
                 <p>Open any level and fly through it. Click anything you see to find it in the level&rsquo;s scripts, move and rotate it with the gizmo, or drag new content in straight from the Composite Browser.</p>
@@ -350,8 +350,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="script-editing-title">Script Editing</h2>
-                        <p class="caption-sub">Edit the game&rsquo;s node-based scripts</p>
+                        <h2 id="script-editing-title">Edit Existing Game Scripts</h2>
                     </div>
                 </div>
                 <p>Alien: Isolation runs on thousands of CATHODE scripts. Open any of them as a flowgraph laid out over pages, then rewire it, delete what you don&rsquo;t need and tune any parameter in the inspector.</p>
@@ -373,7 +372,6 @@
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
                         <h2 id="your-scripts-title">Build Your Own Scripts</h2>
-                        <p class="caption-sub">Place triggers in the world and wire up logic from the Entity Palette</p>
                     </div>
                 </div>
                 <p>Drag any of the game&rsquo;s entity types from the Entity Palette onto a graph and link up their pins. Trigger volumes, markers and props go straight into the world from the Viewport&rsquo;s Create menu.</p>
@@ -391,8 +389,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="script-debugging-title">Script Debugging</h2>
-                        <p class="caption-sub">Watch scripts fire live and trigger methods in the running game</p>
+                        <h2 id="script-debugging-title">Debug Scripts at Runtime</h2>
                     </div>
                 </div>
                 <p>With Live Link connected, Show Activity lights up each link as it fires and counts every call on its pins. Trigger any method from the inspector to test a script without playing up to it, and put values on screen in game with debug text and position markers.</p>
@@ -413,8 +410,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="scripted-animations-title">Scripted Animations</h2>
-                        <p class="caption-sub">Keyframe cameras and entities with bezier curves, live in the viewport</p>
+                        <h2 id="scripted-animations-title">Create and Modify Scripted Keyframes</h2>
                     </div>
                 </div>
                 <p>Open any CAGEAnimation to edit its tracks on a curve editor: drag keys and bezier handles, add new tracks, and switch on Animation Mode to scrub the result in the Viewport.</p>
@@ -432,8 +428,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="animations-title">Animations</h2>
-                        <p class="caption-sub">Browse, preview and edit the animation behind every character</p>
+                        <h2 id="animations-title">Import, Export, and Preview Animations</h2>
                     </div>
                 </div>
                 <p>Preview any clip on its character&rsquo;s own model, export clips or import your own, and edit the animation trees that blend them together.</p>
@@ -454,8 +449,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="live-editing-title">Live Editing</h2>
-                        <p class="caption-sub">Edit the running game in real time</p>
+                        <h2 id="live-editing-title">Live Edit Scripts In-Game</h2>
                     </div>
                 </div>
                 <p>Live Link connects OpenCAGE to the game while it runs. Place and move props, change lights, tweak scripts and call methods, and the game updates without a reload. The game camera can follow the Viewport, so you see every edit from the same angle.</p>
@@ -476,8 +470,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="model-import-title">Model Import</h2>
-                        <p class="caption-sub">Bring in FBX, glTF and OBJ models</p>
+                        <h2 id="model-import-title">Import, Export, and Preview Models</h2>
                     </div>
                 </div>
                 <p>Import your own models with a 3D preview and a scale check, then browse, export and edit any mesh in the game from the Model Editor.</p>
@@ -498,8 +491,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="materials-title">Materials &amp; Textures</h2>
-                        <p class="caption-sub">Edit materials, shaders and textures</p>
+                        <h2 id="materials-title">Edit Materials, Shaders, and Textures</h2>
                     </div>
                 </div>
                 <p>Change a material&rsquo;s shader, samplers and parameters, and browse, export and replace any texture in a level.</p>
@@ -520,8 +512,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="level-creation-title">Level Creation</h2>
-                        <p class="caption-sub">Build brand new levels from scratch</p>
+                        <h2 id="level-creation-title">Create New Levels from Scratch</h2>
                     </div>
                 </div>
                 <p>Start a new level, fill it with composites from other levels or your own imported geometry, and let Save &amp; Build generate its lighting, navmesh, collision, cover and sound.</p>
@@ -542,8 +533,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="launch-game-title">Launch Options</h2>
-                        <p class="caption-sub">Launch the game with debug helpers, cinematic tools, and more</p>
+                        <h2 id="launch-game-title">Launch With Helpful Utilities</h2>
                     </div>
                 </div>
                 <p>Launch Alien: Isolation straight into any level, with options like debug text, an unlocked mouse and a frame rate cap. Turn on Possess Characters and you can take control of anyone in the level.</p>
@@ -564,8 +554,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="mod-packaging-title">Mod Packaging</h2>
-                        <p class="caption-sub">Share your work as a one-click install</p>
+                        <h2 id="mod-packaging-title">Package or Install Mods via the Mod Manager</h2>
                     </div>
                 </div>
                 <p>Create a Mod lists everything you&rsquo;ve changed, so you choose exactly what goes in. Players install it with the Mod Manager, which also combines, updates and removes mods for them.</p>
@@ -586,8 +575,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="game-configuration-title">Game Configuration</h2>
-                        <p class="caption-sub">Tune the alien, items, recipes, text and more</p>
+                        <h2 id="game-configuration-title">Configure Characters, Items, Weapons, and More</h2>
                     </div>
                 </div>
                 <p>Dedicated editors for the game&rsquo;s configuration: the alien&rsquo;s behaviour settings, character asset sets, inventory items, crafting recipes and every line of localised text.</p>
@@ -608,8 +596,7 @@
                 <div class="caption">
                     <span class="caption-bar" aria-hidden="true"></span>
                     <div>
-                        <h2 id="behaviour-trees-title">Behaviour Trees</h2>
-                        <p class="caption-sub">Rework how the AI thinks</p>
+                        <h2 id="behaviour-trees-title">Edit and Create Behaviour Trees</h2>
                     </div>
                 </div>
                 <p>Open the behaviour trees that drive the alien, androids and humans, and edit them node by node.</p>
