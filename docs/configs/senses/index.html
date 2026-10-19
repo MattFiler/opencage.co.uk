@@ -103,8 +103,9 @@
 		<h1 class="section-heading">Senses</h1>
 		<p>To edit character senses in OpenCAGE navigate to View > Configuration Editors > Characters > Senses. This opens the <b>Sense Editor</b>.</p>
 		<p>Pick a character from the dropdown at the top of the window to see its senses. Below it are four tabs, one per <a href="#sense-sets">sense set</a>. Each set has a viewcone set and two other values at the top, then a tab for each of eight <a href="#senses">senses</a>.</p>
+		<p><img src="img.png" alt="The Sense Editor with DEFAULTS picked: the Set 1 Normal tab with its viewcone set, maximum hearing distance and maximum damage distance scale, and the Visual Sense tab's values below them." style="max-width:100%;width:483px"></p>
 		<p>There is no Save button: changes are saved as you make them. They're written to the character's own file, <code>DATA/CHR_INFO/ATTRIBUTES/&lt;character&gt;.BML</code>, under <code>Attribute/Senses</code>. The same file holds the character's <a href="/docs/configs/attributes/">attributes</a> and <a href="/docs/configs/locomotion/">locomotion</a>.</p>
-		<p>A character's file can name another character as its template. Where the selected character doesn't set a value itself, the editor shows the value from its template. When it saves, that value is written into the character's own file too. A box with no value in the character or any of its templates is greyed out and isn't saved.</p>
+		<p>A character's file can name another character as its template. Where the selected character doesn't set a value itself, the editor shows the value from its template. When the editor opens it saves every character, writing the values each one inherits into its own file, so every file holds its full set of senses. A box with no value in the character or any of its templates is greyed out and isn't saved.</p>
 		<p>Note that some of these values are additionally increased/decreased by the current game <a href="/docs/configs/difficulty-settings/#character-senses">difficulty config</a>. Its Character Senses section covers the visual, weapon sound, movement sound and flashlight senses, and the maximum hearing distance.</p>
 		<p>To get back to stock values, open the <a href="/docs/backup-manager/#revert-configs">Backup Manager</a>, click <b>Revert Configs</b>, then <b>Reset Character Attributes, Senses, Viewcones</b>. That overwrites the stock character files under <code>DATA/CHR_INFO/ATTRIBUTES</code> with the vanilla ones, so it undoes attribute and locomotion changes as well. It also closes the game if it's running.</p>
 	</section>
@@ -118,7 +119,7 @@
 				<code style="background:#8e1073;color:white;">Viewcone Set</code>
 				<code style="background:#412b69;color:white;">combobox</code>
 			</li>
-			<ul><li>The <a href="/docs/configs/viewcones/">viewcone set</a> used with this sense set. The list only offers <code>VIEWCONESET_STANDARD</code>, <code>VIEWCONESET_HUMAN</code>, <code>VIEWCONESET_SLEEPING</code> and <code>VIEWCONESET_ANDROID</code>.</li></ul>
+			<ul><li>The <a href="/docs/configs/viewcones/">viewcone set</a> used with this sense set. The list holds every set in the game's <code>VIEWCONESETS.BML</code>: <code>VIEWCONESET_NONE</code> (the player's), <code>VIEWCONESET_STANDARD</code>, <code>VIEWCONESET_HUMAN</code>, <code>VIEWCONESET_SLEEPING</code>, <code>VIEWCONESET_ANDROID</code> and <code>VIEWCONESET_HUMAN_HEIGHTENED</code>. A set a character names that isn't on the list is shown as it is, and kept.</li></ul>
 
 			<li>
 				<code style="background:#8e1073;color:white;">Maximum Hearing Distance</code>

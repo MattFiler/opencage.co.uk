@@ -213,7 +213,7 @@
 
 	<section class="docs-section" id="transform-gizmo">
 		<h2 class="section-heading">Moving Entities</h2>
-		<p>Once you've selected an entity, you can move and rotate it in the Viewport with the transform gizmo. That updates the entity's position parameters like any other edit.</p>
+		<p>Once you've selected an entity, you can move and rotate it in the Viewport with the transform gizmo. That updates the entity's position parameters like any other edit. The inspector follows the move while you drag, and so does the running game with <a href="/docs/live-link/">Live Link</a>; only letting go makes the edit (and its undo step), and calling the drag off puts everything back.</p>
 		<p>With an entity selected, choose a gizmo mode from the Viewport <b>Control</b> toolbar, or with these number-row keys:</p>
 		<ul>
 			<li><b>1</b> — Translate (World)</li>
@@ -297,11 +297,11 @@
 		<p>Right-click in the Viewport — press and release without moving the mouse — and a menu opens at the cursor with the actions that apply to the selection. Right-click something that isn't selected and it's selected first, as a left-click would select it; right-click something that's already part of the selection and the menu acts on the whole selection; right-click empty space and the selection is left as it is. Each entry does exactly what its shortcut does:</p>
 		<ul>
 			<li><b>Copy</b> (<b>Ctrl+C</b>), <b>Paste</b> (<b>Ctrl+V</b>), <b>Duplicate</b> (<b>Ctrl+D</b>) and <b>Delete</b> (<b>Delete</b>) — see <a href="#copy-paste">Copy &amp; Paste</a>. <b>Paste</b> is greyed out while OpenCAGE's entity clipboard is empty.</li>
-			<li><b>Focus on Selection</b> (<b>Z</b>), <b>Snap to Floor</b> (<b>Shift + End</b>), <b>Hide</b> (<b>H</b>) and <b>Unhide All</b> (<b>Shift + H</b>).</li>
+			<li><b>Focus on Selection</b> (<b>Z</b>; it reads <b>Frame All</b> with nothing selected, and frames all the geometry as <b>Z</b> does then), <b>Snap to Floor</b> (<b>Shift + End</b>), <b>Hide</b> (<b>H</b>) and <b>Unhide All</b> (<b>Shift + H</b>).</li>
 			<li><b>Step Into Composite</b> steps into the composite instance under the cursor, as <b>Ctrl + middle-click</b> does. <b>Open Composite</b> opens the selected instance's composite on its own, as double-clicking it in the Composite Browser does. <b>Select Parent Composite</b> steps back out of the composite instance you're in and selects that instance — where pressing <b>-</b> until it leaves the composite lands. <b>Deselect All</b> (<b>Escape</b>).</li>
 			<li><b>De-instance Composite Instance</b> pulls the selected composite instance's contents out into the composite you're in, and <b>Create Composite From Selected...</b> moves the selection into a new composite placed where it was — see <a href="/docs/scripting-intro/#refactoring">De-instancing &amp; Creating Composites</a>. <b>Create Composite Variant...</b> gives the selected instance a copy of its composite to change on its own — see <a href="/docs/scripting-intro/#duplicate">Duplicate &amp; Create Composite Variant</a>.</li>
 		</ul>
-		<p>Entries with nothing to act on are greyed out — <b>Unhide All</b> with nothing hidden, <b>Select Parent Composite</b> at the root, <b>Focus on Selection</b> with nothing selected (where <b>Z</b> frames all the geometry instead), and so on. Open Composite, De-instance Composite Instance and Create Composite Variant are only there when the selection is a single composite instance. The next click or key press in the Viewport closes the menu and does nothing else (so <b>Escape</b> closes it without deselecting); a click anywhere else in the editor closes it as it would any menu, and it goes when a level loads. A right press while a box is being drawn drops the box and opens nothing, and one in the middle of a gizmo drag opens nothing either.</p>
+		<p>Entries with nothing to act on are greyed out — <b>Unhide All</b> with nothing hidden, <b>Select Parent Composite</b> at the root, and so on. Open Composite, De-instance Composite Instance and Create Composite Variant are only there when the selection is a single composite instance. The next click or key press in the Viewport closes the menu and does nothing else (so <b>Escape</b> closes it without deselecting); a click anywhere else in the editor closes it as it would any menu, and it goes when a level loads. A right press while a box is being drawn drops the box and opens nothing, and one in the middle of a gizmo drag opens nothing either.</p>
 	</section>
 
 	<section class="docs-section" id="previews">
@@ -382,7 +382,7 @@
 			<li><b>Fix Camera to Selected Entity</b> — keep the camera locked on the selection rather than framing it once. Turning this on turns on <b>Focus on Selected</b> too</li>
 			<li><b>Show Camera Position</b> — display camera X/Y/Z coordinates while moving</li>
 			<li><b>Render Wireframe</b> — draw ModelReference meshes as wireframe overlays</li>
-			<li><b>Render Galaxy</b> (not in the picture above) — draw the level's galaxy (its starfield) as the Viewport sky, as the game does; off shows the plain sky instead. On by default; see <a href="#galaxy">The Sky</a></li>
+			<li><b>Render Galaxy</b> — draw the level's galaxy (its starfield) as the Viewport sky, as the game does; off shows the plain sky instead. On by default; see <a href="#galaxy">The Sky</a></li>
 			<li><b>Hide Nested Script Entities</b> — hide render previews for entities defined in nested composites (models are drawn regardless; untick the ModelReference render filter to hide those)</li>
 			<li><b>Selection Highlight Mode</b> — <b>Green</b>, <b>Wireframe</b>, <b>Wireframe Transparent</b> or <b>None</b> (<b>Alt+1</b> to <b>Alt+4</b>); see <a href="#selection">Selection</a></li>
 			<li><b>Snap Increments…</b> (below the separator) — edit the values offered by the <b>Transform Snap</b> and <b>Rotation Snap</b> menus; see <a href="#transform-gizmo">Moving Entities</a></li>
