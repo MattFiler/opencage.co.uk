@@ -140,7 +140,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>A single <code>Character</code> entity can appear in more than one place in the level hierarchy. Accessory sets are keyed by <b>composite instance</b>, so each placement can have its own look.</p>
+		<p>A single <code>Character</code> entity can appear in more than one place in the level hierarchy. Accessory sets are keyed by <b>composite instance</b>, so each placement can have its own look. If <a href="/docs/scripting-intro/#deinstance">De-instance Composite Instance</a> or <a href="/docs/scripting-intro/#create-composite">Create Composite From Selected</a> changes a character's placements, its looks move to the new ones, and undoing the change moves them back.</p>
 		<ul>
 			<li>The dropdown at the top lists instances that already have an accessory-set entry for this character. Names follow the resolved hierarchy (and include ShortGuids if <b>Show ShortGuids</b> is enabled under <a href="/docs/options/#entity-display">Options → Entity Display</a>).</li>
 			<li><b>Add New</b> opens the <b>Add New Instance Reference</b> picker (shown below), listing placements that do <b>not</b> yet have an accessory set. Pick one and click <b>Add</b>: a new entry with default metadata and empty composite slots is created for it and selected in the dropdown.</li>
@@ -195,7 +195,7 @@
 
 	<section class="docs-section" id="asset-type">
 		<h2 class="section-heading">Asset Type</h2>
-		<p><b>Asset Type</b> picks a <a href="/docs/cathode-enums/#CUSTOM_CHARACTER_ASSETS">CUSTOM_CHARACTER_ASSETS</a> set (colours and decals used for customizable NPC clothing).</p>
+		<p><b>Asset Type</b> picks a <a href="/docs/cathode-enums/#CUSTOM_CHARACTER_ASSETS">CUSTOM_CHARACTER_ASSETS</a> set (colours and decals used for customisable NPC clothing).</p>
 		<p>Click <b>Edit</b> next to Asset Type to open the <b>Character Asset Editor</b> (titled <i>Edit Character Asset Sets</i>), which edits the global <code>CUSTOMCHARACTERASSETDATA.BIN</code> file (primary / secondary / tertiary colours and decal lists per asset set). That window (shown below) is shared config data, not per-instance accessory-set fields; the same editor is also available without a character selected from <b>View → Configuration Editors → Characters → Asset Sets</b>.</p>
 		<p><img src="img/asset-editor.jpg" alt="The Edit Character Asset Sets window: an asset-set dropdown at the top, Primary, Secondary and Tertiary colour swatch lists with Add New and Remove Selected buttons on the left, a Decals list with thumbnails on the right, and a Save button." style="max-width:100%;width:671px"></p>
 		<p class="text-muted small"><i>ASSETSET_01: the three colour lists and the decal list each have their own Add New and Remove Selected buttons; Save writes CUSTOMCHARACTERASSETDATA.BIN straight away.</i></p>

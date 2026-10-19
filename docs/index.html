@@ -58,16 +58,33 @@
         html[data-theme="dark"] .theme-bg-dark .section-intro {
             color: #fff !important;   /* dark.css sets the muted grey with !important */
         }
+        /* The logo is the way back to the homepage: this page has no navbar to carry one */
+        .docs-banner-home {
+            display: block;
+            max-width: 330px;
+            margin: 0 auto 1.4rem;
+            border-radius: 6px;
+            transition: transform .2s ease;
+        }
+        .docs-banner-home:hover {
+            transform: scale(1.03);
+        }
+        .docs-banner-home:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 8px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .docs-banner-home { transition: none; }
+            .docs-banner-home:hover { transform: none; }
+        }
         .docs-banner-logo {
             display: block;
             width: 100%;
-            max-width: 330px;
             height: auto;
-            margin: 0 auto 1.4rem;
             filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.55));
         }
         @media (max-width: 575px) {
-            .docs-banner-logo { max-width: 240px; }
+            .docs-banner-home { max-width: 240px; }
             .theme-bg-dark {
                 background-image:
                     repeating-linear-gradient(-45deg, transparent 0, transparent 26px, #000 26px, #000 52px),
@@ -226,7 +243,7 @@
 	    <div class="theme-bg-shapes-right"></div>
 	    <div class="theme-bg-shapes-left"></div>
 	    <div class="container">
-		    <img class="docs-banner-logo" src="assets/images/logo-white.png" alt="OpenCAGE" width="2500" height="1225">
+		    <a class="docs-banner-home" href="/" aria-label="OpenCAGE homepage"><img class="docs-banner-logo" src="assets/images/logo-white.png" alt="OpenCAGE" width="2500" height="1225"></a>
 		    <div class="main-search-box pt-3 d-block mx-auto">
                  <form class="search-form w-100">
 		            <input type="text" placeholder="Search docs..." name="search" class="form-control search-input">
@@ -250,7 +267,7 @@
 
 						<p>OpenCAGE is a free, open-source modding toolkit for Alien: Isolation. CAGE, the Creative Assembly Game Editor the game was made with, was never released to the public — OpenCAGE brings back much of what it could do, through years of reverse engineering.</p>
 						<p>Explore every level in a 3D Viewport, edit the game's node-based scripts or write your own, import models, materials, textures and animations, and build brand new levels from scratch. With <a href="live-link/">Live Link</a>, your edits appear in the running game as you make them — and when you're done, package it all up as a mod anyone can install.</p>
-						<p>New here? Grab OpenCAGE from Steam, then start with the <a href="scripting-intro/">Scripting Introduction</a> — every tool has its own guide in the sections below. Join the Discord for tips from the community, and to show off what you're working on.</p>
+						<p>New here? Grab OpenCAGE from Steam, then start with the <a href="scripting-intro/">Scripting Introduction</a> — every tool has its own guide in the sections below, and the <b>?</b> in a window's title bar opens its guide. Join the Discord for tips from the community, and to show off what you're working on. If OpenCAGE crashes, <b>Help → Open Logs Folder</b> has the crash log to attach when you report it (<b>Help → Report Bug</b>).</p>
 						<p>Just want to play mods other people have made? See <a href="installing-mods/">Installing Mods</a> — no modding knowledge needed.</p>
 
 						<!-- 6+6 fills a row, so the remaining three wrap onto a second one on their own -
@@ -810,7 +827,7 @@
 														<span class="card-title-text">UI Editor</span>
 													</h5>
 													<div class="card-text">
-														Extract and replace files in the game's UI.PAK archive.
+														Extract, replace, add and remove files in the game's UI.PAK archive.
 													</div>
 													<a class="card-link-mask" href="ui-editor/"></a>
 												</div>
@@ -842,7 +859,7 @@
 														<span class="card-title-text">Texture Editor</span>
 													</h5>
 													<div class="card-text">
-														Browse, import, export, and replace level textures (DX10 DDS).
+														Browse, import, export, and replace level textures — DDS, PNG, JPEG, TGA and more.
 													</div>
 													<a class="card-link-mask" href="texture-editor/"></a>
 												</div>

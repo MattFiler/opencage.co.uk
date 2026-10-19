@@ -200,7 +200,7 @@
 		<p class="text-muted small"><i>Write Compressed is greyed out because it only reports the loaded level's state; Reset Render Filters On Load is listed only while the Viewport is enabled.</i></p>
 		<ul>
 			<li><b>Show Confirmation When Saving</b> — shows a “Saved changes!” popup after a successful save (on by default).</li>
-			<li><b>Prompt to Save on Close</b> — asks whether to save when you close OpenCAGE with a level open (off by default). Independent of the unsaved-changes indicator, which always flags in the taskbar once you've modified something.</li>
+			<li><b>Prompt to Save on Close</b> — asks whether to save when you close OpenCAGE with a level open (off by default). Independent of the unsaved-changes indicator, which always adds <b>[UNSAVED CHANGES]</b> to the window title (and so the taskbar) once you've modified something.</li>
 			<li><b>Use Textured Model View</b> — model previews try to load textures/materials (on by default).</li>
 			<li><b>Keep Global Search Window Open</b> — after jumping to an entity from global search, the search window stays open (off by default).</li>
 			<li><b>Reset UI Layouts</b> — restores the default window size and dock panel layout. If the Viewport is open, it's kept and repositioned. You stay where you were: the same composite, stepped down as you were, with the same selection.</li>
@@ -209,6 +209,7 @@
 			<li><b>Show Game Platform</b> — appends the detected platform (e.g. Steam) to the window title — handy with <a href="/docs/multiple-game-installs/">multiple installs</a> open (off by default).</li>
 			<li><b>Write Compressed</b> — status only: shows whether the loaded level's Commands are compressed. Not user-togglable.</li>
 			<li><b>Reset Render Filters On Load</b> — when loading a level, turns all Viewport render filters off (shown only if the Viewport is available; off by default).</li>
+			<li><b>Always Fully Rebuild Radiosity</b> — every save rebuilds the level's radiosity from scratch, rather than keeping the existing lighting and only baking what changed. It's slower, and it replaces the game's own lighting in areas you haven't touched too. Once a level has been fully rebuilt, later saves keep fully rebuilding it even with this off (off by default; not in the picture above). See <a href="/docs/save-and-build/#radiosity">How Radiosity is Handled</a>.</li>
 			<li><b>Allow AI Assistants (MCP)</b> — lets AI assistants such as Claude drive OpenCAGE through <code>OpenCAGE.MCP.exe</code>. Only programs running as you, on this PC, can connect (on by default; not in the picture above). While an assistant is working, the status bar says so. See <a href="/docs/ai-assistants/">AI Assistants</a>, and <a href="/docs/ai-assistants/#working">While It Works</a> for that label and the question when you close OpenCAGE mid-task.</li>
 		</ul>
 		<p>Saving an uncompressed level now always writes both the PAK and BIN forms of the Commands data — that used to be an option here and no longer is. Compressed levels still save as BIN only.</p>

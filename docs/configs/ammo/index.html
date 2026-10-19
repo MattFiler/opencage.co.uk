@@ -113,6 +113,7 @@
 				<h1 class="section-heading">Ammo</h1>
 				<p>To edit ammo configurations in OpenCAGE navigate to View > Configuration Editors > Inventory > Ammo.</p>
 				<p>From here you will be presented with a variety of options which relate to the selected ammo type in the dropdown at the top of the window.</p>
+				<p>There is no Save button: changes are saved as you make them.</p>
 				<p>Read on to see a list of available properties with information about each.</p>
 			</div>
 			<div class="col-lg-4">
@@ -139,7 +140,7 @@
 			<ul><li>The impulse radius in metres.</li></ul>
 			
 			<li>
-				<code style="background:#8e1073;color:white;">Impuse At Centre Of Blast</code>
+				<code style="background:#8e1073;color:white;">Impulse At Centre Of Blast</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: 1</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
@@ -160,7 +161,7 @@
 				<code style="background:#412b69;color:white;">Minimum: 0.1</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>The speed the wavefront of an explosion moves at, in meters per second.</li></ul>
+			<ul><li>The speed the wavefront of an explosion moves at, in metres per second.</li></ul>
 		</ul>
 	</section>
 
@@ -174,7 +175,7 @@
 			<ul><li>If this ammo type is a projectile - note this value may be overridden at runtime.</li></ul>
 			
 			<li>
-				<code style="background:#8e1073;color:white;">Projectile Used Per Shot</code>
+				<code style="background:#8e1073;color:white;">Used Per Shot</code>
 				<code style="background:#412b69;color:white;">int</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
@@ -195,7 +196,7 @@
 				<code style="background:#8e1073;color:white;">Is Flamethrower</code>
 				<code style="background:#412b69;color:white;">bool</code>
 			</li>
-			<ul><li>If this ammo type is used as for the flamethrower - note this value may be overridden at runtime.</li></ul>
+			<ul><li>If this ammo type is used for the flamethrower - note this value may be overridden at runtime.</li></ul>
 			
 			<li>
 				<code style="background:#8e1073;color:white;">Consumed Per Second When Firing</code>
@@ -205,7 +206,7 @@
 			<ul><li>If 'Is Fuel' is checked, defines the units consumed per second whilst firing.</li></ul>
 
 			<li>
-				<code style="background:#8e1073;color:white;">Consumed Per Second WHen Idle</code>
+				<code style="background:#8e1073;color:white;">Consumed Per Second When Idle</code>
 				<code style="background:#412b69;color:white;">int</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
@@ -282,7 +283,14 @@
 	<section class="docs-section" id="damage-range-settings" style="border-bottom: 0">
 		<h2 class="section-heading">Damage Range Settings</h2>
 		<p>Select a 'Damage Range' to modify its properties. The impact will be effective up to this range (and from the previous range if appropriate).</p>
-		<section class="docs-section" id="damage-range-settings">
+		<ul>
+			<li>
+				<code style="background:#8e1073;color:white;">Range Distance (metres)</code>
+				<code style="background:#412b69;color:white;">float</code>
+			</li>
+			<ul><li>The box beside the 'Damage Range' dropdown. It holds the selected range's distance in metres. Changing it rewrites that range's distance, and its entry in the dropdown is renamed to match.</li></ul>
+		</ul>
+		<section class="docs-section">
 			<h3 id="damage-range-settings-vs-char">Damage VS Character</h3>
 			<ul>
 				<li>

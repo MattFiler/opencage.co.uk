@@ -105,6 +105,7 @@
 				<h1 class="section-heading">Viewcones</h1>
 				<p>To edit character viewcones in OpenCAGE navigate to View > Configuration Editors > Core Game > Viewcones.</p>
 				<p>From here you will be presented with a variety of options which apply to the selected viewcone type in the dropdown at the top of the window.</p>
+				<p>There is no Save button: changes are saved as you make them.</p>
 				<p>Viewcones are used to define the areas that enemies can spot targets within. If a target enters an enemy's viewcone, various modifiers are used to calculate a visibility score.</p>
 				<p>Each viewcone type has a number of individual cone definitions within it (usually 'Focused', 'Close', 'Normal', and 'Peripheral') which are all queried to determine if a target is spotted or not. Typically larger cones will have lower visibility modifiers to give the illusion of further targets being harder to see.</p>
 				<p>To apply a viewcone type to a character, check out the <a href="http://opencage.co.uk/docs/configs/senses">sense editor</a>.</p>
@@ -134,7 +135,7 @@
 				<code style="background:#412b69;color:white;">Minimum: 1</code>
 				<code style="background:#412b69;color:white;">Maximum: 179</code>
 			</li>
-			<ul><li>Defines the horizonal angle of the cone in degrees.</li></ul>
+			<ul><li>Defines the horizontal angle of the cone in degrees.</li></ul>
 			
 			<li>
 				<code style="background:#8e1073;color:white;">Length</code>
@@ -163,7 +164,7 @@
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1</code>
 			</li>
-			<ul><li>Defines the minimum and maximum impact the distance to the target from the enemy has on the visbility score.</li></ul>
+			<ul><li>Defines the minimum and maximum impact the distance to the target from the enemy has on the visibility score.</li></ul>
 			
 			<li>
 				<code style="background:#8e1073;color:white;">Smoke</code>
@@ -171,7 +172,7 @@
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1</code>
 			</li>
-			<ul><li>Defines the minimum and maximum impact that smoke has on the visbility score.</li></ul>
+			<ul><li>Defines the minimum and maximum impact that smoke has on the visibility score.</li></ul>
 			
 			<li>
 				<code style="background:#8e1073;color:white;">Movement</code>
@@ -179,7 +180,7 @@
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1</code>
 			</li>
-			<ul><li>Defines the minimum and maximum impact that the target's movement (standing, walking, running) has on the visbility score.</li></ul>
+			<ul><li>Defines the minimum and maximum impact that the target's movement (standing, walking, running) has on the visibility score.</li></ul>
 			
 			<li>
 				<code style="background:#8e1073;color:white;">Stance</code>
@@ -187,7 +188,7 @@
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1</code>
 			</li>
-			<ul><li>Defines the minimum and maximum impact that the target's stance (for the player; deep crouch, crouch, standing - for npcs; in cover, standing) has on the visbility score.</li></ul>
+			<ul><li>Defines the minimum and maximum impact that the target's stance (for the player; deep crouch, crouch, standing - for npcs; in cover, standing) has on the visibility score.</li></ul>
 			
 			<li>
 				<code style="background:#8e1073;color:white;">Exposure</code>
@@ -195,7 +196,7 @@
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1</code>
 			</li>
-			<ul><li>Defines the minimum and maximum impact that the target's environmental exposure has on the visbility score. Exposure is calculated by firing 8 rays outwards from the target at 3 levels (knees, torso, head), or 2 if crouched (knees, torso). The rays that intersect nearby geometry (if any) define how exposed the character is.</li></ul>
+			<ul><li>Defines the minimum and maximum impact that the target's environmental exposure has on the visibility score. Exposure is calculated by firing 8 rays outwards from the target at 3 levels (knees, torso, head), or 2 if crouched (knees, torso). The rays that intersect nearby geometry (if any) define how exposed the character is.</li></ul>
 		</ul>
 		<section class="docs-section" id="visibility-modifiers-light-meter">
 			<h3 id="damage-range-settings-vs-char">Light Meter</h3>
@@ -207,21 +208,21 @@
 					<code style="background:#412b69;color:white;">Minimum: 0</code>
 					<code style="background:#412b69;color:white;">Maximum: 1</code>
 				</li>
-				<ul><li>Defines the minimum and maximum impact on the visbility score if the target's light meter classes them as being in a 'dark' spot.</li></ul>
+				<ul><li>Defines the minimum and maximum impact on the visibility score if the target's light meter classes them as being in a 'dark' spot.</li></ul>
 				<li>
 					<code style="background:#8e1073;color:white;">Partially Lit</code>
 					<code style="background:#412b69;color:white;">float</code>
 					<code style="background:#412b69;color:white;">Minimum: 0</code>
 					<code style="background:#412b69;color:white;">Maximum: 1</code>
 				</li>
-				<ul><li>Defines the minimum and maximum impact on the visbility score if the target's light meter classes them as being in a 'partially lit' spot.</li></ul>
+				<ul><li>Defines the minimum and maximum impact on the visibility score if the target's light meter classes them as being in a 'partially lit' spot.</li></ul>
 				<li>
 					<code style="background:#8e1073;color:white;">Fully Lit</code>
 					<code style="background:#412b69;color:white;">float</code>
 					<code style="background:#412b69;color:white;">Minimum: 0</code>
 					<code style="background:#412b69;color:white;">Maximum: 1</code>
 				</li>
-				<ul><li>Defines the minimum and maximum impact on the visbility score if the target's light meter classes them as being in a 'fully lit' spot.</li></ul>
+				<ul><li>Defines the minimum and maximum impact on the visibility score if the target's light meter classes them as being in a 'fully lit' spot.</li></ul>
 			</ul>
 		</section>
 	</section>

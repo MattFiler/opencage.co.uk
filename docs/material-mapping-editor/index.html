@@ -112,6 +112,7 @@
 		<p>Material remappings are applied to <a href="/docs/scripting-intro/#compositeinstance-entities">composite instances</a> via their <code>mapping</code> parameter: select the <code>mapping</code> row in the entity inspector and click the <b>…</b> button at the right of its value, as shown below — this opens the same window as a picker with a <b>Select Set</b> button. That remaps materials on <a href="/docs/cathode-entities/#ModelReference">ModelReference</a> entities within that instance's immediate child composite — without editing the materials themselves.</p>
 		<p><img src="img/inspector-mapping.jpg" alt="The entity inspector for a composite instance with the mapping parameter row selected, showing the set name and the ... button that opens the picker." style="max-width:100%;width:276px"></p>
 		<p class="text-muted small"><i>A composite instance's mapping parameter in the entity inspector; the … button opens the Material Mapping Editor as a picker.</i></p>
+		<p>The same picker also opens from <b>Set Mapping...</b> in an entity's <b>Collision Mapping</b> resource (the inspector's <b>Resources</b> button), to choose the set that collision mapping carries.</p>
 		<p><b>Note:</b> mappings are written back to <code>MATERIAL_MAPPINGS.PAK</code> and applied to the level's placed models when you save, so the game shows the remapped materials on its next launch.</p>
 		<p>This is separate from the <a href="/docs/material-editor/">Material Editor</a>, which edits a material's samplers, features, and shader parameters.</p>
     </section>

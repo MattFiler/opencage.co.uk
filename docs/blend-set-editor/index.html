@@ -218,6 +218,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Changes are held until you press <b>Save</b>, which becomes available once something has been edited. The status bar shows <b>unsaved changes</b> in the meantime, and closing the window with edits outstanding asks first.</p>
 		<p>Saving writes <code>ANIMATION.PAK</code> — it is separate from <b>File → Save Level</b> in the script editor, and applies to every level, since the archive is global.</p>
+		<p>A <b>Saving the animations</b> window shows how the write is going. It writes everything OpenCAGE holds for the file, so changes not yet saved in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a>, and kept tree layouts, go in with your blend sets. The first write also keeps a copy of the original <code>ANIMATION.PAK</code> for the <a href="/docs/installing-mods/">Mod Manager</a>, so it takes longer. Save is refused while mods are being applied, or if <code>ANIMATION.PAK</code> has changed on disk since OpenCAGE loaded it (restart OpenCAGE to load it as it is now).</p>
 	</section>
 </article>
 

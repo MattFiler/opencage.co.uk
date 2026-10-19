@@ -163,7 +163,7 @@
 	<section class="docs-section" id="script-changes">
 		<h2 class="section-heading">See Small Script Changes at Once</h2>
 		<p>In a script that's already there, change a value, a delay or some text in the Entity Inspector, or make or break a link on the flowgraph, and the game has it a moment later, with no save and no reload (see <a href="#what-is-sent">What Reaches the Game</a>).</p>
-		<p>Each entity whose parameters you change is re-initialised (making or breaking a link doesn't do that), so if it was running, it stops. Start it again, or trigger the method that sets the logic off (<b>trigger</b>, <b>start</b>...) with the inspector's <a href="#calling-methods">▶ Trigger Method</a> or a right-click on its pin. That way you can run the same bit of script again and again as you tune it, without playing back to the point where it would fire.</p>
+		<p>Each entity whose parameters you change is re-initialised, and so is one whose value comes through a data link you make or break, since the value it reads has changed (making or breaking a logic link doesn't re-initialise anything). If it was running, it stops. Start it again, or trigger the method that sets the logic off (<b>trigger</b>, <b>start</b>...) with the inspector's <a href="#calling-methods">▶ Trigger Method</a> or a right-click on its pin. That way you can run the same bit of script again and again as you tune it, without playing back to the point where it would fire.</p>
 	</section>
 
 	<section class="docs-section" id="lights">
@@ -210,6 +210,7 @@
 			<li><b>Scrub and play animations in the game.</b> In the <a href="/docs/cage-animation-editor/#in-game">CAGEAnimation Editor</a>, Animation Mode with <b>In game</b> ticked holds the animation at the playhead in the running game and plays it from there, so you can time a door, a lift or a light sweep against the real level while you edit its keys.</li>
 			<li><b>Frame shots, and check what the player would see.</b> With <a href="#camera">Live Link Camera</a> on <b>Sync viewport camera to game</b>, the game draws the level from wherever you put the Viewport's camera, anywhere in the level.</li>
 			<li><b>Find where the game's camera is.</b> On <b>Sync game camera to viewport</b>, the Viewport follows the game's camera, so you can see in the editor where it is and what it's looking at.</li>
+			<li><b>Shape a spline against the real level.</b> With <b>Edit in Viewport</b> ticked in a SplinePath's <a href="/docs/scripting-intro/#inspector">Edit Spline</a> window, the running game follows its points as you move them, and goes back to the level's spline when you leave without saving.</li>
 			<li><b>Set things off without playing up to them.</b> Lights, NPC spawns, screen effects and sequences can be set off by triggering their methods from the Entity Inspector's <a href="#calling-methods">Trigger Method</a> or a pin on the flowgraph, rather than playing to the point where the script would.</li>
 			<li><b>See what a script is doing.</b> With <a href="#activity">Show Activity</a> on, each flowgraph link lights up as the running game uses it, orange for logic and blue for data, with a count beside each pin it fires or calls, so you can follow a script as it runs, see which way it went and how often, and find the parts that never fire.</li>
 			<li><b>Check a change everywhere at once.</b> An edit to a composite reaches every running instance of it, so you can see how it plays out in each place the level uses it (see <a href="#editing">Editing While the Game Runs</a>).</li>
@@ -248,8 +249,8 @@
 			<li>Press <b>Start Alien: Isolation</b>.</li>
 		</ol>
 		<p>Starting the game this way installs OpenCAGE's runtime utils in the game folder with Live Link switched on, and switches the <a href="#live-link-button">Live Link button</a> on, so OpenCAGE connects by itself a few seconds after the game starts. The status bar at the bottom of the OpenCAGE window says <b>Live Link: connected to the game</b> when it has.</p>
-		<p><img src="img/launch-game.jpg" alt="The Launch Game window with Enable Live Link ticked at the bottom of the Scripting Helpers group, above the Start Alien: Isolation button." style="max-width:100%;width:394px"></p>
-		<p class="text-muted small"><i>Enable Live Link is the last box in the Scripting Helpers group.</i></p>
+		<p><img src="img/launch-game.jpg" alt="The Launch Game window with Enable Live Link ticked at the bottom of the Scripting Helpers group's left-hand column, above the Start Alien: Isolation button." style="max-width:100%;width:464px"></p>
+		<p class="text-muted small"><i>Enable Live Link is the last box in the left-hand column of the Scripting Helpers group.</i></p>
     </section>
 
 	<section class="docs-section" id="unsaved-changes">
@@ -289,7 +290,7 @@
 		<ul>
 			<li>Entities added and deleted, including new instances of composites the level already has, which are placed with all of their contents.</li>
 			<li>Parameter changes, including alias overrides on entities inside nested instances.</li>
-			<li>Links made or broken on the flowgraph.</li>
+			<li>Links made or broken on the flowgraph. A data link re-initialises the entity its value goes into.</li>
 			<li>Entities moved, in the Viewport or the inspector. Move the floor the player is standing on, and they drop through it for a moment while its collision is rebuilt.</li>
 			<li>Keyframes and events in the <a href="/docs/cage-animation-editor/">CAGEAnimation editor</a>, as you make them, and TriggerSequence entries when you close the <a href="/docs/trigger-sequence-editor/">TriggerSequence editor</a>. The entity is re-initialised, so start it again to see the change.</li>
 			<li><b>Edit → Undo</b> and <b>Edit → Redo</b>, <a href="/docs/scripting-intro/#deinstance">De-instance Composite Instance</a>, and edits made by an <a href="#ai-assistants">AI assistant</a>.</li>
@@ -445,7 +446,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>While connected, the <a href="/docs/level-viewer/">Viewport</a> toolbar has a <b>Live Link Camera</b> drop-down, after <b>Highlight Zones</b>. It links the Viewport's camera to the game's, one way or the other. It's on <b>Disabled</b> each time Live Link connects, so the game starts out on its own camera and the Viewport stays where you left it until you pick a sync.</p>
+		<p>While connected, the <a href="/docs/level-viewer/">Viewport</a> toolbar has a <b>Live Link Camera</b> drop-down, after <b>Highlight Zones</b>. It links the Viewport's camera to the game's, one way or the other. It's on <b>Disabled</b> each time Live Link connects, so the game starts out on its own camera and the Viewport stays where you left it until you pick a sync. While either sync is on, the button shows pressed, and hovering over it says which way the cameras are linked.</p>
 		<p><img src="img/camera-menu.jpg" alt="The Live Link Camera drop-down open on the Viewport toolbar, with Disabled ticked above Sync viewport camera to game and Sync game camera to viewport." style="max-width:100%;width:300px"></p>
 		<ul>
 			<li><b>Disabled</b>: the game's camera and the Viewport's each move on their own.</li>
@@ -459,7 +460,7 @@
 		<p>Both follow only while the Viewport shows the level itself (its root composite, or a composite you stepped into from there) and the game is running the level you have open. The game gets its own camera back when you choose <b>Disabled</b>, when Live Link disconnects, or when you open another composite on its own. The player's camera is never moved, so the view goes straight back to it.</p>
 		<p>With <b>Sync game camera to viewport</b>, the Viewport's camera stays locked for as long as that choice is on and Live Link is connected, even when it has nothing to follow, as in a composite opened on its own: open the level's root composite to see the game's view again. Choose <b>Disabled</b> to move the Viewport yourself again.</p>
 		<p><b>Game logic sees the Viewport's camera too.</b> While the game draws from the Viewport's camera, anything that checks what the player's camera sees reacts to it instead: camera viewcone triggers, the alien's checks for whether it's in view, and AI conditions on the camera's direction. It's the same as with Cinematic Tools' free camera, so bear it in mind when testing things that depend on being seen.</p>
-		<p><b>Cinematic Tools</b> can stay loaded. While OpenCAGE is driving the game's camera, OpenCAGE's camera wins, and Cinematic Tools' comes back once OpenCAGE lets go. With <b>Sync game camera to viewport</b>, the Viewport follows Cinematic Tools' free camera while it's on.</p>
+		<p><b>Cinematic Tools</b> and Live Link don't run together: a game started with Enable Cinematic Tools ticked serves no Live Link (see <a href="#requirements">Requirements</a>). <a href="/docs/launch-game/#possess-characters">Possess Characters</a> does: while the game follows the Viewport's camera, that camera wins over the one behind the character you're steering.</p>
 		<p><b>Keep your mouse cursor.</b> While a level is played, the game normally takes over the mouse cursor, which gets in the way of flying the Viewport beside it. Tick <b>Unlock Mouse</b> in the Launch Game dialog's <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a> and the game leaves the cursor alone. When you want to look around in the game itself, click its window and press the Unlock Mouse key (<b>F4</b> unless you chose another); press it again to free the cursor.</p>
     </section>
 </article>
@@ -472,7 +473,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>An <a href="/docs/ai-assistants/">AI assistant</a> connected to OpenCAGE can use Live Link too. Its script edits go to the game automatically, as yours do, and it has tools of its own:</p>
 		<ul>
-			<li><code>runtime_utils</code>: the connection's status, connect and disconnect; what the game is running and where its camera is; push a composite; call a method on an entity; describe a composite's running instances; take a screenshot of the game; load a level; and <a href="#activity">Show Activity</a> (<code>activity</code>): switch it on or off, clear it, or list the links the game has used in the open composite, with how often and how long ago, and how many times each output fired and each method was called.</li>
+			<li><code>runtime_utils</code>: the connection's status, connect and disconnect; what the game is running and where its camera is; push a composite; call a method on an entity; hold or play a CAGEAnimation in the game, as <a href="/docs/cage-animation-editor/">Animation Mode</a> does (<code>animate</code>); describe a composite's running instances; take a screenshot of the game; load a level; and <a href="#activity">Show Activity</a> (<code>activity</code>): switch it on or off, clear it, or list the links the game has used in the open composite, with how often and how long ago, and how many times each output fired and each method was called.</li>
 			<li><code>set_viewport_view</code> with <code>live_link_camera</code>: the Live Link Camera choice, <code>disabled</code>, <code>viewport_to_game</code> or <code>game_to_viewport</code>. Set it after connecting: it goes back to <code>disabled</code> whenever Live Link connects.</li>
 			<li><code>set_viewport_camera</code>: puts the Viewport's camera at a position and direction, and the game's with it while the game follows the Viewport.</li>
 			<li><code>launch_options</code> with <code>live_link</code>: the Enable Live Link box.</li>
@@ -487,20 +488,20 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>There's no Live Link button.</b> It only appears while this install's game is running and serving Live Link (or while OpenCAGE is connected), and only for the Steam, GOG and Epic Games Store versions. If the game is running, it wasn't started with Live Link, or it's from another game install: close it and start it from Launch Game with Enable Live Link ticked.</li>
+			<li><b>There's no Live Link button.</b> It only appears while this install's game is running and serving Live Link (or while OpenCAGE is connected), and only for the Steam, GOG and Epic Games Store versions. If the game is running, it wasn't started with Live Link, it was started with Cinematic Tools, or it's from another game install: close it and start it from Launch Game with Enable Live Link ticked and Enable Cinematic Tools unticked.</li>
 			<li><b>"The game is running a different level".</b> The game has a different level loaded from the one open in OpenCAGE. Save, and load the same level in the game, or start the game again from Launch Game with that level picked.</li>
 			<li><b>Edits or calls are "waiting".</b> The level is still starting, the pause menu is open, a cutscene or an on-screen message has paused the level (close the message in the game), or the game is restarting from a checkpoint after a death. See <a href="#waiting">Level Start &amp; Pause</a>.</li>
 			<li><b>"No level is running".</b> The game is between levels, or unloading one. Load the level in the game, then <a href="#resync">Resync</a> what you changed.</li>
 			<li><b>"The game's runtime utils are too old to follow the viewport camera"</b> (or <b>too old for the viewport to follow the game camera</b>), from <a href="#camera">Live Link Camera</a>. The game is running an older copy of OpenCAGE's runtime utils. Start it from the Launch Game window again, which updates them.</li>
-			<li><b>"Unsupported Live Link protocol (OpenCAGE and the game's OpenCAGE_Utils.asi are different versions)".</b> The runtime utils in the game folder don't match this OpenCAGE, usually after an update. Start the game from Launch Game again, which replaces them.</li>
-			<li><b>"The game is running but not serving Live Link".</b> The game wasn't started with Enable Live Link, another OpenCAGE window is already connected, or another copy of the game is serving Live Link (<code>OpenCAGE_Utils.log</code> then says it could not listen on 127.0.0.1:8765). Close the others and start the game from Launch Game.</li>
+			<li><b>"Unsupported Live Link protocol (OpenCAGE and the game's OpenCAGE.RuntimeUtils.asi are different versions)".</b> The runtime utils in the game folder don't match this OpenCAGE, usually after an update. Start the game from Launch Game again, which replaces them.</li>
+			<li><b>"The game is running but not serving Live Link".</b> The game wasn't started with Enable Live Link, another OpenCAGE window is already connected, or another copy of the game is serving Live Link (<code>OpenCAGE.RuntimeUtils.log</code> then says it could not listen on 127.0.0.1:8765). Close the others and start the game from Launch Game.</li>
 			<li><b>An edit didn't show up.</b> Check the status bar for what the game said (see <a href="#status-messages">below</a>). A new composite, a model placed on its own, or a change to a model, material, texture or other resource, needs the level <a href="#save-and-reload">saved and reloaded</a>. Edits made before connecting need a <a href="#resync">Resync</a>.</li>
 			<li><b>My live edits have gone from the game.</b> The game loaded the level again from disk, which only has what you've saved. <a href="#resync">Resync</a> each composite you changed, or save and start the game again.</li>
-			<li><b>Show Activity lights nothing.</b> The script hasn't run since you switched Show Activity on or cleared it: play up to it, or set it off by <a href="#calling-methods">triggering a method</a>. Check you're watching the instance that runs (open the composite from the Composite Browser to watch every instance of it), and that the composite has flowgraph pages. If the status bar says <b>the game's OpenCAGE_Utils.asi is too old to show script activity</b>, the game is running an older copy of OpenCAGE's runtime utils: start it from Launch Game again, which updates them. See <a href="#activity-limits">Limits</a> for the rest.</li>
+			<li><b>Show Activity lights nothing.</b> The script hasn't run since you switched Show Activity on or cleared it: play up to it, or set it off by <a href="#calling-methods">triggering a method</a>. Check you're watching the instance that runs (open the composite from the Composite Browser to watch every instance of it), and that the composite has flowgraph pages. If the status bar says <b>the game's OpenCAGE.RuntimeUtils.asi is too old to show script activity</b>, the game is running an older copy of OpenCAGE's runtime utils: start it from Launch Game again, which updates them. See <a href="#activity-limits">Limits</a> for the rest.</li>
 			<li><b>Something stopped when I edited it.</b> Edited entities are re-initialised, so start it again (<a href="#calling-methods">trigger its <b>start</b></a>).</li>
 			<li><b>The game closed when I saved.</b> Saving always closes the game. Start it again from Launch Game. With <b>Options → Misc → Open Game On Save</b> ticked, OpenCAGE starts it again by itself once the save is done, and Live Link reconnects.</li>
 		</ul>
-		<p>The game also writes what Live Link did (every edit applied, call made or request turned away) to <code>OpenCAGE_Utils.log</code> in the game folder. OpenCAGE's status bar messages clear after a few seconds, so the log is where to look for one you missed. It's started afresh each time the game starts, so read it before starting the game again.</p>
+		<p>The game also writes what Live Link did (every edit applied, call made or request turned away) to <code>OpenCAGE.RuntimeUtils.log</code> in the game folder. OpenCAGE's status bar messages clear after a few seconds, so the log is where to look for one you missed. It's started afresh each time the game starts, so read it before starting the game again.</p>
     </section>
 
 	<section class="docs-section" id="status-messages">
@@ -508,6 +509,7 @@
 		<p>Each edit the game answers puts a line on the status bar, starting <b>Live Link: <i>composite</i> -</b>, for a few seconds:</p>
 		<ul>
 			<li><b>Applied to N instance(s): … added, … removed, … modified</b>: done. <b>0 instance(s)</b> means the composite isn't used anywhere in the running level, so nothing visible changes.</li>
+			<li><b>… N of those modified because a data link into them changed</b>: you made or broke a data link, so the entity the value goes into was re-initialised to read it (a link into one of the composite's variables doesn't do this).</li>
 			<li><b>… N of the composite's variables added, removed or changed</b>: counted apart from the entities. Instances of the composite are re-initialised to pick up changed defaults. When it ends <b>save and reload to use changed ones</b>, the composite is the level's root (see <a href="#save-and-reload">What Needs a Reload</a>).</li>
 			<li><b>Unchanged since it was last applied</b>: nothing to do.</li>
 			<li><b>Composite XXXXXXXX is not in the running level - save and reload the level to add new composites</b>: see <a href="#save-and-reload">What Needs a Reload</a>.</li>

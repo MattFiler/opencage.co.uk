@@ -116,6 +116,14 @@
 	<section class="docs-section" id="shared">
 		<h2 class="section-heading">Shared Databases</h2>
 		<p><b>Shared databases (DATA/TEXT)</b> is a checklist of every database under <code>DATA/TEXT</code>. Tick the ones this level should load; the change is written to <code>DATA/LEVEL_TEXT_DATABASES.XML</code>. Databases ticked under <b>globals</b> don't need ticking again per level. A name the config lists but <code>DATA/TEXT</code> has no file for stays at the bottom of the list, ticked and marked <i>(file missing)</i>, with a note under the list saying so — retail names <code>CV0</code> for most levels, and no such database ships, which is the note in the screenshot above. Untick it to drop it from the file.</p>
+		<p>Two buttons under the list tick several databases at one go. Neither unticks anything you've already ticked, and both are greyed out while <b>(globals - every level)</b> is selected:</p>
+		<ul>
+			<li><b>Add Standard Set</b> ticks the subtitle, conversation and bark databases every playable level loads: <code>SS1</code>–<code>SS3</code>, <code>CV0</code>–<code>CV6</code> and <code>G0000</code>–<code>G0003</code>.</li>
+			<li><b>Copy From Level...</b> opens a menu of levels, grouped under <b>Campaign</b>, <b>DLC</b> and <b>Custom</b>. Pick one to tick the standard set plus that level's own mission databases under <code>DATA/TEXT</code>. Where a level has mission databases of its own, the menu lists them in brackets after its name.</li>
+		</ul>
+		<p>If the level already names everything a button would add, OpenCAGE says <i>Nothing to add</i> and leaves the file alone.</p>
+		<p>A level needs the databases its script's strings live in. If you've <a href="/docs/composite-porting/#levels">imported composites from another level</a>, use <b>Copy From Level...</b> and pick that level, so their strings show in game. <a href="/docs/create-level/">File > Create Level</a> does this for you: it writes the new level's block itself, with the standard set and the mission databases of the levels its composites came from.</p>
+		<p>A level that names none of the standard databases, in either list, shows its subtitles and barks as string ids in game. When that's the case, the note under the list says so. Click <b>Add Standard Set</b> to fix it.</p>
 	</section>
 
 	<section class="docs-section" id="local">

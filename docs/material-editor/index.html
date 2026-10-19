@@ -182,10 +182,11 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>There are two ways to get a new material.</p>
+		<p>There are two ways to get a new material, and one way to remove one.</p>
 		<ul>
 			<li><b>New Material…</b> — builds one from nothing. The <b>New material</b> dialog shown below asks for the <b>shader type</b> and a name, and that's all: the family is the only thing that can't be changed later, and everything else the material needs is reachable from the editor once it exists.</li>
 			<li><b>Duplicate Selected</b> — clones the selected material, named with a <b>Clone</b> suffix, so you can tune samplers, features and parameters independently of the original.</li>
+			<li><b>Delete Selected</b> (beside <b>Duplicate Selected</b>; not in the first screenshot) — removes the selected material. One that's still in use can't be deleted: the editor says what uses it, so you can point those at another material first. Otherwise it asks you to confirm, then offers to delete the textures only that material used.</li>
 		</ul>
 		<p><img src="img/new-material.jpg" alt="The New material dialog: a Shader type dropdown set to CA_ENVIRONMENT, a note that 1223 permutations are available from this level and that features are chosen from those combinations, a Material name box reading new material, and Create and Cancel buttons." style="max-width:100%;width:462px"></p>
 		<p class="text-muted small"><i>New Material… asks for the shader type and a name; everything else is set in the editor afterwards.</i></p>

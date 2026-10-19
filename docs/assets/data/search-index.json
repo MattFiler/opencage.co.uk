@@ -175,6 +175,8 @@
         "keywords":  [
             "export",
             "delete",
+            "export all",
+            "delete associated materials",
             "model editor"
         ],
         "title":  "Export \u0026 Delete"
@@ -540,6 +542,7 @@
         "keywords":  [
             "export",
             "delete",
+            "export all",
             "texture editor"
         ],
         "title":  "Export \u0026 Delete"
@@ -752,6 +755,7 @@
         "category":  "Behaviour Tree Editor",
         "keywords":  [
             "intro",
+            "dark mode",
             "behaviour tree editor"
         ],
         "title":  "Introduction"
@@ -18748,6 +18752,61 @@
         "title":  "Senses"
     },
     {
+        "url":  "/docs/configs/senses/#sense-sets",
+        "description":  "Senses",
+        "type":  "symbol",
+        "category":  "Configuration",
+        "keywords":  [
+            "sense-sets",
+            "sense set",
+            "viewcone set",
+            "heightened",
+            "hearing distance",
+            "senses",
+            "config",
+            "configuration"
+        ],
+        "title":  "Sense Sets"
+    },
+    {
+        "url":  "/docs/configs/senses/#senses",
+        "description":  "Senses",
+        "type":  "symbol",
+        "category":  "Configuration",
+        "keywords":  [
+            "senses",
+            "visual sense",
+            "weapon sound",
+            "movement sound",
+            "damage caused",
+            "touched",
+            "see flashlight",
+            "flamethrower",
+            "combined sense",
+            "senses",
+            "config",
+            "configuration"
+        ],
+        "title":  "Senses"
+    },
+    {
+        "url":  "/docs/configs/senses/#sense-values",
+        "description":  "Senses",
+        "type":  "symbol",
+        "category":  "Configuration",
+        "keywords":  [
+            "sense-values",
+            "activation threshold",
+            "trace threshold",
+            "decay per second",
+            "positional accuracy",
+            "senses",
+            "config",
+            "configuration"
+        ],
+        "title":  "Sense Values"
+    },
+    {
         "url":  "/docs/configs/viewcones/",
         "description":  "A guide to modifying character viewcones through OpenCAGE.",
         "type":  "page",
@@ -18863,6 +18922,8 @@
             "scripting helpers greyed out",
             "live link button missing",
             "live link camera",
+            "freeze time",
+            "zone streaming",
             "launch game"
         ],
         "title":  "Cinematic Tools or Scripting Helpers"
@@ -20157,6 +20218,8 @@
             "allow ai assistants",
             "mcp",
             "claude",
+            "always fully rebuild radiosity",
+            "unsaved changes",
             "options"
         ],
         "title":  "Misc"
@@ -20334,6 +20397,8 @@
             "thumbnails",
             "composite browser mode",
             "tree and preview",
+            "mod manager",
+            "help button",
             "cathode scripting introduction"
         ],
         "title":  "Interface Overview"
@@ -20355,6 +20420,8 @@
             "composite preview",
             "show preview",
             "no preview",
+            "select destination pin",
+            "entity names",
             "cathode scripting introduction"
         ],
         "title":  "Creating a Script"
@@ -21590,6 +21657,7 @@
             "patch",
             "regenerate",
             "meta marker",
+            "always fully rebuild radiosity",
             "save and build"
         ],
         "title":  "How Radiosity is Handled"
@@ -21833,6 +21901,8 @@
             "picker",
             "animation parameter",
             "picker",
+            "use set + animation",
+            "animationset",
             "animation editor"
         ],
         "title":  "Using it as a Picker"
@@ -22351,6 +22421,8 @@
             "tips",
             "tips",
             "backup",
+            "display model",
+            "text databases",
             "composite porting"
         ],
         "title":  "Tips \u0026 Caveats"
@@ -22572,6 +22644,8 @@
             "new material",
             "duplicate",
             "clone",
+            "delete selected",
+            "delete material",
             "material editor"
         ],
         "title":  "Creating Materials"
@@ -22721,6 +22795,7 @@
             "required assets",
             "root composite",
             "frontend",
+            "text databases",
             "create level"
         ],
         "title":  "What a New Level Contains"
@@ -22851,6 +22926,8 @@
             "shared",
             "data/text",
             "globals",
+            "add standard set",
+            "copy from level",
             "level text dbs"
         ],
         "title":  "Shared Databases"
@@ -23227,6 +23304,7 @@
             "zone entity",
             "add selected to triggersequence",
             "auto-add",
+            "unzoned geometry",
             "viewport"
         ],
         "title":  "Zones"
@@ -23259,6 +23337,7 @@
             "play",
             "scrub",
             "viewport",
+            "loop",
             "cageanimation editor"
         ],
         "title":  "Previewing"
@@ -23534,6 +23613,7 @@
             "make unique",
             "create composite variant",
             "create composite from selected",
+            "open composite",
             "viewport"
         ],
         "title":  "Right-click Menu"
@@ -24484,10 +24564,11 @@
             "different level",
             "too old",
             "no live link button",
-            "OpenCAGE_Utils.log",
+            "OpenCAGE.RuntimeUtils.log",
             "unsupported live link protocol",
             "not serving live link",
             "show activity lights nothing",
+            "cinematic tools",
             "live link"
         ],
         "title":  "Troubleshooting"
@@ -24693,7 +24774,7 @@
         "category":  "Debug Text \u0026 Markers",
         "keywords":  [
             "log-file",
-            "OpenCAGE_Utils.log",
+            "OpenCAGE.RuntimeUtils.log",
             "log file",
             "debug text \u0026 markers"
         ],
@@ -24874,6 +24955,9 @@
             "keep those changes safe",
             "verify integrity",
             "original files",
+            "gog galaxy",
+            "epic games launcher",
+            "verify",
             "installing mods"
         ],
         "title":  "Keep Your Changes Safe"

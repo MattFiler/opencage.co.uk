@@ -153,7 +153,7 @@
 			<li><b>Timeline / curve graph</b> (centre) — float tracks as bezier or linear curves, event lanes underneath, and a time ruler at the bottom (including the playable animation-length handle).</li>
 			<li><b>Inspector</b> (right) — context panel for the current selection: a float keyframe, a string event, an animation-entity keyframe, or an Animation Entity track’s bindings.</li>
 		</ul>
-		<p>The footer has <b>Snap</b> / <b>Interval</b> (the interval is greyed out until Snap is ticked), <b>Bezier curves</b>, <b>Animation Mode</b> (with <b>Play</b> and a time readout while it's on) and <b>Close</b>.</p>
+		<p>The footer has <b>Snap</b> / <b>Interval</b> (the interval is greyed out until Snap is ticked), <b>Bezier curves</b>, <b>Animation Mode</b> (with a time readout, <b>Loop</b> and <b>Play</b> while it's on, and <b>In game</b> beside it while <a href="/docs/live-link/">Live Link</a> is connected) and <b>Close</b>.</p>
     </section>
 </article>
 
@@ -253,12 +253,13 @@
 		<p><img src="img/anim-entity-track.jpg" alt="The Animation Entity Track panel for a selected blue lane, with MARKER and CAMERA slots bound to entities and an empty CHARACTER slot offering Assign." width="100%"></p>
 		<p class="text-muted small"><i>A camera lane from cutscene_20: MARKER and CAMERA are bound (Jump / Reassign…), CHARACTER is still empty (Assign…).</i></p>
 		<ul>
-			<li><b>MARKER</b> — typically a position marker / model reference</li>
-			<li><b>CHARACTER</b> — character or player variable</li>
-			<li><b>CAMERA</b> — camera resource</li>
+			<li><b>MARKER</b> — a position marker, model reference or <code>CMD_PlayAnimation</code>, or a composite instance</li>
+			<li><b>CHARACTER</b> — a character, the player variable or a model reference, or a composite instance</li>
+			<li><b>CAMERA</b> — a camera resource</li>
 		</ul>
+		<p>The picker a slot opens lists just those types, plus composite instances so you can step into them.</p>
 		<p>These bound objects are linked to the play-animation entity on the event track, supplying context such as convergence positions and associated characters.</p>
-		<p>Each slot shows the assigned entity's name and type (bold, coloured, and respecting <a href="/docs/options/#entity-display"><b>Show entity IDs</b></a>), with <b>Jump</b> and <b>Assign…</b> / <b>Reassign…</b>. Empty slots read <b>(none)</b> with <b>Jump</b> disabled, and create a new connection for that binding type when you assign — in the shot above, the camera lane's <b>MARKER</b> and <b>CAMERA</b> are bound and <b>CHARACTER</b> is still empty.</p>
+		<p>Each slot shows the assigned entity's name and type (bold, coloured, and respecting <a href="/docs/options/#entity-display"><b>Show ShortGuids</b></a>), with <b>Jump</b> and <b>Assign…</b> / <b>Reassign…</b>. Empty slots read <b>(none)</b> with <b>Jump</b> disabled, and create a new connection for that binding type when you assign — in the shot above, the camera lane's <b>MARKER</b> and <b>CAMERA</b> are bound and <b>CHARACTER</b> is still empty.</p>
 		<p><b>Keyframes</b> on these tracks pick a play-animation entity:</p>
 		<ul>
 			<li><code>CMD_PlayAnimation</code></li>
@@ -277,18 +278,18 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>A timeline tells you the numbers; <b>Animation Mode</b> shows you the motion. With it on, the editor drives the <a href="/docs/level-viewer/">Viewport</a> from a playhead, so a door swings, a camera tracks or a light moves as you scrub — and moving something out in the 3D view becomes a keyframe. It needs the Viewport: with the 3D view off, the button says so.</p>
+		<p>A timeline tells you the numbers; <b>Animation Mode</b> shows you the motion. With it on, the editor drives the <a href="/docs/level-viewer/">Viewport</a> from a playhead, so a door swings, a camera tracks or a light moves as you scrub — and moving something out in the 3D view becomes a keyframe. It needs the Viewport, unless it can play the animation in the game instead (see <a href="#in-game">Previewing in the Game</a>): with neither, the button says so.</p>
 		<p>The one rule everything follows: <b>Animation Mode never changes an entity's own values.</b> An entity's position is where it rests when nothing is playing, and the animation is the only thing that moves it. That's what makes leaving the mode safe at any moment — everything the preview moved goes straight back where it was.</p>
 	</section>
 
 	<section class="docs-section" id="previewing">
 		<h2 class="section-heading">Previewing</h2>
-		<p>Click <b>Animation Mode</b> in the footer (it becomes <b>Exit Animation Mode</b>, in bold, while it's on). A playhead appears on the timeline — a red line down the graph and lanes, with its time labelled at the top — with <b>Play</b> and a time readout beside the button, as shown below:</p>
+		<p>Click <b>Animation Mode</b> in the footer (it becomes <b>Exit Animation Mode</b>, in bold, while it's on). A playhead appears on the timeline — a red line down the graph and lanes, with its time labelled at the top — with a time readout, a <b>Loop</b> box and <b>Play</b> beside the button, as shown below (<b>Loop</b> is not in the picture):</p>
 		<p><img src="img/animation-mode.jpg" alt="The editor in Animation Mode: a red playhead line stands on the timeline at 52.8 s, and the footer shows the time readout, Play and the bold exit button." width="100%"></p>
 		<p class="text-muted small"><i>Animation Mode on, with the playhead parked at 52.80 s on cutscene_20's lid-opening keyframes; the footer button now reads Exit Animation Mode in bold.</i></p>
 		<ul>
 			<li><b>Drag the playhead</b> along the timeline to scrub. Every transform the animation drives is posed in the Viewport for that time, using the same interpolation the graph is drawing — bezier or linear, whichever you have on.</li>
-			<li><b>Play</b> runs from the playhead to the end of the animation in real time and stops; playing from the end starts over. <b>Stop</b> halts it where it is.</li>
+			<li><b>Play</b> runs from the playhead to the end of the animation in real time and stops; playing from the end starts over. With <b>Loop</b> ticked it goes round again instead of stopping. <b>Stop</b> halts it where it is.</li>
 			<li>Edit a curve while the mode is on and the Viewport updates without the playhead moving.</li>
 		</ul>
 		<p>Which things move depends on where you came from. A CAGEAnimation addresses its targets relative to its own composite, and the same composite can be instanced many times over, so the hierarchy you stepped through to reach the animation is what decides which placement is previewed. Open the editor from inside the instance you want to watch.</p>

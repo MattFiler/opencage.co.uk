@@ -146,7 +146,7 @@
 
 	<section class="docs-section" id="cubemaps">
 		<h2 class="section-heading">Cubemaps</h2>
-		<p>Cubemaps can be viewed either as <b>2D faces</b> — the six faces side by side in one strip — or in <b>3D</b>, mapped onto a cube you can drag to rotate and scroll to zoom. Selecting a cubemap adds a <b>Cubemap view</b> row above the preview. 3D is the default and swaps the Streamed / Persistent tabs for the cube, as shown below; 2D faces brings the tabs back with the strip in place of the image. The <b>Source</b> dropdown beside the radio buttons picks which slot the cube is built from, but it's only enabled when a cubemap has both slots filled — every cubemap the game ships is streamed-only, so for those it stays greyed out.</p>
+		<p>Cubemaps can be viewed either as <b>2D faces</b> — the six faces side by side in one strip — or in <b>3D</b>, wrapped round a sphere you can drag to rotate and scroll to zoom. Selecting a cubemap adds a <b>Cubemap view</b> row above the preview. 3D is the default and swaps the Streamed / Persistent tabs for the 3D view, as shown below (in an older version, which drew the faces on a cube); 2D faces brings the tabs back with the strip in place of the image. The <b>Source</b> dropdown beside the radio buttons picks which slot the 3D view is built from, but it's only enabled when a cubemap has both slots filled — every cubemap the game ships is streamed-only, so for those it stays greyed out.</p>
 		<p><img src="img/cubemap-3d.jpg" alt="The Texture Editor preview showing a cubemap mapped onto an interactive 3D cube, with the Cubemap view radio buttons and the greyed-out Source dropdown above it." style="max-width:100%;width:483px"></p>
 		<p class="text-muted small"><i>A cubemap in the 3D view. The Source dropdown is greyed out because, like every cubemap the game ships, this one has only a streamed copy.</i></p>
 		<p><img src="img/cubemap-2d.jpg" alt="The same cubemap in 2D faces mode: the six faces side by side in a strip on the Streamed tab, with the mip slider greyed out and the metadata panel below." style="max-width:100%;width:483px"></p>
@@ -170,7 +170,7 @@
 		<h2 class="section-heading">Import &amp; Replace</h2>
 		<ul>
 			<li><b>Import New</b> — adds a new texture. You choose its <b>name</b> as part of the import (type <code>\</code> in it to put the texture in folders), with the clash check running as you type.</li>
-			<li><b>Replace Selected</b> — overwrites the selected texture with a new image. The slot keeps its usage flags, since those describe what the texture is for rather than the image in it.</li>
+			<li><b>Replace Selected</b> — overwrites the selected texture with a new image. The slot keeps its usage and state flags (sRGB, see-through), since those describe what the texture is for rather than the image in it. Whether it's a cubemap or a volume comes from the new file, though: if that differs from the slot, a <b>Replace texture</b> warning asks first, and a cubemap replaced with a flat image can no longer be used as an environment map.</li>
 		</ul>
 		<p>Either way, an options dialog asks what to do with the image before anything is written. It opens with the file's name and size on its top line, as below:</p>
 		<p><img src="img/import-options.jpg" alt="The Import texture dialog with a name box, the Store as format dropdown set to BC7, a Mipmaps slider, and the persistent-copy checkbox and slider." style="max-width:100%;width:542px"></p>
@@ -188,7 +188,7 @@
 		<h2 class="section-heading">Export &amp; Delete</h2>
 		<ul>
 			<li><b>Export Selected</b> — write one texture as DDS, PNG, or JPG.</li>
-			<li><b>Export All</b> — pick a folder, choose <b>Export all as</b> (DDS / PNG / JPG), then export the whole list. The folder opens when finished.</li>
+			<li><b>Export All</b> — pick a folder, choose <b>Export all as</b> (DDS / PNG / JPG), and every texture the list is showing is exported (only the matches while a search is on), each in the folders its name gives. The folder opens when finished.</li>
 			<li><b>Delete Selected</b> — removes a texture after confirmation.</li>
 		</ul>
 		<p>ASTC textures export through the same route, so a mobile build's textures come out as ordinary images rather than as something only the game can read.</p>

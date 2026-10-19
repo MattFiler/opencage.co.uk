@@ -111,7 +111,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Open <b>View → Behaviour Tree Editor</b> (shown below) to launch the <b>OpenCAGE Behaviour Tree Editor</b>. Unlike the other editors under <b>View</b>, this runs as a <b>separate process</b> (a Brainiac Designer fork with OpenCAGE's LegendPlugin node set) and works on <b>global</b> AI data — you don't need a level loaded.</p>
+		<p>Open <b>View → Behaviour Tree Editor</b> (shown below) to launch the <b>OpenCAGE Behaviour Tree Editor</b>. Unlike the other editors under <b>View</b>, this runs as a <b>separate process</b> (a Brainiac Designer fork with OpenCAGE's LegendPlugin node set) and works on <b>global</b> AI data — you don't need a level loaded. It follows OpenCAGE's <a href="/docs/options/#dark-mode">Dark Mode</a> as it was when you opened it; if you switch theme later, the editor changes the next time you open it.</p>
 		<p><img src="img/view-menu.jpg" alt="OpenCAGE's View menu open with the Behaviour Tree Editor entry highlighted." style="max-width:100%;width:785px"></p>
 		<p>Authoritative trees live in:</p>
 		<ul>
@@ -121,6 +121,7 @@
 		<p><img src="img/first-open.jpg" alt="The Behaviour Tree Editor on first launch, with the extracted trees listed under Behaviours in the Explorer and no tree open yet." width="100%"></p>
 		<p class="text-muted small"><i>Nothing is open yet: the palette groups under the tree list start collapsed, and the document area and Properties panel stay empty until you open a tree.</i></p>
 		<p>Closing OpenCAGE, or choosing <b>View → Behaviour Tree Editor</b> again, kills any open Behaviour Tree Editor instance without prompting. Save first if you have unsaved graphs.</p>
+		<p>While the editor is open, the <a href="/docs/installing-mods/">Mod Manager</a> won't install or remove mods that change <code>DATA/BINARY_BEHAVIOR</code> or <code>DATA/BEHAVIOR</code>. It asks you to close the editor first, saving anything you changed in it, because the editor keeps its own copy of the trees and would save it over the mods' changes.</p>
     </section>
 </article>
 
