@@ -2,80 +2,679 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>OpenCAGE</title>
-
-    <!-- The site front door is the documentation. GitHub Pages serves static files only, so this
-         has to be a client-side redirect - there is no way to return a real 301 from the repo.
-         location.replace runs before the body paints and keeps this page out of the back-button
-         history, so Back from /docs/ doesn't bounce straight forward again. The meta refresh is
-         the fallback for anything with JavaScript disabled, and the markup below is what shows
-         if both are ignored. -->
-    <script>window.location.replace("/docs/");</script>
-    <meta http-equiv="refresh" content="0; url=/docs/" />
-    <link rel="canonical" href="https://opencage.co.uk/docs/" />
-
+    <script>document.documentElement.className += " js";</script>
+    <title>OpenCAGE - Mod Tools for Alien: Isolation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="OpenCAGE is an open source set of mod tools for Alien: Isolation." />
     <meta name="keywords" content="opencage, alien isolation, modding, alien isolation mod tools, mod tools, Alien: Isolation, mods, aliens isolation" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Matt Filer" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#412b69" />
+    <link rel="canonical" href="https://opencage.co.uk/" />
     <link href="favicon.ico" rel="icon" type="image/x-icon" />
 
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://opencage.co.uk/" />
+    <meta property="og:title" content="OpenCAGE" />
+    <meta property="og:description" content="OpenCAGE is an open source set of mod tools for Alien: Isolation." />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
     <meta name="twitter:title" content="OpenCAGE" />
     <meta name="twitter:description" content="OpenCAGE is an open source set of mod tools for Alien: Isolation." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
-    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Montserrat:wght@400;500;600;800;900&display=swap" rel="stylesheet" />
+    <!-- Same FontAwesome kit as the docs, for the brand icons on the buttons -->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
 
     <style>
-        html, body {
-            padding: 0; margin: 0; border: 0;
-            min-height: 100vh;
-        }
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-            color: #fff;
-            background-color: #412b69;
-            background-image:
+        /* OpenCAGE brand: the purple-to-magenta gradient under black diagonal bars, Montserrat, the white logo.
+           The page is dark by design - it frames dark-mode screenshots of a dark game - so there is one theme. */
+        :root {
+            --ink: #0e0b13;
+            --ink-raised: #17111e;
+            --line: #2e2439;
+            --text: #f4f0f8;
+            --muted: #bcb1cc;
+            --sub: #dac9e6;
+            --dim: #8f84a0;
+            --hot: #e88fd3;
+            --purple: #412b69;
+            --magenta: #8e1073;
+            --wrap: 1320px;
+            --gutter: 24px;
+            --stripes:
                 repeating-linear-gradient(-45deg, transparent 0, transparent 40px, #000 40px, #000 80px),
                 linear-gradient(45deg, #412b69 0%, #8e1073 100%);
+            color-scheme: dark;
+        }
+        @media (max-width: 575px) {
+            :root {
+                --gutter: 16px;
+                --stripes:
+                    repeating-linear-gradient(-45deg, transparent 0, transparent 26px, #000 26px, #000 52px),
+                    linear-gradient(45deg, #412b69 0%, #8e1073 100%);
+            }
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+        body {
+            margin: 0;
+            background: var(--ink);
+            color: var(--text);
+            font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            font-size: 17px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        main { overflow-x: clip; }
+        img { display: block; max-width: 100%; height: auto; }
+        a { color: inherit; }
+        :focus-visible { outline: 3px solid #f6c8ec; outline-offset: 3px; border-radius: 2px; }
+        .stripes { background-color: var(--purple); background-image: var(--stripes); }
+
+        .skip {
+            position: absolute; left: 12px; top: -60px; z-index: 100;
+            background: #fff; color: #160f1d; padding: 10px 16px; font-weight: 600; text-decoration: none;
+        }
+        .skip:focus { top: 12px; }
+
+        /* ---- Top bar: see-through over the hero, solid once the page scrolls ---- */
+        .topbar {
+            position: fixed; inset: 0 0 auto 0; z-index: 50;
+            background: rgba(14, 11, 19, 0.9);
+            -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+            transition: background-color .25s ease, border-color .25s ease;
+        }
+        .topbar-inner {
+            width: min(var(--wrap), 100% - 2 * var(--gutter));
+            margin: 0 auto; height: 64px;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+        }
+        .brand img { width: 104px; transition: opacity .25s ease; }
+        .nav-links { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 4px; }
+        .nav-links a:not(.btn) {
+            display: block; padding: 8px 12px; border-radius: 4px;
+            font-size: .92rem; font-weight: 600; text-decoration: none; color: var(--text);
+        }
+        .nav-links a:not(.btn):hover { background: rgba(255, 255, 255, 0.08); }
+        .js .topbar:not(.scrolled) { background: transparent; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+        .js .topbar:not(.scrolled) .brand img { opacity: 0; }
+        .js .topbar:not(.scrolled) .nav-links a:not(.btn) { text-shadow: 0 0 12px rgba(0, 0, 0, 0.9); }
+        @media (max-width: 760px) { .nav-links .wide { display: none; } }
+
+        /* ---- Buttons ---- */
+        .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 22px; border: 2px solid #fff; border-radius: 4px;
+            font: 600 1rem/1 'Montserrat', system-ui, sans-serif; text-decoration: none; text-shadow: none;
+            transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+        }
+        .btn i { font-size: 1.15em; }
+        .btn-solid { background: #fff; color: #160f1d; }
+        .btn-solid:hover { background: transparent; color: #fff; }
+        .btn-ghost { background: rgba(0, 0, 0, 0.42); color: #fff; border-color: rgba(255, 255, 255, 0.8); }
+        .btn-ghost:hover { background: #fff; color: #160f1d; border-color: #fff; }
+        .btn-small { padding: 9px 14px; font-size: .9rem; }
+
+        /* ---- Hero: the stripe banner, with the editor rising out of its lower edge ---- */
+        .hero {
+            padding: 128px var(--gutter) 290px;
+            text-align: center;
             text-shadow: 0 0 20px rgba(0, 0, 0, 0.84);
         }
-        .redirect_inner {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-        }
-        img {
-            display: block;
-            width: calc(100% - 30px);
-            max-width: 420px;
-            height: auto;
-            margin: 0 auto 30px;
-            object-fit: contain;
+        .hero-logo {
+            width: min(520px, 80vw); margin: 0 auto 30px;
             filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.55));
         }
-        p {
-            font-size: 18px;
-            line-height: 1.5;
+        .hero h1 {
+            margin: 0 auto 18px; max-width: 20ch;
+            font-weight: 800; font-size: clamp(1.9rem, 1.1rem + 2.7vw, 3.4rem); line-height: 1.1; letter-spacing: -0.01em;
+            text-wrap: balance;
         }
-        a {
-            color: #fff;
-            font-weight: 600;
+        .hero-lede {
+            margin: 0 auto 34px; max-width: 58ch;
+            font-weight: 500; font-size: clamp(1.02rem, .94rem + .35vw, 1.2rem); line-height: 1.6; color: #f3e8f7;
+            text-wrap: balance;
+        }
+        .hero-shot {
+            position: relative; z-index: 2;
+            width: min(1200px, 100% - 2 * var(--gutter));
+            margin: -230px auto 0;
+        }
+        @media (max-width: 575px) {
+            .hero { padding-top: 100px; padding-bottom: 150px; }
+            .hero-shot { margin-top: -110px; }
+        }
+
+        /* ---- Screenshots: a quiet frame for the editor, the trailer's magenta picture-in-picture frame for insets ---- */
+        .shot {
+            margin: 0; background: #000; overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px;
+            box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.85);
+        }
+        .shot img { width: 100%; }
+        .inset {
+            position: absolute; z-index: 2; width: 44%; right: -3%; bottom: -13%;
+            border: 3px solid var(--magenta); border-radius: 2px;
+            box-shadow: 0 26px 54px -12px rgba(0, 0, 0, 0.9);
+        }
+        .flip .inset { right: auto; left: -3%; }
+
+        /* ---- Feature index ---- */
+        .index {
+            width: min(var(--wrap), 100% - 2 * var(--gutter));
+            margin: 0 auto; padding: clamp(64px, 8vw, 104px) 0 0;
+            text-align: center;
+        }
+        .index h2 { margin: 0 0 22px; font-weight: 800; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem); }
+        .chips { list-style: none; margin: 0 auto; padding: 0; max-width: 980px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .chips a {
+            display: block; padding: 9px 16px;
+            border: 1px solid var(--line); border-radius: 999px; background: var(--ink-raised);
+            font-size: .92rem; font-weight: 600; text-decoration: none; color: var(--text);
+            transition: border-color .15s ease, background-color .15s ease;
+        }
+        .chips a:hover { border-color: var(--magenta); background: #23162b; }
+
+        /* ---- Feature sections ---- */
+        .feature {
+            width: min(var(--wrap), 100% - 2 * var(--gutter));
+            margin: 0 auto; padding: clamp(64px, 8vw, 116px) 0;
+            display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+            gap: clamp(32px, 4.5vw, 72px); align-items: center;
+        }
+        .feature.flip { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); }
+        .feature.flip .feature-text { order: 2; }
+        .feature-media { position: relative; }
+        .feature-media.has-inset { margin-bottom: 7%; }
+
+        /* The heading is the trailer's lower third: a striped block, the title in ExtraBold, the line under it in Medium */
+        .caption { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 18px; margin: 0 0 22px; }
+        .caption-bar {
+            border-radius: 1px;
+            background-image:
+                repeating-linear-gradient(-45deg, transparent 0, transparent 5px, #000 5px, #000 10px),
+                linear-gradient(180deg, #412b69 0%, #8e1073 100%);
+        }
+        .caption h2 {
+            margin: 0 0 8px;
+            font-weight: 800; font-size: clamp(1.75rem, 1.15rem + 1.7vw, 2.6rem); line-height: 1.1; letter-spacing: -0.01em;
+            text-wrap: balance;
+        }
+        .caption-sub { margin: 0; font-weight: 500; font-size: 1.12rem; line-height: 1.45; color: var(--sub); text-wrap: balance; }
+        .feature-text > p { margin: 0 0 18px; max-width: 46ch; color: var(--muted); }
+        .docs-links { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+        .feature-text > .docs-links { margin-top: 26px; }
+        .docs-links a {
+            font-weight: 600; font-size: .95rem; color: var(--text);
+            text-decoration: underline; text-decoration-color: var(--magenta); text-decoration-thickness: 2px; text-underline-offset: 5px;
+        }
+        .docs-links a:hover { color: var(--hot); }
+
+        .strip { list-style: none; margin: 16px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+        .strip figure { margin: 0; }
+        .strip .shot { box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.9); border-radius: 3px; }
+        .strip figcaption {
+            margin-top: 8px;
+            font: 500 .72rem/1.3 'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+            letter-spacing: .06em; color: var(--dim);
+        }
+
+        @media (max-width: 960px) {
+            .feature, .feature.flip { grid-template-columns: minmax(0, 1fr); }
+            .feature.flip .feature-text { order: 0; }
+            .feature-text > p { max-width: 62ch; }
+            .inset, .flip .inset { right: 3%; left: auto; }
+        }
+        @media (max-width: 575px) {
+            .feature-media.has-inset { margin-bottom: 0; }
+            .inset, .flip .inset { position: relative; right: auto; bottom: auto; width: 72%; margin: -16% 0 0 auto; }
+            .strip { grid-template-columns: minmax(0, 1fr); }
+        }
+
+        /* ---- Closing call to action and footer ---- */
+        .cta { padding: clamp(80px, 10vw, 130px) var(--gutter); text-align: center; text-shadow: 0 0 20px rgba(0, 0, 0, 0.84); }
+        .cta-logo { width: min(300px, 64vw); margin: 0 auto 26px; filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.55)); }
+        .cta h2 { margin: 0 0 14px; font-weight: 800; font-size: clamp(1.8rem, 1.2rem + 2vw, 2.9rem); line-height: 1.1; text-wrap: balance; }
+        .cta p { margin: 0 auto 30px; max-width: 56ch; font-weight: 500; color: #f3e8f7; }
+        .cta p.cta-lead { margin-bottom: 12px; }
+        .cta .sponsor { margin: 30px auto 0; font-size: .95rem; }
+        .cta .sponsor a { font-weight: 600; text-underline-offset: 4px; }
+
+        .footer { padding: 48px var(--gutter) 56px; border-top: 1px solid var(--line); text-align: center; color: var(--dim); font-size: .86rem; line-height: 1.6; }
+        .footer-links { list-style: none; margin: 0 0 22px; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 20px; }
+        .footer-links a { color: var(--text); font-weight: 600; text-decoration: none; }
+        .footer-links a:hover { color: var(--hot); }
+        .footer p { margin: 0 auto 6px; max-width: 70ch; }
+        .footer p a { color: var(--muted); text-underline-offset: 3px; }
+
+        /* ---- Scroll reveal (only when scripts run, and never with reduced motion) ---- */
+        .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+        .js .reveal.in { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .js .reveal { opacity: 1; transform: none; transition: none; }
+            .shot img, .topbar, .brand img { transition: none; }
+            .shot a:hover img { transform: none; }
         }
     </style>
 </head>
 <body>
-    <div class="redirect_inner">
-        <img src="logo_trim_smaller.png" alt="OpenCAGE">
-        <p>Taking you to the documentation&hellip;</p>
-        <p>If nothing happens, <a href="/docs/">continue to the OpenCAGE documentation</a>.</p>
-    </div>
+    <a class="skip" href="#features">Skip to the features</a>
+
+    <nav class="topbar" aria-label="Main">
+        <div class="topbar-inner">
+            <a class="brand" href="/"><img src="logo_trim_smaller.png" alt="OpenCAGE home" width="2500" height="1225"></a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="/docs/">Docs</a></li>
+                <li class="wide"><a href="/docs/changelog/">Changelog</a></li>
+                <li class="wide"><a href="https://discord.gg/JJ4ECu9hpY">Discord</a></li>
+                <li class="wide"><a href="https://github.com/MattFiler/OpenCAGE">GitHub</a></li>
+                <li><a class="btn btn-solid btn-small" href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fa-brands fa-steam" aria-hidden="true"></i> Steam</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="hero stripes">
+            <img class="hero-logo" src="logo_trim_smaller.png" alt="OpenCAGE" width="2500" height="1225">
+            <h1>Open source mod tools for Alien:&nbsp;Isolation</h1>
+            <p class="hero-lede">Fly through every level in 3D, rewrite the game&rsquo;s scripts, import your own models, build brand new levels &ndash; and watch your changes appear in the running game.</p>
+            <div class="actions">
+                <a class="btn btn-solid" href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fa-brands fa-steam" aria-hidden="true"></i> Download on Steam</a>
+                <a class="btn btn-ghost" href="/docs/"><i class="fa-solid fa-book" aria-hidden="true"></i> Read the docs</a>
+                <a class="btn btn-ghost" href="https://github.com/MattFiler/OpenCAGE"><i class="fa-brands fa-github" aria-hidden="true"></i> Source on GitHub</a>
+            </div>
+        </header>
+
+        <div class="hero-shot">
+            <figure class="shot">
+                <img src="images/hero-editor-1600.jpg" srcset="images/hero-editor-800.jpg 800w, images/hero-editor-1600.jpg 1600w" sizes="(max-width: 1248px) calc(100vw - 48px), 1200px" width="1600" height="900" fetchpriority="high" alt="OpenCAGE editing the airport's baggage collection area: the 3D viewport above the composite's flowgraph, with a seat selected and its parameters open">
+            </figure>
+        </div>
+
+        <section class="index" id="features" aria-labelledby="features-title">
+            <h2 id="features-title">Inside OpenCAGE</h2>
+            <ul class="chips">
+                <li><a href="#viewport">3D Viewport</a></li>
+                <li><a href="#script-editing">Script Editing</a></li>
+                <li><a href="#your-scripts">Build Your Own Scripts</a></li>
+                <li><a href="#script-debugging">Script Debugging</a></li>
+                <li><a href="#scripted-animations">Scripted Animations</a></li>
+                <li><a href="#animations">Animations</a></li>
+                <li><a href="#live-editing">Live Editing</a></li>
+                <li><a href="#model-import">Model Import</a></li>
+                <li><a href="#materials">Materials &amp; Textures</a></li>
+                <li><a href="#level-creation">Level Creation</a></li>
+                <li><a href="#launch-game">Launch Options</a></li>
+                <li><a href="#mod-packaging">Mod Packaging</a></li>
+                <li><a href="#game-configuration">Game Configuration</a></li>
+                <li><a href="#behaviour-trees">Behaviour Trees</a></li>
+            </ul>
+        </section>
+
+        <section class="feature flip" id="viewport" aria-labelledby="viewport-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="viewport-title">3D Viewport</h2>
+                        <p class="caption-sub">Explore every level of Alien: Isolation in 3D</p>
+                    </div>
+                </div>
+                <p>Open any level and fly through it. Click anything you see to find it in the level&rsquo;s scripts, move and rotate it with the gizmo, or drag new content in straight from the Composite Browser.</p>
+                <p class="docs-links"><a href="/docs/level-viewer/">Viewport guide</a></p>
+            </div>
+            <div class="feature-media reveal">
+                <figure class="shot">
+                    <img src="images/viewport-terminal.jpg" srcset="images/viewport-terminal-800.jpg 800w, images/viewport-terminal.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Inside the Spaceflight Terminal on HAB_AIRPORT in the 3D Viewport">
+                </figure>
+                <ul class="strip">
+                    <li><figure><div class="shot"><img src="images/strip-torrens.jpg" width="800" height="374" loading="lazy" alt="Down a corridor on the Torrens (BSP_TORRENS)"></div><figcaption>BSP_TORRENS</figcaption></figure></li>
+                    <li><figure><div class="shot"><img src="images/strip-mall.jpg" width="800" height="374" loading="lazy" alt="Along the upper floor of the main shopping centre (HAB_SHOPPINGCENTRE)"></div><figcaption>HAB_SHOPPINGCENTRE</figcaption></figure></li>
+                    <li><figure><div class="shot"><img src="images/strip-androidlab.jpg" width="800" height="374" loading="lazy" alt="The android lab reception desk (SCI_ANDROIDLAB)"></div><figcaption>SCI_ANDROIDLAB</figcaption></figure></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="feature" id="script-editing" aria-labelledby="script-editing-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="script-editing-title">Script Editing</h2>
+                        <p class="caption-sub">Edit the game&rsquo;s node-based scripts</p>
+                    </div>
+                </div>
+                <p>Alien: Isolation runs on thousands of CATHODE scripts. Open any of them as a flowgraph laid out over pages, then rewire it, delete what you don&rsquo;t need and tune any parameter in the inspector.</p>
+                <p class="docs-links"><a href="/docs/scripting-intro/">Introduction to scripting</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/script-m14.jpg" srcset="images/script-m14-800.jpg 800w, images/script-m14.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="A cutscene script from the Hazard Lab, arranged over pages, with its camera and character markers in the viewport">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/script-m01.jpg" width="830" height="312" loading="lazy" alt="Mission logic on the Torrens: signing in at the terminal starts the keycard, and the accepted keycard unlocks the cryo door">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature flip" id="your-scripts" aria-labelledby="your-scripts-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="your-scripts-title">Build Your Own Scripts</h2>
+                        <p class="caption-sub">Place triggers in the world and wire up logic from the Entity Palette</p>
+                    </div>
+                </div>
+                <p>Drag any of the game&rsquo;s entity types from the Entity Palette onto a graph and link up their pins. Trigger volumes, markers and props go straight into the world from the Viewport&rsquo;s Create menu.</p>
+                <p class="docs-links"><a href="/docs/cathode-entities/">Available script entities</a></p>
+            </div>
+            <div class="feature-media reveal">
+                <figure class="shot">
+                    <img src="images/script-trigger.jpg" srcset="images/script-trigger-800.jpg 800w, images/script-trigger.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="A new trigger box in the Torrens canteen, wired to a delay and on-screen debug text">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature" id="script-debugging" aria-labelledby="script-debugging-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="script-debugging-title">Script Debugging</h2>
+                        <p class="caption-sub">Watch scripts fire live and trigger methods in the running game</p>
+                    </div>
+                </div>
+                <p>With Live Link connected, Show Activity lights up each link as it fires and counts every call on its pins. Trigger any method from the inspector to test a script without playing up to it, and put values on screen in game with debug text and position markers.</p>
+                <p class="docs-links"><a href="/docs/live-link/">Live Link</a><a href="/docs/debug-text/">Debug text and markers</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/debug-editor.jpg" srcset="images/debug-editor-800.jpg 800w, images/debug-editor.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Show Activity on a FloatModulate driving a debug marker: lit links and a count on every pin that has fired">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/debug-game.jpg" width="960" height="536" loading="lazy" alt="In game, the marker sweeping across a Torrens console with its X position printed at the top of the screen">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature flip" id="scripted-animations" aria-labelledby="scripted-animations-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="scripted-animations-title">Scripted Animations</h2>
+                        <p class="caption-sub">Keyframe cameras and entities with bezier curves, live in the viewport</p>
+                    </div>
+                </div>
+                <p>Open any CAGEAnimation to edit its tracks on a curve editor: drag keys and bezier handles, add new tracks, and switch on Animation Mode to scrub the result in the Viewport.</p>
+                <p class="docs-links"><a href="/docs/cage-animation-editor/">CAGEAnimation editor</a></p>
+            </div>
+            <div class="feature-media reveal">
+                <figure class="shot">
+                    <img src="images/scripted-anim.jpg" srcset="images/scripted-anim-800.jpg 800w, images/scripted-anim.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The opening camera move of the Nostromo DLC level on the CAGEAnimation curve editor, in Animation Mode">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature" id="animations" aria-labelledby="animations-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="animations-title">Animations</h2>
+                        <p class="caption-sub">Browse, preview and edit the animation behind every character</p>
+                    </div>
+                </div>
+                <p>Preview any clip on its character&rsquo;s own model, export clips or import your own, and edit the animation trees that blend them together.</p>
+                <p class="docs-links"><a href="/docs/animation-editor/">Animation Editor</a><a href="/docs/animation-tree-editor/">Animation Tree Editor</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/anim-preview.jpg" srcset="images/anim-preview-800.jpg 800w, images/anim-preview.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="One of the alien's threat animations previewed on the alien model">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/anim-tree.jpg" width="960" height="760" loading="lazy" alt="The alien's ACT_SUSPICIOUS_ITEM animation tree">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature flip" id="live-editing" aria-labelledby="live-editing-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="live-editing-title">Live Editing</h2>
+                        <p class="caption-sub">Edit the running game in real time</p>
+                    </div>
+                </div>
+                <p>Live Link connects OpenCAGE to the game while it runs. Place and move props, change lights, tweak scripts and call methods, and the game updates without a reload. The game camera can follow the Viewport, so you see every edit from the same angle.</p>
+                <p class="docs-links"><a href="/docs/live-link/">Live Link</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/livelink-editor.jpg" srcset="images/livelink-editor-800.jpg 800w, images/livelink-editor.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="A nodding bird placed on the Torrens canteen table in OpenCAGE">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/livelink-game.jpg" width="960" height="540" loading="lazy" alt="The same nodding bird on the table in the running game">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature" id="model-import" aria-labelledby="model-import-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="model-import-title">Model Import</h2>
+                        <p class="caption-sub">Bring in FBX, glTF and OBJ models</p>
+                    </div>
+                </div>
+                <p>Import your own models with a 3D preview and a scale check, then browse, export and edit any mesh in the game from the Model Editor.</p>
+                <p class="docs-links"><a href="/docs/model-editor/">Model Editor</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/import-window.jpg" srcset="images/import-window-800.jpg 800w, images/import-window.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Importing an M41A pulse rifle, with a 3D preview of the model">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/model-editor.jpg" width="960" height="612" loading="lazy" alt="The imported rifle in the Model Editor">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature flip" id="materials" aria-labelledby="materials-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="materials-title">Materials &amp; Textures</h2>
+                        <p class="caption-sub">Edit materials, shaders and textures</p>
+                    </div>
+                </div>
+                <p>Change a material&rsquo;s shader, samplers and parameters, and browse, export and replace any texture in a level.</p>
+                <p class="docs-links"><a href="/docs/material-editor/">Material Editor</a><a href="/docs/texture-editor/">Texture Editor</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/material-editor.jpg" srcset="images/material-editor-800.jpg 800w, images/material-editor.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The Material Editor on the imported rifle's material">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/texture-editor.jpg" width="960" height="602" loading="lazy" alt="Space suit decals in the Texture Editor">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature" id="level-creation" aria-labelledby="level-creation-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="level-creation-title">Level Creation</h2>
+                        <p class="caption-sub">Build brand new levels from scratch</p>
+                    </div>
+                </div>
+                <p>Start a new level, fill it with composites from other levels or your own imported geometry, and let Save &amp; Build generate its lighting, navmesh, collision, cover and sound.</p>
+                <p class="docs-links"><a href="/docs/create-level/">Creating a level</a><a href="/docs/save-and-build/">Save and Build</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/level-sponza.jpg" srcset="images/level-sponza-800.jpg 800w, images/level-sponza.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="An imported Sponza atrium dragged into a brand new level">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/create-level.jpg" width="560" height="380" loading="lazy" alt="The Create Level dialog">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature flip" id="launch-game" aria-labelledby="launch-game-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="launch-game-title">Launch Options</h2>
+                        <p class="caption-sub">Launch the game with debug helpers, cinematic tools, and more</p>
+                    </div>
+                </div>
+                <p>Launch Alien: Isolation straight into any level, with options like debug text, an unlocked mouse and a frame rate cap. Turn on Possess Characters and you can take control of anyone in the level.</p>
+                <p class="docs-links"><a href="/docs/launch-game/">Launch Game</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/ingame-alien.jpg" srcset="images/ingame-alien-800.jpg 800w, images/ingame-alien.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Playing as the alien in the new Sponza level">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/launch-game.jpg" width="464" height="436" loading="lazy" alt="The Launch Game dialog with Possess Characters and Live Link turned on">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature" id="mod-packaging" aria-labelledby="mod-packaging-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="mod-packaging-title">Mod Packaging</h2>
+                        <p class="caption-sub">Share your work as a one-click install</p>
+                    </div>
+                </div>
+                <p>Create a Mod lists everything you&rsquo;ve changed, so you choose exactly what goes in. Players install it with the Mod Manager, which also combines, updates and removes mods for them.</p>
+                <p class="docs-links"><a href="/docs/making-mods/">Making mods</a><a href="/docs/installing-mods/">Installing mods</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/mod-manager.jpg" srcset="images/mod-manager-800.jpg 800w, images/mod-manager.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The Mod Manager with the Sponza mod installed">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/create-mod.jpg" width="960" height="654" loading="lazy" alt="Create a Mod, listing every changed level and setting">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature flip" id="game-configuration" aria-labelledby="game-configuration-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="game-configuration-title">Game Configuration</h2>
+                        <p class="caption-sub">Tune the alien, items, recipes, text and more</p>
+                    </div>
+                </div>
+                <p>Dedicated editors for the game&rsquo;s configuration: the alien&rsquo;s behaviour settings, character asset sets, inventory items, crafting recipes and every line of localised text.</p>
+                <p class="docs-links"><a href="/docs/configs/">Game configs</a></p>
+            </div>
+            <div class="feature-media has-inset reveal">
+                <figure class="shot">
+                    <img src="images/config-alien.jpg" srcset="images/config-alien-800.jpg 800w, images/config-alien.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The Alien Configuration editor">
+                </figure>
+                <figure class="shot inset">
+                    <img src="images/localisation.jpg" width="930" height="696" loading="lazy" alt="A line of dialogue in every language in the Localisation editor">
+                </figure>
+            </div>
+        </section>
+
+        <section class="feature" id="behaviour-trees" aria-labelledby="behaviour-trees-title">
+            <div class="feature-text reveal">
+                <div class="caption">
+                    <span class="caption-bar" aria-hidden="true"></span>
+                    <div>
+                        <h2 id="behaviour-trees-title">Behaviour Trees</h2>
+                        <p class="caption-sub">Rework how the AI thinks</p>
+                    </div>
+                </div>
+                <p>Open the behaviour trees that drive the alien, androids and humans, and edit them node by node.</p>
+                <p class="docs-links"><a href="/docs/behaviour-tree-editor/">Behaviour Tree Editor</a></p>
+            </div>
+            <div class="feature-media reveal">
+                <figure class="shot">
+                    <img src="images/behaviour-tree.jpg" srcset="images/behaviour-tree-800.jpg 800w, images/behaviour-tree.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The alien's behaviour tree with a new condition and a Success node added to a sequence">
+                </figure>
+            </div>
+        </section>
+
+        <section class="cta stripes" aria-labelledby="cta-title">
+            <img class="cta-logo" src="logo_trim_smaller.png" alt="" width="2500" height="1225">
+            <h2 id="cta-title">Start modding Alien: Isolation</h2>
+            <p class="cta-lead">Download OpenCAGE today for free from Steam, or contribute to its development on GitHub.</p>
+            <p>Check out the documentation to explore every element of the toolkit, and join the Discord to ask questions or show off mods you&rsquo;ve created.</p>
+            <div class="actions">
+                <a class="btn btn-solid" href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fa-brands fa-steam" aria-hidden="true"></i> Download on Steam</a>
+                <a class="btn btn-ghost" href="/docs/"><i class="fa-solid fa-book" aria-hidden="true"></i> Read the docs</a>
+                <a class="btn btn-ghost" href="https://discord.gg/JJ4ECu9hpY"><i class="fa-brands fa-discord" aria-hidden="true"></i> Join the Discord</a>
+            </div>
+            <p class="sponsor">Enjoying OpenCAGE? <a href="https://github.com/sponsors/MattFiler">Support its development on GitHub Sponsors</a>.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <ul class="footer-links">
+            <li><a href="/docs/">Docs</a></li>
+            <li><a href="/docs/changelog/">Changelog</a></li>
+            <li><a href="https://store.steampowered.com/app/3367530/OpenCAGE/">Steam</a></li>
+            <li><a href="https://github.com/MattFiler/OpenCAGE">GitHub</a></li>
+            <li><a href="https://discord.gg/JJ4ECu9hpY">Discord</a></li>
+            <li><a href="https://twitter.com/MattFiler">X</a></li>
+            <li><a href="https://bsky.app/profile/mattfiler.co.uk">Bluesky</a></li>
+            <li><a href="https://github.com/sponsors/MattFiler">Sponsor</a></li>
+        </ul>
+        <p>OpenCAGE is a hobby project developed by <a href="http://mattfiler.co.uk">Matt Filer</a> &ndash; it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</p>
+        <p>Alien: Isolation must be purchased and installed to use OpenCAGE.</p>
+        <p>Please see <a href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</p>
+    </footer>
+
+    <script>
+        (function () {
+            // Solid top bar once the hero has scrolled away
+            var bar = document.querySelector(".topbar");
+            function onScroll() { bar.classList.toggle("scrolled", window.scrollY > 40); }
+            onScroll();
+            window.addEventListener("scroll", onScroll, { passive: true });
+
+            // Sections fade up as they arrive
+            var items = document.querySelectorAll(".reveal");
+            var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (!reduce && "IntersectionObserver" in window) {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+                    });
+                }, { rootMargin: "0px 0px -8% 0px" });
+                items.forEach(function (el) { io.observe(el); });
+            } else {
+                items.forEach(function (el) { el.classList.add("in"); });
+            }
+        })();
+    </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
     <script>
@@ -90,8 +689,8 @@
             "@context": "https://schema.org",
             "@type": "Project",
             "name": "OpenCAGE",
-            "url": "http://opencage.co.uk",
-            "logo": "http://opencage.co.uk/icon.png",
+            "url": "https://opencage.co.uk/",
+            "logo": "https://opencage.co.uk/icon.png",
             "sameAs": "https://github.com/MattFiler/OpenCAGE"
         }
     </script>
@@ -104,7 +703,7 @@
                     "@type": "ListItem",
                     "position": "0",
                     "item": {
-                        "@id": "http://opencage.co.uk/",
+                        "@id": "https://opencage.co.uk/",
                         "name": "OpenCAGE"
                     }
                 },
@@ -112,7 +711,7 @@
                     "@type": "ListItem",
                     "position": "1",
                     "item": {
-                        "@id": "http://opencage.co.uk/docs",
+                        "@id": "https://opencage.co.uk/docs",
                         "name": "OpenCAGE Documentation"
                     }
                 }
