@@ -107,6 +107,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#activity-instance">Which Instance</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#activity-limits">Limits</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#camera"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Live Link Camera</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#capture-cubemaps"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Capturing Environment Maps</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#ai-assistants"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>AI Assistants</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#troubleshooting"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Troubleshooting</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#status-messages">What the Status Bar Says</a></li>
@@ -465,6 +466,36 @@
     </section>
 </article>
 
+<article class="docs-article" id="capture-cubemaps">
+    <header class="docs-header">
+<h1 class="docs-heading">Capturing Environment Maps</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>An <b>EnvironmentMap</b> entity gives the models it's linked to a cubemap to reflect: a picture of the room all around a point, taken from where the entity is. When you change a room, its reflections still show the room as it was. Live Link can take a new one in the running game, showing the room as it is now.</p>
+		<p>While connected, select an EnvironmentMap entity and press <b>Capture</b> in the <a href="/docs/scripting-intro/#inspector">Entity Inspector</a> (the button that reads <b>Function</b> for most entities; it's greyed out while Live Link isn't connected, and reads <b>Capturing...</b> while a capture runs). It takes a few seconds:</p>
+		<ol>
+			<li>The game moves its camera to the entity's position and streams in the zones around it (the overlay in the game says what it's waiting for).</li>
+			<li>It draws the six views of a cube from there, each 90 degrees wide (+X, -X, +Y, -Y, +Z, -Z), and sends them to OpenCAGE. The game's HUD is hidden while it does, and so are the lens effects that don't belong in a reflection: film grain, vignette, chromatic aberration, lens distortion and depth of field. Then the game gets its camera back.</li>
+			<li>OpenCAGE builds a cubemap shaped like the game's own: the size and format of the one it replaces (the game's are all 128 × 128 faces, nearly all in DXT1), with mip levels down to 2 × 2, each level blurred more than the last the way the game's are, so rough surfaces show a soft reflection and shiny ones a sharp one.</li>
+			<li>It's added to the level's textures as <code>ayz\env\cubemaps\<i>level</i>\<i>composite</i>\<i>composite</i>_<i>entity</i>.dds</code> (with a number on the end if that's taken), and the entity's <b>Texture</b> is set to it.</li>
+			<li>The cubemap the entity used before is deleted if nothing else uses it: no other entity names it, no material uses it, and it isn't one of the GLOBAL textures every level carries. The models that were reflecting it are given the new one.</li>
+		</ol>
+		<p>To capture at another size, pick one under <b>Options &gt; Misc &gt; Cubemap Capture Size</b>: 64, 128, 256 or 512 pixels a face, or <b>Same as the Cubemap Replaced</b> (the default). A bigger cubemap gives mirror-like surfaces a sharper reflection, and leaves rough ones as blurred as before. The faces are cut from the game's picture, so its window needs to be at least as tall as them; if it isn't, they're stretched up and the status bar says so.</p>
+		<p>It's one step on the undo history: undo takes the new cubemap out and puts the old one, and the entity's Texture, back. The status bar says <b>Live Link: Captured <i>entity</i>'s cubemap at (<i>x</i>, <i>y</i>, <i>z</i>) as <i>texture</i></b>, or why it couldn't.</p>
+		<p><b>To see it in the game, save, then load the level again</b>: the game reads cubemaps when it loads a level. If the old cubemap is still used by another EnvironmentMap, the models this one lights keep it until a <a href="/docs/save-and-build/">Save &amp; Build</a> works out again which cubemap each model reflects, and the status bar asks for one.</p>
+		<p><b>File &gt; Recapture All Cubemaps</b>, below Export Composites, does the same for every EnvironmentMap in the level, one after another, with a progress bar (a few seconds each: a level with 50 takes about four minutes). Keep the game running and unpaused meanwhile; the editor stays usable. Choose it again (it reads <b>Stop Recapturing Cubemaps</b>) to stop after the one being captured. It stops by itself if the game turns a capture away, and skips any EnvironmentMap whose composite is used in more than one place, or not at all. Each cubemap is its own step on the undo history, and a summary at the end says how many it captured, which it couldn't and why, and whether to save or Save &amp; Build.</p>
+		<p>The capture is taken from where the entity is in the level: through the instances you stepped down through from the root composite (the path at the top of the composite panel), or, if you opened its composite on its own, the one place that composite is used. A composite used in more than one place has to be opened from the root, so OpenCAGE knows which one to take it from.</p>
+		<ul>
+			<li><b>Capture with the game running.</b> Zones don't stream in while the game is paused, so a capture is turned away while the pause menu is open, and stops if the game is paused part way through.</li>
+			<li><b>The game ignores its keyboard and mouse while it captures</b>, so clicking into its window to watch doesn't move or turn the player, and the cursor stays free over it (as with <a href="/docs/launch-game/#scripting-helpers">Unlock Mouse</a>). Escape still works: press it in the game to stop a capture, as the pause menu ends it. A gamepad isn't held back.</li>
+			<li><b>It shows the room as the game draws it now</b>: lights that are off, doors that are shut and anything else in the level's current state are in the picture. The game's own cubemaps were made when the level was built, under its lighting then, so a new one often looks darker or a different colour from the one it replaces.</li>
+			<li><b>Anything right next to the entity fills part of the picture</b>, as it would a mirror there. Move the entity if something gets in the way.</li>
+			<li><b>Game logic sees the capture's camera</b> for those few seconds, as it does the Viewport's camera with <a href="#camera">Live Link Camera</a>: anything checking what the player can see reacts to where the capture looks.</li>
+		</ul>
+	</section>
+</article>
+
 <article class="docs-article" id="ai-assistants">
     <header class="docs-header">
 <h1 class="docs-heading">AI Assistants</h1>
@@ -476,6 +507,7 @@
 			<li><code>runtime_utils</code>: the connection's status, connect and disconnect; what the game is running and where its camera is; push a composite; call a method on an entity; hold or play a CAGEAnimation in the game, as <a href="/docs/cage-animation-editor/">Animation Mode</a> does (<code>animate</code>); describe a composite's running instances; take a screenshot of the game; load a level; and <a href="#activity">Show Activity</a> (<code>activity</code>): switch it on or off, clear it, or list the links the game has used in the open composite, with how often and how long ago, and how many times each output fired and each method was called.</li>
 			<li><code>set_viewport_view</code> with <code>live_link_camera</code>: the Live Link Camera choice, <code>disabled</code>, <code>viewport_to_game</code> or <code>game_to_viewport</code>. Set it after connecting: it goes back to <code>disabled</code> whenever Live Link connects.</li>
 			<li><code>set_viewport_camera</code>: puts the Viewport's camera at a position and direction, and the game's with it while the game follows the Viewport.</li>
+			<li><code>capture_environment_maps</code>: <a href="#capture-cubemaps">captures cubemaps</a> for one or more EnvironmentMap entities, a composite's, or every one in the level, one after another, with the same steps as the Capture button (<code>all_in_level</code> is Recapture All Cubemaps). It can also take a face size (otherwise Cubemap Capture Size's, which <code>editor_options</code> sets too), a format, how long to wait for zones, and keep the HUD, the lens effects or the old cubemaps.</li>
 			<li><code>launch_options</code> with <code>live_link</code>: the Enable Live Link box.</li>
 		</ul>
     </section>

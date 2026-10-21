@@ -189,6 +189,7 @@
 				<li>See realtime script activity in the flowgraph including active links and trigger counts via new highlighted links and method/target annotations</li>
 				<li>Trigger methods on entities manually via a new dropdown in the inspector</li>
 				<li>Sync the camera to the viewport to see the in-game camera position in OpenCAGE, or vice-versa</li>
+				<li>Capture new cubemaps for EnvironmentMap entities in-game (one at a time from the inspector, or all at once with File &gt; Recapture All Cubemaps) - they're automatically imported and assigned, replacing the old ones, at their size or one picked in Misc &gt; Cubemap Capture Size</li>
 			</ul></li>
 			<li>Added a new 'Save and Build' (instancing) option in the File menu:<ul>
 				<li>Generates instance-specific materials and properties for static geometry based on materials, remappings, and aliases</li>
@@ -202,6 +203,44 @@
 				<li>Generates environment animation links and other structuring for renderables and resources</li>
 				<li>Generates BVHs for occlusion and lighting</li>
 				<li>Generates environment map links</li>
+			</ul></li>
+			<li>Improved viewport:<ul>
+				<li>Added galaxy rendering in the viewport (which can be disabled) - live syncs to changes in the Galaxy Editor</li>
+				<li>Added a number of material improvements to the viewport (some optional) including planar reflections, cubemaps, and gas giant</li>
+				<li>Viewport now has anti-aliasing options</li>
+				<li>Vast performance improvements in the viewport, with configurable draw distance</li>
+				<li>Improvements to total memory overhead for the viewport</li>
+				<li>Added support for syncing modified resources (textures, models, materials) to the viewport - including newly imported ones</li>
+				<li>Added new options for rendering selected entities: wireframe, transparent wireframe, none</li>
+				<li>Added additional render filters for a variety of Sphere types, and others</li>
+				<li>Added new render filter to show Occlusion Meshes and Collision Meshes</li>
+				<li>Added ability to preview Zones in the viewport (will draw zoned entities in distinct colours when enabled, and highlight nodes)</li>
+				<li>Added new option to show state resources (navmesh, cover positions) in the viewport - will re-sync on rebuild</li>
+				<li>Added ability to highlight all entities in a TriggerSequence in the viewport when selected</li>
+				<li>Added a new 'Create' dropdown in the viewport UI which, when enabled, allows you to click on the viewport to create a new entity at that position</li>
+				<li>Added ability to drag and drop composites into the viewport to place them</li>
+				<li>Added drag-select in the viewport to multi-select entities</li>
+				<li>Added support for multi-select moving of objects in the viewport</li>
+				<li>Added right click in the viewport with appropriate options</li>
+				<li>Added ability to modify splines via the viewport</li>
+				<li>Added a new vertex snapping mode (hold V when dragging, or keep it on from the Transform Snap menu)</li>
+				<li>Added a new surface snapping mode (SHIFT+END keys)</li>
+				<li>Added ability to configure rotation/translation snapping increments</li>
+				<li>Added a new 'drag to duplicate' mode (hold SHIFT when dragging the gizmo)</li>
+				<li>Added ability to move the origin point for transform controls in the viewport (CTRL+SHIFT)</li>
+				<li>World rotation gizmo in viewport now turns with the rotation</li>
+				<li>Added new 'Focus on Selected' and 'Fix Camera on Selected' options for the viewport</li>
+				<li>Improved 'focus on selected' mode in the viewport - it no longer jumps when stepping the hierarchy</li>
+				<li>Added a ruler to measure distances in the viewport</li>
+				<li>Added crash log reporting for the viewport</li>
+				<li>Fixed rotation issue for spotlight previews in the viewport</li>
+				<li>Fixed some memory leaks within the viewport which caused silent crashes</li>
+				<li>Fixed a separate window appearing briefly when viewport initialises</li>
+				<li>Fixed vertex colours in the viewport</li>
+				<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
+				<li>Fixed a bug where force closing OpenCAGE could leave a viewport process open in the background</li>
+				<li>Fixed composites failing to render in the viewport when their models weren't loaded during the initial populate</li>
+				<li>Fixed small composites (pickups and similar) being framed so far away they appeared as a speck</li>
 			</ul></li>
 			<li>New animation clip editor:<ul>
 				<li>Browse all available animations by character or env model and context</li>
@@ -276,6 +315,7 @@
 				<li>Added a purple highlight to parameters which are controlled by CAGEAnimations</li>
 				<li>Zone name now shows on 'Zone' button if one, or opens a list if multiple - this calculation is performed from the root of the active hierarchy</li>
 				<li>Modified utility buttons to be on two rows</li>
+				<li>The Function button is now named after what it does for the selected entity (Edit Tracks, Edit Sequence, Edit Character, Capture)</li>
 			</ul></li>
 			<li>Reworked TriggerSequence editor:<ul>
 				<li>Added support for dragging and dropping TriggerSequence entries</li>
@@ -322,36 +362,22 @@
 			<li>Added support for undo/redo</li>
 			<li>Added ability to render DebugText, DebugTextStacking, DebugEnvironmentMarker, and DebugPositionMarker outputs in-game via an overlay</li>
 			<li>Added a dropdown next to the new back button to view up to five previously loaded composites</li>
-			<li>Added a new 'Create' dropdown in the viewport UI which, when enabled, allows you to click on the viewport to create a new entity at that position</li>
-			<li>Added ability to drag and drop composites into the viewport to place them</li>
 			<li>Added new annotations on nodes - you'll see (P) for ones that are proxied elsewhere, and (*) for ones that have one or more other nodes for the same entity</li>
 			<li>Added a new Blend Set editor for animations</li>
 			<li>Added preview icons for composites in the selector/browser, these will update when you make modifications</li>
-			<li>Added ability to preview Zones in the viewport (will draw zoned entities in distinct colours when enabled, and highlight nodes)</li>
 			<li>Added an improved check for circular dependencies when making new instances</li>
 			<li>Added new tools for automatically reorganising untidy flowgraph pages</li>
 			<li>Added a new 'unsaved changes' tracker, which will highlight in the taskbar when a modification has been made and not saved</li>
-			<li>Added additional render filters for a variety of Sphere types, and others</li>
-			<li>Added new render filter to show Occlusion Meshes and Collision Meshes</li>
 			<li>Added functionality to copy composites (including in-place replacements of instances with copies)</li>
 			<li>Added functionality to de-instance a composite, or create a composite from group selection</li>
-			<li>Added new option to show state resources (navmesh, cover positions) in the viewport - will re-sync on rebuild</li>
-			<li>Added drag-select in the viewport to multi-select entities</li>
-			<li>Added right click in the viewport with appropriate options</li>
 			<li>Added new achievements on Steam, and updated icons of all existing ones</li>
-			<li>Added galaxy rendering in the viewport (which can be disabled) - live syncs to changes in the Galaxy Editor</li>
-			<li>Added a number of material improvements to the viewport (some optional) including planar reflections, cubemaps, and gas giant</li>
 			<li>Added ability to sort the entity list by clicking the columns</li>
 			<li>Added ability to modify damage ranges in the ammo config editor</li>
 			<li>Added controls for the behaviour tree editor to the controls window</li>
-			<li>Added ability to modify splines via the viewport</li>
-			<li>Added support for syncing modified resources (textures, models, materials) to the viewport - including newly imported ones</li>
 			<li>Added ability for child OpenCAGE editors to gain control of directory editing when primary is closed</li>
 			<li>Added auto complete for SwitchLevel level input</li>
 			<li>Added ability to rebind the hot reload key</li>
 			<li>Added functionality to click pins to link them, instead of dragging</li>
-			<li>Added support for multi-select moving of objects in the viewport</li>
-			<li>Added new options for rendering selected entities: wireframe, transparent wireframe, none</li>
 			<li>Added a Voice Mappings editor</li>
 			<li>Added a Level Text Database editor</li>
 			<li>Added a Font Config editor</li>
@@ -363,12 +389,8 @@
 			<li>Added new dotted outline for proxy/alias nodes</li>
 			<li>Added back the legacy Graphics Editor</li>
 			<li>Added warnings if saving fails when updating configs</li>
-			<li>Added a new vertex snapping mode (hold V when dragging, or keep it on from the Transform Snap menu)</li>
-			<li>Added ability to configure rotation/translation snapping increments</li>
 			<li>Added right click to add to TriggerSequence on node</li>
 			<li>Added improved hierarchy navigation in the proxy/alias selector</li>
-			<li>Added a new surface snapping mode (SHIFT+END keys)</li>
-			<li>Added a new 'drag to duplicate' mode (hold SHIFT when dragging the gizmo)</li>
 			<li>Added support for multi-select deletion in the flowgraph, viewport, and entity list</li>
 			<li>Added new 'Unlock Mouse' launch option which toggles allowing the game to steal your cursor</li>
 			<li>Added ability to rename imported models</li>
@@ -381,7 +403,6 @@
 			<li>Added a window to show all links in and out of a script entity on a flowgraph page</li>
 			<li>Added ability to flag vector parameters as colours on composites</li>
 			<li>Added ability to possess characters via launch game (press F6 - rebindable - to select a character to control)</li>
-			<li>Added new 'Focus on Selected' and 'Fix Camera on Selected' options for the viewport</li>
 			<li>Added an option to save when closing with a level open</li>
 			<li>Added some potential improvements for hit testing in the flowgraph view</li>
 			<li>Added argument to allow folder selection when picking game installs</li>
@@ -391,26 +412,19 @@
 			<li>Added ability to create new behaviour trees</li>
 			<li>Added info popup about how the config editors save</li>
 			<li>Added ability to right click and delete referenced instances of an entity</li>
-			<li>Added ability to highlight all entities in a TriggerSequence in the viewport when selected</li>
-			<li>Added a ruler to measure distances in the viewport</li>
 			<li>Added a cooldown when creating backups to prevent causing UI deadlocks</li>
 			<li>Added support for renaming folders in the composite browser</li>
 			<li>Added support for dragging composites/folders to move them in file browser mode</li>
 			<li>Added arrows to point to off-screen highlighted nodes</li>
 			<li>Added a progress UI for multi-export models/textures</li>
 			<li>Added search on the 'Select Destination Pin' window, and now sorted alphabetically</li>
-			<li>Added ability to move the origin point for transform controls in the viewport (CTRL+SHIFT)</li>
 			<li>Added a button to view changelog</li>
 			<li>Added a button to view raw crash logs</li>
-			<li>Added crash log reporting for the viewport</li>
 			<li>Added context-aware positioning of pins on nodes (relays will always have their output in-line with their input)</li>
 			<li>Fixed 'Find References' right click on the entity list</li>
-			<li>Fixed rotation issue for spotlight previews in the viewport</li>
 			<li>Fixed dropdowns sticking on screen</li>
 			<li>Fixed an issue where multiple flowgraph layouts wouldn't appear due to name duplication</li>
-			<li>Fixed some memory leaks within the viewport which caused silent crashes</li>
 			<li>Fixed an issue where viewcones would break upon modification</li>
-			<li>Fixed a separate window appearing briefly when viewport initialises</li>
 			<li>Fixed some cases where resolvable proxies/aliases were discarded</li>
 			<li>Fixed selection steal when using keybinds to navigate UI</li>
 			<li>Fixed a bug where resources were thrown away for Commands BIN</li>
@@ -433,13 +447,8 @@
 			<li>Fixed instances where some popups would unexpectedly close on editor context changes (e.g. selecting a new entity)</li>
 			<li>Fixed a crash when using Ctrl+MMB shortcut in entity hierarchy picker</li>
 			<li>Fixed some minor issues when resizing popups</li>
-			<li>Fixed vertex colours in the viewport</li>
 			<li>Fixed incorrect face ordering in cubemap previews (and added a new spherical preview mode)</li>
 			<li>Fixed grouping in Entity Palette after searching</li>
-			<li>Fixed a bug where moving an entity in the viewport with multiple transform parameters would update all of them</li>
-			<li>Fixed a bug where force closing OpenCAGE could leave a viewport process open in the background</li>
-			<li>Fixed composites failing to render in the viewport when their models weren't loaded during the initial populate</li>
-			<li>Fixed small composites (pickups and similar) being framed so far away they appeared as a speck</li>
 			<li>Fixed disabled checkboxes being unreadable in dark mode</li>
 			<li>Certain entity resources are now auto generated, as such the 'Resources' button only shows for editable ones</li>
 			<li>Reworked the back button - it now takes you to the previously loaded composite, and is no longer relative to the currently loaded hierarchy</li>
@@ -451,14 +460,9 @@
 			<li>Behaviour tree DB in levels are regenerated when saving based on selected trees in the attribute editor</li>
 			<li>Reworked the launch game tool - you can now check to load into a level, otherwise it will load to frontend as normal (clearer)</li>
 			<li>Moved help buttons to the title bar, and linked through to new docs for all forms</li>
-			<li>World rotation gizmo in viewport now turns with the rotation</li>
 			<li>Optimised saving logic, viewport population, and level loading - should be noticeably faster</li>
-			<li>Improved 'focus on selected' mode in the viewport - it no longer jumps when stepping the hierarchy</li>
 			<li>Improved quality of various icons across the UI</li>
 			<li>Selecting an Animation or AnimationSet will fill in the alternate too</li>
-			<li>Improvements to total memory overhead for the viewport</li>
-			<li>Viewport now has anti-aliasing options</li>
-			<li>Vast performance improvements in the viewport, with configurable draw distance</li>
 			<li>NPC_AlienConfig entities now have selection for the config type</li>
 			<li>RewireLocation/Display_Element_On_Map/MapAnchor/Map_Floor_Change entities now have selection for the map elements</li>
 			<li>Deleting all nodes for an entity with no other references can now auto-delete the entity (optional under 'Delete Entities When Nodes Deleted')</li>
