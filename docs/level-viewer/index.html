@@ -100,6 +100,8 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#composite-previews">Composite Previews</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#scene-filters">Occlusion &amp; Collision Meshes</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#galaxy">The Sky</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#fog-water">Fog &amp; Water</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#draw-distance">Draw Distance &amp; Anti-aliasing</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#state-info">Navmesh &amp; Cover</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#zones">Zones</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#options">Viewport Options</a></li>
@@ -127,7 +129,7 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<p>The <b>Viewport</b> is OpenCAGE's 3D view of the level — part of the script editor, docked above the flowgraph in the composite display. Use it to place triggers, models, markers, and anything else that benefits from seeing the level in context.</p>
-				<p>This guide covers navigating the scene, selection and box select, deep select, the right-click menu, moving and snapping entities, creating and duplicating them, measuring distances, the sky, zones, and render filters.</p>
+				<p>This guide covers navigating the scene, selection and box select, deep select, the right-click menu, moving and snapping entities, creating and duplicating them, measuring distances, the sky, fog and water, draw distance and anti-aliasing, zones, and render filters.</p>
 			</div>
 			<div class="col-lg-4">
 				<img src="img/overview.jpg" alt="The OpenCAGE script editor with the Viewport docked above the flowgraph and a canteen chair selected in green." width="100%">
@@ -342,8 +344,38 @@
 
 	<section class="docs-section" id="galaxy">
 		<h2 class="section-heading">The Sky</h2>
-		<p>Where a level looks out into space, the Viewport draws the level's own galaxy — the starfield in <code>RENDERABLE/GALAXY/GALAXY.ITEMS_BIN</code> — as its sky, on black, the way the game draws it, so windows and exteriors read as they do in game. <b>Options → Viewport → Render Galaxy</b> turns it off and puts the plain sky back; it's on by default. A level with no galaxy keeps the plain sky either way, and only the stars are drawn — the level's planets aren't part of the sky.</p>
+		<p>Where a level looks out into space, the Viewport draws the level's own galaxy — the starfield in <code>RENDERABLE/GALAXY/GALAXY.ITEMS_BIN</code> — as its sky, on black, the way the game draws it, so windows and exteriors read as they do in game. <b>Options → Viewport → Render Galaxy</b> turns it off and puts the plain sky back; it's on by default. A level with no galaxy keeps the plain sky either way.</p>
 		<p>The stars come from the level as loaded, and <b>Generate Galaxy</b> in the <a href="/docs/galaxy-editor/">Galaxy Editor</a> swaps the new starfield in straight away, without a save. Stars are drawn at the game's brightness for a full-height frame; in a Viewport shorter than 1080 pixels they're brightened to match, so the galaxy doesn't fade into the pixels of a small docked panel.</p>
+		<p>The level's planets, moons and suns are drawn in that sky as the game draws them. Each one is a small model in a SpaceVista composite, which the game draws out in the sky, sized and lit by its <b>Planet</b> entity (its parallax scale and position, the sun lighting it, its atmosphere and detail map). Edit a Planet entity, or the values its composite is placed with, and the Viewport redraws it straight away. A planet the level starts hidden, to show it later, is hidden here too. Planets are never cut off by the <a href="#draw-distance">draw distance</a>, clicks pass through them, and they aren't dimmed with the rest of the level while you edit a composite. To select one, select its entity in the flowgraph.</p>
+		<p><b>Options → Viewport → Render Planets</b> turns the planets off; it's on by default. They're part of the sky, so turning <b>Render Galaxy</b> off turns them off too, and <b>Render Planets</b> shows unticked and greyed out until the galaxy is back on. Your own choice for it is kept for then.</p>
+	</section>
+
+	<section class="docs-section" id="fog-water">
+		<h2 class="section-heading">Fog &amp; Water</h2>
+		<p><b>Options → Viewport → Render Distance Fog</b> draws the level's distance fog as the game does: the scene fades into the fog's colour the further it is from the camera. It's off by default, so the whole level shows clear however far out the camera goes. Levels change their fog as the player goes on, from <b>FogSetting</b> entities that their scripts trigger. The Viewport draws the one the level triggers as it starts, with the values its script feeds it then, and no fog for a level that triggers none at the start, as in the game. Edit that FogSetting, or anything feeding it, and the fog changes straight away. Fog volumes and planes (<b>FogBox</b>, <b>FogPlane</b> and <b>FogSphere</b>) aren't drawn as fog, whether the option is on or off.</p>
+		<p>The level's water is drawn as the game draws it: <b>SimpleWater</b> sheets (the alien nest's flooded floor is one), and the puddles and pools that models carry as water materials. Their ripples scroll and flow as they do in game, they reflect the room above them, and a sheet with caustics throws a shimmer of light onto the surfaces above or below it. Edit a SimpleWater and the Viewport redraws it straight away. Water is part of how the level looks, so it's drawn whatever the render filters say, and clicks go through a SimpleWater sheet to the floor under it. <b>Options → Viewport → Render Water</b> (on by default) turns all of it off and shows what is under the water.</p>
+		<p>The reflection is a second render, as in the game: the Viewport draws the level again from a camera mirrored below the water, with only the models the level marks to be reflected, and the water shows that picture rippled. A model is reflected when <code>include_in_planar_reflections</code> is ticked on its ModelReference, or on the composite instance it's in. Change that parameter and the reflection follows. One water surface is mirrored this way at a time: the biggest and nearest one on screen. Any other water in view reflects what is already on screen around it instead.</p>
+		<p><b>Options → Viewport → Use Planar Reflections</b> (on by default) chooses between the two. Off, every water surface uses that cheaper on-screen reflection, which can only reflect what is in view: anything behind the camera, or hidden behind something nearer, is missing from it. The second render makes the Viewport slower while a large stretch of water is on screen, so turn it off if the Viewport struggles there. It's greyed out while <b>Render Water</b> is off.</p>
+	</section>
+
+	<section class="docs-section" id="draw-distance">
+		<h2 class="section-heading">Draw Distance &amp; Anti-aliasing</h2>
+		<p>To stay quick on big levels, the Viewport stops drawing a model once it's far enough away for its size: small props drop out first, while walls and large structures stay out to hundreds of metres. <b>Options → Viewport → Draw Distance</b> sets how far:</p>
+		<ul>
+			<li><b>Short</b> — 50 times a model's radius, and at least 10 m. The fastest</li>
+			<li><b>Medium</b> (the default) — 100 times its radius, and at least 15 m: a 1 m prop is drawn out to 50 m, a 10 m wall to half a kilometre</li>
+			<li><b>Long</b> — 200 times its radius, and at least 30 m</li>
+			<li><b>Very Long</b> — 400 times its radius, and at least 60 m</li>
+			<li><b>Unlimited</b> — every model, however far away. Nothing drops out, but big levels are much slower to move around</li>
+		</ul>
+		<p>If models pop in and out as you move, choose a longer distance. If the Viewport is slow on a large level, a shorter one helps most, because its speed depends mostly on how many models it draws. The change applies to the open level straight away.</p>
+		<p><b>Options → Viewport → Anti-aliasing</b> smooths jagged edges, which show most in a small docked Viewport:</p>
+		<ul>
+			<li><b>Off</b> — edges as they're drawn</li>
+			<li><b>FXAA</b> — smooths the finished picture. Cheap, but softens textures a little</li>
+			<li><b>SMAA</b> (the default) — smooths the finished picture, keeping textures sharper than FXAA. Also cheap</li>
+			<li><b>MSAA 2x</b>, <b>4x</b> and <b>8x</b> — draw model edges with 2, 4 or 8 samples a pixel: sharper edges, but slower on busy views. Cut-out textures such as grates and cables stay jagged</li>
+		</ul>
 	</section>
 
 	<section class="docs-section" id="state-info">
@@ -373,7 +405,7 @@
 		<h2 class="section-heading">Viewport Options</h2>
 		<p>Most Viewport behaviour is controlled from <b>Options → Viewport</b>, pictured below with its <b>Selection Highlight Mode</b> submenu open (the same items are listed under <a href="/docs/options/#viewport">Options</a>).</p>
 		<p><img src="img/options-viewport-menu.jpg" alt="The Options menu with the Viewport submenu and its Selection Highlight Mode submenu open." style="max-width:100%;width:683px"></p>
-		<p>In menu order:</p>
+		<p>In menu order. Dividers split the menu into the switch for the Viewport itself, how it marks and follows what you're editing, what it renders, and the snap increments:</p>
 		<ul>
 			<li><b>Enable Viewport</b> — turn the 3D view on or off; see <a href="#disabling">Enabling &amp; Disabling the Viewport</a></li>
 			<li><b>Highlight Aliases</b> — show orange highlights on entities targeted by parameterized aliases in the active composite</li>
@@ -381,11 +413,17 @@
 			<li><b>Focus on Selected</b> — move the camera to frame an entity whenever you select one</li>
 			<li><b>Fix Camera to Selected Entity</b> — keep the camera locked on the selection rather than framing it once. Turning this on turns on <b>Focus on Selected</b> too</li>
 			<li><b>Show Camera Position</b> — display camera X/Y/Z coordinates while moving</li>
-			<li><b>Render Wireframe</b> — draw ModelReference meshes as wireframe overlays</li>
-			<li><b>Render Galaxy</b> — draw the level's galaxy (its starfield) as the Viewport sky, as the game does; off shows the plain sky instead. On by default; see <a href="#galaxy">The Sky</a></li>
 			<li><b>Hide Nested Script Entities</b> — hide render previews for entities defined in nested composites (models are drawn regardless; untick the ModelReference render filter to hide those)</li>
 			<li><b>Selection Highlight Mode</b> — <b>Green</b>, <b>Wireframe</b>, <b>Wireframe Transparent</b> or <b>None</b> (<b>Alt+1</b> to <b>Alt+4</b>); see <a href="#selection">Selection</a></li>
-			<li><b>Snap Increments…</b> (below the separator) — edit the values offered by the <b>Transform Snap</b> and <b>Rotation Snap</b> menus; see <a href="#transform-gizmo">Moving Entities</a></li>
+			<li><b>Render Wireframe</b> — draw ModelReference meshes as wireframe overlays</li>
+			<li><b>Render Galaxy</b> — draw the level's galaxy (its starfield) as the Viewport sky, as the game does; off shows the plain sky instead. On by default; see <a href="#galaxy">The Sky</a></li>
+			<li><b>Render Planets</b> — draw the level's planets, moons and suns in the sky. On by default, and off whenever <b>Render Galaxy</b> is off; see <a href="#galaxy">The Sky</a></li>
+			<li><b>Render Distance Fog</b> — draw the distance fog the level starts with, as the game does. Off by default; see <a href="#fog-water">Fog &amp; Water</a></li>
+			<li><b>Render Water</b> — draw the level's water with its reflections, ripples and caustics. On by default</li>
+			<li><b>Use Planar Reflections</b> — reflect in the water by drawing the level a second time, as the game does; off, the cheaper on-screen reflection. On by default, and greyed out while <b>Render Water</b> is off</li>
+			<li><b>Anti-aliasing</b> — <b>Off</b>, <b>FXAA</b>, <b>SMAA</b> (the default), <b>MSAA 2x</b>, <b>4x</b> or <b>8x</b>; see <a href="#draw-distance">Draw Distance &amp; Anti-aliasing</a></li>
+			<li><b>Draw Distance</b> — how far away models are still drawn, by their size: <b>Short</b>, <b>Medium</b> (the default), <b>Long</b>, <b>Very Long</b> or <b>Unlimited</b></li>
+			<li><b>Snap Increments…</b> (below the last divider) — edit the values offered by the <b>Transform Snap</b> and <b>Rotation Snap</b> menus; see <a href="#transform-gizmo">Moving Entities</a></li>
 		</ul>
 		<p>Also useful:</p>
 		<ul>
@@ -403,6 +441,7 @@
 		<ul>
 			<li>Model, texture and material edits reach the Viewport on their own. If the 3D view still looks wrong after an edit, save and reload the level (or restart OpenCAGE).</li>
 			<li>Click the Viewport first before using camera/hotkeys — those shortcuts apply when the Viewport has focus.</li>
+			<li>Models popping in and out as the camera moves are the <a href="#draw-distance">draw distance</a>: choose a longer one under <b>Options → Viewport → Draw Distance</b>. If the Viewport is slow on a big level, choose a shorter one, or turn off <b>Use Planar Reflections</b> where there's a lot of water.</li>
 			<li>If there's no Viewport at all, check <b>Options → Viewport → Enable Viewport</b> first, then Steam's launch options — you may have <code>-disable_viewport</code> set.</li>
 			<li>Opening several editor windows? Use <b>Launch other editors without viewport</b> under Manage Game Directories to save memory — more in <a href="/docs/multiple-game-installs/">Multiple Game Installs</a>.</li>
 			<li><b>Ctrl+S</b> saves and <b>Ctrl+Shift+S</b> saves and builds from inside the Viewport too, so you don't have to click back into the editor first — see <a href="/docs/save-and-build/">Save and Build</a>.</li>
