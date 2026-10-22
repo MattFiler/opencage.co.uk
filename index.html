@@ -181,6 +181,7 @@
             box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.85);
         }
         .shot img { width: 100%; }
+        .shot picture { display: block; }   /* animated WebP with a reduced-motion still */
         .inset {
             position: absolute; z-index: 2; width: 44%; right: -3%; bottom: -13%;
             border: 3px solid var(--magenta); border-radius: 2px;
@@ -335,13 +336,8 @@
             </div>
             <div class="feature-media reveal">
                 <figure class="shot">
-                    <img src="images/viewport-terminal.jpg" srcset="images/viewport-terminal-800.jpg 800w, images/viewport-terminal.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Inside the Spaceflight Terminal on HAB_AIRPORT in the 3D Viewport">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/viewport-levels-loop-800.jpg 800w, images/viewport-levels-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/viewport-levels-loop-800.webp 800w, anim/viewport-levels-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/viewport-levels-loop.jpg" srcset="images/viewport-levels-loop-800.jpg 800w, images/viewport-levels-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The 3D Viewport in the editor, stepped into each level's environment composite with one of its flowgraph pages below: a glide down a corridor on the Torrens (BSP_TORRENS), past The Spot on the upper floor of the shopping centre (HAB_SHOPPINGCENTRE) and up to the android lab's reception desk (SCI_ANDROIDLAB), each level crossfading into the next"></picture>
                 </figure>
-                <ul class="strip">
-                    <li><figure><div class="shot"><img src="images/strip-torrens.jpg" width="800" height="374" loading="lazy" alt="Down a corridor on the Torrens (BSP_TORRENS)"></div><figcaption>BSP_TORRENS</figcaption></figure></li>
-                    <li><figure><div class="shot"><img src="images/strip-mall.jpg" width="800" height="374" loading="lazy" alt="Along the upper floor of the main shopping centre (HAB_SHOPPINGCENTRE)"></div><figcaption>HAB_SHOPPINGCENTRE</figcaption></figure></li>
-                    <li><figure><div class="shot"><img src="images/strip-androidlab.jpg" width="800" height="374" loading="lazy" alt="The android lab reception desk (SCI_ANDROIDLAB)"></div><figcaption>SCI_ANDROIDLAB</figcaption></figure></li>
-                </ul>
             </div>
         </section>
 
@@ -358,7 +354,7 @@
             </div>
             <div class="feature-media has-inset reveal">
                 <figure class="shot">
-                    <img src="images/script-m14.jpg" srcset="images/script-m14-800.jpg 800w, images/script-m14.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="A cutscene script from the Hazard Lab, arranged over pages, with its camera and character markers in the viewport">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/script-existing-loop-800.jpg 800w, images/script-existing-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/script-existing-loop-800.webp 800w, anim/script-existing-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/script-existing-loop.jpg" srcset="images/script-existing-loop-800.jpg 800w, images/script-existing-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Browsing the Torrens' first mission script (M01_Pt01) in the flowgraph, with the 3D Viewport looking down into the bridge: a position marker selected, the page zoomed out, a glide into the logic for meeting Taylor, links followed with Show Connected Links and Go To, the Taylor character composite stepped into and out of, then back to the start"></picture>
                 </figure>
                 <figure class="shot inset">
                     <img src="images/script-m01.jpg" width="830" height="312" loading="lazy" alt="Mission logic on the Torrens: signing in at the terminal starts the keycard, and the accepted keycard unlocks the cryo door">
@@ -379,7 +375,7 @@
             </div>
             <div class="feature-media reveal">
                 <figure class="shot">
-                    <img src="images/script-trigger.jpg" srcset="images/script-trigger-800.jpg 800w, images/script-trigger.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="A new trigger box in the Torrens canteen, wired to a delay and on-screen debug text">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/script-build-loop-800.jpg 800w, images/script-build-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/script-build-loop-800.webp 800w, anim/script-build-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/script-build-loop.jpg" srcset="images/script-build-loop-800.jpg 800w, images/script-build-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="A script built in the Sponza atrium level: a PlayerTriggerBox and a LogicDelay dragged in, linked to spawn the alien, the trigger moved and sized in the viewport, the nodes moved together - then every step undone"></picture>
                 </figure>
             </div>
         </section>
@@ -397,10 +393,10 @@
             </div>
             <div class="feature-media has-inset reveal">
                 <figure class="shot">
-                    <img src="images/debug-editor.jpg" srcset="images/debug-editor-800.jpg 800w, images/debug-editor.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Show Activity on a FloatModulate driving a debug marker: lit links and a count on every pin that has fired">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/debug-activity-loop-800.jpg 800w, images/debug-activity-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/debug-activity-loop-800.webp 800w, anim/debug-activity-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/debug-activity-loop.jpg" srcset="images/debug-activity-loop-800.jpg 800w, images/debug-activity-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Show Activity on a FloatModulate driving a debug marker: Trigger Method starts and stops it, the links light up as the game uses them and the pin counts climb, then Clear Activity"></picture>
                 </figure>
                 <figure class="shot inset">
-                    <img src="images/debug-game.jpg" width="960" height="536" loading="lazy" alt="In game, the marker sweeping across a Torrens console with its X position printed at the top of the screen">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/debug-game-loop.jpg"><source type="image/webp" srcset="anim/debug-game-loop.webp"><img src="images/debug-game-loop.jpg" width="960" height="536" loading="lazy" alt="In game at the same time, the marker sweeping across a Torrens console with its X position printed at the top of the screen, then stopping"></picture>
                 </figure>
             </div>
         </section>
@@ -418,7 +414,7 @@
             </div>
             <div class="feature-media reveal">
                 <figure class="shot">
-                    <img src="images/scripted-anim.jpg" srcset="images/scripted-anim-800.jpg 800w, images/scripted-anim.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The opening camera move of the Nostromo DLC level on the CAGEAnimation curve editor, in Animation Mode">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/cage-anim-loop-800.jpg 800w, images/cage-anim-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/cage-anim-loop-800.webp 800w, anim/cage-anim-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/cage-anim-loop.jpg" srcset="images/cage-anim-loop-800.jpg 800w, images/cage-anim-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The opening camera move of the Nostromo DLC level in Animation Mode: dragging a key and a bezier handle on the curve editor moves the camera in the Viewport, then scrubbing the playhead flies it along its path"></picture>
                 </figure>
             </div>
         </section>
@@ -436,7 +432,7 @@
             </div>
             <div class="feature-media has-inset reveal">
                 <figure class="shot">
-                    <img src="images/anim-preview.jpg" srcset="images/anim-preview-800.jpg 800w, images/anim-preview.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="One of the alien's threat animations previewed on the alien model">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/anim-preview-loop-800.jpg 800w, images/anim-preview-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/anim-preview-loop-800.webp 800w, anim/anim-preview-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/anim-preview-loop.jpg" srcset="images/anim-preview-loop-800.jpg 800w, images/anim-preview-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="One of the alien's threat animations looping in the Animation Preview"></picture>
                 </figure>
                 <figure class="shot inset">
                     <img src="images/anim-tree.jpg" width="960" height="760" loading="lazy" alt="The alien's ACT_SUSPICIOUS_ITEM animation tree">
@@ -460,7 +456,7 @@
                     <img src="images/livelink-editor.jpg" srcset="images/livelink-editor-800.jpg 800w, images/livelink-editor.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="A nodding bird placed on the Torrens canteen table in OpenCAGE">
                 </figure>
                 <figure class="shot inset">
-                    <img src="images/livelink-game.jpg" width="960" height="540" loading="lazy" alt="The same nodding bird on the table in the running game">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/livelink-game.jpg"><source type="image/webp" srcset="anim/livelink-game.webp"><img src="images/livelink-game.jpg" width="960" height="540" loading="lazy" alt="The same nodding bird on the table in the running game"></picture>
                 </figure>
             </div>
         </section>
@@ -520,7 +516,7 @@
             </div>
             <div class="feature-media has-inset reveal">
                 <figure class="shot">
-                    <img src="images/level-sponza.jpg" srcset="images/level-sponza-800.jpg 800w, images/level-sponza.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="An imported Sponza atrium dragged into a brand new level">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/level-sponza-loop-800.jpg 800w, images/level-sponza-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/level-sponza-loop-800.webp 800w, anim/level-sponza-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/level-sponza-loop.jpg" srcset="images/level-sponza-loop-800.jpg 800w, images/level-sponza-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The alien dragged from the Composite Browser into the Sponza atrium level, then deleted again"></picture>
                 </figure>
                 <figure class="shot inset">
                     <img src="images/create-level.jpg" width="560" height="380" loading="lazy" alt="The Create Level dialog">
@@ -541,10 +537,10 @@
             </div>
             <div class="feature-media has-inset reveal">
                 <figure class="shot">
-                    <img src="images/ingame-alien.jpg" srcset="images/ingame-alien-800.jpg 800w, images/ingame-alien.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Playing as the alien in the new Sponza level">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/ingame-alien-800.jpg 800w, images/ingame-alien.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/ingame-alien-800.webp 800w, anim/ingame-alien-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/ingame-alien.jpg" srcset="images/ingame-alien-800.jpg 800w, images/ingame-alien.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Playing as the alien in the new Sponza level"></picture>
                 </figure>
                 <figure class="shot inset">
-                    <img src="images/launch-game.jpg" width="464" height="436" loading="lazy" alt="The Launch Game dialog with Possess Characters and Live Link turned on">
+                    <img src="images/launch-game.jpg" width="462" height="375" loading="lazy" alt="The Launch Game window set to load straight into SPONZA, with the Debug Menu, Live Link and Possess characters turned on">
                 </figure>
             </div>
         </section>
@@ -604,7 +600,7 @@
             </div>
             <div class="feature-media reveal">
                 <figure class="shot">
-                    <img src="images/behaviour-tree.jpg" srcset="images/behaviour-tree-800.jpg 800w, images/behaviour-tree.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="The alien's behaviour tree with a new condition and a Success node added to a sequence">
+                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/behaviour-tree-loop-800.jpg 800w, images/behaviour-tree-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/behaviour-tree-loop-800.webp 800w, anim/behaviour-tree-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/behaviour-tree-loop.jpg" srcset="images/behaviour-tree-loop-800.jpg 800w, images/behaviour-tree-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Zooming into and panning round the alien's behaviour tree in the Behaviour Tree Editor"></picture>
                 </figure>
             </div>
         </section>
