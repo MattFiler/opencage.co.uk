@@ -64,18 +64,10 @@
             max-width: 330px;
             margin: 0 auto 1.4rem;
             border-radius: 6px;
-            transition: transform .2s ease;
-        }
-        .docs-banner-home:hover {
-            transform: scale(1.03);
         }
         .docs-banner-home:focus-visible {
             outline: 2px solid #fff;
             outline-offset: 8px;
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .docs-banner-home { transition: none; }
-            .docs-banner-home:hover { transform: none; }
         }
         .docs-banner-logo {
             display: block;
@@ -475,7 +467,7 @@
 														<span class="card-title-text">Launch Game</span>
 													</h5>
 													<div class="card-text">
-														Starting levels, UI mods, patches, and tools from OpenCAGE's Launch Game dialog.
+														Starting levels, debug tools, game options and UI tweaks from OpenCAGE's Launch Game window.
 													</div>
 													<a class="card-link-mask" href="launch-game/"></a>
 												</div>
@@ -507,9 +499,25 @@
 														<span class="card-title-text">Debug Text &amp; Markers</span>
 													</h5>
 													<div class="card-text">
-														Put text, script values and position markers on screen in the game, to see what a script is doing.
+														Put text, script values and position markers on screen in the game to see what a script is doing, or stop it at a breakpoint.
 													</div>
 													<a class="card-link-mask" href="debug-text/"></a>
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-6 py-2">
+											<div class="card shadow-sm">
+												<div class="card-body">
+													<h5 class="card-title mb-3">
+														<span class="theme-icon-holder card-icon-holder me-2">
+															<i class="fa-solid fa-sliders"></i>
+														</span>
+														<span class="card-title-text">Debug Menu</span>
+													</h5>
+													<div class="card-text">
+														An in-game debug menu: see what each character senses, sees and is doing, its behaviour and animation trees and skeleton, what the game's sound is doing, and flick the game's own rendering switches.
+													</div>
+													<a class="card-link-mask" href="debug-menu/"></a>
 												</div>
 											</div>
 										</div>

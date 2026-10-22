@@ -175,7 +175,7 @@
 	
 	<section class="docs-section" id="version-1-0-0-0">
         <h2 class="section-heading">Version 1.0.0.0</h2>
-    
+
         <p><strong>Releasing 31st October 2026: available now on the staging branch.</strong></p>
 		<ul>
 			<li>Added a Mod Manager:<ul>
@@ -183,18 +183,61 @@
 				<li>Supports handling conflicts across multiple installed mods</li>
 				<li>Allows reverting changes back to vanilla</li>
 				<li>Supports creating your own mod packages for distribution</li>
+				<li>Choose exactly what goes into a mod you make: individual composites, assets and settings, and UI and animation changes one by one</li>
 			</ul></li>
 			<li>Added new 'Live Link' functionality:<ul>
 				<li>Added/modified/removed script entities live update in-game while Live Link is connected - place composites and modify lights, characters, and more in realtime</li>
-				<li>See realtime script activity in the flowgraph including active links and trigger counts via new highlighted links and method/target annotations</li>
+				<li>Dragging an entity with the viewport gizmo, or picking a colour in the inspector, updates the running game as you go</li>
+				<li>See realtime script activity in the flowgraph (Show Activity) including active links and trigger counts via new highlighted links and method/target annotations</li>
 				<li>Trigger methods on entities manually via a new dropdown in the inspector</li>
 				<li>Sync the camera to the viewport to see the in-game camera position in OpenCAGE, or vice-versa</li>
+				<li>Play CAGEAnimations in the running game from the CAGEAnimation editor's Animation Mode, to time them against the real level as you edit</li>
 				<li>Capture new cubemaps for EnvironmentMap entities in-game (one at a time from the inspector, or all at once with File &gt; Recapture All Cubemaps) - they're automatically imported and assigned, replacing the old ones, at their size or one picked in Misc &gt; Cubemap Capture Size</li>
+				<li>Changes made in the Radiosity, Hair and Skin Shading, and Global Constants editors show in the running game as you make them</li>
+				<li>Added a script debugger: set breakpoints on flowgraph nodes (F9) to stop the game's scripts when an entity's methods are about to be called, see the calls that led there, then continue (F8) or step (F10) - needs the Debug Menu</li>
+				<li>See each entity's state and data pin values in the running game on the flowgraph (Script Debugger &gt; Show Live States Above Nodes), and jump to the entity under the in-game crosshair (Script Debugger &gt; Select Entity Under Game Crosshair)</li>
+				<li>Works with the Steam, GOG and Epic Games Store versions of the game</li>
+			</ul></li>
+			<li>Added a new 'Debug Menu' launch option, an in-game debug menu (press F7 - rebindable), with its tabs in groups:<ul>
+				<li>Overview: the level, current and loaded zones, the player's position and speed, the frame rate, draw calls, GPU time and memory in the corner of the screen</li>
+				<li>Characters: what every character senses, knows and is doing (with labels, view cones, hearing ranges and paths drawn over the game), controls to change them, their animation trees, clips and skeletons, player cheats, teleports and items, and the alien's menace and what it has learnt</li>
+				<li>AI: follow each character's behaviour tree live, see the squads, toggle the trees' own debug switches, and log their debug actions and state changes</li>
+				<li>World: what's under a crosshair (its collision, material, entity and model), the zones streaming in, and trigger boxes, doors, the nav mesh, cover, jobs and physics drawn over the game</li>
+				<li>Scripts: the script errors the game never reports, waiting calls and trigger counts, saved variables and objectives, global events, CAGEAnimations, a script profiler and the cameras</li>
+				<li>Sound: every sound playing and what played it, an event log, speech and subtitles, what the AI hears and the route the sound took through the sound network, and the music - plus making noises for the AI and playing sound events</li>
+				<li>Rendering: the game's own rendering switches and debug views, muting or soloing lights, what the radiosity, post-processing and render targets are doing, and why something isn't drawn</li>
+				<li>Performance: frame time, draw calls and the renderer's fixed limits, GPU and CPU timing, memory and streaming, and the game's UI memory overlay</li>
+				<li>Game: the game's flow and every level to load, saves and achievements, debug and level checkpoints, pausing, stepping and game speed, and alerting, withdrawing or resetting the AI</li>
+				<li>Cinematic: the free camera, camera tracks, depth of field and look overrides, hiding the HUD, freezing NPCs and screenshots (replacing Cinematic Tools - see below)</li>
+				<li>Cinematic &gt; Free Camera's 'Fly with this window open' option keeps the free camera flying while the Debug Menu is open: the keys fly it (unless you're typing in one of its boxes), holding the right mouse button away from the window turns it, and the wheel zooms away from the window</li>
+				<li>Nearly everything in it has a name, so OpenCAGE and AI assistants can read and drive it over Live Link</li>
+			</ul></li>
+			<li>Cinematic Tools are now part of the Debug Menu, in its Cinematic group:<ul>
+				<li>Launch Game's 'Enable Cinematic Tools' option is replaced by the Debug Menu (ticked for you if you had Cinematic Tools enabled)</li>
+				<li>The separate Cinematic Tools injector is no longer shipped, so there's nothing for antivirus software to block</li>
+				<li>Live Link and the other scripting helpers now run alongside the free camera</li>
+				<li>Works with the Steam, GOG and Epic Games Store versions of the game</li>
+				<li>Zones are now loaded around the camera as it moves</li>
+				<li>Added camera tracks - capture camera positions, set timings, and play back a smooth track (keep several, and save them to a file)</li>
+				<li>Added screenshots (F9) and hiding individual HUD layers</li>
+			</ul></li>
+			<li>Reworked the Launch Game window:<ul>
+				<li>Its options are now in three groups (Debug tools, Game options and UI tweaks), and the four debug entity boxes are one 'Debug entities' box</li>
+				<li>Tick 'Load straight into' to launch into a level, skipping the title screen - otherwise the game starts at the front end as normal</li>
+				<li>Added a 'Don't Write Saves' option (with the Debug Menu) which keeps the game from writing to your saved games and settings while you test - it can also be turned on and off in-game from the Debug Menu</li>
+				<li>Added a 'Debug entities' option which draws the output of DebugText, DebugTextStacking, DebugEnvironmentMarker and DebugPositionMarker entities over the game</li>
+				<li>Added a 'Possess Characters' option (press F6 - rebindable - to select a character to control)</li>
+				<li>Added an 'Unlock Mouse' option which toggles allowing the game to steal your cursor</li>
+				<li>Added a 'Cap FPS' option</li>
+				<li>Added ability to rebind the hot reload key</li>
+				<li>The UI tweaks no longer overwrite the game's original UI files</li>
+				<li>The game's UI memory overlay is now a checkbox in the Debug Menu (Performance &gt; Memory) that works live, instead of a launch option that patched the game</li>
+				<li>Removed Skip Frontend, Memory Logging, and the debug checkpoints and level selection menus (the Debug Menu's Game tabs do those)</li>
 			</ul></li>
 			<li>Added a new 'Save and Build' (instancing) option in the File menu:<ul>
 				<li>Generates instance-specific materials and properties for static geometry based on materials, remappings, and aliases</li>
 				<li>Generates navmeshes based on the ExclusiveMaster sets in the level</li>
-				<li>Generates radiosity for newly added and moved objects</li>
+				<li>Generates radiosity for newly added and moved objects (or the whole level every time, with Options &gt; Misc &gt; Always Fully Rebuild Radiosity)</li>
 				<li>Generates instances for collision and physics to match object positions and new scripted entities</li>
 				<li>Generates sound networks and spaces for sound routing and reverbs through the level</li>
 				<li>Generates cover, spotting, assault jobs for NPCs</li>
@@ -206,10 +249,11 @@
 			</ul></li>
 			<li>Improved viewport:<ul>
 				<li>Added galaxy rendering in the viewport (which can be disabled) - live syncs to changes in the Galaxy Editor</li>
-				<li>Added a number of material improvements to the viewport (some optional) including planar reflections, cubemaps, and gas giant</li>
-				<li>Viewport now has anti-aliasing options</li>
+				<li>Added a number of material improvements to the viewport (some optional) including water with planar reflections, cubemap reflections, level fog, planets and gas giants, and glowing surfaces</li>
+				<li>Added anti-aliasing options</li>
 				<li>Vast performance improvements in the viewport, with configurable draw distance</li>
 				<li>Improvements to total memory overhead for the viewport</li>
+				<li>Added an 'Enable Viewport' option to turn the viewport off entirely</li>
 				<li>Added support for syncing modified resources (textures, models, materials) to the viewport - including newly imported ones</li>
 				<li>Added new options for rendering selected entities: wireframe, transparent wireframe, none</li>
 				<li>Added additional render filters for a variety of Sphere types, and others</li>
@@ -230,7 +274,7 @@
 				<li>Added ability to move the origin point for transform controls in the viewport (CTRL+SHIFT)</li>
 				<li>World rotation gizmo in viewport now turns with the rotation</li>
 				<li>Added new 'Focus on Selected' and 'Fix Camera on Selected' options for the viewport</li>
-				<li>Improved 'focus on selected' mode in the viewport - it no longer jumps when stepping the hierarchy</li>
+				<li>Improved 'focus on selected' mode in the viewport - it no longer jumps when stepping the hierarchy, and frames the whole level when nothing is selected</li>
 				<li>Added a ruler to measure distances in the viewport</li>
 				<li>Added crash log reporting for the viewport</li>
 				<li>Fixed rotation issue for spotlight previews in the viewport</li>
@@ -241,6 +285,52 @@
 				<li>Fixed a bug where force closing OpenCAGE could leave a viewport process open in the background</li>
 				<li>Fixed composites failing to render in the viewport when their models weren't loaded during the initial populate</li>
 				<li>Fixed small composites (pickups and similar) being framed so far away they appeared as a speck</li>
+			</ul></li>
+			<li>Improved script flowgraph:<ul>
+				<li>Added a trail of the composites you stepped down through above the flowgraph - click one to go back up to it</li>
+				<li>Reworked the back button - it now takes you to the previously loaded composite, and is no longer relative to the currently loaded hierarchy</li>
+				<li>Added a dropdown next to the back button to view up to five previously loaded composites</li>
+				<li>Added new annotations on nodes - you'll see (P) for ones that are proxied elsewhere, (*) for ones that have one or more other nodes for the same entity, and (!) for unresolvable proxies</li>
+				<li>Input pins along the top of a node now show their values above them, and follow edits made in the inspector</li>
+				<li>Added a window to show all links in and out of a node</li>
+				<li>Added new tools for automatically reorganising untidy flowgraph pages</li>
+				<li>Added new function-specific node colours for quicker script navigation (colours are no longer driven by entity type)</li>
+				<li>Added new dotted outline for proxy/alias nodes</li>
+				<li>Added categories for function entities - used for grouping in the function browser</li>
+				<li>Added icons for function entity categories</li>
+				<li>Added a new flowgraph design when zoomed out for clarity - shows icons and names when hovered</li>
+				<li>Added a 'Show Node Icons When Zoomed Out' option under Options &gt; Entity Display (on by default) - turn it off to keep script flowgraph and animation tree nodes drawn in full at every zoom</li>
+				<li>Added context-aware positioning of pins on nodes (relays will always have their output in-line with their input)</li>
+				<li>Added functionality to click pins to link them, instead of dragging</li>
+				<li>Added search on the 'Select Destination Pin' window, and now sorted alphabetically</li>
+				<li>Added right click to add to TriggerSequence on node</li>
+				<li>Added arrows to point to off-screen highlighted nodes</li>
+				<li>Added option to focus the flowgraph on a newly added node (now defaults off)</li>
+				<li>Deleting nodes for an entity no longer prompts you first - you can turn that back on in the Options</li>
+				<li>Deleting all nodes for an entity with no other references can now auto-delete the entity (optional under 'Delete Entities When Nodes Deleted')</li>
+				<li>Improved hit testing in the flowgraph view</li>
+			</ul></li>
+			<li>Added support for copy/pasting entities (replaces the old Duplicate option):<ul>
+				<li>Select one or more nodes in the flowgraph and CTRL+C/CTRL+V to copy/paste</li>
+				<li>Same as above, but right click and 'Paste References' to create new nodes for the copied entities, or aliases if in other composites</li>
+				<li>Select an entity in the viewport and CTRL+C/CTRL+V to copy/paste</li>
+				<li>Copied entities on the flowgraph are pasted with their associated links and node layouts</li>
+				<li>Any copied entity keeps all its parameters across</li>
+				<li>Entities can be pasted across to any other composite</li>
+			</ul></li>
+			<li>Reworked Entity Inspector:<ul>
+				<li>Now allows for multi-select, entities of the same type are grouped, others can be found on tabs</li>
+				<li>All entity parameters are now shown at once (removed 'Manage Parameters' popup), with defaults populated</li>
+				<li>Modified parameters are marked in bold, right click to reset to default values</li>
+				<li>Parameters are grouped by the entity they originate from (makes inheritance more obvious, and navigating easier)</li>
+				<li>Added an orange highlight to parameters which are overridden by an alias elsewhere</li>
+				<li>Added a blue highlight to parameters which are overridden by a connection in the flowgraph</li>
+				<li>Added a purple highlight to parameters which are controlled by CAGEAnimations</li>
+				<li>Added ability to flag vector parameters as colours on composites</li>
+				<li>Added support for the material picker when selecting materials for entity parameters</li>
+				<li>Zone name now shows on 'Zone' button if one, or opens a list if multiple - this calculation is performed from the root of the active hierarchy</li>
+				<li>Modified utility buttons to be on two rows</li>
+				<li>The Function button is now named after what it does for the selected entity (Edit Tracks, Edit Sequence, Edit Character, Capture)</li>
 			</ul></li>
 			<li>New animation clip editor:<ul>
 				<li>Browse all available animations by character or env model and context</li>
@@ -254,6 +344,7 @@
 				<li>Browse all animation sets and the animation trees contained within them</li>
 				<li>Load an animation tree and browse its nodes</li>
 				<li>Add new tree nodes and links, and rearrange the layouts</li>
+				<li>Copy and paste nodes</li>
 				<li>Delete existing tree nodes and links</li>
 				<li>Select a node and modify its parameters</li>
 			</ul></li>
@@ -264,7 +355,7 @@
 				<li>Added option to enable/disable bezier mode</li>
 				<li>Added a snap option to snap to timestamps</li>
 				<li>Added an interactive control for setting animation length</li>
-				<li>Added a new 'Animation Mode' which allows live-edit and preview of animation tracks via the inspector and viewport</li>
+				<li>Added a new 'Animation Mode' which allows live-edit and preview of animation tracks via the inspector and viewport (and in the running game, with Live Link)</li>
 				<li>Entity parameters are now tidied up if unused</li>
 				<li>Fixed an issue where some entity links were incorrectly destroyed</li>
 				<li>Various other fixes and improvements to better match in-game logic</li>
@@ -275,54 +366,22 @@
 				<li>Added support for skin weights on export/import</li>
 				<li>Added support for skeletons and bones on export for characters</li>
 				<li>Added a rescale option on import</li>
-				<li>Added a new model metadata json file that exports with a model to help reimporting</li>
+				<li>Added a new model metadata json file that exports with a model, and is read on import to keep structures similar</li>
 				<li>Added an 'export all' option</li>
+				<li>Added ability to rename imported models</li>
 				<li>Added support for previewing TGA textures, and ones embedded in GLBs on import</li>
+				<li>Deleting a model now offers to delete the materials and textures only it used</li>
+				<li>Imported models can now optionally create their own composite, with auto-generated ModelReferences set up for submeshes</li>
 				<li>Fixed unit scale factor (models are no longer tiny)</li>
 				<li>Fixed a bug where large imported models would render incorrectly in-game</li>
 				<li>Fixed an issue where UVs would store incorrectly depending on formatting</li>
 				<li>Fixed a scale bug when previewing models with multiple submeshes in the model editor</li>
 				<li>Fixed vertex colour read/write</li>
-				<li>Imported models can now optionally create their own composite, with auto-generated ModelReferences set up for submeshes</li>
-			</ul></li>
-			<li>Added support for copy/pasting entities (replaces the old Duplicate option):<ul>
-				<li>Select one or more nodes in the flowgraph and CTRL+C/CTRL+V to copy/paste</li>
-				<li>Same as above, but right click and 'Paste References' to create new nodes for the copied entities, or aliases if in other composites</li>
-				<li>Select an entity in the viewport and CTRL+C/CTRL+V to copy/paste</li>
-				<li>Copied entities on the flowgraph are pasted with their associated links and node layouts</li>
-				<li>Any copied entity keeps all its parameters across</li>
-				<li>Entities can be pasted across to any other composite</li>
-			</ul></li>
-			<li>Updated sound event selector:<ul>
-				<li>Import and export sounds to/from events</li>
-				<li>Preview sound events</li>
-				<li>Step or shuffle through every variation behind an event, rather than hearing one arbitrary take</li>
-				<li>Replacing a sound updates every copy the game ships, so it can't come back in a level that loads a different bank</li>
-				<li>Sound import/export supported on the Switch and mobile builds, encoding to whichever codec the sound it replaces used (Wwise Vorbis, Wwise ADPCM, or PCM)</li>
 			</ul></li>
 			<li>Improved material editing:<ul>
 				<li>Feature permutations are now functional - you can select from the available permutations in your game data (generated on first launch)</li>
-				<li>Added ability to create new materials</li>
+				<li>Added ability to create new materials, and delete them</li>
 				<li>For some ubershader types (e.g. fog, etc) permutations can be generated</li>
-			</ul></li>
-			<li>Reworked Entity Inspector:<ul>
-				<li>Now allows for multi-select, entities of the same type are grouped, others can be found on tabs</li>
-				<li>All entity parameters are now shown at once (removed 'Manage Parameters' popup), with defaults populated</li>
-				<li>Modified parameters are marked in bold, right click to reset to default values</li>
-				<li>Parameters are grouped by the entity they originate from (makes inheritance more obvious, and navigating easier)</li>
-				<li>Added an orange highlight to parameters which are overridden by an alias elsewhere</li>
-				<li>Added a blue highlight to parameters which are overridden by a connection in the flowgraph</li>
-				<li>Added a purple highlight to parameters which are controlled by CAGEAnimations</li>
-				<li>Zone name now shows on 'Zone' button if one, or opens a list if multiple - this calculation is performed from the root of the active hierarchy</li>
-				<li>Modified utility buttons to be on two rows</li>
-				<li>The Function button is now named after what it does for the selected entity (Edit Tracks, Edit Sequence, Edit Character, Capture)</li>
-			</ul></li>
-			<li>Reworked TriggerSequence editor:<ul>
-				<li>Added support for dragging and dropping TriggerSequence entries</li>
-				<li>Added support for multi-select when adding entities to TriggerSequences</li>
-				<li>Added support for multi-select when modifying delays on TriggerSequences</li>
-				<li>Added a search in the TriggerSequence entity list</li>
-				<li>Added support for proxy TriggerSequences</li>
 			</ul></li>
 			<li>Improved Texture Editor:<ul>
 				<li>Global textures are now auto-imported into the level (makes levels completely independent, and allows editing of those textures)</li>
@@ -332,6 +391,20 @@
 				<li>Added support for renaming imported textures</li>
 				<li>Corrected persistent/streamed storage (persistent textures are now half-res)</li>
 			</ul></li>
+			<li>Updated sound event selector:<ul>
+				<li>Import and export sounds to/from events</li>
+				<li>Preview sound events</li>
+				<li>Step or shuffle through every variation behind an event, rather than hearing one arbitrary take</li>
+				<li>Replacing a sound updates every copy the game ships, so it can't come back in a level that loads a different bank</li>
+				<li>Sound import/export supported on the Switch and mobile builds, encoding to whichever codec the sound it replaces used (Wwise Vorbis, Wwise ADPCM, or PCM)</li>
+			</ul></li>
+			<li>Reworked TriggerSequence editor:<ul>
+				<li>Added support for dragging and dropping TriggerSequence entries</li>
+				<li>Added support for multi-select when adding entities to TriggerSequences</li>
+				<li>Added support for multi-select when modifying delays on TriggerSequences</li>
+				<li>Added a search in the TriggerSequence entity list</li>
+				<li>Added support for proxy TriggerSequences</li>
+			</ul></li>
 			<li>Improved composite porting (no longer 'experimental'):<ul>
 				<li>Composite porting now supports every resource type - every composite can now be ported between levels</li>
 				<li>Added new bulk import/export options for porting - can multi-select levels and composites to import, or multiple to export to other level(s)</li>
@@ -339,88 +412,58 @@
 				<li>Added an option to build (instance) the target level when porting</li>
 				<li>Added an option to port to every other level in one go</li>
 				<li>Added an option to import/export from/to disk (allows sharing modded composites!)</li>
+				<li>Porting composites with proxies will now retain them in an 'unresolvable' state</li>
 				<li>Fixed an issue where composite layouts could be lost after porting</li>
 				<li>Fixed a bug where porting would incorrectly skip shaders and materials carrying similar properties to existing assets in a level</li>
 				<li>Fixed various performance issues with porting, should be noticeably quicker</li>
-				<li>Porting composites with proxies will now retain them in an 'unresolvable' state</li>
-			</ul></li>
-			<li>Improved Cinematic Tool:<ul>
-				<li>Added support for GOG and Epic</li>
-				<li>Zones are now loaded when moving the camera around</li>
-				<li>Added a new animation track utility - capture camera positions, set timings, and play back a smooth track</li>
-				<li>Improved initial DOF and speed values</li>
 			</ul></li>
 			<li>Added Collision/Physics editor:<ul>
 				<li>Allows selection of physics or collision proxies on DYNAMIC_PHYSICS_SYSTEM and COLLISION_MAPPING resources</li>
 				<li>Allows import of new physics or collision meshes</li>
 			</ul></li>
+			<li>New and improved config editors:<ul>
+				<li>Added a Voice Mappings editor</li>
+				<li>Added a Level Text Database editor</li>
+				<li>Added a Font Config editor</li>
+				<li>Added a Localisation editor</li>
+				<li>Added back the legacy Graphics Editor</li>
+				<li>Added ability to create new behaviour trees</li>
+				<li>Added ability to modify damage ranges in the ammo config editor</li>
+				<li>Added info popup about how the config editors save</li>
+				<li>Added warnings if saving fails when updating configs</li>
+			</ul></li>
 			<li>Added MCP support:<ul>
 				<li>Connect Claude and other AI chat apps to OpenCAGE to drive actions such as config editing, script editing, or level population</li>
+				<li>Assistants can work the Debug Menu (its switches, values and commands) and the script debugger in the running game, and set the Debug Menu and Don't Write Saves launch options</li>
 			</ul></li>
 			<li>Added a 'Create Level' option in the File menu which can create a new level from scratch</li>
 			<li>Added a dark mode option</li>
 			<li>Added support for undo/redo</li>
-			<li>Added ability to render DebugText, DebugTextStacking, DebugEnvironmentMarker, and DebugPositionMarker outputs in-game via an overlay</li>
-			<li>Added a dropdown next to the new back button to view up to five previously loaded composites</li>
-			<li>Added new annotations on nodes - you'll see (P) for ones that are proxied elsewhere, and (*) for ones that have one or more other nodes for the same entity</li>
 			<li>Added a new Blend Set editor for animations</li>
 			<li>Added preview icons for composites in the selector/browser, these will update when you make modifications</li>
 			<li>Added an improved check for circular dependencies when making new instances</li>
-			<li>Added new tools for automatically reorganising untidy flowgraph pages</li>
 			<li>Added a new 'unsaved changes' tracker, which will highlight in the taskbar when a modification has been made and not saved</li>
 			<li>Added functionality to copy composites (including in-place replacements of instances with copies)</li>
 			<li>Added functionality to de-instance a composite, or create a composite from group selection</li>
 			<li>Added new achievements on Steam, and updated icons of all existing ones</li>
 			<li>Added ability to sort the entity list by clicking the columns</li>
-			<li>Added ability to modify damage ranges in the ammo config editor</li>
+			<li>Added support for multi-select deletion in the flowgraph, viewport, and entity list</li>
 			<li>Added controls for the behaviour tree editor to the controls window</li>
+			<li>Added an option to stick the controls window on the top layer of the screen</li>
 			<li>Added ability for child OpenCAGE editors to gain control of directory editing when primary is closed</li>
 			<li>Added auto complete for SwitchLevel level input</li>
-			<li>Added ability to rebind the hot reload key</li>
-			<li>Added functionality to click pins to link them, instead of dragging</li>
-			<li>Added a Voice Mappings editor</li>
-			<li>Added a Level Text Database editor</li>
-			<li>Added a Font Config editor</li>
-			<li>Added a Localisation editor</li>
-			<li>Added categories for function entities - used for grouping in the function browser</li>
-			<li>Added icons for function entity categories</li>
-			<li>Added a new flowgraph design when zoomed out for clarity - shows icons and names when hovered</li>
-			<li>Added new function-specific node colours for quicker script navigation (colours are no longer driven by entity type)</li>
-			<li>Added new dotted outline for proxy/alias nodes</li>
-			<li>Added back the legacy Graphics Editor</li>
-			<li>Added warnings if saving fails when updating configs</li>
-			<li>Added right click to add to TriggerSequence on node</li>
 			<li>Added improved hierarchy navigation in the proxy/alias selector</li>
-			<li>Added support for multi-select deletion in the flowgraph, viewport, and entity list</li>
-			<li>Added new 'Unlock Mouse' launch option which toggles allowing the game to steal your cursor</li>
-			<li>Added ability to rename imported models</li>
-			<li>Added support for parsing the newly exported model metadata on import, to keep structures similar</li>
-			<li>Added support for the material picker when selecting materials for entity parameters</li>
-			<li>Added an option to port a composite across all levels</li>
-			<li>Added an option to stick the controls window on the top layer of the screen</li>
-			<li>Added FPS cap option in launch game window</li>
-			<li>Added a new method of patching UI (for debug checkpoints, etc) which no longer overwrites original files</li>
-			<li>Added a window to show all links in and out of a script entity on a flowgraph page</li>
-			<li>Added ability to flag vector parameters as colours on composites</li>
-			<li>Added ability to possess characters via launch game (press F6 - rebindable - to select a character to control)</li>
 			<li>Added an option to save when closing with a level open</li>
-			<li>Added some potential improvements for hit testing in the flowgraph view</li>
 			<li>Added argument to allow folder selection when picking game installs</li>
-			<li>Added option to focus the flowgraph on a newly added node (now defaults off)</li>
 			<li>Added search functionality to the Composite selector</li>
 			<li>Added option to search from root in the search panel</li>
-			<li>Added ability to create new behaviour trees</li>
-			<li>Added info popup about how the config editors save</li>
 			<li>Added ability to right click and delete referenced instances of an entity</li>
 			<li>Added a cooldown when creating backups to prevent causing UI deadlocks</li>
 			<li>Added support for renaming folders in the composite browser</li>
 			<li>Added support for dragging composites/folders to move them in file browser mode</li>
-			<li>Added arrows to point to off-screen highlighted nodes</li>
 			<li>Added a progress UI for multi-export models/textures</li>
-			<li>Added search on the 'Select Destination Pin' window, and now sorted alphabetically</li>
 			<li>Added a button to view changelog</li>
 			<li>Added a button to view raw crash logs</li>
-			<li>Added context-aware positioning of pins on nodes (relays will always have their output in-line with their input)</li>
 			<li>Fixed 'Find References' right click on the entity list</li>
 			<li>Fixed dropdowns sticking on screen</li>
 			<li>Fixed an issue where multiple flowgraph layouts wouldn't appear due to name duplication</li>
@@ -447,27 +490,26 @@
 			<li>Fixed instances where some popups would unexpectedly close on editor context changes (e.g. selecting a new entity)</li>
 			<li>Fixed a crash when using Ctrl+MMB shortcut in entity hierarchy picker</li>
 			<li>Fixed some minor issues when resizing popups</li>
+			<li>Fixed popups briefly showing blank white boxes as they open in dark mode</li>
 			<li>Fixed incorrect face ordering in cubemap previews (and added a new spherical preview mode)</li>
 			<li>Fixed grouping in Entity Palette after searching</li>
 			<li>Fixed disabled checkboxes being unreadable in dark mode</li>
+			<li>Fixed memory not being released after switching theme with the viewport open</li>
+			<li>Saving (and the other actions that need the game closed) no longer closes a game running from another install</li>
 			<li>Certain entity resources are now auto generated, as such the 'Resources' button only shows for editable ones</li>
-			<li>Reworked the back button - it now takes you to the previously loaded composite, and is no longer relative to the currently loaded hierarchy</li>
 			<li>Removed the legacy Movers editor</li>
 			<li>Removed additional position/rotation controls on renderable resources - they are now autogenerated</li>
 			<li>All resource/config editors can now be found under the 'View' toolbar dropdown</li>
 			<li>Improved naming for new entities</li>
 			<li>Libraries are no longer packaged in the OpenCAGE executable, should save some time on load (and update size)</li>
 			<li>Behaviour tree DB in levels are regenerated when saving based on selected trees in the attribute editor</li>
-			<li>Reworked the launch game tool - you can now check to load into a level, otherwise it will load to frontend as normal (clearer)</li>
 			<li>Moved help buttons to the title bar, and linked through to new docs for all forms</li>
 			<li>Optimised saving logic, viewport population, and level loading - should be noticeably faster</li>
 			<li>Improved quality of various icons across the UI</li>
 			<li>Selecting an Animation or AnimationSet will fill in the alternate too</li>
 			<li>NPC_AlienConfig entities now have selection for the config type</li>
 			<li>RewireLocation/Display_Element_On_Map/MapAnchor/Map_Floor_Change entities now have selection for the map elements</li>
-			<li>Deleting all nodes for an entity with no other references can now auto-delete the entity (optional under 'Delete Entities When Nodes Deleted')</li>
 			<li>Simplified editor state restoring for resized splitters</li>
-			<li>Deleting nodes for an entity no longer prompts you first - you can turn that back on in the Options</li>
 			<li>Previously searched proxy searches are now remembered if appropriate</li>
 			<li>Backup manager no longer blocks the UI thread (added progress bar)</li>
 			<li>PAK and BIN Commands data is now saved by default (for uncompressed levels), and no longer an option</li>

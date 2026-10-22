@@ -18876,57 +18876,21 @@
         "title":  "Launch Game"
     },
     {
-        "url":  "/docs/launch-game/#engine-patches",
-        "description":  "On Launch Game",
-        "type":  "symbol",
-        "category":  "Launch Game",
-        "keywords":  [
-            "engine-patches",
-            "launch game"
-        ],
-        "title":  "Engine Patches"
-    },
-    {
         "url":  "/docs/launch-game/#debug-tools",
         "description":  "On Launch Game",
         "type":  "symbol",
         "category":  "Launch Game",
         "keywords":  [
             "debug-tools",
+            "debug tools",
+            "debug menu",
+            "don\u0027t write saves",
+            "debug entities",
+            "hot reload",
+            "live link",
             "launch game"
         ],
         "title":  "Debug Tools"
-    },
-    {
-        "url":  "/docs/launch-game/#steam-tools",
-        "description":  "On Launch Game",
-        "type":  "symbol",
-        "category":  "Launch Game",
-        "keywords":  [
-            "steam-tools",
-            "launch game",
-            "cinematic tools",
-            "free camera"
-        ],
-        "title":  "Cinematic Tools \u0026 Possess Characters"
-    },
-    {
-        "url":  "/docs/launch-game/#cinematic-tools-or-helpers",
-        "description":  "On Launch Game",
-        "type":  "symbol",
-        "category":  "Launch Game",
-        "keywords":  [
-            "cinematic-tools-or-helpers",
-            "cinematic tools",
-            "free camera",
-            "scripting helpers greyed out",
-            "live link button missing",
-            "live link camera",
-            "freeze time",
-            "zone streaming",
-            "launch game"
-        ],
-        "title":  "Cinematic Tools or Scripting Helpers"
     },
     {
         "url":  "/docs/launch-game/#possess-characters",
@@ -18946,6 +18910,180 @@
         "title":  "Possess Characters"
     },
     {
+        "url":  "/docs/launch-game/#debug-menu",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "debug-menu",
+            "debug menu",
+            "in-game debug menu",
+            "debug menu key",
+            "f7",
+            "groups",
+            "tabs",
+            "script debugger",
+            "breakpoints",
+            "live link",
+            "ui memory overlay",
+            "debug checkpoints",
+            "level selection",
+            "tooltip",
+            "launch game"
+        ],
+        "title":  "Debug Menu"
+    },
+    {
+        "url":  "/docs/launch-game/#dont-write-saves",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "dont-write-saves",
+            "don\u0027t write saves",
+            "saves",
+            "saved games",
+            "checkpoint saves",
+            "progression",
+            "settings",
+            "steam cloud",
+            "achievements",
+            "block achievements",
+            "testing",
+            "launch game"
+        ],
+        "title":  "Don\u0027t Write Saves"
+    },
+    {
+        "url":  "/docs/launch-game/#debug-entities",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "debug-entities",
+            "debug entities",
+            "debugtext",
+            "debugtextstacking",
+            "debugenvironmentmarker",
+            "debugpositionmarker",
+            "debug text",
+            "debug markers",
+            "enable debugtext",
+            "on screen text",
+            "launch game"
+        ],
+        "title":  "Debug Entities"
+    },
+    {
+        "url":  "/docs/launch-game/#hot-reload",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "hot-reload",
+            "hot reload",
+            "hot reloading",
+            "reload level",
+            "insert key",
+            "resync",
+            "launch game"
+        ],
+        "title":  "Hot Reload"
+    },
+    {
+        "url":  "/docs/launch-game/#live-link",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "live-link",
+            "live link",
+            "enable live link",
+            "connect to game",
+            "live link button",
+            "script edits",
+            "launch game"
+        ],
+        "title":  "Live Link"
+    },
+    {
+        "url":  "/docs/launch-game/#game-options",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "game-options",
+            "game options",
+            "constant ambient lighting",
+            "render constant ambient",
+            "full-bright",
+            "no hud",
+            "no ui",
+            "hide hud",
+            "current-gen script fixes",
+            "patch current-gen optimisations",
+            "current gen",
+            "patches",
+            "engine patches",
+            "launch game"
+        ],
+        "title":  "Game Options"
+    },
+    {
+        "url":  "/docs/launch-game/#cap-fps",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "cap-fps",
+            "cap fps",
+            "frame rate",
+            "frame limiter",
+            "fps cap",
+            "game speed",
+            "v-sync",
+            "launch game"
+        ],
+        "title":  "Cap FPS"
+    },
+    {
+        "url":  "/docs/launch-game/#unlock-mouse",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "unlock-mouse",
+            "unlock mouse",
+            "mouse cursor",
+            "f4 key",
+            "free cursor",
+            "camera sync",
+            "launch game"
+        ],
+        "title":  "Unlock Mouse"
+    },
+    {
+        "url":  "/docs/launch-game/#cinematic-tools",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "cinematic-tools",
+            "cinematic tools",
+            "enable cinematic tools",
+            "free camera",
+            "camera tracks",
+            "hattiwatti",
+            "injector",
+            "camera profiles",
+            "screenshots",
+            "cinematic group",
+            "debug menu",
+            "launch game"
+        ],
+        "title":  "Cinematic Tools"
+    },
+    {
         "url":  "/docs/launch-game/#intro",
         "description":  "On Launch Game",
         "type":  "symbol",
@@ -18954,6 +19092,12 @@
             "intro",
             "unsaved changes",
             "save before launching",
+            "launch game window",
+            "debug tools",
+            "game options",
+            "ui tweaks",
+            "greyed out",
+            "tooltips",
             "launch game"
         ],
         "title":  "Introduction"
@@ -18965,6 +19109,14 @@
         "category":  "Launch Game",
         "keywords":  [
             "starting-level",
+            "load straight into",
+            "level list",
+            "title screen",
+            "skip title screen",
+            "skip frontend",
+            "main menu",
+            "frontend",
+            "level name too long",
             "launch game"
         ],
         "title":  "Starting Level"
@@ -18976,20 +19128,16 @@
         "category":  "Launch Game",
         "keywords":  [
             "ui-mods",
+            "ui tweaks",
+            "ui mods",
+            "quit to menu on death",
+            "debug loading screen",
+            "loading screen",
+            "game over",
+            "UI.PAK",
             "launch game"
         ],
-        "title":  "UI Mods"
-    },
-    {
-        "url":  "/docs/launch-game/#patches",
-        "description":  "On Launch Game",
-        "type":  "symbol",
-        "category":  "Launch Game",
-        "keywords":  [
-            "patches",
-            "launch game"
-        ],
-        "title":  "Patches \u0026 Tools"
+        "title":  "UI Tweaks"
     },
     {
         "url":  "/docs/launch-game/#related",
@@ -18998,6 +19146,7 @@
         "category":  "Launch Game",
         "keywords":  [
             "related",
+            "open game on save",
             "launch game"
         ],
         "title":  "Related Options"
@@ -20591,9 +20740,12 @@
         "category":  "UI Editor",
         "keywords":  [
             "launch-game",
+            "ui tweaks",
+            "quit to menu on death",
+            "debug loading screen",
             "ui editor"
         ],
-        "title":  "Launch Game UI Mods"
+        "title":  "Launch Game UI Tweaks"
     },
     {
         "url":  "/docs/cage-animation-editor/",
@@ -22721,6 +22873,8 @@
             "unresolvable proxy",
             "set delay",
             "clear delay",
+            "pin values",
+            "parameter values",
             "trigger in game",
             "cathode scripting introduction"
         ],
@@ -23098,28 +23252,92 @@
         "category":  "Launch Game",
         "keywords":  [
             "scripting-helpers",
-            "hot reload",
-            "hot reloading",
-            "debugtext",
-            "debug text",
-            "debug markers",
-            "debugpositionmarker",
-            "debugenvironmentmarker",
             "runtime utils",
-            "insert key",
-            "unlock mouse",
-            "mouse cursor",
-            "f4 key",
-            "cap fps",
-            "frame rate",
-            "frame limiter",
-            "game speed",
-            "live link",
-            "enable live link",
-            "debugtextstacking",
+            "scripting helpers",
+            "plugin",
+            "game folder",
+            "steam",
+            "gog",
+            "epic games store",
+            "greyed out",
             "launch game"
         ],
-        "title":  "Scripting Helpers"
+        "title":  "Runtime Utils"
+    },
+    {
+        "url":  "/docs/launch-game/#keys",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "keys",
+            "hot reload key",
+            "unlock mouse key",
+            "possess key",
+            "debug menu key",
+            "key clash",
+            "free camera key",
+            "F8",
+            "F9",
+            "CinematicCameraKey",
+            "CinematicScreenshotKey",
+            "launch game"
+        ],
+        "title":  "Keys"
+    },
+    {
+        "url":  "/docs/launch-game/#settings-file",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "settings-file",
+            "OpenCAGE.RuntimeUtils.ini",
+            "ini",
+            "settings file",
+            "runtime utils",
+            "plugin",
+            "BlockAchievements",
+            "LoadAllZones",
+            "LiveLinkCamera",
+            "ExtraShadowLights",
+            "D3DDebugLayer",
+            "RadiosityWarning",
+            "DontWriteSaves",
+            "CinematicCameraKey",
+            "OpenCAGE.RuntimeUtils.log",
+            "UiMemoryOverlay",
+            "DebugText",
+            "DebugTextStacking",
+            "DebugEnvironmentMarker",
+            "DebugPositionMarker",
+            "debug entities",
+            "launch game"
+        ],
+        "title":  "Settings File"
+    },
+    {
+        "url":  "/docs/launch-game/#removed-options",
+        "description":  "On Launch Game",
+        "type":  "symbol",
+        "category":  "Launch Game",
+        "keywords":  [
+            "removed-options",
+            "removed options",
+            "skip frontend",
+            "enable ui memory overlay",
+            "ui memory overlay",
+            "enable memory logging",
+            "memory logging",
+            "enable debug checkpoints",
+            "debug checkpoints",
+            "enable level selection",
+            "level selection",
+            "enable cinematic tools",
+            "old options",
+            "launch game"
+        ],
+        "title":  "Removed Options"
     },
     {
         "url":  "/docs/model-editor/#import-scale",
@@ -23975,7 +24193,11 @@
             "automation",
             "llm",
             "chatbot",
-            "opencage.mcp"
+            "opencage.mcp",
+            "debug menu",
+            "script debugger",
+            "launch options",
+            "runtime_utils"
         ],
         "title":  "AI Assistants"
     },
@@ -24105,6 +24327,105 @@
         "title":  "Undo, Saving \u0026 Flowgraphs"
     },
     {
+        "url":  "/docs/ai-assistants/#running-game",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "running-game",
+            "runtime_utils",
+            "launch_game",
+            "launch_options",
+            "running game",
+            "live link",
+            "mcp",
+            "ai assistants"
+        ],
+        "title":  "In the Running Game"
+    },
+    {
+        "url":  "/docs/ai-assistants/#launch-options",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "launch-options",
+            "launch_options",
+            "debug_menu",
+            "debug_menu_key",
+            "dont_write_saves",
+            "cinematic_tools",
+            "live_link",
+            "possess_characters",
+            "debug_entities",
+            "hot_reload",
+            "unlock_mouse",
+            "cap_fps",
+            "debug_text",
+            "skip_frontend",
+            "ui_memory_overlay",
+            "memory_logging",
+            "debug_checkpoints",
+            "level_selection",
+            "launch_game",
+            "ai assistants"
+        ],
+        "title":  "Launch Options"
+    },
+    {
+        "url":  "/docs/ai-assistants/#debug-menu",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "debug-menu",
+            "runtime_utils",
+            "debug_menu",
+            "debug menu",
+            "menu",
+            "report",
+            "open",
+            "close",
+            "tab",
+            "select",
+            "set",
+            "value",
+            "run",
+            "argument",
+            "number",
+            "ai assistants"
+        ],
+        "title":  "The Debug Menu (MCP)"
+    },
+    {
+        "url":  "/docs/ai-assistants/#script-debugger",
+        "description":  "On AI Assistants",
+        "type":  "symbol",
+        "category":  "AI Assistants",
+        "keywords":  [
+            "script-debugger",
+            "runtime_utils",
+            "debugger",
+            "script debugger",
+            "breakpoints",
+            "state",
+            "set",
+            "remove",
+            "list",
+            "clear",
+            "continue",
+            "step",
+            "step_frame",
+            "pause",
+            "pick",
+            "states",
+            "every_instance",
+            "instance_path",
+            "ai assistants"
+        ],
+        "title":  "The Script Debugger (MCP)"
+    },
+    {
         "url":  "/docs/ai-assistants/#tips",
         "description":  "On AI Assistants",
         "type":  "symbol",
@@ -24151,7 +24472,12 @@
             "real time",
             "activity",
             "script activity",
-            "watch scripts run"
+            "watch scripts run",
+            "script debugger",
+            "breakpoints",
+            "debug menu",
+            "live states",
+            "select from game"
         ],
         "title":  "Live Link"
     },
@@ -24336,9 +24662,10 @@
         "category":  "Live Link",
         "keywords":  [
             "starting",
-            "enable live link",
             "launch game",
             "connect",
+            "debug tools",
+            "load straight into",
             "live link"
         ],
         "title":  "Starting Live Link"
@@ -24605,6 +24932,170 @@
         "title":  "Limits"
     },
     {
+        "url":  "/docs/live-link/#script-debugger",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "script-debugger",
+            "script debugger",
+            "breakpoint",
+            "breakpoints",
+            "stop scripts",
+            "debug scripts",
+            "debug menu",
+            "flowgraph",
+            "live link"
+        ],
+        "title":  "Script Debugger"
+    },
+    {
+        "url":  "/docs/live-link/#breakpoints",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "breakpoints",
+            "set breakpoint",
+            "remove breakpoint",
+            "F9",
+            "break on method",
+            "red dot",
+            "red ring",
+            "grey dot",
+            "every instance",
+            "live link"
+        ],
+        "title":  "Setting Breakpoints"
+    },
+    {
+        "url":  "/docs/live-link/#breakpoint-hit",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "breakpoint-hit",
+            "breakpoint hit",
+            "scripts held",
+            "held label",
+            "calls that led there",
+            "taskbar",
+            "scripts held at breakpoint",
+            "live link"
+        ],
+        "title":  "When a Breakpoint Is Hit"
+    },
+    {
+        "url":  "/docs/live-link/#stepping",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "stepping",
+            "continue",
+            "step",
+            "F8",
+            "F10",
+            "pause scripts",
+            "pause the game's scripts",
+            "step frame",
+            "round of calls",
+            "held after a step",
+            "live link"
+        ],
+        "title":  "Continue, Step \u0026 Pause"
+    },
+    {
+        "url":  "/docs/live-link/#debugger-menu",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "debugger-menu",
+            "debugger menu",
+            "script debugger menu",
+            "go to breakpoint",
+            "remove all breakpoints",
+            "jump to node when a breakpoint hits",
+            "show each hit",
+            "breakpoint list",
+            "composite toolbar",
+            "live link"
+        ],
+        "title":  "The Script Debugger Menu"
+    },
+    {
+        "url":  "/docs/live-link/#live-states",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "live-states",
+            "show live states",
+            "show live states above nodes",
+            "entity state",
+            "started",
+            "enabled",
+            "data pin values",
+            "live values",
+            "flowgraph",
+            "live link"
+        ],
+        "title":  "Live States"
+    },
+    {
+        "url":  "/docs/live-link/#select-from-game",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "select-from-game",
+            "select from game",
+            "select entity under game crosshair",
+            "crosshair",
+            "crosshair inspector",
+            "world inspect",
+            "find entity in game",
+            "pick",
+            "live link"
+        ],
+        "title":  "Select Entity Under Game Crosshair"
+    },
+    {
+        "url":  "/docs/live-link/#debugger-in-game",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "debugger-in-game",
+            "scripts debugger tab",
+            "stop at breakpoints",
+            "step frame",
+            "debug menu debugger",
+            "remove all",
+            "live link"
+        ],
+        "title":  "Script Debugger in the Game"
+    },
+    {
+        "url":  "/docs/live-link/#debugger-limits",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "debugger-limits",
+            "breakpoint limits",
+            "limits",
+            "64 instances",
+            "256",
+            "breakpoints are switched off",
+            "not available on this game release",
+            "live link off",
+            "live link"
+        ],
+        "title":  "Script Debugger Limits"
+    },
+    {
         "url":  "/docs/live-link/#camera",
         "description":  "On Live Link",
         "type":  "symbol",
@@ -24643,6 +25134,43 @@
         "title":  "Capturing Environment Maps"
     },
     {
+        "url":  "/docs/live-link/#live-settings",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "live settings",
+            "radiosity settings",
+            "hair shading",
+            "skin shading",
+            "global constants",
+            "bounce light",
+            "emissive surface scale",
+            "live link"
+        ],
+        "title":  "Live Settings"
+    },
+    {
+        "url":  "/docs/live-link/#debug-menu",
+        "description":  "On Live Link",
+        "type":  "symbol",
+        "category":  "Live Link",
+        "keywords":  [
+            "debug-menu",
+            "debug menu",
+            "remote control",
+            "switch",
+            "value",
+            "command",
+            "help",
+            "report",
+            "game.speed",
+            "game.dont_write_saves",
+            "live link"
+        ],
+        "title":  "The Debug Menu Over Live Link"
+    },
+    {
         "url":  "/docs/live-link/#ai-assistants",
         "description":  "On Live Link",
         "type":  "symbol",
@@ -24655,6 +25183,8 @@
             "set_viewport_camera",
             "launch_options",
             "activity",
+            "debug_menu",
+            "debug menu",
             "live link"
         ],
         "title":  "AI Assistants"
@@ -24721,12 +25251,15 @@
             "on screen text",
             "script values",
             "markers",
-            "scripting helpers",
             "print",
             "print to screen",
             "debug print",
             "watch variable",
-            "show variable"
+            "show variable",
+            "breakpoints",
+            "script breakpoints",
+            "script debugger",
+            "debug entities"
         ],
         "title":  "Debug Text \u0026 Markers"
     },
@@ -24754,9 +25287,10 @@
             "enable debugtextstacking",
             "enable debugenvironmentmarker",
             "enable debugpositionmarker",
-            "scripting helpers",
             "launch game",
             "steam",
+            "debug entities",
+            "debug tools",
             "debug text \u0026 markers"
         ],
         "title":  "Turning Them On"
@@ -24886,6 +25420,31 @@
         "title":  "The Log File"
     },
     {
+        "url":  "/docs/debug-text/#script-breakpoints",
+        "description":  "On Debug Text \u0026 Markers",
+        "type":  "symbol",
+        "category":  "Debug Text \u0026 Markers",
+        "keywords":  [
+            "script-breakpoints",
+            "breakpoint",
+            "breakpoints",
+            "script debugger",
+            "set breakpoint",
+            "F9",
+            "break on method",
+            "held",
+            "continue",
+            "step",
+            "pause scripts",
+            "step frame",
+            "show live states",
+            "live link",
+            "how it works",
+            "debug text \u0026 markers"
+        ],
+        "title":  "Script Breakpoints"
+    },
+    {
         "url":  "/docs/debug-text/#tips",
         "description":  "On Debug Text \u0026 Markers",
         "type":  "symbol",
@@ -24908,6 +25467,1891 @@
         "keywords":  [
             "related",
             "debug text \u0026 markers"
+        ],
+        "title":  "Related Docs"
+    },
+    {
+        "url":  "/docs/debug-menu/",
+        "description":  "An in-game debug menu for Alien: Isolation: what each character senses, sees and is doing, its behaviour tree, the player\u0027s light level, the alien\u0027s menace, the game\u0027s own rendering switches, debug checkpoints, game speed and the free camera.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+            "debug menu",
+            "developer menu",
+            "dev menu",
+            "debugging",
+            "ai debugging",
+            "behaviour tree",
+            "behavior tree",
+            "view cones",
+            "viewcones",
+            "pathfinding",
+            "paths",
+            "suspicion",
+            "awareness",
+            "light level",
+            "menace",
+            "rendering switches",
+            "debug checkpoints",
+            "free camera",
+            "game speed",
+            "slow motion",
+            "runtime utils",
+            "f7",
+            "info",
+            "current zone",
+            "zones loaded",
+            "player position",
+            "player speed",
+            "fps",
+            "frame rate",
+            "animation",
+            "skeleton",
+            "skeletons",
+            "bones",
+            "animation tree",
+            "anim tree",
+            "clips",
+            "sound",
+            "audio",
+            "wwise",
+            "sound network",
+            "speech",
+            "subtitles",
+            "music",
+            "groups",
+            "tabs",
+            "overview",
+            "characters",
+            "player",
+            "alien",
+            "ai",
+            "world",
+            "scripts",
+            "performance",
+            "game",
+            "cinematic",
+            "cinematic tools",
+            "camera tracks",
+            "screenshots",
+            "don\u0027t write saves",
+            "saves",
+            "achievements",
+            "script debugger",
+            "breakpoints",
+            "script errors",
+            "nav mesh",
+            "navmesh",
+            "zones",
+            "physics",
+            "collision",
+            "inspect",
+            "crosshair",
+            "cheats",
+            "god mode",
+            "inventory",
+            "teleport",
+            "squads",
+            "lights",
+            "post-processing",
+            "render targets",
+            "memory",
+            "draw calls",
+            "checkpoints"
+        ],
+        "title":  "Debug Menu"
+    },
+    {
+        "url":  "/docs/debug-menu/#intro",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "intro",
+            "runtime utils",
+            "groups",
+            "tabs",
+            "overview",
+            "what the game is doing",
+            "debug menu"
+        ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/debug-menu/#turning-on",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "turning-on",
+            "enable",
+            "launch options",
+            "launch game",
+            "f7",
+            "key",
+            "debug menu key",
+            "cinematic tools",
+            "enable cinematic tools",
+            "key clash",
+            "live link",
+            "debug tools",
+            "ui memory overlay",
+            "debug checkpoints",
+            "level selection",
+            "debug menu"
+        ],
+        "title":  "Turning It On"
+    },
+    {
+        "url":  "/docs/debug-menu/#turning-on-saves",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "turning-on-saves",
+            "don\u0027t write saves",
+            "saves",
+            "saved games",
+            "launch game",
+            "game folder",
+            "DontWriteSaves",
+            "debug menu"
+        ],
+        "title":  "Don\u0027t Write Saves"
+    },
+    {
+        "url":  "/docs/debug-menu/#using",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "using",
+            "open",
+            "close",
+            "escape",
+            "debug menu key",
+            "debug menu"
+        ],
+        "title":  "Using the Menu"
+    },
+    {
+        "url":  "/docs/debug-menu/#groups",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "groups",
+            "tabs",
+            "select character",
+            "selection",
+            "selected character",
+            "hover",
+            "greyed out",
+            "not available on this game release",
+            "no level running",
+            "debug menu"
+        ],
+        "title":  "Groups \u0026 Tabs"
+    },
+    {
+        "url":  "/docs/debug-menu/#window",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "window",
+            "move",
+            "resize",
+            "cursor",
+            "mouse cursor",
+            "keyboard",
+            "mouse",
+            "gamepad",
+            "pause while open",
+            "notes along the top",
+            "what lasts",
+            "debug menu"
+        ],
+        "title":  "The Window"
+    },
+    {
+        "url":  "/docs/debug-menu/#drawing",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "drawing",
+            "overlays",
+            "draw over the game",
+            "through walls",
+            "free camera",
+            "live link camera",
+            "distance",
+            "debug menu"
+        ],
+        "title":  "Drawn Over the Game"
+    },
+    {
+        "url":  "/docs/debug-menu/#overview",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "overview",
+            "overview group",
+            "info",
+            "corner of the screen",
+            "debug menu"
+        ],
+        "title":  "Overview"
+    },
+    {
+        "url":  "/docs/debug-menu/#info",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "info",
+            "zone",
+            "current zone",
+            "zones loaded",
+            "streaming",
+            "level name",
+            "player position",
+            "facing",
+            "player speed",
+            "velocity",
+            "health",
+            "stance",
+            "camera position",
+            "fps",
+            "frame rate",
+            "game clock",
+            "hud",
+            "top left",
+            "draw calls",
+            "primitives",
+            "gpu frame time",
+            "memory",
+            "address space",
+            "nearest alien",
+            "debug menu"
+        ],
+        "title":  "Info"
+    },
+    {
+        "url":  "/docs/debug-menu/#overview-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "overview-names",
+            "names",
+            "switches",
+            "info.",
+            "info.zone",
+            "info.frame",
+            "info.gpu",
+            "debug menu"
+        ],
+        "title":  "Names (Overview)"
+    },
+    {
+        "url":  "/docs/debug-menu/#characters",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "characters",
+            "characters group",
+            "npc",
+            "npcs",
+            "player",
+            "alien",
+            "tabs",
+            "debug menu"
+        ],
+        "title":  "Characters"
+    },
+    {
+        "url":  "/docs/debug-menu/#characters-list",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "characters-list",
+            "characters table",
+            "npc",
+            "npcs",
+            "senses",
+            "awareness",
+            "alertness",
+            "aggression",
+            "mood",
+            "target",
+            "health",
+            "last known position",
+            "logic flags",
+            "timers",
+            "andy",
+            "view cones",
+            "path",
+            "unique id",
+            "selected character",
+            "debug menu"
+        ],
+        "title":  "Characters Table"
+    },
+    {
+        "url":  "/docs/debug-menu/#overlays",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "overlays",
+            "labels",
+            "view cones",
+            "viewcones",
+            "vision cones",
+            "hearing range",
+            "paths",
+            "pathfinding",
+            "navigation",
+            "last known positions",
+            "draw over the game",
+            "overlay",
+            "debug menu"
+        ],
+        "title":  "Drawing Over the Game (Characters)"
+    },
+    {
+        "url":  "/docs/debug-menu/#state",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "state",
+            "orders",
+            "script command",
+            "body state",
+            "action",
+            "state flags",
+            "alliance",
+            "stress",
+            "debug menu"
+        ],
+        "title":  "State"
+    },
+    {
+        "url":  "/docs/debug-menu/#control",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "control",
+            "motivations",
+            "force idle",
+            "mood",
+            "force mood",
+            "health",
+            "damage",
+            "kill",
+            "despawn",
+            "respawn",
+            "debug menu"
+        ],
+        "title":  "Control"
+    },
+    {
+        "url":  "/docs/debug-menu/#animation",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "animation",
+            "animation tree",
+            "anim tree",
+            "blend tree",
+            "nodes",
+            "clips",
+            "clip time",
+            "layers",
+            "stance",
+            "mood",
+            "equipment",
+            "animation set",
+            "tree set",
+            "root motion",
+            "velocity",
+            "ik",
+            "ragdoll",
+            "animation package",
+            "animation trees",
+            "ANIMATION.PAK",
+            "debug menu"
+        ],
+        "title":  "Animation"
+    },
+    {
+        "url":  "/docs/debug-menu/#skeletons",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "skeletons",
+            "skeleton",
+            "bones",
+            "bone names",
+            "bone axes",
+            "helper bones",
+            "pose",
+            "rig",
+            "velocity arrows",
+            "ik targets",
+            "draw skeleton",
+            "debug menu"
+        ],
+        "title":  "Skeletons"
+    },
+    {
+        "url":  "/docs/debug-menu/#animation-switches",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "animation-switches",
+            "ik off",
+            "warping",
+            "level of detail",
+            "lod",
+            "reference pose",
+            "ragdoll",
+            "layers off",
+            "reference locator",
+            "debug menu"
+        ],
+        "title":  "Animation Switches"
+    },
+    {
+        "url":  "/docs/debug-menu/#environment-animations",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "environment-animations",
+            "PlayEnvironmentAnimation",
+            "environment animation",
+            "animated objects",
+            "environment skeletons",
+            "debug menu"
+        ],
+        "title":  "Environment Animations"
+    },
+    {
+        "url":  "/docs/debug-menu/#player",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "player",
+            "light level",
+            "light meter",
+            "stealth",
+            "hiding",
+            "exposure",
+            "light meter tint",
+            "spotted",
+            "dark",
+            "lit",
+            "light tint",
+            "player light",
+            "sample points",
+            "debug menu"
+        ],
+        "title":  "Player"
+    },
+    {
+        "url":  "/docs/debug-menu/#player-tools",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "player-tools",
+            "invisible",
+            "invisibility",
+            "invisible to the ai",
+            "infinite ammo",
+            "cheats",
+            "god mode",
+            "untargetable",
+            "infinite sprint",
+            "heal",
+            "full heal",
+            "set health",
+            "kill the player",
+            "teleport",
+            "teleport to crosshair",
+            "debug menu"
+        ],
+        "title":  "Cheats \u0026 Teleport"
+    },
+    {
+        "url":  "/docs/debug-menu/#player-more",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "player-more",
+            "hiding",
+            "under foot",
+            "footsteps",
+            "physical material",
+            "collision map",
+            "objectives",
+            "motion tracker",
+            "objective popup",
+            "debug menu"
+        ],
+        "title":  "Hiding, Under Foot \u0026 Objectives"
+    },
+    {
+        "url":  "/docs/debug-menu/#inventory",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "inventory",
+            "give item",
+            "give all",
+            "give every weapon",
+            "weapons",
+            "ammo",
+            "blueprints",
+            "keycards",
+            "gating tools",
+            "hacking tool",
+            "infinite items",
+            "torch batteries",
+            "debug menu"
+        ],
+        "title":  "Inventory"
+    },
+    {
+        "url":  "/docs/debug-menu/#input",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "input",
+            "actions",
+            "pressed",
+            "analogue",
+            "debug input",
+            "debug menu"
+        ],
+        "title":  "Input"
+    },
+    {
+        "url":  "/docs/debug-menu/#alien",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "alien",
+            "xenomorph",
+            "menace",
+            "menace gauge",
+            "withdrawal",
+            "ambush",
+            "killtrap",
+            "sweep area",
+            "vents",
+            "backstage",
+            "alien setup",
+            "debug menu"
+        ],
+        "title":  "Alien"
+    },
+    {
+        "url":  "/docs/debug-menu/#alien-learning",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "alien-learning",
+            "alien learning",
+            "learnt",
+            "tricks",
+            "development stage",
+            "naive",
+            "threat aware",
+            "getting sneaky",
+            "really sneaky",
+            "alien setup",
+            "director",
+            "draw the alien to a point",
+            "NPC_AlienConfig",
+            "NPC_SetAlienDevelopmentStage",
+            "debug menu"
+        ],
+        "title":  "What the Alien Has Learnt"
+    },
+    {
+        "url":  "/docs/debug-menu/#characters-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "characters-names",
+            "names",
+            "characters.",
+            "player.",
+            "alien.",
+            "anim.",
+            "ai.kill",
+            "player.give",
+            "debug menu"
+        ],
+        "title":  "Names (Characters)"
+    },
+    {
+        "url":  "/docs/debug-menu/#ai",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "ai",
+            "ai group",
+            "behaviour trees",
+            "squads",
+            "tabs",
+            "debug menu"
+        ],
+        "title":  "AI"
+    },
+    {
+        "url":  "/docs/debug-menu/#behaviour-tree",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "behaviour-tree",
+            "behavior tree",
+            "bt",
+            "active path",
+            "branch",
+            "leading node",
+            "events",
+            "show over characters",
+            "outer branch",
+            "debug texts",
+            "debug menu"
+        ],
+        "title":  "Behaviour Tree"
+    },
+    {
+        "url":  "/docs/debug-menu/#squads",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "squads",
+            "squad",
+            "group of npcs",
+            "safe points",
+            "cover search",
+            "objective",
+            "debug menu"
+        ],
+        "title":  "Squads"
+    },
+    {
+        "url":  "/docs/debug-menu/#tree-switches",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "tree-switches",
+            "debugmenulinktest",
+            "debugmenulinkitem",
+            "debug switches",
+            "disable all aliens",
+            "force_breakout",
+            "force_backstage_stalk",
+            "tree switches",
+            "debug menu"
+        ],
+        "title":  "Tree Switches"
+    },
+    {
+        "url":  "/docs/debug-menu/#tree-log",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "tree-log",
+            "debugstring",
+            "assert",
+            "behaviour tree log",
+            "log",
+            "tree log",
+            "debug menu"
+        ],
+        "title":  "Tree Log"
+    },
+    {
+        "url":  "/docs/debug-menu/#state-log",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "state-log",
+            "state log",
+            "state changes",
+            "state machines",
+            "breadcrumbs",
+            "trail",
+            "debug menu"
+        ],
+        "title":  "State Log \u0026 Breadcrumbs"
+    },
+    {
+        "url":  "/docs/debug-menu/#tuning",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "tuning",
+            "melee range",
+            "grapple",
+            "throw speed",
+            "friendly fire",
+            "explosion damage",
+            "sliders",
+            "debug menu"
+        ],
+        "title":  "Tuning"
+    },
+    {
+        "url":  "/docs/debug-menu/#ai-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "ai-names",
+            "names",
+            "bt.",
+            "tree_switch.",
+            "ai.squads",
+            "ai.crumbs",
+            "ai.tuning",
+            "debug menu"
+        ],
+        "title":  "Names (AI)"
+    },
+    {
+        "url":  "/docs/debug-menu/#world",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "world",
+            "world group",
+            "level",
+            "save and build",
+            "rebuilt level",
+            "debug menu"
+        ],
+        "title":  "World"
+    },
+    {
+        "url":  "/docs/debug-menu/#inspect",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "inspect",
+            "crosshair",
+            "crosshair inspector",
+            "inspector",
+            "collision map",
+            "COLLISION.MAP",
+            "material",
+            "entity under crosshair",
+            "select from game",
+            "mover index",
+            "debug menu"
+        ],
+        "title":  "Inspect"
+    },
+    {
+        "url":  "/docs/debug-menu/#zones",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "zones",
+            "zone streaming",
+            "streaming",
+            "priority",
+            "zone links",
+            "zone ray",
+            "viewpoints",
+            "debug menu"
+        ],
+        "title":  "Zones"
+    },
+    {
+        "url":  "/docs/debug-menu/#world-overlays",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "world-overlays",
+            "overlays",
+            "trigger boxes",
+            "PlayerTriggerBox",
+            "doors",
+            "splines",
+            "pickups",
+            "interaction points",
+            "measuring rings",
+            "debug menu"
+        ],
+        "title":  "Overlays \u0026 Measuring Rings"
+    },
+    {
+        "url":  "/docs/debug-menu/#navigation",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "navigation",
+            "nav mesh",
+            "navmesh",
+            "barriers",
+            "doors",
+            "off-mesh connections",
+            "traversals",
+            "path searches",
+            "flood",
+            "islands",
+            "path tester",
+            "debug menu"
+        ],
+        "title":  "Navigation"
+    },
+    {
+        "url":  "/docs/debug-menu/#cover-jobs",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "cover-jobs",
+            "cover",
+            "cover slots",
+            "spotting",
+            "crawl-space",
+            "assault",
+            "jobs",
+            "tasks",
+            "debug menu"
+        ],
+        "title":  "Cover \u0026 Jobs"
+    },
+    {
+        "url":  "/docs/debug-menu/#physics",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "physics",
+            "static collision",
+            "COLLISION.HKX",
+            "collision",
+            "bodies",
+            "capsules",
+            "PHYSICS.MAP",
+            "physics systems",
+            "collision layers",
+            "raycasts",
+            "debug menu"
+        ],
+        "title":  "Physics"
+    },
+    {
+        "url":  "/docs/debug-menu/#world-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "world-names",
+            "names",
+            "inspect.",
+            "zones.",
+            "world.",
+            "nav.",
+            "physics.",
+            "debug menu"
+        ],
+        "title":  "Names (World)"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts",
+            "scripts group",
+            "script entities",
+            "shortguids",
+            "entity ids",
+            "debug menu"
+        ],
+        "title":  "Scripts"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-debugger",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-debugger",
+            "script debugger",
+            "breakpoint",
+            "breakpoints",
+            "continue",
+            "step",
+            "step frame",
+            "pause scripts",
+            "held call",
+            "stop at breakpoints",
+            "debug menu"
+        ],
+        "title":  "Debugger"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-errors",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-errors",
+            "script errors",
+            "errors",
+            "failed checks",
+            "dropped calls",
+            "show new ones on screen",
+            "entity setup problems",
+            "debug menu"
+        ],
+        "title":  "Errors"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-triggers",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-triggers",
+            "trigger queue",
+            "waiting calls",
+            "link delay",
+            "trigger counts",
+            "busiest",
+            "loop",
+            "debug menu"
+        ],
+        "title":  "Triggers"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-progression",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-progression",
+            "persistent variables",
+            "saved variables",
+            "objectives",
+            "campaign progression",
+            "blueprints",
+            "debug menu"
+        ],
+        "title":  "Progression"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-events",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-events",
+            "global events",
+            "update global position",
+            "broadcast messages",
+            "listeners",
+            "global event monitor",
+            "debug menu"
+        ],
+        "title":  "Events"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-cageanimations",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-cageanimations",
+            "cageanimation",
+            "playing animations",
+            "cutscene",
+            "animation time",
+            "debug menu"
+        ],
+        "title":  "CAGEAnimations"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-entities",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-entities",
+            "DebugGraph",
+            "DebugMenuToggle",
+            "DebugObjectMarker",
+            "DebugCaptureScreenShot",
+            "debug entities",
+            "debug menu"
+        ],
+        "title":  "Debug Entities"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-profiler",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-profiler",
+            "script profiler",
+            "profiler",
+            "milliseconds per second",
+            "busiest",
+            "entity updates",
+            "composites",
+            "debug menu"
+        ],
+        "title":  "Profiler"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-cameras",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-cameras",
+            "camera stack",
+            "cameras",
+            "camera behaviours",
+            "camera paths",
+            "transition",
+            "depth of field",
+            "debug menu"
+        ],
+        "title":  "Cameras"
+    },
+    {
+        "url":  "/docs/debug-menu/#scripts-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "scripts-names",
+            "names",
+            "scripts.",
+            "debugger.",
+            "debugger.state",
+            "scripts.list_errors",
+            "debug menu"
+        ],
+        "title":  "Names (Scripts)"
+    },
+    {
+        "url":  "/docs/debug-menu/#sound",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "sound",
+            "audio",
+            "wwise",
+            "sound events",
+            "playing sounds",
+            "event log",
+            "speech",
+            "dialogue",
+            "subtitles",
+            "ai hearing",
+            "stimuli",
+            "noise",
+            "sound network",
+            "doorways",
+            "barriers",
+            "occlusion",
+            "reverb",
+            "room type",
+            "music",
+            "states",
+            "sound banks",
+            "playing now",
+            "what the ai hears",
+            "test route",
+            "sound tools",
+            "debug menu"
+        ],
+        "title":  "Sound"
+    },
+    {
+        "url":  "/docs/debug-menu/#sound-overlays",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "sound-overlays",
+            "sound network",
+            "nodes",
+            "doorways",
+            "playing sounds",
+            "stimuli",
+            "sound route",
+            "speech",
+            "sound network overlay",
+            "debug menu"
+        ],
+        "title":  "Drawing Over the Game (Sound)"
+    },
+    {
+        "url":  "/docs/debug-menu/#sound-tools",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "sound-tools",
+            "listener",
+            "freeze listener",
+            "make a noise",
+            "noise",
+            "gunfire",
+            "play sound event",
+            "squad dialogue",
+            "debug menu"
+        ],
+        "title":  "Sound Tools"
+    },
+    {
+        "url":  "/docs/debug-menu/#sound-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "sound-names",
+            "names",
+            "sound.",
+            "sound.network",
+            "sound.make_noise",
+            "sound.play_event",
+            "debug menu"
+        ],
+        "title":  "Names (Sound)"
+    },
+    {
+        "url":  "/docs/debug-menu/#rendering",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "rendering",
+            "rendering group",
+            "render switches",
+            "debug views",
+            "environment map capture",
+            "capture environment maps",
+            "debug menu"
+        ],
+        "title":  "Rendering"
+    },
+    {
+        "url":  "/docs/debug-menu/#rendering-switches",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "rendering-switches",
+            "rendering switches",
+            "render passes",
+            "radiosity",
+            "shadows",
+            "lod",
+            "disable lods",
+            "constant ambient",
+            "no solid geometry",
+            "anti-aliasing",
+            "light shafts",
+            "no radiosity",
+            "occlusion culling",
+            "output views",
+            "reset all",
+            "debug menu"
+        ],
+        "title":  "Rendering Switches"
+    },
+    {
+        "url":  "/docs/debug-menu/#render-debug-views",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "render-debug-views",
+            "debug views",
+            "debug view",
+            "irradiance",
+            "albedo",
+            "normals",
+            "blocked probes",
+            "radiosity texture coordinates",
+            "slices",
+            "debug menu"
+        ],
+        "title":  "Debug Views"
+    },
+    {
+        "url":  "/docs/debug-menu/#render-lights",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "render-lights",
+            "lights",
+            "real-time lights",
+            "shadows",
+            "shadow budget",
+            "mute light",
+            "solo light",
+            "light overlay",
+            "ExtraShadowLights",
+            "debug menu"
+        ],
+        "title":  "Lights"
+    },
+    {
+        "url":  "/docs/debug-menu/#render-radiosity",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "render-radiosity",
+            "radiosity",
+            "radiosity data",
+            "bounce light",
+            "slices",
+            "streaming",
+            "RadiosityWarning",
+            "cube map users",
+            "debug menu"
+        ],
+        "title":  "Radiosity"
+    },
+    {
+        "url":  "/docs/debug-menu/#render-post",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "render-post",
+            "post-processing",
+            "exposure",
+            "tone mapping",
+            "lut",
+            "colour grading",
+            "fog",
+            "bloom",
+            "debug menu"
+        ],
+        "title":  "Post"
+    },
+    {
+        "url":  "/docs/debug-menu/#render-targets",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "render-targets",
+            "render targets",
+            "g-buffer",
+            "depth",
+            "shadow maps",
+            "lightmaps",
+            "textures",
+            "debug menu"
+        ],
+        "title":  "Targets"
+    },
+    {
+        "url":  "/docs/debug-menu/#render-visibility",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "render-visibility",
+            "visibility",
+            "why not drawn",
+            "mover index",
+            "level of detail",
+            "lod factor",
+            "visible zones",
+            "reflection maps",
+            "debug menu"
+        ],
+        "title":  "Visibility"
+    },
+    {
+        "url":  "/docs/debug-menu/#render-developer",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "render-developer",
+            "Direct3D debug layer",
+            "D3DDebugLayer",
+            "Graphics Tools",
+            "shader hot reload",
+            "debug menu"
+        ],
+        "title":  "Developer"
+    },
+    {
+        "url":  "/docs/debug-menu/#rendering-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "rendering-names",
+            "names",
+            "render.",
+            "light.",
+            "render.no_solid",
+            "render.debug_view",
+            "light.solo",
+            "debug menu"
+        ],
+        "title":  "Names (Rendering)"
+    },
+    {
+        "url":  "/docs/debug-menu/#performance",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "performance",
+            "performance group",
+            "limits",
+            "fps",
+            "memory",
+            "debug menu"
+        ],
+        "title":  "Performance"
+    },
+    {
+        "url":  "/docs/debug-menu/#perf-frame",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "perf-frame",
+            "frame time",
+            "draw calls",
+            "primitives",
+            "limits",
+            "gpu pools",
+            "frame graph",
+            "debug menu"
+        ],
+        "title":  "Frame"
+    },
+    {
+        "url":  "/docs/debug-menu/#perf-timing",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "perf-timing",
+            "gpu timing",
+            "cpu timing",
+            "render stages",
+            "tasks",
+            "threads",
+            "debug menu"
+        ],
+        "title":  "Timing"
+    },
+    {
+        "url":  "/docs/debug-menu/#perf-memory",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "perf-memory",
+            "memory",
+            "memory heaps",
+            "address space",
+            "fragmentation",
+            "video memory",
+            "entity memory",
+            "ui memory overlay",
+            "ui memory",
+            "perf.ui_memory_overlay",
+            "UiMemoryOverlay",
+            "memory budget",
+            "enable ui memory overlay",
+            "debug menu"
+        ],
+        "title":  "Memory"
+    },
+    {
+        "url":  "/docs/debug-menu/#perf-streaming",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "perf-streaming",
+            "streaming",
+            "texture streaming",
+            "model streaming",
+            "blurry textures",
+            "low resolution",
+            "debug menu"
+        ],
+        "title":  "Streaming"
+    },
+    {
+        "url":  "/docs/debug-menu/#performance-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "performance-names",
+            "names",
+            "perf.",
+            "perf.graph",
+            "perf.frame",
+            "perf.gpu_timing",
+            "debug menu"
+        ],
+        "title":  "Names (Performance)"
+    },
+    {
+        "url":  "/docs/debug-menu/#game",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "game",
+            "game group",
+            "game flow",
+            "saves",
+            "tools",
+            "debug menu"
+        ],
+        "title":  "Game"
+    },
+    {
+        "url":  "/docs/debug-menu/#game-flow",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "game-flow",
+            "game flow",
+            "game state",
+            "checkpoint in memory",
+            "difficulty",
+            "load level",
+            "levels",
+            "spawn point",
+            "level selection",
+            "enable level selection",
+            "debug menu"
+        ],
+        "title":  "Game Flow"
+    },
+    {
+        "url":  "/docs/debug-menu/#saves",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "saves",
+            "don\u0027t write saves",
+            "DontWriteSaves",
+            "game.dont_write_saves",
+            "saved games",
+            "steam cloud",
+            "kept back",
+            "progression",
+            "debug menu"
+        ],
+        "title":  "Saves"
+    },
+    {
+        "url":  "/docs/debug-menu/#achievements",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "achievements",
+            "block awards",
+            "block achievements",
+            "BlockAchievements",
+            "stats",
+            "debug menu"
+        ],
+        "title":  "Achievements"
+    },
+    {
+        "url":  "/docs/debug-menu/#tools",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "tools",
+            "tools tab",
+            "free camera box",
+            "debug menu"
+        ],
+        "title":  "Tools"
+    },
+    {
+        "url":  "/docs/debug-menu/#checkpoints",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "checkpoints",
+            "debug checkpoints",
+            "debugcheckpoint",
+            "jump",
+            "black screen",
+            "mission",
+            "start mission",
+            "level checkpoints",
+            "reload last checkpoint",
+            "jump to checkpoint",
+            "enable debug checkpoints",
+            "debug menu"
+        ],
+        "title":  "Checkpoints"
+    },
+    {
+        "url":  "/docs/debug-menu/#game-speed",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "game-speed",
+            "slow motion",
+            "time scale",
+            "speed up",
+            "slow down",
+            "pause",
+            "resume",
+            "step frame",
+            "game speed",
+            "pause while open",
+            "debug menu"
+        ],
+        "title":  "Pause \u0026 Game Speed"
+    },
+    {
+        "url":  "/docs/debug-menu/#ai-actions",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "ai-actions",
+            "alert the alien",
+            "withdraw",
+            "menace aggressive",
+            "menace passive",
+            "reset senses",
+            "logic flags",
+            "reset npc",
+            "menace",
+            "debug menu"
+        ],
+        "title":  "AI Actions"
+    },
+    {
+        "url":  "/docs/debug-menu/#havok",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "havok",
+            "visual debugger",
+            "vdb",
+            "physics",
+            "collision",
+            "25001",
+            "havok visual debugger",
+            "debug menu"
+        ],
+        "title":  "Havok Visual Debugger"
+    },
+    {
+        "url":  "/docs/debug-menu/#game-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "game-names",
+            "names",
+            "game.",
+            "tools.",
+            "game.dont_write_saves",
+            "game.speed",
+            "game.jump_checkpoint",
+            "tools.flag",
+            "debug menu"
+        ],
+        "title":  "Names (Game)"
+    },
+    {
+        "url":  "/docs/debug-menu/#cinematic",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "cinematic",
+            "cinematic group",
+            "cinematic tools",
+            "free camera",
+            "camera tracks",
+            "filming",
+            "hattiwatti",
+            "debug menu"
+        ],
+        "title":  "Cinematic"
+    },
+    {
+        "url":  "/docs/debug-menu/#free-camera",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "free-camera",
+            "free cam",
+            "noclip",
+            "fly camera",
+            "cinematic camera",
+            "F8",
+            "CinematicCameraKey",
+            "lock to character",
+            "profiles",
+            "time scale",
+            "fly with this window open",
+            "OpenCAGE.CinematicProfiles.ini",
+            "debug menu"
+        ],
+        "title":  "Free Camera"
+    },
+    {
+        "url":  "/docs/debug-menu/#camera-keys",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "camera-keys",
+            "camera keys",
+            "keys",
+            "gamepad",
+            "controller",
+            "wasd",
+            "numpad depth of field",
+            "debug menu"
+        ],
+        "title":  "Keys \u0026 Gamepad"
+    },
+    {
+        "url":  "/docs/debug-menu/#camera-tracks",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "camera-tracks",
+            "camera track",
+            "camera tracks",
+            "tracks",
+            "nodes",
+            "playback",
+            "OpenCAGE.CinematicTracks.txt",
+            "spline",
+            "debug menu"
+        ],
+        "title":  "Tracks"
+    },
+    {
+        "url":  "/docs/debug-menu/#cinematic-visuals",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "cinematic-visuals",
+            "visuals",
+            "depth of field",
+            "focus",
+            "brightness",
+            "contrast",
+            "saturation",
+            "tone mapping",
+            "look overrides",
+            "bloom",
+            "debug menu"
+        ],
+        "title":  "Visuals"
+    },
+    {
+        "url":  "/docs/debug-menu/#cinematic-hud",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "cinematic-hud",
+            "hide hud",
+            "hud",
+            "ui layers",
+            "challenge map objectives",
+            "home key",
+            "debug menu"
+        ],
+        "title":  "HUD"
+    },
+    {
+        "url":  "/docs/debug-menu/#cinematic-cast",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "cinematic-cast",
+            "freeze npcs",
+            "freeze characters",
+            "force idle",
+            "invisible to the ai",
+            "camera behind character",
+            "debug menu"
+        ],
+        "title":  "Cast"
+    },
+    {
+        "url":  "/docs/debug-menu/#cinematic-screenshots",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "cinematic-screenshots",
+            "screenshot",
+            "screenshots",
+            "F9",
+            "CinematicScreenshotKey",
+            "bmp",
+            "screenshots folder",
+            "debug menu"
+        ],
+        "title":  "Screenshots"
+    },
+    {
+        "url":  "/docs/debug-menu/#from-cinematic-tools",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "from-cinematic-tools",
+            "cinematic tools",
+            "injector",
+            "migration",
+            "insert key",
+            "F5",
+            "debug menu"
+        ],
+        "title":  "Coming from Cinematic Tools"
+    },
+    {
+        "url":  "/docs/debug-menu/#cinematic-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "cinematic-names",
+            "names",
+            "cinematic.",
+            "cinematic.camera",
+            "cinematic.track_play",
+            "cinematic.override",
+            "cinematic.screenshot",
+            "debug menu"
+        ],
+        "title":  "Names (Cinematic)"
+    },
+    {
+        "url":  "/docs/debug-menu/#remote",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "remote",
+            "live link",
+            "ai assistants",
+            "mcp",
+            "runtime_utils",
+            "debug_menu",
+            "switch",
+            "value",
+            "command",
+            "help",
+            "select from game",
+            "DebugMenuToggle",
+            "launch_options",
+            "remote control",
+            "debug menu"
+        ],
+        "title":  "Live Link \u0026 AI Assistants"
+    },
+    {
+        "url":  "/docs/debug-menu/#remote-names",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "remote-names",
+            "names",
+            "switch names",
+            "value names",
+            "command names",
+            "dotted names",
+            "prefixes",
+            "debug menu"
+        ],
+        "title":  "Names (Prefixes)"
+    },
+    {
+        "url":  "/docs/debug-menu/#related",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "related",
+            "debug menu"
         ],
         "title":  "Related Docs"
     },

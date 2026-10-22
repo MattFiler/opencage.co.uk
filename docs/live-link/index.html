@@ -9,14 +9,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How OpenCAGE's Live Link edits Alien: Isolation while it runs: new scripts and script tweaks without a reload, lights and props placed and tuned in the game's own render, entity methods called in the game, and linked game and Viewport cameras.">
+    <meta name="description" content="How OpenCAGE's Live Link edits Alien: Isolation while it runs: new scripts and script tweaks without a reload, lights and props placed and tuned in the game's own render, entity methods called in the game, script breakpoints, and linked game and Viewport cameras.">
     <meta name="author" content="Matt Filer">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
 	<meta name="twitter:title" content="OpenCAGE: Live Link" />
-	<meta name="twitter:description" content="How OpenCAGE's Live Link edits Alien: Isolation while it runs: new scripts and script tweaks without a reload, lights and props placed and tuned in the game's own render, entity methods called in the game, and linked game and Viewport cameras." />
+	<meta name="twitter:description" content="How OpenCAGE's Live Link edits Alien: Isolation while it runs: new scripts and script tweaks without a reload, lights and props placed and tuned in the game's own render, entity methods called in the game, script breakpoints, and linked game and Viewport cameras." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
 
@@ -106,8 +106,19 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#activity-counts">Counts</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#activity-instance">Which Instance</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#activity-limits">Limits</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#script-debugger"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Script Debugger</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#breakpoints">Setting Breakpoints</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#breakpoint-hit">When One Is Hit</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#stepping">Continue, Step &amp; Pause</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#debugger-menu">The Script Debugger Menu</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#live-states">Live States</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#select-from-game">Select Entity Under Game Crosshair</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#debugger-in-game">In the Game</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#debugger-limits">Limits</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#camera"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Live Link Camera</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#capture-cubemaps"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Capturing Environment Maps</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#live-settings"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Live Settings</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#debug-menu"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>The Debug Menu</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#ai-assistants"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>AI Assistants</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#troubleshooting"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Troubleshooting</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#status-messages">What the Status Bar Says</a></li>
@@ -131,13 +142,13 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p><b>Live Link</b> connects OpenCAGE to Alien: Isolation while the game is running. With the game playing the level you have open, the script edits you make reach it moments later, without saving or reloading the level. You can also trigger an entity's methods (<b>start</b>, <b>trigger</b>, <b>show</b>...) in the game straight from the Entity Inspector or a method pin on the flowgraph, have the game's camera and the Viewport's follow each other, and <a href="#activity">watch your scripts run</a>, as the flowgraph lights up each link the game uses and counts how often each output fires and each method is called.</p>
+		<p><b>Live Link</b> connects OpenCAGE to Alien: Isolation while the game is running. With the game playing the level you have open, the script edits you make reach it moments later, without saving or reloading the level. You can also trigger an entity's methods (<b>start</b>, <b>trigger</b>, <b>show</b>...) in the game straight from the Entity Inspector or a method pin on the flowgraph, have the game's camera and the Viewport's follow each other, and <a href="#activity">watch your scripts run</a>, as the flowgraph lights up each link the game uses and counts how often each output fires and each method is called. With the game's <a href="/docs/debug-menu/">Debug Menu</a> on as well, you can stop the scripts at a <a href="#script-debugger">breakpoint</a> on a node, see what led there, and step on from it.</p>
 		<div id="scripts-only" style="border-left:4px solid #EEBF41;padding:0.6rem 1rem;margin:0 0 1rem 0;">
 			<p><b>Live Link is for script tweaks only.</b> What reaches the running game is changes to a level's scripting: <b>entities added or deleted</b>, <b>links made or broken</b>, and <b>parameters changed</b> (moving an entity included). Nothing else is sent.</p>
 			<p style="margin-bottom:0;">Changes to <b>models, textures, materials</b> or any other asset, <b>new composites</b> (created, ported or imported), and what <a href="/docs/save-and-build/">Save and Build</a> works out (navmesh, cover, baked lighting) never reach a level that's already running: the game only picks them up when you save the level and load it again. See <a href="#save-and-reload">What Needs a Reload</a>.</p>
 		</div>
 		<p>It's also the quickest way to light and dress a level: place a light or a prop, move it and change it in OpenCAGE, and the game draws it within a second. See <a href="#use-cases">What You Can Do With It</a>.</p>
-		<p>It makes for quick iteration on a script. Add a <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a>, give it some text and pick <b>start</b> from <b>▶ Trigger Method</b> in the Entity Inspector, and the text is on screen in the game (with <b>Enable DebugTextStacking</b> ticked in <a href="/docs/launch-game/#scripting-helpers">Launch Game</a> too, so the game draws it). Change the text and trigger <b>start</b> again, and the new text appears on a line under the old one: a DebugTextStacking adds a line each time it starts, and an edit doesn't clear the ones already there (call its <b>clear_all</b> method to empty the stack, or <b>clear_last</b> to remove the newest line).</p>
+		<p>It makes for quick iteration on a script. Add a <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a>, give it some text and pick <b>start</b> from <b>▶ Trigger Method</b> in the Entity Inspector, and the text is on screen in the game (with <b>Debug entities</b> ticked in <a href="/docs/launch-game/#debug-entities">Launch Game</a> too, so the game draws it). Change the text and trigger <b>start</b> again, and the new text appears on a line under the old one: a DebugTextStacking adds a line each time it starts, and an edit doesn't clear the ones already there (call its <b>clear_all</b> method to empty the stack, or <b>clear_last</b> to remove the newest line).</p>
 		<p><img src="img/connected.jpg" alt="The OpenCAGE window connected to the game: the Live Link button pressed on the main toolbar, Resync on the composite toolbar, Live Link Camera on the Viewport toolbar, and Trigger Method at the top of the Entity Inspector for a selected DebugTextStacking named HelloFromOpenCAGE." width="100%"></p>
 		<p class="text-muted small"><i>OpenCAGE connected to the game: Live Link is pressed on the main toolbar, Resync sits on the composite toolbar, Live Link Camera on the Viewport toolbar, and the Entity Inspector offers ▶ Trigger Method for the selected DebugTextStacking.</i></p>
 		<p><img src="img/game-overlay.jpg" alt="Alien: Isolation showing the text Hello from OpenCAGE - added over the live link on the left of the screen, and OpenCAGE Live Link in green in the top-right corner with a line about the last call under it." width="100%"></p>
@@ -200,9 +211,10 @@
 
 	<section class="docs-section" id="debugging">
 		<h2 class="section-heading">Debug Scripts With Values on Screen</h2>
-		<p>With the debug boxes ticked under <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a> in Launch Game, the game draws the debug entities, so it can show you what your script is doing: a DebugText shows its text and the values linked to it, updating as they change; DebugTextStackings keep a log of the last five lines, in one block on the left of the screen; a DebugPositionMarker draws axes at a position; and a DebugEnvironmentMarker labels a spot, or an entity it follows. Add them, link them and trigger their <b>start</b> over Live Link like anything else.</p>
+		<p>With <b>Debug entities</b> ticked under <a href="/docs/launch-game/#debug-entities">Debug tools</a> in Launch Game, the game draws the debug entities, so it can show you what your script is doing: a DebugText shows its text and the values linked to it, updating as they change; DebugTextStackings keep a log of the last five lines, in one block on the left of the screen; a DebugPositionMarker draws axes at a position; and a DebugEnvironmentMarker labels a spot, or an entity it follows. Add them, link them and trigger their <b>start</b> over Live Link like anything else.</p>
 		<p><a href="/docs/debug-text/">Debug Text &amp; Markers</a> covers them all, including <a href="/docs/debug-text/#seeing-values">how to see a script's values</a> and <a href="/docs/debug-text/#stacking">keeping a log</a>. If a DebugTextStacking's log repeats or skips values, start it from the link that fires once the value has changed (a LogicCounter's <b>on_Up</b>, say) rather than from the same trigger that changes it (two links fired by one trigger run in no fixed order), and link its input straight to the counter's <b>reference</b>.</p>
 		<p>To see which links a script follows, rather than the values it works with, switch on <a href="#activity">Show Activity</a> and watch the flowgraph light up as the game runs it.</p>
+		<p>To stop a script at a node and look around, use the <a href="#script-debugger">script debugger</a>: the game stops just before the node's entity is called, and <a href="#live-states">Show Live States Above Nodes</a> shows each node's state, and the values its data pins read, where it stopped.</p>
 	</section>
 
 	<section class="docs-section" id="more-uses">
@@ -214,6 +226,7 @@
 			<li><b>Shape a spline against the real level.</b> With <b>Edit in Viewport</b> ticked in a SplinePath's <a href="/docs/scripting-intro/#inspector">Edit Spline</a> window, the running game follows its points as you move them, and goes back to the level's spline when you leave without saving.</li>
 			<li><b>Set things off without playing up to them.</b> Lights, NPC spawns, screen effects and sequences can be set off by triggering their methods from the Entity Inspector's <a href="#calling-methods">Trigger Method</a> or a pin on the flowgraph, rather than playing to the point where the script would.</li>
 			<li><b>See what a script is doing.</b> With <a href="#activity">Show Activity</a> on, each flowgraph link lights up as the running game uses it, orange for logic and blue for data, with a count beside each pin it fires or calls, so you can follow a script as it runs, see which way it went and how often, and find the parts that never fire.</li>
+			<li><b>Stop a script at a node.</b> With the game's Debug Menu on too, a <a href="#script-debugger">breakpoint</a> stops the game just before an entity's method is called, shows you the node and the calls that led there, and lets you step on a round of calls at a time.</li>
 			<li><b>Check a change everywhere at once.</b> An edit to a composite reaches every running instance of it, so you can see how it plays out in each place the level uses it (see <a href="#editing">Editing While the Game Runs</a>).</li>
 		</ul>
 	</section>
@@ -226,10 +239,10 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>The Steam, GOG or Epic Games Store version of the game.</b> Live Link is served inside the game by OpenCAGE's runtime utils, the same plugin behind the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a>, and they support those three PC releases. On other platforms the <b>Enable Live Link</b> box is greyed out and the Live Link button never appears.</li>
-			<li><b>The game started from OpenCAGE</b>, from the <a href="/docs/launch-game/">Launch Game</a> window with <b>Enable Live Link</b> ticked. A game started without it has no Live Link to connect to. The runtime utils stay in the game folder as Launch Game last set them, so a game started some other way (from Steam, say) serves Live Link too if Enable Live Link was ticked the last time you started the game from Launch Game.</li>
-			<li><b>Cinematic Tools off.</b> A game started with <b>Enable Cinematic Tools</b> ticked has their free camera instead: Cinematic Tools and the Scripting Helpers are <a href="/docs/launch-game/#cinematic-tools-or-helpers">one or the other</a>, so while that box is ticked the helpers, Enable Live Link among them, are greyed out, and the game serves no Live Link.</li>
-			<li><b>The game running the level you have open</b>, as it's saved on disk. Edits for any other level are refused. The easy way is to tick <b>Load straight into a level</b> in the same window, which picks the level you're editing for you.</li>
+			<li><b>The Steam, GOG or Epic Games Store version of the game.</b> Live Link is served inside the game by OpenCAGE's <a href="/docs/launch-game/#scripting-helpers">runtime utils</a>, the same plugin behind the rest of Launch Game's Debug tools, and they support those three PC releases. On other platforms the <b>Live Link</b> box is greyed out and the Live Link button never appears.</li>
+			<li><b>The game started from OpenCAGE</b>, from the <a href="/docs/launch-game/">Launch Game</a> window with <a href="/docs/launch-game/#live-link">Live Link</a> ticked in its Debug tools. A game started without it has no Live Link to connect to. The runtime utils stay in the game folder as Launch Game last set them, so a game started some other way (from Steam, say) serves Live Link too if Live Link was ticked the last time you started the game from Launch Game.</li>
+			<li><b>The Debug Menu, for the script debugger.</b> Edits, method calls and the rest of Live Link work without it, but the <a href="#script-debugger">script debugger</a>, and an AI assistant working the <a href="#debug-menu">Debug Menu</a>, need the game started with <b>Debug Menu</b> ticked in Launch Game's <a href="/docs/launch-game/#debug-menu">Debug tools</a> as well. The whole Debug Menu runs alongside Live Link, its Cinematic group (which replaced Cinematic Tools) included.</li>
+			<li><b>The game running the level you have open</b>, as it's saved on disk. Edits for any other level are refused. The easy way is to tick <b>Load straight into</b> in the same window, which picks the level you're editing for you.</li>
 			<li><b>The same install.</b> If you have <a href="/docs/multiple-game-installs/">several game installs</a>, each OpenCAGE window only looks for the game from the install it's editing.</li>
 			<li><b>One at a time.</b> The game takes one Live Link connection, so while one OpenCAGE window is connected, another stays waiting: switch the first window's Live Link button off to use another. Only one running game can serve Live Link, so with several installs, run one game with it at a time.</li>
 		</ul>
@@ -245,13 +258,14 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ol>
 			<li>Press <b>Launch Game</b> on the main toolbar. Opening the window closes the game if it's already running.</li>
-			<li>Under <b>Scripting Helpers</b>, tick <b>Enable Live Link</b>. It stays ticked for next time. If the group is greyed out, untick <b>Enable Cinematic Tools</b> under Launch Options first.</li>
-			<li>Tick <b>Load straight into a level</b>, and check the level under it is the one you have open (OpenCAGE preselects it).</li>
+			<li>Under <b>Debug tools</b>, tick <b>Live Link</b>. It stays ticked for next time.</li>
+			<li>To use the <a href="#script-debugger">script debugger</a> too, tick <b>Debug Menu</b> in the same group. <b>Don't write saves</b>, under it, keeps the game from writing to your saved games while you test.</li>
+			<li>Tick <b>Load straight into</b>, at the top, and check the level beside it is the one you have open (OpenCAGE preselects it).</li>
 			<li>Press <b>Start Alien: Isolation</b>.</li>
 		</ol>
 		<p>Starting the game this way installs OpenCAGE's runtime utils in the game folder with Live Link switched on, and switches the <a href="#live-link-button">Live Link button</a> on, so OpenCAGE connects by itself a few seconds after the game starts. The status bar at the bottom of the OpenCAGE window says <b>Live Link: connected to the game</b> when it has.</p>
-		<p><img src="img/launch-game.jpg" alt="The Launch Game window with Enable Live Link ticked at the bottom of the Scripting Helpers group's left-hand column, above the Start Alien: Isolation button." style="max-width:100%;width:464px"></p>
-		<p class="text-muted small"><i>Enable Live Link is the last box in the left-hand column of the Scripting Helpers group.</i></p>
+		<p><img src="img/w2-launch-game.jpg" alt="The Launch Game window with Load straight into ticked and PRODUCTION/BSP_TORRENS picked in the level list beside it at the top; in the Debug tools group, Debug Menu ticked at the top of the left-hand column with F7 in the key dropdown beside it and Don't write saves ticked under it, and Live Link ticked in the right-hand column under Debug entities; below them the Game options and UI tweaks groups, and the Start Alien: Isolation button." style="max-width:100%;width:462px"></p>
+		<p class="text-muted small"><i>Live Link is in the right-hand column of the Debug tools group, under Debug entities. Debug Menu, for the script debugger, is at the top of the left-hand column, with Don't write saves under it.</i></p>
     </section>
 
 	<section class="docs-section" id="unsaved-changes">
@@ -268,10 +282,10 @@
 
 	<section class="docs-section" id="live-link-button">
 		<h2 class="section-heading">The Live Link Button</h2>
-		<p>While this install's game is running and serving Live Link (started with Enable Live Link ticked, as under <a href="#requirements">Requirements</a>), a <b>Live Link</b> button appears on the main toolbar, to the right of <b>Launch Game</b>, and it stays there while OpenCAGE is connected. It shows pressed while Live Link is on, whether it's connected or still waiting for the game, and clicking it switches it off (disconnecting from the game) or back on. Hover over it to see where it stands: connected, or waiting for the game.</p>
+		<p>While this install's game is running and serving Live Link (started with Live Link ticked, as under <a href="#requirements">Requirements</a>), a <b>Live Link</b> button appears on the main toolbar, to the right of <b>Launch Game</b>, and it stays there while OpenCAGE is connected. It shows pressed while Live Link is on, whether it's connected or still waiting for the game, and clicking it switches it off (disconnecting from the game) or back on. Hover over it to see where it stands: connected, or waiting for the game.</p>
 		<p><img src="img/toolbar.jpg" alt="OpenCAGE's main toolbar with the Live Link button, pressed, to the right of Launch Game." style="max-width:100%;width:511px"></p>
-		<p>The button remembers its setting. Left on, OpenCAGE connects whenever you start the game with Live Link, and reconnects by itself if the game restarts. There's no button for a game started without Live Link, which has nothing to connect to, for one started with Cinematic Tools, which have its camera instead, or for a game from another of your <a href="/docs/multiple-game-installs/">game installs</a>: close it and start this install's game from Launch Game with Enable Live Link ticked and Enable Cinematic Tools unticked.</p>
-		<p>In the game, <b>OpenCAGE Live Link</b> shows in green in the top-right corner while it's connected, with a line under it for a few seconds about the last thing done: an edit applied, a method called, or something waiting. You can see it in the <a href="#intro">screenshot above</a>.</p>
+		<p>The button remembers its setting. Left on, OpenCAGE connects whenever you start the game with Live Link, and reconnects by itself if the game restarts. There's no button for a game started without Live Link, which has nothing to connect to, or for a game from another of your <a href="/docs/multiple-game-installs/">game installs</a>: close it and start this install's game from Launch Game with Live Link ticked.</p>
+		<p>In the game, <b>OpenCAGE Live Link</b> shows in green in the top-right corner while it's connected, with a line under it for a few seconds about the last thing done: an edit applied, a method called, a <a href="#debug-menu">Debug Menu command</a> run, or something waiting. You can see it in the <a href="#intro">screenshot above</a>.</p>
 	</section>
 </article>
 
@@ -319,6 +333,7 @@
 	<section class="docs-section" id="waiting">
 		<h2 class="section-heading">Level Start &amp; Pause</h2>
 		<p>The game only takes edits and method calls while the level is being played. While it's still starting (loading, the intro and the opening cutscene), while the pause menu is open, while a cutscene or a message on screen (a DisplayMessage waiting for the player to close it, say) has paused the level's scripts, or after a death while it restarts from a checkpoint, they wait, and the overlay in the game says <b>Waiting for the game</b> and why. Once the level has been playing for 5 seconds, they're carried out in the order you made them.</p>
+		<p>They wait too while the <a href="#script-debugger">script debugger</a> holds the level's scripts at a breakpoint, and while the <b>Pause</b> button on the <a href="/docs/debug-menu/">Debug Menu</a>'s Game &gt; Tools tab holds the game. Once the scripts go on again, they're carried out straight away, without the 5 seconds.</p>
 		<p>If they've waited 20 seconds and the level still isn't being played, the game turns them away. OpenCAGE sends its edits again by itself a few seconds later, so they get there in the end. A method call isn't repeated, so call it again once the game is playing.</p>
 		<p>When the game isn't playing a level at all, between levels or while it unloads one, edits and calls aren't held. They're turned away at once with <b>No level is running</b> or <b>The game is unloading the level</b> (or <b>The game is running a different level</b> at the game's main menu, which is a level of its own), and OpenCAGE doesn't send them again. The level the game loads next comes from disk, so once it's being played, <a href="#resync">Resync</a> each composite you changed meanwhile.</p>
 	</section>
@@ -349,11 +364,12 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
 			<li><b>Undo an edit</b>: <b>Edit → Undo</b> is sent like any other edit. The entities it touches are re-initialised again, and the game isn't rewound to before the edit.</li>
-			<li><b>Put the game back to what's saved</b>: press the hot reload key (<a href="/docs/launch-game/#scripting-helpers">Enable Hot Reload</a> in Launch Game), or start the game again from Launch Game. Everything Live Link sent is dropped. <a href="#resync">Resync</a> any composite whose unsaved edits you want back.</li>
+			<li><b>Put the game back to what's saved</b>: press the hot reload key (<a href="/docs/launch-game/#hot-reload">Hot reload</a> in Launch Game), or start the game again from Launch Game. Everything Live Link sent is dropped. <a href="#resync">Resync</a> any composite whose unsaved edits you want back.</li>
 			<li><b>Throw away your unsaved edits</b>: reopening the level in OpenCAGE without saving sends nothing to the game. The game keeps what it was sent until it loads the level again, so reload it there too.</li>
 			<li><b>Switch Live Link off</b>: clicking the <a href="#live-link-button">Live Link button</a> disconnects. The game keeps the edits it already has, and edits you make while it's off only reach the game once it's back on and you edit that composite again or Resync it.</li>
 			<li><b>Camera</b>: set <a href="#camera">Live Link Camera</a> to <b>Disabled</b> to give the game its camera back and move the Viewport yourself.</li>
-			<li><b>Stop the game serving Live Link</b>: the runtime utils stay in the game folder between runs, so untick <b>Enable Live Link</b> and start the game from Launch Game once.</li>
+			<li><b>Breakpoints</b>: <b>Remove All Breakpoints</b> on the composite toolbar's <a href="#debugger-menu">Script Debugger</a> menu takes them all away, in the game too, and <b>Continue</b> lets held scripts go on.</li>
+			<li><b>Stop the game serving Live Link</b>: the runtime utils stay in the game folder between runs, so untick <b>Live Link</b> and start the game from Launch Game once.</li>
 		</ul>
     </section>
 </article>
@@ -441,6 +457,103 @@
 	</section>
 </article>
 
+<article class="docs-article" id="script-debugger">
+    <header class="docs-header">
+<h1 class="docs-heading">Script Debugger</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>OpenCAGE can stop the running game's scripts at a <b>breakpoint</b>. Put one on a node of the flowgraph, and the moment the game is about to call one of that entity's methods (its <b>start</b>, its <b>trigger</b> or any other), it holds the call back and stops: the level's scripts and the game's clock stop where they are, and OpenCAGE opens the composite at the instance that stopped, with the node in view and outlined. You can see which calls led there, step the scripts on a round of calls at a time, or let them carry on.</p>
+		<p>It works over Live Link, with the game started with <b>Debug Menu</b> ticked in <a href="/docs/launch-game/#debug-menu">Launch Game</a> as well as Live Link. The breakpoints are kept by the Debug Menu in the game, but you don't need to open its window. Without the Debug Menu, the breakpoints you set stay in OpenCAGE, drawn as rings, and go into the game the next time it's started with it.</p>
+		<p><img src="img/w2-debugger-held.jpg" alt="The OpenCAGE window with the game's scripts held at a breakpoint in CCTV_Camera_Passive, reached through BSP_Torrens, ENVIRONMENT_Torrens and Torrens in the path at the top. The VectorDistance node has a red dot on its top-left corner and a yellow outline, with a yellow arrow pointing at its title. Above its LHS and RHS pins are the values they read, 0, 0, 0. The composite toolbar shows Show Activity, then the Script Debugger (1) menu and the Continue and Step buttons, each with its icon, and an orange label reading Held: 'trigger' on VectorDistance_1 [89-5E-85-13] in Archetypes\Gameplay\CCTV_Camera_Passive. The status bar says Live Link: scripts held at a breakpoint - 'trigger' on VectorDistance_1 [89-5E-85-13] in Archetypes\Gameplay\CCTV_Camera_Passive (Continue: F8, Step: F10 on a flowgraph)." width="100%"></p>
+		<p class="text-muted small"><i>Held at a breakpoint on a CCTV camera's VectorDistance, which its Thinker triggers every frame. The node is outlined, and Continue, Step and where the scripts are held sit on the composite toolbar.</i></p>
+	</section>
+
+	<section class="docs-section" id="breakpoints">
+		<h2 class="section-heading">Setting Breakpoints</h2>
+		<p>Right-click a node and choose <b>Set Breakpoint</b>, the last item on its menu, or hover over the node and press <b>F9</b>. With no node under the mouse, F9 sets one on each selected node (up to 16 at a time). A red dot appears on the node's top-left corner. Do the same again to take it away: on a node with a breakpoint, the menu item reads <b>Remove Breakpoint</b>.</p>
+		<p><img src="img/w2-breakpoint-menu.jpg" alt="The right-click menu of the VectorDistance node in CCTV_Camera_Passive, ending with a divider and Set Breakpoint, with F9 beside it." style="max-width:100%;width:400px"></p>
+		<p>A breakpoint on a node stops before any of its entity's methods is called: the same methods <a href="#calling-methods">Trigger Method</a> lists. To stop on one method only, right-click its pin on the left of the node and choose <b>Break on '<i>method</i>'</b> (<b>Break on 'trigger'</b>, say), under <b>Trigger 'trigger' in Game</b>. It's ticked while the breakpoint stops on that method, and choosing it again takes that method off, and the breakpoint with it if it was the last. The items aren't offered on a node that has no methods, or on the composite's own <a href="/docs/scripting-intro/#parameter-entities">parameters</a>.</p>
+		<p>Like a <a href="#calling-methods">method call</a>, a breakpoint goes to the instance you reached by stepping down from the level's root composite (the path at the top of the composite panel), or, if you opened the composite on its own from the Composite Browser, to every running instance of it. A node shows a breakpoint set on its entity in any instance, and Remove Breakpoint takes away the one it shows.</p>
+		<p>The dot says where the breakpoint stands:</p>
+		<ul>
+			<li><b>A red dot</b>: the game stops on it.</li>
+			<li><b>A red ring</b>: it's set, but isn't stopping the game. Live Link isn't connected, the game was started without the Debug Menu, or the game can't find it in the running level: its composite isn't in it, that instance isn't running, or another level is. The <a href="#debugger-menu">Script Debugger menu</a> says which.</li>
+			<li><b>A grey dot</b>: it has been switched off in the game, with its own box on the Debug Menu's <a href="#debugger-in-game">Scripts &gt; Debugger</a> tab.</li>
+		</ul>
+		<p>The status bar says what the game did with each one you set, such as <b>Live Link: Breakpoint on <i>entity</i> - in 1 running instance(s), 3 method call(s) to stop on</b>. You can set them before Live Link connects: they're kept, and set in the game once it can take them.</p>
+		<p>Breakpoints belong to the level open in OpenCAGE: opening another level starts with none, and the game only stops on them while it's running the level they were set for. They aren't saved with the level, or put on the undo history. The game keeps the ones it has until it closes, so if OpenCAGE is closed and opened again while the game runs, they come back once Live Link reconnects (see <a href="#debugger-limits">Limits</a> for the one thing to switch back on).</p>
+	</section>
+
+	<section class="docs-section" id="breakpoint-hit">
+		<h2 class="section-heading">When a Breakpoint Is Hit</h2>
+		<ul>
+			<li><b>In the game</b>, everything stops, as it does for the pause menu (the mouse cursor shows, though no menu opens), and a line along the top of the screen says <b>Scripts held at breakpoint <i>n</i> (<i>method</i> on <i>entity</i>) - Continue in OpenCAGE, or the Debug Menu's Scripts &gt; Debugger</b>. The call the game was about to make is held back, not lost: it's made first when the scripts go on.</li>
+			<li><b>In OpenCAGE</b>, unless <a href="#debugger-menu">Jump to Node When a Breakpoint Hits</a> is off, the composite opens at the instance that stopped, stepped down to from the level's root, with the entity selected and its node in view, outlined in yellow with an arrow pointing at its title. If OpenCAGE isn't in front, its taskbar button flashes: the game keeps the screen. The status bar says <b>Live Link: scripts held at a breakpoint - '<i>method</i>' on <i>entity</i> in <i>composite</i> (Continue: F8, Step: F10 on a flowgraph)</b>.</li>
+			<li><b>On the composite toolbar</b>, after the <a href="#debugger-menu">Script Debugger</a> menu, come <b>Continue</b> and <b>Step</b> buttons and an orange label, <b>Held: '<i>method</i>' on <i>entity</i> in <i>composite</i></b>. Hover over the label to see the calls that led there, latest first: the method call whose output led to the held call, the one that led to that, and so on (up to eight). Click the label to go back to the node.</li>
+		</ul>
+		<p>While the scripts are held, your edits and method calls wait, as they do while the game is paused (see <a href="#waiting">Level Start &amp; Pause</a>), and go in as soon as the scripts go on.</p>
+	</section>
+
+	<section class="docs-section" id="stepping">
+		<h2 class="section-heading">Continue, Step &amp; Pause</h2>
+		<ul>
+			<li><b>Continue</b> (<b>F8</b> on a flowgraph) lets the scripts go on from the held call, and the game with them. A breakpoint on something that's called all the time, such as an entity a Thinker triggers every frame, stops the game again straight away, so take it away first if you're done with it.</li>
+			<li><b>Step</b> (<b>F10</b> on a flowgraph) makes the held call and every other call due at the same moment (one round of calls), then stops again. Each step makes the next round. A round takes in calls from every script in the level, not just the one on screen. The label reads <b>Held after a step</b>, and OpenCAGE keeps showing the node the breakpoint was on; if a step reaches another breakpoint, that node is shown instead.</li>
+			<li><b>Pause the Game's Scripts</b>, on the Script Debugger menu, stops the scripts and the game straight away, as a breakpoint would. The label reads <b>Scripts paused</b>; Continue or Step from there.</li>
+		</ul>
+		<p>F8 and F10 only work while the scripts are held, with a flowgraph page taking the keyboard (click it first). The status bar says what the game did, such as <b>Live Link: continued</b>. The Debug Menu's <a href="#debugger-in-game">Scripts &gt; Debugger</a> tab has the same controls in the game, and one more: <b>Step frame</b>, which lets one whole frame of the game run, scripts and all, then stops again.</p>
+	</section>
+
+	<section class="docs-section" id="debugger-menu">
+		<h2 class="section-heading">The Script Debugger Menu</h2>
+		<p>While Live Link is connected, or while breakpoints are kept for the game, the composite toolbar has a <b>Script Debugger</b> menu after Show Activity (and Clear Activity, while activity is shown) and a divider. It shows how many breakpoints there are, such as <b>Script Debugger (2)</b>, and hovering over it says whether the debugger can be used now, or why not. Each item has an icon, and the two that are options, Show Live States Above Nodes and Jump to Node When a Breakpoint Hits, have a frame round their icon while they're on. It has:</p>
+		<ul>
+			<li><b>Go to Breakpoint</b>: each breakpoint, by its composite and entity, ending <b>(every instance)</b> for one set in every instance, and with how many times it has been hit. A breakpoint that's stopping the game is ticked. Hover over one to see the methods it stops on and how many running instances it's in, or why it isn't stopping the game; click one to go to its node.</li>
+			<li><b>Remove All Breakpoints</b>, in the game too.</li>
+			<li><b>Show Live States Above Nodes</b>: see <a href="#live-states">Live States</a>.</li>
+			<li><b>Select Entity Under Game Crosshair</b>: see <a href="#select-from-game">Select Entity Under Game Crosshair</a>.</li>
+			<li><b>Pause the Game's Scripts</b>: see <a href="#stepping">Continue, Step &amp; Pause</a>. It's greyed out while the scripts are held.</li>
+			<li><b>Jump to Node When a Breakpoint Hits</b>, on to start with: a breakpoint hit brings its node to the front. Turn it off to leave the composite panel where it is when a breakpoint is hit; the toolbar label still says where (click it to go there). It's on again the next time OpenCAGE starts.</li>
+		</ul>
+		<p><img src="img/w2-debugger-menu.jpg" alt="The Script Debugger (1) menu open on the composite toolbar, an icon beside each item: Go to Breakpoint, opened to show one ticked entry naming CCTV_Camera_Passive and its VectorDistance, ending hit 4x; then Remove All Breakpoints, a divider, Show Live States Above Nodes, Select Entity Under Game Crosshair, Pause the Game's Scripts (greyed out while the scripts are held), another divider, and Jump to Node When a Breakpoint Hits, on, with a blue frame round its icon. Beside the menu, the Continue and Step buttons and the orange Held label." style="max-width:100%;width:811px"></p>
+	</section>
+
+	<section class="docs-section" id="live-states">
+		<h2 class="section-heading">Live States</h2>
+		<p>With <b>Show Live States Above Nodes</b> turned on in the Script Debugger menu, each node of the flowgraph page on screen gets a dark strip above it, showing its entity's state in the running game, read twice a second: <b>Started</b>, <b>Paused</b>, <b>Enabled</b>, <b>Locked</b>, <b>Opened</b>, <b>Closed</b>, <b>On</b>, <b>Updating</b>, <b>Suspended</b>, <b>Invisible</b> or <b>Frozen</b>, <b>(idle)</b> when it's none of these, and <b>Not initialised</b> before the game has set it up. Under that come the values its data pins (those on the top and bottom of the node) read in the game now, as <i>pin</i> = <i>value</i>: true or false, numbers, text, positions and colours, enums and resources. While a breakpoint holds the scripts, it's the state they stopped in.</p>
+		<p><img src="img/w2-live-states.jpg" alt="Part of CCTV_Camera_Passive's flowgraph with Show Live States Above Nodes on: a dark strip above each node, such as Started · Enabled · Closed · On above the Thinker and Enabled · On above the GetRotations, and above the VectorDistance its state and the values of its Result, LHS and RHS pins." style="max-width:100%;width:900px"></p>
+		<p>A strip shows up to six lines, only the first once you zoom out a little, and nothing once you're zoomed well out. The composite's own parameters don't get one. It's shown for one running instance: the one you stepped down to from the level's root. A composite opened on its own from the Composite Browser only shows states while one instance of it is running; with more, the status bar says <b>Live Link: live states can't be shown on <i>composite</i> - more than one running instance: open the composite from the level's root to see one</b>.</p>
+		<p><b>Reading a data pin works its value out</b> as the entity itself would, following the links into it. An entity whose value changes every time it's worked out, such as a random number, can give a new value each time it's read, so a script can behave a little differently while Show Live States Above Nodes is on. OpenCAGE doesn't remember it for next time.</p>
+	</section>
+
+	<section class="docs-section" id="select-from-game">
+		<h2 class="section-heading">Select Entity Under Game Crosshair</h2>
+		<p><b>Select Entity Under Game Crosshair</b>, on the Script Debugger menu, finds the entity under the game's crosshair. In the game, tick <b>Crosshair inspector</b> on the Debug Menu's World &gt; Inspect tab and aim at something: a door, a light, a prop. Then choose Select Entity Under Game Crosshair, and OpenCAGE opens the composite that holds it, at the instance it's in, stepped down to from the level's root, with the entity selected and its node in view. It's greyed out while Live Link isn't connected.</p>
+		<p>If it can't, a message says why: there's nothing under the crosshair, what's under it isn't a script entity, or the entity is in an instance the level open in OpenCAGE doesn't have, which usually means the game isn't running the level as saved.</p>
+	</section>
+
+	<section class="docs-section" id="debugger-in-game">
+		<h2 class="section-heading">In the Game</h2>
+		<p>The Debug Menu's <b>Scripts &gt; Debugger</b> tab shows the breakpoints as the game has them: whether the scripts are running or held, the held call (its method and entity, the composite and instance it's in, and the calls that led to it), with <b>Continue</b>, <b>Step</b>, <b>Step frame</b> and <b>Pause scripts</b> buttons, then every breakpoint, with a box to switch it off and on, how many running instances it's in, how many times it has been hit, and a <b>Remove</b> button. <b>Stop at breakpoints</b> switches them all off without taking them away, and <b>Remove all</b> takes them away. Breakpoints are set from OpenCAGE: the tab has no way to add one. See the <a href="/docs/debug-menu/">Debug Menu</a>.</p>
+		<p><img src="img/w2-game-held.jpg" alt="Alien: Isolation on the Torrens, stopped at a breakpoint: along the top of the screen, Scripts held at breakpoint 2 (trigger on 89-5E-85-13, the VectorDistance's id) - Continue in OpenCAGE, or the Debug Menu's Scripts &gt; Debugger. The Debug Menu is open on its Scripts group's Debugger tab: Held at a breakpoint, the Continue, Step, Step frame and Pause scripts buttons, the held call with its method, entity, composite and the calls that led to it, and the Breakpoints table with Stop at breakpoints ticked and one breakpoint in 1 instance." width="100%"></p>
+		<p class="text-muted small"><i>The game held at the same breakpoint, with the Debug Menu open on Scripts &gt; Debugger.</i></p>
+	</section>
+
+	<section class="docs-section" id="debugger-limits">
+		<h2 class="section-heading">Limits</h2>
+		<ul>
+			<li><b>It stops on method calls.</b> A breakpoint stops the game before a method is called, not when an output fires or a value is read, so there's no breakpoint on a link. Entities with no methods, and the composite's own parameters, can't have one.</li>
+			<li><b>A step is a round of calls</b>, not a single call: everything due at that moment, all over the level.</li>
+			<li><b>The whole game stops</b>, not just the script you're looking at, and stays stopped until something lets it go on: OpenCAGE, the Debug Menu or an <a href="#ai-assistants">AI assistant</a>.</li>
+			<li><b>How many.</b> A breakpoint set in every instance covers up to 64 running instances, and the game can stop on up to 256 method calls for all the breakpoints together (one for each method in each instance).</li>
+			<li><b>Switching Live Link off, or closing OpenCAGE,</b> lets held scripts go on and unticks <b>Stop at breakpoints</b> in the game, so a game left on its own never stops with nothing to let it go on. The breakpoints stay. Switch Live Link back on, and they stop the game again. After OpenCAGE itself has been closed, they come back as rings saying <b>breakpoints are switched off</b>: tick Stop at breakpoints on the Debug Menu's Scripts &gt; Debugger tab to have them stop the game again.</li>
+			<li><b>A level loading lets go.</b> If the game loads a level, or loads the same one again (restarting from a checkpoint), while the scripts are held, they're let go, so the level can start.</li>
+			<li><b>Game releases.</b> If the game's release can't take breakpoints, the Scripts &gt; Debugger tab says <b>Script breakpoints are not available on this game release</b>.</li>
+		</ul>
+	</section>
+</article>
+
 <article class="docs-article" id="camera">
     <header class="docs-header">
 <h1 class="docs-heading">Live Link Camera</h1>
@@ -460,9 +573,9 @@
 		<p class="text-muted small"><i>The other way round: the Viewport following the game's camera.</i></p>
 		<p>Both follow only while the Viewport shows the level itself (its root composite, or a composite you stepped into from there) and the game is running the level you have open. The game gets its own camera back when you choose <b>Disabled</b>, when Live Link disconnects, or when you open another composite on its own. The player's camera is never moved, so the view goes straight back to it.</p>
 		<p>With <b>Sync game camera to viewport</b>, the Viewport's camera stays locked for as long as that choice is on and Live Link is connected, even when it has nothing to follow, as in a composite opened on its own: open the level's root composite to see the game's view again. Choose <b>Disabled</b> to move the Viewport yourself again.</p>
-		<p><b>Game logic sees the Viewport's camera too.</b> While the game draws from the Viewport's camera, anything that checks what the player's camera sees reacts to it instead: camera viewcone triggers, the alien's checks for whether it's in view, and AI conditions on the camera's direction. It's the same as with Cinematic Tools' free camera, so bear it in mind when testing things that depend on being seen.</p>
-		<p><b>Cinematic Tools</b> and Live Link don't run together: a game started with Enable Cinematic Tools ticked serves no Live Link (see <a href="#requirements">Requirements</a>). <a href="/docs/launch-game/#possess-characters">Possess Characters</a> does: while the game follows the Viewport's camera, that camera wins over the one behind the character you're steering.</p>
-		<p><b>Keep your mouse cursor.</b> While a level is played, the game normally takes over the mouse cursor, which gets in the way of flying the Viewport beside it. Tick <b>Unlock Mouse</b> in the Launch Game dialog's <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a> and the game leaves the cursor alone. When you want to look around in the game itself, click its window and press the Unlock Mouse key (<b>F4</b> unless you chose another); press it again to free the cursor.</p>
+		<p><b>Game logic sees the Viewport's camera too.</b> While the game draws from the Viewport's camera, anything that checks what the player's camera sees reacts to it instead: camera viewcone triggers, the alien's checks for whether it's in view, and AI conditions on the camera's direction. It's the same with the Debug Menu's free camera, so bear it in mind when testing things that depend on being seen.</p>
+		<p><b>The Debug Menu's free camera</b>, in its Cinematic group (which replaced Cinematic Tools), runs alongside Live Link. While it's on, it has the game's camera: a game following the Viewport's camera stops following it until the free camera is turned off, and on <b>Sync game camera to viewport</b> the Viewport follows the free camera. <a href="/docs/launch-game/#possess-characters">Possess Characters</a> runs alongside Live Link too: while the game follows the Viewport's camera, that camera wins over the one behind the character you're steering.</p>
+		<p><b>Keep your mouse cursor.</b> While a level is played, the game normally takes over the mouse cursor, which gets in the way of flying the Viewport beside it. Tick <b>Unlock mouse</b> in the Launch Game window's <a href="/docs/launch-game/#unlock-mouse">Game options</a> and the game leaves the cursor alone. When you want to look around in the game itself, click its window and press the Unlock mouse key (<b>F4</b> unless you chose another); press it again to free the cursor.</p>
     </section>
 </article>
 
@@ -488,11 +601,47 @@
 		<p>The capture is taken from where the entity is in the level: through the instances you stepped down through from the root composite (the path at the top of the composite panel), or, if you opened its composite on its own, the one place that composite is used. A composite used in more than one place has to be opened from the root, so OpenCAGE knows which one to take it from.</p>
 		<ul>
 			<li><b>Capture with the game running.</b> Zones don't stream in while the game is paused, so a capture is turned away while the pause menu is open, and stops if the game is paused part way through.</li>
-			<li><b>The game ignores its keyboard and mouse while it captures</b>, so clicking into its window to watch doesn't move or turn the player, and the cursor stays free over it (as with <a href="/docs/launch-game/#scripting-helpers">Unlock Mouse</a>). Escape still works: press it in the game to stop a capture, as the pause menu ends it. A gamepad isn't held back.</li>
+			<li><b>The game ignores its keyboard and mouse while it captures</b>, so clicking into its window to watch doesn't move or turn the player, and the cursor stays free over it (as with <a href="/docs/launch-game/#unlock-mouse">Unlock mouse</a>). Escape still works: press it in the game to stop a capture, as the pause menu ends it. A gamepad isn't held back.</li>
 			<li><b>It shows the room as the game draws it now</b>: lights that are off, doors that are shut and anything else in the level's current state are in the picture. The game's own cubemaps were made when the level was built, under its lighting then, so a new one often looks darker or a different colour from the one it replaces.</li>
 			<li><b>Anything right next to the entity fills part of the picture</b>, as it would a mirror there. Move the entity if something gets in the way.</li>
 			<li><b>Game logic sees the capture's camera</b> for those few seconds, as it does the Viewport's camera with <a href="#camera">Live Link Camera</a>: anything checking what the player can see reacts to where the capture looks.</li>
 		</ul>
+	</section>
+</article>
+
+<article class="docs-article" id="live-settings">
+    <header class="docs-header">
+		<h1 class="docs-heading">Live Settings</h1>
+    </header>
+	<section class="docs-section" style="padding-top:0;">
+		<p>Three of the <a href="/docs/configs/">configuration editors</a> change the running game as you edit them: <a href="/docs/configs/radiosity/">Radiosity</a>, <a href="/docs/configs/hair-and-skin-shading/">Hair and Skin Shading</a>, and <a href="/docs/configs/global-constants/">Global Constants</a> (the glow round things the player can use, the stealth light meter, the interaction distance, and the squad and suspicious item timings).</p>
+		<p>Without Live Link, a change there reaches the game the next time it loads a level, when it reads the settings files again. While Live Link is connected, each change also shows in the running game as you make it, so you can tune the bounce light or the hair shading while looking at the result. The line at the bottom of each editor says which applies, or why the game didn't take a value.</p>
+		<ul>
+			<li><b>The bounce light settles rather than snapping:</b> the radiosity builds on its own last result, so First Bounce, Multi Bounce and the albedo settings take a moment to reach their new look. Emissive Surface Scale and Specular Gloss Scale show on the next frame. Emissive Surface Scale changes how brightly emissive surfaces glow, as well as the light they bounce.</li>
+			<li><b>Hair and skin</b> only show on characters close to the camera: try a cutscene, or <a href="#camera">Live Link Camera</a> pointed at a face.</li>
+			<li><b>Values last until the game loads a level</b>, when it reads the files the editors have saved them to, so nothing jumps back.</li>
+		</ul>
+	</section>
+</article>
+
+<article class="docs-article" id="debug-menu">
+    <header class="docs-header">
+<h1 class="docs-heading">The Debug Menu Over Live Link</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>When the game was started with both Live Link and the <a href="/docs/debug-menu/">Debug Menu</a>, OpenCAGE can work the Debug Menu from outside the game. The <a href="#script-debugger">script debugger</a>, <a href="#select-from-game">Select Entity Under Game Crosshair</a> and <a href="#live-states">Show Live States Above Nodes</a> work this way, and an <a href="#ai-assistants">AI assistant</a> can do nearly anything with the menu that you can in its window:</p>
+		<ul>
+			<li><b>See what it holds</b>: whether its window is open, the group and tab in front, the selected character, its groups and tabs, and every one of its switches, values and commands, by name.</li>
+			<li><b>Open or close the window</b>, and <b>bring a tab to the front</b> by its name (or a group, by the group's name).</li>
+			<li><b>Select a character</b>: the first whose name, or failing that whose class, has the text given in it, such as <i>alien</i> or <i>player</i>.</li>
+			<li><b>Turn a switch on or off</b>. The menu's tick boxes have names, such as <code>characters.labels</code> for the labels over the characters' heads, <code>game.dont_write_saves</code> for Don't Write Saves, or <code>cinematic.camera</code> for the free camera.</li>
+			<li><b>Set a value</b> to a number, kept within the range the menu allows, such as <code>game.speed</code>, the game's speed.</li>
+			<li><b>Run a command</b>, with the text it takes, and get back what it answers. Commands do what the menu's buttons do, and give its lists: <code>game.jump_checkpoint</code> and <code>cinematic.go_to</code>, say. The command <code>help</code> lists every one, with what it takes.</li>
+		</ul>
+		<p>There are a few hundred of these. Each name starts with the part of the menu it belongs to: <code>characters.</code>, <code>ai.</code>, <code>game.</code>, <code>render.</code>, <code>cinematic.</code>, <code>debugger.</code> and so on.</p>
+		<p>Running a command puts <b>Debug menu: <i>command</i></b> on the line under <b>OpenCAGE Live Link</b> in the top-right corner of the game for a few seconds, as an edit does. Commands that only report leave that line alone: <code>help</code>, the lists, a status or state, and the reads the script debugger and Show Live States Above Nodes make several times a second. Opening or closing the window, picking a tab or a character, and setting a switch or value leave it alone too.</p>
+		<p>If the game was started without the Debug Menu, it answers <b>The debug menu is off in the game</b>: start it again from Launch Game with <b>Debug Menu</b> ticked. If its runtime utils are older than OpenCAGE, the answer says they're too old for the Debug Menu: starting the game from Launch Game again updates them.</p>
 	</section>
 </article>
 
@@ -508,8 +657,12 @@
 			<li><code>set_viewport_view</code> with <code>live_link_camera</code>: the Live Link Camera choice, <code>disabled</code>, <code>viewport_to_game</code> or <code>game_to_viewport</code>. Set it after connecting: it goes back to <code>disabled</code> whenever Live Link connects.</li>
 			<li><code>set_viewport_camera</code>: puts the Viewport's camera at a position and direction, and the game's with it while the game follows the Viewport.</li>
 			<li><code>capture_environment_maps</code>: <a href="#capture-cubemaps">captures cubemaps</a> for one or more EnvironmentMap entities, a composite's, or every one in the level, one after another, with the same steps as the Capture button (<code>all_in_level</code> is Recapture All Cubemaps). It can also take a face size (otherwise Cubemap Capture Size's, which <code>editor_options</code> sets too), a format, how long to wait for zones, and keep the HUD, the lens effects or the old cubemaps.</li>
-			<li><code>launch_options</code> with <code>live_link</code>: the Enable Live Link box.</li>
+			<li><code>runtime_utils</code> with <code>settings</code>: reads, or changes in the running game only, the numbers from the radiosity, skin and hair shading, selection overlay and global constants settings files (see <a href="#live-settings">Live Settings</a>). A change made this way lasts until the game next loads a level, as the files themselves aren't changed.</li>
+			<li><code>runtime_utils</code> with <code>debug_menu</code>: works the <a href="/docs/debug-menu/">Debug Menu</a> in a game started with it, as under <a href="#debug-menu">The Debug Menu Over Live Link</a>. <code>menu</code> is <code>report</code> (the default), <code>open</code>, <code>close</code>, <code>tab</code>, <code>select</code>, <code>set</code> (a switch, to <code>value</code>), <code>value</code> (a value, to <code>number</code>) or <code>run</code> (a command, with <code>argument</code>), and <code>name</code> names the tab, character, switch, value or command.</li>
+			<li><code>runtime_utils</code> with <code>debugger</code>: the <a href="#script-debugger">script debugger</a>. It sets and removes breakpoints (on an entity, or one of its methods, in one instance or every instance), lists or clears them, reads where the scripts are held and the calls that led there, continues, steps a round of calls or a whole frame, pauses, selects what's under the game's crosshair as <a href="#select-from-game">Select Entity Under Game Crosshair</a> does, and reads the live states of a composite instance's entities. The breakpoints an assistant sets are drawn on your flowgraphs, and the ones you set are in its list.</li>
+			<li><code>launch_options</code> with <code>live_link</code>: the Live Link box; <code>debug_menu</code> and <code>debug_menu_key</code>: the Debug Menu box and its key; <code>dont_write_saves</code>: Don't write saves. The old <code>cinematic_tools</code> is still taken, as <code>debug_menu</code>.</li>
 		</ul>
+		<p><a href="/docs/ai-assistants/#running-game">AI Assistants</a> has more on each.</p>
     </section>
 </article>
 
@@ -520,13 +673,15 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><b>There's no Live Link button.</b> It only appears while this install's game is running and serving Live Link (or while OpenCAGE is connected), and only for the Steam, GOG and Epic Games Store versions. If the game is running, it wasn't started with Live Link, it was started with Cinematic Tools, or it's from another game install: close it and start it from Launch Game with Enable Live Link ticked and Enable Cinematic Tools unticked.</li>
+			<li><b>There's no Live Link button.</b> It only appears while this install's game is running and serving Live Link (or while OpenCAGE is connected), and only for the Steam, GOG and Epic Games Store versions. If the game is running, it wasn't started with Live Link, or it's from another game install: close it and start it from Launch Game with Live Link ticked.</li>
 			<li><b>"The game is running a different level".</b> The game has a different level loaded from the one open in OpenCAGE. Save, and load the same level in the game, or start the game again from Launch Game with that level picked.</li>
-			<li><b>Edits or calls are "waiting".</b> The level is still starting, the pause menu is open, a cutscene or an on-screen message has paused the level (close the message in the game), or the game is restarting from a checkpoint after a death. See <a href="#waiting">Level Start &amp; Pause</a>.</li>
+			<li><b>Edits or calls are "waiting".</b> The level is still starting, the pause menu is open, a cutscene or an on-screen message has paused the level (close the message in the game), the game is restarting from a checkpoint after a death, the <a href="#script-debugger">script debugger</a> is holding the scripts (Continue them), or the Debug Menu's Pause is holding the game. See <a href="#waiting">Level Start &amp; Pause</a>.</li>
+			<li><b>The game has stopped, with "Scripts held at breakpoint" along the top.</b> A <a href="#script-debugger">breakpoint</a> was hit, or Pause the Game's Scripts was used. Press <b>Continue</b> on the composite toolbar (or F8 on a flowgraph), or in the game, open the Debug Menu and press Continue on its Scripts &gt; Debugger tab. If it stops again straight away, the breakpoint is on something called all the time: take it away (F9 on its node, or <b>Remove All Breakpoints</b> on the Script Debugger menu) before you continue.</li>
+			<li><b>A breakpoint is a red ring, and never stops the game.</b> Hover over it in the <a href="#debugger-menu">Script Debugger menu</a>'s Go to Breakpoint list to see why. Usually the game was started without the Debug Menu (start it again from Launch Game with Debug Menu ticked), or the instance it was set in isn't running: open the composite from the level's root to set it in the instance the game runs, or on its own to set it in every instance. If it says <b>breakpoints are switched off</b>, tick <b>Stop at breakpoints</b> on the Debug Menu's Scripts &gt; Debugger tab.</li>
 			<li><b>"No level is running".</b> The game is between levels, or unloading one. Load the level in the game, then <a href="#resync">Resync</a> what you changed.</li>
 			<li><b>"The game's runtime utils are too old to follow the viewport camera"</b> (or <b>too old for the viewport to follow the game camera</b>), from <a href="#camera">Live Link Camera</a>. The game is running an older copy of OpenCAGE's runtime utils. Start it from the Launch Game window again, which updates them.</li>
 			<li><b>"Unsupported Live Link protocol (OpenCAGE and the game's OpenCAGE.RuntimeUtils.asi are different versions)".</b> The runtime utils in the game folder don't match this OpenCAGE, usually after an update. Start the game from Launch Game again, which replaces them.</li>
-			<li><b>"The game is running but not serving Live Link".</b> The game wasn't started with Enable Live Link, another OpenCAGE window is already connected, or another copy of the game is serving Live Link (<code>OpenCAGE.RuntimeUtils.log</code> then says it could not listen on 127.0.0.1:8765). Close the others and start the game from Launch Game.</li>
+			<li><b>"The game is running but not serving Live Link".</b> The game wasn't started with Live Link, another OpenCAGE window is already connected, or another copy of the game is serving Live Link (<code>OpenCAGE.RuntimeUtils.log</code> then says it could not listen on 127.0.0.1:8765). Close the others and start the game from Launch Game.</li>
 			<li><b>An edit didn't show up.</b> Check the status bar for what the game said (see <a href="#status-messages">below</a>). A new composite, a model placed on its own, or a change to a model, material, texture or other resource, needs the level <a href="#save-and-reload">saved and reloaded</a>. Edits made before connecting need a <a href="#resync">Resync</a>.</li>
 			<li><b>My live edits have gone from the game.</b> The game loaded the level again from disk, which only has what you've saved. <a href="#resync">Resync</a> each composite you changed, or save and start the game again.</li>
 			<li><b>Show Activity lights nothing.</b> The script hasn't run since you switched Show Activity on or cleared it: play up to it, or set it off by <a href="#calling-methods">triggering a method</a>. Check you're watching the instance that runs (open the composite from the Composite Browser to watch every instance of it), and that the composite has flowgraph pages. If the status bar says <b>the game's OpenCAGE.RuntimeUtils.asi is too old to show script activity</b>, the game is running an older copy of OpenCAGE's runtime utils: start it from Launch Game again, which updates them. See <a href="#activity-limits">Limits</a> for the rest.</li>
@@ -561,12 +716,13 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
-			<li><a href="/docs/launch-game/#scripting-helpers">Launch Game</a> — Enable Live Link and the other Scripting Helpers</li>
+			<li><a href="/docs/launch-game/#debug-tools">Launch Game</a> — the Live Link box and the rest of the Debug tools, the Debug Menu among them</li>
 			<li><a href="/docs/scripting-intro/#inspector">Cathode Scripting Introduction</a> — the Entity Inspector, and scripting in general</li>
 			<li><a href="/docs/level-viewer/#moving-camera">Viewport</a> — moving the Viewport's camera</li>
 			<li><a href="/docs/save-and-build/">Save and Build</a> — for changes that need a reload</li>
 			<li><a href="/docs/ai-assistants/">AI Assistants</a> — driving OpenCAGE from an AI assistant</li>
 			<li><a href="/docs/debug-text/">Debug Text &amp; Markers</a> — putting text, script values and markers on screen in the game</li>
+			<li><a href="/docs/debug-menu/">Debug Menu</a> — the in-game debug menu, which the script debugger runs in</li>
 			<li><a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a> — handy for trying Live Link out</li>
 		</ul>
     </section>

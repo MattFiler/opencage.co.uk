@@ -91,6 +91,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#position-marker">DebugPositionMarker</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#environment-marker">DebugEnvironmentMarker</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#log-file"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>The Log File</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#script-breakpoints"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Script Breakpoints</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#tips"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Tips</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
@@ -119,9 +120,10 @@
 			<li><a href="#position-marker">DebugPositionMarker</a> draws a set of axes at a point in the level, showing where it is and which way it faces.</li>
 			<li><a href="#environment-marker">DebugEnvironmentMarker</a> draws a label at a point in the level, or on an entity.</li>
 		</ul>
-		<p>They were Creative Assembly's own debugging aids, and they're still in the scripts the game shipped with, but the retail game switches them off and draws nothing for them. OpenCAGE's runtime utils, the plugin it puts in the game folder for the <a href="/docs/launch-game/#scripting-helpers">Scripting Helpers</a>, switch them back on and draw them over the game. They draw these four only: other debug entities in the entity reference, such as DebugGraph and DebugObjectMarker, aren't drawn by them. (DebugCheckpoint has a box of its own, <b>Enable Debug Checkpoints</b>, in <a href="/docs/launch-game/">Launch Game</a>.)</p>
+		<p>The game's scripts still use them, but the game itself draws nothing for them. OpenCAGE's runtime utils, the plugin it puts in the game folder, switch them back on and draw them over the game when <a href="/docs/launch-game/#debug-entities">Debug entities</a> is ticked in Launch Game. They draw these four only: other debug entities in the entity reference, such as DebugGraph and DebugObjectMarker, aren't drawn by them, though the <a href="/docs/debug-menu/">Debug Menu</a> has switches for some of those in its Entities tab. (The level's DebugCheckpoints are listed in the Debug Menu's <a href="/docs/debug-menu/#checkpoints">Game &gt; Tools</a> tab, with a button to jump to each.)</p>
 		<p><img src="img/overview.jpg" alt="Alien: Isolation in a Torrens corridor with debug text over it: Read from the counter: [247] at the top left, Crates delivered so far: [247] in yellow at the top centre, Tick [243] to Tick [247] in green on the middle left, Inputs: [hello] [7] [2.5] [true] [1, 2, 3] at the bottom left, and in the corridor a set of red, green and blue axes beside a crate, with the green label Supply crate on the crate." width="100%"></p>
 		<p class="text-muted small"><i>All four in the game. Top left and top centre, two DebugTexts showing a counter's value, one read straight from the counter and one from a VariableInt it's written into; middle left, a DebugTextStacking logging the last five ticks; bottom left, a DebugText showing five kinds of input (all but an enum); and at the crate, a DebugPositionMarker's axes and a DebugEnvironmentMarker's label. The whole script was added while the game ran, over <a href="/docs/live-link/">Live Link</a>.</i></p>
+		<p>To stop the scripts at the moment something is called, and look at them there, set a <a href="#script-breakpoints">breakpoint</a>.</p>
     </section>
 </article>
 
@@ -131,15 +133,8 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Press <b>Launch Game</b> on the main toolbar, and under <b>Scripting Helpers</b> tick a box for each one you want drawn:</p>
-		<ul>
-			<li><b>Enable DebugText</b></li>
-			<li><b>Enable DebugTextStacking</b></li>
-			<li><b>Enable DebugEnvironmentMarker</b></li>
-			<li><b>Enable DebugPositionMarker</b></li>
-		</ul>
-		<p>Then press <b>Start Alien: Isolation</b>. Tick <b>Enable Live Link</b> in the same group too if you want to add debug entities and start them while the game runs (see <a href="#tips">Tips</a>).</p>
-		<p>The runtime utils support the Steam, GOG and Epic Games Store versions of the game, so on other platforms the Scripting Helpers are greyed out. They're greyed out too while <b>Enable Cinematic Tools</b> is ticked, as Cinematic Tools and the helpers are <a href="/docs/launch-game/#cinematic-tools-or-helpers">one or the other</a>: a game started from Launch Game with Cinematic Tools draws no debug entities. Starting the game from Launch Game, or by saving with <a href="/docs/options/#misc">Options → Misc → Open Game On Save</a> ticked, sets them up as they're ticked in that window. They then stay in the game folder, so a game started from Steam draws whatever was ticked the last time OpenCAGE started it. See <a href="/docs/launch-game/#scripting-helpers">Launch Game</a> for the rest of the group.</p>
+		<p>Press <b>Launch Game</b> on the main toolbar, tick <b>Debug entities</b> in the <b>Debug tools</b> group, and press <b>Start Alien: Isolation</b>. The one box switches all four on together. (Older versions had a box for each: Enable DebugText, Enable DebugTextStacking, Enable DebugEnvironmentMarker and Enable DebugPositionMarker. If any of them was ticked, Debug entities is ticked for you.) Tick <b>Live Link</b> in the same group too if you want to add debug entities and start them while the game runs (see <a href="#tips">Tips</a>).</p>
+		<p>The runtime utils support the Steam, GOG and Epic Games Store versions of the game, so on other platforms the box is greyed out. The debug entities draw alongside the <a href="/docs/debug-menu/">Debug Menu</a>, including the free camera in its <a href="/docs/debug-menu/#cinematic">Cinematic group</a> that replaced Cinematic Tools, so there's no need to turn them off to film. The Debug Menu's screenshots leave them out, along with everything else the runtime utils draw. Starting the game from Launch Game, or by saving with <a href="/docs/options/#misc">Options → Misc → Open Game On Save</a> ticked, sets them up as the box is ticked in that window. They then stay in the game folder, so a game started from Steam draws them if the box was ticked the last time OpenCAGE started it. See <a href="/docs/launch-game/#debug-tools">Launch Game</a> for the rest of the Debug tools group.</p>
     </section>
 </article>
 
@@ -264,12 +259,39 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The runtime utils write <code>OpenCAGE.RuntimeUtils.log</code> in the game folder, beside <code>AI.exe</code>. Every DebugText and DebugTextStacking that starts (with its box ticked in <a href="#enabling">Launch Game</a>) is written to it, with the time and its text as it was at that moment, inputs included:</p>
+		<p>The runtime utils write <code>OpenCAGE.RuntimeUtils.log</code> in the game folder, beside <code>AI.exe</code>. Every DebugText and DebugTextStacking that starts (with <a href="#enabling">Debug entities</a> ticked in Launch Game) is written to it, with the time and its text as it was at that moment, inputs included:</p>
 		<pre><code>22:03:20.362  DebugText: Inputs: [hello] [7] [2.5] [true] [1, 2, 3]
 22:07:09.391  DebugTextStacking: Tick [230]
 22:07:10.394  DebugTextStacking: Tick [231]</code></pre>
 		<p>So it's the place to look for a message that was gone before you could read it, or for more history than the five lines a stack keeps. A DebugText is written when it starts, not each time its value updates. The log is started afresh each time the game starts, so read it before starting the game again. It also records what <a href="/docs/live-link/#troubleshooting">Live Link</a> did.</p>
     </section>
+</article>
+
+<article class="docs-article" id="script-breakpoints">
+    <header class="docs-header">
+<h1 class="docs-heading">Script Breakpoints</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>A DebugText shows you what a script did; a <b>breakpoint</b> stops it while it's doing it. Set one on a node in OpenCAGE's flowgraph, and just before the running game calls any of that entity's methods (its <b>start</b>, its <b>trigger</b> or any other), the level's scripts and the game's clock stop where they are, and stay stopped until you let them go on. It's the quickest way to find out whether something fires at all, when, and what made it fire.</p>
+		<p>It needs the game started from <a href="/docs/launch-game/">Launch Game</a> with both <a href="/docs/launch-game/#debug-menu">Debug Menu</a> and <b>Live Link</b> ticked, and OpenCAGE connected over <a href="/docs/live-link/">Live Link</a> with the same level open. The Debug Menu keeps the breakpoints in the game, but its window doesn't need to be open.</p>
+		<ol>
+			<li><b>Set one.</b> Right-click a node and choose <b>Set Breakpoint</b> (the last item on its menu), or hover over the node and press <b>F9</b>. A red dot appears on its top-left corner; do the same again to take it away. To stop on one method only, right-click that method's pin on the left of the node and choose <b>Break on '<i>method</i>'</b>. You can set them before the game is running: they're kept, drawn as rings, until the game can take them. See <a href="/docs/live-link/#breakpoints">Setting Breakpoints</a>.</li>
+			<li><b>Play until it's hit.</b> The game stops as it does for the pause menu, and a line along the top of the screen says which breakpoint, method and entity the scripts are held at. OpenCAGE brings up the composite at the instance that stopped, with the node in view and outlined in yellow, and the composite toolbar shows <b>Continue</b>, <b>Step</b> and an orange <b>Held:</b> label: hover over the label for the calls that led there, latest first. See <a href="/docs/live-link/#breakpoint-hit">When a Breakpoint Is Hit</a>.</li>
+			<li><b>Look around.</b> Turn on <b>Show Live States Above Nodes</b> in the toolbar's <b>Script Debugger</b> menu to see each node's state above it, with the values its data pins read in the game, as the scripts stopped (<a href="/docs/live-link/#live-states">Live States</a>). Edits and method calls you make meanwhile wait until the scripts go on.</li>
+			<li><b>Go on.</b> <b>Continue</b> (<b>F8</b> on a flowgraph) lets the scripts and the game go on. <b>Step</b> (<b>F10</b>) makes the held call and every other call due at the same moment, then stops again. <b>Pause the Game's Scripts</b>, on the Script Debugger menu, stops everything straight away, as a breakpoint would. See <a href="/docs/live-link/#stepping">Continue, Step &amp; Pause</a>.</li>
+		</ol>
+		<p>The Debug Menu's <a href="/docs/debug-menu/#scripts-debugger">Scripts &gt; Debugger</a> tab shows the same from the game's side: whether the scripts are held, the held call and the calls that led to it, and every breakpoint, with a box to switch each off. It has the same buttons, and <b>Step frame</b> as well, which lets one whole frame of the game run. Breakpoints are only set from OpenCAGE.</p>
+		<p><b>How it works.</b> Before the level's scripts call a method, the game checks a list of breakpoints for the entity being called. The Debug Menu fills that list from the breakpoints you set in OpenCAGE, an entry for each method in each running instance the breakpoint is set for. When a call matches, the game holds that call back and the Debug Menu pauses the game: the scripts and the game's clock stop, and OpenCAGE, watching over Live Link, shows where. Continue lifts the pause and the held call is made first; Step lets one round of calls through, then pauses again.</p>
+		<p>Worth knowing (see <a href="/docs/live-link/#debugger-limits">Limits</a> for the rest):</p>
+		<ul>
+			<li><b>It stops on method calls</b>, not on an output firing or a value being read, so there's no breakpoint on a link: put it on the entity whose method you want to catch.</li>
+			<li><b>The whole game stops</b>, not just the script on screen, and a step takes in calls from every script in the level.</li>
+			<li><b>Something called all the time</b>, such as an entity a Thinker triggers every frame, stops the game again straight after Continue: take the breakpoint away when you're done with it.</li>
+			<li><b>Breakpoints aren't saved</b> with the level. They belong to the level open in OpenCAGE, and the game keeps them until it closes.</li>
+		</ul>
+		<p>Everything else, from the Script Debugger menu to the in-game tab, is in <a href="/docs/live-link/#script-debugger">Script Debugger</a> on the Live Link page.</p>
+	</section>
 </article>
 
 <article class="docs-article" id="tips">
@@ -282,8 +304,8 @@
 			<li><b>Use them with Live Link.</b> With <a href="/docs/live-link/">Live Link</a> connected, add a DebugText (or a whole debugging script: a looper, a counter, texts, a stack, markers and their links) while the game runs, select it and pick <b>start</b> from <b>▶ Trigger Method</b> in the Entity Inspector, and it's on screen within seconds, without saving. When you're done, delete them, or keep them for next time.</li>
 			<li><b>An edit hides a DebugText.</b> Live Link re-initialises every entity whose parameters you change (relinking one doesn't), so changing a DebugText that's on screen (its text, say) takes it off the screen. Trigger <b>start</b> again to show it with the change. Markers stop the same way when they're edited. A DebugTextStacking's lines stay: start it again to add a line with the change.</li>
 			<li><b>Keep it up while you work.</b> A DebugText's <code>duration</code> is 5 seconds by default; set it to -1 to keep it on screen until it's stopped.</li>
-			<li><b>Everything clears when the level changes.</b> That includes the <a href="/docs/launch-game/#scripting-helpers">hot reload key</a>, which loads the level again from disk: the level's own debug entities draw again as they start, but what Live Link added is dropped until you <a href="/docs/live-link/#resync">Resync</a>.</li>
-			<li><b>Nothing shows?</b> Check the box for that entity was ticked when you started the game from <a href="#enabling">Launch Game</a> (ticking it while the game runs only takes effect the next time you start it from there), that it's the Steam, GOG or Epic Games Store version, and that the entity has been started. With its box ticked, the <a href="#log-file">log</a> shows whether a DebugText or DebugTextStacking started at all.</li>
+			<li><b>Everything clears when the level changes.</b> That includes the <a href="/docs/launch-game/#hot-reload">hot reload key</a>, which loads the level again from disk: the level's own debug entities draw again as they start, but what Live Link added is dropped until you <a href="/docs/live-link/#resync">Resync</a>.</li>
+			<li><b>Nothing shows?</b> Check <b>Debug entities</b> was ticked when you started the game from <a href="#enabling">Launch Game</a> (ticking it while the game runs only takes effect the next time you start it from there), that it's the Steam, GOG or Epic Games Store version, and that the entity has been started. With it ticked, the <a href="#log-file">log</a> shows whether a DebugText or DebugTextStacking started at all.</li>
 		</ul>
     </section>
 </article>
@@ -296,7 +318,9 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
 			<li><a href="/docs/live-link/">Live Link</a> — adding and starting debug entities while the game runs</li>
-			<li><a href="/docs/launch-game/#scripting-helpers">Launch Game</a> — the Scripting Helpers that switch these entities on</li>
+			<li><a href="/docs/live-link/#script-debugger">Script Debugger</a> — breakpoints in full: setting them, stepping, live states and the limits</li>
+			<li><a href="/docs/launch-game/#debug-entities">Launch Game</a> — the Debug entities box that switches these entities on</li>
+			<li><a href="/docs/debug-menu/">Debug Menu</a> — the other debug entities, and more on the running level's scripts, in its Scripts group</li>
 			<li><a href="/docs/cathode-entities/#DebugText">DebugText</a>, <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a>, <a href="/docs/cathode-entities/#DebugPositionMarker">DebugPositionMarker</a> and <a href="/docs/cathode-entities/#DebugEnvironmentMarker">DebugEnvironmentMarker</a> — every parameter, in the entity reference</li>
 			<li><a href="/docs/scripting-intro/">Cathode Scripting Introduction</a> — composites, entities, links and the flowgraph</li>
 		</ul>

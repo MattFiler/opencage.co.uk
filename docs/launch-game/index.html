@@ -84,14 +84,22 @@
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#starting-level"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Starting Level</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#ui-mods"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>UI Mods</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#patches"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Patches &amp; Tools</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#engine-patches">Engine Patches</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#debug-tools">Debug Tools</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#steam-tools">Cinematic Tools &amp; Possess Characters</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#debug-tools"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Debug Tools</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#debug-menu">Debug Menu</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#dont-write-saves">Don't Write Saves</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#debug-entities">Debug Entities</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#hot-reload">Hot Reload</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#live-link">Live Link</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#game-options"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Game Options</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#cap-fps">Cap FPS</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#unlock-mouse">Unlock Mouse</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#possess-characters">Possess Characters</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#scripting-helpers"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Scripting Helpers</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#cinematic-tools-or-helpers">Cinematic Tools or Scripting Helpers</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#ui-mods"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>UI Tweaks</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#scripting-helpers"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Runtime Utils</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#keys"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Keys</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#settings-file"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Settings File</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#removed-options"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Removed Options</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#cinematic-tools">Cinematic Tools</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Options</a></li>
 
 </ul></nav></div>
@@ -112,14 +120,22 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Launch Game</b> button on the main toolbar (after <b>Manage Backups</b> and <b>Mod Manager</b>, shown below) opens the Launch Game dialog. From here you choose whether to boot straight into a level, toggle launch options and scripting helpers, then hit <b>Start Alien: Isolation</b>. The button is only enabled for Steam, Epic Games Store and GOG installs, because launching works by patching the game executable.</p>
+		<p>The <b>Launch Game</b> button on the main toolbar (after <b>Manage Backups</b> and <b>Mod Manager</b>, shown below) opens the Launch Game window. From here you choose whether to boot straight into a level and which options the game starts with, then hit <b>Start Alien: Isolation</b>. The button is only enabled for Steam, Epic Games Store and GOG installs, because launching works by patching the game executable. Opening the window closes the game if it's running from this install, without asking, so its files can be written.</p>
 		<p><img src="img/toolbar-launch-game.jpg" alt="OpenCAGE's main toolbar with the Launch Game button after Manage Backups and Mod Manager." style="max-width:100%;width:576px"></p>
-		<p>Options patch the game install and (for the UI mods) add OpenCAGE's own menus to <code>DATA/UI.PAK</code>. Some options aren't supported on all platforms — the <a href="#scripting-helpers">Scripting Helpers</a>, <a href="#possess-characters">Possess Characters</a> and <a href="#steam-tools">Cinematic Tools</a> work with the Steam, GOG and Epic Games Store versions only. The dialog itself is shown below: the level picker sits at the top; a single <b>Launch Options</b> group holds the four UI mods at the top of its left-hand column, with the engine patches, debug tools, Cinematic Tools and <a href="#possess-characters">Possess Characters</a> filling the rest of both columns; the <b>Scripting Helpers</b> group sits underneath; and <b>Start Alien: Isolation</b> is the button along the bottom. Options that don't apply to your install are greyed out; on the Steam install pictured, with the bundled tools present, everything is available.</p>
-		<p><img src="img/launch-game.jpg" alt="The Launch Game dialog: level picker at the top with PRODUCTION/BSP_TORRENS chosen, the Launch Options group of checkboxes with Enable Cinematic Tools among them and Possess Characters ticked with its key set to F6 at the bottom of the right-hand column, the Scripting Helpers group with Enable Hot Reload ticked and its key set to INSERT beside Unlock Mouse ticked with its key set to F4, Cap FPS ticked at 60 at the bottom of the right-hand column, and the Start Alien: Isolation button." style="max-width:100%;width:464px"></p>
-		<p class="text-muted small"><i>The Launch Game dialog on a Steam install with a level chosen; Possess Characters, Enable Hot Reload, Unlock Mouse and Cap FPS are ticked, so their dropdowns are live.</i></p>
+		<p>The window, shown below, has the level to start in along the top: <a href="#starting-level">Load straight into</a>, with the level list beside it. Under that are three groups of options, each in two columns:</p>
+		<ul>
+			<li><a href="#debug-tools">Debug tools</a>: <b>Debug Menu</b> and its key, <b>Don't write saves</b> set in beneath it, and <b>Hot reload</b> and its key on the left; <b>Debug entities</b> and <b>Live Link</b> on the right.</li>
+			<li><a href="#game-options">Game options</a>: <b>Cap FPS</b> and its frame rate, <b>Unlock mouse</b> and its key, and <b>Possess characters</b> and its key on the left; <b>Constant ambient lighting</b>, <b>No HUD</b> and <b>Current-gen script fixes</b> on the right.</li>
+			<li><a href="#ui-mods">UI tweaks</a>: <b>Quit to menu on death</b> and <b>Debug loading screen</b>.</li>
+		</ul>
+		<p><b>Start Alien: Isolation</b> is the button along the bottom. Hover over any option for a line on what it does. The Debug tools, Cap FPS, Unlock mouse and Possess characters run in OpenCAGE's <a href="#scripting-helpers">runtime utils</a>, which work with the Steam, GOG and Epic Games Store versions only, so on other installs they're greyed out. A dropdown beside an option is greyed out until its box is ticked. On the Steam install pictured, everything is available.</p>
+		<p>The first time you open the window, <b>Debug Menu</b>, <b>Debug entities</b>, <b>Live Link</b>, <b>Current-gen script fixes</b>, <b>Cap FPS</b> and <b>Unlock mouse</b> are ticked, and the rest aren't. After that, each option stays as you last left it. <b>Load straight into</b> is ticked whenever you have a level open, with that level picked.</p>
+		<p><img src="img/launch-game.jpg" alt="The Launch Game window: Load straight into ticked at the top, with PRODUCTION/BSP_TORRENS chosen in the level list beside it. The Debug tools group: Debug Menu ticked with its key set to F7, Don't write saves ticked and set in beneath it, and Hot reload ticked with its key set to INSERT in the left-hand column; Debug entities and Live Link ticked in the right-hand column. The Game options group: Cap FPS ticked at 60, Unlock mouse ticked with its key set to F4, and Possess characters ticked with its key set to F6 in the left-hand column; Constant ambient lighting and No HUD unticked and Current-gen script fixes ticked in the right-hand column. The UI tweaks group: Quit to menu on death and Debug loading screen, both unticked. The Start Alien: Isolation button along the bottom." style="max-width:100%;width:462px"></p>
+		<p class="text-muted small"><i>The Launch Game window on a Steam install with a level chosen. Debug Menu (with Don't write saves), Hot reload, Cap FPS, Unlock mouse and Possess characters are ticked, so their dropdowns are live.</i></p>
 		<p>The game loads levels from disk, so if the level you have open has unsaved changes when you press <b>Start Alien: Isolation</b>, OpenCAGE asks whether to save it first. <b>Yes</b> saves the level (as <b>File → Save Level</b> does) and starts the game, <b>No</b> starts it without saving, and <b>Cancel</b> does neither. If the save doesn't go through, the game isn't started either. If you've added models or other content that needs building, cancel and use <b>File → Save and Build Level</b> first (see <a href="/docs/save-and-build/">Save and Build</a>).</p>
 		<p><img src="img/unsaved-changes.jpg" alt="The Unsaved changes message: the level has unsaved changes, the game loads what is saved on disk so it will not have them, Save the level before launching? with Yes, No and Cancel buttons." style="max-width:100%;width:395px"></p>
-		<p>While the game is running with <a href="#scripting-helpers">Enable Live Link</a> ticked, a <a href="/docs/live-link/#live-link-button">Live Link</a> button joins <b>Launch Game</b> on the toolbar, to its right. A game started without it, or with <a href="#cinematic-tools-or-helpers">Cinematic Tools</a>, gets no button.</p>
+		<p>While the game is running with <a href="#live-link">Live Link</a> ticked, a <a href="/docs/live-link/#live-link-button">Live Link</a> button joins <b>Launch Game</b> on the toolbar, to its right. A game started without it gets no button.</p>
+		<p>Older versions of the window had more options, and a <b>Scripting Helpers</b> group. See <a href="#removed-options">Removed Options</a> for where they went.</p>
     </section>
 </article>
 
@@ -129,67 +145,107 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Tick <b>Load straight into a level</b> and pick one from the list beneath it (the list is greyed out until the box is ticked) to have the game boot directly into that map — useful for testing a specific level without playing through from the start. Leave it unticked and the game starts at its main menu (FRONTEND) as normal.</p>
-		<p><img src="img/level-list.jpg" alt="The Load straight into a level checkbox ticked with the level list dropped down over the dialog, showing the install's PRODUCTION levels including the DLC maps." style="max-width:100%;width:394px"></p>
+		<p>Tick <b>Load straight into</b>, at the top of the window, and pick a level from the list beside it (the list is greyed out until the box is ticked) to have the game boot straight into that level, past the title screen. That's useful for testing a level without playing through from the start. Leave it unticked and the game starts as normal, at its title screen and then its main menu (FRONTEND).</p>
+		<p>Skipping the title screen goes with the level. Older versions had a separate <b>Skip Frontend</b> option for it, which has gone: booting into a level always skips the title screen, and starting at the main menu never does.</p>
+		<p><img src="img/level-list.jpg" alt="The Load straight into box ticked, with the level list beside it dropped down over the window, showing the install's PRODUCTION levels including the DLC maps." style="max-width:100%;width:462px"></p>
 		<p class="text-muted small"><i>The level list on a retail install: the campaign maps plus the DLC ones under PRODUCTION/DLC. FRONTEND is never offered.</i></p>
-		<p>The list holds every level in the current game install, including any you've made with <a href="/docs/create-level/">Create Level</a>. OpenCAGE preselects the level you're editing (PRODUCTION/BSP_TORRENS above), otherwise your last used choice, and the selection is remembered for next time.</p>
+		<p>The list holds every level in the current game install, including any you've made with <a href="/docs/create-level/">Create Level</a>. OpenCAGE preselects the level you're editing (PRODUCTION/BSP_TORRENS above), with the box ticked, otherwise your last used choice, and the selection is remembered for next time.</p>
 		<p>Booting into a level works by writing the level's name into the game executable, and that space is fixed: a level path longer than 42 characters (for a shipped level that's <code>Production/</code> plus the folder name) can't be launched into, and OpenCAGE will refuse with the message shown below rather than corrupting the patch.</p>
 		<p><img src="img/level-name-too-long.jpg" alt="OpenCAGE's Level name too long error message refusing to launch into a level whose path is longer than 42 characters." style="max-width:100%;width:386px"></p>
     </section>
 </article>
 
-<article class="docs-article" id="ui-mods">
+<article class="docs-article" id="debug-tools">
     <header class="docs-header">
-<h1 class="docs-heading">UI Mods</h1>
+<h1 class="docs-heading">Debug Tools</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>These are the four boxes at the top of the left-hand column of <b>Launch Options</b>. They swap in OpenCAGE's modified pause/frontend/loading/game-over menus. Each one goes into <code>UI.PAK</code> as a file of OpenCAGE's own, beside the game's menu, and the game is pointed at it, so the game's own menu files are left as they are. The <a href="/docs/ui-editor/">UI Editor</a> doesn't list OpenCAGE's copies, and the <a href="/docs/installing-mods/">Mod Manager</a> doesn't count them as changes you've made, so they never end up in a mod you create. The change is made the moment you tick or untick a box, so it's in place whether you launch from this dialog or not. When OpenCAGE starts, any menus an older version of OpenCAGE copied over the game's are put back as the game shipped them (in the Mod Manager's copies of <code>UI.PAK</code> too), and the options you had ticked are set up this way instead.</p>
+		<p>The <b>Debug tools</b> group, under the level, holds the tools for looking into the game while it runs. All five run in OpenCAGE's <a href="#scripting-helpers">runtime utils</a>, so they're for the Steam, GOG and Epic Games Store versions only, and they're set up when you start the game rather than when you tick them:</p>
 		<ul>
-			<li><b>Enable Debug Checkpoints</b> — adds debug checkpoints to the pause menu under <b>Load Game</b>. Checkpoints are per-map and load a scripted game state so you can jump to specific moments. They're created in level scripts with the <a href="/docs/cathode-entities/#DebugCheckpoint">DebugCheckpoint</a> entity.</li>
-			<li><b>Enable Level Selection</b> — frontend menu with level selection (where you'd normally load a save)</li>
-			<li><b>Enable Debug Loadscreen</b> — loading screen that shows debug map info, and also loads quicker than normal by removing artificial wait times</li>
-			<li><b>Add Quit To Menu On Death</b> — game-over menu with quit-to-menu</li>
-		</ul>
-    </section>
-</article>
-
-<article class="docs-article" id="patches">
-    <header class="docs-header">
-<h1 class="docs-heading">Patches &amp; Tools</h1>
-    </header>
-
-	<section class="docs-section" id="engine-patches" style="padding-top:0;">
-		<h2 class="section-heading">Engine Patches</h2>
-		<p>The rest of <b>Launch Options</b> — Skip Frontend and Patch Current-Gen Optimisations under the UI mods, plus the debug tools, No UI and Render Constant Ambient in the right-hand column — are written into the game executable the moment you toggle them, and again each time you open Launch Game, so a game file check or update doesn't lose them. OpenCAGE warns if it can't write, which usually means the game is still running. Cinematic Tools and Possess Characters are the exceptions: they're only applied when you launch.</p>
-		<ul>
-			<li><b>Skip Frontend</b> — skips the title screen when loading directly into a level</li>
-			<li><b>Patch Current-Gen Optimisations</b> — restores script functionality that was left out of the PC build (the game incorrectly still honours a “current gen” script flag). In vanilla this re-enables things like additional lighting, monitors, and effects. On by default.</li>
-			<li><b>No UI</b> — disables the in-game HUD. Also disables UI popups, which can make some actions impossible — useful for screenshots.</li>
-			<li><b>Render Constant Ambient</b> — full-bright “constant ambient” rendering mode</li>
-		</ul>
-    </section>
-
-	<section class="docs-section" id="debug-tools">
-		<h2 class="section-heading">Debug Tools</h2>
-		<ul>
-			<li><b>Enable UI Memory Overlay</b> — shows current UI memory in an in-game overlay (cUI). Separate from Cathode DebugText entities.</li>
-			<li><b>Enable Memory Logging</b> — writes memory replay logs to a <code>Mem_Replay_Logs</code> folder</li>
+			<li><a href="#debug-menu">Debug Menu</a>: an in-game debug menu, opened with its key (<b>F7</b> by default).</li>
+			<li><a href="#dont-write-saves">Don't write saves</a>, set in beneath it: the game writes nothing to your saved games. It's part of the Debug Menu.</li>
+			<li><a href="#debug-entities">Debug entities</a>: the DebugText, DebugTextStacking, DebugEnvironmentMarker and DebugPositionMarker script entities draw in the game.</li>
+			<li><a href="#hot-reload">Hot reload</a>: a key (<b>INSERT</b> by default) reloads the current level.</li>
+			<li><a href="#live-link">Live Link</a>: OpenCAGE connects to the running game, and your script edits reach it as you make them.</li>
 		</ul>
 	</section>
 
-	<section class="docs-section" id="steam-tools">
-		<h2 class="section-heading">Cinematic Tools &amp; Possess Characters</h2>
+	<section class="docs-section" id="debug-menu">
+		<h2 class="section-heading">Debug Menu</h2>
+		<p>Tick <b>Debug Menu</b> for an in-game debug menu, and pick the key that opens it from the dropdown beside the box: <b>F7</b> by default (see <a href="#keys">Keys</a>). It's a window over the game with a row of groups along the top, each with its own row of tabs: Overview, Characters, AI, World, Scripts, Sound, Rendering, Performance, Game and Cinematic. Between them they show what each character senses, thinks and is doing, the level's navigation, zones, physics and scripts, what sound is doing, the game's own rendering switches and performance figures, and they hold tools for the game itself: its saves, debug checkpoints and speed, and the free camera that replaced <a href="#cinematic-tools">Cinematic Tools</a>. See <a href="/docs/debug-menu/">Debug Menu</a> for all of it.</p>
+		<p>It also does what three of the <a href="#removed-options">removed options</a> did, as its tooltip in Launch Game says: the UI memory overlay is a checkbox in its <a href="/docs/debug-menu/#perf-memory">Performance &gt; Memory</a> tab, the debug checkpoints are in <a href="/docs/debug-menu/#checkpoints">Game &gt; Tools</a>, and any level can be loaded from <a href="/docs/debug-menu/#game-flow">Game &gt; Game flow</a>.</p>
+		<p>Its key dropdown, and <a href="#dont-write-saves">Don't write saves</a> set in beneath it, are greyed out while the box is unticked; they keep what you chose for when you tick it again.</p>
+		<p>OpenCAGE's script debugger, which stops the level's scripts at breakpoints in the flowgraph, works through the Debug Menu over <a href="/docs/live-link/">Live Link</a>, so it needs <a href="#live-link">Live Link</a> ticked as well. So do <a href="/docs/ai-assistants/">AI assistants</a> that use the Debug Menu's switches and commands.</p>
+	</section>
+
+	<section class="docs-section" id="dont-write-saves">
+		<h2 class="section-heading">Don't Write Saves</h2>
+		<p>With <b>Don't write saves</b> ticked, beneath the Debug Menu box, the game writes nothing to your saved games while it runs, so testing a level never changes them. It's part of the Debug Menu, so it only works with <b>Debug Menu</b> ticked too, and is greyed out until it is. It's on from the moment the game starts, before the game first saves. In the game, the Debug Menu's <a href="/docs/debug-menu/#saves">Saves</a> tab, in its Game group, has the same switch, to turn it off or back on as you play, and counts each save it has kept back.</p>
+		<p>What's kept back:</p>
 		<ul>
-			<li><b>Enable Cinematic Tools</b> — enables HattiWatti's Cinematic Tools. They work with the Steam, GOG and Epic Games Store versions of the game; the box is greyed out when they aren't available — on other platforms, or if the bundled files are missing. Antivirus software may block the injector; if so, add an exclusion for OpenCAGE's cinematic tools. The game can still launch without them. Cinematic Tools and the <a href="#scripting-helpers">Scripting Helpers</a> are one or the other: while this box is ticked, the helpers are switched off (see <a href="#cinematic-tools-or-helpers">Cinematic Tools or Scripting Helpers</a>).</li>
-			<li><b>Possess Characters</b> — take control of one of the level's characters in-game, the alien included: the chosen key opens a menu of the characters around you. See <a href="#possess-characters">Possess Characters</a> below.</li>
+			<li>Checkpoint and mission saves, save stations included. Jumping to a checkpoint or loading a campaign level from the Debug Menu can save the game, as reaching it in play would; with this on, those saves are kept back too.</li>
+			<li>The progression: how far the campaign has got, which also holds the game's settings.</li>
+			<li>The input and graphics settings, so changes made in the game's own options menu aren't kept either.</li>
+			<li>On Steam, the Steam Cloud's copies.</li>
 		</ul>
-		<p>Hot reloading has moved into the <a href="#scripting-helpers">Scripting Helpers</a> group, where you can also choose its key.</p>
+		<p>The game carries on as if each save had worked, and loading still works, from what was saved before.</p>
+		<p>What it doesn't do:</p>
+		<ul>
+			<li><b>Achievements still count.</b> The game can still award achievements, and add to their progress, on your Steam, GOG or Epic Games Store profile. To stop that, tick <b>Block awards and stat writes</b> in the same Saves tab, or add <code>BlockAchievements=1</code> to the <a href="#settings-file">settings file</a> to have it on from the start.</li>
+			<li><b>It stays on outside OpenCAGE.</b> Like the rest of the runtime utils' settings, it stays in the game folder, so a game you start from Steam, GOG Galaxy or the Epic Games Launcher afterwards saves nothing either. Before going back to playing normally, start the game once from OpenCAGE with Don't write saves unticked.</li>
+			<li><b>Ticked in the game, it only holds from then on.</b> Anything the game saved before you ticked it in the Saves tab was written as usual. The box in Launch Game has it on from the start.</li>
+		</ul>
+	</section>
+
+	<section class="docs-section" id="debug-entities">
+		<h2 class="section-heading">Debug Entities</h2>
+		<p>Tick <b>Debug entities</b> and four debug script entities show in the game: <a href="/docs/cathode-entities/#DebugText">DebugText</a> and <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a> draw their text on screen, <a href="/docs/cathode-entities/#DebugEnvironmentMarker">DebugEnvironmentMarker</a> draws its text at a place in the world, and <a href="/docs/cathode-entities/#DebugPositionMarker">DebugPositionMarker</a> draws axes there. They're in the shipped scripts but draw nothing in the retail game; this brings them back, so a script that places a <b>DebugText</b> shows its message on screen. See <a href="/docs/debug-text/">Debug Text &amp; Markers</a> for what each one draws, and how to show a script's values with them.</p>
+		<p>It's one box for all four. Older versions had a box for each (<b>Enable DebugText</b>, <b>Enable DebugTextStacking</b>, <b>Enable DebugEnvironmentMarker</b> and <b>Enable DebugPositionMarker</b>); if any of them was ticked, Debug entities is ticked for you the first time this version starts. Four more debug entities, such as DebugGraph, have switches in the Debug Menu's <a href="/docs/debug-menu/#scripts-entities">Scripts &gt; Entities</a> tab.</p>
+	</section>
+
+	<section class="docs-section" id="hot-reload">
+		<h2 class="section-heading">Hot Reload</h2>
+		<p>Tick <b>Hot reload</b> and press the chosen key in the game to reload the current level, handy for iterating on scripts without a full restart. The level is loaded again from disk, so anything <a href="/docs/live-link/">Live Link</a> sent that you haven't saved is dropped until you <a href="/docs/live-link/#resync">Resync</a>. The key defaults to <b>INSERT</b>; the dropdown beside the box offers DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12 as alternatives (see <a href="#keys">Keys</a>).</p>
+	</section>
+
+	<section class="docs-section" id="live-link">
+		<h2 class="section-heading">Live Link</h2>
+		<p>Tick <b>Live Link</b> and the game serves OpenCAGE's <a href="/docs/live-link/">Live Link</a> (to this PC only), and OpenCAGE connects to it by itself a few seconds after the game starts: script edits (entities added or deleted, links, parameters) reach the running level without a reload, entity methods can be triggered from the Entity Inspector or a method pin's right-click menu, and the Viewport's camera and the game's can follow each other. Starting the game with it ticked also brings up the <a href="/docs/live-link/#live-link-button">Live Link</a> button on the toolbar, beside Launch Game, switched on. It's for script tweaks only: models, textures, materials and new composites still need the level saved and loaded again (see <a href="/docs/live-link/#scripts-only">what Live Link sends</a>).</p>
+		<p><img src="img/live-link.jpg" alt="The Launch Game window with Live Link ticked in the right-hand column of the Debug tools group, under Debug entities." style="max-width:100%;width:462px"></p>
+		<p class="text-muted small"><i>Live Link, in the right-hand column of the Debug tools group, under Debug entities.</i></p>
+	</section>
+</article>
+
+<article class="docs-article" id="game-options">
+    <header class="docs-header">
+<h1 class="docs-heading">Game Options</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Game options</b> group changes how the game runs. The three on the right are patches to the game executable, so they work on any install Launch Game can start:</p>
+		<ul>
+			<li><b>Constant ambient lighting</b>: the game renders in “constant ambient” mode, with every surface evenly lit (essentially full-bright).</li>
+			<li><b>No HUD</b>: the game draws no HUD, which is useful for screenshots. It also hides UI popups, so some actions may become impossible.</li>
+			<li><b>Current-gen script fixes</b>: patches out the current-gen script optimisations, so script functionality they leave switched off in the PC build runs. The game wrongly still honours a “current gen” script flag; in the shipped levels the patch brings back things like additional dynamic lighting, monitors and effects. It's on by default, as edited levels need it.</li>
+		</ul>
+		<p>These three are written into the game executable the moment you tick or untick them, and again each time you open Launch Game or start the game, so a game file check or update doesn't lose them. OpenCAGE warns if it can't write, which usually means the game is still running.</p>
+		<p>The three on the left, <a href="#cap-fps">Cap FPS</a>, <a href="#unlock-mouse">Unlock mouse</a> and <a href="#possess-characters">Possess characters</a>, run in OpenCAGE's <a href="#scripting-helpers">runtime utils</a>, like the Debug tools: they're for the Steam, GOG and Epic Games Store versions, and they're set up when you start the game.</p>
+	</section>
+
+	<section class="docs-section" id="cap-fps">
+		<h2 class="section-heading">Cap FPS</h2>
+		<p>Tick <b>Cap FPS</b> and the game runs at most the chosen number of frames a second, picked from the dropdown beside the box: 30, 60 (the default), 90 or 120. The game's clock moves on at least 1/360 of a second every frame, so when a level draws faster than 360 frames a second (a near-empty new level with V-Sync off, say) everything in the game runs too fast. Capping the frame rate keeps it at its proper speed. V-Sync, when it's on, caps the frame rate too.</p>
+	</section>
+
+	<section class="docs-section" id="unlock-mouse">
+		<h2 class="section-heading">Unlock Mouse</h2>
+		<p>Tick <b>Unlock mouse</b> and the game leaves your mouse cursor alone when it starts instead of taking it over, so you can keep working in OpenCAGE while it runs. This is handy with Live Link's <a href="/docs/live-link/#camera">camera sync</a>, where you fly the Viewport and the game follows. To look around in the game, click its window and press the chosen key: the game takes the mouse as it normally does. Press the key again to get your cursor back. While the cursor is free, moving it over the game doesn't turn the camera and clicks don't reach the game, but the keyboard still works and so do menus. A note at the top of the game's screen says which way the key just switched it. It's most useful with the game in a window or on another screen. The key defaults to <b>F4</b>, with the same choices as the hot reload key (see <a href="#keys">Keys</a>).</p>
 	</section>
 
 	<section class="docs-section" id="possess-characters">
 		<h2 class="section-heading">Possess Characters</h2>
-		<p>With <b>Possess Characters</b> ticked, you can take control of a character in the running game — the alien, an android or a human — and walk it around the level yourself. Pick the key that opens its menu from the dropdown beside the box: <b>F6</b> by default, with the same choices as the <a href="#scripting-helpers">hot reload key</a>. Like the scripting helpers, it runs in OpenCAGE's plugin in the game folder, but it isn't one of them: it stays available with <a href="#steam-tools">Cinematic Tools</a> ticked.</p>
+		<p>With <b>Possess characters</b> ticked, you can take control of a character in the running game — the alien, an android or a human — and walk it around the level yourself. Pick the key that opens its menu from the dropdown beside the box: <b>F6</b> by default (see <a href="#keys">Keys</a>). Like the <a href="#debug-tools">Debug tools</a>, it runs in OpenCAGE's <a href="#scripting-helpers">runtime utils</a> in the game folder.</p>
 		<p>In the game, press the key to open the <b>Possess a Character</b> menu. It lists the characters the game is running, with what each one is and how far away it is. The one you're facing comes first (marked <i>ahead</i>), then the rest from nearest to furthest. Click one, or pick it with the arrow keys and <b>Enter</b>, to take control of it. While the menu is open the mouse cursor is shown and the game doesn't see your keyboard or mouse. Press the key again or <b>Escape</b> to close it.</p>
 		<p><img src="img/possess-menu.jpg" alt="The Possess a Character menu over the game in a Survivor map, listing the alien greyed out (Alen, in the vents, Alien, 48 m) with the keys underneath: W/A/S/D move, Shift faster, Ctrl slower, C crouch, the mouse looks, the wheel zooms; F6 or Escape closes this." style="max-width:100%;width:720px"></p>
 		<p class="text-muted small"><i>The menu in a Survivor map, with the alien still moving through the vents: it's listed, but greyed out until it comes out.</i></p>
@@ -203,41 +259,118 @@
 			<li>With Live Link's <a href="/docs/live-link/#camera">Sync viewport camera to game</a> on, the game draws from the Viewport's camera rather than the one behind the character.</li>
 			<li>The camera doesn't avoid walls, so it can end up inside one when the character backs into a corner.</li>
 			<li>Going to another level lets go of the character.</li>
+			<li>Taking a character turns the Debug Menu's free camera off, and the free camera can't be turned on while you have one.</li>
 		</ul>
 	</section>
 </article>
 
-<article class="docs-article" id="scripting-helpers">
+<article class="docs-article" id="ui-mods">
     <header class="docs-header">
-<h1 class="docs-heading">Scripting Helpers</h1>
+<h1 class="docs-heading">UI Tweaks</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Scripting Helpers</b> group adds runtime tools to the game that make script iteration faster. They're provided by a small plugin OpenCAGE copies into the game folder when any helper is enabled, or Cinematic Tools or <a href="#possess-characters">Possess Characters</a> are (and removes when none are), configured through <code>OpenCAGE.RuntimeUtils.ini</code> beside it. The plugin supports the Steam, GOG and Epic Games Store builds, so the whole group is greyed out on other platforms. The dropdowns beside <b>Enable Hot Reload</b>, <b>Unlock Mouse</b> and <b>Cap FPS</b> only come alive once their box is ticked, as shown below.</p>
-		<p><img src="img/scripting-helpers-key.jpg" alt="The Launch Game dialog with the Enable Hot Reload key dropdown open, listing INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12." style="max-width:100%;width:464px"></p>
-		<p class="text-muted small"><i>The hot reload key dropdown, open: INSERT is the default, with DELETE, HOME, END, PAGEUP, PAGEDOWN and the function keys as alternatives.</i></p>
+		<p>The <b>UI tweaks</b> group's two boxes swap in OpenCAGE's own versions of two of the game's menus:</p>
 		<ul>
-			<li><b>Enable Hot Reload</b> — press the chosen key in-game to reload the current level, handy for iterating on scripts without a full restart. The key defaults to <b>INSERT</b>; the dropdown beside the option offers DELETE, HOME, END, PAGEUP, PAGEDOWN and F1–F12 as alternatives.</li>
-			<li><b>Unlock Mouse</b> — the game leaves your mouse cursor alone when it starts instead of taking it over, so you can keep working in OpenCAGE while it runs. This is handy with Live Link's <a href="/docs/live-link/#camera">camera sync</a>, where you fly the Viewport and the game follows. To look around in the game, click its window and press the chosen key: the game takes the mouse as it normally does. Press the key again to get your cursor back. While the cursor is free, moving it over the game doesn't turn the camera and clicks don't reach the game, but the keyboard still works and so do menus. A note at the top of the game's screen says which way the key just switched it. It's most useful with the game in a window or on another screen. The key defaults to <b>F4</b>, with the same choices as the hot reload key.</li>
-			<li><b>Cap FPS</b> — the game runs at most the chosen number of frames a second: 30, 60 (the default), 90 or 120. The game's clock moves on at least 1/360 of a second every frame, so when a level draws faster than 360 frames a second (a near-empty new level with V-Sync off, say) everything in the game runs too fast. Capping the frame rate keeps it at its proper speed. V-Sync, when it's on, caps the frame rate too.</li>
-			<li><b>Enable DebugText</b> — <a href="/docs/cathode-entities/#DebugText">DebugText</a> script entities draw their text on screen in-game.</li>
-			<li><b>Enable DebugTextStacking</b> — <a href="/docs/cathode-entities/#DebugTextStacking">DebugTextStacking</a> script entities draw their text on screen in-game, stacked under one another.</li>
-			<li><b>Enable DebugEnvironmentMarker</b> — <a href="/docs/cathode-entities/#DebugEnvironmentMarker">DebugEnvironmentMarker</a> script entities draw their text at a world position in-game.</li>
-			<li><b>Enable DebugPositionMarker</b> — <a href="/docs/cathode-entities/#DebugPositionMarker">DebugPositionMarker</a> script entities draw axes at a world position in-game.</li>
-			<li><b>Enable Live Link</b> — the game serves OpenCAGE's <a href="/docs/live-link/">Live Link</a>, and OpenCAGE connects to it by itself a few seconds after the game starts: script edits (entities added or deleted, links, parameters) reach the running level without a reload, entity methods can be triggered from the Entity Inspector or the flowgraph, and the Viewport's camera and the game's can follow each other. Starting the game with it ticked also brings up the <a href="/docs/live-link/#live-link-button">Live Link</a> button on the toolbar, switched on. It's for script tweaks only: models, textures, materials and new composites still need the level saved and loaded again (see <a href="/docs/live-link/#scripts-only">what Live Link sends</a>).</li>
+			<li><b>Quit to menu on death</b>: adds a <b>Quit To Menu</b> option to the game-over screen, so a death can go back to the main menu.</li>
+			<li><b>Debug loading screen</b>: the loading screen shows the name of the level being loaded.</li>
 		</ul>
-		<p>The debug entities exist in the shipped scripts but draw nothing in the retail game; these options bring them back, so a script that places a <b>DebugText</b> shows its message on screen as it would have in Creative Assembly's own tools. See <a href="/docs/debug-text/">Debug Text &amp; Markers</a> for what each one draws, and how to show a script's values with them.</p>
-		<p><img src="img/live-link.jpg" alt="The Launch Game dialog with Enable Live Link ticked at the bottom of the Scripting Helpers group." style="max-width:100%;width:464px"></p>
-		<p class="text-muted small"><i>Enable Live Link, the last box in the left-hand column of the Scripting Helpers group.</i></p>
+		<p>Each one goes into <code>UI.PAK</code> as a file of OpenCAGE's own, beside the game's menu, and the game is pointed at it, so the game's own menu files are left as they are. The <a href="/docs/ui-editor/">UI Editor</a> doesn't list OpenCAGE's copies, and the <a href="/docs/installing-mods/">Mod Manager</a> doesn't count them as changes you've made, so they never end up in a mod you create. The change is made the moment you tick or untick a box, and made again each time OpenCAGE starts the game (a game file check puts the game's files back as they shipped), so it's in place whether you launch from this window or not. If a change can't be made in full, OpenCAGE says so and tries again the next time it starts the game. When OpenCAGE starts, any menus an older version of OpenCAGE copied over the game's are put back as the game shipped them (in the Mod Manager's copies of <code>UI.PAK</code> too), and the options you had ticked are set up this way instead.</p>
+		<p>Older versions had two more boxes here, <b>Enable Debug Checkpoints</b> and <b>Enable Level Selection</b>, which the Debug Menu has taken over (see <a href="#removed-options">Removed Options</a>). The next time OpenCAGE starts the game, their menus are taken back out of <code>UI.PAK</code>.</p>
     </section>
+</article>
 
-	<section class="docs-section" id="cinematic-tools-or-helpers">
-		<h2 class="section-heading">Cinematic Tools or Scripting Helpers</h2>
-		<p>A game started from Launch Game runs either <a href="#steam-tools">Cinematic Tools</a> or the scripting helpers, never both. They're for different jobs, filming and working on a level's scripts, and both take over the game's camera: Cinematic Tools with their free camera, and Live Link with its <a href="/docs/live-link/#camera">camera sync</a>.</p>
-		<p>While <b>Enable Cinematic Tools</b> is ticked, the <b>Scripting Helpers</b> group is greyed out and its title says why. None of the helpers run in the game, Live Link included, so OpenCAGE shows no <a href="/docs/live-link/#live-link-button">Live Link</a> button for that game. The boxes you've ticked in the group stay ticked, and work again as soon as you untick Enable Cinematic Tools. Cinematic Tools still get OpenCAGE's plugin in the game folder, which streams in the zones around their free camera as it moves. Nothing streams in while the game is paused, and that includes Cinematic Tools' Freeze Time, so fly the camera with the game running.</p>
-		<p><img src="img/launch-game-cinematic-tools.jpg" alt="The Launch Game dialog with Enable Cinematic Tools ticked and the Scripting Helpers group greyed out under the title Scripting Helpers (off while Cinematic Tools are enabled), with Enable Hot Reload, Enable DebugText, Unlock Mouse and Cap FPS still ticked but greyed, while Possess Characters in the Launch Options group stays ticked and available." style="max-width:100%;width:464px"></p>
-		<p class="text-muted small"><i>Enable Cinematic Tools ticked: the Scripting Helpers are greyed out, keeping their ticks for the next game started without Cinematic Tools. Possess Characters isn't a scripting helper, so it stays available.</i></p>
-		<p><a href="#related">Open Game On Save</a> never starts Cinematic Tools, so a game it starts runs the helpers as they're ticked, whether or not Enable Cinematic Tools is.</p>
+<article class="docs-article" id="scripting-helpers">
+    <header class="docs-header">
+<h1 class="docs-heading">Runtime Utils</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <a href="#debug-tools">Debug tools</a>, and <a href="#cap-fps">Cap FPS</a>, <a href="#unlock-mouse">Unlock mouse</a> and <a href="#possess-characters">Possess characters</a>, are done inside the game by OpenCAGE's runtime utils: a small plugin OpenCAGE copies into the game folder when you start the game with any of them ticked, and takes out again when none are. Older versions of OpenCAGE had most of them in a <b>Scripting Helpers</b> group of their own.</p>
+		<p>The runtime utils support the Steam, GOG and Epic Games Store versions of the game, so on other platforms those options are greyed out. They're set up as the window says each time OpenCAGE starts the game, from this window or with <a href="#related">Open Game On Save</a>, with their settings in <code>OpenCAGE.RuntimeUtils.ini</code> beside <code>AI.exe</code> (see <a href="#settings-file">Settings File</a>), so ticking or unticking one while the game runs only takes effect the next time you start it from OpenCAGE. They stay in the game folder between launches, so a game started from Steam, GOG Galaxy or the Epic Games Launcher runs with whatever OpenCAGE last started it with.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="keys">
+    <header class="docs-header">
+<h1 class="docs-heading">Keys</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Four options have a key, picked from the dropdown beside the box. Each dropdown offers INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12, and is greyed out until its box is ticked:</p>
+		<ul>
+			<li><b>Debug Menu</b>: <b>F7</b> by default</li>
+			<li><b>Hot reload</b>: <b>INSERT</b></li>
+			<li><b>Unlock mouse</b>: <b>F4</b></li>
+			<li><b>Possess characters</b>: <b>F6</b></li>
+		</ul>
+		<p><img src="img/scripting-helpers-key.jpg" alt="The Launch Game window with the Hot reload key dropdown open in the Debug tools group, listing INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12." style="max-width:100%;width:462px"></p>
+		<p class="text-muted small"><i>The Hot reload key dropdown, open: INSERT is the default, with DELETE, HOME, END, PAGEUP, PAGEDOWN and the function keys as alternatives.</i></p>
+		<p>No two ticked options can have the same key, as the game would do both when it's pressed. Picking a key that another ticked option already has brings up a message naming it, and the dropdown goes back to the key it had. If two still end up sharing a key (by ticking an option whose key another already uses), <b>Start Alien: Isolation</b> says which two clash and doesn't start the game until one of them has another key.</p>
+		<p>The Debug Menu's free camera has keys of its own: <b>F8</b> turns it on and off and <b>F9</b> takes a screenshot, and while it flies it uses F1, F2, F3, HOME, DELETE, END, PAGEUP and PAGEDOWN. With Debug Menu ticked, picking one of those in any of the four dropdowns brings up a warning. You can keep it, but the key then goes to that option and the free camera does without it. F8 and F9 can be changed in the <a href="#settings-file">settings file</a>, with <code>CinematicCameraKey</code> and <code>CinematicScreenshotKey</code>.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="settings-file">
+    <header class="docs-header">
+<h1 class="docs-heading">Settings File</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Each time OpenCAGE starts the game (from this window, or with <a href="#related">Open Game On Save</a>) with any of the Debug tools, Cap FPS, Unlock mouse or Possess characters ticked, it puts the <a href="#scripting-helpers">runtime utils</a> in the game folder and writes their settings to <code>OpenCAGE.RuntimeUtils.ini</code>, beside <code>AI.exe</code>. With none of them ticked, the plugin is taken out again. The plugin and its settings stay in the game folder between launches, so a game started from Steam, GOG Galaxy or the Epic Games Launcher runs with whatever OpenCAGE last started it with.</p>
+		<p>These keys, in the file's <code>[RuntimeUtils]</code> section, are written afresh from the window for every launch, so a change made to them by hand only lasts until OpenCAGE next starts the game:</p>
+		<ul>
+			<li><code>DebugMenu</code> and <code>DebugMenuKey</code>: Debug Menu and its key</li>
+			<li><code>DontWriteSaves</code>: Don't write saves, which is only written as on when Debug Menu is ticked too</li>
+			<li><code>DebugText</code>, <code>DebugTextStacking</code>, <code>DebugEnvironmentMarker</code> and <code>DebugPositionMarker</code>: all four from the one Debug entities box, so they're on together or off together</li>
+			<li><code>HotReload</code> and <code>HotReloadKey</code>: Hot reload and its key</li>
+			<li><code>LiveLink</code>: Live Link</li>
+			<li><code>CapFps</code>: the Cap FPS rate, or 0 when it's unticked</li>
+			<li><code>UnlockMouse</code> and <code>UnlockMouseKey</code>: Unlock mouse and its key</li>
+			<li><code>Possess</code> and <code>PossessKey</code>: Possess characters and its key</li>
+		</ul>
+		<p>Two keys older versions wrote are removed: <code>CinematicTools</code>, and <code>LiveLinkPort</code> (OpenCAGE only connects to Live Link on its own port). Any other key you add to the <code>[RuntimeUtils]</code> section by hand is kept from launch to launch. The ones you're most likely to want:</p>
+		<ul>
+			<li><code>BlockAchievements=1</code>: the Debug Menu's <b>Block awards and stat writes</b>, in its Saves tab, on from the start, so the game awards no achievements and adds nothing to their progress. It needs Debug Menu ticked.</li>
+			<li><code>UiMemoryOverlay=1</code>: the game's UI memory overlay, a checkbox in the Debug Menu's <a href="/docs/debug-menu/#perf-memory">Performance &gt; Memory</a> tab, on from the start. It needs Debug Menu ticked.</li>
+			<li><code>CinematicCameraKey</code> and <code>CinematicScreenshotKey</code>: the free camera's on and off key (<b>F8</b> unless set) and its screenshot key (<b>F9</b>), named as in the dropdowns, for example <code>CinematicCameraKey=F10</code>.</li>
+			<li><code>LoadAllZones=1</code>: streams in every zone of the level, not only those around the player. On a big level (HAB_AIRPORT, for one) that can be more than the game has memory for, and zones then stop finishing loading.</li>
+			<li><code>LiveLinkCamera=0</code>: Live Link can neither move the game's camera nor read it, so its <a href="/docs/live-link/#camera">camera sync</a> does nothing.</li>
+			<li><code>RadiosityWarning=1</code>, <code>ExtraShadowLights=1</code> and <code>D3DDebugLayer=1</code>: settings for the Debug Menu's Rendering group, read as the game starts, which need Debug Menu ticked like the rest of it. The first shows a warning over the game while a level runs without its radiosity data (the Radiosity tab can switch it on and off too). The second lets the game draw shadows for 16 lights a frame rather than 4 (the game's capture mode), for up to four times the shadow work. The third has the game's graphics checked for errors, such as the ones broken imported models and shaders cause, listed in the Debug Menu's Developer tab; it makes the game much slower, and needs Windows' optional <b>Graphics Tools</b> feature installed.</li>
+			<li><code>DebugGraph=1</code>, <code>DebugObjectMarker=1</code>, <code>DebugMenuToggle=1</code> and <code>DebugCaptureScreenShot=1</code>: the Debug Menu's switches for these debug entities (in its Entities tab, Scripts group), on from the start.</li>
+		</ul>
+		<p>The plugin writes <code>OpenCAGE.RuntimeUtils.log</code> beside the settings file each time the game runs, which is the place to look when a setting didn't take effect.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="removed-options">
+    <header class="docs-header">
+<h1 class="docs-heading">Removed Options</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Older versions of Launch Game had more options. They've gone from the window, but what they did is still to hand:</p>
+		<ul>
+			<li><b>Skip Frontend</b>: goes with the level now. <a href="#starting-level">Load straight into</a> skips the title screen, and starting at the main menu never does.</li>
+			<li><b>Enable UI Memory Overlay</b>: a checkbox in the Debug Menu, <b>The game's UI memory overlay</b> in its <a href="/docs/debug-menu/#perf-memory">Performance &gt; Memory</a> tab, which you can switch while the game runs. <code>UiMemoryOverlay=1</code> in the <a href="#settings-file">settings file</a> has it on from the start.</li>
+			<li><b>Enable Memory Logging</b>: gone.</li>
+			<li><b>Enable Debug Checkpoints</b>: the Debug Menu's <a href="/docs/debug-menu/#checkpoints">Game &gt; Tools</a> tab lists the level's debug checkpoints, each with a <b>Jump</b> button, in place of the list this option added to the pause menu.</li>
+			<li><b>Enable Level Selection</b>: the Debug Menu's <a href="/docs/debug-menu/#game-flow">Game &gt; Game flow</a> tab lists every level with a <b>Load</b> button, in place of the level selection this option added to the main menu, and <a href="#starting-level">Load straight into</a> starts the game in any level.</li>
+			<li><b>Enable DebugText</b>, <b>Enable DebugTextStacking</b>, <b>Enable DebugEnvironmentMarker</b> and <b>Enable DebugPositionMarker</b>: one box, <a href="#debug-entities">Debug entities</a>.</li>
+			<li><b>Enable Cinematic Tools</b>: the Debug Menu's Cinematic group (see <a href="#cinematic-tools">Cinematic Tools</a>, below).</li>
+		</ul>
+		<p>Your settings carry over: if any of the four debug entity boxes was ticked, Debug entities is ticked for you the first time this version starts, and the settings of the other removed options are forgotten. What they left in the game is switched back off for you: the UI memory overlay and memory logging patches are taken out of the game executable when you open Launch Game, start the game or save a level, and the pause and main menus that debug checkpoints and level selection put in <code>UI.PAK</code> are taken out the next time OpenCAGE starts the game.</p>
+	</section>
+
+	<section class="docs-section" id="cinematic-tools">
+		<h2 class="section-heading">Cinematic Tools</h2>
+		<p><b>Enable Cinematic Tools</b> has gone from Launch Game. The free camera, camera tracks and visual settings of HattiWatti's Cinematic Tools are now part of the Debug Menu, in its <a href="/docs/debug-menu/#cinematic">Cinematic group</a>, along with tabs to hide the HUD, hold the other characters still and take screenshots. Hover over <b>Debug Menu</b> in Launch Game and its tooltip says so. To use them, tick <b>Debug Menu</b>, start the game, press the Debug Menu's key and open <b>Cinematic</b>. The free camera has keys of its own too: <b>F8</b> turns it on and off, with the Debug Menu open or closed, and <b>F9</b> takes a screenshot (see <a href="#keys">Keys</a>).</p>
+		<ul>
+			<li><b>Your setting carries over.</b> If you had Enable Cinematic Tools ticked, OpenCAGE ticks <b>Debug Menu</b> instead the first time this version starts, and forgets the old setting.</li>
+			<li><b>No more one or the other.</b> Cinematic Tools used to switch the old Scripting Helpers off, Live Link included. The Debug Menu runs alongside them: while its free camera is on it has the game's camera, and Live Link's <a href="/docs/live-link/#camera">camera sync</a> gets it back when you turn the free camera off.</li>
+			<li><b>No separate program.</b> OpenCAGE no longer comes with the Cinematic Tools injector, or starts it. If one that an older version of OpenCAGE started is still waiting for the game, it's closed when you open Launch Game or OpenCAGE next starts the game.</li>
+			<li><b>Old camera profiles aren't read.</b> The profiles Cinematic Tools saved, in the <code>Cinematic Tools</code> folder it made in the game folder, aren't read by the Debug Menu, which saves its own. That folder is left as it is.</li>
+		</ul>
 	</section>
 </article>
 
@@ -247,9 +380,9 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Outside the Launch Game dialog, under the toolbar's <b>Options</b> dropdown (shown below):</p>
+		<p>Outside the Launch Game window, under the toolbar's <b>Options</b> dropdown (shown below):</p>
 		<ul>
-			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE launches into the level you're editing. This bypasses the Launch Game dialog, so Cinematic Tools isn't started, but the <a href="#scripting-helpers">Scripting Helpers</a> (Hot Reload, Live Link and the rest) are still set up as they're ticked in the dialog, even while Enable Cinematic Tools is ticked there (as Cinematic Tools don't run, nothing else has the game's camera). Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
+			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE starts the game straight into the level you're editing, past the title screen. This bypasses the Launch Game window, but the <a href="#debug-tools">Debug tools</a> (the <a href="#debug-menu">Debug Menu</a> with <a href="#dont-write-saves">Don't write saves</a>, Debug entities, Hot reload and Live Link), Cap FPS, Unlock mouse, <a href="#possess-characters">Possess characters</a> and the <a href="#ui-mods">UI tweaks</a> are still set up as they're ticked in the window. Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
 		</ul>
 		<p><img src="img/options-misc-open-game-on-save.jpg" alt="The toolbar's Options menu with the Misc submenu open, showing the Open Game On Save item unticked." style="max-width:100%;width:489px"></p>
     </section>

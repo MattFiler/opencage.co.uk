@@ -98,6 +98,10 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#tools"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>What It Can Do</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#example"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>An Example</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#changes"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Undo, Saving &amp; Flowgraphs</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#running-game"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>In the Running Game</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#launch-options">Launch Options</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#debug-menu">The Debug Menu</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#script-debugger">The Script Debugger</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#tips"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Tips &amp; Caveats</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
@@ -199,7 +203,7 @@
 		<table class="table table-bordered">
 			<thead><tr><th>Area</th><th>Tools</th></tr></thead>
 			<tbody>
-				<tr><td>Levels &amp; game</td><td><code>get_editor_state</code>, <code>list_levels</code>, <code>load_level</code>, <code>create_level</code> (optionally importing composites), <code>duplicate_level</code>, <code>delete_level</code>, <code>diff_level</code> (what has changed since the last save or a backup), <code>save_level</code> (optionally <a href="/docs/save-and-build/">Save &amp; Build</a>, choosing which bakers run), <code>list_backups</code>, <code>create_backup</code>, <code>restore_backup</code>, <code>delete_backups</code>, <code>launch_game</code>, <code>launch_options</code>, <code>close_game</code>, <code>game_directories</code>, <code>get_player_setup</code>, <code>set_player_start</code> (where the player starts, and with what), <code>runtime_utils</code> (<a href="/docs/live-link/#ai-assistants">Live Link</a> to the running game), <code>capture_environment_maps</code> (<a href="/docs/live-link/#capture-cubemaps">captures EnvironmentMap cubemaps</a> in the running game)</td></tr>
+				<tr><td>Levels &amp; game</td><td><code>get_editor_state</code>, <code>list_levels</code>, <code>load_level</code>, <code>create_level</code> (optionally importing composites), <code>duplicate_level</code>, <code>delete_level</code>, <code>diff_level</code> (what has changed since the last save or a backup), <code>save_level</code> (optionally <a href="/docs/save-and-build/">Save &amp; Build</a>, choosing which bakers run), <code>list_backups</code>, <code>create_backup</code>, <code>restore_backup</code>, <code>delete_backups</code>, <code>launch_game</code>, <code>launch_options</code> (the <a href="#launch-options">Launch Game options</a>), <code>close_game</code>, <code>game_directories</code>, <code>get_player_setup</code>, <code>set_player_start</code> (where the player starts, and with what), <code>runtime_utils</code> (<a href="/docs/live-link/#ai-assistants">Live Link</a> to the running game, including its <a href="/docs/live-link/#live-settings">live settings</a>, the <a href="#debug-menu">Debug Menu</a> and the <a href="#script-debugger">script debugger</a>), <code>capture_environment_maps</code> (<a href="/docs/live-link/#capture-cubemaps">captures EnvironmentMap cubemaps</a> in the running game)</td></tr>
 				<tr><td>Undo &amp; activity</td><td><code>undo</code>, <code>redo</code>, <code>undo_group</code> (makes several requests one undo step), <code>get_undo_history</code>, <code>get_activity</code> (what the assistant's last requests did, and how far a long one has got)</td></tr>
 				<tr><td>Finding things</td><td><code>find_composites</code>, <code>get_composite</code>, <code>describe_entity</code>, <code>get_effective_parameters</code> (the values a placement really ends up with, after aliases and links), <code>get_instance_overrides</code>, <code>find_entities</code> (by name, type, value or place, forgiving misspellings), <code>find_references</code>, <code>trace_links</code> (what drives an entity, and what it drives, across composites), <code>find_links</code>, <code>get_placements</code>, <code>list_dead_proxies</code>, <code>list_function_types</code>, <code>describe_function_type</code>, <code>get_usage_patterns</code> (how the shipped levels wire up a function type or archetype), <code>list_enums</code>, <code>list_enum_string_values</code></td></tr>
 				<tr><td>Rooms &amp; the world</td><td><code>find_places</code> (a room by name: a zone, a composite, an instance or a model), <code>get_bounds</code>, <code>raycast</code> (rays, the floor under a point, line of sight), <code>sample_space</code> (points on a room's free floor: its centre, a loop round it clear of the walls, a grid), <code>transform_points</code> (between world and composite space, and rotations that look at a point), <code>drop_to_floor</code>, <code>query_navmesh</code> (nearest point, reachability, path length), <code>export_region_collision</code>. These read the level's collision as it stands in the editor, unsaved changes included, with or without the Viewport. <code>query_navmesh</code> is the exception: it reads the navmesh as the last <a href="/docs/save-and-build/">Save &amp; Build</a> made it.</td></tr>
@@ -267,6 +271,60 @@
     </section>
 </article>
 
+<article class="docs-article" id="running-game">
+    <header class="docs-header">
+<h1 class="docs-heading">In the Running Game</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>An assistant can choose what the game is started with (<code>launch_options</code>), start it (<code>launch_game</code>), and, while it runs with <a href="/docs/live-link/">Live Link</a>, work with it through <code>runtime_utils</code>. Its script edits reach the game as they're made, as yours do, and it can call methods on entities, take screenshots of the game, change its <a href="/docs/live-link/#live-settings">live settings</a>, and use the game's <a href="/docs/debug-menu/">Debug Menu</a> and OpenCAGE's <a href="/docs/live-link/#script-debugger">script debugger</a>.</p>
+	</section>
+
+	<section class="docs-section" id="launch-options">
+		<h2 class="section-heading">Launch Options</h2>
+		<p><code>launch_options</code> reads and sets the options in the <a href="/docs/launch-game/">Launch Game</a> window, by name; given none, it reports them all. Those for OpenCAGE's runtime utils in the game are:</p>
+		<ul>
+			<li><code>live_link</code> (the Live Link box), <code>hot_reload</code> and <code>debug_entities</code>, from the Debug tools group, and <code>unlock_mouse</code> and <code>cap_fps</code>, from Game options, with <code>hot_reload_key</code>, <code>unlock_mouse_key</code> and <code>cap_fps_rate</code>. <code>debug_entities</code> is the one Debug entities box; the old names <code>debug_text</code>, <code>debug_text_stacking</code>, <code>debug_environment_marker</code> and <code>debug_position_marker</code> are still taken for it: any of them <code>true</code> turns it on and all of those given <code>false</code> turn it off, unless <code>debug_entities</code> is given too, which decides.</li>
+			<li><code>possess_characters</code> and <code>possess_key</code>.</li>
+			<li><code>debug_menu</code>, the Debug Menu box, and <code>debug_menu_key</code>, the key that opens it.</li>
+			<li><code>dont_write_saves</code>, Don't Write Saves. It's part of the Debug Menu, so it only works with <code>debug_menu</code> on: with it off, the assistant is told that the game will write its saves as usual.</li>
+			<li><code>cinematic_tools</code> is still taken, though Cinematic Tools are part of the Debug Menu now, in its Cinematic group. <code>true</code> is taken as <code>debug_menu: true</code>, unless <code>debug_menu</code> is given too, and <code>false</code> changes nothing. The assistant is told so each time it's used.</li>
+		</ul>
+		<p>The window's other options are there too: <code>render_constant_ambient</code>, <code>no_ui</code> (No HUD) and <code>patch_current_gen_optimisations</code> (Current-gen script fixes), written to the game executable straight away, and the UI tweaks <code>quit_to_menu_on_death</code> and <code>debug_loadscreen</code>. Options Launch Game no longer has are still taken, and change nothing: <code>skip_frontend</code> is ignored, as skipping the title screen goes with the level (a launch into a level always skips it, one at the main menu never does), and <code>ui_memory_overlay</code>, <code>memory_logging</code>, <code>debug_checkpoints</code> and <code>level_selection</code> come with a note saying where each went (the Debug Menu's Performance &gt; Memory, Game &gt; Tools and Game &gt; Game flow; memory logging is gone).</p>
+		<p>The runtime utils options take effect the next time the game is started. <code>launch_game</code> puts the runtime utils in the game folder, or takes them out, as they say, writes the game executable's patches and sets up the UI tweaks as the Launch Game window does, and its answer says whether this run has the runtime utils options, Possess Characters, the Debug Menu and Don't Write Saves. A level given to <code>launch_game</code> always starts past the title screen, and with no level it starts at the main menu, so its own <code>skip_frontend</code> is ignored too.</p>
+	</section>
+
+	<section class="docs-section" id="debug-menu">
+		<h2 class="section-heading">The Debug Menu</h2>
+		<p>With the game started with both Live Link and the <a href="/docs/debug-menu/">Debug Menu</a>, <code>runtime_utils</code> with <code>action</code> <code>debug_menu</code> works the menu, as <a href="/docs/live-link/#debug-menu">The Debug Menu Over Live Link</a> describes. <code>menu</code> says what to do:</p>
+		<ul>
+			<li><code>report</code> (the default): whether the window is open, the group and tab in front, the selected character, the groups, tabs and commands, every value with its number, and every switch with whether it's on.</li>
+			<li><code>open</code> and <code>close</code>: the window.</li>
+			<li><code>tab</code>: brings the tab named by <code>name</code> to the front (or a group, by its name).</li>
+			<li><code>select</code>: selects the character whose name, or failing that whose class, contains <code>name</code>.</li>
+			<li><code>set</code>: turns the switch <code>name</code> on or off, as <code>value</code> says.</li>
+			<li><code>value</code>: sets the value <code>name</code> to <code>number</code>, kept within its range.</li>
+			<li><code>run</code>: runs the command <code>name</code> with <code>argument</code>, and gives back what it answers, line by line. The command <code>help</code> lists them all, with what each takes.</li>
+		</ul>
+		<p>A tab or character picked this way is taken up at the window's next frame, so report again to see it. The window, and what the menu draws over the game, are in the game's picture, so <code>runtime_utils</code>' <code>screenshot</code> shows them.</p>
+	</section>
+
+	<section class="docs-section" id="script-debugger">
+		<h2 class="section-heading">The Script Debugger</h2>
+		<p><code>runtime_utils</code> with <code>action</code> <code>debugger</code> uses the <a href="/docs/live-link/#script-debugger">script debugger</a>, which also needs the game started with both Live Link and the Debug Menu. <code>debugger</code> says what to do:</p>
+		<ul>
+			<li><code>state</code> (the default): whether the level's scripts are held, and whether at a breakpoint; the last breakpoint hit, with its method and entity, the composite and instance path it's in, the time on the scripts' clock, the steps made since, and the calls that led to it; and the breakpoints.</li>
+			<li><code>set</code>: a breakpoint on <code>entity</code> in <code>composite</code> (the open composite unless it's given), stopping on all its methods, or only on <code>method</code>. It's set in the instance at <code>instance_path</code>; without one, in the instance the open composite was reached through from the level's root, or in every running instance if the composite isn't open, or was opened on its own. <code>every_instance</code> sets it in every one.</li>
+			<li><code>remove</code>: takes that breakpoint away, or with <code>method</code>, only that method.</li>
+			<li><code>list</code>: the breakpoints, each with its methods, whether it's stopping the game, the running instances it's in, its hits and any problem. <code>clear</code> takes them all away.</li>
+			<li><code>continue</code>; <code>step</code>, one round of calls; <code>step_frame</code>, one whole frame of the game; and <code>pause</code>, which holds the scripts now.</li>
+			<li><code>pick</code>: the entity under the game's crosshair (with the crosshair inspector on, on the Debug Menu's World &gt; Inspect tab), found in the level open in OpenCAGE and selected there unless <code>select</code> is false, as <a href="/docs/live-link/#select-from-game">Select Entity Under Game Crosshair</a> does.</li>
+			<li><code>states</code>: the state of each entity of <code>composite</code> in one running instance (started, enabled, locked...), up to <code>limit</code> of them (200 unless given). The instance is picked as for <code>set</code>; if that leaves more than one running, it says so instead.</li>
+		</ul>
+		<p>The breakpoints are the same ones the flowgraphs draw: one the assistant sets shows on its node, and the ones you set are in its list. A breakpoint stops the whole game until something lets it go on, so if an assistant leaves the game held, press <b>Continue</b> on the composite toolbar, or F8 on a flowgraph. Breakpoints aren't part of the level: they aren't on the undo history, and aren't saved.</p>
+	</section>
+</article>
+
 <article class="docs-article" id="tips">
     <header class="docs-header">
         <h1 class="docs-heading">Tips &amp; Caveats</h1>
@@ -278,7 +336,8 @@
 			<li><b>Back up first.</b> Ask for a backup (or make one with the <a href="/docs/backup-manager/">Backup Manager</a>) before letting an assistant loose on a level you care about. Saving is always a separate, explicit step.</li>
 			<li><b>Level design still takes looking at.</b> The assistant places pieces by the numbers: their positions, sizes and how the shipped levels arrange them. Check the result in the Viewport, and ask for fixes.</li>
 			<li><b>Launching the game kills a running copy.</b> So does saving, as usual.</li>
-			<li><b>Try changes in the running game.</b> With the game started with <b>Enable Live Link</b>, the assistant's script edits reach it as they're made, as yours do, and <code>runtime_utils</code> lets it check what the game is running, call methods on entities and take screenshots of the game. <code>set_viewport_view</code>'s <code>live_link_camera</code> links the game's camera and the Viewport's. See <a href="/docs/live-link/">Live Link</a>.</li>
+			<li><b>Try changes in the running game.</b> With the game started with <b>Live Link</b> ticked, the assistant's script edits reach it as they're made, as yours do, and <code>runtime_utils</code> lets it check what the game is running, call methods on entities, take screenshots of the game, work the Debug Menu and stop the scripts at breakpoints (see <a href="#running-game">In the Running Game</a>). <code>set_viewport_view</code>'s <code>live_link_camera</code> links the game's camera and the Viewport's. See <a href="/docs/live-link/">Live Link</a>.</li>
+			<li><b>Keep testing out of your saves.</b> Ask for <code>launch_options</code> <code>dont_write_saves</code> (with <code>debug_menu</code>), and the game writes nothing to your saved games while the assistant tests.</li>
 		</ul>
 	</section>
 </article>
@@ -295,7 +354,8 @@
 			<li><a href="/docs/composite-porting/">Composite Porting</a> — bringing content in from other levels</li>
 			<li><a href="/docs/save-and-build/">Save and Build</a> — building a level so it runs in game</li>
 			<li><a href="/docs/level-viewer/">Viewport</a> — seeing the level in 3D</li>
-			<li><a href="/docs/live-link/">Live Link</a> — script edits and method calls in the running game</li>
+			<li><a href="/docs/live-link/">Live Link</a> — script edits, method calls and the script debugger in the running game</li>
+			<li><a href="/docs/debug-menu/">Debug Menu</a> — the in-game debug menu an assistant can work</li>
 			<li><a href="/docs/options/#misc">Options</a> — turning AI assistants on and off</li>
 		</ul>
     </section>

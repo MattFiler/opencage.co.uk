@@ -188,6 +188,15 @@
             box-shadow: 0 26px 54px -12px rgba(0, 0, 0, 0.9);
         }
         .flip .inset { right: auto; left: -3%; }
+        /* A main shot and its inset recorded together are ONE animated WebP (the main shot on top, the inset under it), so both
+           always show the same moment; each figure crops its own part. Sprite 1600x1448 (or 800x724): main = the top 1600x900,
+           inset = 960x536 at (0, 912), i.e. image width 1600/960 of the inset box, moved up 912/960 of its width.
+           Both <picture>s pick the file by media queries only (no srcset widths): with w descriptors the browser may choose by
+           what it already has cached, and the two figures could end up on different files - and out of step again. */
+        .pair { overflow: hidden; }
+        .pair-main { aspect-ratio: 16 / 9; }
+        .pair-inset { aspect-ratio: 960 / 536; }
+        .shot .pair-inset img { width: 166.6667%; max-width: none; margin-top: -95%; }
 
         /* ---- Feature index ---- */
         .index {
@@ -393,10 +402,10 @@
             </div>
             <div class="feature-media has-inset reveal">
                 <figure class="shot">
-                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/debug-activity-loop-800.jpg 800w, images/debug-activity-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><source type="image/webp" srcset="anim/debug-activity-loop-800.webp 800w, anim/debug-activity-loop-1600.webp 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px"><img src="images/debug-activity-loop.jpg" srcset="images/debug-activity-loop-800.jpg 800w, images/debug-activity-loop.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="Show Activity on a FloatModulate driving a debug marker: Trigger Method starts and stops it, the links light up as the game uses them and the pin counts climb, then Clear Activity"></picture>
+                    <picture class="pair pair-main"><source media="(prefers-reduced-motion: reduce) and (max-width: 440px) and (max-resolution: 2dppx), (prefers-reduced-motion: reduce) and (max-width: 848px) and (max-resolution: 1dppx)" srcset="images/debug-sync-loop-800.jpg"><source media="(prefers-reduced-motion: reduce)" srcset="images/debug-sync-loop.jpg"><source type="image/webp" media="(max-width: 440px) and (max-resolution: 2dppx), (max-width: 848px) and (max-resolution: 1dppx)" srcset="anim/debug-sync-loop-800.webp"><source type="image/webp" srcset="anim/debug-sync-loop-1600.webp"><img src="images/debug-sync-loop.jpg" width="1600" height="1448" loading="lazy" alt="Show Activity on a FloatModulate driving a debug marker: Trigger Method starts and stops it, the links light up as the game uses them and the pin counts climb, then Clear Activity"></picture>
                 </figure>
                 <figure class="shot inset">
-                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/debug-game-loop.jpg"><source type="image/webp" srcset="anim/debug-game-loop.webp"><img src="images/debug-game-loop.jpg" width="960" height="536" loading="lazy" alt="In game at the same time, the marker sweeping across a Torrens console with its X position printed at the top of the screen, then stopping"></picture>
+                    <picture class="pair pair-inset"><source media="(prefers-reduced-motion: reduce) and (max-width: 440px) and (max-resolution: 2dppx), (prefers-reduced-motion: reduce) and (max-width: 848px) and (max-resolution: 1dppx)" srcset="images/debug-sync-loop-800.jpg"><source media="(prefers-reduced-motion: reduce)" srcset="images/debug-sync-loop.jpg"><source type="image/webp" media="(max-width: 440px) and (max-resolution: 2dppx), (max-width: 848px) and (max-resolution: 1dppx)" srcset="anim/debug-sync-loop-800.webp"><source type="image/webp" srcset="anim/debug-sync-loop-1600.webp"><img src="images/debug-sync-loop.jpg" width="1600" height="1448" loading="lazy" alt="In game at the same time, the marker sweeping across a Torrens console with its X position printed at the top of the screen, then stopping"></picture>
                 </figure>
             </div>
         </section>
@@ -453,10 +462,10 @@
             </div>
             <div class="feature-media has-inset reveal">
                 <figure class="shot">
-                    <img src="images/livelink-editor.jpg" srcset="images/livelink-editor-800.jpg 800w, images/livelink-editor.jpg 1600w" sizes="(max-width: 960px) calc(100vw - 48px), 840px" width="1600" height="900" loading="lazy" alt="A nodding bird placed on the Torrens canteen table in OpenCAGE">
+                    <picture class="pair pair-main"><source media="(prefers-reduced-motion: reduce) and (max-width: 440px) and (max-resolution: 2dppx), (prefers-reduced-motion: reduce) and (max-width: 848px) and (max-resolution: 1dppx)" srcset="images/livedrag-sync-loop-800.jpg"><source media="(prefers-reduced-motion: reduce)" srcset="images/livedrag-sync-loop.jpg"><source type="image/webp" media="(max-width: 440px) and (max-resolution: 2dppx), (max-width: 848px) and (max-resolution: 1dppx)" srcset="anim/livedrag-sync-loop-800.webp"><source type="image/webp" srcset="anim/livedrag-sync-loop-1600.webp"><img src="images/livedrag-sync-loop.jpg" width="1600" height="1448" loading="lazy" alt="A nodding bird on the Torrens canteen table dragged along the table with the Viewport's move gizmo and back again, its position in the inspector following as it goes"></picture>
                 </figure>
                 <figure class="shot inset">
-                    <picture><source media="(prefers-reduced-motion: reduce)" srcset="images/livelink-game.jpg"><source type="image/webp" srcset="anim/livelink-game.webp"><img src="images/livelink-game.jpg" width="960" height="540" loading="lazy" alt="The same nodding bird on the table in the running game"></picture>
+                    <picture class="pair pair-inset"><source media="(prefers-reduced-motion: reduce) and (max-width: 440px) and (max-resolution: 2dppx), (prefers-reduced-motion: reduce) and (max-width: 848px) and (max-resolution: 1dppx)" srcset="images/livedrag-sync-loop-800.jpg"><source media="(prefers-reduced-motion: reduce)" srcset="images/livedrag-sync-loop.jpg"><source type="image/webp" media="(max-width: 440px) and (max-resolution: 2dppx), (max-width: 848px) and (max-resolution: 1dppx)" srcset="anim/livedrag-sync-loop-800.webp"><source type="image/webp" srcset="anim/livedrag-sync-loop-1600.webp"><img src="images/livedrag-sync-loop.jpg" width="1600" height="1448" loading="lazy" alt="In the running game at the same time, the nodding bird slides along the table as it is dragged and back, nodding all the while"></picture>
                 </figure>
             </div>
         </section>
