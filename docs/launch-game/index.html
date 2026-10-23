@@ -206,7 +206,7 @@
 
 	<section class="docs-section" id="hot-reload">
 		<h2 class="section-heading">Hot Reload</h2>
-		<p>Tick <b>Hot reload</b> and press the chosen key in the game to reload the current level, handy for iterating on scripts without a full restart. The level is loaded again from disk, so anything <a href="/docs/live-link/">Live Link</a> sent that you haven't saved is dropped until you <a href="/docs/live-link/#resync">Resync</a>. The key defaults to <b>INSERT</b>; the dropdown beside the box offers DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12 as alternatives (see <a href="#keys">Keys</a>).</p>
+		<p>Tick <b>Hot reload</b> and press the chosen key in the game to reload the current level, handy for iterating on scripts without a full restart. The level is loaded again from disk, so anything <a href="/docs/live-link/">Live Link</a> sent that you haven't saved is dropped until you <a href="/docs/live-link/#resync">Resync</a>. The key defaults to <b>INSERT</b>; the dropdown beside the box offers DELETE, HOME, END, PAGEUP, PAGEDOWN, F1 to F9, F11 and F12 as alternatives (see <a href="#keys">Keys</a>).</p>
 	</section>
 
 	<section class="docs-section" id="live-link">
@@ -288,6 +288,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>The <a href="#debug-tools">Debug tools</a>, and <a href="#cap-fps">Cap FPS</a>, <a href="#unlock-mouse">Unlock mouse</a> and <a href="#possess-characters">Possess characters</a>, are done inside the game by OpenCAGE's runtime utils: a small plugin OpenCAGE copies into the game folder when you start the game with any of them ticked, and takes out again when none are. Older versions of OpenCAGE had most of them in a <b>Scripting Helpers</b> group of their own.</p>
 		<p>The runtime utils support the Steam, GOG and Epic Games Store versions of the game, so on other platforms those options are greyed out. They're set up as the window says each time OpenCAGE starts the game, from this window or with <a href="#related">Open Game On Save</a>, with their settings in <code>OpenCAGE.RuntimeUtils.ini</code> beside <code>AI.exe</code> (see <a href="#settings-file">Settings File</a>), so ticking or unticking one while the game runs only takes effect the next time you start it from OpenCAGE. They stay in the game folder between launches, so a game started from Steam, GOG Galaxy or the Epic Games Launcher runs with whatever OpenCAGE last started it with.</p>
+		<p>The runtime utils are loaded through a <code>d3d11.dll</code> in the game folder. If another mod already has its own <code>d3d11.dll</code> there (ReShade, Special K or DXVK, say), OpenCAGE moves it aside to <code>d3d11.dll.opencage_backup</code>, says so, and puts it back the next time it starts the game with every runtime utils option unticked; that mod doesn't run while the runtime utils are in. If a backup is already there and another mod's <code>d3d11.dll</code> is in place too, nothing is overwritten: the game starts without the runtime utils, and OpenCAGE says why.</p>
     </section>
 </article>
 
@@ -297,14 +298,14 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Four options have a key, picked from the dropdown beside the box. Each dropdown offers INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12, and is greyed out until its box is ticked:</p>
+		<p>Four options have a key, picked from the dropdown beside the box. Each dropdown offers INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN, F1 to F9, F11 and F12 (not F10: Windows keeps it for menus, so the game never sees it), and is greyed out until its box is ticked:</p>
 		<ul>
 			<li><b>Debug Menu</b>: <b>F7</b> by default</li>
 			<li><b>Hot reload</b>: <b>INSERT</b></li>
 			<li><b>Unlock mouse</b>: <b>F4</b></li>
 			<li><b>Possess characters</b>: <b>F6</b></li>
 		</ul>
-		<p><img src="img/scripting-helpers-key.jpg" alt="The Launch Game window with the Hot reload key dropdown open in the Debug tools group, listing INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN and F1 to F12." style="max-width:100%;width:462px"></p>
+		<p><img src="img/scripting-helpers-key.jpg" alt="The Launch Game window with the Hot reload key dropdown open in the Debug tools group, listing INSERT, DELETE, HOME, END, PAGEUP, PAGEDOWN, F1 to F9, F11 and F12." style="max-width:100%;width:462px"></p>
 		<p class="text-muted small"><i>The Hot reload key dropdown, open: INSERT is the default, with DELETE, HOME, END, PAGEUP, PAGEDOWN and the function keys as alternatives.</i></p>
 		<p>No two ticked options can have the same key, as the game would do both when it's pressed. Picking a key that another ticked option already has brings up a message naming it, and the dropdown goes back to the key it had. If two still end up sharing a key (by ticking an option whose key another already uses), <b>Start Alien: Isolation</b> says which two clash and doesn't start the game until one of them has another key.</p>
 		<p>The Debug Menu's free camera has keys of its own: <b>F8</b> turns it on and off and <b>F9</b> takes a screenshot, and while it flies it uses F1, F2, F3, HOME, DELETE, END, PAGEUP and PAGEDOWN. With Debug Menu ticked, picking one of those in any of the four dropdowns brings up a warning. You can keep it, but the key then goes to that option and the free camera does without it. F8 and F9 can be changed in the <a href="#settings-file">settings file</a>, with <code>CinematicCameraKey</code> and <code>CinematicScreenshotKey</code>.</p>
@@ -333,9 +334,9 @@
 		<ul>
 			<li><code>BlockAchievements=1</code>: the Debug Menu's <b>Block awards and stat writes</b>, in its Saves tab, on from the start, so the game awards no achievements and adds nothing to their progress. It needs Debug Menu ticked.</li>
 			<li><code>UiMemoryOverlay=1</code>: the game's UI memory overlay, a checkbox in the Debug Menu's <a href="/docs/debug-menu/#perf-memory">Performance &gt; Memory</a> tab, on from the start. It needs Debug Menu ticked.</li>
-			<li><code>CinematicCameraKey</code> and <code>CinematicScreenshotKey</code>: the free camera's on and off key (<b>F8</b> unless set) and its screenshot key (<b>F9</b>), named as in the dropdowns, for example <code>CinematicCameraKey=F10</code>.</li>
+			<li><code>CinematicCameraKey</code> and <code>CinematicScreenshotKey</code>: the free camera's on and off key (<b>F8</b> unless set) and its screenshot key (<b>F9</b>), named as in the dropdowns, for example <code>CinematicCameraKey=F11</code>.</li>
 			<li><code>LoadAllZones=1</code>: streams in every zone of the level, not only those around the player. On a big level (HAB_AIRPORT, for one) that can be more than the game has memory for, and zones then stop finishing loading.</li>
-			<li><code>LiveLinkCamera=0</code>: Live Link can neither move the game's camera nor read it, so its <a href="/docs/live-link/#camera">camera sync</a> does nothing.</li>
+			<li><code>LiveLinkCamera=0</code>: Live Link can neither move the game's camera nor read it, so its <a href="/docs/live-link/#camera">camera sync</a> does nothing, and <a href="/docs/live-link/#capture-cubemaps">cubemap captures</a> are turned away.</li>
 			<li><code>RadiosityWarning=1</code>, <code>ExtraShadowLights=1</code> and <code>D3DDebugLayer=1</code>: settings for the Debug Menu's Rendering group, read as the game starts, which need Debug Menu ticked like the rest of it. The first shows a warning over the game while a level runs without its radiosity data (the Radiosity tab can switch it on and off too). The second lets the game draw shadows for 16 lights a frame rather than 4 (the game's capture mode), for up to four times the shadow work. The third has the game's graphics checked for errors, such as the ones broken imported models and shaders cause, listed in the Debug Menu's Developer tab; it makes the game much slower, and needs Windows' optional <b>Graphics Tools</b> feature installed.</li>
 			<li><code>DebugGraph=1</code>, <code>DebugObjectMarker=1</code>, <code>DebugMenuToggle=1</code> and <code>DebugCaptureScreenShot=1</code>: the Debug Menu's switches for these debug entities (in its Entities tab, Scripts group), on from the start.</li>
 		</ul>
@@ -384,7 +385,7 @@
 		<ul>
 			<li><b>Options → Misc → Open Game On Save</b> — after you save, OpenCAGE starts the game straight into the level you're editing, past the title screen. This bypasses the Launch Game window, but the <a href="#debug-tools">Debug tools</a> (the <a href="#debug-menu">Debug Menu</a> with <a href="#dont-write-saves">Don't write saves</a>, Debug entities, Hot reload and Live Link), Cap FPS, Unlock mouse, <a href="#possess-characters">Possess characters</a> and the <a href="#ui-mods">UI tweaks</a> are still set up as they're ticked in the window. Off by default. See <a href="/docs/options/#misc">Options</a> for the rest of the menu.</li>
 		</ul>
-		<p><img src="img/options-misc-open-game-on-save.jpg" alt="The toolbar's Options menu with the Misc submenu open, showing the Open Game On Save item unticked." style="max-width:100%;width:489px"></p>
+		<p><img src="img/options-misc-open-game-on-save.jpg" alt="The toolbar's Options menu with the Misc submenu open, showing the Open Game On Save item unticked." style="max-width:100%;width:493px"></p>
     </section>
 </article>
 

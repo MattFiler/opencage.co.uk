@@ -206,7 +206,7 @@
 			<li><b>Plays</b> — which of the set's clips this point uses, picked from the numbered list.</li>
 			<li><b>Speed</b> — the playback rate at that point.</li>
 		</ul>
-		<p>When the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> opens this window to choose a blend set for a node, it's titled <b>Choose a blend set</b> and gains a <b>Use This Blend Set</b> button. The list isn't filtered in that mode — the blend set a tree references generally doesn't belong to that tree's own animation set, so narrowing the list would hide most of the useful options.</p>
+		<p>When the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> opens this window to choose a blend set for a node, it's titled <b>Choose a blend set</b> and gains a <b>Use This Blend Set</b> button; double-clicking a set in the list picks it too. The list isn't filtered in that mode — the blend set a tree references generally doesn't belong to that tree's own animation set, so narrowing the list would hide most of the useful options.</p>
 	</section>
 </article>
 
@@ -217,8 +217,9 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>Changes are held until you press <b>Save</b>, which becomes available once something has been edited. The status bar shows <b>unsaved changes</b> in the meantime, and closing the window with edits outstanding asks first.</p>
+		<p>Answer <b>No</b> and your changes are put back as they were before you made them, so no later write of <code>ANIMATION.PAK</code> — an import in the <a href="/docs/animation-editor/">Animation Editor</a>, say — can take them out. With two blend set windows open on the same set, <b>No</b> in one puts back the other's changes to that set too.</p>
 		<p>Saving writes <code>ANIMATION.PAK</code> — it is separate from <b>File → Save Level</b> in the script editor, and applies to every level, since the archive is global.</p>
-		<p>A <b>Saving the animations</b> window shows how the write is going. It writes everything OpenCAGE holds for the file, so changes not yet saved in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a>, and kept tree layouts, go in with your blend sets. The first write also keeps a copy of the original <code>ANIMATION.PAK</code> for the <a href="/docs/installing-mods/">Mod Manager</a>, so it takes longer. Save is refused while mods are being applied, or if <code>ANIMATION.PAK</code> has changed on disk since OpenCAGE loaded it (restart OpenCAGE to load it as it is now).</p>
+		<p>A <b>Saving the animations</b> window shows how the write is going. It writes everything OpenCAGE holds for the file, so changes still waiting in an open <a href="/docs/animation-tree-editor/">Animation Tree Editor</a>, and kept tree layouts, go in with your blend sets. The first write also keeps a copy of the original <code>ANIMATION.PAK</code> for the <a href="/docs/installing-mods/">Mod Manager</a>, so it takes longer. Save is refused while mods are being applied, if <code>ANIMATION.PAK</code> has changed on disk since OpenCAGE loaded it (restart OpenCAGE to load it as it is now), or if an animation tree changed in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> can't be saved (a foot sync selector needs an animation on both its strike pins).</p>
 	</section>
 </article>
 

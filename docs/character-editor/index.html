@@ -113,7 +113,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>The <b>Character Editor</b> configures how a <a href="/docs/cathode-entities/#Character">Character</a> looks and sounds for a specific placement in the level. It edits <b>character accessory sets</b> — body-part composites, skeleton choice, asset-set colours/decals, voice, demographic attributes, and foley — stored in the level’s <code>CHARACTERACCESSORYSETS.BIN</code>.</p>
-		<p>This is separate from the entity parameters on the <code>Character</code> node itself (class, alliance, anim sets, and so on). Those stay in the Entity Inspector; the Function editor covers the accessory-set data tied to each composite instance of that character.</p>
+		<p>This is separate from the entity parameters on the <code>Character</code> node itself (class, alliance, anim sets, and so on). Those stay in the Entity Inspector; the Character Editor covers the accessory-set data tied to each composite instance of that character.</p>
     </section>
 </article>
 
@@ -196,7 +196,7 @@
 	<section class="docs-section" id="asset-type">
 		<h2 class="section-heading">Asset Type</h2>
 		<p><b>Asset Type</b> picks a <a href="/docs/cathode-enums/#CUSTOM_CHARACTER_ASSETS">CUSTOM_CHARACTER_ASSETS</a> set (colours and decals used for customisable NPC clothing).</p>
-		<p>Click <b>Edit</b> next to Asset Type to open the <b>Character Asset Editor</b> (titled <i>Edit Character Asset Sets</i>), which edits the global <code>CUSTOMCHARACTERASSETDATA.BIN</code> file (primary / secondary / tertiary colours and decal lists per asset set). That window (shown below) is shared config data, not per-instance accessory-set fields; the same editor is also available without a character selected from <b>View → Configuration Editors → Characters → Asset Sets</b>.</p>
+		<p>Click <b>Edit</b> next to Asset Type to open the <b>Character Asset Editor</b> (titled <i>Edit Character Asset Sets</i>), which edits the global <code>CUSTOMCHARACTERASSETDATA.BIN</code> file (primary / secondary / tertiary colours and decal lists per asset set). A colour's <b>Add New</b> opens a colour picker; the Decals <b>Add New</b> opens the <a href="/docs/texture-editor/">Texture Editor</a>, where <b>Select This Texture</b> adds the selected texture as a decal. That window (shown below) is shared config data, not per-instance accessory-set fields; the same editor is also available without a character selected from <b>View → Configuration Editors → Characters → Asset Sets</b>.</p>
 		<p><img src="img/asset-editor.jpg" alt="The Edit Character Asset Sets window: an asset-set dropdown at the top, Primary, Secondary and Tertiary colour swatch lists with Add New and Remove Selected buttons on the left, a Decals list with thumbnails on the right, and a Save button." style="max-width:100%;width:671px"></p>
 		<p class="text-muted small"><i>ASSETSET_01: the three colour lists and the decal list each have their own Add New and Remove Selected buttons; Save writes CUSTOMCHARACTERASSETDATA.BIN straight away.</i></p>
     </section>
@@ -233,7 +233,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ul>
 			<li>Accessory sets are aimed at <b>human NPCs</b>. Story characters and the Alien are set up differently and are not the target of <b>Add New</b>.</li>
-			<li>The Function button is available for any <code>Character</code> entity; whether a custom accessory set is meaningful still depends on how that character is configured in the graph (for example custom-character parameters).</li>
+			<li>The <b>Edit Character</b> button is available for any <code>Character</code> entity; whether a custom accessory set is meaningful still depends on how that character is configured in the graph (for example custom-character parameters).</li>
 			<li>Closing the Character Editor also closes any open Character Asset Editor it launched.</li>
 		</ul>
     </section>

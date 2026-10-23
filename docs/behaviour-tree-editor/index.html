@@ -150,10 +150,10 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>Click <b>New Tree...</b> on the Explorer's toolbar, or right-click the tree list and choose <b>New Behaviour Tree...</b>. Give the tree a name and choose what to start it from:</p>
+		<p>Click <b>New Tree...</b> on the Explorer's toolbar, or right-click the tree list and choose <b>New Behaviour Tree...</b>. In the <b>New Behaviour Tree</b> dialog, give the tree a <b>Name</b>, choose what to <b>Start from</b>, and click <b>Create</b>:</p>
 		<ul>
 			<li><b>A copy of an existing tree</b> — the tree selected in the list, or <b>NoBehaviour</b> if none is. <b>NoBehaviour</b> is the smallest main tree the game ships: it has the branches every character's main tree needs (saving and loading, death, scripted control), so it's the place to start a new main tree from. Copying one of the shipped trees, such as <code>alien_behave</code>, starts you from that character's behaviour instead.</li>
-			<li><b>An empty tree</b> — for a subtree that other trees will reference.</li>
+			<li><b>(an empty tree)</b> — for a subtree that other trees will reference.</li>
 		</ul>
 		<p>A name can use letters, digits and underscores (up to 64 characters), and must differ from every other tree's by more than capitalisation. The tree is created and added to <code>_DIRECTORY_CONTENTS.BML</code> straight away, and opens in a new tab.</p>
 		<p><b>Rename</b> (<b>F2</b>, or from the right-click menu) and <b>Delete</b> follow the same naming rules. A tree that's still in use can't be renamed or deleted: the editor says what's using it — another tree that references it (including an open tree with unsaved changes), a character class that runs it, a level whose list of trees still names it, or the game itself (it always needs <b>PlayerBehaviour</b> and <b>NoBehaviour</b>). A level's list only changes when the level is saved in OpenCAGE, so once no class uses a tree, save the levels named before deleting it. Changing only the capitalisation of a name is allowed, because the game finds trees ignoring case.</p>
@@ -185,6 +185,7 @@
 			<li><b>Delete</b> — remove the selected node by extracting it (children kept / reparented)</li>
 			<li><b>Shift+Delete</b> — delete the selected node and its entire subtree</li>
 			<li><b>Right-drag</b> — move the selection (hold <b>Shift</b> for the whole branch)</li>
+			<li><b>Double-click</b> a node that references another tree — show or hide that tree's nodes in place</li>
 		</ul>
 		<p>Copy / cut / delete apply to non-root nodes only. There is no undo/redo on the canvas.</p>
 	</section>

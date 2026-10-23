@@ -87,7 +87,7 @@
 <li class="nav-item" style="padding-left:25px;"><a class="nav-link scrollto" href="#frontstage-search-exclusion-near-target">Near Target</a></li> 
 <li class="nav-item" style="padding-left:25px;"><a class="nav-link scrollto" href="#frontstage-search-exclusion-near-objective">Near Objective</a></li> 
 <li class="nav-item"><a class="nav-link scrollto" href="#frontstage-player-in-vent">Player In Vent</a></li>
-<li class="nav-item"><a class="nav-link scrollto" href="#frontstage-sweep">Sweep</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#frontstage-sweep">Sweep Range</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#backstage"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Backstage</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#backstage-vent-killtraps">Vent Killtraps</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#backstage-sweep">Sweep</a></li>
@@ -112,14 +112,14 @@
 				<h1 class="section-heading">Alien Configs</h1>
 				<p>To edit alien configs in OpenCAGE, navigate to View > Configuration Editors > Characters > Alien Configs.</p>
 				<p>From here you will be presented with a variety of options which relate to the selected alien config in the dropdown at the top of the window.</p>
-				<p>There is no Save button: changes are saved as you make them.</p>
+				<p>There is no Save button: changes are saved as you make them. A config's file can name another config as its template. Where the selected config doesn't set a value itself, the editor shows the value from its template. When the editor opens it saves every config, writing the values each one inherits into its own file. A box with no value in the config or any of its templates is greyed out and isn't saved.</p>
 				<p>The game reads these configs when it starts, not when it loads a level, so a change reaches it the next time it starts. With <a href="/docs/live-link/#live-settings">Live Link</a> connected, and the game started with the <a href="/docs/debug-menu/">Debug Menu</a> on, each change also has the running game read the configs again, and the alien takes up its new numbers straight away, as the line at the bottom right of the editor says.</p>
 				<p>Read on to see a list of available properties with information about each.</p>
 				<p>By default, the alien runs the 'MODERATE' config. This can be changed at runtime through the script entity <a href="https://opencage.co.uk/docs/cathode-entities/#NPC_AlienConfig">NPC_AlienConfig</a> — its config parameter offers the names from this file as a list in the inspector, so there's nothing to type.</p>
 				<p>Note that a lot of these values are additionally increased/decreased by the current game <a href="https://opencage.co.uk/docs/configs/difficulty-settings/">difficulty config</a>.</p>
 			</div>
 			<div class="col-lg-4">
-				<img src="img.png" width="100%">
+				<img src="img.png" alt="The Alien Configs editor in OpenCAGE." width="100%">
 			</div>
 		</div>
 	</section>

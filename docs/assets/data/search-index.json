@@ -17102,7 +17102,7 @@
             "version-0-11-2-2",
             "changelog"
         ],
-        "title":  "Version 0.11.2.3"
+        "title":  "Version 0.11.2.2"
     },
     {
         "url":  "/docs/changelog/#version-0-11-2-1",
@@ -19192,7 +19192,7 @@
             "lorenz",
             "level names"
         ],
-        "title":  "Sevastopol â€” Lorenz SysTech Spire"
+        "title":  "Sevastopol — Lorenz SysTech Spire"
     },
     {
         "url":  "/docs/level-names/#scimed",
@@ -19203,7 +19203,7 @@
             "scimed",
             "level names"
         ],
-        "title":  "Sevastopol â€” SciMed Tower"
+        "title":  "Sevastopol — SciMed Tower"
     },
     {
         "url":  "/docs/level-names/#habitation",
@@ -19214,7 +19214,7 @@
             "habitation",
             "level names"
         ],
-        "title":  "Sevastopol â€” Solomons Habitation Tower"
+        "title":  "Sevastopol — Solomons Habitation Tower"
     },
     {
         "url":  "/docs/level-names/#engineering",
@@ -19225,7 +19225,7 @@
             "engineering",
             "level names"
         ],
-        "title":  "Sevastopol â€” Engineering Platform"
+        "title":  "Sevastopol — Engineering Platform"
     },
     {
         "url":  "/docs/level-names/#dlc",
@@ -20348,6 +20348,9 @@
             "node colours",
             "delete entity",
             "node deletion",
+            "node icons",
+            "show node icons when zoomed out",
+            "zoomed out",
             "options"
         ],
         "title":  "Entity Display"
@@ -25642,6 +25645,9 @@
             "close",
             "escape",
             "debug menu key",
+            "steady lists",
+            "list order",
+            "nearest first",
             "debug menu"
         ],
         "title":  "Using the Menu"
@@ -26025,6 +26031,10 @@
             "strangle",
             "grapple escape",
             "stench of evil",
+            "kill guard",
+            "alien grab",
+            "vent ambush",
+            "facehugger",
             "debug menu"
         ],
         "title":  "Cheats \u0026 Teleport"

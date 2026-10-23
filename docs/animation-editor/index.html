@@ -9,14 +9,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE's Animation Editor to browse, preview, export and import Alien: Isolation animation clips.">
+    <meta name="description" content="How to use OpenCAGE's Animation Editor to browse, preview, export, import, replace and delete Alien: Isolation animation clips, and edit their events.">
     <meta name="author" content="Matt Filer">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
 	<meta name="twitter:title" content="OpenCAGE: Animation Editor" />
-	<meta name="twitter:description" content="How to use OpenCAGE's Animation Editor to browse, preview, export and import Alien: Isolation animation clips." />
+	<meta name="twitter:description" content="How to use OpenCAGE's Animation Editor to browse, preview, export, import, replace and delete Alien: Isolation animation clips, and edit their events." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
 
@@ -107,6 +107,9 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#import"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Importing</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#import-options">Import Options</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#import-retarget">Retargeting</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#replace"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Replacing an Animation</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#events"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Events &amp; Settings</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#delete"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Deleting an Animation</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#picker"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using it as a Picker</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
@@ -144,7 +147,7 @@
 		<ul>
 			<li><b>Kind</b> — the two tabs at the top. <b>Character animations</b> covers anything rigged to a character skeleton; <b>Environment animations</b> covers props and world geometry.</li>
 			<li><b>Animation set</b> — roughly "one rig's worth of animation". Most sets are named after the skeleton they belong to. Sets whose names begin with <code>#</code> are the game's own grouping entries rather than characters, so they're sorted to the bottom of the list.</li>
-			<li><b>Context</b> — the state the character is in. A set's clips are grouped by context: one unnamed group that always applies, and then one group per state that overrides it. Around a quarter of the game's sets have more than one context, and some have dozens.</li>
+			<li><b>Context</b> — the state the character is in. A set's clips are grouped by context: one unnamed group that always applies, and then one group per state that overrides it. More than a quarter of the game's sets have more than one context, and some have as many as 25.</li>
 			<li><b>Clip</b> — the animation itself. A clip is referenced by the name its set plays it by, which is not the same as its filename.</li>
 		</ul>
 		<p>One more thing worth knowing before you export anything: <b>nearly every clip is authored on a shared rig</b> and moved onto the individual character's skeleton at runtime. The <b>Authored on</b> column tells you which rig a clip was actually built against, which matters when you come to export or preview it.</p>
@@ -183,7 +186,7 @@
 		</ul>
 		<p>Hover a row for its full path, plus any non-standard metadata it carries — how far a locomotion clip travels, where an aim clip points, which sound an audio event fires and from which bone.</p>
 		<p>A clip that could not be read is greyed out and says so in <b>Notes</b>. That is a defect in the file rather than in the clip you asked for, and the rest of the list still works.</p>
-		<p>The line beside the buttons summarises the selection — frame count and frame rate, bone count, float tracks if it has any, and the rig it was authored on with that rig's bone count. The status bar along the very bottom counts the sets and clips in the PAK, and reports when it is being written.</p>
+		<p>The line above the buttons summarises the selection — frame count and frame rate, bone count, float tracks if it has any, and the rig it was authored on with that rig's bone count. Below it are the buttons: <b>Import…</b>, <b>Replace…</b>, <b>Events…</b>, <b>Delete</b>, <b>Preview…</b> and <b>Export All…</b>. Right-click a clip for the same actions, or press <b>Delete</b> to delete it. The status bar along the very bottom counts the sets and clips in the PAK, and reports when it is being written.</p>
 	</section>
 
 	<section class="docs-section" id="browsing-search">
@@ -202,8 +205,9 @@
 		<p>Select a clip and hit <b>Preview…</b> (or double-click it) to open the <b>Animation Preview</b> window, shown below, and watch it play.</p>
 		<p><img src="img/preview.jpg" alt="The Animation Preview window showing the alien mesh mid-animation in the 3D viewport, the parts-of-the-mesh checklist on the right, the event marker timeline underneath with a marker selected, and the play, speed, loop and display toggles along the bottom." width="100%"></p>
 		<p class="text-muted small"><i>Animation Preview playing an ALIEN clip: the mesh above, the clip's event markers in lanes below.</i></p>
-		<p>Nothing in the game's data records which model goes with which animation set, so the first time you preview a set you're asked to pick one. Use <b>Choose Mesh…</b> to select a model and <b>Choose Rig…</b> to select a skeleton. Both choices are remembered per animation set, so you only do it once per character. A character's mesh brings its own rig: pick one and the preview moves onto the rig that mesh is skinned to, wherever the clip can be retargeted onto it the way the game plays it. The two lines beside those buttons say what's in use: the mesh, and the rig with its bone count — plus, when the clip was authored on a different rig, the route it was retargeted along. When something might otherwise look like a fault — a limb the clip never moves, an additive clip shown over the bind pose, a mesh that isn't skinned to the rig you picked, a clip authored on a rig the game's files don't hold — an amber note underneath says so.</p>
+		<p>Nothing in the game's data records which model goes with which animation set, so the first time you preview a character's set it plays on the rig alone, and the mesh line reads <b>None — showing the rig on its own</b>. Use <b>Choose Mesh…</b> to select a model and <b>Choose Rig…</b> to select a skeleton. Both choices are remembered per animation set, so you only do it once per character. A character's mesh brings its own rig: pick one and the preview moves onto the rig that mesh is skinned to, wherever the clip can be retargeted onto it the way the game plays it. The two lines beside those buttons say what's in use: the mesh, and the rig with its bone count — plus, when the clip was authored on a different rig, the route it was retargeted along. When something might otherwise look like a fault — a limb the clip never moves, an additive clip shown over the bind pose, a mesh that isn't skinned to the rig you picked, a clip authored on a rig the game's files don't hold — an amber note underneath says so.</p>
 		<p>For a clip on the <b>Character animations</b> tab, <b>Choose Mesh…</b> lists the skinned meshes in the open level that the clip can be shown on properly: those skinned to the rig in use, and those whose own rig the clip can be retargeted onto. For a clip whose rig the game's files don't hold, that means the characters with enough bones to play it. If nothing fits, every skinned mesh is listed, with a message explaining that the clip will play on it bone for bone. <b>Choose Rig…</b> opens the same <a href="#export-rig">Choose a skeleton</a> dialog as an export; with a character's mesh on show, the rig that mesh is skinned to comes first and is pre-selected, marked <b>the mesh on show</b>. You can still pick another rig; if the mesh isn't skinned to it, the amber note says so and names the rig the mesh belongs to.</p>
+		<p>For a clip on the <b>Environment animations</b> tab there is usually nothing to pick: the preview takes the mesh the open level animates with that rig, and the mesh line says how many of its parts the rig moves. <b>Choose Mesh…</b> lists the static meshes in the open level that the rig animates; if there are none it says so and lists every static mesh, though one the rig doesn't name won't move. Meshes always come from the open level, so with no level loaded <b>Choose Mesh…</b> says so and the rig plays on its own.</p>
 		<p>Playback controls:</p>
 		<ul>
 			<li><b>Play</b> / <b>Pause</b>, a frame and time readout, a scrub ruler along the top of the timeline, and a <b>Speed</b> dropdown from 0.1x to 2x</li>
@@ -212,6 +216,7 @@
 			<li><b>Show mesh</b>, <b>Show rig</b>, <b>Show textures</b> — draw the model, the skeleton, and the model's materials</li>
 			<li><b>Parts of the mesh</b> — show or hide individual pieces, grouped by LOD with each piece's vertex count; the first LOD starts on and the rest off. <b>Show all</b> / <b>Hide all</b> flip the lot</li>
 		</ul>
+		<p>The preview closes with the Animation Editor.</p>
 		<p>Underneath the viewport is the clip's timeline of <b>markers</b> — the moments the clip fires something, one lane per event name. Click a marker and the line beneath the timeline says when it fires and what it does: a footstep sound, an effect, a gameplay callback — or, as with the marker selected in the screenshot, that it's a named moment with nothing attached.</p>
 		<p><b>Export…</b> in this window writes out the clip and the mesh it's playing on together, with a prop assembled the way the preview draws it. As with a <a href="/docs/model-editor/#export">model export</a>, a <code>.cs2meta.json</code> sidecar is written beside the file. Keep it there, renamed to match if you save the model under a new name, so that importing the model again brings every part back as it was.</p>
     </section>
@@ -261,14 +266,15 @@
 		<p><img src="img/import.jpg" alt="The Import animation into ALIEN dialog showing the file path, the play-by name and stored-as path, the rig, root bone and frame rate dropdowns, and a summary reporting 196 frames and that the mannequin animation was converted onto the game's skeleton." style="max-width:100%;width:569px"></p>
 		<p class="text-muted small"><i>Import animation, reading a mannequin clip (<a href="https://sketchfab.com/3d-models/orange-justice-31b3596641af4e238c1491c450cc6df5" target="_blank">"Orange justice"</a> by <a href="https://sketchfab.com/Coldary" target="_blank">Coldary</a> on Sketchfab, <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a>) onto the ALIEN set — the summary says it was converted rather than matched by name.</i></p>
 		<p>Once you do, the clip is added to the set and <code>ANIMATION.PAK</code> is written straight away — an import that isn't saved has done nothing, so there's no separate save step. The clip list refreshes with your new animation selected.</p>
-		<p>A <b>Saving the animations</b> window shows how the write is going. It writes everything OpenCAGE holds for the file, so changes not yet saved in the <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> or <a href="/docs/blend-set-editor/">Blend Set Editor</a>, and kept tree layouts, go in with your clip. The first write also keeps a copy of the original <code>ANIMATION.PAK</code> for the <a href="/docs/installing-mods/">Mod Manager</a>, so it takes longer.</p>
-		<p><b>Import…</b> says <b>Can't import</b> instead of asking for a file while mods are being applied (wait for them to finish), or if <code>ANIMATION.PAK</code> has changed on disk since OpenCAGE loaded it, through a game file check or another tool (restart OpenCAGE to load it as it is now).</p>
+		<p>A <b>Saving the animations</b> window shows how the write is going. It writes everything OpenCAGE holds for the file, so changes still waiting in an open <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> or <a href="/docs/blend-set-editor/">Blend Set Editor</a>, and kept tree layouts, go in with your clip. (Changes you chose not to save as you closed those editors are put back first, so they never go in.) The first write also keeps a copy of the original <code>ANIMATION.PAK</code> for the <a href="/docs/installing-mods/">Mod Manager</a>, so it takes longer.</p>
+		<p><b>Import…</b> says <b>Can't import</b> instead of asking for a file while mods are being applied (wait for them to finish), or if <code>ANIMATION.PAK</code> has changed on disk since OpenCAGE loaded it, through a game file check or another tool (restart OpenCAGE to load it as it is now), or if the Mod Manager has loaded it again since this window read it (close the window and open it again).</p>
+		<p>A model import that carries animation opens this same window for each clip in the file (see the <a href="/docs/model-editor/#import-rig">Model Editor</a>), with a <b>Set</b> dropdown added so the set and the rig are chosen together.</p>
 	</section>
 
 	<section class="docs-section" id="import-options">
 		<h2 class="section-heading">Import Options</h2>
 		<ul>
-			<li><b>Play it by</b> — the name the set will use to reference the clip. Defaults to the filename, sanitised.</li>
+			<li><b>Play it by</b> — the name the set will use to reference the clip. Defaults to the filename, sanitised and in lower case.</li>
 			<li><b>Stored as</b> — the path the clip takes inside the PAK.</li>
 			<li><b>Rig</b> — the skeleton the animation is built against. The rigs the chosen set can use are offered.</li>
 			<li><b>Root bone</b> — what to do with the rig's root, which belongs to the engine rather than the rig. <b>Automatic - carry the character only if the file moves the root</b> is the default and is usually right; <b>Leave the root to the game, whatever the file does</b> forces it; <b>Keep as authored, root motion and all</b> writes out root motion exactly as the file has it.</li>
@@ -292,6 +298,54 @@
 	</section>
 </article>
 
+<article class="docs-article" id="replace">
+    <header class="docs-header">
+        <h1 class="docs-heading">Replacing an Animation</h1>
+    </header>
+    <section class="docs-section" style="padding-top:0;">
+		<p>Select a clip and hit <b>Replace…</b> to rebuild it from an FBX, glTF, GLB or COLLADA file. The clip keeps its name, the path it is stored under and its place in its set, so everything that plays it — scripts, animation trees, blend sets — keeps working and now plays the new animation.</p>
+		<p>The same window as an import opens, titled <b>Replace '…' in SET</b>, with <b>Play it by</b> and <b>Stored as</b> fixed. The rig starts on the one the clip was built against; pick another and the summary says so. <b>Layer over what is already playing</b> starts as the clip was. The summary also lists what the clip keeps from before: its events (those inside the new length) and the settings the game chooses and blends it by — how far and how fast it travels, where it points — which describe the old animation and are not measured again. <b>Preview…</b> shows the result before anything changes.</p>
+		<p>Press <b>Replace</b> and <code>ANIMATION.PAK</code> is written straight away, as for an import. An open preview switches to the new clip.</p>
+		<p>Replace says why when a clip can't be rebuilt in place: a clip stored together with other animations (the game's "resident" sets), or one whose metadata has more than one use. Import the new animation under another name instead and point what plays the old one at it.</p>
+		<div class="docs-caveat">
+			<p><b>A clip that ships with the game can be replaced</b> — it changes for every character that plays it, in every level.</p>
+		</div>
+    </section>
+</article>
+
+<article class="docs-article" id="events">
+    <header class="docs-header">
+        <h1 class="docs-heading">Events &amp; Settings</h1>
+    </header>
+    <section class="docs-section" style="padding-top:0;">
+		<p>Select a clip and hit <b>Events…</b> to see its metadata — the moments it fires things at, and the values hung off it — as the game stores them. The window works on a copy: nothing changes until you press <b>Save</b>, and <code>ANIMATION.PAK</code> is written straight away then. <b>Cancel</b> lets your changes go; closing the window with changes asks first.</p>
+		<p>The <b>Block</b> dropdown picks which part of the metadata you're looking at. <b>The animation itself</b> holds what goes for the clip however it plays (its label, length and so on); <b>Use 0</b>, <b>Use 1</b> … hold the tags of each use of the clip — footsteps and sounds normally live in Use 0.</p>
+		<ul>
+			<li><b>Tracks</b> are the timeline's lanes — <code>AUDIO_Foley</code>, <code>LeftStrike</code>, <code>start_rag_doll</code> — each with its number of entries. Type a name and <b>Add</b> a track, <b>Rename</b> the selected one, or <b>Remove</b> it.</li>
+			<li><b>Entries of the track</b> lists when each entry fires, in seconds, what it fires, and what that is: a sound shows its event and the bone it plays from. Type a time (within the clip's length), pick what it fires from the block's settings (or nothing, for a plain moment such as a foot strike), then <b>Add</b>, or select an entry and <b>Apply</b> your change, or <b>Remove</b> it. Entries stay in time order. Removing a track's last entry removes the track.</li>
+			<li><b>Settings in this block</b> lists every named value: its type, value and the game's own Mirrors / Play speed / Convert flags. Add, change (<b>Apply</b>) or remove a setting. Numbers are typed as <code>1.5</code>; a VECTOR as <code>x, y, z</code>; a sound (AUDIO) in the form the game uses, <code>[ArgumentList={},Bone={LeftFoot},Event={your_sound_event},Offset={0,0,0},UseArguments={No}]</code> — choosing AUDIO for a new setting fills the form in for you. Renaming a setting renames it in the entries that fire it.</li>
+		</ul>
+		<p>Everything is shown as stored, including names OpenCAGE doesn't know the meaning of; a name made only of digits is a name the game's string tables don't hold, kept as it is. A few things are kept as they are:</p>
+		<ul>
+			<li><code>anim_label</code>, <code>meta_label</code> and the two unnamed values are how the game finds the clip's metadata, so they can't be changed.</li>
+			<li>A setting an entry fires can't be removed until those entries fire something else or are removed.</li>
+			<li>Values of types OpenCAGE doesn't read (64-bit numbers, script interfaces) show as <b>(not read)</b> and can only be removed.</li>
+		</ul>
+		<p><b>Save</b> puts the change into every stored copy of the clip at once, and only if every copy reads back as the game would read it; new names go into the PAK's list of names so they keep their names next time. A clip stored together with other animations, or whose copies differ, opens read only and says why. A clip that ships with the game can be edited: the window says the change is to it everywhere it plays.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="delete">
+    <header class="docs-header">
+        <h1 class="docs-heading">Deleting an Animation</h1>
+    </header>
+    <section class="docs-section" style="padding-top:0;">
+		<p>Select a clip you imported and hit <b>Delete</b> (or press <b>Delete</b>). It is taken out of its set's clip list, the PAK's index of clips, and <code>ANIMATION.PAK</code> itself, which is written straight away. This can't be undone, so OpenCAGE asks first.</p>
+		<p>Only clips imported with OpenCAGE (stored under <code>ANIMATION\OPENCAGE\</code>) can be deleted: the game itself, and every level's scripts, may ask for one it ships with by name. To change what one of those plays, <a href="#replace">replace it</a> instead.</p>
+		<p>Delete refuses, and lists them, while anything here still plays the clip: an animation tree node, a blend set its character uses, or an entity in the open level. Point those at another animation first. Other levels' scripts aren't checked — one that still asks for a deleted clip plays nothing.</p>
+    </section>
+</article>
+
 <article class="docs-article" id="picker">
     <header class="docs-header">
         <h1 class="docs-heading">Using it as a Picker</h1>
@@ -299,7 +353,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>Animation parameters used to be filled from a plain list of enum strings. They now open this window instead, so you can see what a clip is called, how long it runs and what it fires before committing to it.</p>
-		<p>The window opens titled <b>Choose an animation</b> (or <b>Choose an animation set</b>), on whatever the entity is already set to — right down to selecting the animation itself and scrolling to it — and an extra button appears at the bottom between <b>Import…</b> and <b>Preview…</b>: <b>Use This Animation</b> (or <b>Use This Set</b> for an animation set parameter), which hands the choice back to the parameter, as shown below. When you're picking an animation, double-clicking a clip picks it; when you're picking a set, double-clicking a clip opens its preview as usual.</p>
+		<p>The window opens titled <b>Choose an animation</b> (or <b>Choose an animation set</b>), on whatever the entity is already set to — right down to selecting the animation itself and scrolling to it — and an extra button appears at the bottom between <b>Import…</b> and <b>Preview…</b>: <b>Use This Animation</b> (or <b>Use This Set</b> for an animation set parameter), which hands the choice back to the parameter, as shown below. When you're picking an animation, double-clicking a clip picks it; when you're picking a set, double-clicking a clip opens its preview as usual. The <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> and <a href="/docs/blend-set-editor/">Blend Set Editor</a> open it the same way to pick a clip, titled after the node or blend set.</p>
 		<p><img src="img/picker.jpg" alt="The animation browser opened as a picker, titled Choose an animation, with the current clip pre-selected and a Use This Animation button added between Import and Preview." width="100%"></p>
 		<p class="text-muted small"><i>The same window opened from an animation parameter: the clip the entity already uses is selected, and <b>Use This Animation</b> sits between <b>Import…</b> and <b>Preview…</b>.</i></p>
 		<p>An animation parameter stores the name the set plays the clip by, and an animation set parameter stores the set's own name. Neither stores a path.</p>

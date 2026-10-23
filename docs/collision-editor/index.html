@@ -123,7 +123,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>The list on the left has one row per proxy:</p>
 		<ul>
-			<li><b>Proxy</b>: the proxy's number. This is what a Collision Mapping stores, and what <b>Set Havok...</b> shows once one is picked (<b>Proxy #312 · 4 instances</b>, say).</li>
+			<li><b>Proxy</b>: the proxy's number. This is what a Collision Mapping stores, and what the Collision Mapping group shows beside <b>Set Havok...</b> once one is picked (<b>Proxy #312 · 4 instances</b>, say).</li>
 			<li><b>Instances</b>: how many shapes the proxy is built from. Most are a handful of mesh pieces.</li>
 			<li><b>Data Offset</b>: where the proxy sits in <code>COLLISION.HKX</code>, for cross-checking with other tools.</li>
 			<li><b>Role</b>: blank for an ordinary proxy. <b>World host</b> marks the compound the level's static collision is gathered into, with thousands of instances; those rows are greyed out because they stand for the whole level rather than one object.</li>
@@ -144,7 +144,7 @@
 		<p>Two buttons under the list make a new proxy:</p>
 		<ul>
 			<li><b>Import Mesh...</b>: pick a model file. The formats and units are the same as a <a href="/docs/model-editor/#import">model import</a> (FBX, glTF, COLLADA or OBJ), and the file is read the same way, so the mesh lands in the game's space and size as a model would. Every mesh in the file goes into the one proxy.</li>
-			<li><b>From Model...</b>: opens the <a href="/docs/model-editor/">Model Editor</a> as a picker. Choose a model the level already has and its first LOD becomes the proxy. This is the usual choice for a model you've imported, since the collision then matches what's drawn.</li>
+			<li><b>From Model...</b>: opens the <a href="/docs/model-editor/">Model Editor</a> as a picker. Choose one of a model's numbered components (the entries under its <code>.cs2</code>) and that component's first LOD becomes the proxy. This is the usual choice for a model you've imported, since the collision then matches what's drawn.</li>
 		</ul>
 		<p>Either way, the preview shows the triangles first, marked <b>not yet a proxy</b>, and you're asked before anything is created:</p>
 		<p><img src="img/import-preview.jpg" alt="The Collision Editor previewing the SHIP_SMALL_BRIDGE_PILOTCHAIR_DISPLAY model's triangles: a chair base with four legs drawn in blue, with the status line reading 582 triangles from SHIP_SMALL_BRIDGE_PILOTCHAIR_DISPLAY · not yet a proxy." width="100%"></p>

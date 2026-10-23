@@ -198,10 +198,10 @@
 	<section class="docs-section" id="editing-keys">
 		<h2 class="section-heading">Editing Keyframes</h2>
 		<ul>
-			<li><b>Click</b> a keyframe to select it. The <b>Keyframe</b> panel on the right shows its <b>Value</b> and a <b>Delete Keyframe</b> button.</li>
-			<li><b>Drag</b> a keyframe to move time and/or value (subject to snap).</li>
+			<li><b>Click</b> a keyframe to select it. The <b>Keyframe</b> panel on the right shows its <b>Value</b>, which you can type over, and a <b>Delete Keyframe</b> button.</li>
+			<li><b>Drag</b> a selected keyframe to move its time and/or value (subject to snap). The first click on a keyframe only selects it, so click it, then drag.</li>
 			<li><b>Shift+click</b> on a curve (or right-click → <b>Add Keyframe Here</b>) to insert a keyframe on that track. The add-keyframe menu only appears when you are actually hovering a curve.</li>
-			<li>With <b>Bezier curves</b> enabled, selected keyframes show tangent handles. With it off, segments are linear (tangent data is still stored).</li>
+			<li>With <b>Bezier curves</b> enabled, selected keyframes show tangent handles; drag one to shape the curve on that side of the key. With it off, segments are linear (tangent data is still stored).</li>
 			<li>Right-click a keyframe for <b>Delete Keyframe</b>.</li>
 		</ul>
 	</section>
@@ -210,7 +210,7 @@
 		<h2 class="section-heading">Pan, Zoom &amp; Snap</h2>
 		<ul>
 			<li><b>Middle-mouse drag</b> on the plot pans time and value.</li>
-			<li><b>Ctrl+middle-mouse</b> (or middle-mouse on the bottom timeline strip) pans time only.</li>
+			<li><b>Ctrl+middle-mouse</b> (or middle-mouse on the event lanes or the bottom timeline strip) pans time only.</li>
 			<li><b>Mouse wheel</b> over the plot zooms the value range; over the timeline / event lanes zooms time. <b>Shift+wheel</b> pans the corresponding axis.</li>
 			<li><b>Z</b> resets the view to the full content range.</li>
 			<li>Enable <b>Snap</b> and pick an interval to quantise times while dragging and placing keys.</li>
@@ -230,7 +230,7 @@
 			<li><b>Add Event Track</b> — string events (yellow lanes). These fire pins on the <code>CAGEAnimation</code> itself.</li>
 			<li><b>Add Animation Entity Track</b> — entity-link events (blue lanes). Used with play-animation style nodes and MARKER / CHARACTER / CAMERA bindings.</li>
 		</ul>
-		<p>Right-click a lane for <b>Add Event Here</b> or <b>Delete Event Track</b>. Drag the grip between the plot and the lanes to resize lane height. Shift+click a lane also adds an event at that time.</p>
+		<p>Right-click a lane for <b>Add Event Here</b> or <b>Delete Event Track</b>. Drag the grip between the plot and the lanes to resize lane height. Shift+click a lane also adds an event at that time. To move an event, click it to select it, then drag it along its lane (subject to snap).</p>
 	</section>
 
 	<section class="docs-section" id="string-events">
@@ -278,7 +278,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>A timeline tells you the numbers; <b>Animation Mode</b> shows you the motion. With it on, the editor drives the <a href="/docs/level-viewer/">Viewport</a> from a playhead, so a door swings, a camera tracks or a light moves as you scrub — and moving something out in the 3D view becomes a keyframe. It needs the Viewport, unless it can play the animation in the game instead (see <a href="#in-game">Previewing in the Game</a>): with neither, the button says so.</p>
+		<p>A timeline tells you the numbers; <b>Animation Mode</b> shows you the motion. With it on, the editor drives the <a href="/docs/level-viewer/">Viewport</a> from a playhead, so a door swings, a camera tracks or a light moves as you scrub — and moving something out in the 3D view becomes a keyframe. It needs the Viewport, unless it can play the animation in the game instead (see <a href="#in-game">Previewing in the Game</a>): with neither, clicking it says so.</p>
 		<p>The one rule everything follows: <b>Animation Mode never changes an entity's own values.</b> An entity's position is where it rests when nothing is playing, and the animation is the only thing that moves it. That's what makes leaving the mode safe at any moment — everything the preview moved goes straight back where it was.</p>
 	</section>
 
@@ -301,11 +301,11 @@
 		<p>With the game running and <a href="/docs/live-link/">Live Link</a> connected, an <b>In game</b> box appears beside <b>Animation Mode</b>. Leave it ticked (it is by default, and OpenCAGE remembers your choice) and Animation Mode plays the animation in the running game as well as the Viewport. The game uses its own animation code, so it shows everything the animation drives, including lights and other float parameters, not just positions.</p>
 		<ul>
 			<li><b>Drag the playhead</b> and the game holds the animation at that time. Scrubbing doesn't fire the animation's events, so the level's scripts don't react.</li>
-			<li><b>Play</b> plays it in the game in real time, and the playhead follows the game. Tick <b>Loop</b> to keep it going round, and <b>Run events</b> if you want its events to reach the level's scripts as they would in play. It always stops just short of the end, so the animation never reports itself finished.</li>
+			<li><b>Play</b> plays it in the game in real time, and the playhead follows the game. Tick <b>Loop</b> to keep it going round, and <b>Run events</b> (in the row under the timeline) if you want its events to reach the level's scripts as they would in play. It always stops just short of the end, so the animation never reports itself finished.</li>
 			<li><b>Edit a key</b> and the change reaches the game a moment later, as every script edit does over Live Link. The game keeps the animation at the playhead while it updates.</li>
 			<li><b>Exit Animation Mode</b> (or close the editor, or untick In game) and the game gets its animation back exactly as it was, so a level that was mid-way through playing it carries on from there.</li>
 		</ul>
-		<p>A row under the timeline says what the game is doing, such as <b>Game: held at 1.25 s</b> or <b>Game: playing 2.10 s</b>, or why it can't show it. Common reasons:</p>
+		<p>While the game is driving it, the window's title ends <b>(driving the game)</b>, and a row under the timeline says what the game is doing, such as <b>Game: held at 1.25 s</b> or <b>Game: playing 2.10 s</b>, or why it can't show it. Common reasons:</p>
 		<ul>
 			<li><b>disabled in the game</b>: the level hasn't enabled this animation yet. Many animations are only enabled for the moment they play.</li>
 			<li><b>not in the running level</b>: the animation or its composite is new since the level was loaded. Save and reload it.</li>

@@ -187,7 +187,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Select an event in the list and the player fills in, as in the screenshots above. The top row is the transport; the row beneath is everything about the take that's loaded:</p>
 		<ul>
-			<li><b>Play</b> / <b>Stop</b>, with a seek bar you can scrub and the elapsed / total time. Play becomes <b>Pause</b> while the sound runs, and on a long sound a darker portion of the bar shows how far decoding has got.</li>
+			<li><b>Play</b> / <b>Stop</b>, with a seek bar you can scrub and the elapsed / total time. Play becomes <b>Pause</b> while the sound runs, and on a long sound a shaded portion of the bar shows how far decoding has got.</li>
 			<li>A <b>status line</b> naming the soundbank the event is declared in, with a count of the others (<i>Mission_DLC_ChallengeMap4 +4</i> in the screenshots), the container path it resolved through — <code>Random</code>, <code>Switch &gt; Random</code> and so on — its sample rate and channel layout, and the media id and the bank or package it lives in. It's cut short with an ellipsis when the window is narrow, as it is above; hover over it for the whole line, or widen the window. If an event resolves to no audio at all, this line says why instead — an event that only changes sound settings, say, or dynamic dialogue that depends on who is speaking.</li>
 			<li><b>Auto-play</b> — start playing as soon as you select an event, so you can arrow through a list and hear each one</li>
 			<li>A <b>variations</b> dropdown listing every take behind the event — <i>Variation 1 of 8 (Random)</i> and so on. It only appears when there's more than one.</li>
@@ -204,7 +204,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p><b>Export</b> writes the variation currently selected out as a <code>.wav</code>, named after the event by default. The file is decoded from whatever the game stores it as, so you get plain uncompressed audio you can open anywhere.</p>
+		<p><b>Export</b> writes the variation currently selected out as a <code>.wav</code>, named after the event by default. The file is decoded from whatever the game stores it as, so you get plain uncompressed audio you can open anywhere: 16-bit PCM, with a 5.1 sound mixed down to stereo. A sound longer than five minutes is only decoded, played and exported up to that point, and the status line ends with <i>first 5 minutes only</i>.</p>
 		<p>Exporting waits for the decode to finish first, which for a long sound is a few seconds — the button greys out while it works.</p>
 		<p>Note that this exports <b>one variation</b>, not the whole event. If an event has eight footstep takes and you want all of them, export each in turn.</p>
     </section>
@@ -233,6 +233,7 @@
 		<h2 class="section-heading">Preparing a WAV</h2>
 		<p>Replacement audio must be a <code>.wav</code>. A few things to keep in mind:</p>
 		<ul>
+			<li><b>Uncompressed, mono or stereo.</b> The <code>.wav</code> must be uncompressed PCM (8, 16, 24 or 32-bit) or floating point. A file with more than two channels is refused, so mix surround down to stereo first. 44100 or 48000 Hz always works; an unusual sample rate can be refused.</li>
 			<li><b>Match the original's channel count where you can.</b> Replacing a mono sound with a stereo file changes how the engine positions it in 3D space. The summary describes the file you chose but doesn't compare it with the original — the player's status line is where you read off the original's sample rate and channel layout.</li>
 			<li><b>The encoding follows the original.</b> On PC everything is Wwise Vorbis. The Switch build also stores some sounds as Wwise ADPCM and a few as plain PCM — OpenCAGE encodes to whichever codec the sound it's replacing used, so the game can still read it.</li>
 			<li><b>Size matters, but isn't fatal.</b> The summary tells you how the new audio compares to the old; a much larger file grows the container it lives in.</li>
@@ -247,7 +248,7 @@
 		<p>If some copies write and others fail, OpenCAGE says so explicitly rather than reporting success, since a partial replacement leaves the sound changed in some places and not others.</p>
 
 		<div class="docs-caveat">
-			<p><b>Sound edits are global.</b> Soundbanks aren't per-level data — replacing a sound changes it everywhere in the game, for every level, and there's no per-level override. Take a backup before doing this at scale.</p>
+			<p><b>Sound edits are global.</b> Soundbanks aren't per-level data — replacing a sound changes it everywhere in the game, for every level, and there's no per-level override. Replacing isn't an undo step, so <b>Edit → Undo</b> won't bring the old sound back. OpenCAGE keeps a copy of each soundbank's original version the first time it changes it, for the <a href="/docs/installing-mods/">Mod Manager</a>, but take a backup before doing this at scale.</p>
 		</div>
 	</section>
 </article>

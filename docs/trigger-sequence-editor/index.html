@@ -126,12 +126,12 @@
 	<section class="docs-section" style="padding-top:0;">
 		<ol>
 			<li>Select a <code>TriggerSequence</code> entity in the composite list or flowgraph.</li>
-			<li>In the <b>Entity Inspector</b>, click <b>Edit Sequence</b> (pictured below). That button is named after what it does for the selected entity: <b>Edit Sequence</b> for a TriggerSequence, and for a <b>proxy</b> to one (a proxy carries its own copy of the sequence and method lists, and the editor edits those); <b>Edit Tracks</b> for a CAGEAnimation; <b>Edit Character</b> for a Character; <b>Capture</b> for an EnvironmentMap (see <a href="/docs/live-link/#capture-cubemaps">Capturing Environment Maps</a>). For anything else it reads <b>Function</b> and is greyed out.</li>
+			<li>In the <b>Entity Inspector</b>, click <b>Edit Sequence</b> (pictured below). That button is named after what it does for the selected entity: <b>Edit Sequence</b> for a TriggerSequence, and for a <b>proxy</b> to one (a proxy carries its own copy of the sequence and method lists, and the editor edits those); <b>Edit Tracks</b> for a CAGEAnimation; <b>Edit Character</b> for a Character; <b>Capture</b> for an EnvironmentMap while Live Link is connected (see <a href="/docs/live-link/#capture-cubemaps">Capturing Environment Maps</a>). For anything else it reads <b>Function</b> and is greyed out.</li>
 			<li>The TriggerSequence Editor opens, titled with that entity’s name.</li>
 		</ol>
 		<p><img src="img/inspector-function.jpg" alt="The Entity Inspector with a TriggerSequence selected, showing the Edit Sequence button that opens the editor." style="max-width:100%;width:274px"></p>
 		<p class="text-muted small"><i>The inspector with TriggerSequence_2 selected.</i></p>
-		<p>Edits apply directly to the selected entity while the window is open. The window closes if you reload commands, select a different entity, or switch composite.</p>
+		<p>Edits apply directly to the selected entity while the window is open. The window closes if you load or close a level, select a different entity, or switch composite.</p>
     </section>
 </article>
 
@@ -159,7 +159,7 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>The Entities list shows each sequence entry as a row: the resolved entity hierarchy path, and the delay in seconds. Checkboxes on the left are used for bulk removal. The search box above the list filters rows by entity path (click <b>X</b> to clear it); while a filter is active the up / down buttons and drag reordering are disabled, because a row’s neighbours in a filtered list aren’t its neighbours in the sequence.</p>
-		<p>Click <b>Add Entities…</b> to open the hierarchy picker with checkboxes. Check one or more function entities, then click <b>Select Checked Entities</b>. The picker starts in the current composite, with a search box above the list. <b>Follow Entity Through</b> (enabled only while a composite instance is highlighted) steps into that instance, and the composite you’re in — with the path you followed to get there — is shown along the bottom as a clickable breadcrumb, the same one the main editor uses: click any segment to jump back up to that composite, with the instance you came through selected so you can see which way you went, or click <b>&lt; Back</b> to go up one level. <b>Browse from level root</b> restarts at the level’s root so an entry can point into a different branch of the level. All checked entities are inserted after the current selection (or at the end if nothing is selected). If nothing is checked, the highlighted row alone is added.</p>
+		<p>Click <b>Add Entities…</b> to open the hierarchy picker with checkboxes. Check one or more function entities, then click <b>Select Checked Entities</b>. The picker starts in the current composite, with a search box above the list. <b>Follow Entity Through</b> (enabled only while a composite instance is highlighted), or <b>Ctrl</b>+middle-click on an instance, steps into that instance, and the composite you’re in — with the path you followed to get there — is shown along the bottom as a clickable breadcrumb, the same one the main editor uses: click any segment to jump back up to that composite, with the instance you came through selected so you can see which way you went, or click <b>&lt; Back</b> to go up one level. <b>Browse from level root</b> restarts at the level’s root so an entry can point into a different branch of the level. All checked entities are inserted after the current selection (or at the end if nothing is selected). If nothing is checked, the highlighted row alone is added.</p>
 		<p><img src="img/add-entities-picker.jpg" alt="The Select Entities picker opened from Add Entities, listing the composite’s function entities with checkboxes, a Browse from level root button, and Select Checked Entities to confirm." style="max-width:100%;width:765px"></p>
 		<p class="text-muted small"><i>Add Entities… opens the shared entity picker in multi-select mode. Two rows are ticked here; Follow Entity Through is greyed out because no composite instance is highlighted.</i></p>
 		<p>You don’t have to open the editor to do this. Right-clicking a TriggerSequence on the flowgraph or in the entity list can add or remove the selected entities directly — see <a href="#context-menu">Adding Entities Without the Editor</a>.</p>
@@ -196,7 +196,7 @@
 		<p><img src="img/triggers-panel.jpg" alt="The Triggers panel listing the sequence’s method pairs, with one selected and its Parameter To Trigger field and Save button showing." width="100%"></p>
 		<p>These methods apply to <b>all</b> entities in the Entities list — when the sequence runs a method, every target is triggered with that method name (with its own delay).</p>
 		<ul>
-			<li><b>Add New Trigger</b> — inserts a method entry using the name currently in the Parameter field (or an empty name if the field is blank). Inserts after the selection, or at the end.</li>
+			<li><b>Add New Trigger</b> — inserts a method entry using the name currently in the <b>Parameter To Trigger</b> field. With no trigger selected that field is hidden and empty, so the new entry starts with an empty name: select it, type a name and click <b>Save</b>. Inserts after the selection, or at the end.</li>
 			<li><b>Delete Selected Trigger</b> — removes the selected method entry.</li>
 			<li>Select a trigger to edit its <b>Parameter To Trigger</b> name, then click <b>Save</b> to apply. Saving regenerates the related relay / finished names from that parameter string.</li>
 		</ul>

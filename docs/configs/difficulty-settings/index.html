@@ -119,13 +119,14 @@
 			<div class="col-lg-8">
 				<h1 class="section-heading">Difficulty Settings</h1>
 				<p>To edit difficulty settings in OpenCAGE navigate to View > Configuration Editors > Core Game > Difficulty Settings.</p>
-				<p>From here you will be presented with a variety of modifiers applied to various game systems depending on the difficulty level selected in-game, including; <a href="/docs/configs/alien-configs/">alien configs</a>, <a href="/docs/configs/senses/">character senses</a>, <a href="/docs/configs/attributes/">character attributes</a>, and <a href="/docs/configs/viewcones/">viewcones</a>.</p>
-				<p>There is no Save button: changes are saved as you make them.</p>
+				<p>From here you will be presented with a variety of modifiers applied to various game systems depending on the difficulty level selected in-game, including <a href="/docs/configs/alien-configs/">alien configs</a>, <a href="/docs/configs/senses/">character senses</a>, <a href="/docs/configs/attributes/">character attributes</a>, and <a href="/docs/configs/viewcones/">viewcones</a>.</p>
+				<p>Pick a difficulty from the dropdown at the top of the window. Its modifiers are on four tabs: Alien Config, Character Senses, Character Attributes and Viewcones. The Character Senses and Character Attributes tabs each have a dropdown for the character type, and the Viewcones tab has one for the viewcone set.</p>
+				<p>There is no Save button: changes are saved as you make them. A difficulty's file can name another difficulty as its template. Where the selected difficulty doesn't set a value itself, the editor shows the value from its template. When the editor opens it saves every difficulty, writing the values each one inherits into its own file. A box with no value in the difficulty or any of its templates is greyed out and isn't saved.</p>
 				<p>The game reads these settings when it starts, not when it loads a level, so a change reaches it the next time it starts. With <a href="/docs/live-link/#live-settings">Live Link</a> connected, and the game started with the <a href="/docs/debug-menu/">Debug Menu</a> on, each change also has the running game read the settings again, and every character takes them up straight away (the difficulty you're playing stays as it is), as the line at the bottom of the editor says.</p>
 				<p>Read on to see a list of available properties with information about each.</p>
 			</div>
 			<div class="col-lg-4">
-				<img src="img.png" width="100%">
+				<img src="img.png" alt="The Difficulty Settings editor in OpenCAGE." width="100%">
 			</div>
 		</div>
 	</section>
@@ -143,28 +144,28 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-menace-gauge">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-menace-gauge">the frontstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Deemed Time</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-menace-gauge">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-menace-gauge">the frontstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Maximum Menaces</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-menace-gauge">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-menace-gauge">the frontstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Seconds To Fill</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-menace-gauge">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-menace-gauge">the frontstage</a>'s base value.</li></ul>
 		</ul>
 		 <h4 id="alien-config-frontstage-sweep-range">Sweep Range</h4>
 		<ul>
@@ -174,28 +175,28 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-sweep">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-sweep">the frontstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Decrease Duration</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-sweep">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-sweep">the frontstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Area Width (Half)</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-sweep">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-sweep">the frontstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Area Length (Half)</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-sweep">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-sweep">the frontstage</a>'s base value.</li></ul>
 		</ul>
 		 <h4 id="alien-config-frontstage-search-exclusion-near-target">Search Exclusion Radius - Near Target</h4>
 		<ul>
@@ -205,14 +206,14 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-search-exclusion-near-target">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-search-exclusion-near-target">the frontstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Subsequent Stalk</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-search-exclusion-near-target">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-search-exclusion-near-target">the frontstage</a>'s base value.</li></ul>
 		</ul>
 		 <h4 id="alien-config-frontstage-search-exclusion-near-objective">Search Exclusion Radius - Near Objective</h4>
 		<ul>
@@ -222,14 +223,14 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-search-exclusion-near-objective">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-search-exclusion-near-objective">the frontstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Subsequent Stalk</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-search-exclusion-near-objective">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-search-exclusion-near-objective">the frontstage</a>'s base value.</li></ul>
 		</ul>
 		 <h4 id="alien-config-frontstage-player-in-vent">Player In Vent</h4>
 		<ul>
@@ -239,7 +240,7 @@
 				<code style="background:#412b69;color:white;">Minimum: -300</code>
 				<code style="background:#412b69;color:white;">Maximum: 300</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#frontstage-player-in-vent">the frontstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#frontstage-player-in-vent">the frontstage</a>'s base value.</li></ul>
 		  </ul>
 		</section>
 	</section>
@@ -254,14 +255,14 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#backstage-vent-killtraps">the backstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#backstage-vent-killtraps">the backstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Killtrap Ambush Timeout</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#backstage-vent-killtraps">the backstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#backstage-vent-killtraps">the backstage</a>'s base value.</li></ul>
 		</ul>
 		 <h4 id="alien-config-backstage-sweep">Sweep</h4>
 		 <ul>
@@ -271,21 +272,21 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#backstage-sweep">the backstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#backstage-sweep">the backstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Distance</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#backstage-sweep">the backstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#backstage-sweep">the backstage</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Idle Time</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/alien-configs/index.html#backstage-sweep">the backstage</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/alien-configs/index.html#backstage-sweep">the backstage</a>'s base value.</li></ul>
 		</ul>
 		</section>
 	  </section>
@@ -302,14 +303,14 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Combined Sense Activation Modifier</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 		  </ul>
 		 <h3 id="character-senses-weapon-sound">Weapon Sound Sense</h3>
 		 <ul>
@@ -319,14 +320,14 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Combined Sense Activation Modifier</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 		  </ul>
 		 <h3 id="character-senses-movement-sound">Movement Sound Sense</h3>
 		 <ul>
@@ -336,14 +337,14 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Combined Sense Activation Modifier</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 		  </ul>
 		 <h3 id="character-senses-flashlight">Flashlight Sense</h3>
 		 <ul>
@@ -353,14 +354,14 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Combined Sense Activation Modifier</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 		  </ul>
 		  <br>
 		  <ul style="margin-left:-10px;">
@@ -370,7 +371,7 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/senses/">the sense</a>'s base value.</li></ul>
 			</ul>
 		</section>
 	</section>
@@ -384,42 +385,42 @@
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Damage Dealt Scalar</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Suspicious Item Loop Scalar</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Time Between Shots Scalar</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Shooting In Cover Duration Modifier</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Melee Attack Interval</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: 0</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/attributes/">the attribute</a>'s base value.</li></ul>
 		</ul>
 	</section>
 
@@ -432,14 +433,14 @@
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/viewcones/">the viewcone</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/viewcones/">the viewcone</a>'s base value.</li></ul>
 			<li>
 				<code style="background:#8e1073;color:white;">Visual Stance Effect Modifier</code>
 				<code style="background:#412b69;color:white;">float</code>
 				<code style="background:#412b69;color:white;">Minimum: -1000</code>
 				<code style="background:#412b69;color:white;">Maximum: 1000</code>
 			</li>
-			<ul><li>This is additive to the value to <a href="/docs/configs/viewcones/">the viewcone</a>'s base value.</li></ul>
+			<ul><li>This is added to <a href="/docs/configs/viewcones/">the viewcone</a>'s base value.</li></ul>
 		</ul>
 	</section>
 
