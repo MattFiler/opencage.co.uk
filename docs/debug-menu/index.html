@@ -104,6 +104,8 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#player">Player</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#player-tools">Cheats &amp; Teleport</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#player-more">Hiding, Under Foot &amp; Objectives</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#stench">Stench of Evil</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#screen-effects">Screen Effects</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#inventory">Inventory</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#input">Input</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#alien">Alien</a></li>
@@ -116,6 +118,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#tree-log">Tree Log</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#state-log">State Log &amp; Breadcrumbs</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#tuning">Tuning</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#config-files">Config Files</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#ai-names">Names</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#world"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>World</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#inspect">Inspect</a></li>
@@ -162,7 +165,9 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#achievements">Achievements</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#tools">Tools</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#checkpoints">Checkpoints</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#snapshot-slots">Snapshot Slots</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#game-speed">Pause &amp; Game Speed</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#fixed-time-step">Fixed Time Step</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#ai-actions">AI</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#havok">Havok Visual Debugger</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#game-names">Names</a></li>
@@ -202,15 +207,15 @@
 		<p>Its tabs are in groups:</p>
 		<ul>
 			<li><a href="#overview">Overview</a>: lines of <a href="#info">information</a> in the corner of the screen, such as the level, the zone you're in, the player's position and the frame rate.</li>
-			<li><a href="#characters">Characters</a>: every character the game is running, with what it senses and is doing, its <a href="#state">orders and state</a>, <a href="#control">controls to change it</a>, its <a href="#animation">animation</a> and skeleton; the <a href="#player">player</a>, with cheats, teleports and their <a href="#inventory">inventory</a>; the <a href="#input">input</a>; and the <a href="#alien">alien</a>, with what it has learnt.</li>
-			<li><a href="#ai">AI</a>: the characters' <a href="#behaviour-tree">behaviour trees</a>, the <a href="#squads">squads</a> NPCs fight in, the trees' <a href="#tree-switches">debug switches</a> and <a href="#tree-log">log</a>, a <a href="#state-log">log of their state changes</a> with breadcrumb trails, and a few <a href="#tuning">tuning numbers</a>.</li>
+			<li><a href="#characters">Characters</a>: every character the game is running, with what it senses and is doing, its <a href="#state">orders and state</a>, <a href="#control">controls to change it</a>, its <a href="#animation">animation</a> and skeleton; the <a href="#player">player</a>, with cheats such as <a href="#stench">Stench of Evil</a>, teleports and their <a href="#inventory">inventory</a>; the <a href="#input">input</a>; and the <a href="#alien">alien</a>, with what it has learnt.</li>
+			<li><a href="#ai">AI</a>: the characters' <a href="#behaviour-tree">behaviour trees</a>, the <a href="#squads">squads</a> NPCs fight in, the trees' <a href="#tree-switches">debug switches</a> and <a href="#tree-log">log</a>, a <a href="#state-log">log of their state changes</a> with breadcrumb trails, a few <a href="#tuning">tuning numbers</a>, and the AI's <a href="#config-files">config files</a> read again while the game runs.</li>
 			<li><a href="#world">World</a>: what's <a href="#inspect">under the crosshair</a>, the <a href="#zones">zones</a> streaming in, <a href="#world-overlays">trigger boxes, doors and pickups</a>, the <a href="#navigation">nav mesh</a>, <a href="#cover-jobs">cover and jobs</a>, and the <a href="#physics">physics</a>.</li>
 			<li><a href="#scripts">Scripts</a>: a <a href="#scripts-debugger">debugger</a> for the level's scripts, their <a href="#scripts-errors">errors</a>, triggers, progression and events, CAGEAnimations, debug entities, a profiler and the cameras.</li>
-			<li><a href="#sound">Sound</a>: what's playing and why, what the AI hears, the sound network, and <a href="#sound-tools">tools</a> to move the listener, make noises for the AI and play sounds.</li>
+			<li><a href="#sound">Sound</a>: what's playing and why, what the AI hears, the sound network, and <a href="#sound-tools">tools</a> to move the listener, make noises for the AI, play sounds and check the sound network by having the AI hear in straight lines.</li>
 			<li><a href="#rendering">Rendering</a>: the game's own <a href="#rendering-switches">rendering switches</a> and <a href="#render-debug-views">debug views</a>, the lights, radiosity, post-processing, render targets and why something is or isn't drawn.</li>
 			<li><a href="#performance">Performance</a>: the frame and the renderer's limits, timing, memory and streaming.</li>
-			<li><a href="#game">Game</a>: the game's flow and levels, <a href="#saves">saves</a> and achievements, and tools: <a href="#checkpoints">checkpoints</a>, <a href="#game-speed">pausing and game speed</a>, and actions on the AI.</li>
-			<li><a href="#cinematic">Cinematic</a>: the <a href="#free-camera">free camera</a>, camera tracks, visuals, the HUD, the cast and screenshots, which take the place of Cinematic Tools.</li>
+			<li><a href="#game">Game</a>: the game's flow and levels, <a href="#saves">saves</a> and achievements, and tools: <a href="#checkpoints">checkpoints</a> and <a href="#snapshot-slots">snapshot slots</a>, <a href="#game-speed">pausing and game speed</a>, a <a href="#fixed-time-step">fixed time step</a>, and actions on the AI.</li>
+			<li><a href="#cinematic">Cinematic</a>: the <a href="#free-camera">free camera</a>, camera tracks, visuals, the HUD, the cast and screenshots (the game's own capture too), which take the place of Cinematic Tools.</li>
 		</ul>
 		<p>Nearly everything in it has a name, so OpenCAGE and AI assistants can read it and switch it over <a href="/docs/live-link/">Live Link</a> (see <a href="#remote">Live Link &amp; AI Assistants</a>).</p>
 		<p><img src="img/w2-intro.jpg" alt="The Debug Menu over the game on the Torrens bridge. Along the top of its window, the amber row of groups (Overview, Characters, AI, World, Scripts, Sound, Rendering, Performance, Game, Cinematic) with Characters in front, and under it the Characters group's tabs (Characters, State, Control, Animation, Player, Inventory, Input, Alien) with State in front: one of the crew is picked in the Character dropdown, with its orders, what its body is doing, and its state flags. Beside the window are the Info lines (the level, the zone and the frame rate), and over two of the crew are their labels: name and class, branch, then awareness, alertness and aggression." style="max-width:100%;width:960px"></p>
@@ -266,7 +271,7 @@
 			<li><b>Your keyboard and mouse are the window's.</b> While it's open, your mouse cursor is shown and the game doesn't see your keyboard or mouse, so you can click through the window without the player moving. A gamepad still reaches the game.</li>
 			<li><b>The game keeps running.</b> To hold it while you look, tick <b>Pause while this window is open</b> in <a href="#game-speed">Game &gt; Tools</a>, or press <b>Pause</b> there. While the game is paused, changes that act on characters (the <a href="#control">Control</a> tab, the alien's setup, the AI actions) wait until it runs again or steps.</li>
 			<li><b>Notes along the top of the screen.</b> A few things put a short line at the top of the screen, such as a save kept back or the scripts held at a breakpoint. They stack, so none covers another.</li>
-			<li><b>What lasts.</b> Switches stay as you left them until the game closes, level loads included, with a few exceptions: the <a href="#tree-switches">tree switches</a> go back to unticked when a level loads, and a level change turns the free camera off.</li>
+			<li><b>What lasts.</b> Switches stay as you left them until the game closes, level loads included, with a few exceptions: the <a href="#tree-switches">tree switches</a> go back to unticked when a level loads, and a level change turns the free camera off, along with the tests that change how the game plays, such as <a href="#stench">Stench of Evil</a>, the <a href="#control">Control</a> tab's damage choices and the <a href="#fixed-time-step">fixed time step</a>.</li>
 		</ul>
 	</section>
 
@@ -330,9 +335,9 @@
 		<ul>
 			<li><a href="#characters-list">Characters</a>: every character, with what it senses and is aware of, its health, mood and target, and where it's going, with <a href="#overlays">labels, view cones and paths</a> drawn over the game.</li>
 			<li><a href="#state">State</a>: the selected character's orders, what its body is doing, and its state flags.</li>
-			<li><a href="#control">Control</a>: change the selected character: what it may do, its mood and its health, or take it out of the level and spawn it again.</li>
+			<li><a href="#control">Control</a>: change the selected character: what it may do, its mood and its health, make it invulnerable, try damage effects on it or ragdoll it, or take it out of the level and spawn it again; and choose the damage every NPC takes.</li>
 			<li><a href="#animation">Animation</a>: its animation trees, layers and clips by name, its <a href="#skeletons">skeleton</a>, <a href="#animation-switches">animation switches</a>, and the level's <a href="#environment-animations">animated objects</a>.</li>
-			<li><a href="#player">Player</a>: the player's <a href="#player-tools">cheats, health and teleport</a>, how lit they are for the AI, and <a href="#player-more">hiding, what's under foot and the objectives</a>.</li>
+			<li><a href="#player">Player</a>: the player's <a href="#player-tools">cheats, health and teleport</a>, how lit they are for the AI, <a href="#player-more">hiding, what's under foot and the objectives</a>, <a href="#stench">Stench of Evil</a>'s options and the <a href="#screen-effects">screen effects</a>.</li>
 			<li><a href="#inventory">Inventory</a>: what the player carries, and giving them more.</li>
 			<li><a href="#input">Input</a>: what the game thinks is pressed.</li>
 			<li><a href="#alien">Alien</a>: the alien's menace, ambushes, sweep and vents, and <a href="#alien-learning">what it has learnt</a>.</li>
@@ -397,6 +402,11 @@
 			<li><b>Mood</b> (NPCs only): the mood shown, and what each of the four layers moods are set on (the AI's, scripts', other code's and dialogue's) holds and for how long. <b>Force mood</b> holds neutral, scared, angry, happy, sad, suspicious or injured on the top layer until you choose <b>(not forced)</b>. The face and voice follow the mood shown.</li>
 			<li><b>Health</b>: its health against the most it can have. For an NPC, set it with the slider (at least 1), or press <b>Damage 10%</b> (it reacts as to a hit), <b>Down to 1</b>, <b>Set on fire</b> (it burns for 5 s) or <b>Kill</b> (as the game's own death actions kill). The alien can't be killed, as the game has no death for it, and a character set to take no damage doesn't die. Under them are its retreat and stun damage gauges against their thresholds, and its stress. The player's health is on the <a href="#player-tools">Player</a> tab.</li>
 			<li><b>Spawning</b>: <b>Despawn</b> takes an NPC out of the level, as a script calling despawn on its Character entity would. It's then listed under <b>Despawned here</b> with a <b>Respawn</b> button, which calls spawn on that entity: the game makes the character again where the level placed the entity (not where it was despawned), with a new unique id, once it has a free character slot and has loaded the character's assets. The list shows how far each has got. A script waiting on a despawned NPC may stall.</li>
+			<li><b>Invulnerable</b> (NPCs only): tick it and the selected NPC takes no damage, as <a href="#player-tools">God mode</a> does for the player. It's the game's own debug switch, kept on every frame. It still reacts to hits, and the game's forced kill (the level's scripted deaths, and <b>Kill</b> above) doesn't kill it either. Several NPCs can be invulnerable at once: they're listed under the tick box, each with an <b>Off</b> button. It goes off when you untick it, when the character leaves the level, or when the level changes.</li>
+			<li><b>Damage to every NPC</b>: one choice for the damage every character but the player takes. <b>As the game deals it</b>; <b>One-shot kill</b>: any damage kills; <b>One-shot maim</b>: any damage leaves 1 health, for injured animations and behaviour; <b>At most 1 damage</b>: a fight lasts, and every hit reaction can be watched; <b>Nobody dies</b>: a hit that would kill leaves 1 health, to keep story NPCs alive while you test. The alien never goes below 1 health whatever you choose, as the game never lets it die, and androids set up as showroom dummies are left as the game deals with them. Nobody dies holds the level's scripted deaths (and <b>Kill</b> above) at 1 health too, which can stall a scripted sequence that waits for a death. A level change sets it back to as the game deals it.</li>
+			<li><b>Don't end the game when an ally is hurt or killed</b>: the game tells the level's "player killed an ally" monitor when the player damages a character that isn't an enemy, and when one dies, and the levels that have that monitor end the game. While this is ticked it isn't told: handy for tests that kill characters, such as <a href="#stench">Stench of Evil</a>, one-shot kill or the damage effects below. The tab counts the reports kept back and let through. A level change turns it off.</li>
+			<li><b>Damage effects</b>: <b>Stun</b>, <b>EMP</b>, <b>Blind</b>, <b>Acid</b>, <b>Gas</b> and <b>Fire</b>, on the selected NPC or on everyone within the <b>Radius around the player</b> (20 m to start, measured straight through walls and floors; a ring shows it while you choose). Each is the game's own explosion damage, from the player, carrying that effect as a grenade does, and the character takes it as it would a real one: a human is stunned, gassed or blinded and only flinches at fire or acid; an android takes EMP (it is stunned, and takes more damage meanwhile), blind and fire (it is set alight) but not stun or gas; the player's allies shrug off stun, gas, blind and EMP; the alien's stun gauge fills. Each effect comes from the game's ammo files as loaded, so an edited ammo file is what you test: stun is the stun grenade's nearest range, blind its middle range, EMP the large EMP burst's outer range, acid the small acid burst, gas the smoke grenade and fire the fire grenade's middle range. Hover over a button to see which ammo and range it uses now, with its times and damages. With <b>With its damage</b> off (the default) it's the effect alone; ticked, it also does the damage that range does to that kind of character, which can kill. A kill counts as the player's, and the next checkpoint keeps it, so turn on <a href="#saves">Don't write saves</a> first; and as hurting one of the player's allies can end the game, <b>Don't end the game for hurting an ally</b> sits beside it, the same switch as the one above.</li>
+			<li><b>Ragdoll</b>: tick <b>Ragdoll</b> to let the selected NPC's body fall as a ragdoll, and untick it to stand it back up, for checking a skeleton's ragdoll, an imported one above all, without killing anything. It's the game's own ragdoll switch for a living character, as the level scripts' <a href="/docs/cathode-entities/#CMD_Ragdoll">CMD_Ragdoll</a> uses it. <b>Push</b> gives it a speed away from the camera as it falls. The ragdoll is only the body's: the character's behaviour carries on underneath, so it would walk on, turn, aim and talk while its body lies there, and stand up wherever that took it. <b>Hold its AI still while it is down</b> (on to start) turns its force idle motivation on meanwhile, and back off when it stands up. If it dies while down, the ragdoll becomes its death's and it stays down; if it leaves the level, or the level changes, it's simply let go. <b>Down</b> lists those down with a <b>Stand up</b> button each.</li>
 		</ul>
 	</section>
 
@@ -448,13 +458,13 @@
 
 	<section class="docs-section" id="player">
 		<h2 class="section-heading">Player</h2>
-		<p>The <b>Player</b> tab is in parts, from the top: the <a href="#player-tools">cheats, health and teleport</a>; the player as the AI sees them, below; then <a href="#player-more">hiding, what's under foot and the objectives</a>.</p>
+		<p>The <b>Player</b> tab is in parts, from the top: the <a href="#player-tools">cheats, health and teleport</a>; the player as the AI sees them, below; then <a href="#player-more">hiding, what's under foot and the objectives</a>; and at the bottom, <a href="#stench">Stench of Evil</a>'s options and the <a href="#screen-effects">screen effects</a>.</p>
 		<ul>
 			<li><b>Light</b>: whether the player is dark, partially lit or fully lit for the AI, with the brightness the game measured and what it comes to through the AI's light curve, against the thresholds. The game measures the light at three heights on the player, each listed with the colour it found; tick <b>Show the sample points</b> to draw them in the game. The game turns the meter off for a while after the player is detected, and says so here.</li>
 			<li><b>Light meter tint</b>: tick <b>Tint the screen by light level</b> to tint the screen by how lit each part of it is for the AI, blue where it's dark (the game's own debug view). <b>Opacity</b> sets how strong the tint is.</li>
 			<li><b>Stealth</b>: the player's exposure, stance, cover and movement, whether they're hiding (and for how long), and which character is closest to spotting them, and how close. The alien's own progress is shown separately, as the game doesn't count it there.</li>
 		</ul>
-		<p><img src="img/player.jpg" alt="The Player tab: at the top the Cheats (God mode, Invisible to the AI, Infinite sprint, Infinite items, Untargetable, The alien can't grab the player, Infinite ammo, Never run out of torch batteries), the health bar at 1000 of 1000 with Full heal, Set health to and Kill the player, and the sprint left; Teleport, with where the player is and To the camera, To the crosshair and Back; then Light: PARTIALLY LIT, a meter at 0.388, brightness 0.050 through the AI's light curve 0.388 with the thresholds, the three light samples at +1.70, +0.00 and +1.00 metres with their colours, and Show the sample points; the Light meter tint with its opacity at 0.40; and Stealth: exposure 1.00, stance 1.00, cover 1.00, movement 0.00, Hiding: no, nobody targets the player, and the alien at 0%." style="max-width:100%;width:801px"></p>
+		<p><img src="img/player.jpg" alt="The Player tab: at the top the Cheats (God mode and Invisible to the AI ticked, Infinite ammo, Never run out of torch batteries, Untargetable, The alien can't grab the player, Infinite items), the health bar at 1000 of 1000 with Takes no damage: god mode under it, and Full heal, Set health to and Kill the player; Teleport, with where the player is and To the camera, To the crosshair and Back; then Light: PARTIALLY LIT, a meter at 0.418, brightness 0.083 through the AI's light curve 0.418 with the thresholds, the three light samples at +1.70, +0.00 and +1.00 metres with their colours, and Show the sample points; the Light meter tint with its opacity at 0.40; and Stealth: exposure 0.92, stance 1.00, cover 1.00, movement 0.00, Hiding: no, and nobody targets the player." style="max-width:100%;width:801px"></p>
 		<p><img src="img/light-tint.jpg" alt="The game on the Torrens bridge with the light meter tint on: the dark parts of the walls and floor are tinted deep blue, while the lit consoles keep their colours." style="max-width:100%;width:960px"></p>
 		<p class="text-muted small"><i>The light meter tint: the dark parts of the room, where the player would be hard to see, turn blue.</i></p>
 	</section>
@@ -463,9 +473,13 @@
 		<h2 class="section-heading">Cheats &amp; Teleport</h2>
 		<p>The top of the Player tab has the player cheats:</p>
 		<ul>
-			<li><b>God mode</b>: the player takes no damage. It's the game's own debug switch, kept on every frame, since the game turns it off on some deaths and when a level script turns its own invincibility off. The alien's grab and the facehugger kill outright rather than doing damage, so they still kill: tick <b>The alien can't grab the player</b> as well, which sets every alien's own prevent grapples logic flag while it's on.</li>
+			<li><b>God mode</b>: the player takes no damage. It's the game's own debug switch, kept on every frame, since the game turns it off on some deaths and when a level script turns its own invincibility off. The alien's grab and a facehugger's leap aren't damage: they switch that protection off and kill in the same moment, so god mode keeps them from happening at all. The alien still sees, hunts and chases you, but never finds an attack it can make on you (as when it can't get at you) and doesn't drop on you from a vent; a facehugger waits beside you instead of leaping. Deaths the level's own scripts cause, such as a script ordering the alien to attack or killing the player, still happen.</li>
 			<li><b>Untargetable</b>: the AI doesn't choose the player as a target to attack, though it can still see and hear them. <b>Invisible to the AI</b>: the AI's senses no longer pick up the player; a character already hunting them keeps what it last sensed until it loses track.</li>
-			<li><b>Infinite sprint</b>: the sprint never runs out. <b>Infinite ammo</b>: the player's weapons use no ammo from the clip when fired, so turn it on with ammo in the clip. <b>Infinite items</b> and <b>Never run out of torch batteries</b> are described under <a href="#inventory">Inventory</a>.</li>
+			<li><b>Invisible but audible</b>: the AI can't see the player, or their torch light, but still hears them (footsteps, gunfire, thrown items, noise makers) and still feels being touched, hit or burned. Use it to test what the AI hears on its own: a character that comes to a noise you made did it by ear. A squadmate passing on what it sensed still gets through, since with sight kept back that can only be something heard or felt.</li>
+			<li><b>The alien can't grab the player</b>: the alien part of god mode on its own, for when you still want to take damage from everything else. Every alien, including ones that turn up after you tick it, still hunts and chases you, but never grabs you or drops on you from a vent.</li>
+			<li><b>Break free of strangles</b>: a human or android that grabs and strangles the player lets go, as if you pressed the button to break free five times a second. It's the game's own handling of the press, so its grapple icon pulses and fills as the presses are counted, and the grab breaks when it would have for a player pressing that fast. The alien's grab is a kill, not a strangle: tick <b>The alien can't grab the player</b> for that.</li>
+			<li><b>Stench of evil</b>: every enemy of the player within 5 m of them dies, every frame while it's on. See <a href="#stench">Stench of Evil</a>.</li>
+			<li><b>Infinite ammo</b>: the player's weapons use no ammo from the clip when fired, so turn it on with ammo in the clip. <b>Infinite items</b> and <b>Never run out of torch batteries</b> are described under <a href="#inventory">Inventory</a>.</li>
 			<li><b>Health</b>: a bar of the player's health, what's keeping them from taking damage (god mode, or the level's scripts), and their last hit. <b>Full heal</b>; <b>Set health to</b> a share of the most they can have, for checking injured animations and medikits; and <b>Kill the player</b>, the game's own forced kill that its scripted deaths use, so you can test the death and game-over screens on demand (god mode is lifted for it).</li>
 		</ul>
 		<p><b>Teleport</b> moves the player to a position you type (<b>Copy</b> puts where they are now in the box and on the clipboard), <b>To the camera</b> (fly the free camera there first; the player's feet go where the camera was, so expect a short drop), <b>To the crosshair</b> (the point under <a href="#inspect">World &gt; Inspect</a>'s crosshair), or <b>Back</b> to where the last teleport took them from. It's done the way the game puts back a character that fell out of the world, at the end of the next physics frame. Somewhere with no floor loaded, the player falls, and the game puts them back where they last stood.</p>
@@ -479,6 +493,28 @@
 			<li><b>Under foot</b>: what's under the player's feet, from the four rays the game casts down from them: the sound material the footsteps use, the physical material and whether it's walkable or climbable, the zone that puts them in and whether it's visible, whether they're in water or off the ground, where they're supported and the drop below their feet. A table gives the row of the level's collision map each ray hit, with its entity, composite instance and zone. It's a quick check of OpenCAGE's collision and material changes in place: a wrong footstep sound, or a zone that streams out underfoot, shows up here. <b>Draw the support point and the surface</b> draws them.</li>
 			<li><b>Objectives</b>: the primary, secondary and exit objectives as the player's inventory holds them, with their text in the game's language, and the motion tracker's objective and how far it is by its route. <b>Draw the motion tracker's route</b> draws that route. <b>Show the objective popup</b> shows the game's objective popup with any text or text key you type, and <b>Popup</b> beside an objective shows it for that one; the objectives themselves aren't changed.</li>
 		</ul>
+	</section>
+
+	<section class="docs-section" id="stench">
+		<h2 class="section-heading">Stench of Evil</h2>
+		<p><b>Stench of evil</b> is a super power the game still has the code for, though nothing in the shipped game turns it on: every enemy of the player within 5 m of them dies, every frame while it's on. Tick it among the cheats at the top of the Player tab, or in its own section near the bottom of the tab, which has its options:</p>
+		<ul>
+			<li><b>Radius</b>: how far from the player it reaches, 5 m unless you change it. It's a straight line, so it reaches through walls and floors and into vents. A faint ring on the ground round the player shows it while it's on (untick <b>Show the ring</b> to hide it).</li>
+			<li>Who counts as an enemy comes from the game's own alliances, which the level's scripts change as a mission goes on: characters friendly or neutral to the player are left alone. Every character within the radius is listed under the options, with what the stench did to it.</li>
+			<li><b>Include the alien</b>: off unless you tick it. The alien can't die from it, as the game never takes it below 1 health. It's still hit, though, and forced into a death reaction every frame it stays near the player, which hasn't been tried in game yet. Androids set up as showroom dummies are always left out, as the game never lets them die.</li>
+			<li><b>Spare the script-invincible</b>: as the game does it, the stench clears every "takes no damage" flag on the characters it reaches, invincibility set by the level's scripts included, so they die too. Tick this to leave characters set to take no damage alone instead. NPCs made <a href="#control">invulnerable</a> in the Control tab are always left alone, and nothing happens while the Control tab's damage choice keeps a hit from killing outright. A character that survives (the alien, say) gets its flags back when you turn the stench off.</li>
+		</ul>
+		<p>The deaths are normal ones: the level's scripts hear of them, and the kills are the player's, so they count towards achievements and stats. Tick <b>Block awards and stat writes</b> and <b>Don't write saves</b> (<a href="#saves">Game &gt; Saves</a>) first, and expect a mission to stall if the stench kills a character it still needs. A level change turns it off.</p>
+	</section>
+
+	<section class="docs-section" id="screen-effects">
+		<h2 class="section-heading">Screen Effects</h2>
+		<p>At the bottom of the Player tab, <b>Screen effects</b> sends the events the game sends the HUD when the player is hurt, strangled, healed or killed, without any of that happening: for testing mods of the HUD and damage-overlay composites. The level's <a href="/docs/cathode-entities/#ScreenEffectEventMonitor">ScreenEffectEventMonitor</a> entities pass each one on, so the composites play what they would for the real thing. The line above the buttons says which effects are showing and how many monitors the level has registered (the game takes up to eight).</p>
+		<ul>
+			<li><b>Low health on</b> and <b>off</b>, <b>Strangle on</b> and <b>off</b>, <b>Death on</b> and <b>off</b>: states the game keeps, so each change goes out once (pressing <b>on</b> while it's showing sends nothing).</li>
+			<li><b>Melee hit</b>, <b>Bullet hit</b>, <b>Acid hit</b>, <b>Flashbang hit</b>, <b>Medkit heal</b>, <b>Hit and run</b> and <b>Cancel hit and run</b>: one-off events, sent every time.</li>
+		</ul>
+		<p>The game ends low health and death by itself as soon as it next checks the player's health, unless the health really is low or the player is dying. Tick <b>Hold low health and death</b> to stop that check, so they stay until you send them off. The hold lets go when you untick it, or when the player changes (a checkpoint restart or a new level), and the game then ends whatever doesn't apply. Strangle stays until sent off; a level change or restart clears all three.</p>
 	</section>
 
 	<section class="docs-section" id="inventory">
@@ -535,16 +571,16 @@
 			<tbody>
 				<tr><td>Characters</td><td><code>characters.labels</code>, <code>characters.view_cones</code>, <code>characters.hearing</code>, <code>characters.paths</code>, <code>characters.last_known</code>, each with <code>.all</code> for every character</td><td></td></tr>
 				<tr><td>State</td><td></td><td><code>ai.state</code>, <code>ai.flags</code></td></tr>
-				<tr><td>Control</td><td></td><td><code>ai.motivations</code>, <code>ai.motivation</code>, <code>ai.force_idle</code>, <code>ai.mood</code>, <code>ai.force_mood</code>, <code>ai.set_health</code>, <code>ai.damage</code>, <code>ai.damage_to_one</code>, <code>ai.burn</code>, <code>ai.kill</code>, <code>ai.despawn</code>, <code>ai.respawn</code>, <code>ai.list_despawned</code></td></tr>
+				<tr><td>Control</td><td><code>ai.one_shot_kill</code>, <code>ai.one_shot_maim</code>, <code>ai.max_damage_1</code>, <code>ai.nobody_dies</code> (one at a time), <code>ai.no_ally_kill_fail</code>, <code>ai.damage_effect_with_damage</code>, <code>ai.ragdoll_hold_ai</code>; values <code>ai.damage_effect_radius</code>, <code>ai.ragdoll_push</code></td><td><code>ai.motivations</code>, <code>ai.motivation</code>, <code>ai.force_idle</code>, <code>ai.mood</code>, <code>ai.force_mood</code>, <code>ai.set_health</code>, <code>ai.damage</code>, <code>ai.damage_to_one</code>, <code>ai.burn</code>, <code>ai.kill</code>, <code>ai.despawn</code>, <code>ai.respawn</code>, <code>ai.list_despawned</code>, <code>ai.invulnerable</code>, <code>ai.list_invulnerable</code>, <code>ai.clear_invulnerable</code>, <code>ai.damage_mode</code>, <code>ai.hit_from_player</code>, <code>ai.ally_kill_reports</code>, <code>ai.damage_effect</code>, <code>ai.damage_effects</code>, <code>ai.ragdoll</code>, <code>ai.ragdolls</code>, <code>ai.ragdoll_release</code></td></tr>
 				<tr><td>Animation</td><td><code>anim.skeletons</code>, <code>anim.all</code>, <code>anim.bone_names</code>, <code>anim.bone_axes</code>, <code>anim.helper_bones</code>, <code>anim.velocity</code>, <code>anim.ik_targets</code>, <code>anim.labels</code>, <code>anim.only_contributing</code>; <code>anim.no_ik</code>, <code>anim.no_linear_warping</code>, <code>anim.no_angular_warping</code>, <code>anim.no_lod</code>, <code>anim.reference_pose</code>, <code>anim.no_ragdoll_pose</code>, <code>anim.layer_off.additive</code> (and <code>.breathing</code>, <code>.look_at</code>, <code>.hand</code>, <code>.face</code>), <code>anim.switches_selected_only</code>, <code>anim.reference_locator</code>; <code>anim.env_skeletons</code>, <code>anim.env_labels</code>, value <code>anim.env_distance</code></td><td><code>anim.report</code>, <code>anim.group_weights</code>, <code>anim.list_env_models</code>, <code>anim.select_env_model</code>, <code>anim.hooks</code></td></tr>
-				<tr><td>Player</td><td><code>player.god_mode</code>, <code>player.untargetable</code>, <code>tools.invisible</code>, <code>player.no_grabs</code>, <code>player.infinite_sprint</code>, <code>tools.infinite_ammo</code>, <code>player.light_samples</code>, <code>player.light_tint</code>, <code>player.hiding_overlay</code>, <code>player.underfoot_overlay</code>, <code>player.objective_route</code></td><td><code>player.status</code>, <code>player.heal</code>, <code>player.set_health</code>, <code>player.kill</code>, <code>player.teleport</code>, <code>player.teleport_to_camera</code>, <code>player.teleport_to_crosshair</code>, <code>player.teleport_back</code>, <code>player.hiding</code>, <code>player.underfoot</code>, <code>player.list_objectives</code>, <code>player.objective_popup</code></td></tr>
+				<tr><td>Player</td><td><code>player.god_mode</code>, <code>player.untargetable</code>, <code>tools.invisible</code>, <code>tools.invisible_but_audible</code>, <code>player.no_grabs</code>, <code>player.auto_grapple_escape</code>, <code>player.stench_of_evil</code>, <code>tools.infinite_ammo</code>, <code>player.light_samples</code>, <code>player.light_tint</code>, <code>player.hiding_overlay</code>, <code>player.underfoot_overlay</code>, <code>player.objective_route</code>; <code>player.stench_include_alien</code>, <code>player.stench_spare_invincible</code>, <code>player.stench_ring</code>, <code>player.hold_screen_effects</code>; value <code>player.stench_radius</code></td><td><code>player.status</code>, <code>tools.invisible_status</code>, <code>player.auto_grapple_escape_status</code>, <code>player.kill_guard_status</code>,<code>player.heal</code>, <code>player.set_health</code>, <code>player.kill</code>, <code>player.teleport</code>, <code>player.teleport_to_camera</code>, <code>player.teleport_to_crosshair</code>, <code>player.teleport_back</code>, <code>player.hiding</code>, <code>player.underfoot</code>, <code>player.list_objectives</code>, <code>player.objective_popup</code>, <code>player.stench_status</code>, <code>player.screen_effect</code>, <code>player.screen_effects</code></td></tr>
 				<tr><td>Inventory</td><td><code>player.infinite_items</code>, <code>player.torch_batteries</code></td><td><code>player.weapon</code>, <code>player.list_inventory</code>, <code>player.list_items</code>, <code>player.give</code>, <code>player.give_all</code>, <code>player.give_weapons</code>, <code>player.give_ammo</code>, <code>player.top_up_items</code>, <code>player.list_blueprints</code>, <code>player.give_blueprints</code>, <code>player.list_keycards</code>, <code>player.give_keycards</code>, <code>player.list_gating_tools</code>, <code>player.give_gating_tools</code>, <code>player.set_gating_tool</code></td></tr>
 				<tr><td>Input</td><td><code>player.input_overlay</code></td><td><code>player.list_input</code></td></tr>
 				<tr><td>Alien</td><td><code>alien.sweep_area</code>, <code>alien.backstage_target</code></td><td><code>ai.alien.learning</code>, <code>ai.alien.ability</code>, <code>ai.alien.stage</code>, <code>ai.alien.list_setups</code>, <code>ai.alien.setup</code>, <code>ai.alien.director</code>, <code>ai.alien.draw_to</code></td></tr>
 			</tbody>
 		</table>
 		</div>
-		<p><code>player.give</code> takes an item and a count or <code>max</code>, such as <code>medikit,max</code>: the item by the game's own name for it, the name the game shows, a name players use (medkit, revolver, stun baton...), or enough of one to tell which. <code>player.teleport</code> takes <code>x,y,z</code>.</p>
+		<p><code>player.give</code> takes an item and a count or <code>max</code>, such as <code>medikit,max</code>: the item by the game's own name for it, the name the game shows, a name players use (medkit, revolver, stun baton...), or enough of one to tell which. <code>player.teleport</code> takes <code>x,y,z</code>. <code>ai.damage_mode</code> takes <code>normal</code>, <code>kill</code>, <code>maim</code>, <code>max1</code> or <code>nobody_dies</code> (no argument says which is on), <code>ai.invulnerable</code> takes <code>on</code> or <code>off</code>, and <code>ai.hit_from_player</code> an amount of damage (with none, a tenth of the most health the character can have), dealt as a hit from the player. <code>ai.damage_effect</code> takes an effect (<code>stun</code>, <code>emp</code>, <code>blind</code>, <code>acid</code>, <code>gas</code> or <code>fire</code>), or any ammo type and range as <code>ammo=GRENADE_HE range=1</code>, then <code>radius</code> (or <code>radius=10</code>) for everyone around the player, and <code>damage</code> or <code>nodamage</code>; <code>ai.damage_effects all</code> lists every range of every ammo type. <code>ai.ragdoll</code> takes <code>on</code>, <code>off</code> or <code>toggle</code>. <code>player.screen_effect</code> takes an event's name or number, as <code>player.screen_effects</code> lists them.</p>
 	</section>
 </article>
 
@@ -561,7 +597,7 @@
 			<li><a href="#tree-switches">Tree Switches</a>: the behaviour trees' own debug switches.</li>
 			<li><a href="#tree-log">Tree Log</a>: what the trees' debug actions log.</li>
 			<li><a href="#state-log">State Log</a>: the characters' state changes, and breadcrumb trails of what each did where.</li>
-			<li><a href="#tuning">Tuning</a>: five tuning numbers the game reads as it runs.</li>
+			<li><a href="#tuning">Tuning</a>: five tuning numbers the game reads as it runs, and under them, the AI's <a href="#config-files">config files</a> read again.</li>
 		</ul>
 	</section>
 
@@ -626,6 +662,19 @@
 		<p><b>Reset</b> beside each puts it back to the game's value. Changes last until the game closes.</p>
 	</section>
 
+	<section class="docs-section" id="config-files">
+		<h2 class="section-heading">Config Files</h2>
+		<p>The game reads three of its config folders once, when it starts, and keeps them for as long as it runs: the <a href="/docs/configs/alien-configs/">alien configs</a>, the <a href="/docs/configs/difficulty-settings/">difficulty settings</a> and the <a href="/docs/configs/viewcones/">viewcones</a>. Under the <b>Tuning</b> tab's numbers, <b>Config files</b> has the running game read them again from the files, and has the characters take them up, without restarting it:</p>
+		<ul>
+			<li><b>Alien setups</b>: each alien works out its timings and its menace numbers again from its setup.</li>
+			<li><b>Difficulty</b>: every character takes up the difficulty's settings again. The difficulty you're playing, and the lowest you've played this campaign (what the difficulty achievements go by), stay as they were.</li>
+			<li><b>View cones</b>: the characters see with the new cones from the next frame.</li>
+			<li><b>All</b>: all three.</li>
+		</ul>
+		<p>You don't need the buttons when you edit these in OpenCAGE: with <a href="/docs/live-link/">Live Link</a> connected, the Alien Configs, Difficulty Settings and Viewcones editors have the game read the folder again after each change, and say how it went on their status line (see <a href="/docs/live-link/#live-settings">Live Settings</a>). The buttons are for files edited some other way.</p>
+		<p>A file that's missing, or can't be read as a config file, stops its folder being read again, with nothing changed, and <b>Last</b> says which file. If a setup or difficulty the game holds isn't in the files any more, it keeps its old numbers. With the game paused, or no level running, the request waits until the game runs again. What the game holds can be listed with the command <code>ai.configs</code>: each alien setup's numbers at the difficulty being played, the difficulty, how far each NPC hears, and each set's view cones.</p>
+	</section>
+
 	<section class="docs-section" id="ai-names">
 		<h2 class="section-heading">Names</h2>
 		<p>The AI group's switches, values and commands, for <a href="#remote">Live Link &amp; AI Assistants</a>:</p>
@@ -637,7 +686,7 @@
 				<tr><td>Squads</td><td><code>ai.squads.draw</code>, <code>ai.squads.safe_points</code></td><td><code>ai.list_group</code>, <code>ai.list_squads</code></td></tr>
 				<tr><td>Tree Switches</td><td><code>tree_switch.</code> followed by the switch's label exactly, such as <code>tree_switch.Disable All Aliens</code>; <code>bt.switches_selected_only</code></td><td></td></tr>
 				<tr><td>State Log</td><td><code>ai.state_log</code>, <code>ai.state_log.selected_only</code>, <code>ai.crumbs</code>, <code>ai.crumbs.all</code>, value <code>ai.crumbs.seconds</code></td><td><code>ai.list_state_log</code>, <code>ai.state_log.clear</code>, <code>ai.list_crumbs</code>, <code>ai.crumbs.clear</code></td></tr>
-				<tr><td>Tuning</td><td>values <code>ai.tuning.android_melee_range</code>, <code>ai.tuning.android_melee_context_timeout</code>, <code>ai.tuning.android_grapple_delay</code>, <code>ai.tuning.player_throw_speed</code>, <code>ai.tuning.friendly_fire_modifier</code></td><td><code>ai.tuning.reset</code></td></tr>
+				<tr><td>Tuning</td><td>values <code>ai.tuning.android_melee_range</code>, <code>ai.tuning.android_melee_context_timeout</code>, <code>ai.tuning.android_grapple_delay</code>, <code>ai.tuning.player_throw_speed</code>, <code>ai.tuning.friendly_fire_modifier</code></td><td><code>ai.tuning.reset</code>; <code>ai.reload_configs</code> with <code>alien</code>, <code>difficulty</code>, <code>viewcones</code> or <code>all</code> (the default), <code>ai.configs</code> with the same</td></tr>
 			</tbody>
 		</table>
 		</div>
@@ -930,6 +979,12 @@
 			<li><b>Play a sound event</b>: any of the running level's sound events, found by name, played at the camera, the player or the crosshair point, and <b>Stop it</b>. It shows in the Event log, and only plays if its sound bank is loaded. The list is the level's own and is read again when another level loads; an event is played by its id, so a name works on any level whose banks hold it.</li>
 			<li><b>Squad dialogue</b>: whether the level lets NPCs talk, and how near; each squad's aggression, its dialogue state (idle, searching, escalating or in combat, and the state within it), its call and response (hover), its last line and its members.</li>
 		</ul>
+		<p>After the tools, <b>AI hearing</b>:</p>
+		<ul>
+			<li><b>AI hears in straight lines (leave out the sound network)</b>: every character works out how loudly it heard a sound from the straight-line distance to it, instead of the shortest way through the sound network's open doorways, as if every doorway were open and every room linked. It's a one-click check of a level's sound network, for after a rebake: if an NPC hears the player with it on but not with it off, the network is the cause, such as a doorway stuck closed or a missing link. Make a noise (<b>Make a noise for the AI</b>, above) or walk near the NPC, once with it on and once with it off.</li>
+			<li>While it's on, each sound is worked out both ways, and the section counts the sounds heard only in a straight line (the network would have kept them from the character altogether) and those heard louder, and lists the last eight: who heard whose sound, how loudly and how far away. The counts start again each time you tick it. <b>What the AI hears</b>, above, still works each sound out through the network, so it says <i>differs</i> for these.</li>
+			<li>It changes nothing in the level, and turns itself off when another level is loaded. Restarting the same level, or loading a checkpoint, leaves it on.</li>
+		</ul>
 	</section>
 
 	<section class="docs-section" id="sound-names">
@@ -941,6 +996,7 @@
 			<tbody>
 				<tr><td>Sound</td><td><code>sound.network</code>, <code>sound.network_all_links</code>, <code>sound.playing</code>, <code>sound.stimuli</code>, <code>sound.route</code>, <code>sound.speech</code></td><td><code>sound.status</code>, <code>sound.list_playing</code>, <code>sound.list_doorways</code></td></tr>
 				<tr><td>Sound: tools</td><td><code>sound.listener_frozen</code>, <code>sound.listener_at_player</code>; value <code>sound.noise_loudness</code></td><td><code>sound.listener</code>, <code>sound.make_noise</code>, <code>sound.list_events</code>, <code>sound.play_event</code>, <code>sound.stop_event</code>, <code>sound.last_played</code>, <code>sound.list_squads</code></td></tr>
+				<tr><td>Sound: AI hearing</td><td><code>sound.straight_line_hearing</code></td><td><code>sound.straight_line_status</code></td></tr>
 			</tbody>
 		</table>
 		</div>
@@ -1172,7 +1228,7 @@
 		<ul>
 			<li><a href="#game-flow">Game flow</a>: what the game is doing, its checkpoint and spawn point, the difficulty, and every level with a button to load it.</li>
 			<li><a href="#saves">Saves</a>: <b>Don't write saves</b>, what the game's saving is doing, and its <a href="#achievements">achievements</a>.</li>
-			<li><a href="#tools">Tools</a>: debug and level checkpoints, pausing, stepping and the game's speed, and actions on the AI.</li>
+			<li><a href="#tools">Tools</a>: debug and level checkpoints and <a href="#snapshot-slots">snapshot slots</a>, pausing, stepping, the game's speed and a <a href="#fixed-time-step">fixed time step</a>, and actions on the AI.</li>
 		</ul>
 	</section>
 
@@ -1205,7 +1261,7 @@
 
 	<section class="docs-section" id="tools">
 		<h2 class="section-heading">Tools</h2>
-		<p>The <b>Tools</b> tab gathers the tools that act on the game rather than show it: the <a href="#checkpoints">checkpoints</a>, <a href="#game-speed">pause and game speed</a>, a <b>Free camera</b> box that turns on the <a href="#free-camera">Cinematic group's free camera</a> (with a button that opens its tab), the <a href="#ai-actions">AI</a> actions, and the <a href="#havok">Havok Visual Debugger</a>. The player cheats that were here, Invisible to the AI and Infinite ammo, are now with the others in <a href="#player-tools">Characters &gt; Player</a>.</p>
+		<p>The <b>Tools</b> tab gathers the tools that act on the game rather than show it: the <a href="#checkpoints">checkpoints</a> and <a href="#snapshot-slots">snapshot slots</a>, <a href="#game-speed">pause and game speed</a>, a <b>Free camera</b> box that turns on the <a href="#free-camera">Cinematic group's free camera</a> (with a button that opens its tab), the <a href="#ai-actions">AI</a> actions, the <a href="#havok">Havok Visual Debugger</a>, and at the bottom the <a href="#fixed-time-step">fixed time step</a>. The player cheats that were here, Invisible to the AI and Infinite ammo, are now with the others in <a href="#player-tools">Characters &gt; Player</a>.</p>
 		<p><img src="img/w2-game-tools.jpg" alt="The Debug Menu on Game &gt; Tools on HAB_AIRPORT: Debug checkpoints, with the note that a mission part that already ran leaves the screen black, and a Jump button beside each; then Level checkpoints: Reload last checkpoint with the mission and how long ago it was captured, and the level's own checkpoints, numbered, with Jump buttons, (no name) on unnamed ones and (current) on the one the level is at; and Game speed and pause, with the Pause, Step and Step 10 buttons, Pause while this window is open and the speed slider at 1.00x." style="max-width:100%;width:801px"></p>
 	</section>
 
@@ -1216,10 +1272,34 @@
 		<p>Most checkpoints start a mission part: the player is spawned at the part's spawn point, and the screen fades back in once the part has loaded. A part loads only once each time the level loads, and the level's own start runs one too (with no progress saved, its ambient part), so jumping to a part that has already run leaves the screen black. Load the level again to jump to it. Jumping to a checkpoint can save the game, as reaching it in play would, unless <a href="#saves">Don't write saves</a> is on.</p>
 	</section>
 
+	<section class="docs-section" id="snapshot-slots">
+		<h2 class="section-heading">Snapshot Slots</h2>
+		<p>Under the level checkpoints, <b>Snapshot slots</b> (experimental) keep copies of the checkpoint in memory, the state a death or <a href="#checkpoints">Reload last checkpoint</a> goes back to, so you can try a scripted sequence again and again from an earlier checkpoint without real saves. Nothing is read from or written to your saved games.</p>
+		<ul>
+			<li><b>Save</b> copies the checkpoint in memory, the last checkpoint the level reached, into one of four slots. Each slot shows its mission, the checkpoint the level was at, the game time it was captured at and the deaths so far.</li>
+			<li><b>Restore</b> puts a slot back as the checkpoint in memory and restarts the level from it, as after a death: the player, the AI, the scripts, the inventory and the rest go back to how they were at that checkpoint. The checkpoint it replaces is kept as <b>Before the last restore</b>, so you can go forward again the same way.</li>
+			<li><b>Clear</b> empties a slot. The slots are emptied when the level unloads or another level loads: a slot only goes back into the level, and the load of it, that it was saved in.</li>
+		</ul>
+		<p>Restore needs <a href="#saves">Don't write saves</a> on, because the game writes the checkpoint in memory over your checkpoint save when the player dies, and the next checkpoint saves as usual. It waits while the game is saving or loading, while a checkpoint save is waiting for the player to be able to save, and while the pause menu is open; the Debug Menu's own <a href="#game-speed">pause</a> is let go, as Reload last checkpoint does. What the game keeps on your profile, such as missions reached, statistics and achievements, isn't put back, and <a href="#game-flow">Game flow</a> may still name the later checkpoint as the one the level is at.</p>
+	</section>
+
 	<section class="docs-section" id="game-speed">
 		<h2 class="section-heading">Pause &amp; Game Speed</h2>
 		<p><b>Pause</b> holds the whole game, its clock, the AI, physics, animation, zone streaming and the level's scripts, without the pause menu; <b>Resume</b> lets it go. While it's paused, <b>Step</b> lets exactly one frame through and <b>Step 10</b> ten, one a frame. The Debug Menu keeps working meanwhile, and OpenCAGE's edits over Live Link, the difficulty and the AI actions wait until the game runs again. <b>Pause while this window is open</b> holds the game whenever the Debug Menu is open.</p>
 		<p>The speed slider slows the game down or speeds it up, from 0.05 to 4 times its normal speed: everything the game times runs at that rate. <b>Reset</b> puts it back to 1. The game's own slow-motion moments use the same scale, so they're overridden while it isn't 1, and <a href="/docs/launch-game/#cap-fps">Cap FPS</a> still paces the frames in real time. The <a href="#free-camera">free camera</a>'s Time section is the same pause, step and speed.</p>
+	</section>
+
+	<section class="docs-section" id="fixed-time-step">
+		<h2 class="section-heading">Fixed Time Step</h2>
+		<p>At the bottom of the Tools tab, <b>Fixed time step</b> makes every frame move the game on by exactly the same amount of game time, however long the frame takes to draw: pick <b>24</b>, <b>30</b> or <b>60</b> steps a second, or type another rate (from 4 to 1000, so 23.976, 29.97 or 59.94 work too) and press <b>Use</b>; <b>Off</b> goes back to real time. It's for smooth captures recorded slower than real time, such as the Cinematic group's <a href="#cinematic-screenshots">image sequences</a>, where each frame of the video is one step of the game, and for repeatable tests, where the AI, physics and the level's scripts see the same steps every run.</p>
+		<ul>
+			<li><b>Faster or slower than real time.</b> The game moves on one step per frame drawn, so it keeps to real time only when frames are drawn at the step's rate: set <a href="/docs/launch-game/#cap-fps">Cap FPS</a> or V-Sync to the same rate for that. Drawing faster runs the game faster; a capture that draws slower runs it slower, which is what keeps its frames smooth. The section shows how fast the game runs against real time.</li>
+			<li><b>With the game speed.</b> The <a href="#game-speed">speed slider</a> (and the game's own slow-motion moments) still apply: at 0.5x with 30 steps a second, each frame moves the game on by a sixtieth of a second, physics included.</li>
+			<li><b>With pause.</b> <b>Pause</b> holds the game as before, and <b>Step</b> lets exactly one step through, the same game time every time.</li>
+			<li><b>Sound</b> runs in real time, so it drifts against the picture while this is on.</li>
+			<li><a href="#camera-tracks">Camera tracks</a> still play in real time.</li>
+		</ul>
+		<p>It goes off when the level unloads or another level loads. When it goes off, the game picks up real time again from where it has got to, as it does after a long frame.</p>
 	</section>
 
 	<section class="docs-section" id="ai-actions">
@@ -1248,11 +1328,11 @@
 			<tbody>
 				<tr><td>Game flow</td><td><code>game.keep_lowest_difficulty</code></td><td><code>game.status</code>, <code>game.difficulty</code>, <code>game.list_levels</code>, <code>game.load_level</code></td></tr>
 				<tr><td>Saves</td><td><code>game.dont_write_saves</code>, <code>game.save_notice</code>, <code>game.block_achievements</code></td><td><code>game.saves</code>, <code>game.saves_check</code> (checks that the save folders are guarded, without writing anything), <code>game.list_achievements</code></td></tr>
-				<tr><td>Tools</td><td><code>game.paused</code>, <code>game.pause_while_open</code>, <code>tools.free_camera</code>, <code>tools.flag.</code> followed by a logic flag's name, such as <code>tools.flag.prevent_all_attacks</code>; value <code>game.speed</code></td><td><code>game.list_debug_checkpoints</code>, <code>game.jump_debug_checkpoint</code>, <code>game.list_checkpoints</code>, <code>game.jump_checkpoint</code>, <code>game.reload_checkpoint</code>, <code>game.step</code></td></tr>
+				<tr><td>Tools</td><td><code>game.paused</code>, <code>game.pause_while_open</code>, <code>tools.free_camera</code>, <code>tools.flag.</code> followed by a logic flag's name, such as <code>tools.flag.prevent_all_attacks</code>; values <code>game.speed</code>, <code>game.fixed_step_fps</code> (0 = off)</td><td><code>game.list_debug_checkpoints</code>, <code>game.jump_debug_checkpoint</code>, <code>game.list_checkpoints</code>, <code>game.jump_checkpoint</code>, <code>game.reload_checkpoint</code>, <code>game.step</code>, <code>game.time_step</code>, <code>game.snapshot_info</code>, <code>game.snapshot_save</code>, <code>game.snapshot_restore</code>, <code>game.snapshot_clear</code></td></tr>
 			</tbody>
 		</table>
 		</div>
-		<p><code>game.difficulty</code> takes <code>novice</code>, <code>easy</code>, <code>medium</code>, <code>hard</code> or <code>nightmare</code>, or nothing to give the difficulty. <code>game.load_level</code> takes a level by its name as listed (<code>Production\DLC\ChallengeMap1</code>), without <code>Production\</code>, or by its last part alone (<code>BSP_TORRENS</code>), in any case. <code>game.jump_checkpoint</code> takes a number from the list, or a name for the first checkpoint with that name. <code>game.step</code> takes a number of frames, up to 600.</p>
+		<p><code>game.difficulty</code> takes <code>novice</code>, <code>easy</code>, <code>medium</code>, <code>hard</code> or <code>nightmare</code>, or nothing to give the difficulty. <code>game.load_level</code> takes a level by its name as listed (<code>Production\DLC\ChallengeMap1</code>), without <code>Production\</code>, or by its last part alone (<code>BSP_TORRENS</code>), in any case. <code>game.jump_checkpoint</code> takes a number from the list, or a name for the first checkpoint with that name. <code>game.step</code> takes a number of frames, up to 600. <code>game.snapshot_save</code> takes a slot from 1 to 4; <code>game.snapshot_restore</code> takes one, or <code>before</code> for the checkpoint the last restore replaced; <code>game.snapshot_clear</code> takes one, <code>before</code> or <code>all</code>. <code>game.time_step</code> gives the fixed time step's state.</p>
 	</section>
 </article>
 
@@ -1269,7 +1349,7 @@
 			<li><a href="#cinematic-visuals">Visuals</a>: the depth of field, colour, bloom, effects and tone mapping, set in place of the level's.</li>
 			<li><a href="#cinematic-hud">HUD</a>: hide the HUD, or any layer of the game's interface.</li>
 			<li><a href="#cinematic-cast">Cast</a>: hold the other characters still, make the player invisible to the AI, and put the camera behind a character.</li>
-			<li><a href="#cinematic-screenshots">Screenshots</a>: the frame as the game drew it, without the Debug Menu, saved to a file.</li>
+			<li><a href="#cinematic-screenshots">Screenshots</a>: the frame as the game drew it, without the Debug Menu, saved to a file, and the game's own capture of stills and image sequences.</li>
 		</ul>
 	</section>
 
@@ -1360,6 +1440,14 @@
 	<section class="docs-section" id="cinematic-screenshots">
 		<h2 class="section-heading">Screenshots</h2>
 		<p><b>Take a screenshot</b>, or press <b>F9</b> with the window open or closed, to save the frame as the game drew it, without the Debug Menu or anything else it draws over the game, as a .bmp named after the level and the time in a <code>Screenshots</code> folder in the game folder. <b>Hide the HUD for the shot</b> (on) hides what <a href="#cinematic-hud">Hide the HUD</a> hides for the few frames a shot takes, then shows it again. The tab names the last file saved.</p>
+		<p>Below, <b>The game's own capture</b> asks the game's own screen capture, which it keeps but offers nowhere, for the next frame it draws: press <b>Capture still</b>. The game saves it itself, as a 32-bit .tga, a Radiance .hdr, or both, in the same <code>Screenshots</code> folder, named after the level and the time with the game's own count on the end. It has the game's HUD unless <b>Hide the HUD for the shot</b> is on (the HUD stays hidden until the capture is finished), and never the Debug Menu.</p>
+		<ul>
+			<li><b>Quality</b>: <b>Low</b> is one frame, as drawn. <b>Medium</b>, <b>High</b> and <b>Ultra</b> save 4, 16 or 64 frames, named <code>_tile_x_y</code>, with the film grain, motion blur, bloom, depth of field, anti-aliasing and the ambient occlusion's blur turned off and the ambient occlusion drawn at full resolution: a clean picture. The game works out a slight offset for each of those frames, meant for a sharper picture put together from them, but never applies it, so they come out alike: <b>Medium</b> is all you need. While a still is taken the game holds the AI, the characters and the physics. When it's done the game turns those effects back on, whatever your graphics settings said, so the Debug Menu puts them back as they were.</li>
+			<li><b>Kind</b>: <b>Standard</b> is a .tga, <b>HDR</b> a .hdr, <b>Both</b> one of each, a frame apart. HDR is expected to come out black on PC: the game copies the finished picture into its HDR image in a way Direct3D 11 doesn't allow. Check the file before relying on it.</li>
+			<li><b>Capture environment map</b> saves the view as it is, numbered as an environment map (<code>_envmap_</code>), always at Low. This release can't turn the camera to the six faces of a cube for it; <a href="/docs/live-link/#capture-cubemaps">Live Link's cubemap capture</a> does that.</li>
+			<li><b>Start image sequence</b> saves a .tga for every frame drawn, into a folder of its own in the Screenshots folder (<code>frame_0.tga</code>, <code>frame_1.tga</code>...), until you press <b>Stop image sequence</b> or the level changes; a note along the top of the screen counts the frames. Each file is written as its frame is drawn (about 8 MB a frame at 1920&times;1080), so the game runs slowly while it records. <b>Lock the time step while recording</b> (on) sets the Game group's <a href="#fixed-time-step">fixed time step</a> to the rate beside it (30 a second by default) for the recording, so every frame is the same step of game time and the frames play back smoothly at that rate however slowly they were drawn; it's put back when the recording stops. Sound keeps to real time, so record it separately.</li>
+		</ul>
+		<p>Only the combinations the game accepts are offered: on PC, stills at any quality and kind, environment maps at Low, and image sequences as standard at Low. The tab names the files of the last capture.</p>
 	</section>
 
 	<section class="docs-section" id="from-cinematic-tools">
@@ -1385,7 +1473,7 @@
 				<tr><td>Invisibility (<b>I</b>)</td><td>Cast: <b>Player invisible to the AI</b>, with no key. Like Cinematic Tools' invisibility, it doesn't hide the player's body.</td></tr>
 				<tr><td>The glow round usable objects, always off with Cinematic Tools</td><td>On as in the game; Rendering &gt; Rendering's <b>No usable-object glow</b> turns it off</td></tr>
 				<tr><td>Key config</td><td>Not available: the keys are fixed, bar the camera's on and off key and the screenshot key in the <a href="/docs/launch-game/#settings-file">settings file</a></td></tr>
-				<tr><td>No screenshots</td><td><a href="#cinematic-screenshots">Screenshots</a> (<b>F9</b>)</td></tr>
+				<tr><td>No screenshots</td><td><a href="#cinematic-screenshots">Screenshots</a> (<b>F9</b>), and the game's own capture, for stills and image sequences</td></tr>
 			</tbody>
 		</table>
 		</div>
@@ -1404,11 +1492,11 @@
 				<tr><td>Visuals</td><td><code>cinematic.override.</code> followed by a setting, such as <code>cinematic.override.saturation</code>, and <code>cinematic.dof</code>; values <code>cinematic.</code> followed by the setting, such as <code>cinematic.saturation</code>, and <code>cinematic.dof_focal_length</code>, <code>cinematic.dof_focus</code>, <code>cinematic.dof_fnumber</code></td><td><code>cinematic.list_visuals</code>, <code>cinematic.visuals_reset</code></td></tr>
 				<tr><td>HUD</td><td><code>cinematic.hide_hud</code>, <code>cinematic.hide_hud_challenge</code>, <code>cinematic.ui.</code> followed by a layer's name, as <code>cinematic.list_ui_layers</code> gives it</td><td><code>cinematic.list_ui_layers</code></td></tr>
 				<tr><td>Cast</td><td><code>cinematic.freeze_npcs</code></td><td><code>cinematic.freeze_status</code></td></tr>
-				<tr><td>Screenshots</td><td><code>cinematic.screenshot_hide_hud</code></td><td><code>cinematic.screenshot</code> (optionally a file name)</td></tr>
+				<tr><td>Screenshots</td><td><code>cinematic.screenshot_hide_hud</code>, <code>cinematic.game_sequence_lock_step</code>; values <code>cinematic.game_capture_quality</code> (0 Low to 3 Ultra), <code>cinematic.game_capture_type</code> (0 standard, 1 HDR, 2 both), <code>cinematic.game_sequence_fps</code></td><td><code>cinematic.screenshot</code> (optionally a file name), <code>cinematic.game_capture</code>, <code>cinematic.game_sequence_start</code>, <code>cinematic.game_sequence_stop</code>, <code>cinematic.game_capture_status</code></td></tr>
 			</tbody>
 		</table>
 		</div>
-		<p><code>cinematic.camera_set</code> takes <code>x,y,z</code>, and optionally the yaw, pitch and roll and the field of view, in degrees, and turns the camera on there. <code>cinematic.lock</code> takes a character's name or id, or nothing to unlock.</p>
+		<p><code>cinematic.camera_set</code> takes <code>x,y,z</code>, and optionally the yaw, pitch and roll and the field of view, in degrees, and turns the camera on there. <code>cinematic.lock</code> takes a character's name or id, or nothing to unlock. <code>cinematic.game_capture</code> takes <code>still</code> or <code>envmap</code>, then optionally <code>low</code>, <code>medium</code>, <code>high</code> or <code>ultra</code> and <code>standard</code>, <code>hdr</code> or <code>both</code> (the tab's choices otherwise), waits for the game to finish and names the files. <code>cinematic.game_sequence_start</code> takes the rate to lock the time step at, or <code>0</code> to leave it alone.</p>
 	</section>
 </article>
 
@@ -1447,7 +1535,7 @@
 			<thead><tr><th>Starts with</th><th>Group</th><th>For example</th></tr></thead>
 			<tbody>
 				<tr><td><code>info.</code></td><td>Overview</td><td><code>info.zone</code>, <code>info.frame</code>, <code>info.gpu</code></td></tr>
-				<tr><td><code>characters.</code>, <code>player.</code>, <code>alien.</code>, <code>anim.</code>; the State, Control and Alien tabs' commands start with <code>ai.</code>, and two of the player cheats with <code>tools.</code></td><td>Characters</td><td><code>characters.labels</code>, <code>characters.view_cones</code>, <code>player.light_tint</code>, <code>anim.skeletons</code>, <code>ai.kill</code>, <code>tools.invisible</code></td></tr>
+				<tr><td><code>characters.</code>, <code>player.</code>, <code>alien.</code>, <code>anim.</code>; the State, Control and Alien tabs' commands start with <code>ai.</code>, and three of the player cheats with <code>tools.</code></td><td>Characters</td><td><code>characters.labels</code>, <code>characters.view_cones</code>, <code>player.light_tint</code>, <code>anim.skeletons</code>, <code>ai.kill</code>, <code>tools.invisible</code></td></tr>
 				<tr><td><code>ai.</code>, <code>bt.</code>, <code>tree_switch.</code></td><td>AI</td><td><code>bt.overlay</code>, <code>tree_switch.Disable All Aliens</code></td></tr>
 				<tr><td><code>world.</code>, <code>nav.</code>, <code>inspect.</code>, <code>physics.</code>, <code>zones.</code></td><td>World</td><td><code>inspect.pick</code>, <code>physics.bodies</code></td></tr>
 				<tr><td><code>scripts.</code>, <code>debugger.</code></td><td>Scripts</td><td><code>scripts.list_errors</code>, <code>scripts.profiler</code>, <code>debugger.state</code></td></tr>

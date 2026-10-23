@@ -25146,6 +25146,10 @@
             "global constants",
             "bounce light",
             "emissive surface scale",
+            "alien configs",
+            "difficulty settings",
+            "viewcones",
+            "reload configs",
             "live link"
         ],
         "title":  "Live Settings"
@@ -25557,7 +25561,15 @@
             "render targets",
             "memory",
             "draw calls",
-            "checkpoints"
+            "checkpoints",
+            "stench of evil",
+            "invulnerable",
+            "damage effects",
+            "ragdoll",
+            "screen effects",
+            "fixed time step",
+            "snapshot slots",
+            "image sequence"
         ],
         "title":  "Debug Menu"
     },
@@ -25858,6 +25870,23 @@
             "kill",
             "despawn",
             "respawn",
+            "invulnerable",
+            "one-shot kill",
+            "one-shot maim",
+            "max damage",
+            "nobody dies",
+            "damage mode",
+            "ally killed",
+            "mission failed",
+            "damage effects",
+            "stun",
+            "emp",
+            "blind",
+            "acid",
+            "gas",
+            "fire",
+            "grenade",
+            "ragdoll",
             "debug menu"
         ],
         "title":  "Control"
@@ -25984,13 +26013,18 @@
             "cheats",
             "god mode",
             "untargetable",
-            "infinite sprint",
             "heal",
             "full heal",
             "set health",
             "kill the player",
             "teleport",
             "teleport to crosshair",
+            "invisible but audible",
+            "audible",
+            "break free of strangles",
+            "strangle",
+            "grapple escape",
+            "stench of evil",
             "debug menu"
         ],
         "title":  "Cheats \u0026 Teleport"
@@ -26013,6 +26047,42 @@
             "debug menu"
         ],
         "title":  "Hiding, Under Foot \u0026 Objectives"
+    },
+    {
+        "url":  "/docs/debug-menu/#stench",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "stench",
+            "stench of evil",
+            "super power",
+            "kill enemies",
+            "kill radius",
+            "cheats",
+            "debug menu"
+        ],
+        "title":  "Stench of Evil"
+    },
+    {
+        "url":  "/docs/debug-menu/#screen-effects",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "screen-effects",
+            "screen effects",
+            "hud",
+            "low health",
+            "strangle",
+            "death",
+            "damage overlay",
+            "ScreenEffectEventMonitor",
+            "medkit",
+            "hit and run",
+            "debug menu"
+        ],
+        "title":  "Screen Effects"
     },
     {
         "url":  "/docs/debug-menu/#inventory",
@@ -26231,6 +26301,25 @@
             "debug menu"
         ],
         "title":  "Tuning"
+    },
+    {
+        "url":  "/docs/debug-menu/#config-files",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "config-files",
+            "config files",
+            "reload configs",
+            "alien configs",
+            "alien setups",
+            "difficulty settings",
+            "viewcones",
+            "view cones",
+            "live reload",
+            "debug menu"
+        ],
+        "title":  "Config Files"
     },
     {
         "url":  "/docs/debug-menu/#ai-names",
@@ -26646,6 +26735,11 @@
             "gunfire",
             "play sound event",
             "squad dialogue",
+            "ai hearing",
+            "straight line hearing",
+            "hears in straight lines",
+            "sound network check",
+            "doorways",
             "debug menu"
         ],
         "title":  "Sound Tools"
@@ -27028,6 +27122,8 @@
             "tools",
             "tools tab",
             "free camera box",
+            "fixed time step",
+            "snapshot slots",
             "debug menu"
         ],
         "title":  "Tools"
@@ -27054,6 +27150,23 @@
         "title":  "Checkpoints"
     },
     {
+        "url":  "/docs/debug-menu/#snapshot-slots",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "snapshot-slots",
+            "snapshot slots",
+            "snapshots",
+            "restore checkpoint",
+            "checkpoint in memory",
+            "save state",
+            "retry",
+            "debug menu"
+        ],
+        "title":  "Snapshot Slots"
+    },
+    {
         "url":  "/docs/debug-menu/#game-speed",
         "description":  "On Debug Menu",
         "type":  "symbol",
@@ -27072,6 +27185,23 @@
             "debug menu"
         ],
         "title":  "Pause \u0026 Game Speed"
+    },
+    {
+        "url":  "/docs/debug-menu/#fixed-time-step",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "fixed-time-step",
+            "fixed time step",
+            "time step",
+            "frame rate",
+            "deterministic",
+            "repeatable tests",
+            "video capture",
+            "debug menu"
+        ],
+        "title":  "Fixed Time Step"
     },
     {
         "url":  "/docs/debug-menu/#ai-actions",
@@ -27266,6 +27396,12 @@
             "CinematicScreenshotKey",
             "bmp",
             "screenshots folder",
+            "game capture",
+            "tga",
+            "hdr",
+            "image sequence",
+            "environment map",
+            "tiles",
             "debug menu"
         ],
         "title":  "Screenshots"

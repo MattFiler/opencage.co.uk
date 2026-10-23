@@ -106,6 +106,7 @@
 				<p>To edit character viewcones in OpenCAGE navigate to View > Configuration Editors > Core Game > Viewcones.</p>
 				<p>From here you will be presented with a variety of options which apply to the selected viewcone type in the dropdown at the top of the window.</p>
 				<p>There is no Save button: changes are saved as you make them.</p>
+				<p>The game reads the viewcones when it starts, not when it loads a level, so a change reaches it the next time it starts. With <a href="/docs/live-link/#live-settings">Live Link</a> connected, and the game started with the <a href="/docs/debug-menu/">Debug Menu</a> on, each change also has the running game read them again, and characters see with the new cones straight away, as the line at the bottom of the editor says. The Debug Menu's <a href="/docs/debug-menu/#overlays">view cones overlay</a> draws them.</p>
 				<p>Viewcones are used to define the areas that enemies can spot targets within. If a target enters an enemy's viewcone, various modifiers are used to calculate a visibility score.</p>
 				<p>Each viewcone type has a number of individual cone definitions within it (usually 'Focused', 'Close', 'Normal', and 'Peripheral') which are all queried to determine if a target is spotted or not. Typically larger cones will have lower visibility modifiers to give the illusion of further targets being harder to see.</p>
 				<p>To apply a viewcone type to a character, check out the <a href="http://opencage.co.uk/docs/configs/senses">sense editor</a>.</p>
