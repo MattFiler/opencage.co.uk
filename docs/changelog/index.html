@@ -197,7 +197,9 @@
 				<li>Changes made in the Radiosity, Hair and Skin Shading, and Global Constants editors show in the running game as you make them</li>
 				<li>Changes made in the Alien Configs, Difficulty Settings and Viewcones editors reach the running game too, which reads those files again after each edit instead of only when it starts - needs the Debug Menu</li>
 				<li>Added a script debugger: set breakpoints on flowgraph nodes (right-click &gt; Set Breakpoint, or F9) or on a single method pin (Break on ...) to stop the game's scripts when an entity's methods are about to be called, see the calls that led there, then Continue (F8) or Step (F10) - needs the Debug Menu</li>
-				<li>The composite toolbar's 'Script Debugger' menu, each item with its own icon, has Go to Breakpoint, Remove All Breakpoints, Show Live States Above Nodes (each entity's state and data pin values in the running game, over its node), Select Entity Under Game Crosshair, Pause the Game's Scripts and Jump to Node When a Breakpoint Hits</li>
+				<li>The composite toolbar's 'Script Debugger' menu, each item with its own icon, has Go to Breakpoint, Remove All Breakpoints, Show Live States Above Nodes (each entity's state and data pin values in the running game, over its node), Select Entity Under Game Crosshair, Pause the Game's Scripts, Jump to Node When a Breakpoint Hits and the Runtime Error Log</li>
+				<li>Added a Runtime Error Log (Launch Game's new 'Error log' option, under Live Link): the level's script errors and failed checks listed as the game finds them, like a game engine's console - double-click one to go to its entity, flowgraph nodes with errors show a warning sign, with Clear, Clear on Play (on by default) and Group by Entity</li>
+				<li>Options &gt; Misc &gt; Hide Live Link Label In-Game takes the 'OpenCAGE Live Link' label off the game's screen, straight away while connected</li>
 				<li>Works with the Steam, GOG and Epic Games Store versions of the game</li>
 			</ul></li>
 			<li>Added a new 'Debug Menu' launch option, an in-game debug menu (press F7 - rebindable), with its tabs in groups:<ul>
@@ -234,10 +236,10 @@
 			</ul></li>
 			<li>Reworked the Launch Game window:<ul>
 				<li>Its options are now in three groups (Debug tools, Game options and UI tweaks)</li>
-				<li>Some options have new names: 'No UI' is now 'No HUD', 'Patch Current-Gen Optimisations' is 'Current-gen script fixes', 'Render Constant Ambient' is 'Constant ambient lighting', 'Enable Hot Reloading' is 'Hot reload', 'Enable Debug Loadscreen' is 'Debug loading screen' and 'Add Quit To Menu On Death' is 'Quit to menu on death'</li>
+				<li>Some options have new names: 'No UI' is now 'No HUD', 'Patch Current-Gen Optimisations' is 'Current-gen script fixes', 'Render Constant Ambient' is 'Constant ambient lighting', 'Enable Hot Reloading' is 'Hot reload', 'Enable Debug Checkpoints' is 'Debug Checkpoints (in Pause Menu)', 'Enable Level Selection' is 'Level Select (in Main Menu)', 'Enable Debug Loadscreen' is 'Quicker Loadscreen' and 'Add Quit To Menu On Death' is 'Quit Option On Deathscreen'</li>
 				<li>Tick 'Load straight into' to launch into a level, skipping the title screen - otherwise the game starts at the front end as normal</li>
 				<li>Added a 'Don't write saves' option (with the Debug Menu) which keeps the game from writing to your saved games and settings while you test - it can also be turned on and off in-game from the Debug Menu</li>
-				<li>Added a 'Debug entities' option which draws the output of DebugText, DebugTextStacking, DebugEnvironmentMarker and DebugPositionMarker entities over the game</li>
+				<li>Added a 'Debug entities' option which makes the debug script entities work in game: DebugText, DebugTextStacking, DebugEnvironmentMarker and DebugPositionMarker draw over the game, DebugGraph plots its inputs, DebugObjectMarker names its object, DebugCaptureScreenShot saves screenshots and DebugMenuToggle sets Debug Menu switches (all but DebugMenuToggle work without the Debug Menu)</li>
 				<li>Added a 'Possess characters' option (press F6 - rebindable - to select a character to control)</li>
 				<li>Added an 'Unlock mouse' option which keeps the game from taking your cursor, so you can work in OpenCAGE beside it (press F4 - rebindable - to give the game the mouse and free it again)</li>
 				<li>Added a 'Cap FPS' option</li>
@@ -245,7 +247,7 @@
 				<li>The UI tweaks no longer overwrite the game's original UI files</li>
 				<li>Starting the game with the runtime utils no longer overwrites another mod's d3d11.dll (ReShade, Special K, DXVK...): it's moved aside while they're in, and put back when you next start the game without them</li>
 				<li>The game's UI memory overlay is now a checkbox in the Debug Menu (Performance &gt; Memory) that works live, instead of a launch option that patched the game</li>
-				<li>Removed Skip Frontend, Memory Logging, and the debug checkpoints and level selection menus (the Debug Menu's Game tabs do those)</li>
+				<li>Removed Skip Frontend and Memory Logging</li>
 			</ul></li>
 			<li>Added a new 'Save and Build Level' (instancing) option in the File menu:<ul>
 				<li>Generates instance-specific materials and properties for static geometry based on materials, remappings, and aliases</li>

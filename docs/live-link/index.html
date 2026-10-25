@@ -115,6 +115,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#select-from-game">Select Entity Under Game Crosshair</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#debugger-in-game">In the Game</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#debugger-limits">Limits</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#error-log"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Runtime Error Log</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#camera"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Live Link Camera</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#capture-cubemaps"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Capturing Environment Maps</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#live-settings"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Live Settings</a></li>
@@ -264,7 +265,7 @@
 			<li>Press <b>Start Alien: Isolation</b>.</li>
 		</ol>
 		<p>Starting the game this way installs OpenCAGE's runtime utils in the game folder with Live Link switched on, and switches the <a href="#live-link-button">Live Link button</a> on, so OpenCAGE connects by itself a few seconds after the game starts. The status bar at the bottom of the OpenCAGE window says <b>Live Link: connected to the game</b> when it has.</p>
-		<p><img src="img/w2-launch-game.jpg" alt="The Launch Game window with Load straight into ticked and PRODUCTION/BSP_TORRENS picked in the level list beside it at the top; in the Debug tools group, Debug Menu ticked at the top of the left-hand column with F7 in the key dropdown beside it and Don't write saves ticked under it, and Live Link ticked in the right-hand column under Debug entities; below them the Game options and UI tweaks groups, and the Start Alien: Isolation button." style="max-width:100%;width:462px"></p>
+		<p><img src="img/w2-launch-game.jpg" alt="The Launch Game window with Load straight into ticked and PRODUCTION/TECH_HUB picked in the level list beside it at the top; in the Debug tools group, Debug Menu ticked at the top of the left-hand column with F7 in the key dropdown beside it and Don't write saves ticked under it, and Live Link ticked in the right-hand column under Debug entities, with Error log unticked beneath it; below them the Game options and UI tweaks groups, and the Start Alien: Isolation button." style="max-width:100%;width:462px"></p>
 		<p class="text-muted small"><i>Live Link is in the right-hand column of the Debug tools group, under Debug entities. Debug Menu, for the script debugger, is at the top of the left-hand column, with Don't write saves under it.</i></p>
     </section>
 
@@ -285,7 +286,7 @@
 		<p>While this install's game is running and serving Live Link (started with Live Link ticked, as under <a href="#requirements">Requirements</a>), a <b>Live Link</b> button appears on the main toolbar, to the right of <b>Launch Game</b>, and it stays there while OpenCAGE is connected. It shows pressed while Live Link is on, whether it's connected or still waiting for the game, and clicking it switches it off (disconnecting from the game) or back on. Hover over it to see where it stands: connected, or waiting for the game.</p>
 		<p><img src="img/toolbar.jpg" alt="OpenCAGE's main toolbar with the Live Link button, pressed, to the right of Launch Game." style="max-width:100%;width:511px"></p>
 		<p>The button remembers its setting. Left on, OpenCAGE connects whenever you start the game with Live Link, and reconnects by itself if the game restarts. There's no button for a game started without Live Link, which has nothing to connect to, or for a game from another of your <a href="/docs/multiple-game-installs/">game installs</a>: close it and start this install's game from Launch Game with Live Link ticked.</p>
-		<p>In the game, <b>OpenCAGE Live Link</b> shows in green in the top-right corner while it's connected, with a line under it for a few seconds about the last thing done: an edit applied, a method called, a <a href="#debug-menu">Debug Menu command</a> run, or something waiting. You can see it in the <a href="#intro">screenshot above</a>.</p>
+		<p>In the game, <b>OpenCAGE Live Link</b> shows in green in the top-right corner while it's connected, with a line under it for a few seconds about the last thing done: an edit applied, a method called, a <a href="#debug-menu">Debug Menu command</a> run, or something waiting. You can see it in the <a href="#intro">screenshot above</a>. To keep the label off the screen, tick <a href="/docs/options/#misc">Options &gt; Misc &gt; Hide Live Link Label In-Game</a>: a connected game hides it straight away, and the line about the last thing done then shows in its place.</p>
 	</section>
 </article>
 
@@ -515,6 +516,7 @@
 			<li><b>Select Entity Under Game Crosshair</b>: see <a href="#select-from-game">Select Entity Under Game Crosshair</a>.</li>
 			<li><b>Pause the Game's Scripts</b>: see <a href="#stepping">Continue, Step &amp; Pause</a>. It's greyed out while the scripts are held.</li>
 			<li><b>Jump to Node When a Breakpoint Hits</b>, on to start with: a breakpoint hit brings its node to the front. Turn it off to leave the composite panel where it is when a breakpoint is hit; the toolbar label still says where (click it to go there). It's on again the next time OpenCAGE starts.</li>
+			<li><b>Runtime Error Log</b>: opens the <a href="#error-log">Runtime Error Log</a>.</li>
 		</ul>
 		<p><img src="img/w2-debugger-menu.jpg" alt="The Script Debugger (1) menu open on the composite toolbar, an icon beside each item: Go to Breakpoint, opened to show one ticked entry naming CCTV_Camera_Passive and its VectorDistance, ending hit 4x; then Remove All Breakpoints, a divider, Show Live States Above Nodes, Select Entity Under Game Crosshair, Pause the Game's Scripts (greyed out while the scripts are held), another divider, and Jump to Node When a Breakpoint Hits, on, with a blue frame round its icon. Beside the menu, the Continue and Step buttons and the orange Held label." style="max-width:100%;width:811px"></p>
 	</section>
@@ -551,6 +553,33 @@
 			<li><b>A level loading lets go.</b> If the game loads a level, or loads the same one again (restarting from a checkpoint), while the scripts are held, they're let go, so the level can start.</li>
 			<li><b>Game releases.</b> If the game's release can't take breakpoints, the Scripts &gt; Debugger tab says <b>Script breakpoints are not available on this game release</b>.</li>
 		</ul>
+	</section>
+</article>
+
+<article class="docs-article" id="error-log">
+    <header class="docs-header">
+<h1 class="docs-heading">Runtime Error Log</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The game checks that the level's script entities are set up properly as it runs them - a pickup spawner that names no item, a door with no animation, an animation set missing the animation asked for, a zone link the wrong way round - but the retail game never says what it finds. The <b>Runtime Error Log</b> shows it, like a game engine's console: each failed check (with an amber sign) and error (with a red one) as it happens, with the entity it's about, the composite that entity is in, and the time on the level's script clock.</p>
+		<p>Tick <b>Error log</b> (under Live Link) in <a href="/docs/launch-game/#error-log">Launch Game</a> and it opens as the game starts. You can open it yourself from the <a href="#debugger-menu">Script Debugger menu</a> too, while the game is connected, though the game only notes its errors when started with Error log or the <a href="#debug-menu">Debug Menu</a> ticked.</p>
+		<p><img src="img/error-log.jpg" alt="The Runtime Error Log window: Clear on the left of its toolbar, Clear on Play (pressed) and Group by Entity on the right. Three rows, each a red Error sign with SPEECH: No valid entity connected to speech entity attempting to play, cut short, in the Message column, then the entity - Tannoy_Seegson_Advert, Tannoy_Corporate_Ident and Tannoy_Info_Machine, each with its id - the composite TECH_Hub, and script times of 29.61, 31.16 and 32.71 seconds. The first row is selected, and the bottom of the window shows it in full: Error: SPEECH: No valid entity connected to speech entity attempting to play Play_Random_TANNOY_SEEGSON_Adverts. I need a valid character or sound object - see Jack if you don't understand. Entity: Tannoy_Seegson_Advert [3B-A8-82-1B] in TECH_Hub. Double-click to go to it (in the level's root). At 29.61 s of the level's script time." style="max-width:100%;width:962px"></p>
+		<p class="text-muted small"><i>Three tannoy Speech entities added to TECH_HUB over Live Link with nothing to speak through, then started: the game's check of each fails as it plays. The first error is selected, so the bottom of the window shows it in full.</i></p>
+		<ul>
+			<li><b>Double-click</b> an error (or select it and press Enter) to go to its entity: the composite it's in opens, stepped into from the level's root the way the game reached it, with the entity selected. The bottom of the window shows the selected error in full.</li>
+			<li><b>Warning signs.</b> While the log is open, every flowgraph node whose entity has an error in it shows an amber warning sign on its top-right corner, as a breakpoint shows a red dot on the top-left.</li>
+			<li><b>Clear</b>, on the left of the toolbar, empties the log, and the warning signs go with it. Closing the window does the same.</li>
+			<li>The two settings are on the right of the toolbar, and OpenCAGE remembers both:<ul>
+				<li><b>Clear on Play</b>, on unless you turn it off, empties the log each time the game is started from OpenCAGE, so it only ever shows the run in front of you. Turned off, errors from earlier runs stay until you clear them.</li>
+				<li><b>Group by Entity</b> lists the errors under the entities they're about, each with how many it has, instead of one after another.</li>
+			</ul></li>
+		</ul>
+		<p><img src="img/error-log-signs.jpg" alt="Three Speech nodes in a row on a flowgraph page - Tannoy_Seegson_Advert, Tannoy_Corporate_Ident and Tannoy_Info_Machine - each showing its character and sound_event pins along the top, with the sound event's name in orange above sound_event, and its start pin on the left. Each node has an amber warning sign on its top-right corner. Beside the start pins, Show Activity's counts read [2], [1] and [1]." style="max-width:100%;width:1100px"></p>
+		<p class="text-muted small"><i>The same three entities on their flowgraph page, each with the warning sign while the log has its error. The counts beside <b>start</b> are <a href="#activity-counts">Show Activity</a>'s.</i></p>
+		<p><img src="img/error-log-grouped.jpg" alt="The Runtime Error Log with Group by Entity pressed: the same three errors, each under a heading naming its entity, id and composite, such as Tannoy_Seegson_Advert [3B-A8-82-1B] in TECH_Hub, with (1) after it for the one error it has." style="max-width:100%;width:962px"></p>
+		<p class="text-muted small"><i>Grouped by entity, each heading says how many errors that entity has.</i></p>
+		<p>The game keeps its latest 2048 errors, across levels, until OpenCAGE asks for them, twice a second; if more come at once than that, the bottom of the window says how many were missed. An error from a level other than the one open in OpenCAGE is listed, but going to it says it happened elsewhere. The Debug Menu's <a href="/docs/debug-menu/#scripts-errors">Scripts &gt; Errors</a> tab shows the same errors in the game.</p>
 	</section>
 </article>
 
