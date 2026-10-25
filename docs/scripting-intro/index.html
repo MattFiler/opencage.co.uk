@@ -102,6 +102,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#node-colours">Node Colours</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#copy-paste">Copying &amp; Pasting</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#arrange">Tidying a Flowgraph</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#reroute">Rerouting Links</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#refactoring">De-instancing &amp; Creating Composites</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#creating-script">Creating a Script</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#node-types">Node Types</a></li>
@@ -347,6 +348,19 @@
 		<p>Arrange only changes how the page is drawn. The script's links stay exactly the same, and each is still drawn once. The whole arrangement is one step for <b>Edit → Undo</b>, which also removes any nodes it added. Arranging a page that's already arranged changes nothing. Afterwards the view zooms out to show the whole page or, if it's too big to fit, its top-left corner.</p>
 		<p><img src="flowgraph-arrange.jpg" alt="Two views of the same 42-node flowgraph page. On the left the nodes are packed in a grid with links running in every direction across them; on the right they are laid out in columns, with the links running left to right." style="max-width:100%;width:1382px"></p>
 		<p class="text-muted small"><i>Left: a page laid out in a grid by a script, with links running all over it. Right: the same page after <b>Arrange Page</b>.</i></p>
+
+		<h3 class="section-heading" style="font-size: 1.1rem; margin-top: 1.5rem;" id="reroute">Rerouting Links</h3>
+		<p>To lead a link's line round the nodes in its way, double-click the line: a <b>reroute point</b> appears where you clicked, a dot the line is drawn through, and you can drag it anywhere. Put on as many as you need; a new one goes into the stretch of line you double-clicked, so the line passes through them in order. They work like Unreal's reroute nodes, but they only change how the line is drawn: the link still joins the same two pins, so selecting it, deleting it and <a href="/docs/live-link/#activity">Show Activity</a>'s glow work on it as on any other.</p>
+		<ul>
+			<li>Right-click a link's line for <b>Add Reroute Point</b>, which puts one where you right-clicked, and <b>Remove All Reroute Points</b>, which draws the line straight from pin to pin again.</li>
+			<li>To take a single reroute point off, hover it (or click it to select it) and press <b>Delete</b>, or right-click it and choose <b>Remove Reroute Point</b>. Only that point goes; the link stays.</li>
+			<li>Deleting the link, or a node at either end of it, takes its reroute points with it, and undoing that puts them back.</li>
+			<li>Dragging both of a link's nodes together carries its reroute points along. <a href="#arrange">Arrange</a> draws the links between the nodes it lays out straight again.</li>
+			<li>Reroute points are drawn over the nodes, so one dropped on a node can still be seen and dragged off it.</li>
+		</ul>
+		<p>Each change is a step for <b>Edit → Undo</b>, and the points are saved with the page.</p>
+		<p><img src="flowgraph-reroute.jpg" alt="Two views of the same part of a flowgraph page. On the left a grey link curves straight from LogicDelay_6's triggered pin up to activate_behavior on the Melee_Damage_camerashake node, crossing a blue link. On the right the same link runs up from the triggered pin to a small grey dot, straight across to a second dot, ringed in green as the mouse is over it, and up into activate_behavior." style="max-width:100%;width:1584px"></p>
+		<p class="text-muted small"><i>Left: a link drawn straight from pin to pin. Right: the same link led along two reroute points, the second under the mouse.</i></p>
 	</section>
 
     <section class="docs-section" id="refactoring">
