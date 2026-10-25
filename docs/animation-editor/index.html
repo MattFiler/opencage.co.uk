@@ -9,14 +9,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to use OpenCAGE's Animation Editor to browse, preview, export, import, replace and delete Alien: Isolation animation clips, and edit their events.">
+    <meta name="description" content="How to use OpenCAGE's Animation Editor to browse, preview, export, import, replace and delete Alien: Isolation animation clips, and edit their metadata.">
     <meta name="author" content="Matt Filer">
     <link rel="shortcut icon" href="/favicon.ico">
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MattFiler" />
 	<meta name="twitter:title" content="OpenCAGE: Animation Editor" />
-	<meta name="twitter:description" content="How to use OpenCAGE's Animation Editor to browse, preview, export, import, replace and delete Alien: Isolation animation clips, and edit their events." />
+	<meta name="twitter:description" content="How to use OpenCAGE's Animation Editor to browse, preview, export, import, replace and delete Alien: Isolation animation clips, and edit their metadata." />
     <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
     <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
 
@@ -108,7 +108,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#import-options">Import Options</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#import-retarget">Retargeting</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#replace"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Replacing an Animation</a></li>
-<li class="nav-item section-title"><a class="nav-link scrollto" href="#events"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Events &amp; Settings</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#metadata"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing Metadata</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#delete"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Deleting an Animation</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#picker"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using it as a Picker</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
@@ -186,7 +186,7 @@
 		</ul>
 		<p>Hover a row for its full path, plus any non-standard metadata it carries — how far a locomotion clip travels, where an aim clip points, which sound an audio event fires and from which bone.</p>
 		<p>A clip that could not be read is greyed out and says so in <b>Notes</b>. That is a defect in the file rather than in the clip you asked for, and the rest of the list still works.</p>
-		<p>The line above the buttons summarises the selection — frame count and frame rate, bone count, float tracks if it has any, and the rig it was authored on with that rig's bone count. Below it are the buttons: <b>Import…</b>, <b>Replace…</b>, <b>Events…</b>, <b>Delete</b>, <b>Preview…</b> and <b>Export All…</b>. Right-click a clip for the same actions, or press <b>Delete</b> to delete it. The status bar along the very bottom counts the sets and clips in the PAK, and reports when it is being written.</p>
+		<p>The line above the buttons summarises the selection — frame count and frame rate, bone count, float tracks if it has any, and the rig it was authored on with that rig's bone count. Below it are the buttons: on the left, what to do with the selected clip — <b>Preview…</b>, <b>Metadata…</b>, <b>Replace…</b> and <b>Delete</b> — and on the right, <b>Import…</b> and <b>Export All…</b>. Right-click a clip for the same actions, or press <b>Delete</b> to delete it. The status bar along the very bottom counts the sets and clips in the PAK, and reports when it is being written.</p>
 	</section>
 
 	<section class="docs-section" id="browsing-search">
@@ -218,6 +218,7 @@
 		</ul>
 		<p>The preview closes with the Animation Editor.</p>
 		<p>Underneath the viewport is the clip's timeline of <b>markers</b> — the moments the clip fires something, one lane per event name. Click a marker and the line beneath the timeline says when it fires and what it does: a footstep sound, an effect, a gameplay callback — or, as with the marker selected in the screenshot, that it's a named moment with nothing attached.</p>
+		<p><b>Metadata…</b> beside it opens the clip's <a href="#metadata">metadata</a> to edit; save there and the timeline redraws its markers in place.</p>
 		<p><b>Export…</b> in this window writes out the clip and the mesh it's playing on together, with a prop assembled the way the preview draws it. As with a <a href="/docs/model-editor/#export">model export</a>, a <code>.cs2meta.json</code> sidecar is written beside the file. Keep it there, renamed to match if you save the model under a new name, so that importing the model again brings every part back as it was.</p>
     </section>
 </article>
@@ -313,12 +314,12 @@
     </section>
 </article>
 
-<article class="docs-article" id="events">
+<article class="docs-article" id="metadata">
     <header class="docs-header">
-        <h1 class="docs-heading">Events &amp; Settings</h1>
+        <h1 class="docs-heading">Editing Metadata</h1>
     </header>
     <section class="docs-section" style="padding-top:0;">
-		<p>Select a clip and hit <b>Events…</b> to see its metadata — the moments it fires things at, and the values hung off it — as the game stores them. The window works on a copy: nothing changes until you press <b>Save</b>, and <code>ANIMATION.PAK</code> is written straight away then. <b>Cancel</b> lets your changes go; closing the window with changes asks first.</p>
+		<p>Select a clip and hit <b>Metadata…</b> (or <b>Metadata…</b> in the Animation Preview window) to see its metadata — its settings, and the tracks of moments it fires them at — as the game stores them, in a window titled <b>Metadata of '…'</b>. The window works on a copy: nothing changes until you press <b>Save</b>, and <code>ANIMATION.PAK</code> is written straight away then. <b>Cancel</b> lets your changes go; closing the window with changes asks first.</p>
 		<p>The <b>Block</b> dropdown picks which part of the metadata you're looking at. <b>The animation itself</b> holds what goes for the clip however it plays (its label, length and so on); <b>Use 0</b>, <b>Use 1</b> … hold the tags of each use of the clip — footsteps and sounds normally live in Use 0.</p>
 		<ul>
 			<li><b>Tracks</b> are the timeline's lanes — <code>AUDIO_Foley</code>, <code>LeftStrike</code>, <code>start_rag_doll</code> — each with its number of entries. Type a name and <b>Add</b> a track, <b>Rename</b> the selected one, or <b>Remove</b> it.</li>
@@ -353,9 +354,9 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>Animation parameters used to be filled from a plain list of enum strings. They now open this window instead, so you can see what a clip is called, how long it runs and what it fires before committing to it.</p>
-		<p>The window opens titled <b>Choose an animation</b> (or <b>Choose an animation set</b>), on whatever the entity is already set to — right down to selecting the animation itself and scrolling to it — and an extra button appears at the bottom between <b>Import…</b> and <b>Preview…</b>: <b>Use This Animation</b> (or <b>Use This Set</b> for an animation set parameter), which hands the choice back to the parameter, as shown below. When you're picking an animation, double-clicking a clip picks it; when you're picking a set, double-clicking a clip opens its preview as usual. The <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> and <a href="/docs/blend-set-editor/">Blend Set Editor</a> open it the same way to pick a clip, titled after the node or blend set.</p>
-		<p><img src="img/picker.jpg" alt="The animation browser opened as a picker, titled Choose an animation, with the current clip pre-selected and a Use This Animation button added between Import and Preview." width="100%"></p>
-		<p class="text-muted small"><i>The same window opened from an animation parameter: the clip the entity already uses is selected, and <b>Use This Animation</b> sits between <b>Import…</b> and <b>Preview…</b>.</i></p>
+		<p>The window opens titled <b>Choose an animation</b> (or <b>Choose an animation set</b>), on whatever the entity is already set to — right down to selecting the animation itself and scrolling to it — and an extra button appears at the bottom right, after <b>Import…</b> and <b>Export All…</b>: <b>Use This Animation</b> (or <b>Use This Set</b> for an animation set parameter), which hands the choice back to the parameter, as shown below. When you're picking an animation, double-clicking a clip picks it; when you're picking a set, double-clicking a clip opens its preview as usual. The <a href="/docs/animation-tree-editor/">Animation Tree Editor</a> and <a href="/docs/blend-set-editor/">Blend Set Editor</a> open it the same way to pick a clip, titled after the node or blend set.</p>
+		<p><img src="img/picker.jpg" alt="The animation browser opened as a picker, titled Choose an animation, with the current clip pre-selected and a Use This Animation button added at the bottom right." width="100%"></p>
+		<p class="text-muted small"><i>The same window opened from an animation parameter: the clip the entity already uses is selected, and <b>Use This Animation</b> sits at the bottom right.</i></p>
 		<p>An animation parameter stores the name the set plays the clip by, and an animation set parameter stores the set's own name. Neither stores a path.</p>
 		<p>An animation only plays from a set that holds it, so the two are filled in together. Picking an animation also sets the entity's <b>AnimationSet</b> to the set it came from. In the set picker, selecting a clip turns the button into <b>Use Set + Animation</b>, which fills in <b>Animation</b> as well. Either way, both values change in one undo step. An entity without the other parameter just takes the one you picked.</p>
     </section>
