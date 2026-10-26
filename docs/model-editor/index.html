@@ -223,7 +223,7 @@
 			<li><b>Edit Material</b> (submesh selected) — assign a material via the <a href="/docs/material-editor/">Material Editor</a></li>
 			<li><b>Add New Component</b> (model selected) / <b>Add New LOD</b> (component selected) / <b>Add New Submesh</b> (part selected) — grow the hierarchy from an imported mesh (first mesh in the file); a new LOD is named after the file</li>
 			<li><b>Delete Selected</b> — remove a component, part or submesh (anything but the model itself)</li>
-			<li><b>Resize by</b> (submesh selected) — type a factor (<code>2</code> doubles it, <code>0.5</code> halves it) and click <b>Apply</b> to rewrite the submesh's geometry at that size. The box goes back to <code>1</code> afterwards because the resize is baked into the vertices, so apply it once rather than re-entering the same number</li>
+			<li><b>Resize by</b> — type a factor (<code>2</code> doubles it, <code>0.5</code> halves it) and click <b>Apply</b> to rewrite the geometry of whatever is selected at that size: one mesh, a part, a component, or the whole model when the model at the top of the tree is selected (anything bigger than one mesh asks first, as the resize can't be undone). The box goes back to <code>1</code> afterwards because the resize is baked into the vertices, so apply it once rather than re-entering the same number. Collision made from the model isn't resized with it, and entities placed around the model stay where they are</li>
 		</ul>
 		<p>For multi-mesh sources, prefer <b>Import New</b> with the mesh checkboxes; the per-submesh add/replace path only uses the first mesh in the file.</p>
 	</section>
