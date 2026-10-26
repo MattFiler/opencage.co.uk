@@ -22487,6 +22487,46 @@
         "title":  "Every Copy is Replaced"
     },
     {
+        "url":  "/docs/sound-events/#replace-level",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "replace-level",
+            "per level",
+            "level only",
+            "sound events"
+        ],
+        "title":  "Replacing for One Level"
+    },
+    {
+        "url":  "/docs/sound-events/#level-sound-override",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "level-sound-override",
+            "level_sound_override.pck",
+            "pck",
+            "package",
+            "sound events"
+        ],
+        "title":  "Level Sound Override"
+    },
+    {
+        "url":  "/docs/sound-events/#level-sound-override-limits",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "level-sound-override-limits",
+            "permanent soundbanks",
+            "weapons",
+            "sound events"
+        ],
+        "title":  "What a Level Can't Replace"
+    },
+    {
         "url":  "/docs/sound-events/#metadata",
         "description":  "On Sound Events",
         "type":  "symbol",

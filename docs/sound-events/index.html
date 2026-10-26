@@ -103,6 +103,9 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#replace"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Replacing Audio</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#replace-prep">Preparing a WAV</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#replace-copies">Every Copy is Replaced</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#replace-level">Replacing for One Level</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#level-sound-override"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Level Sound Override</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#level-sound-override-limits">What a Level Can't Replace</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#metadata"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Soundbank Metadata</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
@@ -192,7 +195,7 @@
 			<li><b>Auto-play</b> — start playing as soon as you select an event, so you can arrow through a list and hear each one</li>
 			<li>A <b>variations</b> dropdown listing every take behind the event — <i>Variation 1 of 8 (Random)</i> and so on. It only appears when there's more than one.</li>
 			<li><b>Shuffle</b> — jump to a different variation at random, which is roughly what the game does (also only shown when there's more than one)</li>
-			<li><b>Replace</b> and <b>Export</b> — see below. Replace is hidden for an event that resolved to no audio.</li>
+			<li><b>Replace</b> and <b>Export</b> — see below. Replace (for every level, or for the open level only) is hidden for an event that resolved to no audio.</li>
 		</ul>
 		<p>Audio is decoded on demand rather than up front, so a long sound may take a moment before it starts.</p>
     </section>
@@ -216,7 +219,7 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p><b>Replace</b> swaps the audio behind the selected variation for a <code>.wav</code> of your own. OpenCAGE encodes it into exactly the form the game's decoder expects and writes it into the soundbanks that hold it.</p>
+		<p><b>Replace</b> swaps the audio behind the selected variation for a <code>.wav</code> of your own. OpenCAGE encodes it into exactly the form the game's decoder expects and writes it into the soundbanks that hold it — for every level, or for the open level alone (see <a href="#replace-level">Replacing for One Level</a>).</p>
 		<p>Everything is checked before anything is written. If the audio can't be imported, you're told why and nothing changes — you won't be left with a half-edited soundbank. If it can, you get a summary first:</p>
 		<ul>
 			<li>Mono or stereo, duration, and sample rate</li>
@@ -248,8 +251,47 @@
 		<p>If some copies write and others fail, OpenCAGE says so explicitly rather than reporting success, since a partial replacement leaves the sound changed in some places and not others.</p>
 
 		<div class="docs-caveat">
-			<p><b>Sound edits are global.</b> Soundbanks aren't per-level data — replacing a sound changes it everywhere in the game, for every level, and there's no per-level override. Replacing isn't an undo step, so <b>Edit → Undo</b> won't bring the old sound back. OpenCAGE keeps a copy of each soundbank's original version the first time it changes it, for the <a href="/docs/installing-mods/">Mod Manager</a>, but take a backup before doing this at scale.</p>
+			<p><b>Replacing for every level is global.</b> The shared soundbanks aren't per-level data — <b>For Every Level</b> changes a sound everywhere in the game. To change it on one level only, use <b>For This Level Only</b> (below). Replacing isn't an undo step, so <b>Edit → Undo</b> won't bring the old sound back. OpenCAGE keeps a copy of each soundbank's original version the first time it changes it, for the <a href="/docs/installing-mods/">Mod Manager</a>, but take a backup before doing this at scale.</p>
 		</div>
+	</section>
+
+	<section class="docs-section" id="replace-level">
+		<h2 class="section-heading">Replacing for One Level</h2>
+		<p><b>Replace</b> opens a menu asking where the new audio goes:</p>
+		<ul>
+			<li><b>For This Level Only…</b> — the audio goes into the open level's own sound package, <code>WORLD\LEVEL_SOUND_OVERRIDE.PCK</code> (made if the level has none yet). The game reads that package ahead of the shared sound files when it loads the level, so this level plays your audio and every other level keeps the original — see <a href="#level-sound-override">Level Sound Override</a>. Greyed out, naming the soundbank, for a sound no level can replace (see <a href="#level-sound-override-limits">What a Level Can't Replace</a>).</li>
+			<li><b>For Every Level…</b> — the audio is written into the game's shared sound files, as described above.</li>
+			<li><b>Use the Base Game's Audio on This Level</b> — takes the selected variation back out of the level's package, so the level plays what the game ships for it. Only offered when the level's package holds that sound.</li>
+		</ul>
+		<p>The summary before a level-only replacement says what will happen to the level's package: whether one is made, which soundbanks are copied into it, and how big it comes to. A streamed sound goes in on its own; a sound held inside a soundbank needs that whole bank in the package, so the bank is copied in once (a gun's own bank, such as <code>PISTOL.BNK</code>, is about 2 MB) and later replacements change the copy where it is. The shared files in <code>DATA\SOUND</code> are never touched.</p>
+		<p>A level that already has a package — the challenge maps and Salvage Mode levels ship one — is edited in place: a sound inside one of its own soundbanks is changed there, and everything else in it is left exactly as it was.</p>
+	</section>
+</article>
+
+<article class="docs-article" id="level-sound-override">
+    <header class="docs-header">
+        <h1 class="docs-heading">Level Sound Override</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Any level can carry a sound package of its own: <code>WORLD\LEVEL_SOUND_OVERRIDE.PCK</code> in the level's folder. When the game loads the level it mounts that package ahead of the shared sound files, so a soundbank or a streamed sound in it with the same id as one in <code>DATA\SOUND</code> is read from the package instead — on that level alone. The challenge maps carry changed copies of shared soundbanks, soundbanks of their own and replacement streams this way.</p>
+		<p>It's how a modded map gets sounds of its own without changing the game's: replace a gun's firing sound for your level and every other level keeps the original.</p>
+		<p>The <b>Level Sound Override…</b> button at the bottom left of the Sound Editor lists what the open level's package holds — each soundbank and stream, its language, its size, and what it stands in for on this level:</p>
+		<ul>
+			<li><b>Add Files…</b> — puts a soundbank (<code>.bnk</code>, built with the game's version of Wwise) or a stream (<code>.wem</code> named for its id, such as <code>123456789.wem</code>) into the package, in place of anything there with the same id.</li>
+			<li><b>Export…</b> — saves the selected soundbank or stream out of the package.</li>
+			<li><b>Remove</b> (or <b>Delete</b>) — takes the selected files out of the package, so on this level the game reads the shared file of the same id again. A package with nothing left in it is deleted.</li>
+		</ul>
+		<p>Sounds get into the package through <b>Replace → For This Level Only…</b>; this window is for seeing what's there and for whole files. Every change is written straight away, so there's nothing to save — but none of them are undo steps, and the level's package is the only copy of anything changed in it.</p>
+		<p>The game holds the package open while it's running the level, so close the game before changing it.</p>
+	</section>
+
+	<section class="docs-section" id="level-sound-override-limits">
+		<h2 class="section-heading">What a Level Can't Replace</h2>
+		<ul>
+			<li><b>Sounds in a permanent soundbank.</b> The soundbanks listed in <a href="/docs/configs/perma-soundbanks/">Permanent Soundbanks</a> — <code>Weapons</code>, <code>Explosions</code>, the foley and footstep banks and others — are loaded once as the game starts and stay loaded, so they're in memory before any level's package is read. A level's copy of one is never used, and where the same audio is in a level's own soundbank as well, the game still plays the permanent bank's copy. A gun's firing sound is usually several takes, some in the gun's own soundbank (<code>PISTOL.BNK</code>, <code>SHOTGUN.BNK</code>…) and some in <code>WEAPONS.BNK</code>: the first can be replaced for one level, the second only for every level. The variations dropdown lets you step through the takes, and <b>For This Level Only</b> says which bank holds any it can't change.</li>
+			<li><b>Dialogue.</b> Voiced lines are looked up by voice language, so they can only be replaced for every level.</li>
+		</ul>
 	</section>
 </article>
 

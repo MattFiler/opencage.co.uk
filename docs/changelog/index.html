@@ -413,7 +413,11 @@
 				<li>Import and export sounds to/from events</li>
 				<li>Preview sound events</li>
 				<li>Step or shuffle through every variation behind an event, rather than hearing one arbitrary take</li>
-				<li>Replacing a sound updates every copy the game ships, so it can't come back in a level that loads a different bank</li>
+				<li>Replacing a sound for every level updates every copy the game ships, so it can't come back in a level that loads a different bank</li>
+				<li>Replace a sound for one level only: the new audio goes into the level's own sound override package (WORLD\LEVEL_SOUND_OVERRIDE.PCK), which the game reads ahead of its shared sound files - so a modded map can have its own sounds without changing them anywhere else</li>
+				<li>Edit the sound override packages the DLC levels already ship with, and put a sound back to the base game's audio on one level</li>
+				<li>Added a Level Sound Override window (from the sound editor) listing the soundbanks and streams in a level's package, to add, export or remove them</li>
+				<li>Sounds held in a permanent soundbank (such as Weapons) can only be replaced for every level, as the game loads those before any level - the sound editor says which bank holds them</li>
 				<li>Sound import/export supported on the Switch and mobile builds, encoding to whichever codec the sound it replaces used (Wwise Vorbis, Wwise ADPCM, or PCM)</li>
 			</ul></li>
 			<li>Reworked TriggerSequence editor:<ul>
@@ -530,6 +534,8 @@
 			<li>Selecting an Animation or AnimationSet will fill in the alternate too</li>
 			<li>NPC_AlienConfig entities now have selection for the config type</li>
 			<li>RewireLocation/Display_Element_On_Map/MapAnchor/Map_Floor_Change entities now have selection for the map elements</li>
+			<li>InventoryItem and PickupSpawner entities now have selection for their item, from the items in the Item and Inventory editor</li>
+			<li>SimpleWater entities' textures (normal map, alpha mask, flow map and environment map) are now picked in the Texture Editor</li>
 			<li>Simplified editor state restoring for resized splitters</li>
 			<li>Previously searched proxy searches are now remembered if appropriate</li>
 			<li>Backup manager no longer blocks the UI thread (added progress bar)</li>

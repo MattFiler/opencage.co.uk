@@ -199,10 +199,12 @@
 		<h2 class="section-heading">Editing Keyframes</h2>
 		<ul>
 			<li><b>Click</b> a keyframe to select it. The <b>Keyframe</b> panel on the right shows its <b>Value</b>, which you can type over, and a <b>Delete Keyframe</b> button.</li>
-			<li><b>Drag</b> a selected keyframe to move its time and/or value (subject to snap). The first click on a keyframe only selects it, so click it, then drag.</li>
-			<li><b>Shift+click</b> on a curve (or right-click → <b>Add Keyframe Here</b>) to insert a keyframe on that track. The add-keyframe menu only appears when you are actually hovering a curve.</li>
-			<li>With <b>Bezier curves</b> enabled, selected keyframes show tangent handles; drag one to shape the curve on that side of the key. With it off, segments are linear (tangent data is still stored).</li>
-			<li>Right-click a keyframe for <b>Delete Keyframe</b>.</li>
+			<li><b>Shift+click</b> more keyframes to add them to the selection, and Shift+click a selected one to take it back out. Event markers can be added the same way. The panel on the right shows the last one you clicked.</li>
+			<li><b>Drag a box</b> from an empty part of the graph to select every keyframe inside it; carry it down into the event lanes to take the event markers it covers too. Hold <b>Shift</b> as you start the box to add to what is already selected. A box started on an event lane picks out markers along that lane.</li>
+			<li><b>Drag</b> a selected keyframe to move its time and/or value (subject to snap). The first click on a keyframe only selects it, so click it, then drag. With several selected they all move together by the same amount (event markers in the selection move in time only), and clicking one of them without dragging selects just that one.</li>
+			<li><b>Shift+click</b> on a curve away from its keyframes (or right-click → <b>Add Keyframe Here</b>) to insert a keyframe on that track. The add-keyframe menu only appears when you are actually hovering a curve.</li>
+			<li>With <b>Bezier curves</b> enabled, a selected keyframe shows tangent handles when it is the only one selected; drag one to shape the curve on that side of the key. With it off, segments are linear (tangent data is still stored).</li>
+			<li>Press <b>Delete</b> to delete everything selected, keyframes and events alike, as one undo step. Right-clicking a keyframe offers the same as <b>Delete Keyframe</b>, or <b>Delete Selected</b> when it is one of several selected.</li>
 		</ul>
 	</section>
 
@@ -230,7 +232,7 @@
 			<li><b>Add Event Track</b> — string events (yellow lanes). These fire pins on the <code>CAGEAnimation</code> itself.</li>
 			<li><b>Add Animation Entity Track</b> — entity-link events (blue lanes). Used with play-animation style nodes and MARKER / CHARACTER / CAMERA bindings.</li>
 		</ul>
-		<p>Right-click a lane for <b>Add Event Here</b> or <b>Delete Event Track</b>. Drag the grip between the plot and the lanes to resize lane height. Shift+click a lane also adds an event at that time. To move an event, click it to select it, then drag it along its lane (subject to snap).</p>
+		<p>Right-click a lane for <b>Add Event Here</b> or <b>Delete Event Track</b>. Drag the grip between the plot and the lanes to resize lane height. Shift+click an empty part of a lane also adds an event at that time. To move an event, click it to select it, then drag it along its lane (subject to snap). Events can be selected several at a time, and together with keyframes, as described in <a href="#editing-keys">Editing Keyframes</a>.</p>
 	</section>
 
 	<section class="docs-section" id="string-events">
@@ -330,7 +332,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>There is nothing to save. Every edit — a keyframe moved, a track added, an event renamed, a binding changed — is written to the <code>CAGEAnimation</code> as you make it, and <code>anim_length</code> is kept up to date from the timeline. The inspector shows a new length, in bold as a changed value, a moment after you set it, while this window is still open. <b>Close</b> just closes the window (and leaves Animation Mode if it's on).</p>
 		<p>Each edit is an undo step in the main editor: <b>Edit → Undo</b> (or <b>Ctrl+Z</b> with the main window focused — the shortcut doesn't work inside this window) takes it back even while this window is open, and the window picks up the restored tracks. A gizmo drag in Animation Mode counts as one step, not one per value it recorded.</p>
-		<p>An event's pins on the <code>CAGEAnimation</code> node exist for as long as some keyframe uses that event name; removing the last one removes the forward and reverse pins. Deleting an event with the inspector's <b>Delete Event</b> button, or deleting a whole event track, warns first if any of the pins going away still have flowgraph connections. Renaming an event, or deleting one from the graph's right-click menu, doesn't — so check the node after those.</p>
+		<p>An event's pins on the <code>CAGEAnimation</code> node exist for as long as some keyframe uses that event name; removing the last one removes the forward and reverse pins. Deleting events (with the inspector's <b>Delete Event</b> button, the <b>Delete</b> key or the graph's right-click menu), or deleting a whole event track, warns first if any of the pins going away still have flowgraph connections. Renaming an event doesn't — so check the node after that.</p>
     </section>
 </article>
 
