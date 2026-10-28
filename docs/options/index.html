@@ -87,6 +87,7 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#composite-display"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Composite Display</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#entity-display"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Entity Display</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#viewport"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Viewport</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#save-build"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Save/Build</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#misc"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Misc</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#controls"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Controls</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#manage-installs"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Manage Game Directories</a></li>
@@ -110,8 +111,8 @@
 
 	<section class="docs-section" style="padding-top:0;">
 		<p>The toolbar <b>Options</b> menu configures the script editor — how composites and entities are shown, Viewport behaviour, save/launch helpers, and more. It opens from the <b>Options</b> button on the main toolbar, between <b>View</b> and <b>Help</b>:</p>
-		<p><img src="img/options-menu.jpg" alt="The OpenCAGE toolbar with the Options menu open, listing Dark Mode, Composite Display, Entity Display, Viewport, Misc, Controls and Manage Game Directories." style="max-width:100%;width:720px"></p>
-		<p><b>Composite Display</b>, <b>Entity Display</b>, <b>Viewport</b> and <b>Misc</b> open submenus, mostly of checkboxes that stick between sessions. <b>Controls</b> opens a shortcut reference, and <b>Manage Game Directories</b> opens the multi-install manager.</p>
+		<p><img src="img/options-menu.jpg" alt="The OpenCAGE toolbar with the Options menu open, listing Dark Mode, Composite Display, Entity Display, Viewport, Save/Build, Misc, Controls and Manage Game Directories." style="max-width:100%;width:720px"></p>
+		<p><b>Composite Display</b>, <b>Entity Display</b>, <b>Viewport</b>, <b>Save/Build</b> and <b>Misc</b> open submenus, mostly of checkboxes that stick between sessions. <b>Controls</b> opens a shortcut reference, and <b>Manage Game Directories</b> opens the multi-install manager.</p>
 		<p>The menu stays open after you tick something, so you can set several options in one go — it closes on an outside click, on Escape, or when it loses focus.</p>
     </section>
 </article>
@@ -196,32 +197,47 @@
     </section>
 </article>
 
+<article class="docs-article" id="save-build">
+    <header class="docs-header">
+<h1 class="docs-heading">Save/Build</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The <b>Save/Build</b> submenu holds the options that change what saving does: what you're told, what happens afterwards, and how <a href="/docs/save-and-build/">Save and Build</a> treats the level's radiosity. Below it is open with <b>Don't Rebuild Radiosity</b> ticked:</p>
+		<p><img src="img/options-save-build.jpg" alt="The Options menu with the Save/Build submenu open, listing Show Confirmation When Saving (ticked), Prompt to Save on Close, Open Game On Save and a greyed-out Write Compressed, then below a divider a greyed-out Always Fully Rebuild Radiosity and a ticked Don't Rebuild Radiosity." style="max-width:100%;width:720px"></p>
+		<p class="text-muted small"><i>Write Compressed is greyed out because it only reports the loaded level's state. Always Fully Rebuild Radiosity is greyed out, and shows unticked, because Don't Rebuild Radiosity is ticked.</i></p>
+		<ul>
+			<li><b>Show Confirmation When Saving</b> — shows a “Saved changes!” popup after a successful save (on by default).</li>
+			<li><b>Prompt to Save on Close</b> — asks whether to save when you close OpenCAGE with a level open (off by default). Independent of the unsaved-changes indicator, which always adds <b>[UNSAVED CHANGES]</b> to the window title (and so the taskbar) once you've modified something.</li>
+			<li><b>Open Game On Save</b> — after save, launches into the level you're editing, past the title screen. Uses some of the same patches as <a href="/docs/launch-game/">Launch Game</a>, and sets up its <a href="/docs/launch-game/#debug-tools">Debug tools</a> (the <a href="/docs/launch-game/#debug-menu">Debug Menu</a> with <a href="/docs/launch-game/#dont-write-saves">Don't write saves</a> and the free camera in its <a href="/docs/debug-menu/#cinematic">Cinematic group</a> that replaced Cinematic Tools, Debug entities, Hot reload and <a href="/docs/live-link/">Live Link</a>), Cap FPS, Unlock mouse, <a href="/docs/launch-game/#possess-characters">Possess characters</a> and <a href="/docs/launch-game/#ui-mods">UI tweaks</a> as they're ticked in that window (off by default).</li>
+			<li><b>Write Compressed</b> — status only: shows whether the loaded level's Commands are compressed. Not user-togglable.</li>
+			<li><b>Always Fully Rebuild Radiosity</b> — every save rebuilds the level's radiosity from scratch, rather than keeping the existing lighting and only baking what changed. It's slower, and it replaces the game's own lighting in areas you haven't touched too. Once a level has been fully rebuilt, later saves keep fully rebuilding it even with this off (off by default). Greyed out, and shown unticked, while <b>Don't Rebuild Radiosity</b> is ticked; it keeps its own setting for when you untick that. See <a href="/docs/save-and-build/#radiosity">How Radiosity is Handled</a>.</li>
+			<li><b>Don't Rebuild Radiosity</b> — <b>Save and Build</b> keeps the level's radiosity instead of baking it (off by default). That can save minutes a build on a level whose radiosity is rebuilt in full every time, as a custom level's is, or one with a lot of new content to bake. Everything else is still built, and the kept lighting is matched up to the rebuilt level so the game reads it as before: what you haven't touched keeps its lighting, what you've moved keeps the lighting of where it was, and what you've added has no baked lighting yet, so it looks flat until you build with this unticked. OpenCAGE remembers what you added and moved, so that build lights it. A level with no radiosity yet is built without any while this is ticked. The builds OpenCAGE runs for the <a href="/docs/installing-mods/">Mod Manager</a> and when making mods always bake. See <a href="/docs/save-and-build/#skip-radiosity">Skipping the Radiosity Bake</a>.</li>
+		</ul>
+		<p>Saving an uncompressed level now always writes both the PAK and BIN forms of the Commands data — that used to be an option and no longer is. Compressed levels still save as BIN only.</p>
+    </section>
+</article>
+
 <article class="docs-article" id="misc">
     <header class="docs-header">
 <h1 class="docs-heading">Misc</h1>
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>The <b>Misc</b> submenu gathers the save, launch, layout and model-preview helpers. Below it is open with the Viewport enabled:</p>
-		<p><img src="img/options-misc.jpg" alt="The Options menu with the Misc submenu open, listing the save, model view, search window, layout, numeric step, launch, platform, render filter, radiosity, cubemap capture size and AI assistant options, with Write Compressed greyed out." style="max-width:100%;width:720px"></p>
-		<p class="text-muted small"><i>Write Compressed is greyed out because it only reports the loaded level's state; Reset Render Filters On Load is listed only while the Viewport is enabled.</i></p>
+		<p>The <b>Misc</b> submenu gathers everything else: the layout, model-preview, search-window and numeric-step helpers, the Live Link ones, and the AI assistant switch. Below it is open with the default ticks:</p>
+		<p><img src="img/options-misc.jpg" alt="The Options menu with the Misc submenu open, listing Use Textured Model View (ticked), Keep Global Search Window Open, Reset UI Layouts, Set Numeric Step, Show Game Platform, Cubemap Capture Size, Hide Live Link Label In-Game and Allow AI Assistants (MCP) (ticked)." style="max-width:100%;width:720px"></p>
+		<p class="text-muted small"><i>Taken with the Viewport disabled: Reset Render Filters On Load is listed, after Show Game Platform, only while the Viewport is enabled.</i></p>
 		<ul>
-			<li><b>Show Confirmation When Saving</b> — shows a “Saved changes!” popup after a successful save (on by default).</li>
-			<li><b>Prompt to Save on Close</b> — asks whether to save when you close OpenCAGE with a level open (off by default). Independent of the unsaved-changes indicator, which always adds <b>[UNSAVED CHANGES]</b> to the window title (and so the taskbar) once you've modified something.</li>
 			<li><b>Use Textured Model View</b> — model previews try to load textures/materials (on by default).</li>
 			<li><b>Keep Global Search Window Open</b> — after jumping to an entity from global search, the search window stays open (off by default).</li>
 			<li><b>Reset UI Layouts</b> — restores the default window size and dock panel layout. If the Viewport is open, it's kept and repositioned. You stay where you were: the same composite, stepped down as you were, with the same selection.</li>
 			<li><b>Set Numeric Step</b> — sets how much position and rotation values change when you nudge numeric fields in inspectors (defaults: position <code>0.1</code>, rotation <code>1.0</code>).</li>
-			<li><b>Open Game On Save</b> — after save, launches into the level you're editing, past the title screen. Uses some of the same patches as <a href="/docs/launch-game/">Launch Game</a>, and sets up its <a href="/docs/launch-game/#debug-tools">Debug tools</a> (the <a href="/docs/launch-game/#debug-menu">Debug Menu</a> with <a href="/docs/launch-game/#dont-write-saves">Don't write saves</a> and the free camera in its <a href="/docs/debug-menu/#cinematic">Cinematic group</a> that replaced Cinematic Tools, Debug entities, Hot reload and <a href="/docs/live-link/">Live Link</a>), Cap FPS, Unlock mouse, <a href="/docs/launch-game/#possess-characters">Possess characters</a> and <a href="/docs/launch-game/#ui-mods">UI tweaks</a> as they're ticked in that window (off by default).</li>
 			<li><b>Show Game Platform</b> — adds the detected platform (e.g. Steam) to the window title, straight after OpenCAGE — handy with <a href="/docs/multiple-game-installs/">multiple installs</a> open (off by default).</li>
-			<li><b>Write Compressed</b> — status only: shows whether the loaded level's Commands are compressed. Not user-togglable.</li>
 			<li><b>Reset Render Filters On Load</b> — when loading a level, puts the Viewport's function-type render filters back to their defaults (only <b>ModelReference</b> ticked); <b>Occlusion Meshes</b> and <b>Collision Meshes</b> are left as they are. Listed only while the Viewport is enabled (off by default). See <a href="/docs/level-viewer/#previews">Previews &amp; Render Filters</a>.</li>
-			<li><b>Always Fully Rebuild Radiosity</b> — every save rebuilds the level's radiosity from scratch, rather than keeping the existing lighting and only baking what changed. It's slower, and it replaces the game's own lighting in areas you haven't touched too. Once a level has been fully rebuilt, later saves keep fully rebuilding it even with this off (off by default). See <a href="/docs/save-and-build/#radiosity">How Radiosity is Handled</a>.</li>
 			<li><b>Cubemap Capture Size</b> — the size of each face of the cubemaps <a href="/docs/live-link/#capture-cubemaps">captured in the game</a> over Live Link: <b>Same as the Cubemap Replaced</b> (the default; the game's own are all 128 × 128), or 64, 128, 256 or 512 pixels. Bigger is sharper on mirror-like surfaces and takes more memory; the game's window needs to be at least as tall as the faces.</li>
 			<li><b>Hide Live Link Label In-Game</b> — the game stops showing <b>OpenCAGE Live Link</b> in its top-right corner while <a href="/docs/live-link/">Live Link</a> is connected. A connected game hides or shows it straight away, and a game launched later starts that way. The line about the last thing Live Link did still shows for a few seconds, in the label's place (off by default).</li>
 			<li><b>Allow AI Assistants (MCP)</b> — lets AI assistants such as Claude drive OpenCAGE through <code>OpenCAGE.MCP.exe</code>. Only programs running as you, on this PC, can connect (on by default). While an assistant is working, the status bar says so. See <a href="/docs/ai-assistants/">AI Assistants</a>, and <a href="/docs/ai-assistants/#working">While It Works</a> for that label and the question when you close OpenCAGE mid-task.</li>
 		</ul>
-		<p>Saving an uncompressed level now always writes both the PAK and BIN forms of the Commands data — that used to be an option here and no longer is. Compressed levels still save as BIN only.</p>
     </section>
 </article>
 

@@ -20385,6 +20385,26 @@
         "title":  "Viewport"
     },
     {
+        "url":  "/docs/options/#save-build",
+        "description":  "On Options",
+        "type":  "symbol",
+        "category":  "Options",
+        "keywords":  [
+            "save-build",
+            "save/build",
+            "show confirmation when saving",
+            "prompt to save on close",
+            "unsaved changes",
+            "open game on save",
+            "write compressed",
+            "always fully rebuild radiosity",
+            "don't rebuild radiosity",
+            "skip radiosity",
+            "options"
+        ],
+        "title":  "Save/Build"
+    },
+    {
         "url":  "/docs/options/#misc",
         "description":  "On Options",
         "type":  "symbol",
@@ -20394,9 +20414,7 @@
             "allow ai assistants",
             "mcp",
             "claude",
-            "always fully rebuild radiosity",
             "cubemap capture size",
-            "unsaved changes",
             "options"
         ],
         "title":  "Misc"
@@ -21841,6 +21859,22 @@
             "save and build"
         ],
         "title":  "How Radiosity is Handled"
+    },
+    {
+        "url":  "/docs/save-and-build/#skip-radiosity",
+        "description":  "On Save and Build",
+        "type":  "symbol",
+        "category":  "Save and Build",
+        "keywords":  [
+            "skip-radiosity",
+            "don't rebuild radiosity",
+            "skip radiosity",
+            "keep radiosity",
+            "faster build",
+            "pending",
+            "save and build"
+        ],
+        "title":  "Skipping the Radiosity Bake"
     },
     {
         "url":  "/docs/save-and-build/#checking",
@@ -23475,6 +23509,8 @@
             "instanced",
             "open composite after import",
             "open after import",
+            "preview",
+            "composite preview",
             "composite porting"
         ],
         "title":  "Import from Level"
