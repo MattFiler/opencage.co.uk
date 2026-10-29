@@ -416,7 +416,11 @@
 				<li>Replacing a sound for every level updates every copy the game ships, so it can't come back in a level that loads a different bank</li>
 				<li>Replace a sound for one level only: the new audio goes into the level's own sound override package (WORLD\LEVEL_SOUND_OVERRIDE.PCK), which the game reads ahead of its shared sound files - so a modded map can have its own sounds without changing them anywhere else</li>
 				<li>Edit the sound override packages the DLC levels already ship with, and put a sound back to the base game's audio on one level</li>
-				<li>Added a Level Sound Override window (from the sound editor) listing the soundbanks and streams in a level's package, to add, export or remove them</li>
+				<li>Added a Level Sound Override window (from the sound editor) listing the soundbanks and streams in a level's package, and the sounds changed inside each soundbank, by name (the sound event that plays each one) - to search, add, export or remove them</li>
+				<li>Import WAV in the Level Sound Override window: pick the sound a .wav replaces by its sound event, and it's encoded the way the game's own audio is and laid out like the sound it replaces (channels and sample rate) - no Wwise needed - with the original and the new audio to play first</li>
+				<li>Importing a .wav now mixes down surround audio and resamples rates the game's decoder can't take, rather than refusing them, and carries a .wav's own loop points over</li>
+				<li>New Soundbank in the Level Sound Override window: make a soundbank of the level's own with new sound events, each playing a .wav and sounding like a sound of the game's you pick (its mixer, bus, 3D positioning and attenuation) - no Wwise needed. Its events go in the level's sound event table, so scripts can load the bank with a SoundLoadBank and play them with Sound entities</li>
+				<li>The sound event list shows the soundbanks each event is in, in place of the Show Soundbanks button - searching for a soundbank's name lists its events</li>
 				<li>Sounds held in a permanent soundbank (such as Weapons or UI) can only be replaced for every level, as the game loads those before any level - the sound editor says which bank holds them</li>
 				<li>Sound import/export supported on the Switch and mobile builds, encoding to whichever codec the sound it replaces used (Wwise Vorbis, Wwise ADPCM, or PCM)</li>
 			</ul></li>

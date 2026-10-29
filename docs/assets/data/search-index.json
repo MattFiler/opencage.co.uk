@@ -22543,9 +22543,52 @@
             "level_sound_override.pck",
             "pck",
             "package",
+            "export",
+            "remove",
             "sound events"
         ],
         "title":  "Level Sound Override"
+    },
+    {
+        "url":  "/docs/sound-events/#import-wav",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "import-wav",
+            "import wav",
+            "wav",
+            "wem",
+            "bnk",
+            "vorbis",
+            "resample",
+            "sample rate",
+            "channels",
+            "mono",
+            "stereo",
+            "level sound override",
+            "sound events"
+        ],
+        "title":  "Importing a WAV"
+    },
+    {
+        "url":  "/docs/sound-events/#new-soundbank",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "new-soundbank",
+            "new soundbank",
+            "soundbank",
+            "bnk",
+            "new sound event",
+            "custom sounds",
+            "soundloadbank",
+            "variablestring",
+            "soundeventdata",
+            "sound events"
+        ],
+        "title":  "Making a Soundbank"
     },
     {
         "url":  "/docs/sound-events/#level-sound-override-limits",
@@ -22569,6 +22612,8 @@
             "metadata",
             "metadata",
             "soundbanks",
+            "soundbanks column",
+            "soundloadbank",
             "sound events"
         ],
         "title":  "Soundbank Metadata"

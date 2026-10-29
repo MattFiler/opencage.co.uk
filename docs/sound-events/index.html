@@ -105,6 +105,8 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#replace-copies">Every Copy is Replaced</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#replace-level">Replacing for One Level</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#level-sound-override"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Level Sound Override</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#import-wav">Importing a WAV</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#new-soundbank">Making a Soundbank</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#level-sound-override-limits">What a Level Can't Replace</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#metadata"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Soundbank Metadata</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
@@ -129,8 +131,8 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Alien: Isolation's audio runs through <b>Wwise</b>. Scripts don't reference audio files — they fire <b>sound events</b> by name, and Wwise decides what that means: which take to play, whether to pick at random, which bank the audio comes from.</p>
 		<p>Whenever you set a sound event on an entity parameter, OpenCAGE opens the sound event selector. That window has a player along its bottom edge, so you can hear what an event actually sounds like before committing to it — and export or replace the audio behind it.</p>
-		<p>The same window opens from <b>View → Sound Editor</b> once a level is loaded, with no parameter behind it: every sound event the level knows (shown below), to listen through, look up in the soundbanks, export or replace, without first finding an entity that plays one. The box along the top filters the list as you type. It stays open while you work in the editor and closes when the level does. Only one of these windows is open at a time, so editing a sound event parameter in the inspector closes the Sound Editor and opens the picker in its place.</p>
-		<p><img src="img/sound-editor.jpg" alt="The Sound Editor window: a searchable list of every sound event in the level, with the preview player along the bottom edge showing the loaded take, its variations and the Replace and Export buttons." style="max-width:100%;width:761px"></p>
+		<p>The same window opens from <b>View → Sound Editor</b> once a level is loaded, with no parameter behind it: every sound event the level knows (shown below), with the soundbanks each is in, to listen through, export or replace, without first finding an entity that plays one. The box along the top filters the list as you type, on the event's name or the name of a soundbank it's in. It stays open while you work in the editor and closes when the level does. Only one of these windows is open at a time, so editing a sound event parameter in the inspector closes the Sound Editor and opens the picker in its place.</p>
+		<p><img src="img/sound-editor.jpg" alt="The Sound Editor window: a searchable list of every sound event in the level and the soundbanks each is in, with the preview player along the bottom edge showing the loaded take, its variations and the Replace and Export buttons." style="max-width:100%;width:761px"></p>
 		<p class="text-muted small"><i>View → Sound Editor with an event selected. Opened from a parameter instead, the same window is titled Select for 'sound_event' and gains a Select button.</i></p>
     </section>
 </article>
@@ -165,7 +167,7 @@
 			<li><a href="/docs/cathode-entities/#Sound">Sound</a> — plays a sound event. Set its <code>sound_event</code> parameter and trigger it; that parameter is what opens the selector described on this page.</li>
 			<li><a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> — loads the soundbank the event lives in. The audio isn't resident until something loads its bank, so a <a href="/docs/cathode-entities/#Sound">Sound</a> entity firing an event from an unloaded bank plays nothing.</li>
 		</ul>
-		<p>Which bank to load is exactly what the <b>Show Soundbanks</b> button tells you — select the event, read off the soundbank it's listed in, and point a <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> at that. See <a href="#metadata">Soundbank Metadata</a>.</p>
+		<p>Which bank to load is exactly what the <b>Soundbanks</b> column tells you — find the event, read off a soundbank it's listed in, and have a <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> load it: link a <a href="/docs/cathode-entities/#VariableString">VariableString</a> holding the bank's name to the SoundLoadBank's <code>sound_bank</code> pin, the way the game's own scripts do. A name typed straight onto the pin isn't read. See <a href="#metadata">Soundbank Metadata</a>.</p>
 		<p>Banks that are permanently resident don't need loading; those are configured separately under <a href="/docs/configs/perma-soundbanks/">Permanent Soundbanks</a>.</p>
     </section>
 
@@ -177,8 +179,8 @@
 			<li><a href="/docs/cathode-entities/#SpeechScript">SpeechScript</a> — <b>a whole exchange</b>. Takes up to five characters (<code>character_01</code>…<code>character_05</code>, each with an alt) and up to ten lines. Each line has a <code>line_NN_event</code> for the sound event, a <code>line_NN_character</code> naming which of the five slots delivers it, and — from the second line onwards — a <code>line_NN_delay</code> for the pause before it. Fires <code>on_script_ended</code> when the last line finishes.</li>
 		</ul>
 		<p>Use <a href="/docs/cathode-entities/#Speech">Speech</a> for a barked line or a one-off; use <a href="/docs/cathode-entities/#SpeechScript">SpeechScript</a> for back-and-forth conversation, where hand-wiring a chain of <a href="/docs/cathode-entities/#Speech">Speech</a> entities and delays would be far more work.</p>
-		<p>In the selector, a dialogue event shows its subtitle in the <b>Content</b> column, and the search box matches on that text as well as on the event name — so you can find a line by what's said. Lines whose audio depends on who is speaking can't be previewed; the player's status line says so when you select one.</p>
-		<p>Both still need their bank loaded, so the <b>Show Soundbanks</b> → <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> step above applies to dialogue as much as to any other sound.</p>
+		<p>In the selector, a dialogue event shows its subtitle in the <b>Text</b> column, and the search box matches on that text as well as on the event name — so you can find a line by what's said. Lines whose audio depends on who is speaking can't be previewed; the player's status line says so when you select one.</p>
+		<p>Both still need their bank loaded, so the <b>Soundbanks</b> column → <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> step above applies to dialogue as much as to any other sound.</p>
 	</section>
 </article>
 
@@ -236,8 +238,8 @@
 		<h2 class="section-heading">Preparing a WAV</h2>
 		<p>Replacement audio must be a <code>.wav</code>. A few things to keep in mind:</p>
 		<ul>
-			<li><b>Uncompressed, mono or stereo.</b> The <code>.wav</code> must be uncompressed PCM (8, 16, 24 or 32-bit) or floating point. A file with more than two channels is refused, so mix surround down to stereo first. 44100 or 48000 Hz always works; an unusual sample rate can be refused.</li>
-			<li><b>Match the original's channel count where you can.</b> Replacing a mono sound with a stereo file changes how the engine positions it in 3D space. The summary describes the file you chose but doesn't compare it with the original — the player's status line is where you read off the original's sample rate and channel layout.</li>
+			<li><b>Uncompressed, any channel count or sample rate.</b> The <code>.wav</code> must be uncompressed PCM (8, 16, 24 or 32-bit) or floating point. The game's codebooks only cover mono and stereo, so a file with more channels is mixed down to stereo. A sample rate the game's decoder isn't set up for is resampled to the nearest one it is: mono works from 16000 Hz up, stereo from 32000 Hz up, and anything above 48000 Hz (the highest the game ships) comes down to 48000 Hz. The summary says when either happened.</li>
+			<li><b>Match the original's channel count where you can.</b> Replacing a mono sound with a stereo file changes how the engine positions it in 3D space. The summary names the original's layout beside your file's; <a href="#import-wav">Import WAV</a> in the Level Sound Override window can mix and resample to match it for you.</li>
 			<li><b>The encoding follows the original.</b> On PC everything is Wwise Vorbis. The Switch build also stores some sounds as Wwise ADPCM and a few as plain PCM — OpenCAGE encodes to whichever codec the sound it's replacing used, so the game can still read it.</li>
 			<li><b>Size matters, but isn't fatal.</b> The summary tells you how the new audio compares to the old; a much larger file grows the container it lives in.</li>
 			<li><b>A variation with no audio of its own can't be replaced.</b> Some entries in a container are references rather than media — the player says so if you try.</li>
@@ -276,14 +278,65 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Any level can carry a sound package of its own: <code>WORLD\LEVEL_SOUND_OVERRIDE.PCK</code> in the level's folder. When the game loads the level it mounts that package ahead of the shared sound files, so a soundbank or a streamed sound in it with the same id as one in <code>DATA\SOUND</code> is read from the package instead — on that level alone. The challenge maps carry changed copies of shared soundbanks, soundbanks of their own and replacement streams this way.</p>
 		<p>It's how a modded map gets sounds of its own without changing the game's: replace a gun's firing sound for your level and every other level keeps the original.</p>
-		<p>The <b>Level Sound Override…</b> button at the bottom left of the Sound Editor lists what the open level's package holds — each soundbank and stream, its language, its size, and what it stands in for on this level:</p>
+		<p>The <b>Level Sound Override…</b> button at the bottom left of the Sound Editor lists what the open level's package holds — each soundbank, each sound changed inside it, and each stream, with its size and what it stands in for on this level. Everything is listed by name: a soundbank by its own name, and a sound by the sound event that plays it (<i>Play_SPOT_2_Man_Switch_Console</i>, or <i>Play_Pistol_Fire (take 3 of 19)</i> for one of several takes, with <i>+2 more</i> when other events play it too) rather than by the number its file is named for. The number is still in the <b>File</b> column, and stands in for the name only for audio none of the level's events plays — a soundbank of your own, say. The <b>Search</b> box filters the list by either.</p>
+		<p><img src="img/level-sound-override.jpg" alt="The Level Sound Override window listing two soundbanks, each with the sound changed inside it indented beneath, and two streams, every one named by its sound event, with Import WAV, Add Files, Export, Remove and Close along the bottom." style="max-width:100%;width:1002px"></p>
+		<p class="text-muted small"><i>A level's package with two sounds replaced inside copies of their soundbanks and two streams. The indented rows are the sounds that differ from the base game's copy of each soundbank.</i></p>
 		<ul>
-			<li><b>Add Files…</b> — puts a soundbank (<code>.bnk</code>, built with the game's version of Wwise) or a stream (<code>.wem</code> named for its id, such as <code>123456789.wem</code>) into the package, in place of anything there with the same id.</li>
-			<li><b>Export…</b> — saves the selected soundbank or stream out of the package.</li>
-			<li><b>Remove</b> (or <b>Delete</b>) — takes the selected files out of the package, so on this level the game reads the shared file of the same id again. A package with nothing left in it is deleted.</li>
+			<li><b>Import WAV…</b> — makes a sound for the level from a <code>.wav</code>, in place of one of the game's or as a stream of its own — see <a href="#import-wav">Importing a WAV</a>. With a sound selected it starts on that sound; with a soundbank selected, on that soundbank's sounds. Double-clicking a row does the same.</li>
+			<li><b>New Soundbank…</b> — makes a soundbank of the level's own, with sound events new to the game — see <a href="#new-soundbank">Making a Soundbank</a>. With a soundbank made this way selected it reads <b>Edit Soundbank…</b>, to add events to it or take them out; double-clicking the soundbank does the same.</li>
+			<li><b>Add Files…</b> — puts a soundbank (<code>.bnk</code>, built with the game's version of Wwise) or a stream (<code>.wem</code> named for its id, such as <code>123456789.wem</code>) into the package as it is, in place of anything there with the same id.</li>
+			<li><b>Export…</b> — saves the selected soundbank, stream or sound out of the package: a soundbank as a <code>.bnk</code>, a stream or a sound from inside a soundbank as Wwise audio (<code>.wem</code>) or, decoded, as a <code>.wav</code>.</li>
+			<li><b>Remove</b> (or <b>Delete</b>) — takes the selected soundbanks and streams out of the package, so on this level the game reads the shared file of the same id again, and puts the base game's audio back in place of the selected sounds in soundbanks. A soundbank that ends up the same as the base game's comes out of the package, and a package with nothing left in it is deleted.</li>
 		</ul>
-		<p>Sounds get into the package through <b>Replace → For This Level Only…</b>; this window is for seeing what's there and for whole files. Every change is written straight away, so there's nothing to save — but none of them are undo steps, and the level's package is the only copy of anything changed in it.</p>
+		<p>Every change is written straight away, so there's nothing to save — but none of them are undo steps, and the level's package is the only copy of anything changed in it. <b>Replace → For This Level Only…</b> in the Sound Editor writes to the same package.</p>
 		<p>The game holds the package open while it's running the level, so close the game before changing it.</p>
+	</section>
+
+	<section class="docs-section" id="import-wav">
+		<h2 class="section-heading">Importing a WAV</h2>
+		<p><b>Import WAV…</b> turns a <code>.wav</code> into audio the game plays, with no Wwise needed: it's encoded the way the game's own audio is (Wwise Vorbis) and put where the game reads the sound from on this level.</p>
+		<p><img src="img/import-wav.jpg" alt="The Import WAV window: the chosen .wav at the top, a searchable list of the game's sounds with the one it replaces selected, the channel, sample rate, quality and gain choices, and a summary of what importing it will do above Play Original, Play New, Import and Cancel." style="max-width:100%;width:862px"></p>
+		<p class="text-muted small"><i>A mono 22050 Hz .wav going in place of play_alien_spawn, mixed and resampled to the stereo 44100 Hz the original was shipped at.</i></p>
+		<ol>
+			<li><b>Browse…</b> for the <code>.wav</code>, or drop one on the window. While no sound is picked yet, a file named for a sound event or a sound's id picks that sound for you.</li>
+			<li>Pick the sound it replaces. The list has every sound the level's events play, named by the event (and which take it is), its id, where the game keeps it — a stream, or the soundbank it's in — and the other events that play it. Search by an event's name, a soundbank's name or an id. A sound the level can't replace says why in <b>Kept in</b> (see <a href="#level-sound-override-limits">What a Level Can't Replace</a>).</li>
+			<li>Choose the layout. By default the new audio <b>matches the sound it replaces</b>: mixed to its channel count and resampled to its sample rate, so the game positions and mixes it as before. You can keep the <code>.wav</code>'s own channels or rate instead, or pick mono, stereo or a rate yourself. <b>Quality</b> is the Vorbis quality (raised automatically to the nearest setting the game's decoder is set up for), <b>Gain</b> adds decibels, and <b>Normalise to -1 dBFS</b> scales the loudest moment to just under full scale.</li>
+			<li>Read the summary: the new audio's layout against the original's, the encoding, its size against the audio it replaces, and what happens to the level's package. It's worked out again whenever you change something, and nothing is written yet.</li>
+			<li><b>Play Original</b> plays the game's audio for the sound; <b>Play New</b> plays the new audio, decoded from the very file that will go in. <b>Import</b> writes it.</li>
+		</ol>
+		<p>Where it goes depends on where the game keeps the sound. A streamed sound goes in as a stream of its own. A sound held inside a soundbank needs the whole bank, so the bank is copied into the package once and the sound swapped inside the copy, with the bank's directory and the sound objects that point at the audio kept in step; later imports change the copy where it is. A streamed sound whose opening is also held in a soundbank (for it to start without waiting on the disk) gets both. Of the per-level <code>DynamicLoad_</code> soundbanks, only the level's own is copied.</p>
+		<p><b>Add it as a stream of its own</b> puts the audio in the package as a stream with an id you type — for a soundbank of your own, added with <b>Add Files…</b>, that streams audio by that id. There's no original to match, so the <code>.wav</code>'s layout is kept unless you choose one.</p>
+		<p>A few things the summary will tell you about:</p>
+		<ul>
+			<li><b>Surround.</b> The game's codebooks only cover mono and stereo, so a 5.1 original gets stereo audio, and a surround <code>.wav</code> is mixed down.</li>
+			<li><b>Size.</b> Audio held in a soundbank stays in memory for as long as the bank is loaded. A replacement several times the size of the original, or a large one, is pointed out; mono, a lower sample rate, a lower quality or a shorter sound make it smaller.</li>
+			<li><b>Loops and markers.</b> Whether a sound loops is up to the game, which repeats the whole of the new audio where it loops the sound — unless the <code>.wav</code> has a loop region of its own (a <code>smpl</code> chunk, as most audio editors write one), which is carried over, so it plays through once and then repeats just that part, the way some of the game's music does. Markers (cue points) aren't carried; the summary says when the original had a loop region or markers.</li>
+		</ul>
+		<p>Import WAV changes the audio behind sounds the game already has. For sound events of your own — names no soundbank of the game's declares — make a soundbank: see <a href="#new-soundbank">Making a Soundbank</a>.</p>
+	</section>
+
+	<section class="docs-section" id="new-soundbank">
+		<h2 class="section-heading">Making a Soundbank</h2>
+		<p><b>New Soundbank…</b> makes a soundbank of the level's own: sound events new to the game, each playing a <code>.wav</code> of yours and sounding like a sound of the game's you pick. No Wwise is needed. Scripts load it and play its events like the game's own.</p>
+		<p><img src="img/new-soundbank.jpg" alt="The New Soundbank window: the soundbank's name, its three events with their .wav files, the sounds of the game's they sound like and whether they loop, and below them the fields to add another event - a name, a .wav, and a searchable list of the game's sounds to pick the one it sounds like - above a summary of how to load and play the bank." style="max-width:100%;width:882px"></p>
+		<p class="text-muted small"><i>A soundbank of three events, about to be created: one sounding like play_alien_spawn, one like a 3D sound of M04's, and one that loops.</i></p>
+		<ol>
+			<li>Name the soundbank: letters, digits and underscores, and not the name of one of the game's.</li>
+			<li>Add each event: its name (what a <a href="/docs/cathode-entities/#Sound">Sound</a> entity's <code>sound_event</code> will say — letters, digits and underscores, and not a name the game already uses), its <code>.wav</code>, and the sound of the game's it <b>sounds like</b>, picked from the same searchable list as Import WAV (<b>Play Sound</b> plays it). Tick <b>Loop until stopped</b> for a sound that repeats until something stops it. Then <b>Add Event</b>.</li>
+			<li><b>Create</b>. The <code>.wav</code> files are encoded the way the game's audio is, laid out like the sounds they sound like (channels and sample rate), and the soundbank goes in the level's sound package.</li>
+		</ol>
+		<p>An event <b>sounds like</b> its sound of the game's: it plays through that sound's actor-mixer and output bus, with its 3D positioning and distance attenuation, reverb sends, volume, effects and game-parameter curves — everything the game's sound designers set up for it but the audio, and its random pitch or volume, which are left out so the <code>.wav</code> plays as it is. Pick a 2D sound (music, a radio, the UI) for audio heard the same wherever the player is, and a 3D one near the kind of thing yours is — a door, a voice, a machine — for audio that comes from where its Sound entity is and fades with distance.</p>
+		<p>The events also go in the level's sound event table (<code>WORLD\SOUNDEVENTDATA.DAT</code>) and the soundbank in its soundbank list: the game looks up the event a Sound entity names in that table as the level loads, and plays nothing for a name it doesn't find there. So they appear in the sound event selector and the Sound Editor straight away, in the soundbank's name, where they can be previewed like any other.</p>
+		<p>To play them in the level:</p>
+		<ul>
+			<li>Add a <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> to the level's script, with <code>trigger_via_pin</code> off to load the bank as the level loads, and link a <a href="/docs/cathode-entities/#VariableString">VariableString</a> holding the soundbank's name to its <code>sound_bank</code> pin.</li>
+			<li>Add a <a href="/docs/cathode-entities/#Sound">Sound</a> entity per event, its <code>sound_event</code> set to the event's name and its <code>position</code> where the sound should come from, and trigger it (its <code>start</code> pin) like any other.</li>
+			<li>For an event that loops, leave the Sound entity's <code>multi_trigger</code> off, so its <code>stop</code> pin stops the sound: with <code>multi_trigger</code> on, each trigger plays on by itself and <code>stop</code> does nothing to it.</li>
+		</ul>
+		<p>With the soundbank selected, <b>Edit Soundbank…</b> lists its events to add more or take some out (<b>Remove Event</b>), then <b>Save</b>s it again. <b>Remove</b> in the Level Sound Override window takes the whole soundbank out, and its events out of the level's sound event table with it.</p>
+		<div class="docs-caveat">
+			<p><b>The soundbank and its events belong to this level.</b> They're in the level's own sound package and sound event table, so another level doesn't have them — make the soundbank there too. The audio is held in the soundbank, so it stays in memory for as long as the bank is loaded: keep long sounds short, mono, or at a lower sample rate. A sound of the game's whose 3D positioning follows a path, or that isn't Vorbis audio, can't be borrowed from; pick another.</p>
+		</div>
 	</section>
 
 	<section class="docs-section" id="level-sound-override-limits">
@@ -301,12 +354,10 @@
     </header>
 
 	<section class="docs-section" style="padding-top:0;">
-		<p>With an event selected, the <b>Show Soundbanks</b> button at the bottom right of the window lists every soundbank the event appears in, as shown below. The player's status line already names one of them and counts the rest (<i>Mission_DLC_ChallengeMap4 +4</i>); this is the full list. It tells you which levels can actually fire the event — one that isn't in a bank your level loads won't play, however correctly the script is wired.</p>
-		<p><img src="img/show-soundbanks.jpg" alt="The Soundbanks dialog listing the five soundbanks that declare the selected event, shown over the Sound Editor." style="max-width:100%;width:761px"></p>
-		<p class="text-muted small"><i>Show Soundbanks: the banks this event is declared in — any one of these is a valid target for a SoundLoadBank entity.</i></p>
-		<p>This is where you get the bank name to give a <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> entity, so the event you're about to fire is actually loaded — see <a href="#scripting">Playing a Sound in a Script</a>.</p>
-		<p>If the event isn't listed in any soundbank at all, it says so. That usually means the name is wrong or the event belongs to content that isn't shipped.</p>
-		<p>Which banks are permanently resident is configured separately — see <a href="/docs/configs/perma-soundbanks/">Permanent Soundbanks</a>.</p>
+		<p>The <b>Soundbanks</b> column beside each event lists every soundbank the event appears in, as the level's sound data declares it. The player's status line names one of them and counts the rest (<i>Mission_DLC_ChallengeMap4 +4</i>); the column is the full list. It tells you which levels can actually fire the event — one that isn't in a bank your level loads won't play, however correctly the script is wired. Searching for a soundbank's name lists the events in it, as below.</p>
+		<p><img src="img/soundbanks-column.jpg" alt="The Sound Editor filtered by a soundbank's name, M04_WelcomeToSevastopol, listing the events in that soundbank with each event's soundbanks in the second column." style="max-width:100%;width:761px"></p>
+		<p class="text-muted small"><i>The events in M04_WelcomeToSevastopol, found by typing its name in the search box. Any bank in an event's Soundbanks column is a valid target for a SoundLoadBank entity.</i></p>
+		<p>This is where you get the bank name to give a <a href="/docs/cathode-entities/#SoundLoadBank">SoundLoadBank</a> entity, so the event you're about to fire is actually loaded — see <a href="#scripting">Playing a Sound in a Script</a>.</p>		<p>Which banks are permanently resident is configured separately — see <a href="/docs/configs/perma-soundbanks/">Permanent Soundbanks</a>.</p>
     </section>
 </article>
 
