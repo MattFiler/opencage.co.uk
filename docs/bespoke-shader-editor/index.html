@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <script>(function(){try{var t=localStorage.getItem("docs-theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+    <meta name="color-scheme" content="light dark">
+    <title>OpenCAGE: Bespoke Shader Editor</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="How to browse, decompile, edit and recompile Alien: Isolation's bespoke shaders with OpenCAGE.">
+    <meta name="author" content="Matt Filer">    
+    <link rel="shortcut icon" href="/favicon.ico"> 
+	
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@MattFiler" />
+	<meta name="twitter:title" content="OpenCAGE: Bespoke Shader Editor" />
+	<meta name="twitter:description" content="How to browse, decompile, edit and recompile Alien: Isolation's bespoke shaders with OpenCAGE." />
+    <meta name="twitter:image" content="https://opencage.co.uk/docs/preview.png" />
+    <meta property="og:image" content="https://opencage.co.uk/docs/preview.png" />
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script src="https://kit.fontawesome.com/e81c1695fe.js" crossorigin="anonymous"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="../assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="../assets/css/motion.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+    <link rel="stylesheet" href="../assets/css/dark.css">
+    
+    <style>
+        .docs-section li {
+            margin-top: -10px;
+			word-wrap: break-word;
+        }
+		.docs-section .section-heading {
+			word-wrap: break-word;
+		}
+    </style>
+
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">
+<div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+	                <div class="site-logo"><a class="navbar-brand" href="/docs/index.html"><img class="logo-icon me-2" src="../assets/images/logo.png" alt="OpenCAGE Logo" height="48px"></a></div>    
+                </div><!--//docs-logo-wrapper-->
+	            <div class="docs-top-utilities d-flex justify-content-end align-items-center">
+	                <div class="top-search-box d-none d-md-flex">
+		                <form class="search-form">
+				            <input type="text" placeholder="Search docs pages..." name="search" class="form-control search-input">
+				            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+				        </form>
+	                </div>
+					<ul class="social-list list-inline mx-md-3 mx-lg-5 mb-0 d-none d-lg-flex">
+						<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+		            </ul><!--//social-list-->
+		            <a href="https://store.steampowered.com/app/3367530/OpenCAGE/" class="btn btn-primary d-none d-lg-flex">Download</a>
+	            </div><!--//docs-top-utilities-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+<div class="docs-wrapper"><div id="docs-sidebar" class="docs-sidebar"><nav id="docs-nav" class="docs-nav navbar"><ul class="section-items list-unstyled nav flex-column pb-3">
+
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#intro"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Introduction</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#browsing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Browsing the Shaders</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#properties">Properties</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#editing"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing a Shader</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#hlsl">The Decompiled HLSL</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#compile">Compile and Save</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#restore">Restore Original</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#files">Export &amp; Import HLSL</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#tips"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Tips</a></li>
+
+</ul></nav></div>
+<div class="docs-content"><div class="container">
+
+<article class="docs-article" style="margin-bottom: -17px; padding-bottom: 0px;">
+	<nav class="breadcrumb_parent">
+	  <ol class="breadcrumb" style="margin-top: -7px; padding-bottom: 4px;">
+		<li class="breadcrumb-item"><a href="/docs/">Documentation</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Bespoke Shader Editor</li>
+	  </ol>
+	</nav>
+</article>
+
+<article class="docs-article" id="intro">
+    <header class="docs-header">
+<h1 class="docs-heading">Introduction</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Most of what the game draws uses its <i>ubershaders</i>: big shaders that a material picks a permutation of, through the features you set in the <a href="/docs/material-editor/">Material Editor</a>. Alongside them the engine has 142 <i>bespoke shaders</i>: ordinary, one-off shaders written for a particular job, such as anti-aliasing (SMAA and FXAA), depth of field, ambient occlusion, light shafts, GPU particles, the debug overlays and the highlight on things you can interact with. They live in <code>DATA/SHADERS/UBERSHADER/BESPOKESHADERS_DX11.PAK</code>, with its <code>_BIN</code> and <code>_IDX_REMAP</code> files.</p>
+		<p>Open <b>View → Bespoke Shader Editor</b> to browse them by name, see their properties, and decompile any of them to HLSL, edit it and compile it back into the game. It doesn't need a level loaded.</p>
+		<p><img src="img/overview.jpg" alt="The Bespoke Shader Editor: the list of bespoke shaders on the left with selection_overlay selected, and its pixel shader decompiled to HLSL on the right." width="100%"></p>
+		<p class="text-muted small"><i>The shaders on the left, the selected one's pixel shader as HLSL on the right.</i></p>
+		<p>Shaders can't be added or taken away: the engine asks for each one by its place in the file, so a new one would never be used and a missing one would crash the game.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="browsing">
+    <header class="docs-header">
+<h1 class="docs-heading">Browsing the Shaders</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The list shows every bespoke shader with its number in the file, its name and its stages: <b>VS</b> (vertex), <b>PS</b> (pixel), <b>GS</b> (geometry) and <b>CS</b> (compute). Type in the search box to narrow it by name. <b>Changed</b> says <i>Yes</i> for a shader that differs from the game's own, and the line along the bottom counts them and names the compiler that will be used.</p>
+		<p>Select a shader to see its <b>Properties</b> tab and a tab for each of its stages.</p>
+    </section>
+
+	<section class="docs-section" id="properties">
+		<h2 class="section-heading">Properties</h2>
+		<p>The <b>Properties</b> tab shows what the game's file says about the shader, for reference:</p>
+		<ul>
+			<li><b>Shader</b> - its name and number, its stages, whether it's changed, and its permutation hash.</li>
+			<li><b>Render states</b> and <b>Samplers</b> - the blend, depth, stencil and culling states and the sampler states the engine sets when it draws with the shader.</li>
+			<li><b>Parameter remaps</b> - where the engine puts its constants for each stage.</li>
+			<li>A group for each stage - its compile target (such as <code>ps_5_0</code>), size and number of instructions, the inputs and outputs it takes, and every constant buffer, texture, sampler and buffer it reads, with the variables it uses from each constant buffer.</li>
+		</ul>
+		<p><img src="img/properties.jpg" alt="The Properties tab for selection_overlay: its name and stages, render states, parameter remaps, and for each stage its target, size, inputs, outputs and constant buffers." width="100%"></p>
+    </section>
+</article>
+
+<article class="docs-article" id="editing">
+    <header class="docs-header">
+<h1 class="docs-heading">Editing a Shader</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Each stage's tab has the stage decompiled to HLSL, ready to edit, and an <b>Assembly</b> tab showing the compiled shader as it is now, read only. Below them, a box shows what the compiler said. Along the top:</p>
+		<ul>
+			<li><b>Decompile</b> - turns the stage as it is in the game's file into HLSL again, in place of what's in the editor.</li>
+			<li><b>Compile and Save</b> (or <b>Ctrl+S</b>) - compiles the HLSL and saves it into the game. See <a href="#compile">Compile and Save</a>.</li>
+			<li><b>Restore Original</b> - puts the stage back as the game shipped it. See <a href="#restore">Restore Original</a>.</li>
+			<li><b>Export HLSL</b> and <b>Import HLSL</b> - see <a href="#files">Export &amp; Import HLSL</a>.</li>
+		</ul>
+		<p>What you type is kept while you look at other shaders, and the window asks before it closes if you have HLSL you haven't compiled.</p>
+    </section>
+
+	<section class="docs-section" id="hlsl">
+		<h2 class="section-heading">The Decompiled HLSL</h2>
+		<p>The game's shaders still carry the names they were written with, so the decompiled HLSL declares their constant buffers, textures, samplers and buffers under their own names and at their own registers, and what the shader reads shows by name: <code>Time.x</code>, <code>ConstantColour.xyz</code>, <code>gpuConsts.timeDelta</code>. The working values are kept in registers named as the compiled shader has them, <code>r0</code>, <code>r1</code> and so on, with the outputs in <code>o0</code>, <code>o1</code>... which are handed to the shader's outputs before it returns. A register that ever holds whole numbers is a <code>uint4</code> and the rest are <code>float4</code>, and work on whole numbers or bits goes through <code>asint</code>, <code>asuint</code> and <code>asfloat</code>, so every value keeps its exact bits. A shader decompiled and compiled again without changes does what the original did, and with the game's own compiler more than half of them come out byte for byte the same as the game's.</p>
+		<p><img src="img/hlsl.jpg" alt="selection_overlay's pixel shader decompiled: it pulses ConstantColour over time using Time and TextureAnimation, and writes it out scaled by HDR_EncodeScale." width="100%"></p>
+		<p class="text-muted small"><i>selection_overlay's pixel shader, decompiled.</i></p>
+		<p>The decompiled code follows the compiled shader instruction by instruction, so it reads more like careful assembly than the original source would. Change what you need to - a colour, a constant, a step - and leave the rest as it is.</p>
+    </section>
+
+	<section class="docs-section" id="compile">
+		<h2 class="section-heading">Compile and Save</h2>
+		<p><b>Compile and Save</b> compiles the HLSL for the stage's own target (such as <code>ps_5_0</code>), with <code>main</code> as the entry point. If the game's own compiler (<code>d3dcompiler_43.dll</code>, installed with the DirectX runtime) is on your computer it's used, so a shader you rebuild comes out as close to the original as it can; otherwise Windows' own <code>d3dcompiler_47.dll</code> is, which the game runs just as well.</p>
+		<p>If the HLSL doesn't compile, the compiler's errors show in the box below with the line they're on, and nothing is saved:</p>
+		<p><img src="img/error.jpg" alt="A compile error in the box below the HLSL, naming the line it's on; nothing has been saved." width="100%"></p>
+		<p>If it compiles, it's saved straight into the game's files and the shader shows as changed in the list. Saving closes Alien: Isolation if it's running. Before it saves, the new shader is checked against the original: the game sets each shader up the way the original takes its inputs, constants and textures, so if yours takes them differently - a new texture, an output that's gone - you're told what differs and asked whether to save it anyway.</p>
+    </section>
+
+	<section class="docs-section" id="restore">
+		<h2 class="section-heading">Restore Original</h2>
+		<p><b>Restore Original</b> puts the stage back as the game shipped it, saves, and decompiles it again. The game's own copy comes from what the <a href="/docs/installing-mods/">Mod Manager</a> keeps of its files; if it doesn't have one (if the file was already changed before OpenCAGE kept it), the stage goes back to how it was when you opened the window instead, and the list's <b>Changed</b> column compares with that too. When every shader is back as the game shipped it, the three files are the game's own again, byte for byte.</p>
+    </section>
+
+	<section class="docs-section" id="files">
+		<h2 class="section-heading">Export &amp; Import HLSL</h2>
+		<p><b>Export HLSL</b> saves the stage's HLSL, as it is in the editor, to a <code>.hlsl</code> file, to edit in another program or keep. <b>Import HLSL</b> reads one into the editor in place of what's there; it isn't saved into the game until you use <b>Compile and Save</b>.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="tips">
+    <header class="docs-header">
+<h1 class="docs-heading">Tips</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<ul>
+			<li>Read only what the shader already reads. The engine fills in the constant buffers and textures a bespoke shader was built with, and only those: a constant buffer or texture the shader didn't use before may not be set when it draws.</li>
+			<li>Keep <code>main</code>'s inputs and outputs as they are. They're how the shader connects to the stage before it and the render targets after it.</li>
+			<li>A change to a bespoke shader can be put in a mod with <a href="/docs/making-mods/">Create a Mod</a>, where the shader files are listed under Other files. They go in whole, so if two installed mods change bespoke shaders, the one lower in the Mod Manager's list is used.</li>
+		</ul>
+    </section>
+</article>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+                        <small class="copyright">OpenCAGE is a hobby project developed by <a class="theme-link" href="http://mattfiler.co.uk" target="_blank">Matt Filer</a> - it is not affiliated with Creative Assembly, SEGA, or Feral Interactive.</small><br>
+                        <small class="copyright">Alien: Isolation must be purchased and installed to use OpenCAGE.</small><br>
+                        <small class="copyright">Please see <a class="theme-link" href="https://github.com/MattFiler/OpenCAGE/blob/master/THIRD-PARTY-NOTICES.md" target="_blank">THIRD-PARTY-NOTICES.md</a> for any embedded library/code licenses.</small><br><br>
+                        <small class="copyright">Docs template designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers.</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+							<li class="list-inline-item"><a href="https://github.com/mattfiler/opencage"><i class="fab fa-github fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://twitter.com/mattfiler"><i class="fab fa-x-twitter fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://bsky.app/profile/mattfiler.co.uk"><i class="fab fa-bluesky fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://discord.gg/JJ4ECu9hpY"><i class="fab fa-discord fa-fw"></i></a></li>
+							<li class="list-inline-item"><a href="https://store.steampowered.com/app/3367530/OpenCAGE/"><i class="fab fa-steam fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+       
+    <!-- Javascript -->          
+    <script src="../assets/plugins/popper.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39768980-14"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-39768980-14');
+	</script>
+    
+    
+    <!-- Page Specific JS -->
+    <script src="../assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="../assets/js/highlight-custom.js"></script> 
+    <script src="../assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="../assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="../assets/js/docs.js"></script>
+    <script src="../assets/js/motion.js"></script>
+    <script src="../assets/js/search.js"></script> 
+
+</body>
+</html> 

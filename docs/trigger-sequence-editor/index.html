@@ -238,7 +238,7 @@
 		</ul>
 		<p>The menu then offers:</p>
 		<ul>
-			<li><b>Add Selected To TriggerSequence</b> — appends the selected entities that aren’t in the sequence yet to the end of it, as one undo step. The label counts them (“Add 3 Selected To TriggerSequence”) and is greyed out when there’s nothing to add. Only function entities and composite instances can go in — the same things the editor’s picker offers.</li>
+			<li><b>Add Selected To TriggerSequence</b> — appends the selected entities that aren’t in the sequence yet to the end of it, as one undo step. The label counts them (“Add 3 Selected To TriggerSequence”) and is greyed out when there’s nothing to add. Only function entities and composite instances can go in — the same things the editor’s picker offers. An alias in the selection, which is what the Viewport’s Deep selection gives you for something inside a composite placed here, goes in as the entity it points at, named through the instances on the way.</li>
 			<li><b>Remove Selected From TriggerSequence</b> — takes out every entry that names a selected entity. An entity listed at two timings is two entries, and both go. Also one undo step.</li>
 		</ul>
 		<p>The same items appear on a <b>proxy</b> to a TriggerSequence, which carries a list of its own. If the editor is open on that sequence it’s closed first, and whatever it had changed is recorded as its own undo step before the addition goes on top. With the <a href="/docs/level-viewer/#zones">Viewport</a> open, select the sequence afterwards to see what it now covers.</p>

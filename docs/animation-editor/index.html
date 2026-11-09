@@ -111,6 +111,7 @@
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#metadata"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Editing Metadata</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#delete"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Deleting an Animation</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#picker"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Using it as a Picker</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#platforms"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Other Builds of the Game</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
 </ul></nav></div>
@@ -359,6 +360,26 @@
 		<p class="text-muted small"><i>The same window opened from an animation parameter: the clip the entity already uses is selected, and <b>Use This Animation</b> sits at the bottom right.</i></p>
 		<p>An animation parameter stores the name the set plays the clip by, and an animation set parameter stores the set's own name. Neither stores a path.</p>
 		<p>An animation only plays from a set that holds it, so the two are filled in together. Picking an animation also sets the entity's <b>AnimationSet</b> to the set it came from. In the set picker, selecting a clip turns the button into <b>Use Set + Animation</b>, which fills in <b>Animation</b> as well. Either way, both values change in one undo step. An entity without the other parameter just takes the one you picked.</p>
+    </section>
+</article>
+
+<article class="docs-article" id="platforms">
+    <header class="docs-header">
+        <h1 class="docs-heading">Other Builds of the Game</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>The Animation Editor works the same way on every build of the game OpenCAGE opens: browsing, previewing, exporting, importing, replacing, deleting and editing metadata, and the <a href="/docs/ai-assistants/">AI assistant</a> tools that do the same. What differs is how the animation file stores its clips:</p>
+		<ul>
+			<li><b>PC</b> — <code>DATA/GLOBAL/ANIMATION.PAK</code> holds every clip, skeleton and skeleton mapping twice, once for 32-bit and once for 64-bit.</li>
+			<li><b>Mac and Linux</b> — <code>ANIMATION.PAK</code> is the PC's own file, byte for byte. These builds also ship a <code>DATA/HAVOK</code> folder holding about 1,200 of the clips again, converted ahead of time for those platforms.</li>
+			<li><b>Mobile (iOS/Android) and Switch</b> — a smaller file (<code>animation_switch.pak</code> on Switch) holding a single 64-bit copy of everything, in a newer version of the Havok format.</li>
+		</ul>
+		<p>OpenCAGE reads all of them the same way, so a clip previews, exports and is described identically whichever build it comes from. An imported or replaced animation is written in the build's own format: both copies on PC, Mac and Linux, and the single newer-format copy on mobile and Switch.</p>
+		<div class="docs-caveat">
+			<p><b>Mobile, Switch, Mac and Linux builds can't be launched from OpenCAGE</b>, so animations written into their files have been checked by reading them back, not in the game.</p>
+			<p>On <b>Mac and Linux</b>, replacing a clip that also has a copy in <code>DATA/HAVOK</code> changes <code>ANIMATION.PAK</code> but not that copy, and the game may keep playing the original. <b>Replace</b> says so when this happens, and names the file. Imported clips and metadata edits aren't affected.</p>
+		</div>
     </section>
 </article>
 

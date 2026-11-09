@@ -231,7 +231,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>Press <b>Launch Game</b> on the main toolbar, tick <b>Debug Menu</b> at the top of the <b>Debug tools</b> group, and pick the key that opens it from the dropdown beside the box: <b>F7</b> by default, with the same choices as Launch Game's other <a href="/docs/launch-game/#keys">keys</a>. Then press <b>Start Alien: Isolation</b>.</p>
 		<p>The runtime utils support the Steam, GOG and Epic Games Store versions of the game, so on other platforms the box is greyed out. The Debug Menu runs alongside the rest of the <a href="/docs/launch-game/#debug-tools">Debug tools</a>: tick <b>Live Link</b> as well if you want OpenCAGE's script debugger or an AI assistant to work the menu (see <a href="#remote">Live Link &amp; AI Assistants</a>). Starting the game from Launch Game, or by saving with <a href="/docs/options/#save-build">Options → Save/Build → Open Game On Save</a> ticked, sets it up as it's ticked there, and it then stays in the game folder, so a game started from Steam has it too until OpenCAGE next starts the game without it.</p>
-		<p>The Debug Menu can't share its key with Hot reload, Unlock mouse or Possess characters while they're ticked: Launch Game says so and puts the dropdown back. It also warns you if you pick a key the Debug Menu's <a href="#camera-keys">free camera</a> uses (<b>F8</b> turns it on and off, <b>F9</b> takes a screenshot, and F1 to F3, Home, Delete, End, Page Up and Page Down act while it flies), because the free camera then goes without that key.</p>
+		<p>The Debug Menu can't share its key with Hot reload, Unlock mouse or Possess characters while they're ticked: Launch Game says so and puts the dropdown back. It also warns you if you pick one of the <a href="#camera-keys">Cinematic keys</a> (<b>F8</b>, <b>F9</b>, <b>F5</b>, Home and Delete any time, and F1 to F3, End, Page Up and Page Down while the free camera flies, or the keys you've set in their place on the <a href="#cinematic-keys">Keys</a> tab), because the Debug Menu then goes without that key.</p>
 		<p><b>Cinematic Tools are now part of the Debug Menu.</b> Launch Game no longer has an <b>Enable Cinematic Tools</b> box (hover over <b>Debug Menu</b> there and its tooltip says where they went): the free camera, camera tracks and visuals are in the Debug Menu's <a href="#cinematic">Cinematic</a> group, and the separate Cinematic Tools program no longer comes with OpenCAGE. See <a href="#from-cinematic-tools">Coming from Cinematic Tools</a> for where everything went.</p>
 		<p><b>So is one more of Launch Game's old options.</b> The Debug Menu also does what <b>Enable UI Memory Overlay</b> did, so it's gone from Launch Game: the UI memory overlay is a checkbox in <a href="#perf-memory">Performance &gt; Memory</a> (see <a href="/docs/launch-game/#removed-options">Removed Options</a>). It also has the level's debug checkpoints, in <a href="#checkpoints">Game &gt; Tools</a>, and loads any level from <a href="#game-flow">Game &gt; Game flow</a>; Launch Game's <a href="/docs/launch-game/#ui-mods">UI tweaks</a> can add those to the game's own pause and main menus as well.</p>
 	</section>
@@ -1352,6 +1352,7 @@
 			<li><a href="#cinematic-hud">HUD</a>: hide the HUD, or any layer of the game's interface.</li>
 			<li><a href="#cinematic-cast">Cast</a>: hold the other characters still, make the player invisible to the AI, and put the camera behind a character.</li>
 			<li><a href="#cinematic-screenshots">Screenshots</a>: the frame as the game drew it, without the Debug Menu, saved to a file, and the game's own capture of stills and image sequences.</li>
+			<li><a href="#cinematic-keys">Keys</a>: set any of the group's keys to another, as Cinematic Tools' key config did.</li>
 		</ul>
 	</section>
 
@@ -1373,7 +1374,21 @@
 
 	<section class="docs-section" id="camera-keys">
 		<h2 class="section-heading">Keys &amp; Gamepad</h2>
-		<p>With the camera on and the Debug Menu closed (or open, with <b>Fly with this window open</b> ticked):</p>
+		<p>These are the keys as they start out, Cinematic Tools' own; the <a href="#cinematic-keys">Keys</a> tab sets any of them to another. Some work any time you're playing a level, with the camera on or off:</p>
+		<div class="table-responsive my-3">
+		<table class="table table-bordered">
+			<thead><tr><th>Key</th><th>Does</th></tr></thead>
+			<tbody>
+				<tr><td><b>F8</b></td><td>Turn the free camera on or off, with the Debug Menu open or closed</td></tr>
+				<tr><td><b>Delete</b></td><td>Freeze or unfreeze time (the game's own pause)</td></tr>
+				<tr><td><b>Home</b></td><td>Hide or show the HUD</td></tr>
+				<tr><td><b>I</b></td><td>Make the player invisible to the AI, or visible again</td></tr>
+				<tr><td><b>F5</b></td><td>Freeze the NPCs, or let them go (Cinematic Tools had this on F7, the Debug Menu's own key)</td></tr>
+				<tr><td><b>F9</b></td><td>Take a <a href="#cinematic-screenshots">screenshot</a></td></tr>
+			</tbody>
+		</table>
+		</div>
+		<p>Each of these but the screenshot shows a note at the top of the screen for a moment, saying what it turned on or off. They do nothing while the game's pause menu is up, or while you're typing in one of the Debug Menu's boxes. The rest work with the camera on and the Debug Menu closed (or open, with <b>Fly with this window open</b> ticked):</p>
 		<div class="table-responsive my-3">
 		<table class="table table-bordered">
 			<thead><tr><th>Keys</th><th>Does</th></tr></thead>
@@ -1385,14 +1400,12 @@
 				<tr><td>The mouse wheel, or the numeric pad's <b>+</b> and <b>&minus;</b></td><td>Field of view</td></tr>
 				<tr><td>The numeric pad's <b>6</b>/<b>5</b>, <b>8</b>/<b>9</b> and <b>3</b>/<b>2</b></td><td>The depth of field's focus distance, focal length and f-number (with <a href="#cinematic-visuals">Override the level's focus</a> on)</td></tr>
 				<tr><td><b>F1</b>, <b>F2</b> and <b>F3</b></td><td>Add a track node where the camera is, delete the last one, and play or stop the track</td></tr>
-				<tr><td><b>Home</b></td><td>Hide or show the HUD</td></tr>
-				<tr><td><b>Delete</b> and <b>End</b></td><td>Pause or unpause the game, and step it one frame while it's paused</td></tr>
-				<tr><td><b>F9</b></td><td>Take a <a href="#cinematic-screenshots">screenshot</a> (with the camera off too)</td></tr>
+				<tr><td><b>End</b></td><td>Step the game one frame while it's paused</td></tr>
 			</tbody>
 		</table>
 		</div>
 		<p>On a gamepad: the left stick flies, the triggers go up and down, the right stick turns, <b>LB</b> and <b>RB</b> roll, clicking the sticks changes the field of view, the d-pad's up and down change how fast it turns, and <b>B</b> and <b>Y</b> how fast it moves.</p>
-		<p>Only the on and off key (<code>CinematicCameraKey</code>, F8) and the screenshot key (<code>CinematicScreenshotKey</code>, F9) can be changed, in the <a href="/docs/launch-game/#settings-file">settings file</a>; the rest are fixed. If you give one of the camera's keys to another option in Launch Game, such as the hot reload key, the camera does without it (see <a href="/docs/launch-game/#keys">Keys</a>). The tab's <b>Keys</b> section lists them as they are.</p>
+		<p>If you give one of these keys to another option in Launch Game, such as the hot reload key, the Debug Menu does without it, and the <a href="#cinematic-keys">Keys</a> tab says so beside it (see <a href="/docs/launch-game/#keys">Keys</a>). The Free Camera tab's <b>Keys</b> section lists them as they are set.</p>
 	</section>
 
 	<section class="docs-section" id="camera-tracks">
@@ -1423,7 +1436,7 @@
 
 	<section class="docs-section" id="cinematic-hud">
 		<h2 class="section-heading">HUD</h2>
-		<p><b>Hide the HUD</b> (<b>Home</b> while flying) hides the in-game HUD and the weapon HUD. In a challenge map it also hides the objectives, score and timer, which are a layer of their own, unless you untick <b>Also hide the challenge mode's objectives when the HUD is hidden</b>; hidden, they don't update, and catch up when shown again. Below, every layer of the game's interface (the motion tracker, subtitles, prompts...) can be hidden by itself. A menu hidden here stays hidden when it opens, so leave the pause menu's layer alone.</p>
+		<p><b>Hide the HUD</b> (<b>Home</b>, any time) hides the in-game HUD and the weapon HUD. In a challenge map it also hides the objectives, score and timer, which are a layer of their own, unless you untick <b>Also hide the challenge mode's objectives when the HUD is hidden</b>; hidden, they don't update, and catch up when shown again. Below, every layer of the game's interface (the motion tracker, subtitles, prompts...) can be hidden by itself. A menu hidden here stays hidden when it opens, so leave the pause menu's layer alone.</p>
 	</section>
 
 	<section class="docs-section" id="cinematic-cast">
@@ -1436,7 +1449,7 @@
 			<li>The game keeps force idle in its saves, so a checkpoint saved while people are held brings them back idle. With Freeze NPCs still on they're let go with the rest when you untick it; otherwise, untick force idle for them in <a href="#control">Characters &gt; Control</a>.</li>
 		</ul>
 		<p>Unticked, it only undoes what it did: a character you'd set to force idle yourself, or a tree switch you'd ticked, stays as it was. For a world that stops altogether, freeze time on the <a href="#free-camera">Free Camera</a> tab instead.</p>
-		<p>The tab also has <b>Player invisible to the AI</b> (the switch in <a href="#player-tools">Characters &gt; Player</a>), and for the character selected <b>Camera behind it</b> (the free camera on, 3 m behind it, looking at it), <b>Lock the camera to it</b> and <b>Unlock</b>, and <b>Move the player to the camera</b>.</p>
+		<p><b>F5</b> ticks or unticks Freeze NPCs from the game, and <b>I</b> Player invisible to the AI (see <a href="#camera-keys">Keys &amp; Gamepad</a>). The tab also has <b>Player invisible to the AI</b> (the switch in <a href="#player-tools">Characters &gt; Player</a>), and for the character selected <b>Camera behind it</b> (the free camera on, 3 m behind it, looking at it), <b>Lock the camera to it</b> and <b>Unlock</b>, and <b>Move the player to the camera</b>.</p>
 	</section>
 
 	<section class="docs-section" id="cinematic-screenshots">
@@ -1450,6 +1463,17 @@
 			<li><b>Start image sequence</b> saves a .tga for every frame drawn, into a folder of its own in the Screenshots folder (<code>frame_0.tga</code>, <code>frame_1.tga</code>...), until you press <b>Stop image sequence</b> or the level changes; a note along the top of the screen counts the frames. Each file is written as its frame is drawn (about 8 MB a frame at 1920&times;1080), so the game runs slowly while it records. <b>Lock the time step while recording</b> (on) sets the Game group's <a href="#fixed-time-step">fixed time step</a> to the rate beside it (30 a second by default) for the recording, so every frame is the same step of game time and the frames play back smoothly at that rate however slowly they were drawn; it's put back when the recording stops. If the fixed time step is on already, the recording keeps to it, and a camera track played while it records keeps to the same steps. Sound keeps to real time, so record it separately.</li>
 		</ul>
 		<p>Only the combinations the game accepts are offered: on PC, stills at any quality and kind, environment maps at Low, and image sequences as standard at Low. The tab names the files of the last capture.</p>
+	</section>
+
+	<section class="docs-section" id="cinematic-keys">
+		<h2 class="section-heading">Keys</h2>
+		<p>Every key the Cinematic group uses, listed in two parts: those that work any time you're playing a level, and those that only work while the free camera flies (see <a href="#camera-keys">Keys &amp; Gamepad</a> for what each does by default). To change one, click its key, then press the new one. The mouse's middle and side buttons can be used too, but not its left and right buttons; <b>Escape</b> closes the window instead, leaving the key as it was.</p>
+		<ul>
+			<li><b>Clear</b> leaves the action with no key, and <b>Default</b> puts its first key back. <b>Reset every key</b> puts them all back.</li>
+			<li>A key another option in Launch Game has, such as the Debug Menu's own (<b>F7</b>), Possess characters' or Hot reload's, does nothing here, and the tab says so beside it in orange. So does a key two actions share: both then happen.</li>
+			<li>The keys are kept in <code>OpenCAGE.CinematicKeys.ini</code> in the game folder, next to <code>AI.exe</code>, so they last from one game to the next. OpenCAGE never writes it, so you can also edit it by hand: under <code>[Keys]</code>, a line like <code>FreezeTime=DELETE</code> for each action, named as in the <a href="/docs/launch-game/#settings-file">settings file</a> (<code>F1</code> to <code>F12</code>, a letter or digit, <code>HOME</code>, <code>LEFT</code>, <code>CTRL</code>, <code>NUMPAD5</code>...) or <code>NONE</code> for no key. A line you leave out takes the action's first key.</li>
+			<li>The free camera's and the screenshot's first keys come from <code>CinematicCameraKey</code> and <code>CinematicScreenshotKey</code> in the settings file if it names them, as before this tab.</li>
+		</ul>
 	</section>
 
 	<section class="docs-section" id="from-cinematic-tools">
@@ -1466,15 +1490,15 @@
 				<tr><td>Reset camera automatically</td><td>Free Camera: <b>Start from the game camera</b></td></tr>
 				<tr><td>Lock to character</td><td>Free Camera: <b>Lock to a character</b>, or Cast: <b>Lock the camera to it</b></td></tr>
 				<tr><td>Camera profiles</td><td>Free Camera: Profiles. Profiles Cinematic Tools saved aren't read.</td></tr>
-				<tr><td>Timescale; freeze time (<b>Delete</b>)</td><td>Free Camera: Time (the same as Game &gt; Tools), <b>Delete</b>, and <b>End</b> to step a frame</td></tr>
+				<tr><td>Timescale; freeze time (<b>Delete</b>)</td><td>Free Camera: Time (the same as Game &gt; Tools), <b>Delete</b> any time, and <b>End</b> to step a frame</td></tr>
 				<tr><td>Tracks; <b>F1</b>, <b>F2</b>, <b>F3</b></td><td><a href="#camera-tracks">Tracks</a>, with the same keys, several tracks, and saving them to a file</td></tr>
 				<tr><td>Visuals: Override values, brightness, contrast, saturation, gamma, colour tint, tone map settings</td><td><a href="#cinematic-visuals">Visuals</a>, each setting overridden by itself; brightness and gamma are <b>Frame scale</b> and <b>Frame offset</b></td></tr>
 				<tr><td>DoF strength, focus distance, focus scale; the numeric pad keys</td><td>Visuals: <b>Focal length</b>, <b>Focus distance</b> and <b>F-number</b>, with the same keys</td></tr>
 				<tr><td>Hide HUD (<b>Home</b>)</td><td><a href="#cinematic-hud">HUD</a>, and <b>Home</b></td></tr>
-				<tr><td>Freeze characters (<b>F7</b>)</td><td>Cast: <a href="#cinematic-cast">Freeze NPCs</a>, with no key of its own (F7 opens the Debug Menu)</td></tr>
-				<tr><td>Invisibility (<b>I</b>)</td><td>Cast: <b>Player invisible to the AI</b>, with no key. Like Cinematic Tools' invisibility, it doesn't hide the player's body.</td></tr>
+				<tr><td>Freeze characters (<b>F7</b>)</td><td>Cast: <a href="#cinematic-cast">Freeze NPCs</a>, and <b>F5</b> (F7 opens the Debug Menu)</td></tr>
+				<tr><td>Invisibility (<b>I</b>)</td><td>Cast: <b>Player invisible to the AI</b>, and <b>I</b>. Like Cinematic Tools' invisibility, it doesn't hide the player's body.</td></tr>
 				<tr><td>The glow round usable objects, always off with Cinematic Tools</td><td>On as in the game; Rendering &gt; Rendering's <b>No usable-object glow</b> turns it off</td></tr>
-				<tr><td>Key config</td><td>Not available: the keys are fixed, bar the camera's on and off key and the screenshot key in the <a href="/docs/launch-game/#settings-file">settings file</a></td></tr>
+				<tr><td>Key config</td><td>The <a href="#cinematic-keys">Keys</a> tab. Key configs Cinematic Tools saved aren't read. The gamepad's buttons are fixed.</td></tr>
 				<tr><td>No screenshots</td><td><a href="#cinematic-screenshots">Screenshots</a> (<b>F9</b>), and the game's own capture, for stills and image sequences</td></tr>
 			</tbody>
 		</table>
@@ -1489,11 +1513,12 @@
 		<table class="table table-bordered">
 			<thead><tr><th>Tab</th><th>Switches and values</th><th>Commands</th></tr></thead>
 			<tbody>
-				<tr><td>Free Camera</td><td><code>cinematic.camera</code>, <code>cinematic.keep_input</code>, <code>cinematic.keep_gamepad</code>, <code>cinematic.freeze_player</code>, <code>cinematic.fly_with_menu</code>, <code>cinematic.smooth_mouse</code>, <code>cinematic.start_from_game</code>; values <code>cinematic.fov</code>, <code>cinematic.roll</code>, <code>cinematic.move_speed</code>, <code>cinematic.turn_speed</code>, <code>cinematic.roll_speed</code>, <code>cinematic.fov_speed</code>, <code>cinematic.mouse_sensitivity</code>, <code>cinematic.pad</code> (&minus;1 the first connected)</td><td><code>cinematic.status</code>, <code>cinematic.camera_get</code>, <code>cinematic.camera_set</code>, <code>cinematic.reset</code>, <code>cinematic.lock</code>, <code>cinematic.go_to</code>, <code>cinematic.player_to_camera</code>, <code>cinematic.profile_save</code>, <code>cinematic.profile_load</code>, <code>cinematic.profile_delete</code>, <code>cinematic.list_profiles</code>, <code>cinematic.keys</code></td></tr>
+				<tr><td>Free Camera</td><td><code>cinematic.camera</code>, <code>cinematic.keep_input</code>, <code>cinematic.keep_gamepad</code>, <code>cinematic.freeze_player</code>, <code>cinematic.fly_with_menu</code>, <code>cinematic.smooth_mouse</code>, <code>cinematic.start_from_game</code>; values <code>cinematic.fov</code>, <code>cinematic.roll</code>, <code>cinematic.move_speed</code>, <code>cinematic.turn_speed</code>, <code>cinematic.roll_speed</code>, <code>cinematic.fov_speed</code>, <code>cinematic.mouse_sensitivity</code>, <code>cinematic.pad</code> (&minus;1 the first connected)</td><td><code>cinematic.status</code>, <code>cinematic.camera_get</code>, <code>cinematic.camera_set</code>, <code>cinematic.reset</code>, <code>cinematic.lock</code>, <code>cinematic.go_to</code>, <code>cinematic.player_to_camera</code>, <code>cinematic.profile_save</code>, <code>cinematic.profile_load</code>, <code>cinematic.profile_delete</code>, <code>cinematic.list_profiles</code></td></tr>
 				<tr><td>Tracks</td><td><code>cinematic.track_loop</code>, <code>cinematic.track_manual</code>, <code>cinematic.track_show</code>, <code>cinematic.track_lock_rotation</code>, <code>cinematic.track_lock_fov</code>, <code>cinematic.track_lock_dof</code>; values <code>cinematic.track_gap</code>, <code>cinematic.track_speed</code></td><td><code>cinematic.list_tracks</code>, <code>cinematic.track_new</code>, <code>cinematic.track_select</code>, <code>cinematic.track_remove</code>, <code>cinematic.list_nodes</code>, <code>cinematic.track_add</code>, <code>cinematic.track_update</code>, <code>cinematic.track_delete</code>, <code>cinematic.track_goto</code>, <code>cinematic.track_time</code>, <code>cinematic.track_play</code>, <code>cinematic.track_stop</code>, <code>cinematic.track_seek</code>, <code>cinematic.track_save</code>, <code>cinematic.track_load</code></td></tr>
 				<tr><td>Visuals</td><td><code>cinematic.override.</code> followed by a setting, such as <code>cinematic.override.saturation</code>, and <code>cinematic.dof</code>; values <code>cinematic.</code> followed by the setting, such as <code>cinematic.saturation</code>, and <code>cinematic.dof_focal_length</code>, <code>cinematic.dof_focus</code>, <code>cinematic.dof_fnumber</code></td><td><code>cinematic.list_visuals</code>, <code>cinematic.visuals_reset</code></td></tr>
 				<tr><td>HUD</td><td><code>cinematic.hide_hud</code>, <code>cinematic.hide_hud_challenge</code>, <code>cinematic.ui.</code> followed by a layer's name, as <code>cinematic.list_ui_layers</code> gives it</td><td><code>cinematic.list_ui_layers</code></td></tr>
 				<tr><td>Cast</td><td><code>cinematic.freeze_npcs</code></td><td><code>cinematic.freeze_status</code></td></tr>
+				<tr><td>Keys</td><td></td><td><code>cinematic.keys</code> (every action and its key, a line each), <code>cinematic.set_key</code> (<code>Action=KEY</code>, <code>NONE</code> or <code>DEFAULT</code>), <code>cinematic.key_capture</code></td></tr>
 				<tr><td>Screenshots</td><td><code>cinematic.screenshot_hide_hud</code>, <code>cinematic.game_sequence_lock_step</code>; values <code>cinematic.game_capture_quality</code> (0 Low to 3 Ultra),<code>cinematic.game_sequence_fps</code></td><td><code>cinematic.screenshot</code> (optionally a file name), <code>cinematic.game_capture</code>, <code>cinematic.game_sequence_start</code>, <code>cinematic.game_sequence_stop</code>, <code>cinematic.game_capture_status</code></td></tr>
 			</tbody>
 		</table>

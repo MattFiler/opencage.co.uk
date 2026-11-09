@@ -20769,6 +20769,122 @@
         "title":  "Launch Game UI Tweaks"
     },
     {
+        "url":  "/docs/bespoke-shader-editor/",
+        "description":  "How to browse, decompile, edit and recompile Alien: Isolation\u0027s bespoke shaders with OpenCAGE.",
+        "type":  "page",
+        "category":  "Getting Started",
+        "keywords":  [
+                         "shader",
+                         "shaders",
+                         "bespoke",
+                         "hlsl",
+                         "decompile",
+                         "compile",
+                         "dxbc",
+                         "bespokeshaders"
+                     ],
+        "title":  "Bespoke Shader Editor"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#intro",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "intro",
+                         "bespoke shader editor"
+                     ],
+        "title":  "Introduction"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#browsing",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "browsing",
+                         "bespoke shader editor"
+                     ],
+        "title":  "Browsing the Shaders"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#properties",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "properties",
+                         "bespoke shader editor"
+                     ],
+        "title":  "Properties"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#editing",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "editing",
+                         "bespoke shader editor"
+                     ],
+        "title":  "Editing a Shader"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#hlsl",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "hlsl",
+                         "bespoke shader editor"
+                     ],
+        "title":  "The Decompiled HLSL"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#compile",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "compile",
+                         "bespoke shader editor"
+                     ],
+        "title":  "Compile and Save"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#restore",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "restore",
+                         "bespoke shader editor"
+                     ],
+        "title":  "Restore Original"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#files",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "files",
+                         "bespoke shader editor"
+                     ],
+        "title":  "Export \u0026 Import HLSL"
+    },
+    {
+        "url":  "/docs/bespoke-shader-editor/#tips",
+        "description":  "On Bespoke Shader Editor",
+        "type":  "symbol",
+        "category":  "Bespoke Shader Editor",
+        "keywords":  [
+                         "tips",
+                         "bespoke shader editor"
+                     ],
+        "title":  "Tips"
+    },
+    {
         "url":  "/docs/cage-animation-editor/",
         "description":  "Edit CAGEAnimation timelines — float curves, string events, and animation entity bindings.",
         "type":  "page",
@@ -22122,6 +22238,32 @@
         "title":  "Using it as a Picker"
     },
     {
+        "url":  "/docs/animation-editor/#platforms",
+        "description":  "On Animation Editor",
+        "type":  "symbol",
+        "category":  "Animation Editor",
+        "keywords":  [
+            "platforms",
+            "other builds",
+            "mac",
+            "linux",
+            "macos",
+            "ios",
+            "android",
+            "mobile",
+            "switch",
+            "nintendo switch",
+            "animation_switch.pak",
+            "data/havok",
+            "havok",
+            "tagfile",
+            "64-bit",
+            "non-windows",
+            "animation editor"
+        ],
+        "title":  "Other Builds of the Game"
+    },
+    {
         "url":  "/docs/blend-set-editor/",
         "description":  "How to use OpenCAGE\u0027s Blend Set Editor to edit the parametric animation blends in ANIMATION.PAK.",
         "type":  "page",
@@ -22602,6 +22744,23 @@
             "sound events"
         ],
         "title":  "What a Level Can't Replace"
+    },
+    {
+        "url":  "/docs/sound-events/#platforms",
+        "description":  "On Sound Events",
+        "type":  "symbol",
+        "category":  "Sound Events",
+        "keywords":  [
+            "platforms",
+            "mac",
+            "linux",
+            "ios",
+            "mobile",
+            "switch",
+            "wwise version",
+            "sound events"
+        ],
+        "title":  "Mac, Linux, iOS and Switch"
     },
     {
         "url":  "/docs/sound-events/#metadata",
@@ -27443,6 +27602,26 @@
             "debug menu"
         ],
         "title":  "Keys \u0026 Gamepad"
+    },
+    {
+        "url":  "/docs/debug-menu/#cinematic-keys",
+        "description":  "On Debug Menu",
+        "type":  "symbol",
+        "category":  "Debug Menu",
+        "keywords":  [
+            "cinematic-keys",
+            "cinematic keys",
+            "key config",
+            "keybindings",
+            "remap keys",
+            "hotkeys",
+            "freeze time key",
+            "freeze npcs key",
+            "invisibility key",
+            "OpenCAGE.CinematicKeys.ini",
+            "debug menu"
+        ],
+        "title":  "Cinematic Keys"
     },
     {
         "url":  "/docs/debug-menu/#camera-tracks",

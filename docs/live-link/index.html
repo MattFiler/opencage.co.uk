@@ -383,7 +383,7 @@
 	<section class="docs-section" style="padding-top:0;">
 		<p>While connected, you can trigger any of an entity's methods in the running game, from two places:</p>
 		<ul>
-			<li><b>The Entity Inspector.</b> With one entity selected, the <a href="/docs/scripting-intro/#inspector">Entity Inspector</a>'s toolbar starts with a <b>▶ Trigger Method</b> drop-down. It lists every method the entity has by name, its own and those it inherits (<b>start</b>, <b>stop</b>, <b>pause</b>, <b>resume</b>... on a DebugTextStacking). Pick one to trigger it.</li>
+			<li><b>The Entity Inspector.</b> With one entity selected, the <a href="/docs/scripting-intro/#inspector">Entity Inspector</a>'s toolbar starts with a <b>▶ Trigger Method</b> drop-down. It lists every method the entity has by name, its own and those it inherits (<b>start</b>, <b>stop</b>, <b>pause</b>, <b>resume</b>... on a DebugTextStacking). A TriggerSequence's list also has its own methods, the triggers its editor lists (<b>lgt_all_ON</b>, say): picking one runs the sequence, as a link to that method would. Pick one to trigger it.</li>
 			<li><b>The flowgraph.</b> Right-click a method pin, an input on the left of a node, and choose <b>Trigger '<i>pin</i>' in Game</b>, below <b>Set Delay</b> and <b>Clear Delay</b>: <b>Trigger 'start' in Game</b> on a DebugTextStacking's <b>start</b>, say. It works on a composite instance's method pins too (<b>Trigger 'Fire' in Game</b> on an instance with a <b>Fire</b> method). It isn't offered on outputs, data pins or a node's body.</li>
 		</ul>
 		<p><img src="img/call-in-game.jpg" alt="The Entity Inspector toolbar with the Trigger Method drop-down to the left of Delete Entity." style="max-width:100%;width:278px"></p>

@@ -108,6 +108,7 @@
 <li class="nav-item"><a class="nav-link scrollto" href="#import-wav">Importing a WAV</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#new-soundbank">Making a Soundbank</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#level-sound-override-limits">What a Level Can't Replace</a></li>
+<li class="nav-item section-title"><a class="nav-link scrollto" href="#platforms"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Mac, Linux, iOS and Switch</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#metadata"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Soundbank Metadata</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#related"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>Related Docs</a></li>
 
@@ -240,7 +241,7 @@
 		<ul>
 			<li><b>Uncompressed, any channel count or sample rate.</b> The <code>.wav</code> must be uncompressed PCM (8, 16, 24 or 32-bit) or floating point. The game's codebooks only cover mono and stereo, so a file with more channels is mixed down to stereo. A sample rate the game's decoder isn't set up for is resampled to the nearest one it is: mono works from 16000 Hz up, stereo from 32000 Hz up, and anything above 48000 Hz (the highest the game ships) comes down to 48000 Hz. The summary says when either happened.</li>
 			<li><b>Match the original's channel count where you can.</b> Replacing a mono sound with a stereo file changes how the engine positions it in 3D space. The summary names the original's layout beside your file's; <a href="#import-wav">Import WAV</a> in the Level Sound Override window can mix and resample to match it for you.</li>
-			<li><b>The encoding follows the original.</b> On PC everything is Wwise Vorbis. The Switch build also stores some sounds as Wwise ADPCM and a few as plain PCM — OpenCAGE encodes to whichever codec the sound it's replacing used, so the game can still read it.</li>
+			<li><b>The encoding follows the original.</b> On PC, Mac, Linux and iOS everything is Wwise Vorbis. The Switch build also stores some sounds as Wwise ADPCM and a few as plain PCM — OpenCAGE encodes to whichever codec the sound it's replacing used, so the game can still read it. On iOS and the Switch it's also written in those builds' own, later version of the format — see <a href="#platforms">Mac, Linux, iOS and Switch</a>.</li>
 			<li><b>Size matters, but isn't fatal.</b> The summary tells you how the new audio compares to the old; a much larger file grows the container it lives in.</li>
 			<li><b>A variation with no audio of its own can't be replaced.</b> Some entries in a container are references rather than media — the player says so if you try.</li>
 		</ul>
@@ -346,6 +347,25 @@
 			<li><b>Dialogue.</b> Voiced lines are looked up by voice language, so they can only be replaced for every level.</li>
 		</ul>
 	</section>
+</article>
+
+<article class="docs-article" id="platforms">
+    <header class="docs-header">
+        <h1 class="docs-heading">Mac, Linux, iOS and Switch</h1>
+    </header>
+
+	<section class="docs-section" style="padding-top:0;">
+		<p>Everything on this page works on every build of the game OpenCAGE opens, not just the Windows ones:</p>
+		<ul>
+			<li><b>Mac and Linux</b> ship the PC's sound files byte for byte — the same soundbanks, packages and streams, all Wwise Vorbis — so listing, previewing, exporting, replacing, a level's own sound package and <a href="#new-soundbank">Making a Soundbank</a> all work exactly as they do on PC.</li>
+			<li><b>iOS and the Switch</b> use a later version of Wwise. Their audio is still Wwise Vorbis (the Switch also has some Wwise ADPCM and PCM), but encoded at lower qualities and with a slightly different header, and their soundbanks lay their contents out differently. OpenCAGE reads that version, and everything it writes for those builds — imported audio, a level's sound package, a soundbank of your own — is written in it, using only Vorbis settings the build already ships.</li>
+			<li><b>The iOS build has fewer sounds.</b> Its soundbanks were cut down: a little over half of the sound events a level lists play audio on iOS, against about seven in ten on PC. The rest are still listed, because the level's sound data names them, but the player says <i>This event isn't in any of the game's soundbanks</i>.</li>
+			<li><b>File names stay lower case.</b> The Mac, Linux and iOS builds name all their files in lower case and run on file systems that can tell the difference, so a level's sound package made for one is called <code>level_sound_override.pck</code>, and the level's sound tables keep their lower-case names when they're saved.</li>
+		</ul>
+		<div class="docs-caveat">
+			<p><b>Not yet tried in the game on Mac, Linux or iOS.</b> Those builds don't run on Windows, so what OpenCAGE writes for them has been checked against each build's own files instead: it rewrites their own audio and soundbanks byte for byte, and audio it makes decodes back to the <code>.wav</code> it came from. Test a change on the device before relying on it.</p>
+		</div>
+    </section>
 </article>
 
 <article class="docs-article" id="metadata">

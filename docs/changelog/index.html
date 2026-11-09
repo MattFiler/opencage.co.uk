@@ -85,6 +85,7 @@
     <!-- paste new sidebar content here -->
     
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#1-0-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>1.0.0.X</a></li>
+<li class="nav-item"><a class="nav-link scrollto" href="#version-1-0-0-1">Version 1.0.0.1</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-1-0-0-0">Version 1.0.0.0</a></li>
 <li class="nav-item section-title"><a class="nav-link scrollto" href="#0-18-0-x"><span class="theme-icon-holder me-2"><i class="fas fa-scroll"></i></span>0.18.0.X</a></li>
 <li class="nav-item"><a class="nav-link scrollto" href="#version-0-18-0-4">Version 0.18.0.4</a></li>
@@ -173,6 +174,35 @@
 <h1 class="docs-heading">1.0.0.X</h1>
     </header>
 	
+	<section class="docs-section" id="version-1-0-0-1">
+        <h2 class="section-heading">Version 1.0.0.1</h2>
+
+        <p><strong>Not yet released.</strong></p>
+		<ul>
+			<li>Fixed the Backup Manager's list turning white while a backup is being made, and grid lines in lists always being white, in dark mode</li>
+			<li>Fixed skeleton mappings losing short lists of unmapped bones, which made retargeting pick its mapping differently on PC than on the mobile and Switch builds</li>
+			<li>Fixed animated models made in the mobile and Switch builds getting bone ids the game may not bind, for skeletons no level already animates</li>
+			<li>Replacing an animation in the Mac or Linux build now warns when that build also keeps its own pre-converted copy of it in <code>DATA/HAVOK</code></li>
+			<li>Sound on the iOS and Switch builds: imported audio, a level's sound package and New Soundbank now write those builds' own (later Wwise) format and Vorbis settings — New Soundbank couldn't borrow from any iOS sound before</li>
+			<li>Fixed a level's sound package made for the iOS or Switch build naming its languages as the PC's packages do, and the language names in those builds' dialogue packages reading as nonsense</li>
+			<li>Fixed a level's sound package made for the Mac, Linux or iOS build getting an upper-case file name, and saving a level renaming those builds' lower-case files to upper case — their file systems can't find a renamed file</li>
+			<li>Fixed importing a mono <code>.wav</code> below 32000 Hz failing on the iOS and Switch builds at the default quality: it now drops to the nearest quality the game's decoder is set up for</li>
+			<li>Soundbanks made with New Soundbank now start their audio on a 16-byte boundary, as the game's own do</li>
+			<li>Fixed large SimpleWater planes disappearing at a distance after a Save &amp; Build: a <code>disable_size_culling</code> parameter added to a SimpleWater now keeps it drawn at any distance, as it does for a ModelReference</li>
+			<li>The Debug Menu's Cinematic keys can be changed again, as Cinematic Tools' key config could: a new <a href="/docs/debug-menu/#cinematic-keys">Cinematic &gt; Keys</a> tab sets any of them (click a key, press the new one), kept in <code>OpenCAGE.CinematicKeys.ini</code> next to <code>AI.exe</code></li>
+			<li>Freeze time (<b>Delete</b>) and hide the HUD (<b>Home</b>) now work any time a level is played, not only while the free camera flies, and the Cinematic group has keys again for invisibility (<b>I</b>) and Freeze NPCs (<b>F5</b>, as F7 opens the Debug Menu)</li>
+			<li>Fixed the Debug Menu's cursor being invisible while it is open during a cutscene</li>
+			<li>Fixed the Inventory Items editor saving held and thrown composite names with their folder in front (<code>Equipment\flare_held</code> instead of <code>flare_held</code>), which stopped craftable items being held in game. Opening the editor puts names an earlier version saved this way right</li>
+			<li>Live Link's <b>Trigger Method</b> drop-down and a flowgraph pin's <b>Trigger in Game</b> now offer a TriggerSequence's own methods (its triggers), so a sequence can be run from OpenCAGE</li>
+			<li><b>Add Selected To TriggerSequence</b> now takes aliases, so entities picked with the Viewport's Deep selection inside a composite placed below the sequence (a level's geometry under its ENVIRONMENT composite, say) can be added from up there</li>
+			<li>Opening a package file (<code>.ocp</code> or <code>.omp</code>) to start OpenCAGE no longer opens the Select Level window over the package's own window, and Options &gt; Misc &gt; Don't Show Level Select On Startup stops it opening at startup altogether</li>
+			<li><a href="/docs/making-mods/">Create a Mod</a> now lists in-game text (<code>DATA/TEXT/&lt;language&gt;/*.TXT</code>) string by string, and a level's own text files string by string and its <code>TEXT_DB_LIST.TXT</code> database by database, so a mod can carry only the strings you tick. Text mods made before still install as they did</li>
+			<li>Fixed two text mods clashing on every string when one was saved by OpenCAGE's text editor, which writes different line endings to the game's own files: only strings whose text differs now count as changed</li>
+			<li>The window shown while mods are added, applied or saved now has the OpenCAGE icon</li>
+			<li>New <a href="/docs/bespoke-shader-editor/">Bespoke Shader Editor</a> (<b>View</b> menu): browse the game's 142 bespoke shaders by name, see their properties, and decompile any of them to HLSL, edit it and compile it back into the game</li>
+		</ul>
+	</section>
+
 	<section class="docs-section" id="version-1-0-0-0">
         <h2 class="section-heading">Version 1.0.0.0</h2>
 

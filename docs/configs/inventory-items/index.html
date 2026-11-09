@@ -225,13 +225,13 @@
 				<code style="background:#8e1073;color:white;">Held Composite Name</code>
 				<code style="background:#412b69;color:white;">string</code>
 			</li>
-			<ul><li>Defines the path of the composite to use for the item when held by the player, which must be located within the Equipment folder within Archetypes, within Required_Assets.</li></ul>
+			<ul><li>Defines the composite to use for the item when held by the player, which must be located within the Equipment folder within Archetypes, within Required_Assets. Give its name within that folder, such as <code>flare_held</code>: the game adds the folder itself.</li></ul>
 			
 			<li>
 				<code style="background:#8e1073;color:white;">Thrown Composite Name</code>
 				<code style="background:#412b69;color:white;">string</code>
 			</li>
-			<ul><li>Defines the path of the composite to use for the item when thrown by the player, which must be located within the Thrown folder within Required_Assets.</li></ul>
+			<ul><li>Defines the composite to use for the item when thrown by the player, which must be located within the Thrown folder within Required_Assets. Give its name within that folder, such as <code>flare</code>.</li></ul>
 			
 			<li>
 				<code style="background:#8e1073;color:white;">Droppable When Held</code>
@@ -263,6 +263,7 @@
 			</li>
 			<ul><li>Defines how long the activation can be cancelled for after beginning to activate it. This should match up to animation timings.</li></ul>
 		</ul>
+		<p>Versions of OpenCAGE before 1.0.0.1 saved these two names with the folder in front (<code>Equipment\flare_held</code>), which the game can't find, so the item couldn't be held. Opening the Inventory Items editor now puts any such names right, and says which items it fixed.</p>
 	</section>
 
 	<section class="docs-section" id="medikit-params">
